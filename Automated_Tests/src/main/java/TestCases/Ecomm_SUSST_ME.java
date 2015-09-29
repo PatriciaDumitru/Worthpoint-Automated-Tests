@@ -1,0 +1,680 @@
+
+package TestCases;
+
+//A collection of order creation tests for Single User Single Sold-to
+
+import AutomationFramework.TestSuite;
+import PageObjects.ContinuePage;
+import PageObjects.EcommPage;
+import PageObjects.LoginPage;
+import PageObjects.ManualEntryPage;
+import PageObjects.OrderConfirmationPage;
+import PageObjects.OrderViewPage;
+import PageObjects.OutstandingOrdersPage;
+import PageObjects.WbaSelectionPage;
+import com.google.common.base.Verify;
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Ecomm_SUSST_ME {
+    
+    @Test
+    public void SUSST1() throws IOException {
+        //New chrome driver
+        WebDriver driver = new ChromeDriver();
+
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        EcommPage eCommPage = susstTest4.SUSST_SetUp("MANUAL ENTRY SUSST1: Single line, Your Material Number with master data shade code","G_OOC_ME_SUSST_1");
+
+        System.out.println("Navigating to Manual Entry...");
+
+        //press manual entry
+        ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\1Manual Entry Page.png"));
+        
+        System.out.println("Manual Entry loaded.");
+
+        System.out.println("Asserting elements...");
+        //Make assertions
+        manualEntryPage.assertBaseElements();
+        Assert.assertTrue("eComm page: navigation bar not displayed",manualEntryPage.getNavBar().isDisplayed());
+        Assert.assertTrue("eComm page: breadcrumb not displayed",manualEntryPage.getBreadcrumb().isDisplayed());
+        Assert.assertTrue("eComm page: customer details table not displayed",manualEntryPage.getCustomerTable().isDisplayed());
+        Assert.assertTrue("eComm page: product details table not displayed",manualEntryPage.getProductTable().isDisplayed());
+        Assert.assertTrue("eComm page: 'Next' button not displayed",manualEntryPage.getNextButton().isDisplayed());
+        Assert.assertTrue("eComm page: 'Save draft' button not displayed",manualEntryPage.getSaveDraftButton().isDisplayed());
+        Assert.assertTrue("eComm page: 'Cancel' button not displayed",manualEntryPage.getCancelButton().isDisplayed());
+
+        System.out.println("Assertions successful.");
+
+        System.out.println("Entering customer details...");
+
+        //Input Customer Details
+        manualEntryPage.setCustomerName(TestSuite.custDetails[0]);    
+        manualEntryPage.setShipToParty(TestSuite.custDetails[1]);
+        manualEntryPage.setRequestor(TestSuite.custDetails[2]);
+        manualEntryPage.setBuyers(TestSuite.custDetails[3]);
+        manualEntryPage.setPoNumber(TestSuite.custDetails[4]);
+        
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\2Customer details entered.png"));
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        //Number of order lines
+        int numberOfLines = 1;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {TestSuite.yourMatNum,String.valueOf(TestSuite.quantity)}
+            //Further line details, each in their own array
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMN(details[i], i);
+        }
+
+        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\3Product details entered.png"));
+        
+        System.out.println("Product details entered. Pressing next...");
+        
+        //Press next
+        OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+        
+        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\4Next pressed.png"));
+
+        System.out.println("Order confirmation page reached. Submitting order...");
+        
+        //Press Submit
+        OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit(); 
+        
+        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\5Order submitted.png"));
+
+        System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrdersPage.getOrderRow(TestSuite.lastUsedPO);
+        OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
+        //wait for overlay to load
+        WebDriver waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("TB_iframeContent")));
+        Verify.verify(orderView.getYourMatNumCell().getText().equals(TestSuite.yourMatNum),"Order view: Your Material Number does not match input");
+        Verify.verify(orderView.getArticleCell().getText().equals(TestSuite.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(TestSuite.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(TestSuite.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(TestSuite.expShadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified.");
+        
+        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\6View Order.png"));
+        
+        //Exit view
+        outOrdersPage = orderView.exitView();
+
+        //Output order number for test reference
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+    
+        driver.quit();
+    
+        System.out.println("----------------------------------------------------");
+    
+    }
+    
+    @Test
+    public void SUSST2() {
+        //New chrome driver
+        WebDriver driver = new ChromeDriver();
+
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        EcommPage eCommPage = susstTest4.SUSST_SetUp("MANUAL ENTRY SUSST2: Multiple lines, Your Material Number with master data shade code","G_OOC_ME_SUSST_2");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        
+        System.out.println("Manual Entry page loaded. Entering customer details...");
+        
+        //Input Customer Details
+        manualEntryPage.setCustomerName(TestSuite.custDetails[0]);    
+        manualEntryPage.setShipToParty(TestSuite.custDetails[1]);
+        manualEntryPage.setRequestor(TestSuite.custDetails[2]);
+        manualEntryPage.setBuyers(TestSuite.custDetails[3]);
+        manualEntryPage.setPoNumber(TestSuite.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        //Number of order lines
+        int numberOfLines = 2;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {TestSuite.yourMatNum,String.valueOf(TestSuite.quantity)},
+            //line 2 details
+            {TestSuite.yourMatNum2,String.valueOf(TestSuite.quantity)}
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMN(details[i], i);
+        }
+
+        System.out.println("Product details entered. Pressing next...");
+
+        //Press next
+        OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        System.out.println("Order confirmation page reached. Submitting order...");
+
+        //Press Submit
+        OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        
+
+        System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrdersPage.getOrderRow(TestSuite.lastUsedPO);
+        OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
+        //wait for overlay to load
+        WebDriver waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("TB_iframeContent")));
+        Verify.verify(orderView.getYourMatNumCell().getText().equals(TestSuite.yourMatNum),"Order view: Your Material Number does not match input");
+        Verify.verify(orderView.getArticleCell().getText().equals(TestSuite.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(TestSuite.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(TestSuite.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(TestSuite.expShadeCode),"Order view: Shade code does not match expected input");
+    
+        System.out.println("Values verified.");
+        
+        //Exit view
+        outOrdersPage = orderView.exitView();
+
+        //Output order number for test reference
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+    
+        System.out.println("----------------------------------------------------");
+        
+        driver.quit();
+    } 
+    
+    @Test
+    public void SUSST3() {
+        //New chrome driver
+        WebDriver driver = new ChromeDriver();
+
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest3 = new Ecomm_SUSST_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        EcommPage eCommPage = susstTest3.SUSST_SetUp("MANUAL ENTRY SUSST3: Single line, Your Material Number without master data shade code","G_OOC_ME_SUSST_3");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        
+        System.out.println("Manual Entry page loaded. Entering customer details...");
+        
+        //Input Customer Details
+        manualEntryPage.setCustomerName(TestSuite.custDetails[0]);    
+        manualEntryPage.setShipToParty(TestSuite.custDetails[1]);
+        manualEntryPage.setRequestor(TestSuite.custDetails[2]);
+        manualEntryPage.setBuyers(TestSuite.custDetails[3]);
+        manualEntryPage.setPoNumber(TestSuite.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        //Number of order lines
+        int numberOfLines = 1;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {TestSuite.yourMatNum,TestSuite.shadeCode,String.valueOf(TestSuite.quantity)},
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMNShadeCode(details[i], i);
+        }
+
+        System.out.println("Product details entered. Pressing next...");
+
+        //Press next
+        OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        System.out.println("Order confirmation page reached. Submitting order...");
+
+        //Press Submit
+        OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+
+        System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrdersPage.getOrderRow(TestSuite.lastUsedPO);
+        OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
+        //wait for overlay to load
+        WebDriver waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("TB_iframeContent")));
+        Verify.verify(orderView.getYourMatNumCell().getText().equals(TestSuite.yourMatNum),"Order view: Your Material Number does not match input");
+        Verify.verify(orderView.getArticleCell().getText().equals(TestSuite.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(TestSuite.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(TestSuite.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(TestSuite.shadeCode),"Order view: Shade code does not match expected input");
+    
+        System.out.println("Values verified.");
+        
+        //Exit view
+        outOrdersPage = orderView.exitView();
+
+        //Output order number for test reference
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+        
+        System.out.println("----------------------------------------------------");
+        
+        driver.quit();
+        
+    }
+    
+    @Test
+    public void SUSST4() {
+        //New driver
+        WebDriver driver = new ChromeDriver();
+  
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        EcommPage eCommPage = susstTest4.SUSST_SetUp("MANUAL ENTRY SUSST4: Multiple lines, Your Material Number without master data shade code","G_OOC_ME_SUSST_4");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        
+        //Input Customer Details
+        manualEntryPage.setCustomerName(TestSuite.custDetails[0]);    
+        manualEntryPage.setShipToParty(TestSuite.custDetails[1]);
+        manualEntryPage.setRequestor(TestSuite.custDetails[2]);
+        manualEntryPage.setBuyers(TestSuite.custDetails[3]);
+        manualEntryPage.setPoNumber(TestSuite.custDetails[4]);
+        
+        System.out.println("Customer details entered. Entering product details...");
+
+        //Number of order lines
+        int numberOfLines = 2;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {TestSuite.yourMatNum,TestSuite.shadeCode,String.valueOf(TestSuite.quantity)},
+            {TestSuite.yourMatNum2,TestSuite.shadeCode,String.valueOf(TestSuite.quantity)}
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMNShadeCode(details[i], i);
+        }
+
+        System.out.println("Product details entered. Pressing next...");
+
+        //Press next
+        OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        System.out.println("Order confirmation page reached. Submitting order...");
+
+        //Press Submit
+        OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+
+        System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrdersPage.getOrderRow(TestSuite.lastUsedPO);
+        OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
+        //wait for overlay to load
+        WebDriver waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("TB_iframeContent")));
+        Verify.verify(orderView.getYourMatNumCell().getText().equals(TestSuite.yourMatNum),"Order view: Your Material Number does not match input");
+        Verify.verify(orderView.getArticleCell().getText().equals(TestSuite.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(TestSuite.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(TestSuite.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(TestSuite.shadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified.");
+        
+        //Exit view
+        outOrdersPage = orderView.exitView();
+
+        //Output order number for test reference
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+        
+        System.out.println("----------------------------------------------------");
+        
+        driver.quit();
+    }
+    
+    @Test 
+    public void SUSST5() {
+        //New driver
+        WebDriver driver = new ChromeDriver();
+  
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest5 = new Ecomm_SUSST_Base(driver);
+        //Set up returns an eComm main page
+        EcommPage eCommPage = susstTest5.SUSST_SetUp("MANUAL ENTRY SUSST5: Single line, using Article and shade code","G_OOC_ME_SUSST_5");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        
+        //Input customer details
+        manualEntryPage.setCustomerName(TestSuite.custDetails[0]);    
+        manualEntryPage.setShipToParty(TestSuite.custDetails[1]);
+        manualEntryPage.setRequestor(TestSuite.custDetails[2]);
+        manualEntryPage.setBuyers(TestSuite.custDetails[3]);
+        manualEntryPage.setPoNumber(TestSuite.custDetails[4]);
+        
+        System.out.println("Customer details entered. Entering product details...");
+
+        //Number of order lines
+        int numberOfLines = 1;
+        
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {TestSuite.expArticle,TestSuite.shadeCode,String.valueOf(TestSuite.quantity)},
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsArticle(details[i], i);
+        }
+
+        System.out.println("Product details entered. Pressing next...");
+
+        //Press next
+        OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        System.out.println("Order confirmation page reached. Submitting order...");
+
+        //Press Submit
+        OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+
+        System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrdersPage.getOrderRow(TestSuite.lastUsedPO);
+        OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
+        //wait for overlay to load
+        WebDriver waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("TB_iframeContent")));
+        Verify.verify(orderView.getArticleCell().getText().equals(TestSuite.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(TestSuite.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(TestSuite.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(TestSuite.shadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified.");
+        
+        //Exit view
+        outOrdersPage = orderView.exitView();
+
+        //Output order number for test reference
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+
+        driver.quit();
+
+        System.out.println("----------------------------------------------------");
+        
+    }
+       
+    @Test
+    public void SUSST6() {
+        //New driver
+        WebDriver driver = new ChromeDriver();
+  
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest6 = new Ecomm_SUSST_Base(driver);
+        //Set up returns an eComm main page
+        EcommPage eCommPage = susstTest6.SUSST_SetUp("MANUAL ENTRY SUSST6: Multiple lines, using Article and shade code","G_OOC_ME_SUSST_6");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        
+        //Input customer details
+        manualEntryPage.setCustomerName(TestSuite.custDetails[0]);    
+        manualEntryPage.setShipToParty(TestSuite.custDetails[1]);
+        manualEntryPage.setRequestor(TestSuite.custDetails[2]);
+        manualEntryPage.setBuyers(TestSuite.custDetails[3]);
+        manualEntryPage.setPoNumber(TestSuite.custDetails[4]);
+        
+        System.out.println("Customer details entered. Entering product details...");
+
+        //Number of order lines
+        int numberOfLines = 2;
+        
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {TestSuite.article,TestSuite.shadeCode,String.valueOf(TestSuite.quantity)},
+            //line 2 details
+            {TestSuite.expArticle2,TestSuite.expShadeCode2,String.valueOf(TestSuite.quantity)}
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsArticle(details[i], i);
+        }
+
+        System.out.println("Product details entered. Pressing next...");
+
+        //Press next
+        OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        System.out.println("Order confirmation page reached. Submitting order...");
+
+        //Press Submit
+        OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+
+        System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrdersPage.getOrderRow(TestSuite.lastUsedPO);
+        OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
+        //wait for overlay to load
+        WebDriver waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("TB_iframeContent")));
+        Verify.verify(orderView.getArticleCell().getText().equals(TestSuite.article),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(TestSuite.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(TestSuite.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(TestSuite.shadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified.");
+        
+        //Exit view
+        outOrdersPage = orderView.exitView();
+
+        //Output order number for test reference
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+
+        driver.quit();
+
+        System.out.println("----------------------------------------------------");
+    }
+    
+    @Test
+    public void SUSST7() {
+        //New driver
+        WebDriver driver = new ChromeDriver();
+  
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest7 = new Ecomm_SUSST_Base(driver);
+        //Set up returns an eComm main page
+        EcommPage eCommPage = susstTest7.SUSST_SetUp("MANUAL ENTRY SUSST7: Single line, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUSST_7");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        
+        //Input customer details
+        manualEntryPage.setCustomerName(TestSuite.custDetails[0]);    
+        manualEntryPage.setShipToParty(TestSuite.custDetails[1]);
+        manualEntryPage.setRequestor(TestSuite.custDetails[2]);
+        manualEntryPage.setBuyers(TestSuite.custDetails[3]);
+        manualEntryPage.setPoNumber(TestSuite.custDetails[4]);
+        
+        System.out.println("Customer details entered. Entering product details...");
+
+        //Number of order lines
+        int numberOfLines = 1;
+        
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {TestSuite.brand,TestSuite.ticket,TestSuite.length,TestSuite.finish,TestSuite.shadeCode,String.valueOf(TestSuite.quantity)},           
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsCombination(details[i], i);
+        }
+
+        System.out.println("Product details entered. Pressing next...");
+
+        //Press next
+        OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        System.out.println("Order confirmation page reached. Submitting order...");
+
+        //Press Submit
+        OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+
+        System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrdersPage.getOrderRow(TestSuite.lastUsedPO);
+        OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
+        //wait for overlay to load
+        WebDriver waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("TB_iframeContent")));
+        Verify.verify(orderView.getBrandCell().getText().equals(TestSuite.brand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(TestSuite.ticket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(TestSuite.shadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified.");
+        
+        //Exit view
+        outOrdersPage = orderView.exitView();
+
+        //Output order number for test reference
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+
+        driver.quit();
+
+        System.out.println("----------------------------------------------------");
+    }
+    
+    @Test
+    public void SUSST8() {
+        //New driver
+        WebDriver driver = new ChromeDriver();
+  
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        //Set up returns an eComm main page
+        EcommPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST8: Multiple lines, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUSST_8");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        
+        //Input customer details
+        manualEntryPage.setCustomerName(TestSuite.custDetails[0]);    
+        manualEntryPage.setShipToParty(TestSuite.custDetails[1]);
+        manualEntryPage.setRequestor(TestSuite.custDetails[2]);
+        manualEntryPage.setBuyers(TestSuite.custDetails[3]);
+        manualEntryPage.setPoNumber(TestSuite.custDetails[4]);
+        
+        System.out.println("Customer details entered. Entering product details...");
+
+        //Number of order lines
+        int numberOfLines = 2;
+        
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {TestSuite.brand,TestSuite.ticket,TestSuite.length,TestSuite.finish,TestSuite.shadeCode,String.valueOf(TestSuite.quantity)},  
+            //line 2 details
+            {TestSuite.brand2,TestSuite.ticket2,TestSuite.length2,TestSuite.finish2,TestSuite.shadeCode2,String.valueOf(TestSuite.quantity2)}
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsCombination(details[i], i);
+        }
+
+        System.out.println("Product details entered. Pressing next...");
+
+        //Press next
+        OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        System.out.println("Order confirmation page reached. Submitting order...");
+
+        //Press Submit
+        OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+
+        System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrdersPage.getOrderRow(TestSuite.lastUsedPO);
+        OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
+        //wait for overlay to load
+        WebDriver waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("TB_iframeContent")));
+        Verify.verify(orderView.getBrandCell().getText().equals(TestSuite.brand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(TestSuite.ticket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(TestSuite.shadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified.");
+        
+        //Exit view
+        outOrdersPage = orderView.exitView();
+
+        //Output order number for test reference
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+
+        driver.quit();
+
+        System.out.println("----------------------------------------------------");
+    }
+    
+}
