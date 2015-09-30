@@ -56,7 +56,7 @@ public class CcePage extends BasePage {
         return driver.findElement(mainImageLocator);
     }
     
-    public OrderSamplesPage pressOrderSamples() {
+    public OrderSamplesPage_CCE pressOrderSamples() {
 
         //Wait for header
         WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));       
@@ -68,7 +68,7 @@ public class CcePage extends BasePage {
         WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderSamplesSubtab));
         //click subtab
         driver.findElement(orderSamplesSubtab).click();
-        return new OrderSamplesPage(driver);
+        return new OrderSamplesPage_CCE(driver);
     }
     
     public DNReprintPage_CCE pressDNReprint() {

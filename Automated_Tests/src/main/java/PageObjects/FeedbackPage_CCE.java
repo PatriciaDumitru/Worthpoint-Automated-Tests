@@ -97,27 +97,29 @@ public class FeedbackPage_CCE extends BasePage{
     
     public FeedbackPage_CCE pressYesSatisfied() {
         driver.findElement(acceptedYesButton).click();
+        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(acceptedYesButton)));
         return this;
     }
     
     public FeedbackPage_CCE pressNoSatisfied() {
         driver.findElement(acceptedNoButton).click();
+        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(acceptedYesButton)));
         return this;
     }
     
     public FeedbackPage_CCE pressYesRematch() {
         //Wait for button
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(acceptedYesButton));
+        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(rematchYesButton));
         driver.findElement(rematchYesButton).click();
-        
+        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(rematchYesButton)));
         return this;
     }
     
     public FeedbackPage_CCE pressNoRematch() {
         //Wait for button
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(acceptedYesButton));
+        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(rematchNoButton));
         driver.findElement(rematchNoButton).click();
-        
+        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(rematchNoButton)));
         return this;
     }
     
@@ -153,13 +155,13 @@ public class FeedbackPage_CCE extends BasePage{
         return new FeedbackPage_CCE(driver);
     }
     
-    public OrderSamplesPage pressCancel() {
+    public OrderSamplesPage_CCE pressCancel() {
         //Wait for element to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
         //Click cancel
         driver.findElement(cancelButton).click();
          
-        return new OrderSamplesPage(driver);
+        return new OrderSamplesPage_CCE(driver);
     }
     
     public void checkFields() {

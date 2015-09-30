@@ -6,9 +6,14 @@ import PageObjects.CcePage;
 import PageObjects.FeedbackAwaitingPage_CCE;
 import PageObjects.FeedbackCompletedPage_CCE;
 import PageObjects.FeedbackPage_CCE;
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,8 +23,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Cce_Feedback {
  
-    @Test
-    public void FB1() {
+    @Test //Feedback Page :: Page and fields check
+    public void FB1() throws IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
         
@@ -32,17 +37,22 @@ public class Cce_Feedback {
         System.out.println("Navigating to Feedback...");
         
         FeedbackPage_CCE fbPage = ccePage.pressFeedback();
+        fbPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback\\1Feedback Page.png"));
         
         System.out.println("Feedback page loaded. Checking title...");
         
         //Check title is displayed correctly
         Assert.assertTrue("Feedback Page: Title of page not displayed as expected", fbPage.getBreadcrumb().getText().equals("Orders | Feedback"));
         
-        System.out.println("Title checked. Asserting base elements...");
+        System.out.println("Title checked.");
         
         fbPage.assertBaseElements();
         
-        System.out.println("Base elements displayed correclty. Checking fields...");
+        System.out.println("Checking fields...");
         
         fbPage.checkFields();
         
@@ -52,10 +62,10 @@ public class Cce_Feedback {
         
         driver.quit();
         
-    } //Check fields
+    }
     
-    @Test
-    public void FB2() throws InterruptedException {
+    @Test //Feedback Page :: Submit feedback process: satisfied
+    public void FB2() throws InterruptedException, IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
         
@@ -71,14 +81,23 @@ public class Cce_Feedback {
         
         System.out.println("Feedback page loaded. Entering order no. and requester: ");
         
-        fbPage.setOrderNo(TestSuite.sampOrderNo);      
+        fbPage.setOrderNo(TestSuite.sampOrderNo);            
         
         System.out.println("Criteria entered. Entering Yes/No: ");
         fbPage.pressYesSatisfied();
         
+        //Take a screenshot
+        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback\\2Criteria entered.png"));
+        
         System.out.println("Yes selected. Saving feedback...");
         
         fbPage.pressSave();
+        fbPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback\\3Feedback saved.png"));
         
         System.out.println("Feedback saved.");
         
@@ -86,10 +105,10 @@ public class Cce_Feedback {
         
         driver.quit();
         
-    } //Submit feedback process: satisfied
+    }
     
-    @Test
-    public void FB3() throws InterruptedException {
+    @Test //Feedback Page :: Submit feedback process: dissatisfied
+    public void FB3() throws InterruptedException, IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
         
@@ -111,27 +130,44 @@ public class Cce_Feedback {
         
         fbPage.pressNoSatisfied();
         
+        //Take a screenshot
+        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback\\4Not satisfied.png"));
+        
         System.out.println("No selected. (Rematch?) Entering No: ");
         
         fbPage.pressNoRematch();
+        
+        //Take a screenshot
+        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback\\5No rematch.png"));
         
         System.out.println("No selected. Providing reason...");
         
         fbPage.setReason("Too Dull");
         
+        //Take a screenshot
+        File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback\\6Reason set.png"));
+        
         System.out.println("Reason set. Saving feedback...");
         
         fbPage.pressSave();
+        fbPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback\\7Feedback saved.png"));
         
         System.out.println("Feedback saved.");
         
         System.out.println("----------------------------------------------------");
         
         driver.quit();
-    } //Submit feedback process: dissatisfied
+    } 
     
-    @Test
-    public void FBA1() throws InterruptedException {
+    @Test //Feedback Awaiting Page :: Page and fields check
+    public void FBA1() throws InterruptedException, IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
         
@@ -144,16 +180,21 @@ public class Cce_Feedback {
         System.out.println("Navigating to Feedback Awaiting...");
         
         FeedbackAwaitingPage_CCE fbaPage = ccePage.pressFeedbackAwaiting();
+        fbaPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback Awaiting\\1Feedback awaiting page.png"));
         
         System.out.println("Feedback Awaiting page reached. Checking title...");
         
         Assert.assertTrue("Feedback Awaiting Page: Title not as expected",fbaPage.getBreadcrumb().equals("Orders | Feedback Awaiting"));
         
-        System.out.println("Title checked. Asserting base elements...");
+        System.out.println("Title checked.");
         
         fbaPage.assertBaseElements();
         
-        System.out.println("Base elements asserted. Checking fields...");
+        System.out.println("Checking fields...");
         
         fbaPage.checkFields();
         
@@ -166,8 +207,8 @@ public class Cce_Feedback {
         
     }
     
-    @Test
-    public void FBA2() throws InterruptedException {
+    @Test //Feedback Awaiting Page :: Filter orders and load
+    public void FBA2() throws InterruptedException, IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
         
@@ -185,23 +226,37 @@ public class Cce_Feedback {
         
         fbaPage.setCustName(TestSuite.custDetails[0]);
         
+        //Take a screenshot
+        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback Awaiting\\2Filter criteria entered.png"));
+        
         System.out.println("Criteria entered. Listing orders...");
         
         fbaPage.pressListOrders();
+        fbaPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback Awaiting\\3Orders listed.png"));
         
         System.out.println("Orders listed. Loading top item...");
         
         FeedbackPage_CCE fbPage = fbaPage.pressLoad();
+        fbPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback Awaiting\\4Feedback page loaded.png"));
         
         System.out.println("----------------------------------------------------");
         
         driver.quit();
         
         
-    } //Filter orders and load
+    }
     
-    @Test
-    public void FBA3() {
+    @Test //Feedback Awaiting Page :: Accept awaiting feedback with code
+    public void FBA3() throws IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
         
@@ -227,18 +282,27 @@ public class Cce_Feedback {
         
         fbaPage.pressAccept(TestSuite.acceptCode);
         
+        //Take a screenshot
+        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback Awaiting\\5Accept code entered.png"));
+        
         System.out.println("Accept pressed. Saving feedback...");
         
         FeedbackAwaitingPage_CCE fbPage = fbaPage.pressSave();
+        fbPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback Awaiting\\6Accept saved.png"));
         
         System.out.println("----------------------------------------------------");
         
         driver.quit();
                
-    } //Accept awaiting feedback
+    }
     
-    @Test
-    public void FC1() {
+    @Test //Feedback Completed Page :: Page and field checks
+    public void FC1() throws IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
         
@@ -251,6 +315,11 @@ public class Cce_Feedback {
         System.out.println("Navigating to Feedback Completed...");
         
         FeedbackCompletedPage_CCE fcPage = ccePage.pressFeedbackCompleted();
+        fcPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback Completed\\1Feedback completed page.png"));
         
         System.out.println("Feedback completed reached. Checking page title...");
         
@@ -258,7 +327,7 @@ public class Cce_Feedback {
         
         fcPage.assertBaseElements();
         
-        System.out.println("Base elements asserted. Checking fields...");
+        System.out.println("Checking fields...");
         
         fcPage.checkFields();
         
@@ -267,10 +336,10 @@ public class Cce_Feedback {
         System.out.println("----------------------------------------------------");
         
         driver.quit();
-    } //Check fields
+    }
     
-    @Test
-    public void FC2() {
+    @Test //Feedback Completed Page :: Filter and export test
+    public void FC2() throws IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
         
@@ -290,9 +359,18 @@ public class Cce_Feedback {
         fcPage.setRematch("No");
         fcPage.setShadeCode(TestSuite.expShadeCode2);
         
+        //Take a screenshot
+        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback Completed\\2Filter criteria entered.png"));
+        
         System.out.println("Criteria entered. Listing orders...");
         
         fcPage.pressListOrders();
+        fcPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Feedback Completed\\3Orders listed.png"));
         
         System.out.println("Orders listed. Exporting orders to excel spreadsheet...");
         
@@ -302,8 +380,9 @@ public class Cce_Feedback {
         
         System.out.println("----------------------------------------------------");
         
+        driver.quit();
         
-    } //Filter and export test
+    } 
         
     
 }

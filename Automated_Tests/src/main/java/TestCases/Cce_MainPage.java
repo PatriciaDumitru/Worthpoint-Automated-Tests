@@ -8,6 +8,7 @@ import PageObjects.CcePage;
 import PageObjects.ContinuePage;
 import PageObjects.LoginPage;
 import PageObjects.WbaSelectionPage;
+import com.google.common.base.Verify;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -27,7 +28,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Cce_MainPage {
     
-    @Test
+    @Test //CCE Main Page :: Navigation bar check
     public void CCE1() throws IOException {
         
         System.out.println("TEST: CCE HOME PAGE");
@@ -119,7 +120,7 @@ public class Cce_MainPage {
         
     } //Checks navigation bar works
     
-    @Test
+    @Test //CCE Main Page :: Navigation bar check links 
     public void CCE2() throws InterruptedException, IOException {
         System.out.println("TEST: CCE NAVIGATION TAB LINKS");
         System.out.println("Scenario ID: G_CCE_MS_02 to 23");
@@ -152,8 +153,6 @@ public class Cce_MainPage {
         //Wait for page to load
         Boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuite.ccePageTitle));
         
-        //Expected navigation bar headings
-        String[] expectedHeadings = {"fce","orders","hub","inbox","confirm production","refill cabinet","reports","admin","new features"};
         //Expected subheadings for each navbar tab in order from left to right
         String[][] expectedSubMenu = new String[][] {
             {"task list","task - completed list","fce request"},
@@ -166,90 +165,96 @@ public class Cce_MainPage {
             {"all user types","coats users","masters","lrm log","sap log"},
             {}
         };   
-        
-        //Counter for the number of pages
-        int titleCounter = 0;
-        
-        //For each heading, check that the sub-tabs link to the correct pages and screenshot them
-        for (int i = 0; i < expectedHeadings.length; i++) {
-            //Create header locator using "i"
-            By headerLocator = By.cssSelector("#topnav > li:nth-child("+(i+1)+")");
-            WebElement heading = driver.findElement(headerLocator);
             
-            System.out.println("Checking '" + expectedHeadings[i] + "' tabs...");
+        int pageCounter = 0;
+        
+        for (int count = 0; count < expectedSubMenu.length; count++) {
+            //Generate selector for each header
+            By headerLocator = By.cssSelector("#topnav > li:nth-child("+(count+1)+")");
+            WebElement header = driver.findElement(headerLocator);
             
-            //For headings with no subtabs, follow the shorter logic
-            if (expectedSubMenu[i].length == 0) {
-                //Click heading, take screenshot
-                Actions action = new Actions(driver);
-                action.click(heading).build().perform();
+            if (expectedSubMenu[count].length == 0) {
                 
-                String title = TestSuite.cceExpectedTitles[titleCounter];
-                if (!title.equals("")) {
+                //Get expected title
+                String expectedTitle = TestSuite.cceExpectedTitles[pageCounter];
+                
+                if (!expectedTitle.equals("")) {
+                    header.click();
                     WebElement waitForBreadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(TestSuite.breadcrumbLocator));
-                    WebElement breadcrumb = driver.findElement(TestSuite.breadcrumbLocator);
-                    boolean waitForTitle = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElement(breadcrumb, title));
-                    System.out.println(title+ " page correctly linked.");
-                    File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                    String fileName = expectedHeadings[i];
-                    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\ALL PAGES\\"+i+fileName+".png"));
-                }
-                
-                //Take a Screenshot
-                File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\ALL PAGES\\"+i+expectedHeadings[i]+".png"));
-                
-                titleCounter++;
-                
-            } else {
-                //For each sub-tab heading, click the header, click the sub-tab, take a screenshot
-                for (int j = 0; j < expectedSubMenu[i].length; j++) {
-                    //Click header
-                    Actions action = new Actions(driver);
-                    action.click(driver.findElement(headerLocator)).build().perform();
-                    //wait for and click subtab
-                    By subtabLocator = By.cssSelector("#topnav > li:nth-child("+(i+1)+") > div > div > ul > li:nth-child("+(j+1)+")");
-                    WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(subtabLocator));
-                    action.click(driver.findElement(subtabLocator)).build().perform();
-
-                    String title = TestSuite.cceExpectedTitles[titleCounter];
+                    String actualTitle = driver.findElement(TestSuite.breadcrumbLocator).getText();
                     
-                    if (!title.equals("")) {
-                        WebElement waitForBreadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(TestSuite.breadcrumbLocator));
-                        WebElement breadcrumb = driver.findElement(TestSuite.breadcrumbLocator);
-                        boolean waitForTitle = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElement(breadcrumb,title));
-                        System.out.println(title+" page correctly linked.");
-                        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                        String[] fileName = expectedSubMenu[i][j].split("|");
-                        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\ALL PAGES\\"+i+fileName[i]+".png"));
+                    Verify.verify(expectedTitle.equals(actualTitle),"***"+expectedTitle + " page title not displayed as expected, or page incorrectly linked***");
+                    System.out.println(expectedTitle + " page correctly linked");
+                    
+                    String fileName;
+                    if (expectedTitle.contains("|")) {
+                        String[] titleParts = expectedTitle.split("\\|");
+                        fileName = titleParts[1];
                     } else {
-                        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\ALL PAGES\\"+i+expectedSubMenu[i][j]+".png"));
+                        fileName = expectedTitle;
                     }
                     
+                    File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
                     
+                    pageCounter++;
+                } else {
                     
-                    //wait for page to load
-                    /*for (int k = 0; k < 5; k++) {
-                        if (BasePage.getBreadcrumbText().contains(expectedSubMenu[i][j])) {
-                            System.out.println(expectedSubMenu[i][j] +" page correctly linked.");
-                            break;
+                    String fileName;
+                    if (expectedTitle.contains("|")) {
+                        String[] titleParts = expectedTitle.split("\\|");
+                        fileName = titleParts[1];
+                    } else {
+                        fileName = expectedTitle;
+                    }
+                    
+                    File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
+                    
+                    pageCounter++;
+                }         
+            } else {
+                
+                for (int subCount = 0; subCount < expectedSubMenu[count].length; subCount++) {
+                    
+                    //Get expected title
+                    String expectedTitle = TestSuite.cceExpectedTitles[pageCounter];
+                    
+                    if (!expectedTitle.equals("")) {
+                        //Generate subtab locator
+                        By subtabLocator = By.cssSelector("#topnav > li:nth-child("+(count+1)+") > div > div > ul > li:nth-child("+(subCount+1)+")");
+                        //Click header
+                        WebElement waitForHeader = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(headerLocator));
+                        driver.findElement(headerLocator).click();
+                        //Wait for sub tab to appear and click
+                        WebElement subtab = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(subtabLocator));
+                        driver.findElement(subtabLocator).click();
+                        //Wait for title to display
+                        WebElement breadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(TestSuite.breadcrumbLocator));
+                        String actualTitle = driver.findElement(TestSuite.breadcrumbLocator).getText();
+                        Verify.verify(expectedTitle.equals(actualTitle),"***"+expectedTitle+" page title not displayed as expected, or page incorrectly linked***");
+                        System.out.println(expectedTitle+" page correctly linked");
+
+                        String fileName;
+                        if (expectedTitle.contains("|")) {
+                            String[] titleParts = expectedTitle.split("\\|");
+                            fileName = titleParts[1];
+                        } else {
+                            fileName = expectedTitle;
                         }
-                        Thread.sleep(150);
-                    }*/
-                    
 
+                        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
 
-                   
-                    titleCounter++;
+                        pageCounter++;
+                    }                  
                 }
             }
-            System.out.println("'" + expectedHeadings[i] + "' tabs checked.");
             
         }
-        
+            
         System.out.println("----------------------------------------------------");
         driver.quit();
-    } //Check navigation tabs link correctly
+    }
     
 }

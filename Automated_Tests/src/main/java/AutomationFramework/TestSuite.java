@@ -152,8 +152,8 @@ public class TestSuite {
     
     //Order numbers. sampRequester is the requester for sampOrderNo, sampCustName is the customer name for sampOrderNo
     public static String bulkOrderNo = "5020757";
-    public static String sampOrderNo = "1129504";
-    public static String sampCustName = "TestMuthuenrich2";
+    public static String sampOrderNo = "1129107";
+    public static String sampCustName = "Life Easy Customer";
     public static String sampRequester = "Test two";
     
     //MUM types for CCE

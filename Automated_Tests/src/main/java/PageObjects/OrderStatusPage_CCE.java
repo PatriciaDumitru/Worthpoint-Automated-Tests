@@ -33,6 +33,8 @@ public class OrderStatusPage_CCE extends BasePage {
     By resetButton = By.cssSelector("#FilterOutstandingForm > div.actions > ul > li:nth-child(2) > a");
     By filterForm = By.id("FilterOutstandingForm");
     By exportButton = By.cssSelector("#content > div.actions > ul > li");
+    By flashMessage = By.id("flashMessage");
+    By contentFrame = By.id("content");
     
     public OrderStatusPage_CCE(WebDriver passedDriver) {
         super(passedDriver);
@@ -172,13 +174,13 @@ public class OrderStatusPage_CCE extends BasePage {
         return this;
     }
     
-    public OrderStatusPage_CCE export() {
+    public ExportDownloadPage_CCE pressExport() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
         
         Actions action = new Actions(driver);
         action.click(driver.findElement(exportButton)).build().perform();
         
-        return this;
+        return new ExportDownloadPage_CCE(driver);
     }
     
     //Line numbers start from 2
@@ -193,12 +195,20 @@ public class OrderStatusPage_CCE extends BasePage {
         return new OrderViewPage_CCE(driver);
     }
     
-    public String checkStage(String orderNo) {
+    
+    public OrderStatusPage_CCE waitForMessage() {
+        WebElement waitForVisibility = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        return this;
+    }
+    
+    public String getOrderStage(String orderNo) {
         boolean found = false;
         int i = 1;
         
         while (!found) {
-            By orderNoLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(5)");
+            By orderNoLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+1)+") > td:nth-child(5)");
+            WebElement waitForCell = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(orderNoLocator));
+            
             if (driver.findElement(orderNoLocator).getText().equals(orderNo)) {
                 found = true;
             } else {
@@ -206,7 +216,7 @@ public class OrderStatusPage_CCE extends BasePage {
             }
         } 
         
-        By orderStageLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(12)");
+        By orderStageLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+1)+") > td:nth-child(12)");
         return driver.findElement(orderStageLocator).getText();
         
         

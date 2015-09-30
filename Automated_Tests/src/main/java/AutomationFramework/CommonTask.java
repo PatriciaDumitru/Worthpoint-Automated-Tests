@@ -93,4 +93,16 @@ public class CommonTask {
         };
     }
     
+    public static ExpectedCondition<Boolean> boxIsChecked(final WebElement element) {
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver f) {
+                if (element.getAttribute("checked").equals("true")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
+    
 }

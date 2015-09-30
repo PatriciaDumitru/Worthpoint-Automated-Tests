@@ -23,7 +23,7 @@ public class DNReprintPage_CCE extends BasePage {
     By orderDateToLocator = By.id("filterSampleOrderCreatedTo");
     By listOrdersButton = By.cssSelector("#FilterDeliveryNotesForm > div.actions > ul > li:nth-child(1)");
     By resetButton = By.cssSelector("#FilterDeliveryNotesForm > div.actions > ul > li:nth-child(2) > a");
-    By confirmButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(13)");
+    By confirmButton = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td[13]/input[@value='1']");
     By printIcon = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(5) > a > img");
     By formLocator = By.id("FilterDeliveryNotesForm");
     
@@ -116,6 +116,9 @@ public class DNReprintPage_CCE extends BasePage {
         
         //Wait for print icon to appear
         WebElement waitForIcon = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(printIcon));
+        
+        //Wait for box to be checked
+        Boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(confirmButton)));
     }
     
     public DNPrintPage_CCE pressPrint() {

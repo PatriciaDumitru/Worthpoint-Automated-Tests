@@ -7,8 +7,13 @@ import PageObjects.ExportDownloadPage_CCE;
 import PageObjects.OrderCycleTimePage_CCE;
 import PageObjects.OrderViewPage_CCE;
 import PageObjects.TotalOrdersPage_CCE;
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -16,7 +21,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Cce_TotalOrders {
     
     @Test
-    public void TOR1() {
+    public void TOR1() throws IOException {
         //New driver object
         WebDriver driver = new ChromeDriver();
         
@@ -29,6 +34,11 @@ public class Cce_TotalOrders {
         System.out.println("Navigating to Total Orders Page...");
         
         TotalOrdersPage_CCE toPage = ccePage.pressTotalOrders();
+        toPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Total Orders\\1Total Orders page.png"));
         
         System.out.println("Total Orders reached. Checking title...");
         
@@ -54,19 +64,31 @@ public class Cce_TotalOrders {
         toPage.tickQtyProd();
         toPage.tickCustName();
         
+        //Take a screenshot
+        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Total Orders\\2Fields set.png"));
+        
         System.out.println("Fields set. Entering filter criteria...");
         
         toPage.setCustName(TestSuite.custDetails[0]);
         toPage.setRequester(TestSuite.custDetails[2]);
         toPage.setMUMType(TestSuite.coneMUM);
         
+        //Take a screenshot
+        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Total Orders\\3Filter criteria entered.png"));
+        
         System.out.println("Filter criteria entered. Printing records...");
         
         OrderViewPage_CCE viewPage = toPage.pressPrint();
+        viewPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Total Orders\\4Records displayed.png"));
         
         System.out.println("View displayed. Closing view...");
         
-        viewPage.waitForLoad();
         viewPage.closeView();
         
         System.out.println("View closed. Exporting to excel...");

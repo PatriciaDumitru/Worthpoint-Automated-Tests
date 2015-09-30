@@ -33,6 +33,7 @@ public class BasePage {
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
     static By footerLocator = By.id("footer");
     private Object ExepectedConditions;
+    static By contentFrame = By.id("content");
     
     public BasePage(WebDriver passedDriver) {
         driver = passedDriver;
@@ -114,6 +115,10 @@ public class BasePage {
         Assert.assertTrue("Base page: Footer not displayed",getFooter().isDisplayed());
     
         System.out.println("Assertions successful.");
+    }
+    
+    public void waitForLoad() {
+        WebElement waitForContent = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
     }
     
 }

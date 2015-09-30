@@ -7,8 +7,13 @@ import PageObjects.ExportDownloadPage_CCE;
 import PageObjects.FCETaskStatusPage_CCE;
 import PageObjects.OrderCycleTimePage_CCE;
 import PageObjects.OrderViewPage_CCE;
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -16,7 +21,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Cce_OrderCycleTime {
     
     @Test
-    public void OCTR1() {
+    public void OCTR1() throws IOException {
         //New driver object
         WebDriver driver = new ChromeDriver();
         
@@ -29,6 +34,11 @@ public class Cce_OrderCycleTime {
         System.out.println("Navigating to Order Cycle Time...");
         
         OrderCycleTimePage_CCE octPage = ccePage.pressOrderCycleTime();
+        octPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Order Cycle Time\\1Order Cycle Time Page.png"));
         
         System.out.println("Order Cycle Time reached. Checking title...");
         
@@ -38,7 +48,7 @@ public class Cce_OrderCycleTime {
         
         octPage.assertBaseElements();
         
-        System.out.println("Base elements asseted. Checking fields...");
+        System.out.println("Checking fields...");
         
         octPage.checkFields();
         
@@ -46,23 +56,37 @@ public class Cce_OrderCycleTime {
         
         octPage.setShipToPartyName(TestSuite.custDetails[1]);
         
+        //Take a screenshot
+        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Order Cycle Time\\2Filter Criteria entered.png"));
+        
         System.out.println("Criteria entered. Printing records...");
         
         OrderViewPage_CCE viewPage = octPage.pressPrint();
+        viewPage.waitForContentAlt2();
+        
+        //Take a screenshot
+        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Order Cycle Time\\3Orders displayed.png"));
         
         System.out.println("Record view displayed. Closing view...");
         
         viewPage.closeView();
+        viewPage.waitForInvisibility();
         
         System.out.println("View closed. Exporting to excel...");
         
-        ExportDownloadPage_CCE dlPage = octPage.pressExport();
-        
+        ExportDownloadPage_CCE dlPage = octPage.pressExport();      
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Exported. Resetting filter...");
         
         octPage.pressReset();
+        octPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Order Cycle Time\\4Filter reset.png"));
         
         System.out.println("Filter reset.");
         

@@ -5,14 +5,19 @@ import AutomationFramework.TestSuite;
 import PageObjects.CcePage;
 import PageObjects.ConfirmProductionPage_CCE;
 import PageObjects.RefillCabinetPage_CCE;
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Cce_RefillCabinet {
     @Test
-    public void RC1() {
+    public void RC1() throws IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
         
@@ -25,13 +30,18 @@ public class Cce_RefillCabinet {
         System.out.println("Navigating to Refill Cabinet...");
         
         RefillCabinetPage_CCE rcPage = ccePage.pressRefillCabinet();
+        rcPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Refill Cabinet\\1Refill cabinet page.png"));
         
         System.out.println("Refill Cabinet loaded.");
         
         //Assert base elements
         rcPage.assertBaseElements();
         
-        System.out.println("Base elements asserted. Asserting page title is as expected...");
+        System.out.println("Asserting page title is as expected...");
         
         Assert.assertTrue("Refill Cabinet Page: Title not as expected",rcPage.getBreadcrumb().getText().equals("Refill Cabinet"));
         
@@ -43,9 +53,18 @@ public class Cce_RefillCabinet {
         
         rcPage.setShipTo(TestSuite.custDetails[1]);
         
+        //Take a screenshot
+        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Refill Cabinet\\2Filter criteria entered.png"));
+        
         System.out.println("Criteria entered. Pressing cancel...");
         
         rcPage.pressCancel();
+        rcPage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Refill Cabinet\\3Refill cancelled.png"));
         
         System.out.println("Cancel pressed.");
         

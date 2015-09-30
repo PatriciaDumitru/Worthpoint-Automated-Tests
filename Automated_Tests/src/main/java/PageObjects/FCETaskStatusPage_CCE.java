@@ -132,8 +132,6 @@ public class FCETaskStatusPage_CCE extends BasePage {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         
-        WebDriver waitForFrame = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(printFrame));
-        
         return new FCETaskStatusPage_CCE(driver);
     }
     

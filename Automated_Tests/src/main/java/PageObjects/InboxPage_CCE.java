@@ -40,8 +40,8 @@ public class InboxPage_CCE extends BasePage {
     By listOrdersButton = By.cssSelector("#FilterInboxForm > div.actions > ul > li:nth-child(1)");
     By resetButton = By.cssSelector("#FilterInboxForm > div.actions > ul > li:nth-child(2)");
     By viewButton = By.cssSelector("#SampleOrderLineInboxForm > table > tbody > tr:nth-child(2) > td:nth-child(17)");
-    By sendLRM = By.cssSelector("#SampleOrderLineInboxForm > table > tbody > tr:nth-child(2) > td:nth-child(15)");
-    By sendSAP = By.cssSelector("#SampleOrderLineInboxForm > table > tbody > tr:nth-child(2) > td:nth-child(16)");
+    By sendLRM = By.cssSelector("#SampleOrderLineInboxForm > table > tbody > tr:nth-child(2) > td:nth-child(15) > input(2)");
+    By sendSAP = By.xpath("//*[@id=\"SampleOrderLineInboxForm\"]/table/tbody/tr[2]/td[16]/input[@value='sap']");
     By saveButton = By.cssSelector("#content > div.actions > ul:nth-child(2) > li:nth-child(1)");
     By cancelButton = By.cssSelector("#content > div.actions > ul:nth-child(2) > li:nth-child(2)");
     By flashMessage = By.id("flashMessage");
@@ -250,12 +250,14 @@ public class InboxPage_CCE extends BasePage {
     public InboxPage_CCE pressLRM() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sendLRM));
         driver.findElement(sendLRM).click();
+        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(sendLRM)));
         return this;
     }
     
     public InboxPage_CCE pressSAP() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sendSAP));
         driver.findElement(sendSAP).click();
+        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(sendSAP)));
         return this;
     }
     
@@ -310,8 +312,6 @@ public class InboxPage_CCE extends BasePage {
         WebElement waitForListButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
         WebElement waitForResetButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
         WebElement waitForViewButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForLRM = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sendLRM));
-        WebElement waitForSAP = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sendSAP));
         WebElement waitForSave = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(saveButton));
         WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
         WebElement waitForPrin = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printButton));

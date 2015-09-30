@@ -20,11 +20,11 @@ public class HubSosPage_CCE extends BasePage {
     By hub = By.id("s2id_filterSampleOrderHubId");
     By orderNoField = By.id("s2id_filterSampleOrderLineOrderId");
     By custNameField = By.id("s2id_filterSampleOrderCustomerId");
-    By orderDateFromField = By.id("filterSampleOrderLineUpdatedTo");
-    By orderDateToField = By.id("filterSampleOrderCreatedTo");
+    By orderDateFromField = By.id("filterSampleOrderCreatedFrom");
+    By orderDateToField = By.cssSelector("#FilterHubSosForm > table > tbody > tr:nth-child(4) > td:nth-child(4) > input");
     By ticketField = By.id("s2id_filterSampleOrderLineTicketId");
-    By fceNameField = By.id("s2id_filterSampleOrderFceId");
-    By brandField = By.id("s2id_filterSampleOrderLineBrandId");
+    By fceNameField = By.cssSelector("#s2id_filterSampleOrderFceId > ul > li > input");
+    By brandField = By.cssSelector("#s2id_filterSampleOrderLineBrandId > ul > li > input");
     By mumTypeField = By.id("s2id_filterSampleOrderLineMumTypeId");
     By requesterField = By.id("s2id_filterSampleOrderRequesterId");
     By listOrdersButton = By.cssSelector("#FilterHubSosForm > div.actions > ul > li:nth-child(1)");
@@ -196,6 +196,8 @@ public class HubSosPage_CCE extends BasePage {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(deliverButton));
         
         driver.findElement(deliverButton).click();
+        
+        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(deliverButton)));
     }
     
     public void pressWarehouse() {
@@ -203,6 +205,8 @@ public class HubSosPage_CCE extends BasePage {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(warehouseButton));
         
         driver.findElement(warehouseButton).click();
+        
+        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(warehouseButton)));
     }
     
     public void pressLab() {
@@ -210,6 +214,8 @@ public class HubSosPage_CCE extends BasePage {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(labButton));
         
         driver.findElement(labButton).click();
+        
+        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(labButton)));
     }
     
     public OrderViewPage_CCE pressView() {

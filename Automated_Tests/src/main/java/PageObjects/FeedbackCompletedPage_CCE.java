@@ -229,8 +229,9 @@ public class FeedbackCompletedPage_CCE extends BasePage {
         //Wait for export menu
         WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportMenu));
         
-        //Click menu and select csv
-        driver.findElement(exportMenu).click();
+        //Click menu and select txt
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(exportMenu)).build().perform();
         
         //Wait for subtab
         WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(txtButton));
@@ -245,8 +246,9 @@ public class FeedbackCompletedPage_CCE extends BasePage {
         //Wait for export menu
         WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportMenu));
         
-        //Click menu and select csv
-        driver.findElement(exportMenu).click();
+        //Click menu and select xls
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(exportMenu)).build().perform();
         
         //Wait for subtab
         WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(xlsButton));
@@ -261,8 +263,9 @@ public class FeedbackCompletedPage_CCE extends BasePage {
         //Wait for export menu
         WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportMenu));
         
-        //Click menu and select csv
-        driver.findElement(exportMenu).click();
+        //Click menu and select xlsx
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(exportMenu)).build().perform();
         
         //Wait for subtab
         WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(xlsxButton));

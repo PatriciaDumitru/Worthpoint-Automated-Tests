@@ -23,7 +23,8 @@ public class OrderViewPage_CCE {
     By orderNumLocator = By.cssSelector("#popup_content > div:nth-child(1) > table > tbody > tr:nth-child(5) > td:nth-child(2)");
     By printButton = By.cssSelector("#content > div > table > tbody > tr:nth-child(12) > td > p > a");
     By custNameHeader = By.cssSelector("#content > div > table > tbody > tr:nth-child(1) > th:nth-child(1)");
-    By LRMcontainer = By.id("popup_container");
+    By popupContent = By.id("popup_content");
+    By contentFrame = By.id("content");
     
     public OrderViewPage_CCE(WebDriver passedDriver) {
         driver = passedDriver;
@@ -116,8 +117,16 @@ public class OrderViewPage_CCE {
     }
     
     public void waitForContent() {
-        switchTo();
-        WebElement waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(LRMcontainer));
+        //switchTo();
+        WebElement waitForPopup = new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOfElementLocated(popupContent));
+    }
+    
+    public void waitForContentPresence() {
+        WebElement waitForPopup = new WebDriverWait(driver,20).until(ExpectedConditions.presenceOfElementLocated(popupContent));
+    }
+    
+    public void waitForContentAlt2() {
+        WebElement waitForContent = new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
     }
     
     public void waitForInvisibility() {

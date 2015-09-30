@@ -19,20 +19,20 @@ public class ReceivedHubPage_CCE extends BasePage {
     By hub = By.id("s2id_filterSampleOrderHubId");
     By orderNoField = By.id("s2id_filterSampleOrderLineOrderId");
     By custNameField = By.id("s2id_filterSampleOrderCustomerId");
-    By orderDateFromField = By.id("filterSampleOrderLineCreatedTo");
+    By orderDateFromField = By.id("filterSampleOrderCreatedFrom");
     By orderDateToField = By.id("filterSampleOrderCreatedTo");
     By fceNameField = By.id("s2id_filterSampleOrderFceId");
 
     By requesterField = By.id("s2id_filterSampleOrderRequesterId");
-    By listOrdersButton = By.cssSelector("#FilterHubSosForm > div.actions > ul > li:nth-child(1)");
-    By resetButton = By.cssSelector("#FilterHubSosForm > div.actions > ul > li:nth-child(2)");   
-    By viewButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.flexi-grid > table > tbody > tr:nth-child(3) > td:nth-child(13) > a");
-    By saveButton = By.cssSelector("#SampleOrderHubSosForm > div.actions > ul:nth-child(2) > li:nth-child(1)");
-    By cancelButton = By.cssSelector("#SampleOrderHubSosForm > div.actions > ul:nth-child(2) > li:nth-child(2)");
-    By filterForm = By.id("FilterHubSosForm");
+    By listOrdersButton = By.cssSelector("#FilterReceivedHubForm > div.actions > ul > li:nth-child(1)");
+    By resetButton = By.cssSelector("#FilterReceivedHubForm > div.actions > ul > li:nth-child(2)");   
+    By viewButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.flexi-grid > table > tbody > tr:nth-child(3) > td:nth-child(13)");
+    By saveButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.actions > ul > li:nth-child(1)");
+    By cancelButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.actions > ul > li:nth-child(2)");
+    By filterForm = By.id("FilterReceivedHubForm");
     By flashMessage = By.id("flashMessage");
     By viewFrame = By.id("TB_iframeContent");
-    By sendToCustButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.flexi-grid > table > tbody > tr:nth-child(3) > td:nth-child(6)");
+    By sendToCustButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.flexi-grid > table > tbody > tr:nth-child(3) > td:nth-child(6) > input");
     
     public ReceivedHubPage_CCE(WebDriver passedDriver) {
         super(passedDriver);
@@ -174,6 +174,8 @@ public class ReceivedHubPage_CCE extends BasePage {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sendToCustButton));
         
         driver.findElement(sendToCustButton).click();
+        
+        Boolean waitForSelected = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(sendToCustButton)));
         
         return this;
     }
