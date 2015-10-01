@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePage {
     
     //Declare WebDriver
-    static WebDriver driver;
+    protected static WebDriver driver;
     
     //Page element locators
     static By todayLabelLocator = By.cssSelector("#header > div.top > span.left > span.today");

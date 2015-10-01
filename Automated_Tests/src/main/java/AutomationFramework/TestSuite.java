@@ -1,40 +1,15 @@
 
 package AutomationFramework;
 
-import TestCases.Cce_ConfirmProduction;
-import TestCases.Cce_DNReprint;
-import TestCases.Cce_FCETaskStatus;
-import TestCases.Cce_Feedback;
-import TestCases.Cce_Hub;
-import TestCases.Cce_Inbox;
-import TestCases.Cce_LRMLog;
-import TestCases.Cce_MainPage;
-import TestCases.Cce_OrderCycleTime;
-import TestCases.Cce_OrderStatus;
-import TestCases.Cce_RefillCabinet;
-import TestCases.Cce_SAPLog;
-import TestCases.Cce_SOC;
-import TestCases.Cce_TotalOrders;
-import TestCases.Ecomm_MainPage;
-import TestCases.ForgotPassword;
-import TestCases.Login;
-import TestCases.Ecomm_OOD;
-import TestCases.Ecomm_SUSST_FEBO;
-import TestCases.Ecomm_SUSST_ME;
-import TestCases.Ecomm_SUSST_UORT;
-import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URL;
+
 import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.runner.*;
-import org.junit.runners.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+
+import TestCases.Ecomm_SAPInterfaceLog;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -42,28 +17,29 @@ import org.openqa.selenium.remote.RemoteWebDriver;
     //A LIST OF ALL TEST CLASSES IN THE PROJECT. COMMMENT-OUT TO DISABLE. 
     //USE @IGNORE ANNOTATION TO DISBALE INDIVIDUAL TESTS WITHIN EACH CLASS
     
-    Login.class,
-    ForgotPassword.class,
-    Ecomm_MainPage.class,
-    Cce_MainPage.class,
-    Cce_SOC.class,
-    Cce_OrderStatus.class,
-    Cce_Hub.class,
-    Cce_Inbox.class,
-    Cce_ConfirmProduction.class,
-    Cce_RefillCabinet.class,    
-    Cce_DNReprint.class,
-    Cce_Feedback.class,
-    Cce_FCETaskStatus.class,
-    Cce_OrderCycleTime.class,
-    Cce_TotalOrders.class,
-    Cce_LRMLog.class,
-    Cce_SAPLog.class,
-    Ecomm_SUSST_ME.class,
-    Ecomm_SUSST_UORT.class,
-    Ecomm_SUSST_FEBO.class,
-    Ecomm_OOD.class
-    
+    //Login.class,
+    //ForgotPassword.class,
+    //Ecomm_MainPage.class,
+    //Cce_MainPage.class,
+    //Cce_SOC.class,
+    //Cce_OrderStatus.class,
+    //Cce_Hub.class,
+    //Cce_Inbox.class,
+    //Cce_ConfirmProduction.class,
+    //Cce_RefillCabinet.class,    
+    //Cce_DNReprint.class,
+    //Cce_Feedback.class,
+    //Cce_FCETaskStatus.class,
+    //Cce_OrderCycleTime.class,
+    //Cce_TotalOrders.class,
+    //Cce_LRMLog.class,
+    //Cce_SAPLog.class,
+    //Ecomm_SUSST_ME.class,
+    //Ecomm_SUSST_UORT.class,
+    //Ecomm_SUSST_FEBO.class,
+    //Ecomm_OOD.class
+    Ecomm_SAPInterfaceLog.class,
+	
 })
 
 public class TestSuite {
@@ -182,6 +158,9 @@ public class TestSuite {
     public static String protoPurpose = "Prototype";
     public static String salesSamp = "Salesman Sample";
     public static String shadeDev = "Shade Development";
+    
+    //SAP Interface log filter
+    public static String sapMessage = "Success";
 
     @BeforeClass //Run before every Test Case class
     public static void setUp() throws MalformedURLException {

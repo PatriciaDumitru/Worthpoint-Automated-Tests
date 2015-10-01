@@ -80,6 +80,14 @@ public class CommonTask {
         driver.findElement(fieldLocator).sendKeys(Keys.ENTER);
     }
     
+    public static void setTextField(WebDriver driver,By fieldLocator, String item) {
+    	WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+    	driver.findElement(fieldLocator).click();
+    	driver.findElement(fieldLocator).sendKeys(item);
+    	boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElement(fieldLocator, item));
+
+    }
+    
     public static ExpectedCondition<Boolean> textContains(final String text, final String elementText) {
         return new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver f) {

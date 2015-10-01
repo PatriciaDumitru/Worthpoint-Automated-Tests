@@ -20,6 +20,7 @@ public class OrderViewPage {
     static By ticketCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(6)");
     static By shadeCodeCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(7)");
     static By requiredDateCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(16)");
+    static By frameLocator = By.id("TB_iframeContent");
     
     public OrderViewPage(WebDriver passedDriver) {
         driver = passedDriver;
@@ -53,6 +54,26 @@ public class OrderViewPage {
     public WebElement getRequiredDateCell() {
         //find and return element
         return driver.findElement(requiredDateCellLocator);
+    }
+    
+    public void waitForContent() {
+    	WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+    }
+    
+    public void waitForInvisibility() {
+    	Boolean wait = new WebDriverWait(driver,10).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+    }
+    
+    public void closeView() {
+    	//Press esc
+    	Actions pressEsc = new Actions(driver);
+    	pressEsc.sendKeys(Keys.ESCAPE).build().perform();
+    	//Accept alert
+    	Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+    	alert.accept();
+    	
+    	this.waitForInvisibility();
+    	
     }
     
     public OutstandingOrdersPage exitView() {
