@@ -25,7 +25,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Cce_SOC {
     
-    @Test
+    @Test // Order Samples Page :: Page and filter checks, cancel function
     public void SOC1() throws InterruptedException, IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
@@ -42,7 +42,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\1Order Samples Page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\1Order Samples Page.png"));
         
         System.out.println("Order samples loaded. Checking Customer Name, Customer Code, and Requestor fields...");
         
@@ -57,7 +57,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\2Customer details entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\2Customer details entered.png"));
         
         AddOrderPage_CCE addOrder = orderSamples.pressSubmit();
         
@@ -65,7 +65,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\3Prompt submitted.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\3Prompt submitted.png"));
         
         //Check all fields are clickable
         addOrder.checkFields();
@@ -78,17 +78,17 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\4Order cancelled.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\4Order cancelled.png"));
         
         System.out.println("Order cancelled.");
         
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
+        driver.close();
         
-    } //Field checks and cancel
+    }
     
-    @Test
+    @Test //Order Samples Page :: Single line order
     public void SOC2() throws InterruptedException, IOException {
         
         //New driver object to control browser
@@ -121,7 +121,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\5Order details added.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\5Order details added.png"));
         
         System.out.println("Order details added. Submitting order...");
         
@@ -129,7 +129,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotFolder+"\\Order Samples\\6Order submitted.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Order Samples\\6Order submitted.png"));
         
         System.out.println("Order submitted. Verifying order details...");
         
@@ -140,7 +140,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\7View Order.png"));
+        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\7View Order.png"));
         
         Verify.verify(viewPage.getCustName().equals(TestSuite.custDetails[0]),"Sample Order View: Customer name incorrect in view");
         Verify.verify(viewPage.getRequestorName().equals(TestSuite.custDetails[2]),"Sample Order View: Requestor name incorrect in view");
@@ -154,11 +154,11 @@ public class Cce_SOC {
         
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
+        driver.close();
         
-    } //Single line order
+    } 
     
-    @Test
+    @Test //Order Samples Page :: Multi-line order
     public void SOC3() throws InterruptedException, IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
@@ -196,7 +196,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\8Line added.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\8Line added.png"));
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
         addOrder.inputAdditionalLines(TestSuite.article3,
@@ -205,7 +205,7 @@ public class Cce_SOC {
         System.out.println("Details added. Submitting order...");
         
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\9Line filled.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\9Line filled.png"));
         
         OrderStatusPage_CCE outstOrders = addOrder.pressSubmit();
         
@@ -216,7 +216,7 @@ public class Cce_SOC {
         viewPage.waitForContent();
         
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\10View multiple lines.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\10View multiple lines.png"));
         
         //Ensure iframe is selected
         //viewPage.switchTo();
@@ -233,11 +233,11 @@ public class Cce_SOC {
         
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
+        driver.close();
         
-    } //Multi-line order
+    }
     
-    @Test
+    @Test //Order Samples Page :: Single line order, quantity above threshold
     public void SOC4() throws InterruptedException, IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
@@ -285,15 +285,15 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\11Rejected Order.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\11Rejected Order.png"));
         
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
+        driver.close();
         
-    } //Qty above threshold
+    }
     
-    @Test
+    @Test //Order Samples Page :: Multi-line copied data
     public void SOC5() throws InterruptedException, IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
@@ -325,7 +325,7 @@ public class Cce_SOC {
         
          //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\12Line1 details added.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\12Line1 details added.png"));
         
         System.out.println("Line 0 order details added. Adding new line...");
         
@@ -339,7 +339,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\13Line1 details copied.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\13Line1 details copied.png"));
         
         System.out.println("Data copied. Adding remaining line 1 order details...");
         
@@ -361,7 +361,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\14View multiline copied.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\14View multiline copied.png"));
         
         System.out.println("Details verified.");
         
@@ -369,10 +369,11 @@ public class Cce_SOC {
         
         System.out.println("----------------------------------------------------");
     
-        driver.quit();
-    } //Multi-line copied data
+        driver.close();
+        
+    }
 
-    @Test
+    @Test //Order Samples Page :: Pend order 
     public void SOC6() throws InterruptedException, IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
@@ -409,7 +410,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Order Samples\\15Pend order pressed.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\15Pend order pressed.png"));
         
         System.out.println("Order pended. Getting order stage...");
         
@@ -425,6 +426,6 @@ public class Cce_SOC {
 
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
-    } //Save as draft
+        driver.close();
+    } 
 }

@@ -27,7 +27,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Ecomm_MainPage {
     
-    @Test
+    @Test //EComm Page :: Page checks, navigation bar check
     public void ECOMM1() throws IOException {
         System.out.println("TEST: ECOMM HOME PAGE");
         System.out.println("Scenario ID: (no ID)");
@@ -64,12 +64,13 @@ public class Ecomm_MainPage {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\EComm\\Main Page\\1Ecomm page.png"));
-        
-        System.out.println("Asserting elements on eComm page");
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\EComm\\Main Page\\1Ecomm page.png"));
         
         //Assert that all elements on eComm page load correctly (from top left to bottom right)
         eCommPage.assertBaseElements();
+        
+        System.out.println("Asserting additional elements...");	
+        
         Assert.assertTrue(EcommPage.getContentImage().isDisplayed());
         Assert.assertTrue(EcommPage.getNavBar().isDisplayed());
         Assert.assertTrue(EcommPage.getMainImage().isDisplayed());
@@ -115,12 +116,11 @@ public class Ecomm_MainPage {
         System.out.println("Assertions successful.");
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
-        
+        driver.close();   
 
-    } //Checks navigation headers are correct
+    }
     
-    @Test
+    @Test //EComm Page :: Navigation bar link checks
     public void ECOMM2() {
         
     } //Checks navigation tabs link to correct pages

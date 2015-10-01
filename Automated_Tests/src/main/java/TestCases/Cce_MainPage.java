@@ -61,7 +61,7 @@ public class Cce_MainPage {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\Main Page\\1Main page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\CCE\\Main Page\\1Main page.png"));
         
         System.out.println("Asserting elements on CCE page...");
         
@@ -116,7 +116,7 @@ public class Cce_MainPage {
         
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
+        driver.close();
         
     } //Checks navigation bar works
     
@@ -145,7 +145,7 @@ public class Cce_MainPage {
         
         System.out.println("Logged in. Continuing to selection page...");
         
-        //Chooce CCE
+        //Choose CCE
         CcePage ccePage = selectionPage.pressCce();
         
         System.out.println("CCE main page reached. Checking links...");
@@ -195,7 +195,7 @@ public class Cce_MainPage {
                     }
                     
                     File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
+                    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
                     
                     pageCounter++;
                 } else {
@@ -209,7 +209,7 @@ public class Cce_MainPage {
                     }
                     
                     File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
+                    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
                     
                     pageCounter++;
                 }         
@@ -244,7 +244,7 @@ public class Cce_MainPage {
                         }
 
                         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
+                        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
 
                         pageCounter++;
                     }                  
@@ -254,7 +254,7 @@ public class Cce_MainPage {
         }
             
         System.out.println("----------------------------------------------------");
-        driver.quit();
+        driver.close();
     }
     
 }

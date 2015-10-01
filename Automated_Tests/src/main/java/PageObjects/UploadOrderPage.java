@@ -57,7 +57,7 @@ public class UploadOrderPage extends BasePage {
         //new action to click field
         Actions clickField = new Actions(driver);
         //clickField.click(driver.findElement(fileNameFieldLocator)).build().perform();
-        driver.findElement(fileNameFieldLocator).sendKeys(TestSuite.uploadOrderPath);      
+        driver.findElement(fileNameFieldLocator).sendKeys(TestSuite.uploadOrderFilepath);      
         //wait for txt to appear in field
         //boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(fileNameOutputLocator, TestSuite.uploadOrderPath));
         

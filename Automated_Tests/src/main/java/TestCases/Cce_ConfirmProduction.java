@@ -41,7 +41,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\1Confirm production page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\1Confirm production page.png"));
         
         System.out.println("Confirm Production loaded.");
         
@@ -63,7 +63,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing orders...");
         
@@ -72,7 +72,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\3Orders Listed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\3Orders Listed.png"));
         
         System.out.println("Orders listed. Pressing confirm...");
         
@@ -80,7 +80,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\4Confirm selected.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\4Confirm selected.png"));
         
         System.out.println("Confirm selected. Pressing DN Print...");
         
@@ -88,7 +88,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\5DN view.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\5DN view.png"));
         
         System.out.println("View displayed. Pressing print...");
         
@@ -100,7 +100,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\6DN View.png"));
+        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\6DN View.png"));
         
         Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
         String alertMsg = alert.getText();
@@ -115,7 +115,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\7MUM type set.png"));
+        FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\7MUM type set.png"));
         
         System.out.println("MUM Type set. Setting quantity produced...");
         
@@ -123,7 +123,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile8,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\8Quantity produced set.png"));
+        FileUtils.copyFile(scrFile8,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\8Quantity produced set.png"));
         
         System.out.println("Quantity produced set. Setting 'Send To' to 'Deliver to customer'...");
         
@@ -131,7 +131,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile9,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\9Send to set.png"));
+        FileUtils.copyFile(scrFile9,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\9Send to set.png"));
         
         System.out.println("Send To set. Saving...");
         
@@ -140,15 +140,15 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile10,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\10Changes saved.png"));
+        FileUtils.copyFile(scrFile10,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\10Changes saved.png"));
         
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
+        driver.close();
         
     } //Page check, filter, confirm/print/view/adjust/save
     
-    @Ignore @Test
+    @Test
     public void CP2() throws IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
@@ -170,7 +170,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile10,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\10Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile10,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\10Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Pressing reset...");
         
@@ -179,7 +179,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\11Reset pressed.png"));
+        FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\11Reset pressed.png"));
         
         System.out.println("Filter reset. Pressing cancel...");
         
@@ -188,11 +188,11 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile12,new File(TestSuite.screenshotFolder+"\\CCE\\Confirm Production\\12Page cancelled.png"));
+        FileUtils.copyFile(scrFile12,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\12Page cancelled.png"));
         
         System.out.println("Cancel pressed.");
         
         System.out.println("----------------------------------------------------");
-        driver.quit();
+        driver.close();
     }
 }

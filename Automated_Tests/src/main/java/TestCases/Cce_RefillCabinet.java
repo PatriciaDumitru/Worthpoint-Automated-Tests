@@ -16,7 +16,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Cce_RefillCabinet {
-    @Test
+    
+	@Test //Refill Cabinet Page :: Page and filter checks
     public void RC1() throws IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
@@ -34,7 +35,7 @@ public class Cce_RefillCabinet {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Refill Cabinet\\1Refill cabinet page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Refill Cabinet\\1Refill cabinet page.png"));
         
         System.out.println("Refill Cabinet loaded.");
         
@@ -55,7 +56,7 @@ public class Cce_RefillCabinet {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Refill Cabinet\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Refill Cabinet\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Pressing cancel...");
         
@@ -64,11 +65,11 @@ public class Cce_RefillCabinet {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Refill Cabinet\\3Refill cancelled.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Refill Cabinet\\3Refill cancelled.png"));
         
         System.out.println("Cancel pressed.");
         
         System.out.println("----------------------------------------------------");
-        driver.quit();
+        driver.close();
     }
 }

@@ -39,34 +39,47 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 
-    //Login.class,
-    //ForgotPassword.class,
-    //Ecomm_MainPage.class,
+    //A LIST OF ALL TEST CLASSES IN THE PROJECT. COMMMENT-OUT TO DISABLE. 
+    //USE @IGNORE ANNOTATION TO DISBALE INDIVIDUAL TESTS WITHIN EACH CLASS
+    
+    Login.class,
+    ForgotPassword.class,
+    Ecomm_MainPage.class,
     Cce_MainPage.class,
-    //Cce_SOC.class,
-    //Cce_OrderStatus.class,
-    //Cce_Hub.class,
-    //Cce_Inbox.class,
-    //Cce_ConfirmProduction.class,
-    //Cce_RefillCabinet.class,    
-    //Cce_DNReprint.class,
-    //Cce_Feedback.class,
-    //Cce_FCETaskStatus.class,
-    //Cce_OrderCycleTime.class,
-    //Cce_TotalOrders.class,
-    //Cce_LRMLog.class,
-    //Cce_SAPLog.class,
-    //Ecomm_SUSST_ME.class,
-    //Ecomm_SUSST_UORT.class,
-    //Ecomm_SUSST_FEBO.class,
-    //Ecomm_OOD.class
+    Cce_SOC.class,
+    Cce_OrderStatus.class,
+    Cce_Hub.class,
+    Cce_Inbox.class,
+    Cce_ConfirmProduction.class,
+    Cce_RefillCabinet.class,    
+    Cce_DNReprint.class,
+    Cce_Feedback.class,
+    Cce_FCETaskStatus.class,
+    Cce_OrderCycleTime.class,
+    Cce_TotalOrders.class,
+    Cce_LRMLog.class,
+    Cce_SAPLog.class,
+    Ecomm_SUSST_ME.class,
+    Ecomm_SUSST_UORT.class,
+    Ecomm_SUSST_FEBO.class,
+    Ecomm_OOD.class
     
 })
 
 public class TestSuite {
     
+    //PRE-REQUISITE VARIABLES TO BE CONFIGURED
+    
     //Target URL
     public static String targetURL = "http://qawcs.coatscolourexpress.com/";
+    
+    public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_18\\chromedriver.exe";
+    public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_15.xlsx";
+    public static String idFilepath = "C:\\Selenium\\ID.txt";
+    
+    //Some tests require files to be sent to the printer. Disabling will simply skip  the "click print" call during test
+    public static boolean printingEnabled = false;
     
     //Login details used in Login test case
     public static String validCoatsUsername = "joe.sykes@coats.com";
@@ -75,14 +88,12 @@ public class TestSuite {
     public static String invalidUsername = "jfdkjal@jfdalka.com";
     public static String invalidPassword = "invalidpassword";
     
-    //Expected page title of Login page
+    //Expected page titles (the text in the browser tabs)
     public static String loginPageTitle = "Coats";
-    //Expected page title of CCE page
     public static String ccePageTitle = "Coats Colour Express";
-    //Expected page title of eComm page
     public static String eCommPageTitle = "Coats eComm";
     
-    //CCE expected titles
+    //Expected breadcrumbs for CCE pages in order from left to right. Empty literals used for pages without a breadcrumb
     public static String[] cceExpectedTitles = {"FCE | Task List","FCE | Task List - Completed","FCE | Request",
             "Orders | Prompt","Orders | Outstanding Draft","Orders | Enrich Order","Orders | Order Status",
             "Orders | Delivery Notes","Orders | Feedback","Orders | Feedback Completed","Orders | Feedback Awaiting",
@@ -91,6 +102,7 @@ public class TestSuite {
             "User Types","Coats Users","","Lrm Log","SAP Log",""
     };
     
+    //Generic breadcrumb locator
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
     
     //Customer details to be used in manual entry tests
@@ -143,11 +155,10 @@ public class TestSuite {
     public static String shadeCode3 = "C9455";
     public static int quantity3 = 1;
     
-    //Awaiting feedback accept code
+    //Accept Code value to be used when accepting "Awaiting feedback"
     public static String acceptCode = "AutoTestAccept";
     
-    //Upload order items
-    public static String uploadOrderPath = "C:\\Screenshots\\Upload_order_test_15.xlsx";
+    //eComm Upload order - requester value to be used
     public static String UORTrequestor = "approver 1 test";
     
     //Order numbers. sampRequester is the requester for sampOrderNo, sampCustName is the customer name for sampOrderNo
@@ -171,27 +182,14 @@ public class TestSuite {
     public static String protoPurpose = "Prototype";
     public static String salesSamp = "Salesman Sample";
     public static String shadeDev = "Shade Development";
-    
-    //Destination folder for screenshots
-    public static String screenshotFolder = "C:\\Screenshots";
-    //File holding ID counter to produce PO numbers
-    public static String idFilePath = "C:\\Screenshots\\ID.txt";
 
-    //Details the browser to be used for testing
-    public static String browserToUse = "chrome";
-    //URL of grid node to use
-    public static String nodeURL = "http://localhost:5555/wd/hub";
-    public static DesiredCapabilities capability;
-    
-    public static boolean printingEnabled = false;
-    
-    @BeforeClass
+    @BeforeClass //Run before every Test Case class
     public static void setUp() throws MalformedURLException {
         //Declare location of driver
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", chromeDriverFilepath);
     }
     
-    @After
+    @After //Run after every individual test (every method in each Test Case class)
     public static void printBreak() {
         //print a break to separate tests
         System.out.println("-----------------------------------------------------------------");

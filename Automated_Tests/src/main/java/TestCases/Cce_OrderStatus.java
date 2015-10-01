@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Cce_OrderStatus {
     
-    @Test
+    @Test //Order status page :: page and filter checks, reset function, export data
     public void OS1() throws IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
@@ -38,7 +38,7 @@ public class Cce_OrderStatus {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Order Status\\1Order Status Page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\1Order Status Page.png"));
         
         orderStatus.assertBaseElements();
         
@@ -55,14 +55,14 @@ public class Cce_OrderStatus {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Order Status\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\2Filter criteria entered.png"));
         
         orderStatus.pressListOrders();
         orderStatus.waitForLoad();
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Order Status\\3Orders listed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\3Orders listed.png"));
         
         System.out.println("Orders listed. Exporting data...");
         
@@ -78,9 +78,11 @@ public class Cce_OrderStatus {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\CCE\\Orders\\Order Status\\4Filter reset.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\4Filter reset.png"));
         
         System.out.println("----------------------------------------------------");
+        
+        driver.close();
         
     }
         

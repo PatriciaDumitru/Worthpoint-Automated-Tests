@@ -28,7 +28,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Ecomm_SUSST_UORT {
     
-    @Test
+    @Test //Upload Order Page :: Page checks and realtime upload order of <100 lines
     public void UORT1() throws AWTException, IOException {
         //new chrome driver
         WebDriver driver = new ChromeDriver();
@@ -57,12 +57,12 @@ public class Ecomm_SUSST_UORT {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\EComm\\Upload Order\\1Upload Order page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\EComm\\Upload Order\\1Upload Order page.png"));
         
         System.out.println("Assertions successful. Sending file path...");
         
         //Send file path to field
-        uploadPage.setFilePath(TestSuite.uploadOrderPath);
+        uploadPage.setFilePath(TestSuite.uploadOrderFilepath);
         //Select realtime upload
         uploadPage.pressRealtime();
         
@@ -108,7 +108,7 @@ public class Ecomm_SUSST_UORT {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\EComm\\Upload Order\\2Mapping set.png")); 
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Upload Order\\2Mapping set.png")); 
         
         OrderConfirmationPage orderConf = mappedPage.pressConfirm();
         
@@ -119,7 +119,7 @@ public class Ecomm_SUSST_UORT {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\EComm\\Upload Order\\3Upload Confirmation page.png"));                    
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Upload Order\\3Upload Confirmation page.png"));                    
         
         OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
         
@@ -129,7 +129,9 @@ public class Ecomm_SUSST_UORT {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\EComm\\Upload Order\\4Oustanding upload orders.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Upload Order\\4Oustanding upload orders.png"));
+        
+        driver.close();
         
         System.out.println("----------------------------------------------------");
         

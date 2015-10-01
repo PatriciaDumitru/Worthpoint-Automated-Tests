@@ -25,7 +25,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Ecomm_SUSST_FEBO {
       
-@Test
+@Test //From Existing Bulk Order Page :: Page checks, create order 
 public void FEBO1() throws IOException {
     //New driver
     WebDriver driver = new ChromeDriver();
@@ -33,7 +33,7 @@ public void FEBO1() throws IOException {
     //new base test to handle set up
     Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
     //Set up returns an eComm main page
-    EcommPage eCommPage = susstTest8.SUSST_SetUp("FROM EXISTING BULK ORDER FEBO1: Tests pages and makes order using existing order","G_OOC_FWBL_1-5");
+    EcommPage eCommPage = susstTest8.SUSST_SetUp("FROM EXISTING BULK ORDER FEBO1: Page checks and creates order using existing order","G_OOC_FWBL_1-5");
         
     System.out.println("Navigating to From Existing Bulk Order page...");
     
@@ -44,7 +44,7 @@ public void FEBO1() throws IOException {
 
     //Take a screenshot
     File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\EComm\\From Ex Bulk\\1From Ex Bulk Page.png"));
+    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\EComm\\From Ex Bulk\\1From Ex Bulk Page.png"));
     
     //make assertions for base page elements and upload page elements
     fromExistingPage.assertBaseElements();
@@ -56,7 +56,7 @@ public void FEBO1() throws IOException {
     
     //Take a screenshot
     File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\EComm\\From Ex Bulk\\2Order number entered.png"));
+    FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\From Ex Bulk\\2Order number entered.png"));
     
     //Submit search
     ManualEntryPage manualEntryPage = fromExistingPage.pressLoad();
@@ -66,21 +66,21 @@ public void FEBO1() throws IOException {
     
     //Take a screenshot
     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\EComm\\From Ex Bulk\\3Order loaded.png"));
+    FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\From Ex Bulk\\3Order loaded.png"));
     
     OrderConfirmationPage orderConf = manualEntryPage.pressNext();
     
     //Take a screenshot
     File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\EComm\\From Ex Bulk\\4Next pressed.png"));
+    FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\From Ex Bulk\\4Next pressed.png"));
     
     OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
     
     //Take a screenshot
     File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\EComm\\From Ex Bulk\\5Order confirmed.png"));
+    FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\From Ex Bulk\\5Order confirmed.png"));
     
-    driver.quit();
+    driver.close();
     
     System.out.println("----------------------------------------------------");
     

@@ -16,8 +16,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ForgotPassword {
     
-    @Test
-    public void checkForgotPassword() throws IOException {
+    @Test //Forgot Password Page :: Reset password
+    public void FP1() throws IOException {
         System.out.println("TEST: FORGOT PASSWORD: Coats user forgot password process");
         System.out.println("Scenario ID: G_FP_1");
         
@@ -37,7 +37,7 @@ public class ForgotPassword {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\Login and Forgot Password\\4Forgot Password page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\Login and Forgot Password\\4Forgot Password page.png"));
         
         System.out.println("Reset page reached. Entering e-mail...");
         
@@ -50,11 +50,11 @@ public class ForgotPassword {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\Login and Forgot Password\\5Password reset requested.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Login and Forgot Password\\5Password reset requested.png"));
         
         System.out.println("Reset requested.");
         
-        driver.quit();
+        driver.close();
         
         System.out.println("----------------------------------------------------");
     }

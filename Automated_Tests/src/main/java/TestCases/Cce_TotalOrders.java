@@ -20,7 +20,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Cce_TotalOrders {
     
-    @Test
+    @Test //Total Orders Page :: Page and filter checks, field selection, export and reset
     public void TOR1() throws IOException {
         //New driver object
         WebDriver driver = new ChromeDriver();
@@ -38,7 +38,7 @@ public class Cce_TotalOrders {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Total Orders\\1Total Orders page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\1Total Orders page.png"));
         
         System.out.println("Total Orders reached. Checking title...");
         
@@ -66,7 +66,7 @@ public class Cce_TotalOrders {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Total Orders\\2Fields set.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\2Fields set.png"));
         
         System.out.println("Fields set. Entering filter criteria...");
         
@@ -76,7 +76,7 @@ public class Cce_TotalOrders {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Total Orders\\3Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\3Filter criteria entered.png"));
         
         System.out.println("Filter criteria entered. Printing records...");
         
@@ -85,7 +85,7 @@ public class Cce_TotalOrders {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\CCE\\Reports\\Total Orders\\4Records displayed.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\4Records displayed.png"));
         
         System.out.println("View displayed. Closing view...");
         
@@ -104,7 +104,7 @@ public class Cce_TotalOrders {
         
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
+        driver.close();
     }
     
 }

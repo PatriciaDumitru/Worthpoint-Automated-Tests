@@ -30,7 +30,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Ecomm_OOD {
     
-    @Test
+    @Test //Outstanding Order Drafts Page :: Complete an order from draft
     public void ODP2() throws IOException {
         WebDriver driver = new ChromeDriver();
         
@@ -65,14 +65,14 @@ public class Ecomm_OOD {
         OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
         
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\1Outstanding Orders Draft Page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\1Outstanding Orders Draft Page.png"));
                 
         System.out.println("Draft page reached. Pressing edit draft...");
         
         ManualEntryPage manualEntry = draftPage.pressEdit();
         
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\2Edit pressed.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\2Edit pressed.png"));
         
         System.out.println("Edit draft pressed. Checking all mandatory customer details are entered...");
         
@@ -87,20 +87,20 @@ public class Ecomm_OOD {
                 System.out.println("Test will now terminate.");
             }
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\3Next pressed.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\3Next pressed.png"));
         } catch (Exception e) {
             OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
             System.out.println("Order submitted.");
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\3Submit pressed.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\3Submit pressed.png"));
         }
         
-        driver.quit();
+        driver.close();
         
         System.out.println("----------------------------------------------------");
     }
     
-    @Test
+    @Test //Outstanding Order Drafts Page :: Page and filter checks, view, edit, and cancel
     public void ODP1() throws IOException {
         WebDriver driver = new ChromeDriver();
         
@@ -140,7 +140,7 @@ public class Ecomm_OOD {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\Outstanding Orders\\Oustanding Orders Draft\\4PO entered.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Orders Draft\\4PO entered.png"));
         
         draftPage.setPONumber("AutoTestPO");
         
@@ -148,7 +148,7 @@ public class Ecomm_OOD {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\Outstanding Orders\\Oustanding Orders Draft\\5Search pressed.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Orders Draft\\5Search pressed.png"));
         
         System.out.println("Search complete. Viewing draft...");
         
@@ -156,7 +156,7 @@ public class Ecomm_OOD {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\Outstanding Orders\\Oustanding Orders Draft\\6View pressed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Orders Draft\\6View pressed.png"));
         
         //Close view
         OutstandingOrderDraftPage draftPage2 = draftPage.closeView();
@@ -176,16 +176,16 @@ public class Ecomm_OOD {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\Outstanding Orders\\Oustanding Orders Draft\\7Cancel pressed.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Orders Draft\\7Cancel pressed.png"));
         
         System.out.println("Draft cancelled.");
         
-        driver.quit();
+        driver.close();
             
         System.out.println("----------------------------------------------------");
     }
        
-    @Test
+    @Test //Upload Order Drafts Page :: Page checks, edit, and cancel upload order draft
     public void UODP1() throws IOException {
         WebDriver driver = new ChromeDriver();
         
@@ -223,7 +223,7 @@ public class Ecomm_OOD {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\Outstanding Orders\\Oustanding Upload Draft\\1Outstanding Upload Draft Page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\1Outstanding Upload Draft Page.png"));
         
         upDraftPage.assertBaseElements();
         
@@ -231,7 +231,7 @@ public class Ecomm_OOD {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\Outstanding Orders\\Oustanding Upload Draft\\2Customer Name entered.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\2Customer Name entered.png"));
         
         upDraftPage.setCustomerName(TestSuite.custDetails[0]);
         
@@ -239,7 +239,7 @@ public class Ecomm_OOD {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\Outstanding Orders\\Oustanding Upload Draft\\3Search pressed.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\3Search pressed.png"));
         
         System.out.println("Search complete. Pressing edit...");
         
@@ -247,13 +247,13 @@ public class Ecomm_OOD {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\Outstanding Orders\\Oustanding Upload Draft\\4Edit pressed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\4Edit pressed.png"));
         
         System.out.println("Order confirmation page reached. Asserting base elements...");
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\Outstanding Orders\\Oustanding Upload Draft\\5Confirmation page.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\5Confirmation page.png"));
         
         upConf.assertBaseElements();
         
@@ -267,11 +267,11 @@ public class Ecomm_OOD {
                 
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotFolder+"\\Outstanding Orders\\Oustanding Upload Draft\\5Draft deleted.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\5Draft deleted.png"));
         
         System.out.println("Draft deleted.");
         
-        driver.quit();
+        driver.close();
         
         System.out.println("----------------------------------------------------");
         

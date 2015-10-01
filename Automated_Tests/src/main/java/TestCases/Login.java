@@ -28,9 +28,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Login {
     
-    //Test: Login page, check all elements are displayed
-    @Test
-    public void CheckElementsLoad() throws IOException {
+    @Test //Login Page :: Page checks
+    public void L1() throws IOException {
         System.out.println("TEST: LOGIN PAGE: Check elements are displayed");
         
         WebDriver driver = new ChromeDriver();
@@ -42,7 +41,7 @@ public class Login {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\Login and Forgot Password\\1Login Page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\Login and Forgot Password\\1Login Page.png"));
         
         System.out.println("Asserting elements are displayed...");
         
@@ -59,12 +58,11 @@ public class Login {
         System.out.println("----------------------------------------------------");
         
         //exit driver, closing chrome browser
-        driver.quit();
+        driver.close();
     }
-    
-    //Login page, check login using valid coats details
-    @Test
-    public void ValidLogin() throws InterruptedException, IOException {
+ 
+    @Test //Login Page :: Login using valid Coats user details, navigate to and from CCE and eComm
+    public void L2() throws InterruptedException, IOException {
         System.out.println("TEST: LOGIN PAGE/CONTINUE PAGE/SELECTION PAGE: Check elements are displayed");
         
         //new driver to perform test
@@ -89,7 +87,7 @@ public class Login {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\Login and Forgot Password\\2Continue Page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\Login and Forgot Password\\2Continue Page.png"));
         
         //Assert that all Continue Page elements load correctly
         Assert.assertTrue(contPage.getWelcomeImage().isDisplayed());
@@ -105,13 +103,13 @@ public class Login {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\Login and Forgot Password\\3Selection Page.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Login and Forgot Password\\3Selection Page.png"));
         
         //Scroll down and take another screenshot
         Actions action = new Actions(driver);
         action.sendKeys(Keys.PAGE_DOWN).build().perform();
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\Login and Forgot Password\\3Selection Page2.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Login and Forgot Password\\3Selection Page2.png"));
         
         //Assert that all WBA selection page elements load correctly
         Assert.assertTrue(selectionPage.getMainImage().isDisplayed());
@@ -153,7 +151,7 @@ public class Login {
         System.out.println("----------------------------------------------------");
         
         //quit driver, closing chrome browser
-        driver.quit();
+        driver.close();
          
     }
      

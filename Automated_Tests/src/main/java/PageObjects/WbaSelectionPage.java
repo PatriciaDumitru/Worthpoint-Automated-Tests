@@ -12,9 +12,9 @@ public class WbaSelectionPage {
     
     //Element locators
     static By mainImageLocator = By.cssSelector("body > div.wrapper > center > img");
-    static By cceCircleLocator = By.cssSelector("body > div.wrapper > center > map > area:nth-child(1)");
-    static By eCommCircleLocator = By.cssSelector("body > div.wrapper > center > map > area:nth-child(3)");
-    
+    static By cceCircleLocator = By.cssSelector("body > div.wrapper > center > map > area:nth-child(2)");
+    static By eCommCircleLocator = By.cssSelector("body > div.wrapper > center > map > area:nth-child(4)");
+
     public WbaSelectionPage(WebDriver passedDriver) {
         //initalise driver
         driver = passedDriver;
@@ -36,16 +36,14 @@ public class WbaSelectionPage {
     }
     
     public CcePage pressCce() {
-        //new action to press CCE button
-        Actions pressCce = new Actions(driver);
-        pressCce.click(getCceCircle()).build().perform();
+        //Click CCE circle and return new CcePage instance
+        driver.findElement(cceCircleLocator).click();
         return new CcePage(driver);
     }
     
     public EcommPage pressEcomm() {
-        //new action to click eComm
-        Actions clickEcomm = new Actions(driver);
-        clickEcomm.click(getEcommCircle()).build().perform();
+        //Click eComm circle and return new EcommPage instance
+        driver.findElement(eCommCircleLocator).click();
         return new EcommPage(driver);
     }
     

@@ -31,7 +31,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Ecomm_SUSST_ME {
     
-    @Test
+    @Test //Manual Entry Page :: Page checks, single line order with YMN and master shade code
     public void SUSST1() throws IOException {
         //New chrome driver
         WebDriver driver = new ChromeDriver();
@@ -47,7 +47,7 @@ public class Ecomm_SUSST_ME {
         ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
 
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\1Manual Entry Page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\EComm\\Manual Entry\\1Manual Entry Page.png"));
         
         System.out.println("Manual Entry loaded.");
 
@@ -74,7 +74,7 @@ public class Ecomm_SUSST_ME {
         manualEntryPage.setPoNumber(TestSuite.custDetails[4]);
         
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\2Customer details entered.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Manual Entry\\2Customer details entered.png"));
 
         System.out.println("Customer details entered. Entering product details...");
 
@@ -94,7 +94,7 @@ public class Ecomm_SUSST_ME {
         }
 
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\3Product details entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Manual Entry\\3Product details entered.png"));
         
         System.out.println("Product details entered. Pressing next...");
         
@@ -102,7 +102,7 @@ public class Ecomm_SUSST_ME {
         OrderConfirmationPage orderConf = manualEntryPage.pressNext();
         
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\4Next pressed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Manual Entry\\4Next pressed.png"));
 
         System.out.println("Order confirmation page reached. Submitting order...");
         
@@ -110,7 +110,7 @@ public class Ecomm_SUSST_ME {
         OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit(); 
         
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\5Order submitted.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Manual Entry\\5Order submitted.png"));
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
@@ -129,7 +129,7 @@ public class Ecomm_SUSST_ME {
         System.out.println("Values verified.");
         
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotFolder+"\\EComm\\Manual Entry\\6View Order.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Manual Entry\\6View Order.png"));
         
         //Exit view
         outOrdersPage = orderView.exitView();
@@ -138,13 +138,13 @@ public class Ecomm_SUSST_ME {
         String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
     
-        driver.quit();
+        driver.close();
     
         System.out.println("----------------------------------------------------");
     
     }
     
-    @Test
+    @Test //Manual Entry Page :: Multiple line order, YMN with master shade code
     public void SUSST2() {
         //New chrome driver
         WebDriver driver = new ChromeDriver();
@@ -221,10 +221,10 @@ public class Ecomm_SUSST_ME {
     
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
+        driver.close();
     } 
     
-    @Test
+    @Test //Manual Entry Page :: Single line order, YMN without master shade code
     public void SUSST3() {
         //New chrome driver
         WebDriver driver = new ChromeDriver();
@@ -298,11 +298,11 @@ public class Ecomm_SUSST_ME {
         
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
+        driver.close();
         
     }
     
-    @Test
+    @Test //Manual Entry Page :: Multi-line order, YMN without master shade code
     public void SUSST4() {
         //New driver
         WebDriver driver = new ChromeDriver();
@@ -375,10 +375,10 @@ public class Ecomm_SUSST_ME {
         
         System.out.println("----------------------------------------------------");
         
-        driver.quit();
+        driver.close();
     }
     
-    @Test 
+    @Test //Manual Entry Page :: Single line order, article and shade code
     public void SUSST5() {
         //New driver
         WebDriver driver = new ChromeDriver();
@@ -447,13 +447,13 @@ public class Ecomm_SUSST_ME {
         String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
-        driver.quit();
+        driver.close();
 
         System.out.println("----------------------------------------------------");
         
     }
        
-    @Test
+    @Test //Manual Entry Page :: Multi-line order, using Article and shade code
     public void SUSST6() {
         //New driver
         WebDriver driver = new ChromeDriver();
@@ -524,12 +524,12 @@ public class Ecomm_SUSST_ME {
         String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
-        driver.quit();
+        driver.close();
 
         System.out.println("----------------------------------------------------");
     }
     
-    @Test
+    @Test //Manual Entry Page :: Single line order, using brand/ticket/length/finish and shade code
     public void SUSST7() {
         //New driver
         WebDriver driver = new ChromeDriver();
@@ -597,12 +597,12 @@ public class Ecomm_SUSST_ME {
         String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
-        driver.quit();
+        driver.close();
 
         System.out.println("----------------------------------------------------");
     }
     
-    @Test
+    @Test //Manual Entry Page :: Multi-line order, using brand/ticket/length/finish and shade code
     public void SUSST8() {
         //New driver
         WebDriver driver = new ChromeDriver();
@@ -672,7 +672,7 @@ public class Ecomm_SUSST_ME {
         String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
-        driver.quit();
+        driver.close();
 
         System.out.println("----------------------------------------------------");
     }

@@ -8,6 +8,7 @@ import org.junit.runner.notification.Failure;
 
 public class TestRunner {
 
+    //Main class - runs the test suite and manages output of failures
     public static void main(String[] args) {
         Result result = JUnitCore.runClasses(TestSuite.class);
         System.out.println("Suite Failures:");
