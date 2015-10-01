@@ -15,14 +15,15 @@ public class EcommPage extends BasePage {
     static By navBarLocator = By.id("topnav");
     static By mainImageLocator = By.cssSelector("#welcomefrm1 > center > img");
     static By ordersTab = By.cssSelector("#topnav > li:nth-child(1)");
-    static By sapInterfaceLogTab = By.cssSelector("#topnav > li:nth-child(3)");
     static By outstandingOrdersTab = By.cssSelector("#topnav > li:nth-child(2)");
+    static By sapInterfaceLogTab = By.cssSelector("#topnav > li:nth-child(3)");
+    static By reportsTab = By.cssSelector("#topnav > li:nth-child(4)");
     static By outstOrderDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
     static By outstUploadDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
     static By manualEntrySubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(1)");
     static By uploadOrderSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
     static By fromExistingSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3) > a");
-
+    static By invoicesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(1)");
     
     public EcommPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -127,4 +128,16 @@ public class EcommPage extends BasePage {
         
         return new SAPInterfaceLogPage_EComm(driver);
     }
+
+	public InvoicesPage_EComm clickInvoices() {
+		//Wait for tab
+		WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
+		driver.findElement(reportsTab).click();
+		
+		//Wait for subtab
+		WebElement waitForSubTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(invoicesSubTab)));
+		driver.findElement(invoicesSubTab).click();
+		
+		return new InvoicesPage_EComm(driver);
+	}
 }

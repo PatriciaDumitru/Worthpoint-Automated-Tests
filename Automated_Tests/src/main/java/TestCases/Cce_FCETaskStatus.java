@@ -3,7 +3,7 @@ package TestCases;
 
 import AutomationFramework.TestSuite;
 import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage_CCE;
+import PageObjects.ExportDownloadPage;
 import PageObjects.FCETaskStatusPage_CCE;
 import PageObjects.OrderViewPage_CCE;
 import java.io.File;
@@ -80,7 +80,7 @@ public class Cce_FCETaskStatus {
         
         System.out.println("View closed. Exporting records to excel...");
         
-        ExportDownloadPage_CCE exportPage = fcePage.pressExport();
+        ExportDownloadPage exportPage = fcePage.pressExport();
         exportPage.waitForDownloadCompletion();
         
         System.out.println("Export pressed, download completed.");

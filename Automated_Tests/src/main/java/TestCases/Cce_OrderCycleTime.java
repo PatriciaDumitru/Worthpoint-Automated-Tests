@@ -3,7 +3,7 @@ package TestCases;
 
 import AutomationFramework.*;
 import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage_CCE;
+import PageObjects.ExportDownloadPage;
 import PageObjects.FCETaskStatusPage_CCE;
 import PageObjects.OrderCycleTimePage_CCE;
 import PageObjects.OrderViewPage_CCE;
@@ -76,7 +76,7 @@ public class Cce_OrderCycleTime {
         
         System.out.println("View closed. Exporting to excel...");
         
-        ExportDownloadPage_CCE dlPage = octPage.pressExport();      
+        ExportDownloadPage dlPage = octPage.pressExport();      
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Exported. Resetting filter...");

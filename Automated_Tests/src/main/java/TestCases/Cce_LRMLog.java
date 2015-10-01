@@ -3,7 +3,7 @@ package TestCases;
 
 import AutomationFramework.TestSuite;
 import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage_CCE;
+import PageObjects.ExportDownloadPage;
 import PageObjects.LRMLogPage_CCE;
 import PageObjects.OrderViewPage_CCE;
 import PageObjects.TotalOrdersPage_CCE;
@@ -110,7 +110,7 @@ public class Cce_LRMLog {
         
         System.out.println("Orders listed. Exporting records...");
         
-        ExportDownloadPage_CCE dlPage = lrmPage.pressExport();
+        ExportDownloadPage dlPage = lrmPage.pressExport();
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Export complete. Resetting filter...");

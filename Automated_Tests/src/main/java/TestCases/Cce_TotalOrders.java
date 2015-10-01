@@ -3,7 +3,7 @@ package TestCases;
 
 import AutomationFramework.*;
 import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage_CCE;
+import PageObjects.ExportDownloadPage;
 import PageObjects.OrderCycleTimePage_CCE;
 import PageObjects.OrderViewPage_CCE;
 import PageObjects.TotalOrdersPage_CCE;
@@ -93,7 +93,7 @@ public class Cce_TotalOrders {
         
         System.out.println("View closed. Exporting to excel...");
         
-        ExportDownloadPage_CCE dlPage = toPage.pressExport();               
+        ExportDownloadPage dlPage = toPage.pressExport();               
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Export complete. Resetting filter...");

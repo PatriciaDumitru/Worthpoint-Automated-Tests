@@ -3,7 +3,7 @@ package TestCases;
 
 import AutomationFramework.*;
 import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage_CCE;
+import PageObjects.ExportDownloadPage;
 import PageObjects.OrderSamplesPage_CCE;
 import PageObjects.OrderStatusPage_CCE;
 import java.io.File;
@@ -66,7 +66,7 @@ public class Cce_OrderStatus {
         
         System.out.println("Orders listed. Exporting data...");
         
-        ExportDownloadPage_CCE dlPage = orderStatus.pressExport();
+        ExportDownloadPage dlPage = orderStatus.pressExport();
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Exported. Resetting filter...");

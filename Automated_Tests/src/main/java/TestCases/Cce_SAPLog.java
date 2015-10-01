@@ -3,7 +3,7 @@ package TestCases;
 
 import AutomationFramework.TestSuite;
 import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage_CCE;
+import PageObjects.ExportDownloadPage;
 import PageObjects.LRMLogPage_CCE;
 import PageObjects.OrderViewPage_CCE;
 import PageObjects.SAPLogPage_CCE;
@@ -87,7 +87,7 @@ public class Cce_SAPLog {
         
         System.out.println("View closed. Exporting records...");
         
-        ExportDownloadPage_CCE dlPage = sapPage.pressExport();
+        ExportDownloadPage dlPage = sapPage.pressExport();
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Records exported. Resetting filter...");

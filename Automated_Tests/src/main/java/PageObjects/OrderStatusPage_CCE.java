@@ -174,13 +174,13 @@ public class OrderStatusPage_CCE extends BasePage {
         return this;
     }
     
-    public ExportDownloadPage_CCE pressExport() {
+    public ExportDownloadPage pressExport() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
         
         Actions action = new Actions(driver);
         action.click(driver.findElement(exportButton)).build().perform();
         
-        return new ExportDownloadPage_CCE(driver);
+        return new ExportDownloadPage(driver);
     }
     
     //Line numbers start from 2

@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.openqa.selenium.By;
 
-import TestCases.Ecomm_SAPInterfaceLog;
+import TestCases.Ecomm_Reports;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -38,8 +38,9 @@ import TestCases.Ecomm_SAPInterfaceLog;
     //Ecomm_SUSST_UORT.class,
     //Ecomm_SUSST_FEBO.class,
     //Ecomm_OOD.class
-    Ecomm_SAPInterfaceLog.class,
-	
+    //Ecomm_SAPInterfaceLog.class,
+	Ecomm_Reports.class
+
 })
 
 public class TestSuite {

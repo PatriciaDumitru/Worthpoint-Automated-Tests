@@ -132,10 +132,10 @@ public class LRMLogPage_CCE extends BasePage {
         return this;
     }
     
-    public ExportDownloadPage_CCE pressExport() {
+    public ExportDownloadPage pressExport() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
         driver.findElement(exportButton).click();
-        return new ExportDownloadPage_CCE(driver);
+        return new ExportDownloadPage(driver);
     }
     
     public LRMLogPage_CCE pressReset() {

@@ -327,10 +327,10 @@ public class TotalOrdersPage_CCE extends BasePage {
         return new OrderViewPage_CCE(driver);
     }
     
-    public ExportDownloadPage_CCE pressExport() {
+    public ExportDownloadPage pressExport() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
         driver.findElement(exportButton).click();
-        return new ExportDownloadPage_CCE(driver);
+        return new ExportDownloadPage(driver);
     }
     
     public TotalOrdersPage_CCE pressReset() {

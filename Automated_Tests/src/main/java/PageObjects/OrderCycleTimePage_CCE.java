@@ -122,11 +122,11 @@ public class OrderCycleTimePage_CCE extends BasePage {
         return new OrderViewPage_CCE(driver);
     }
     
-    public ExportDownloadPage_CCE pressExport() {
+    public ExportDownloadPage pressExport() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
         driver.findElement(exportToExcelButton).click();
         
-        return new ExportDownloadPage_CCE(driver);
+        return new ExportDownloadPage(driver);
     }
     
     public OrderCycleTimePage_CCE pressReset() {
