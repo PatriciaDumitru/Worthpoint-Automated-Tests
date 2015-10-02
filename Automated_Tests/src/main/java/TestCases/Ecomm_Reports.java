@@ -16,6 +16,8 @@ import PageObjects.EcommPage;
 import PageObjects.ExportDownloadPage;
 import PageObjects.InvoicesPage_EComm;
 import PageObjects.OrderViewPage;
+import PageObjects.OutstandingPaymentsPage_EComm;
+import PageObjects.SummaryOfPurchasePage_EComm;
 import org.junit.Ignore;
 
 public class Ecomm_Reports {
@@ -27,7 +29,7 @@ public class Ecomm_Reports {
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-            EcommPage eCommPage = baseTest.SUSST_SetUp("SAP Interface Log SILM1: Page and filter checks, views and reset", "G_CoUA_SILM_1 to 4");
+            EcommPage eCommPage = baseTest.SUSST_SetUp("Invoice Report I1: Page and filter checks, reset, view, print, export", "G_R_CU_SUSST_1");
 				
             InvoicesPage_EComm invPage = eCommPage.clickInvoices();
             invPage.waitForLoad();
@@ -102,14 +104,14 @@ public class Ecomm_Reports {
 		
 	}
 	
-	@Test //Delivery Notes Page :: Page and filter checks
+	@Ignore @Test //Delivery Notes Page :: Page and filter checks, view, print, and export
         public void D1() throws InterruptedException, IOException {
             //new driver instance
             WebDriver driver = new ChromeDriver();
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-            EcommPage eCommPage = baseTest.SUSST_SetUp("SAP Interface Log SILM1: Page and filter checks, views and reset", "G_CoUA_SILM_1 to 4");
+            EcommPage eCommPage = baseTest.SUSST_SetUp("Delivery Notes Report D1: Page and filter checks, reset, view, print, export", "G_R_CU_SUSST_2");
 				
             DeliveryNotesPage_EComm dnPage = eCommPage.clickDeliveryNotes();
             dnPage.waitForLoad();
@@ -191,7 +193,138 @@ public class Ecomm_Reports {
             System.out.println("----------------------------------------------------");
         }
 	
-        @Test public void SoP1() {
+        @Test //Summary of Purchases Page :: Page and filter checks,reset, view and export
+        public void SoP1() throws IOException, InterruptedException {
+            //new driver instance
+            WebDriver driver = new ChromeDriver();
+		
+            //New eComm base test to handle log-in and navigation
+            Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+            EcommPage eCommPage = baseTest.SUSST_SetUp("Summary of Purchases SoP1: Page and filter checks, views and reset", "G_R_CU_SUSST_3");
+				
+            SummaryOfPurchasePage_EComm spPage = eCommPage.clickSummaryOfPurchases();
+            spPage.waitForLoad();
             
+            //Take a screenshot
+            File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\1Summary of Purchases Page.png"));
+		
+            System.out.println("Summary of Purchases page reached.");
+		
+            spPage.assertBaseElements();
+		
+            System.out.println("Checking fields...");
+		
+            spPage.checkFields();
+		
+            System.out.println("Fields checked. Entering filter criteria...");
+            
+            spPage.setCustName(TestSuite.custDetails[0]);
+            spPage.setBrand(TestSuite.expBrand);
+            
+            //Take a screenshot
+            File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\2Filter criteria entered.png"));
+            
+            System.out.println("Criteria entered. Listing records...");
+            
+            spPage.pressSearch();
+            spPage.waitForLoad();
+            
+            //Take a screenshot
+            File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\3Records listed.png"));
+            
+            System.out.println("Records listed. Resetting filter...");
+            
+            spPage.pressReset();
+            spPage.waitForLoad();
+            
+            //Take a screenshot
+            File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\4Filter reset.png"));
+            
+            System.out.println("Filter reset. Viewing top item...");
+            
+            OrderViewPage viewPage = spPage.pressView();
+            viewPage.waitForContent();
+            
+            //Take a screenshot
+            File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\5View displayed.png"));
+            
+            System.out.println("View displayed. Closing view...");
+            
+            viewPage.closeView();
+            
+            System.out.println("View closed. Exporting records...");
+
+            ExportDownloadPage dlPage = spPage.pressExport();
+            dlPage.waitForDownloadCompletion();
+            
+            System.out.println("Records exported.");
+            
+            System.out.println("----------------------------------------------------");
+            
+            driver.close();
         }
+        
+        @Test //Outstanding Payments Page :: Page and filter checks, reset, view, and export
+        public void OP1() throws IOException {
+            //new driver instance
+            WebDriver driver = new ChromeDriver();
+		
+            //New eComm base test to handle log-in and navigation
+            Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+            EcommPage eCommPage = baseTest.SUSST_SetUp("Outstanding Payments Page OP1: Page and filter checks, reset, view, and export", "G_R_CU_SUSST_4");
+				
+            OutstandingPaymentsPage_EComm opPage = eCommPage.clickOutstandingPayments();
+            opPage.waitForLoad();
+            
+            //Take a screenshot
+            File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\1Outstanding Payments Page.png"));
+		
+            System.out.println("Outstanding Payments page reached.");
+		
+            opPage.assertBaseElements();
+		
+            System.out.println("Checking fields...");
+		
+            opPage.checkFields();
+		
+            System.out.println("Fields checked. Entering filter criteria...");
+            
+            opPage.setCustName(TestSuite.custDetails[0]);
+            opPage.pressOverdue30();
+            
+            //Take a screenshot
+            File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\2Filter criteria entered.png"));
+            
+            System.out.println("Filter criteria entered. Listing records...");
+            
+            opPage.pressSearch();
+            opPage.waitForLoad();
+            
+            //Take a screenshot
+            File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\3Records listed.png"));
+            
+            System.out.println("Records listed. Resetting filter...");
+            
+            opPage.pressReset();
+            opPage.waitForLoad();
+            
+            //Take a screenshot
+            File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\4Filter reset.png"));
+            
+            System.out.println("Filter reset. Viewing oustsanding payment...");
+            
+            OrderViewPage viewPage = opPage.pressView();
+            
+            
+            
+        } 
 }
