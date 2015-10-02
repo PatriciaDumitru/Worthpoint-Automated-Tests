@@ -26,6 +26,7 @@ public class EcommPage extends BasePage {
     static By invoicesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(1)");
     static By deliveryNotesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(2)");
     static By summaryOfSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(3)");
+    static By outPaySubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(4)");
     
     public EcommPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -166,5 +167,18 @@ public class EcommPage extends BasePage {
 		
         return new SummaryOfPurchasePage_EComm(driver);
     }
+    
+    public OutstandingPaymentsPage_EComm clickOutstandingPayments() {
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
+        driver.findElement(reportsTab).click();
+		
+        //Wait for subtab
+        WebElement waitForSubTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(outPaySubTab)));
+        driver.findElement(outPaySubTab).click();
+		
+        return new OutstandingPaymentsPage_EComm(driver);
+    }
+    
     
 }
