@@ -24,6 +24,7 @@ public class EcommPage extends BasePage {
     static By uploadOrderSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
     static By fromExistingSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3) > a");
     static By invoicesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(1)");
+    static By deliveryNotesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(2)");
     
     public EcommPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -128,16 +129,28 @@ public class EcommPage extends BasePage {
         
         return new SAPInterfaceLogPage_EComm(driver);
     }
-
-	public InvoicesPage_EComm clickInvoices() {
-		//Wait for tab
-		WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
-		driver.findElement(reportsTab).click();
+    
+    public InvoicesPage_EComm clickInvoices() {
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
+        driver.findElement(reportsTab).click();
 		
-		//Wait for subtab
-		WebElement waitForSubTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(invoicesSubTab)));
-		driver.findElement(invoicesSubTab).click();
+        //Wait for subtab
+        WebElement waitForSubTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(invoicesSubTab)));
+        driver.findElement(invoicesSubTab).click();
 		
-		return new InvoicesPage_EComm(driver);
+        return new InvoicesPage_EComm(driver);
 	}
+    
+    public DeliveryNotesPage_EComm clickDeliveryNotes() {
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
+        driver.findElement(reportsTab).click();
+		
+        //Wait for subtab
+        WebElement waitForSubTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(deliveryNotesSubTab)));
+        driver.findElement(deliveryNotesSubTab).click();
+		
+        return new DeliveryNotesPage_EComm(driver);
+    }
 }
