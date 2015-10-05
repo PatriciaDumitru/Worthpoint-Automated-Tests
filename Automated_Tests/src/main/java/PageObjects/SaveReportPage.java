@@ -25,7 +25,9 @@ public class SaveReportPage {
     }
     
     public SaveReportPage setTitle(String item) {
-        CommonTask.setTextField(driver, titleField, item);
+        switchTo();
+        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(titleField));
+        driver.findElement(titleField).sendKeys(item);
         return this;
     }
     

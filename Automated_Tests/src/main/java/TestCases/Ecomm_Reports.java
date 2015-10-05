@@ -20,6 +20,7 @@ import PageObjects.OrderViewPage;
 import PageObjects.OutstandingPaymentsPage_EComm;
 import PageObjects.SaveReportPage;
 import PageObjects.SummaryOfPurchasePage_EComm;
+import org.junit.Assert;
 import org.junit.Ignore;
 
 public class Ecomm_Reports {
@@ -44,7 +45,11 @@ public class Ecomm_Reports {
 		
             invPage.assertBaseElements();
 		
-            System.out.println("Checking fields...");
+            System.out.println("Checking title...");
+            
+            Assert.assertTrue("Invoice Report Page: Title not as expected",invPage.getBreadcrumbText().equals("Reports | Invoices"));
+            
+            System.out.println("Title checked. Checking fields...");
 		
             invPage.checkFields();
 		
@@ -126,7 +131,11 @@ public class Ecomm_Reports {
 		
             dnPage.assertBaseElements();
 		
-            System.out.println("Checking fields...");
+            System.out.println("Checking title...");
+            
+            Assert.assertTrue("Delivery Notes Page: Title not displayed as expected",dnPage.getBreadcrumbText().equals("Reports | Delivery Notes"));
+            
+            System.out.println("Title checked. Checking fields...");
 		
             dnPage.checkFields();
 		
@@ -215,7 +224,11 @@ public class Ecomm_Reports {
 		
             spPage.assertBaseElements();
 		
-            System.out.println("Checking fields...");
+            System.out.println("Checking title...");
+            
+            Assert.assertTrue("Summary of Purchase Page: Title not displayed as expected",spPage.getBreadcrumbText().equals("Reports | Summary of Purchase"));
+            
+            System.out.println("Title checked. Checking fields...");
 		
             spPage.checkFields();
 		
@@ -290,8 +303,12 @@ public class Ecomm_Reports {
             System.out.println("Outstanding Payments page reached.");
 		
             opPage.assertBaseElements();
+            
+            System.out.println("Checking title...");
+            
+            Assert.assertTrue("Outstanding Payments Page: Title not displayed as expected",opPage.getBreadcrumbText().equals("Reports | Outstanding Payments"));
 		
-            System.out.println("Checking fields...");
+            System.out.println("Title checked. Checking fields...");
 		
             opPage.checkFields();
 		
@@ -382,7 +399,11 @@ public class Ecomm_Reports {
 		
             mrPage.assertBaseElements();
 		
-            System.out.println("Checking fields...");
+            System.out.println("Checking title...");
+            
+            Assert.assertTrue("My Reports (Customer care) Page: Title not displayed as expected",mrPage.getBreadcrumbText().equals("Reports | Customer Care"));
+            
+            System.out.println("Title checked. Checking fields...");
 		
             mrPage.checkFields();
 		
@@ -419,6 +440,8 @@ public class Ecomm_Reports {
             System.out.println("Items selected. Entering filter criteria...");
             
             mrPage.setCustName(TestSuite.custDetails[0]);
+            mrPage.setOrderNo(TestSuite.bulkOrderNo);
+            
             //Take a screenshot
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\5Filter criteria entered.png"));
@@ -437,11 +460,8 @@ public class Ecomm_Reports {
             
             System.out.println("Exporting file...");
             
-            ExportDownloadPage dlPage = mrPage.pressExport();
-            
-            System.out.println("Export view displayed. Selecting 'no' to wait for download to complete");
-            dlPage.pressNo();
-            
+            ExportDownloadPage dlPage = mrPage.pressExport();        
+            System.out.println("Export view displayed.");           
             dlPage.waitForDownloadCompletion();
             
             System.out.println("File exported. Resetting filter...");

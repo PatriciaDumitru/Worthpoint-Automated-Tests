@@ -18,6 +18,7 @@ public class EcommPage extends BasePage {
     static By outstandingOrdersTab = By.cssSelector("#topnav > li:nth-child(2)");
     static By sapInterfaceLogTab = By.cssSelector("#topnav > li:nth-child(3)");
     static By reportsTab = By.cssSelector("#topnav > li:nth-child(4)");
+    static By dashboardTab = By.cssSelector("#topnav > li:nth-child(5)");
     static By outstOrderDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
     static By outstUploadDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
     static By manualEntrySubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(1)");
@@ -28,6 +29,7 @@ public class EcommPage extends BasePage {
     static By summaryOfSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(3)");
     static By outPaySubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(4)");
     static By myReportsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(5)");
+    static By backendIPSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(2)");
     
     public EcommPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -193,5 +195,16 @@ public class EcommPage extends BasePage {
         return new MyReportsPage_EComm(driver);
     }
     
+    public BackendInProcessPage_EComm clickBackendInProcess() {
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
+        driver.findElement(dashboardTab).click();
+		
+        //Wait for subtab
+        WebElement waitForSubTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(backendIPSubTab)));
+        driver.findElement(backendIPSubTab).click();
+		
+        return new BackendInProcessPage_EComm(driver);
+    }
     
 }
