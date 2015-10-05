@@ -21,7 +21,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Ecomm_Dashboard {
     
-    @Ignore @Test
+    @Test
     public void BIP1() throws IOException {
         //new driver instance
             WebDriver driver = new ChromeDriver();
@@ -73,7 +73,7 @@ public class Ecomm_Dashboard {
             driver.close();
     }
     
-    @Ignore @Test
+    @Test
     public void BFF1() throws IOException {
         //new driver instance
         WebDriver driver = new ChromeDriver();
@@ -121,7 +121,7 @@ public class Ecomm_Dashboard {
         System.out.println("Files listed. Viewing top item...");
         
         OrderViewPage viewPage = bffPage.pressView();
-        viewPage.waitForContent();
+        viewPage.waitForErrorTable();
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -193,7 +193,7 @@ public class Ecomm_Dashboard {
         System.out.println("Files listed. Viewing top item...");
         
         OrderViewPage viewPage = ftpPage.pressView();
-        viewPage.waitForContent();
+        viewPage.waitForErrorTable();
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

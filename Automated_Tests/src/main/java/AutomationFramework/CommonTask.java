@@ -1,6 +1,7 @@
 
 package AutomationFramework;
 
+import java.util.Calendar;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -88,6 +89,40 @@ public class CommonTask {
 
     }
     
+    public static void setCheckBox(WebDriver driver, By fieldLocator) {
+        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        driver.findElement(fieldLocator).click();
+        Boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(fieldLocator)));
+    }
+    
+    public static void setDateField(WebDriver driver, By fieldLocator) {
+        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        
+        driver.findElement(fieldLocator).click();
+        //Get the current day of the month
+        Calendar cal = Calendar.getInstance();
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+        
+        //New action for clicking
+        Actions clickDatePicked = new Actions(driver);
+        
+        //if current Day of month is less than 28th, choose date three days advance. Else, click next month and choose 3rd
+        if (dayOfMonth < 28) {
+            //calculate date three days in future
+            String date = String.valueOf((int)dayOfMonth+3);
+            By dateLocator = By.xpath("//a[contains(text(),'"+date+"')]");
+            clickDatePicked.click(driver.findElement(dateLocator)).build().perform();
+        } else {
+            //locate next month button and click
+            By nextMonthLocator = By.xpath("//*[@id=\"ui-datepicker-div\"]/div/a[2]/span");
+            clickDatePicked.click(driver.findElement(nextMonthLocator)).build().perform();
+            
+            //locate 3rd of month button and click
+            By thirdOfMonthLocator = By.xpath("//a[contains(text(),\"3\")]");
+            clickDatePicked.click(driver.findElement(thirdOfMonthLocator)).click().perform();
+        }       
+    }
+    
     public static ExpectedCondition<Boolean> textContains(final String text, final String elementText) {
         return new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver f) {
@@ -113,10 +148,6 @@ public class CommonTask {
         };
     }
     
-    public static void setCheckBox(WebDriver driver, By fieldLocator) {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fieldLocator));
-        driver.findElement(fieldLocator).click();
-        Boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(fieldLocator)));
-    }
+    
     
 }

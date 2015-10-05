@@ -1,6 +1,7 @@
 
 package AutomationFramework;
 
+import TestCases.ContractOrderRCTest;
 import TestCases.Ecomm_Dashboard;
 import java.net.MalformedURLException;
 
@@ -40,8 +41,9 @@ import TestCases.Ecomm_Reports;
     //Ecomm_SUSST_FEBO.class,
     //Ecomm_OOD.class
     //Ecomm_SAPInterfaceLog.class,
-    //Ecomm_Reports.class
-    Ecomm_Dashboard.class
+    //Ecomm_Reports.class,
+    //Ecomm_Dashboard.class,
+    ContractOrderRCTest.class,  
 })
 
 public class TestSuite {

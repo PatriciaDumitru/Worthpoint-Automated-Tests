@@ -24,6 +24,7 @@ public class OrderViewPage {
     static By requiredDateCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(16)");
     static By printButton = By.cssSelector("#tbl > tbody > tr:nth-child(8) > td:nth-child(2) > a");
     static By frameLocator = By.id("TB_iframeContent");
+    static By contentLocator = By.cssSelector("body > div.grid_12");
     
     public OrderViewPage(WebDriver passedDriver) {
         driver = passedDriver;
@@ -79,6 +80,11 @@ public class OrderViewPage {
     
     public void waitForContent() {
     	WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+    }
+    
+    public void waitForErrorTable() {
+        switchTo();
+        WebElement waitForTable = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(contentLocator));
     }
     
     public void waitForInvisibility() {
