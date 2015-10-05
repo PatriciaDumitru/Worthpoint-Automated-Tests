@@ -31,6 +31,7 @@ public class BasePage {
     static By slidingTextLocator = By.cssSelector("#slides > div > div > span:nth-child(1)");
     static By coatsLogoLocator = By.cssSelector("#header > a > img");
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
+    public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
     static By footerLocator = By.id("footer");
     private Object ExepectedConditions;
     static By contentFrame = By.id("content");
@@ -92,6 +93,10 @@ public class BasePage {
     public static String getBreadcrumbText() {
         //find and return element and text
         return driver.findElement(breadcrumbLocator).getText();
+    }
+    
+    public static String getBreadcrumbText2() {
+        return driver.findElement(breadcrumbLocator2).getText();
     }
     
     public void assertBaseElements() {

@@ -30,6 +30,8 @@ public class EcommPage extends BasePage {
     static By outPaySubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(4)");
     static By myReportsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(5)");
     static By backendIPSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(2)");
+    static By backendFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(3)");
+    static By ftpFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(4) > a"); 
     
     public EcommPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -205,6 +207,30 @@ public class EcommPage extends BasePage {
         driver.findElement(backendIPSubTab).click();
 		
         return new BackendInProcessPage_EComm(driver);
+    }
+    
+    public BackendFailedFilesPage_EComm clickBackendFailedFiles() {
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
+        driver.findElement(dashboardTab).click();
+		
+        //Wait for subtab
+        WebElement waitForSubTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(backendFailedSubTab)));
+        driver.findElement(backendFailedSubTab).click();
+		
+        return new BackendFailedFilesPage_EComm(driver);
+    }
+    
+    public FTPFailedFilesPage_EComm clickFTPFailedFiles() {
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
+        driver.findElement(dashboardTab).click();
+		
+        //Wait for subtab
+        WebElement waitForSubTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(ftpFailedSubTab)));
+        driver.findElement(ftpFailedSubTab).click();
+		
+        return new FTPFailedFilesPage_EComm(driver);
     }
     
 }
