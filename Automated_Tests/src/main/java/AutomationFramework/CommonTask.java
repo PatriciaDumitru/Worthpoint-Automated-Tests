@@ -113,4 +113,10 @@ public class CommonTask {
         };
     }
     
+    public static void setCheckBox(WebDriver driver, By fieldLocator) {
+        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        driver.findElement(fieldLocator).click();
+        Boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(fieldLocator)));
+    }
+    
 }

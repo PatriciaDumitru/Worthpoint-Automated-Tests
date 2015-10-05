@@ -85,10 +85,10 @@ public class OutstandingPaymentsPage_EComm extends BasePage {
         return new OrderViewPage(driver);
     }
     
-    public OutstandingPaymentsPage_EComm pressExport() {
+    public ExportDownloadPage pressExport() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
         driver.findElement(exportButton).click();
-        return new OutstandingPaymentsPage_EComm(driver);
+        return new ExportDownloadPage(driver);
     }
     
     public OutstandingPaymentsPage_EComm pressOverdue30() {

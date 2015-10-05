@@ -162,7 +162,10 @@ public class TestSuite {
     
     //SAP Interface log filter
     public static String sapMessage = "Success";
-
+    
+    //Save report title
+    public static String reportTitle = "AutoTestReport";
+    
     @BeforeClass //Run before every Test Case class
     public static void setUp() throws MalformedURLException {
         //Declare location of driver

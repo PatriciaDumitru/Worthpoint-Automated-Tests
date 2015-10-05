@@ -72,6 +72,7 @@ public class OrderViewPage {
     	} else {
     		System.out.println("Printing is disabled, item was not sent to printer");
     		this.closeView();
+                this.waitForInvisibility();
     	}
 
     }

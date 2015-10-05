@@ -15,8 +15,10 @@ import PageObjects.DeliveryNotesPage_EComm;
 import PageObjects.EcommPage;
 import PageObjects.ExportDownloadPage;
 import PageObjects.InvoicesPage_EComm;
+import PageObjects.MyReportsPage_EComm;
 import PageObjects.OrderViewPage;
 import PageObjects.OutstandingPaymentsPage_EComm;
+import PageObjects.SaveReportPage;
 import PageObjects.SummaryOfPurchasePage_EComm;
 import org.junit.Ignore;
 
@@ -193,7 +195,7 @@ public class Ecomm_Reports {
             System.out.println("----------------------------------------------------");
         }
 	
-        @Test //Summary of Purchases Page :: Page and filter checks,reset, view and export
+        @Ignore @Test //Summary of Purchases Page :: Page and filter checks,reset, view and export
         public void SoP1() throws IOException, InterruptedException {
             //new driver instance
             WebDriver driver = new ChromeDriver();
@@ -269,7 +271,7 @@ public class Ecomm_Reports {
             driver.close();
         }
         
-        @Test //Outstanding Payments Page :: Page and filter checks, reset, view, and export
+        @Ignore @Test //Outstanding Payments Page :: Page and filter checks, reset, view, and export
         public void OP1() throws IOException {
             //new driver instance
             WebDriver driver = new ChromeDriver();
@@ -323,8 +325,161 @@ public class Ecomm_Reports {
             System.out.println("Filter reset. Viewing oustsanding payment...");
             
             OrderViewPage viewPage = opPage.pressView();
+            viewPage.waitForContent();
             
+            //Take a screenshot
+            File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\5View displayed.png"));
             
+            System.out.println("View displayed. Closing view...");
+            
+            viewPage.closeView();
+            viewPage.waitForInvisibility();
+            
+            System.out.println("View closed. Re-entering filter criteria...");
+            
+            opPage.pressOverdue90();
+            
+            //Take a screenshot
+            File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\6Overdue by 90 selected.png"));
+            
+            System.out.println("Criteria entered. Listing orders...");
+            
+            opPage.pressSearch();
+            opPage.waitForLoad();
+            
+            System.out.println("Orders listed. Exporting file...");
+            
+            ExportDownloadPage dlPage = opPage.pressExport();
+            dlPage.waitForDownloadCompletion();
+            
+            System.out.println("File exported.");
+            
+            System.out.println("----------------------------------------------------");
+            
+            driver.close();
             
         } 
+        
+        @Test //My Reports Page :: Page and filter checks, print, export, save, and reset
+        public void MR1() throws IOException {
+            //new driver instance
+            WebDriver driver = new ChromeDriver();
+		
+            //New eComm base test to handle log-in and navigation
+            Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+            EcommPage eCommPage = baseTest.SUSST_SetUp("My Report Page MR1: Page and filter checks, reset, print, save, and export", "G_R_CU_SUSST_5");
+				
+            MyReportsPage_EComm mrPage = eCommPage.clickMyReports();
+            mrPage.waitForLoad();
+            
+            //Take a screenshot
+            File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\1My Reports Page.png"));
+		
+            System.out.println("My Reports page reached.");
+		
+            mrPage.assertBaseElements();
+		
+            System.out.println("Checking fields...");
+		
+            mrPage.checkFields();
+		
+            System.out.println("Fields checked. Selecting all items...");
+            
+            mrPage.setSelectAll();
+            
+            //Take a screenshot
+            File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\2All fields selected.png"));
+            
+            System.out.println("All selected. Resetting filter...");
+            
+            mrPage.pressReset();
+            mrPage.waitForLoad();
+            
+            //Take a screenshot
+            File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\3Filter reset.png"));
+            
+            System.out.println("Filter reset. Selecting PO Number, Article, Brand, Ticket, Invoice No, Delivery No...");
+            
+            mrPage.setPONumber();
+            mrPage.setArticle();
+            mrPage.setBrand();
+            mrPage.setTicket();
+            mrPage.setInvoiceNo();
+            mrPage.setDeliveryNo();
+            
+            //Take a screenshot
+            File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\4Fields set.png"));
+            
+            System.out.println("Items selected. Entering filter criteria...");
+            
+            mrPage.setCustName(TestSuite.custDetails[0]);
+            //Take a screenshot
+            File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\5Filter criteria entered.png"));
+            
+            System.out.println("Criteria entered. Printing report...");
+            
+            OrderViewPage viewPage = mrPage.pressPrint();
+            viewPage.waitForContent();
+            
+            //Take a screenshot
+            File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\6Print view displayed.png"));
+            
+            viewPage.closeView();
+            viewPage.waitForInvisibility();
+            
+            System.out.println("Exporting file...");
+            
+            ExportDownloadPage dlPage = mrPage.pressExport();
+            
+            System.out.println("Export view displayed. Selecting 'no' to wait for download to complete");
+            dlPage.pressNo();
+            
+            dlPage.waitForDownloadCompletion();
+            
+            System.out.println("File exported. Resetting filter...");
+            
+            mrPage.pressReset();
+            mrPage.waitForLoad();
+            
+            System.out.println("Filter reset. Saving report...");
+            
+            SaveReportPage srPage = mrPage.pressSaveReport();
+            srPage.waitForContent();
+            
+            //Take a screenshot
+            File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\7Save report page.png"));
+            
+            System.out.println("Page reached. Entering title...");
+            
+            srPage.setTitle(TestSuite.reportTitle);
+            
+            //Take a screenshot
+            File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile8,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\8Title entered.png"));
+            
+            srPage.pressSave();
+            
+            //Take a screenshot
+            File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile8,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\9Report saved.png"));
+            
+            String message = mrPage.getFlashMessage().getText();
+            if (message.contains("has been saved")) {
+                System.out.println("Report successfully saved");
+            } else {
+                System.out.println("***Unexpected message received: "+message+"***");
+            }
+            
+            System.out.println("----------------------------------------------------");
+            driver.close();
+        }
 }
