@@ -2,11 +2,11 @@
 package TestCases;
 
 import AutomationFramework.*;
-import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage;
-import PageObjects.OrderCycleTimePage_CCE;
-import PageObjects.OrderViewPage_CCE;
-import PageObjects.TotalOrdersPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.Ecomm_ExportDownloadPage;
+import PageObjects.CCE_OrderCycleTimePage;
+import PageObjects.CCE_OrderViewPage;
+import PageObjects.CCE_TotalOrdersPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -29,11 +29,11 @@ public class Cce_TotalOrders {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Total Orders: Page and filter checks, field selection, export, and reset", "C_CCE_TOR_1-4");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Total Orders: Page and filter checks, field selection, export, and reset", "C_CCE_TOR_1-4");
         
         System.out.println("Navigating to Total Orders Page...");
         
-        TotalOrdersPage_CCE toPage = ccePage.pressTotalOrders();
+        CCE_TotalOrdersPage toPage = ccePage.pressTotalOrders();
         toPage.waitForLoad();
         
         //Take a screenshot
@@ -80,7 +80,7 @@ public class Cce_TotalOrders {
         
         System.out.println("Filter criteria entered. Printing records...");
         
-        OrderViewPage_CCE viewPage = toPage.pressPrint();
+        CCE_OrderViewPage viewPage = toPage.pressPrint();
         viewPage.waitForLoad();
         
         //Take a screenshot
@@ -93,7 +93,7 @@ public class Cce_TotalOrders {
         
         System.out.println("View closed. Exporting to excel...");
         
-        ExportDownloadPage dlPage = toPage.pressExport();               
+        Ecomm_ExportDownloadPage dlPage = toPage.pressExport();               
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Export complete. Resetting filter...");

@@ -2,9 +2,9 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.CcePage;
-import PageObjects.DNPrintPage_CCE;
-import PageObjects.DNReprintPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.CCE_DNPrintPage;
+import PageObjects.CCE_DNReprintPage;
 import com.google.common.base.Verify;
 import java.io.File;
 import java.io.IOException;
@@ -27,11 +27,11 @@ public class Cce_DNReprint {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("DN Reprint DR1: User can select all fields", "G_CCE_DR_1");
+        CCE_MainPage ccePage = base.SUSST_SetUp("DN Reprint DR1: User can select all fields", "G_CCE_DR_1");
         
         System.out.println("Navigating to DN Reprint...");
         
-        DNReprintPage_CCE dnReprint = ccePage.pressDNReprint();
+        CCE_DNReprintPage dnReprint = ccePage.pressDNReprint();
         dnReprint.waitForLoad();
         
         //Take a screenshot
@@ -70,11 +70,11 @@ public class Cce_DNReprint {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("DN Reprint DR1: User can select all fields", "G_CCE_DR_2");
+        CCE_MainPage ccePage = base.SUSST_SetUp("DN Reprint DR1: User can select all fields", "G_CCE_DR_2");
         
         System.out.println("Navigating to DN Reprint...");
         
-        DNReprintPage_CCE dnReprint = ccePage.pressDNReprint();
+        CCE_DNReprintPage dnReprint = ccePage.pressDNReprint();
         
         System.out.println("DN Reprint loaded. Entering filter criteria...");
         
@@ -103,7 +103,7 @@ public class Cce_DNReprint {
         
         System.out.println("Confirm pressed. Pressing print...");
         
-        DNPrintPage_CCE printPage = dnReprint.pressPrint();
+        CCE_DNPrintPage printPage = dnReprint.pressPrint();
         
         System.out.println("Print pressed. Displaying delivery notes...");
         

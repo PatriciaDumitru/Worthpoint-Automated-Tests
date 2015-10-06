@@ -2,17 +2,17 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.ContinuePage;
-import PageObjects.EcommPage;
-import PageObjects.LoginPage;
-import PageObjects.ManualEntryPage;
-import PageObjects.OrderConfirmationPage;
-import PageObjects.OrderViewPage;
-import PageObjects.OutstandingOrderDraftPage;
-import PageObjects.OutstandingOrdersPage;
-import PageObjects.OutstandingUploadDraftPage;
-import PageObjects.UploadConfirmationPage;
-import PageObjects.WbaSelectionPage;
+import PageObjects.WBA_ContinuePage;
+import PageObjects.Ecomm_MainPage;
+import PageObjects.WBA_LoginPage;
+import PageObjects.Ecomm_ManualEntryPage;
+import PageObjects.Ecomm_OrderConfirmationPage;
+import PageObjects.Ecomm_OrderViewPage;
+import PageObjects.Ecomm_OutstandingOrderDraftPage;
+import PageObjects.Ecomm_OutstandingOrdersPage;
+import PageObjects.Ecomm_OutstandingUploadDraftPage;
+import PageObjects.Ecomm_UploadConfirmationPage;
+import PageObjects.WBA_SelectionPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -46,30 +46,30 @@ public class Ecomm_OOD {
         System.out.println("Logging in...");
     
         //new LoginPage
-        LoginPage liPage = new LoginPage(driver);
+        WBA_LoginPage liPage = new WBA_LoginPage(driver);
 
         //log in
-        ContinuePage cont = liPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        WBA_ContinuePage cont = liPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
 
         System.out.println("Logged in. Continuing to selection page...");
 
         //press continue, select eComm
-        WbaSelectionPage selectPage = cont.pressContinue();
+        WBA_SelectionPage selectPage = cont.pressContinue();
 
         System.out.println("Selection page loaded. eComm selected...");
 
-        EcommPage eCommPage = selectPage.pressEcomm();
+        Ecomm_MainPage eCommPage = selectPage.pressEcomm();
 
         System.out.println("eComm page loaded. Selecting Outstanding Orders Draft page...");
         
-        OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
+        Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
         
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\1Outstanding Orders Draft Page.png"));
                 
         System.out.println("Draft page reached. Pressing edit draft...");
         
-        ManualEntryPage manualEntry = draftPage.pressEdit();
+        Ecomm_ManualEntryPage manualEntry = draftPage.pressEdit();
         
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\2Edit pressed.png"));
@@ -78,7 +78,7 @@ public class Ecomm_OOD {
         
         //Add checks
         
-        OrderConfirmationPage orderConf = manualEntry.pressNext();
+        Ecomm_OrderConfirmationPage orderConf = manualEntry.pressNext();
         
         try {
             WebElement message = driver.findElement(By.id("flashMessage"));
@@ -89,7 +89,7 @@ public class Ecomm_OOD {
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\3Next pressed.png"));
         } catch (Exception e) {
-            OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
+            Ecomm_OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
             System.out.println("Order submitted.");
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\3Submit pressed.png"));
@@ -116,23 +116,23 @@ public class Ecomm_OOD {
         System.out.println("Logging in...");
     
         //new LoginPage
-        LoginPage liPage = new LoginPage(driver);
+        WBA_LoginPage liPage = new WBA_LoginPage(driver);
 
         //log in
-        ContinuePage cont = liPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        WBA_ContinuePage cont = liPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
 
         System.out.println("Logged in. Continuing to selection page...");
 
         //press continue, select eComm
-        WbaSelectionPage selectPage = cont.pressContinue();
+        WBA_SelectionPage selectPage = cont.pressContinue();
 
         System.out.println("Selection page loaded. eComm selected...");
 
-        EcommPage eCommPage = selectPage.pressEcomm();
+        Ecomm_MainPage eCommPage = selectPage.pressEcomm();
 
         System.out.println("eComm page loaded. Asserting base elements...");
         
-        OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
+        Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
                 
         draftPage.assertBaseElements();
         
@@ -159,11 +159,11 @@ public class Ecomm_OOD {
         FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Orders Draft\\6View pressed.png"));
         
         //Close view
-        OutstandingOrderDraftPage draftPage2 = draftPage.closeView();
+        Ecomm_OutstandingOrderDraftPage draftPage2 = draftPage.closeView();
         
         System.out.println("Draft view closed. Pressing edit draft...");
         
-        ManualEntryPage manualEntry = draftPage2.pressEdit();
+        Ecomm_ManualEntryPage manualEntry = draftPage2.pressEdit();
         
         System.out.println("Edit draft pressed. Navigating back to draft search page...");
         
@@ -201,23 +201,23 @@ public class Ecomm_OOD {
         System.out.println("Logging in...");
     
         //new LoginPage
-        LoginPage liPage = new LoginPage(driver);
+        WBA_LoginPage liPage = new WBA_LoginPage(driver);
 
         //log in
-        ContinuePage cont = liPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        WBA_ContinuePage cont = liPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
 
         System.out.println("Logged in. Continuing to selection page...");
 
         //press continue, select eComm
-        WbaSelectionPage selectPage = cont.pressContinue();
+        WBA_SelectionPage selectPage = cont.pressContinue();
 
         System.out.println("Selection page loaded. eComm selected...");
 
-        EcommPage eCommPage = selectPage.pressEcomm();
+        Ecomm_MainPage eCommPage = selectPage.pressEcomm();
 
         System.out.println("eComm page loaded. Navigating to Outstanding Upload Drafts...");
         
-        OutstandingUploadDraftPage upDraftPage = eCommPage.clickOutstandingUploadDraft();
+        Ecomm_OutstandingUploadDraftPage upDraftPage = eCommPage.clickOutstandingUploadDraft();
                 
         System.out.println("Outstanding Upload Drafts reached. Asserting base elements...");
         
@@ -243,7 +243,7 @@ public class Ecomm_OOD {
         
         System.out.println("Search complete. Pressing edit...");
         
-        OrderConfirmationPage upConf = upDraftPage.pressEdit();
+        Ecomm_OrderConfirmationPage upConf = upDraftPage.pressEdit();
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

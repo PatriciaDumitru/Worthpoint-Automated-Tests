@@ -11,9 +11,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import AutomationFramework.TestSuite;
-import PageObjects.EcommPage;
-import PageObjects.OrderViewPage;
-import PageObjects.SAPInterfaceLogPage_EComm;
+import PageObjects.Ecomm_MainPage;
+import PageObjects.Ecomm_OrderViewPage;
+import PageObjects.Ecomm_SAPInterfaceLogPage;
 
 public class Ecomm_SAPInterfaceLog {
 	
@@ -25,9 +25,9 @@ public class Ecomm_SAPInterfaceLog {
 		
 		//New eComm base test to handle log-in and navigation
 		Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-		EcommPage eCommPage = baseTest.SUSST_SetUp("SAP Interface Log SILM1: Page and filter checks, views and reset", "G_CoUA_SILM_1 to 4");
+		Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("SAP Interface Log SILM1: Page and filter checks, views and reset", "G_CoUA_SILM_1 to 4");
 		
-		SAPInterfaceLogPage_EComm logPage = eCommPage.clickSAPInterfaceLog();
+		Ecomm_SAPInterfaceLogPage logPage = eCommPage.clickSAPInterfaceLog();
 		logPage.waitForLoad();
 		
 		//Take a screenshot
@@ -73,7 +73,7 @@ public class Ecomm_SAPInterfaceLog {
         
         System.out.println("Filter reset. Viewing record...");
         
-        OrderViewPage viewPage = logPage.pressView();
+        Ecomm_OrderViewPage viewPage = logPage.pressView();
         viewPage.waitForContent();
         
         System.out.println("View displayed. Closing view...");
@@ -86,7 +86,7 @@ public class Ecomm_SAPInterfaceLog {
         
         System.out.println("View closed. Pressing File Transfer View...");
         
-        OrderViewPage ftView = logPage.pressFtView();
+        Ecomm_OrderViewPage ftView = logPage.pressFtView();
         ftView.waitForContent();
         
         System.out.println("File Transfer View displayed. Closing view...");

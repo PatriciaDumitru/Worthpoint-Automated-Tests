@@ -2,11 +2,11 @@
 package TestCases;
 
 import AutomationFramework.*;
-import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage;
-import PageObjects.FCETaskStatusPage_CCE;
-import PageObjects.OrderCycleTimePage_CCE;
-import PageObjects.OrderViewPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.Ecomm_ExportDownloadPage;
+import PageObjects.CCE_FCETaskStatusPage;
+import PageObjects.CCE_OrderCycleTimePage;
+import PageObjects.CCE_OrderViewPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -29,11 +29,11 @@ public class Cce_OrderCycleTime {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Order Cycle Time: Page and filter checks, print, export, and reset", "C_CCE_OCTR_1-5");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Order Cycle Time: Page and filter checks, print, export, and reset", "C_CCE_OCTR_1-5");
         
         System.out.println("Navigating to Order Cycle Time...");
         
-        OrderCycleTimePage_CCE octPage = ccePage.pressOrderCycleTime();
+        CCE_OrderCycleTimePage octPage = ccePage.pressOrderCycleTime();
         octPage.waitForLoad();
         
         //Take a screenshot
@@ -62,7 +62,7 @@ public class Cce_OrderCycleTime {
         
         System.out.println("Criteria entered. Printing records...");
         
-        OrderViewPage_CCE viewPage = octPage.pressPrint();
+        CCE_OrderViewPage viewPage = octPage.pressPrint();
         viewPage.waitForContentAlt2();
         
         //Take a screenshot
@@ -76,7 +76,7 @@ public class Cce_OrderCycleTime {
         
         System.out.println("View closed. Exporting to excel...");
         
-        ExportDownloadPage dlPage = octPage.pressExport();      
+        Ecomm_ExportDownloadPage dlPage = octPage.pressExport();      
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Exported. Resetting filter...");

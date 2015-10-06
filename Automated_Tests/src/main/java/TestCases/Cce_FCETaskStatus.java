@@ -2,10 +2,10 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage;
-import PageObjects.FCETaskStatusPage_CCE;
-import PageObjects.OrderViewPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.Ecomm_ExportDownloadPage;
+import PageObjects.CCE_FCETaskStatusPage;
+import PageObjects.CCE_OrderViewPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -29,11 +29,11 @@ public class Cce_FCETaskStatus {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("FCE Task Status: Page and filter checks, print, and export", "C_CCE_FCETR_1-4");
+        CCE_MainPage ccePage = base.SUSST_SetUp("FCE Task Status: Page and filter checks, print, and export", "C_CCE_FCETR_1-4");
         
         System.out.println("Navigating to FCE Task Status...");
         
-        FCETaskStatusPage_CCE fcePage = ccePage.pressFCETaskStatus();
+        CCE_FCETaskStatusPage fcePage = ccePage.pressFCETaskStatus();
         fcePage.waitForLoad();
         
         //Take a screenshot
@@ -65,7 +65,7 @@ public class Cce_FCETaskStatus {
         
         System.out.println("Criteria entered. Printing records...");
         
-        OrderViewPage_CCE viewPage = fcePage.pressPrint();
+        CCE_OrderViewPage viewPage = fcePage.pressPrint();
         viewPage.waitForLoad();
         
         //Take a screenshot
@@ -80,7 +80,7 @@ public class Cce_FCETaskStatus {
         
         System.out.println("View closed. Exporting records to excel...");
         
-        ExportDownloadPage exportPage = fcePage.pressExport();
+        Ecomm_ExportDownloadPage exportPage = fcePage.pressExport();
         exportPage.waitForDownloadCompletion();
         
         System.out.println("Export pressed, download completed.");
@@ -98,11 +98,11 @@ public class Cce_FCETaskStatus {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("FCE Task Status: Page and filter checks, print, and export", "C_CCE_FCETR_1-4");
+        CCE_MainPage ccePage = base.SUSST_SetUp("FCE Task Status: Page and filter checks, print, and export", "C_CCE_FCETR_1-4");
         
         System.out.println("Navigating to FCE Task Status...");
         
-        FCETaskStatusPage_CCE fcePage = ccePage.pressFCETaskStatus();
+        CCE_FCETaskStatusPage fcePage = ccePage.pressFCETaskStatus();
         
         System.out.println("FCE Task Status reached. Entering filter criteria...");
         

@@ -2,8 +2,8 @@ package TestCases.Generated;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.TestSuite;
-import PageObjects.EcommPage;
-import PageObjects.MappingAlert;
+import PageObjects.Ecomm_MainPage;
+import PageObjects.Ecomm_MappingAlert;
 import java.io.File;
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -52,7 +52,7 @@ public class Ecomm_CO_UORT {
     
     driver.findElement(By.xpath("//area[4]")).click();
     
-    EcommPage ecomm = new EcommPage(driver);
+    Ecomm_MainPage ecomm = new Ecomm_MainPage(driver);
     ecomm.clickUploadOrder();
     
     driver.findElement(By.id("filename")).clear();
@@ -66,7 +66,7 @@ public class Ecomm_CO_UORT {
     
     driver.findElement(By.cssSelector("input.btn-submit-upload")).click();
     
-    MappingAlert mapAlert = new MappingAlert(driver);
+    Ecomm_MappingAlert mapAlert = new Ecomm_MappingAlert(driver);
     mapAlert.pressNo();
     
     new Select(driver.findElement(By.id("BulkOrderLineCustomerMaterialNo"))).selectByVisibleText("N/A");
@@ -143,7 +143,7 @@ public class Ecomm_CO_UORT {
     
     driver.findElement(By.xpath("//area[4]")).click();
     
-    EcommPage ecomm = new EcommPage(driver);
+    Ecomm_MainPage ecomm = new Ecomm_MainPage(driver);
     ecomm.clickUploadOrder();
     
     driver.findElement(By.id("filename")).clear();
@@ -151,7 +151,7 @@ public class Ecomm_CO_UORT {
     
     driver.findElement(By.cssSelector("input.btn-submit-upload")).click();
     
-    MappingAlert mapAlert = new MappingAlert(driver);
+    Ecomm_MappingAlert mapAlert = new Ecomm_MappingAlert(driver);
     mapAlert.pressNo();
     
     new Select(driver.findElement(By.id("BulkOrderLineCustomerMaterialNo"))).selectByVisibleText("N/A");

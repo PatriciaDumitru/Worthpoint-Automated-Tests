@@ -2,10 +2,10 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.CcePage;
-import PageObjects.InboxPage_CCE;
-import PageObjects.InboxSAPPage_CCE;
-import PageObjects.OrderViewPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.CCE_InboxPage;
+import PageObjects.CCE_InboxSAPPage;
+import PageObjects.CCE_OrderViewPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -29,11 +29,11 @@ public class Cce_Inbox {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Inbox I1: Page checks, filter function, list orders, saving, re-assigning SOS", "C_CCE_I_1,2,3,4,6");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Inbox I1: Page checks, filter function, list orders, saving, re-assigning SOS", "C_CCE_I_1,2,3,4,6");
         
         System.out.println("Navigating to Inbox...");
         
-        InboxPage_CCE ibPage = ccePage.pressInbox();
+        CCE_InboxPage ibPage = ccePage.pressInbox();
         ibPage.waitForLoad();
         
         //Take a screenshot
@@ -72,7 +72,7 @@ public class Cce_Inbox {
         
         System.out.println("Orders listed. Viewing order...");
         
-        OrderViewPage_CCE viewPage = ibPage.pressView();
+        CCE_OrderViewPage viewPage = ibPage.pressView();
         viewPage.waitForContent();
         
         //Take a screenshot
@@ -120,11 +120,11 @@ public class Cce_Inbox {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Inbox I2: Reset, cancel, and print", "C_CCE_I_5");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Inbox I2: Reset, cancel, and print", "C_CCE_I_5");
         
         System.out.println("Navigating to Inbox...");
         
-        InboxPage_CCE ibPage = ccePage.pressInbox();
+        CCE_InboxPage ibPage = ccePage.pressInbox();
         
         System.out.println("Inbox loaded. Entering filter criteria...");
         
@@ -180,11 +180,11 @@ public class Cce_Inbox {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Inbox SAP IS2: Page check, filter functions, list orders, reset", "C_CCE_I_5");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Inbox SAP IS2: Page check, filter functions, list orders, reset", "C_CCE_I_5");
         
         System.out.println("Navigating to Inbox...");
         
-        InboxSAPPage_CCE isPage = ccePage.pressInboxSAP();
+        CCE_InboxSAPPage isPage = ccePage.pressInboxSAP();
         isPage.waitForLoad();
         
         //Take a screenshot

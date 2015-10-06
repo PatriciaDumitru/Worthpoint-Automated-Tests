@@ -2,11 +2,11 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.CcePage;
-import PageObjects.FeedbackPage_CCE;
-import PageObjects.HubSosPage_CCE;
-import PageObjects.OrderViewPage_CCE;
-import PageObjects.ReceivedHubPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.CCE_FeedbackPage;
+import PageObjects.CCE_HubSosPage;
+import PageObjects.CCE_OrderViewPage;
+import PageObjects.CCE_ReceivedHubPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -30,11 +30,11 @@ public class Cce_Hub {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Hub SOS: Page and filter checks", "C_CCE_HS_1-4");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Hub SOS: Page and filter checks", "C_CCE_HS_1-4");
         
         System.out.println("Navigating to Hub SOS...");
         
-        HubSosPage_CCE hsPage = ccePage.pressHubSos();
+        CCE_HubSosPage hsPage = ccePage.pressHubSos();
         hsPage.waitForLoad();
         
         System.out.println("Hub SOS reached. Checking title...");
@@ -73,7 +73,7 @@ public class Cce_Hub {
         
         System.out.println("Orders listed. Viewing first item...");
         
-        OrderViewPage_CCE viewPage = hsPage.pressView();
+        CCE_OrderViewPage viewPage = hsPage.pressView();
         viewPage.waitForContent();
         
         //Take a screenshot
@@ -125,11 +125,11 @@ public class Cce_Hub {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Receieved Hub: Page and filter checks", "C_CCE_RH_1-3");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Receieved Hub: Page and filter checks", "C_CCE_RH_1-3");
         
         System.out.println("Navigating to Received Hub...");
         
-        ReceivedHubPage_CCE rhPage = ccePage.pressReceivedHub();
+        CCE_ReceivedHubPage rhPage = ccePage.pressReceivedHub();
         rhPage.waitForLoad();
         
         //Take a screenshot
@@ -176,7 +176,7 @@ public class Cce_Hub {
         
         System.out.println("Filter reset. Viewing first order...");
         
-        OrderViewPage_CCE orderView = rhPage.pressView();
+        CCE_OrderViewPage orderView = rhPage.pressView();
         orderView.switchTo();
         orderView.waitForContent();
         

@@ -2,10 +2,10 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.CcePage;
-import PageObjects.ConfirmProductionPage_CCE;
-import PageObjects.InboxPage_CCE;
-import PageObjects.OrderViewPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.CCE_ConfirmProductionPage;
+import PageObjects.CCE_InboxPage;
+import PageObjects.CCE_OrderViewPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -32,11 +32,11 @@ public class Cce_ConfirmProduction {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Confirm Production CP1: Page checks, filter function, view button, confirm selection", "C_CCE_CP_1-2");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Confirm Production CP1: Page checks, filter function, view button, confirm selection", "C_CCE_CP_1-2");
         
         System.out.println("Navigating to Confirm Production...");
         
-        ConfirmProductionPage_CCE cpPage = ccePage.pressConfirmProduction();
+        CCE_ConfirmProductionPage cpPage = ccePage.pressConfirmProduction();
         cpPage.waitForLoad();
         
         //Take a screenshot
@@ -84,7 +84,7 @@ public class Cce_ConfirmProduction {
         
         System.out.println("Confirm selected. Pressing DN Print...");
         
-        OrderViewPage_CCE viewPage = cpPage.pressDnPrint();
+        CCE_OrderViewPage viewPage = cpPage.pressDnPrint();
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -157,11 +157,11 @@ public class Cce_ConfirmProduction {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Confirm Production CP2: Reset and cancel", "C_CCE_CP_x");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Confirm Production CP2: Reset and cancel", "C_CCE_CP_x");
         
         System.out.println("Navigating to Confirm Production...");
         
-        ConfirmProductionPage_CCE cpPage = ccePage.pressConfirmProduction();
+        CCE_ConfirmProductionPage cpPage = ccePage.pressConfirmProduction();
         
         System.out.println("Confirm Production loaded. Entering filter criteria...");
         

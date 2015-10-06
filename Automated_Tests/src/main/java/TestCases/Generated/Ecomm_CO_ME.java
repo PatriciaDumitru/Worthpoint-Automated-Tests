@@ -2,7 +2,7 @@ package TestCases.Generated;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.TestSuite;
-import PageObjects.EcommPage;
+import PageObjects.Ecomm_MainPage;
 import java.io.File;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
@@ -63,7 +63,7 @@ public class Ecomm_CO_ME {
     
     driver.findElement(By.xpath("//area[4]")).click();
     
-    EcommPage eComm = new EcommPage(driver);
+    Ecomm_MainPage eComm = new Ecomm_MainPage(driver);
     eComm.clickManualEntry();
     CommonTask.waitForPageLoad(driver);
     
@@ -155,7 +155,7 @@ public class Ecomm_CO_ME {
     
     driver.findElement(By.xpath("//area[4]")).click();
     
-    EcommPage eComm = new EcommPage(driver);
+    Ecomm_MainPage eComm = new Ecomm_MainPage(driver);
     eComm.clickManualEntry();
     CommonTask.waitForPageLoad(driver);  
 

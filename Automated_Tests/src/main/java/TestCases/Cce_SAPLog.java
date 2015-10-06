@@ -2,11 +2,11 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage;
-import PageObjects.LRMLogPage_CCE;
-import PageObjects.OrderViewPage_CCE;
-import PageObjects.SAPLogPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.Ecomm_ExportDownloadPage;
+import PageObjects.CCE_LRMLogPage;
+import PageObjects.CCE_OrderViewPage;
+import PageObjects.CCE_SAPLogPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -28,11 +28,11 @@ public class Cce_SAPLog {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("SAP Log: Page and filter checks, search, reset, export", "C_CCE_A_SAP_1-5");
+        CCE_MainPage ccePage = base.SUSST_SetUp("SAP Log: Page and filter checks, search, reset, export", "C_CCE_A_SAP_1-5");
         
         System.out.println("Navigating to SAP Log Page...");
         
-        SAPLogPage_CCE sapPage = ccePage.pressSAPLog();
+        CCE_SAPLogPage sapPage = ccePage.pressSAPLog();
         sapPage.waitForLoad();
         
         //Take a screenshot
@@ -72,7 +72,7 @@ public class Cce_SAPLog {
         
         System.out.println("Records listed. Viewing top item...");
         
-        OrderViewPage_CCE viewPage = sapPage.pressView();
+        CCE_OrderViewPage viewPage = sapPage.pressView();
         viewPage.switchTo();
         viewPage.waitForContent();
         
@@ -87,7 +87,7 @@ public class Cce_SAPLog {
         
         System.out.println("View closed. Exporting records...");
         
-        ExportDownloadPage dlPage = sapPage.pressExport();
+        Ecomm_ExportDownloadPage dlPage = sapPage.pressExport();
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Records exported. Resetting filter...");

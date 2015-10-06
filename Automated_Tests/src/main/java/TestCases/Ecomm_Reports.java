@@ -11,15 +11,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import AutomationFramework.TestSuite;
-import PageObjects.DeliveryNotesPage_EComm;
-import PageObjects.EcommPage;
-import PageObjects.ExportDownloadPage;
-import PageObjects.InvoicesPage_EComm;
-import PageObjects.MyReportsPage_EComm;
-import PageObjects.OrderViewPage;
-import PageObjects.OutstandingPaymentsPage_EComm;
-import PageObjects.SaveReportPage;
-import PageObjects.SummaryOfPurchasePage_EComm;
+import PageObjects.Ecomm_DeliveryNotesPage;
+import PageObjects.Ecomm_MainPage;
+import PageObjects.Ecomm_ExportDownloadPage;
+import PageObjects.Ecomm_InvoicesPage;
+import PageObjects.Ecomm_MyReportsPage;
+import PageObjects.Ecomm_OrderViewPage;
+import PageObjects.Ecomm_OutstandingPaymentsPage;
+import PageObjects.Ecomm_SaveReportPage;
+import PageObjects.Ecomm_SummaryOfPurchasePage;
 import org.junit.Assert;
 import org.junit.Ignore;
 
@@ -32,9 +32,9 @@ public class Ecomm_Reports {
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-            EcommPage eCommPage = baseTest.SUSST_SetUp("Invoice Report I1: Page and filter checks, reset, view, print, export", "G_R_CU_SUSST_1");
+            Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Invoice Report I1: Page and filter checks, reset, view, print, export", "G_R_CU_SUSST_1");
 				
-            InvoicesPage_EComm invPage = eCommPage.clickInvoices();
+            Ecomm_InvoicesPage invPage = eCommPage.clickInvoices();
             invPage.waitForLoad();
 		
             //Take a screenshot
@@ -73,7 +73,7 @@ public class Ecomm_Reports {
 		
             System.out.println("Filter reset. Viewing invoice...");
 		
-            OrderViewPage viewPage = invPage.pressView();
+            Ecomm_OrderViewPage viewPage = invPage.pressView();
             viewPage.waitForContent();
 		
             //Take a screenshot
@@ -87,7 +87,7 @@ public class Ecomm_Reports {
 		
 		System.out.println("View closed. Printing invoice...");
 		
-		OrderViewPage printPage = invPage.pressPrint();
+		Ecomm_OrderViewPage printPage = invPage.pressPrint();
 		printPage.waitForContent();
 		
 		//Take a screenshot
@@ -100,7 +100,7 @@ public class Ecomm_Reports {
 		
 		System.out.println("Exporting records...");
 		
-		ExportDownloadPage dlPage = invPage.pressExport();
+		Ecomm_ExportDownloadPage dlPage = invPage.pressExport();
 		dlPage.waitForDownloadCompletion();
 		
 		System.out.println("Records exported.");
@@ -118,9 +118,9 @@ public class Ecomm_Reports {
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-            EcommPage eCommPage = baseTest.SUSST_SetUp("Delivery Notes Report D1: Page and filter checks, reset, view, print, export", "G_R_CU_SUSST_2");
+            Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Delivery Notes Report D1: Page and filter checks, reset, view, print, export", "G_R_CU_SUSST_2");
 				
-            DeliveryNotesPage_EComm dnPage = eCommPage.clickDeliveryNotes();
+            Ecomm_DeliveryNotesPage dnPage = eCommPage.clickDeliveryNotes();
             dnPage.waitForLoad();
             
             //Take a screenshot
@@ -168,7 +168,7 @@ public class Ecomm_Reports {
             
             System.out.println("Filter reset. Viewing record...");
             
-            OrderViewPage viewPage = dnPage.pressView();
+            Ecomm_OrderViewPage viewPage = dnPage.pressView();
             viewPage.waitForContent();
             
             //Take a screenshot
@@ -181,7 +181,7 @@ public class Ecomm_Reports {
             
             System.out.println("View closed. Pressing print...");
             
-            OrderViewPage printPage = dnPage.pressPrint();
+            Ecomm_OrderViewPage printPage = dnPage.pressPrint();
             printPage.waitForContent();
             
             //Take a screenshot
@@ -194,7 +194,7 @@ public class Ecomm_Reports {
             
             System.out.println("Exporting records...");
             
-            ExportDownloadPage dlPage = dnPage.pressExport();           
+            Ecomm_ExportDownloadPage dlPage = dnPage.pressExport();           
             dlPage.waitForDownloadCompletion();
             
             System.out.println("Records exported.");
@@ -211,9 +211,9 @@ public class Ecomm_Reports {
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-            EcommPage eCommPage = baseTest.SUSST_SetUp("Summary of Purchases SoP1: Page and filter checks, views and reset", "G_R_CU_SUSST_3");
+            Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Summary of Purchases SoP1: Page and filter checks, views and reset", "G_R_CU_SUSST_3");
 				
-            SummaryOfPurchasePage_EComm spPage = eCommPage.clickSummaryOfPurchases();
+            Ecomm_SummaryOfPurchasePage spPage = eCommPage.clickSummaryOfPurchases();
             spPage.waitForLoad();
             
             //Take a screenshot
@@ -261,7 +261,7 @@ public class Ecomm_Reports {
             
             System.out.println("Filter reset. Viewing top item...");
             
-            OrderViewPage viewPage = spPage.pressView();
+            Ecomm_OrderViewPage viewPage = spPage.pressView();
             viewPage.waitForContent();
             
             //Take a screenshot
@@ -274,7 +274,7 @@ public class Ecomm_Reports {
             
             System.out.println("View closed. Exporting records...");
 
-            ExportDownloadPage dlPage = spPage.pressExport();
+            Ecomm_ExportDownloadPage dlPage = spPage.pressExport();
             dlPage.waitForDownloadCompletion();
             
             System.out.println("Records exported.");
@@ -291,9 +291,9 @@ public class Ecomm_Reports {
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-            EcommPage eCommPage = baseTest.SUSST_SetUp("Outstanding Payments Page OP1: Page and filter checks, reset, view, and export", "G_R_CU_SUSST_4");
+            Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Outstanding Payments Page OP1: Page and filter checks, reset, view, and export", "G_R_CU_SUSST_4");
 				
-            OutstandingPaymentsPage_EComm opPage = eCommPage.clickOutstandingPayments();
+            Ecomm_OutstandingPaymentsPage opPage = eCommPage.clickOutstandingPayments();
             opPage.waitForLoad();
             
             //Take a screenshot
@@ -341,7 +341,7 @@ public class Ecomm_Reports {
             
             System.out.println("Filter reset. Viewing oustsanding payment...");
             
-            OrderViewPage viewPage = opPage.pressView();
+            Ecomm_OrderViewPage viewPage = opPage.pressView();
             viewPage.waitForContent();
             
             //Take a screenshot
@@ -368,7 +368,7 @@ public class Ecomm_Reports {
             
             System.out.println("Orders listed. Exporting file...");
             
-            ExportDownloadPage dlPage = opPage.pressExport();
+            Ecomm_ExportDownloadPage dlPage = opPage.pressExport();
             dlPage.waitForDownloadCompletion();
             
             System.out.println("File exported.");
@@ -386,9 +386,9 @@ public class Ecomm_Reports {
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-            EcommPage eCommPage = baseTest.SUSST_SetUp("My Report Page MR1: Page and filter checks, reset, print, save, and export", "G_R_CU_SUSST_5");
+            Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("My Report Page MR1: Page and filter checks, reset, print, save, and export", "G_R_CU_SUSST_5");
 				
-            MyReportsPage_EComm mrPage = eCommPage.clickMyReports();
+            Ecomm_MyReportsPage mrPage = eCommPage.clickMyReports();
             mrPage.waitForLoad();
             
             //Take a screenshot
@@ -448,7 +448,7 @@ public class Ecomm_Reports {
             
             System.out.println("Criteria entered. Printing report...");
             
-            OrderViewPage viewPage = mrPage.pressPrint();
+            Ecomm_OrderViewPage viewPage = mrPage.pressPrint();
             viewPage.waitForContent();
             
             //Take a screenshot
@@ -460,7 +460,7 @@ public class Ecomm_Reports {
             
             System.out.println("Exporting file...");
             
-            ExportDownloadPage dlPage = mrPage.pressExport();        
+            Ecomm_ExportDownloadPage dlPage = mrPage.pressExport();        
             System.out.println("Export view displayed.");           
             dlPage.waitForDownloadCompletion();
             
@@ -471,7 +471,7 @@ public class Ecomm_Reports {
             
             System.out.println("Filter reset. Saving report...");
             
-            SaveReportPage srPage = mrPage.pressSaveReport();
+            Ecomm_SaveReportPage srPage = mrPage.pressSaveReport();
             srPage.waitForContent();
             
             //Take a screenshot

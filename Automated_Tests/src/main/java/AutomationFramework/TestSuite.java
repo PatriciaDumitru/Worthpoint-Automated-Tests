@@ -30,8 +30,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.openqa.selenium.By;
 
-import TestCases.ForgotPassword;
-import TestCases.Login;
+import TestCases.WBA_ForgotPassword;
+import TestCases.WBA_Login;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

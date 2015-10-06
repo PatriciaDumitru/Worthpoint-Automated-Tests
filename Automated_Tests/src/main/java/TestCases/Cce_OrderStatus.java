@@ -2,10 +2,10 @@
 package TestCases;
 
 import AutomationFramework.*;
-import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage;
-import PageObjects.OrderSamplesPage_CCE;
-import PageObjects.OrderStatusPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.Ecomm_ExportDownloadPage;
+import PageObjects.CCE_OrderSamplesPage;
+import PageObjects.CCE_OrderStatusPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -27,11 +27,11 @@ public class Cce_OrderStatus {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("ORDER STATUS OS1: Export data", "G_CCE_OS_3");
+        CCE_MainPage ccePage = base.SUSST_SetUp("ORDER STATUS OS1: Export data", "G_CCE_OS_3");
         
         System.out.println("Navigating to Order Status...");
         
-        OrderStatusPage_CCE orderStatus = ccePage.pressOrderStatus();
+        CCE_OrderStatusPage orderStatus = ccePage.pressOrderStatus();
         orderStatus.waitForLoad();
         
         System.out.println("Order Status reached.");
@@ -66,7 +66,7 @@ public class Cce_OrderStatus {
         
         System.out.println("Orders listed. Exporting data...");
         
-        ExportDownloadPage dlPage = orderStatus.pressExport();
+        Ecomm_ExportDownloadPage dlPage = orderStatus.pressExport();
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Exported. Resetting filter...");

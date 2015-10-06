@@ -2,10 +2,9 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.ContinuePage;
-import PageObjects.EcommPage;
-import PageObjects.LoginPage;
-import PageObjects.WbaSelectionPage;
+import PageObjects.WBA_ContinuePage;
+import PageObjects.WBA_LoginPage;
+import PageObjects.WBA_SelectionPage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -44,16 +43,16 @@ public class Ecomm_MainPage {
         System.out.println("Logging in...");
         
         //new login page to allow login
-        LoginPage loginPage = new LoginPage(driver);
+        WBA_LoginPage loginPage = new WBA_LoginPage(driver);
         
         //Login and press continue
-        ContinuePage contPage = loginPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
-        WbaSelectionPage selectionPage = contPage.pressContinue();
+        WBA_ContinuePage contPage = loginPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        WBA_SelectionPage selectionPage = contPage.pressContinue();
         
         System.out.println("Logged in. Continuing to selection page...");
         
         //Choose eComm
-        EcommPage eCommPage = selectionPage.pressEcomm();
+        PageObjects.Ecomm_MainPage eCommPage = selectionPage.pressEcomm();
         
         System.out.println("Selection page loaded. eComm selected...");
         
@@ -71,9 +70,9 @@ public class Ecomm_MainPage {
         
         System.out.println("Asserting additional elements...");	
         
-        Assert.assertTrue(EcommPage.getContentImage().isDisplayed());
-        Assert.assertTrue(EcommPage.getNavBar().isDisplayed());
-        Assert.assertTrue(EcommPage.getMainImage().isDisplayed());
+        Assert.assertTrue(PageObjects.Ecomm_MainPage.getContentImage().isDisplayed());
+        Assert.assertTrue(PageObjects.Ecomm_MainPage.getNavBar().isDisplayed());
+        Assert.assertTrue(PageObjects.Ecomm_MainPage.getMainImage().isDisplayed());
         
         System.out.println("Assertions successful. Checking navigation bar...");
         

@@ -2,12 +2,12 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.EcommPage;
-import PageObjects.FromExistingPage_Ecomm;
-import PageObjects.ManualEntryPage;
-import PageObjects.OrderConfirmationPage;
-import PageObjects.OrderListPage;
-import PageObjects.OutstandingOrdersPage;
+import PageObjects.Ecomm_MainPage;
+import PageObjects.Ecomm_FromExistingPage;
+import PageObjects.Ecomm_ManualEntryPage;
+import PageObjects.Ecomm_OrderConfirmationPage;
+import PageObjects.Ecomm_OrderListPage;
+import PageObjects.Ecomm_OutstandingOrdersPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -33,12 +33,12 @@ public void FEBO1() throws IOException {
     //new base test to handle set up
     Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
     //Set up returns an eComm main page
-    EcommPage eCommPage = susstTest8.SUSST_SetUp("FROM EXISTING BULK ORDER FEBO1: Page checks and creates order using existing order","G_OOC_FWBL_1-5");
+    Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("FROM EXISTING BULK ORDER FEBO1: Page checks and creates order using existing order","G_OOC_FWBL_1-5");
         
     System.out.println("Navigating to From Existing Bulk Order page...");
     
     //Navigate to From Existing Bulk Order page
-    FromExistingPage_Ecomm fromExistingPage = eCommPage.clickFromExisting();
+    Ecomm_FromExistingPage fromExistingPage = eCommPage.clickFromExisting();
     
     System.out.println("From Existing page reached. Making assertions...");
 
@@ -59,7 +59,7 @@ public void FEBO1() throws IOException {
     FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\From Ex Bulk\\2Order number entered.png"));
     
     //Submit search
-    ManualEntryPage manualEntryPage = fromExistingPage.pressLoad();
+    Ecomm_ManualEntryPage manualEntryPage = fromExistingPage.pressLoad();
     
     //Wait for items to load
     Boolean waitForItems = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElement(manualEntryPage.getQty(), "3"));
@@ -68,13 +68,13 @@ public void FEBO1() throws IOException {
     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\From Ex Bulk\\3Order loaded.png"));
     
-    OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+    Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
     
     //Take a screenshot
     File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\From Ex Bulk\\4Next pressed.png"));
     
-    OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
+    Ecomm_OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
     
     //Take a screenshot
     File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

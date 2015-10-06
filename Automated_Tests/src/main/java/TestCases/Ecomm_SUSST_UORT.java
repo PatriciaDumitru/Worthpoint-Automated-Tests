@@ -2,13 +2,13 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.EcommPage;
-import PageObjects.MappingAlert;
-import PageObjects.MappingPage;
-import PageObjects.OrderConfirmationPage;
-import PageObjects.OutstandingOrdersPage;
-import PageObjects.UploadConfirmationPage;
-import PageObjects.UploadOrderPage;
+import PageObjects.Ecomm_MainPage;
+import PageObjects.Ecomm_MappingAlert;
+import PageObjects.Ecomm_MappingPage;
+import PageObjects.Ecomm_OrderConfirmationPage;
+import PageObjects.Ecomm_OutstandingOrdersPage;
+import PageObjects.Ecomm_UploadConfirmationPage;
+import PageObjects.Ecomm_UploadOrderPage;
 import java.awt.AWTException;
 import java.io.File;
 import java.io.IOException;
@@ -37,12 +37,12 @@ public class Ecomm_SUSST_UORT {
         //new base test to set up
         Ecomm_SUSST_Base uortTest1 = new Ecomm_SUSST_Base(driver);
         //Set up returns an eComm page
-        EcommPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST");
+        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST");
         
         System.out.println("Navigating to Upload Order...");
         
         //new upload order page
-        UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
+        Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
         
         System.out.println("Upload Order loaded.");
         
@@ -72,12 +72,12 @@ public class Ecomm_SUSST_UORT {
         FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\2Filepath set.png"));
         
         //Press upload
-        MappingAlert alert = uploadPage.pressUpload();
+        Ecomm_MappingAlert alert = uploadPage.pressUpload();
         
         System.out.println("Upload pressed. Choosing new mapping...");
         
         //Press "no" to alert, continuing to mapping page
-        MappingPage mapPage = alert.pressNo();
+        Ecomm_MappingPage mapPage = alert.pressNo();
         
         System.out.println("Mapping page loaded. Setting mapping...");
         
@@ -107,7 +107,7 @@ public class Ecomm_SUSST_UORT {
                                 {"Customer Price","N/A"}
                                 };
         
-        MappingPage mappedPage = mapPage.setMapping(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMapping(mapping);
         
         System.out.println("Mapping set. Confirming map...");
         
@@ -115,7 +115,7 @@ public class Ecomm_SUSST_UORT {
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\2Mapping set.png")); 
         
-        OrderConfirmationPage orderConf = mappedPage.pressConfirm();
+        Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
         
         System.out.println("Map confirmed.");
         
@@ -126,7 +126,7 @@ public class Ecomm_SUSST_UORT {
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\3Upload Confirmation page.png"));                    
         
-        OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
+        Ecomm_OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
         
         System.out.println("Order submitted.");
         
@@ -150,12 +150,12 @@ public class Ecomm_SUSST_UORT {
         //new base test to set up
         Ecomm_SUSST_Base uortTest1 = new Ecomm_SUSST_Base(driver);
         //Set up returns an eComm page
-        EcommPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST","joecontract@coats.com","password");
+        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST","joecontract@coats.com","password");
         
         System.out.println("Navigating to Upload Order...");
         
         //new upload order page
-        UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
+        Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
         
         System.out.println("Upload Order loaded. Sending file path...");
         
@@ -165,12 +165,12 @@ public class Ecomm_SUSST_UORT {
         System.out.println("File path set. Realtime selected. Uploading...");
         
         //Press upload
-        MappingAlert alert = uploadPage.pressUpload();
+        Ecomm_MappingAlert alert = uploadPage.pressUpload();
         
         System.out.println("Upload pressed. Choosing new mapping...");
         
         //Press "no" to alert, continuing to mapping page
-        MappingPage mapPage = alert.pressNo();
+        Ecomm_MappingPage mapPage = alert.pressNo();
         
         System.out.println("Mapping page loaded. Setting mapping...");
         
@@ -200,7 +200,7 @@ public class Ecomm_SUSST_UORT {
                                 {"Customer Price","N/A"}
                                 };
         
-        MappingPage mappedPage = mapPage.setMapping(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMapping(mapping);
         
         System.out.println("Mapping set. Confirming map...");
         

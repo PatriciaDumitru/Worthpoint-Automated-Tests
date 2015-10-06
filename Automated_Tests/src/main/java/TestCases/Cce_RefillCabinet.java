@@ -2,9 +2,9 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.CcePage;
-import PageObjects.ConfirmProductionPage_CCE;
-import PageObjects.RefillCabinetPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.CCE_ConfirmProductionPage;
+import PageObjects.CCE_RefillCabinetPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -26,11 +26,11 @@ public class Cce_RefillCabinet {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Refill Cabinet RC1: Page checks, filter function", "C_CCE_RC_1-2");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Refill Cabinet RC1: Page checks, filter function", "C_CCE_RC_1-2");
         
         System.out.println("Navigating to Refill Cabinet...");
         
-        RefillCabinetPage_CCE rcPage = ccePage.pressRefillCabinet();
+        CCE_RefillCabinetPage rcPage = ccePage.pressRefillCabinet();
         rcPage.waitForLoad();
         
         //Take a screenshot

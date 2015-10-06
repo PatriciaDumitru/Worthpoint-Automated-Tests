@@ -2,10 +2,10 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.CcePage;
-import PageObjects.FeedbackAwaitingPage_CCE;
-import PageObjects.FeedbackCompletedPage_CCE;
-import PageObjects.FeedbackPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.CCE_FeedbackAwaitingPage;
+import PageObjects.CCE_FeedbackCompletedPage;
+import PageObjects.CCE_FeedbackPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -32,11 +32,11 @@ public class Cce_Feedback {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Feedback FB1: Single feedback, using an order number to start process", "G_CCE_FB_1");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FB1: Single feedback, using an order number to start process", "G_CCE_FB_1");
         
         System.out.println("Navigating to Feedback...");
         
-        FeedbackPage_CCE fbPage = ccePage.pressFeedback();
+        CCE_FeedbackPage fbPage = ccePage.pressFeedback();
         fbPage.waitForLoad();
         
         //Take a screenshot
@@ -73,11 +73,11 @@ public class Cce_Feedback {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Feedback FB2: Satisfied feedback", "G_CCE_FB_1");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FB2: Satisfied feedback", "G_CCE_FB_1");
         
         System.out.println("Navigating to Feedback...");
         
-        FeedbackPage_CCE fbPage = ccePage.pressFeedback();
+        CCE_FeedbackPage fbPage = ccePage.pressFeedback();
         
         System.out.println("Feedback page loaded. Entering order no. and requester: ");
         
@@ -116,11 +116,11 @@ public class Cce_Feedback {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Feedback FB3: Dissatisfied feedback", "G_CCE_FB_1");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FB3: Dissatisfied feedback", "G_CCE_FB_1");
         
         System.out.println("Navigating to Feedback...");
         
-        FeedbackPage_CCE fbPage = ccePage.pressFeedback();
+        CCE_FeedbackPage fbPage = ccePage.pressFeedback();
         
         System.out.println("Feedback page loaded. Entering order no. and requester: ");
         
@@ -175,11 +175,11 @@ public class Cce_Feedback {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Feedback FBA1: Feedback Awaiting page checks", "G_CCE_FBA_1");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FBA1: Feedback Awaiting page checks", "G_CCE_FBA_1");
         
         System.out.println("Navigating to Feedback Awaiting...");
         
-        FeedbackAwaitingPage_CCE fbaPage = ccePage.pressFeedbackAwaiting();
+        CCE_FeedbackAwaitingPage fbaPage = ccePage.pressFeedbackAwaiting();
         fbaPage.waitForLoad();
         
         //Take a screenshot
@@ -216,11 +216,11 @@ public class Cce_Feedback {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Feedback FBA2: Filter functioning", "G_CCE_FBA_2");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FBA2: Filter functioning", "G_CCE_FBA_2");
         
         System.out.println("Navigating to Feedback Awaiting...");
         
-        FeedbackAwaitingPage_CCE fbaPage = ccePage.pressFeedbackAwaiting();
+        CCE_FeedbackAwaitingPage fbaPage = ccePage.pressFeedbackAwaiting();
         
         System.out.println("Feedback Awaiting page reached. Entering filter criteria...");
         
@@ -241,7 +241,7 @@ public class Cce_Feedback {
         
         System.out.println("Orders listed. Loading top item...");
         
-        FeedbackPage_CCE fbPage = fbaPage.pressLoad();
+        CCE_FeedbackPage fbPage = fbaPage.pressLoad();
         fbPage.waitForLoad();
         
         //Take a screenshot
@@ -264,11 +264,11 @@ public class Cce_Feedback {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Feedback FBA2: Filter functioning", "G_CCE_FBA_2");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FBA2: Filter functioning", "G_CCE_FBA_2");
         
         System.out.println("Navigating to Feedback Awaiting...");
         
-        FeedbackAwaitingPage_CCE fbaPage = ccePage.pressFeedbackAwaiting();
+        CCE_FeedbackAwaitingPage fbaPage = ccePage.pressFeedbackAwaiting();
         
         System.out.println("Feedback Awaiting page reached. Entering filter criteria...");
         
@@ -288,7 +288,7 @@ public class Cce_Feedback {
         
         System.out.println("Accept pressed. Saving feedback...");
         
-        FeedbackAwaitingPage_CCE fbPage = fbaPage.pressSave();
+        CCE_FeedbackAwaitingPage fbPage = fbaPage.pressSave();
         fbPage.waitForLoad();
         
         //Take a screenshot
@@ -310,11 +310,11 @@ public class Cce_Feedback {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Feedback FC1: Check fields", "G_CCE_FC_1");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FC1: Check fields", "G_CCE_FC_1");
         
         System.out.println("Navigating to Feedback Completed...");
         
-        FeedbackCompletedPage_CCE fcPage = ccePage.pressFeedbackCompleted();
+        CCE_FeedbackCompletedPage fcPage = ccePage.pressFeedbackCompleted();
         fcPage.waitForLoad();
         
         //Take a screenshot
@@ -347,11 +347,11 @@ public class Cce_Feedback {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("Feedback FC1: Check fields", "G_CCE_FC_1");
+        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FC1: Check fields", "G_CCE_FC_1");
         
         System.out.println("Navigating to Feedback Completed...");
         
-        FeedbackCompletedPage_CCE fcPage = ccePage.pressFeedbackCompleted();
+        CCE_FeedbackCompletedPage fcPage = ccePage.pressFeedbackCompleted();
         
         System.out.println("Feedback completed reached. Entering filter criteria...");
         

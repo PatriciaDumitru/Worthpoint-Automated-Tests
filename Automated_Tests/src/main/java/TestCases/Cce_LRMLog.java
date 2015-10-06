@@ -2,11 +2,11 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.CcePage;
-import PageObjects.ExportDownloadPage;
-import PageObjects.LRMLogPage_CCE;
-import PageObjects.OrderViewPage_CCE;
-import PageObjects.TotalOrdersPage_CCE;
+import PageObjects.CCE_MainPage;
+import PageObjects.Ecomm_ExportDownloadPage;
+import PageObjects.CCE_LRMLogPage;
+import PageObjects.CCE_OrderViewPage;
+import PageObjects.CCE_TotalOrdersPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -29,11 +29,11 @@ public class Cce_LRMLog {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("LRM Log: Page and filter checks, view, resend, export", "C_CCE_LRM_1-5");
+        CCE_MainPage ccePage = base.SUSST_SetUp("LRM Log: Page and filter checks, view, resend, export", "C_CCE_LRM_1-5");
         
         System.out.println("Navigating to LRM Log Page...");
         
-        LRMLogPage_CCE lrmPage = ccePage.pressLRMLog();
+        CCE_LRMLogPage lrmPage = ccePage.pressLRMLog();
         lrmPage.waitForLoad();
         
         //Take a screenshot
@@ -72,7 +72,7 @@ public class Cce_LRMLog {
         
          System.out.println("Orders listed. Pressing view...");
         
-        OrderViewPage_CCE viewPage = lrmPage.pressView();
+        CCE_OrderViewPage viewPage = lrmPage.pressView();
         viewPage.switchTo();
         viewPage.waitForContent();
         
@@ -110,7 +110,7 @@ public class Cce_LRMLog {
         
         System.out.println("Orders listed. Exporting records...");
         
-        ExportDownloadPage dlPage = lrmPage.pressExport();
+        Ecomm_ExportDownloadPage dlPage = lrmPage.pressExport();
         dlPage.waitForDownloadCompletion();
         
         System.out.println("Export complete. Resetting filter...");

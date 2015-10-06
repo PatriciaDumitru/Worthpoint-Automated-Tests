@@ -2,12 +2,12 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.BackendFailedFilesPage_EComm;
-import PageObjects.BackendInProcessPage_EComm;
-import PageObjects.EcommPage;
-import PageObjects.FTPFailedFilesPage_EComm;
-import PageObjects.MyReportsPage_EComm;
-import PageObjects.OrderViewPage;
+import PageObjects.Ecomm_BackendFailedFilesPage;
+import PageObjects.Ecomm_BackendInProcessPage;
+import PageObjects.Ecomm_MainPage;
+import PageObjects.Ecomm_FTPFailedFilesPage;
+import PageObjects.Ecomm_MyReportsPage;
+import PageObjects.Ecomm_OrderViewPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -28,9 +28,9 @@ public class Ecomm_Dashboard {
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-            EcommPage eCommPage = baseTest.SUSST_SetUp("Backend In Process Page BIP1: Page and filter checks, reset", "G_D_BIPL");
+            Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Backend In Process Page BIP1: Page and filter checks, reset", "G_D_BIPL");
 				
-            BackendInProcessPage_EComm bipPage = eCommPage.clickBackendInProcess();
+            Ecomm_BackendInProcessPage bipPage = eCommPage.clickBackendInProcess();
             bipPage.waitForLoad();
             
             //Take a screenshot
@@ -80,9 +80,9 @@ public class Ecomm_Dashboard {
 		
         //New eComm base test to handle log-in and navigation
         Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-        EcommPage eCommPage = baseTest.SUSST_SetUp("Backend Failed Files Page BFF1: Page and filter checks, view, reset, download", "G_D_BFF_1");
+        Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Backend Failed Files Page BFF1: Page and filter checks, view, reset, download", "G_D_BFF_1");
 				
-        BackendFailedFilesPage_EComm bffPage = eCommPage.clickBackendFailedFiles();
+        Ecomm_BackendFailedFilesPage bffPage = eCommPage.clickBackendFailedFiles();
         bffPage.waitForLoad();
             
         //Take a screenshot
@@ -120,7 +120,7 @@ public class Ecomm_Dashboard {
         
         System.out.println("Files listed. Viewing top item...");
         
-        OrderViewPage viewPage = bffPage.pressView();
+        Ecomm_OrderViewPage viewPage = bffPage.pressView();
         viewPage.waitForErrorTable();
         
         //Take a screenshot
@@ -152,9 +152,9 @@ public class Ecomm_Dashboard {
 		
         //New eComm base test to handle log-in and navigation
         Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-        EcommPage eCommPage = baseTest.SUSST_SetUp("FTP Failed Files Page FTPF1: Page and filter checks, view, reset, download", "G_D_FTPFF_1");
+        Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("FTP Failed Files Page FTPF1: Page and filter checks, view, reset, download", "G_D_FTPFF_1");
 				
-        FTPFailedFilesPage_EComm ftpPage = eCommPage.clickFTPFailedFiles();
+        Ecomm_FTPFailedFilesPage ftpPage = eCommPage.clickFTPFailedFiles();
         ftpPage.waitForLoad();
             
         //Take a screenshot
@@ -192,7 +192,7 @@ public class Ecomm_Dashboard {
         
         System.out.println("Files listed. Viewing top item...");
         
-        OrderViewPage viewPage = ftpPage.pressView();
+        Ecomm_OrderViewPage viewPage = ftpPage.pressView();
         viewPage.waitForErrorTable();
         
         //Take a screenshot

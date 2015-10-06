@@ -3,11 +3,11 @@ package TestCases;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.TestSuite;
-import PageObjects.BasePage;
-import PageObjects.CcePage;
-import PageObjects.ContinuePage;
-import PageObjects.LoginPage;
-import PageObjects.WbaSelectionPage;
+import PageObjects.WBA_BasePage;
+import PageObjects.CCE_MainPage;
+import PageObjects.WBA_ContinuePage;
+import PageObjects.WBA_LoginPage;
+import PageObjects.WBA_SelectionPage;
 import com.google.common.base.Verify;
 import java.io.File;
 import java.io.IOException;
@@ -45,16 +45,16 @@ public class Cce_MainPage {
         System.out.println("Logging in...");
         
         //new login page to allow login
-        LoginPage loginPage = new LoginPage(driver);
+        WBA_LoginPage loginPage = new WBA_LoginPage(driver);
         
         //Login and press continue
-        ContinuePage contPage = loginPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
-        WbaSelectionPage selectionPage = contPage.pressContinue();
+        WBA_ContinuePage contPage = loginPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        WBA_SelectionPage selectionPage = contPage.pressContinue();
         
         System.out.println("Logged in. Continuing to selection page...");
         
         //Chooce CCE
-        CcePage ccePage = selectionPage.pressCce();
+        CCE_MainPage ccePage = selectionPage.pressCce();
         
         //Wait for page to load
         Boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuite.ccePageTitle));
@@ -137,16 +137,16 @@ public class Cce_MainPage {
         System.out.println("Logging in...");
         
         //new login page to allow login
-        LoginPage loginPage = new LoginPage(driver);
+        WBA_LoginPage loginPage = new WBA_LoginPage(driver);
         
         //Login and press continue
-        ContinuePage contPage = loginPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
-        WbaSelectionPage selectionPage = contPage.pressContinue();
+        WBA_ContinuePage contPage = loginPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        WBA_SelectionPage selectionPage = contPage.pressContinue();
         
         System.out.println("Logged in. Continuing to selection page...");
         
         //Choose CCE
-        CcePage ccePage = selectionPage.pressCce();
+        CCE_MainPage ccePage = selectionPage.pressCce();
         
         System.out.println("CCE main page reached. Checking links...");
         

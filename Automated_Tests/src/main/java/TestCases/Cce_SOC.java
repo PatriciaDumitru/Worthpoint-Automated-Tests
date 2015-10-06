@@ -2,11 +2,11 @@
 package TestCases;
 
 import AutomationFramework.TestSuite;
-import PageObjects.AddOrderPage_CCE;
-import PageObjects.CcePage;
-import PageObjects.OrderSamplesPage_CCE;
-import PageObjects.OrderViewPage_CCE;
-import PageObjects.OrderStatusPage_CCE;
+import PageObjects.CCE_AddOrderPage;
+import PageObjects.CCE_MainPage;
+import PageObjects.CCE_OrderSamplesPage;
+import PageObjects.CCE_OrderViewPage;
+import PageObjects.CCE_OrderStatusPage;
 import com.google.common.base.Verify;
 import java.io.File;
 import java.io.IOException;
@@ -34,11 +34,11 @@ public class Cce_SOC {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC1: User can select all fields", "G_CCE_SOC_2");
+        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC1: User can select all fields", "G_CCE_SOC_2");
         
         System.out.println("Navigating to Order Samples...");
         
-        OrderSamplesPage_CCE orderSamples = ccePage.pressOrderSamples();
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -59,7 +59,7 @@ public class Cce_SOC {
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\2Customer details entered.png"));
         
-        AddOrderPage_CCE addOrder = orderSamples.pressSubmit();
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
         addOrder.waitForLoad();
         
         System.out.println("Details submitted. Checking Order Details fields...");
@@ -73,7 +73,7 @@ public class Cce_SOC {
         
         System.out.println("Fields checked. Testing cancel button...");
         
-        OrderSamplesPage_CCE prompt = addOrder.pressCancel();
+        CCE_OrderSamplesPage prompt = addOrder.pressCancel();
         
         prompt.waitForLoad();
         
@@ -99,11 +99,11 @@ public class Cce_SOC {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC2: Single line, within threshold", "G_CCE_SOC_1");
+        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC2: Single line, within threshold", "G_CCE_SOC_1");
         
         System.out.println("Navigating to Order Samples...");
         
-        OrderSamplesPage_CCE orderSamples = ccePage.pressOrderSamples();       
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();       
         
         System.out.println("Order samples loaded. Entering customer details...");
         
@@ -112,7 +112,7 @@ public class Cce_SOC {
         
         System.out.println("Customer details entered. Submitting...");
         
-        AddOrderPage_CCE addOrder = orderSamples.pressSubmit();
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
         
         System.out.println("Prompt submitted. Adding order details...");
         
@@ -126,7 +126,7 @@ public class Cce_SOC {
         
         System.out.println("Order details added. Submitting order...");
         
-        OrderStatusPage_CCE outstOrders = addOrder.pressSubmit();
+        CCE_OrderStatusPage outstOrders = addOrder.pressSubmit();
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -135,7 +135,7 @@ public class Cce_SOC {
         System.out.println("Order submitted. Verifying order details...");
         
         //Line numbers start from 2
-        OrderViewPage_CCE viewPage = outstOrders.pressView(2);
+        CCE_OrderViewPage viewPage = outstOrders.pressView(2);
         viewPage.switchTo();
         viewPage.waitForContent();
         
@@ -168,11 +168,11 @@ public class Cce_SOC {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC3: Multiple line, within threshold", "G_CCE_SOC_1 (multiple)");
+        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC3: Multiple line, within threshold", "G_CCE_SOC_1 (multiple)");
         
         System.out.println("Navigating to Order Samples...");
         
-        OrderSamplesPage_CCE orderSamples = ccePage.pressOrderSamples();
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
         
         System.out.println("Order samples loaded. Entering customer details...");
         
@@ -181,7 +181,7 @@ public class Cce_SOC {
         
         System.out.println("Customer details entered. Submitting...");
         
-        AddOrderPage_CCE addOrder = orderSamples.pressSubmit();
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
         
         System.out.println("Prompt submitted. Adding order details...");
         
@@ -208,12 +208,12 @@ public class Cce_SOC {
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\9Line filled.png"));
         
-        OrderStatusPage_CCE outstOrders = addOrder.pressSubmit();
+        CCE_OrderStatusPage outstOrders = addOrder.pressSubmit();
         
         System.out.println("Order submitted. Verifying order details...");
         
         //Line numbers start from 2
-        OrderViewPage_CCE viewPage = outstOrders.pressView(2);
+        CCE_OrderViewPage viewPage = outstOrders.pressView(2);
         viewPage.switchTo();
         viewPage.waitForContent();
         
@@ -248,11 +248,11 @@ public class Cce_SOC {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC4: Single line, above threshold", "G_CCE_SOC_6");
+        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC4: Single line, above threshold", "G_CCE_SOC_6");
         
         System.out.println("Navigating to Order Samples...");
         
-        OrderSamplesPage_CCE orderSamples = ccePage.pressOrderSamples();
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
         
         System.out.println("Order samples loaded. Entering customer details...");
         
@@ -261,7 +261,7 @@ public class Cce_SOC {
         
         System.out.println("Customer details entered. Submitting...");
         
-        AddOrderPage_CCE addOrder = orderSamples.pressSubmit();
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
         
         System.out.println("Prompt submitted. Adding order details...");
         
@@ -274,12 +274,12 @@ public class Cce_SOC {
         addOrder.pressSubmitExceeded();
         
         //Wait for message to appear
-        WebElement waitForMessage = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(AddOrderPage_CCE.flashMessageLocator));
+        WebElement waitForMessage = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(CCE_AddOrderPage.flashMessageLocator));
         
-        String message = driver.findElement(AddOrderPage_CCE.flashMessageLocator).getText();
+        String message = driver.findElement(CCE_AddOrderPage.flashMessageLocator).getText();
         
         if (message.contains("could not be saved")) {
-            System.out.println("Order submitted. Message received: " + driver.findElement(AddOrderPage_CCE.flashMessageLocator).getText());
+            System.out.println("Order submitted. Message received: " + driver.findElement(CCE_AddOrderPage.flashMessageLocator).getText());
             System.out.println("Rejected as expected.");
         } else {
             System.out.println("***Unexpected message received upon submission.***");
@@ -304,11 +304,11 @@ public class Cce_SOC {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC5: Multiple lines, copied data", "G_CCE_SOC_8");
+        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC5: Multiple lines, copied data", "G_CCE_SOC_8");
         
         System.out.println("Navigating to Order Samples...");
         
-        OrderSamplesPage_CCE orderSamples = ccePage.pressOrderSamples();
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
         
         System.out.println("Order samples loaded. Entering customer details...");
         
@@ -317,7 +317,7 @@ public class Cce_SOC {
         
         System.out.println("Customer details entered. Submitting...");
         
-        AddOrderPage_CCE addOrder = orderSamples.pressSubmit();
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
         
         System.out.println("Prompt submitted. Adding line 0 order details...");
         
@@ -352,12 +352,12 @@ public class Cce_SOC {
         
         System.out.println("Order details added. Submitting...");
         
-        OrderStatusPage_CCE outstOrder = addOrder.pressSubmit();
+        CCE_OrderStatusPage outstOrder = addOrder.pressSubmit();
         
         System.out.println("Details submitted. Verifying details...");
         
         //View first order in table...Line numbers start from 2
-        OrderViewPage_CCE viewPage = outstOrder.pressView(2);
+        CCE_OrderViewPage viewPage = outstOrder.pressView(2);
         viewPage.switchTo();
         viewPage.waitForContent();
         
@@ -386,11 +386,11 @@ public class Cce_SOC {
         Cce_SOC_Base base = new Cce_SOC_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CcePage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC6: Save as draft", "G_CCE_SOC_12");
+        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC6: Save as draft", "G_CCE_SOC_12");
         
         System.out.println("Navigating to Order Samples...");
         
-        OrderSamplesPage_CCE orderSamples = ccePage.pressOrderSamples();
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
         
         System.out.println("Order samples loaded. Entering customer details...");
         
@@ -399,7 +399,7 @@ public class Cce_SOC {
         
         System.out.println("Customer details entered. Submitting...");
         
-        AddOrderPage_CCE addOrder = orderSamples.pressSubmit();
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
         
         System.out.println("Prompt submitted. Adding order details...");
         
@@ -409,7 +409,7 @@ public class Cce_SOC {
         
         System.out.println("Order details added. Pressing pend order...");
         
-        OrderStatusPage_CCE orderStatus = addOrder.pressPendOrder();
+        CCE_OrderStatusPage orderStatus = addOrder.pressPendOrder();
         orderStatus.waitForMessage();
         
         //Take a screenshot
@@ -418,7 +418,7 @@ public class Cce_SOC {
         
         System.out.println("Order pended. Getting order stage...");
         
-        OrderViewPage_CCE viewPage = orderStatus.pressView(2);
+        CCE_OrderViewPage viewPage = orderStatus.pressView(2);
         viewPage.switchTo();
         viewPage.waitForContent();
         String orderNo = viewPage.getOrderNumber();
