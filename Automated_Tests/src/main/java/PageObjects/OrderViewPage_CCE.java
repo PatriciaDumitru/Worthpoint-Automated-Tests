@@ -31,7 +31,8 @@ public class OrderViewPage_CCE {
     }
     
     public OrderViewPage_CCE switchTo() {
-        driver.switchTo().frame(driver.findElement(frameLocator));
+        WebDriver waitForFrame = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        //driver.switchTo().frame(driver.findElement(frameLocator));
         return this;
     }
     
@@ -82,8 +83,6 @@ public class OrderViewPage_CCE {
     }
 
     public void verifyCopied() {
-        //Ensure iframe is selected
-        switchTo();
 
         //Locators for cells containing each line's fields
         By mum1 = By.cssSelector("#popup_content > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(5)");

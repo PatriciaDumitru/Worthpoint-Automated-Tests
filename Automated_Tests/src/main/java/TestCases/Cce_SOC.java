@@ -60,6 +60,7 @@ public class Cce_SOC {
         FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\2Customer details entered.png"));
         
         AddOrderPage_CCE addOrder = orderSamples.pressSubmit();
+        addOrder.waitForLoad();
         
         System.out.println("Details submitted. Checking Order Details fields...");
         
@@ -135,7 +136,7 @@ public class Cce_SOC {
         
         //Line numbers start from 2
         OrderViewPage_CCE viewPage = outstOrders.pressView(2);
-        
+        viewPage.switchTo();
         viewPage.waitForContent();
         
         //Take a screenshot
@@ -213,6 +214,7 @@ public class Cce_SOC {
         
         //Line numbers start from 2
         OrderViewPage_CCE viewPage = outstOrders.pressView(2);
+        viewPage.switchTo();
         viewPage.waitForContent();
         
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -229,7 +231,7 @@ public class Cce_SOC {
         
         System.out.println("Order No.: "+viewPage.getOrderNumber());
         
-        outstOrders = viewPage.closeView();
+        viewPage.closeView();
         
         System.out.println("----------------------------------------------------");
         
@@ -356,6 +358,8 @@ public class Cce_SOC {
         
         //View first order in table...Line numbers start from 2
         OrderViewPage_CCE viewPage = outstOrder.pressView(2);
+        viewPage.switchTo();
+        viewPage.waitForContent();
         
         viewPage.verifyCopied();
         
@@ -416,6 +420,7 @@ public class Cce_SOC {
         
         OrderViewPage_CCE viewPage = orderStatus.pressView(2);
         viewPage.switchTo();
+        viewPage.waitForContent();
         String orderNo = viewPage.getOrderNumber();
         
         orderStatus = viewPage.closeView();

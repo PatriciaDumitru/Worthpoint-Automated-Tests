@@ -154,7 +154,7 @@ public class ManualEntryPage extends BasePage {
         Actions typePoNumber = new Actions(driver);
         typePoNumber.click(driver.findElement(poNumberField)).build().perform();
         
-        //Create random number to append to po number to avoid duplication
+
         try {
             //Access file to read
             FileReader fr = new FileReader("C:\\Screenshots\\ID.txt");

@@ -1,8 +1,26 @@
 
 package AutomationFramework;
 
-import TestCases.ContractOrderRCTest;
-import TestCases.Ecomm_Dashboard;
+
+import TestCases.Cce_ConfirmProduction;
+import TestCases.Cce_DNReprint;
+import TestCases.Cce_FCETaskStatus;
+import TestCases.Cce_Feedback;
+import TestCases.Cce_Hub;
+import TestCases.Cce_Inbox;
+import TestCases.Cce_LRMLog;
+import TestCases.Cce_MainPage;
+import TestCases.Cce_OrderCycleTime;
+import TestCases.Cce_OrderStatus;
+import TestCases.Cce_RefillCabinet;
+import TestCases.Cce_SAPLog;
+import TestCases.Cce_SOC;
+import TestCases.Cce_TotalOrders;
+import TestCases.Ecomm_CO_ME;
+import TestCases.Ecomm_MainPage;
+import TestCases.Ecomm_SUSST_FEBO;
+import TestCases.Ecomm_SUSST_ME;
+import TestCases.Ecomm_SUSST_UORT;
 import java.net.MalformedURLException;
 
 import org.junit.After;
@@ -11,7 +29,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.openqa.selenium.By;
 
-import TestCases.Ecomm_Reports;
+import TestCases.ForgotPassword;
+import TestCases.Login;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -23,7 +42,7 @@ import TestCases.Ecomm_Reports;
     //ForgotPassword.class,
     //Ecomm_MainPage.class,
     //Cce_MainPage.class,
-    //Cce_SOC.class,
+    Cce_SOC.class,
     //Cce_OrderStatus.class,
     //Cce_Hub.class,
     //Cce_Inbox.class,
@@ -42,8 +61,8 @@ import TestCases.Ecomm_Reports;
     //Ecomm_OOD.class
     //Ecomm_SAPInterfaceLog.class,
     //Ecomm_Reports.class,
-    //Ecomm_Dashboard.class,
-    ContractOrderRCTest.class,  
+    //Ecomm_Dashboard.class, 
+    //Ecomm_CO_ME.class,
 })
 
 public class TestSuite {
@@ -134,6 +153,19 @@ public class TestSuite {
     public static String ticket3 = "090";
     public static String shadeCode3 = "C9455";
     public static int quantity3 = 1;
+    
+    //Contract order test items
+    public static String[] conOrdDetails = {"Star Garments Ltd.","Star Garments","joe sykes","*OTHERS*","TEST ZCQ ARUN "};
+    public static String conOrdArticle = "8754120";
+    public static String conOrdBrand = "astra";
+    public static String conOrdTicket = "120";
+    public static String conOrdLength = "5000";
+    public static String conOrdFinish = "STANDARD";
+    public static String conOrdShadeCode = "WHITE";
+    public static int conOrdQty = 1000;
+    public static String conOrdPO = "40000991";
+    public static String conOrdLineRef = "10";
+    
     
     //Accept Code value to be used when accepting "Awaiting feedback"
     public static String acceptCode = "AutoTestAccept";

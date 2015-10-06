@@ -1,6 +1,12 @@
 
 package AutomationFramework;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -13,6 +19,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class CommonTask {
+    
+    private static By contentLocator = By.id("content");
+    private static By frameLocator = By.id("TB_iframeContent");
+
     
     public static void setSearchField(WebDriver driver,By fieldLocator, String item) {
         By searchLocator = By.cssSelector("#select2-drop > div > input");
@@ -148,6 +158,74 @@ public class CommonTask {
         };
     }
     
+    public static void waitForPageLoad(WebDriver driver) {
+        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(contentLocator));
+    }
     
+    public static void waitForOverlay(WebDriver driver) {
+        WebDriver wait = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+    }
+    
+    public static void waitForOverlay(WebDriver driver, By overylayContent) {
+        WebDriver wait = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebElement waitAgain = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(overylayContent));
+    }
+    
+    public static void waitForViewClose(WebDriver driver) {
+        boolean waitForClose = new WebDriverWait(driver,10).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+    }
+    
+    public static void waitForFieldUpdate(WebDriver driver, By fieldLocator, String item) {
+        boolean wait = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
+    }
+    
+    public static void closeView(WebDriver driver) {
+        Actions action = new Actions(driver);
+        action.sendKeys(Keys.ESCAPE).build().perform();
+        
+        waitForViewClose(driver);
+    }
+    
+    public static String generatePO(String type) throws FileNotFoundException, IOException {
+        String PONumber = "null";
+        try {
+            //Access file to read
+            FileReader fr = new FileReader(TestSuite.idFilepath);
+            BufferedReader br = new BufferedReader(fr);
+            
+            //Get current ID
+            String idString = br.readLine();
+            int id = Integer.valueOf(idString);
+            //Increment ID to be written back to file
+            id++;
+            
+            br.close();
+            fr.close();
+            
+            //Access file to write
+            FileWriter fw = new FileWriter(TestSuite.idFilepath);
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            //Write incremented id to file
+            bw.write(String.valueOf(id));
+            //Append the ID and type the PO number
+            String prefix;
+            if (type.equals("contract")) {
+                prefix = TestSuite.conOrdDetails[4];
+            } else {
+                prefix = TestSuite.custDetails[4];
+            }
+            
+            PONumber = prefix+idString;       
+            
+            bw.close();
+            fw.close();
+            
+        } catch (IOException e) {
+            System.out.println("IO exception handling the ID file");
+        }
+         
+         return PONumber;
+    }
     
 }
