@@ -63,11 +63,10 @@ public class EcommPage extends BasePage {
         //Wait for visibility of navigation bar
         WebElement waitForNavBar = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersTab));
         //navigate to the manual entry link
-        Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(ordersTab)).click().build().perform();
+        driver.findElement(ordersTab).click();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(manualEntrySubTab)));
-        action.click(driver.findElement(manualEntrySubTab)).build().perform();
+        driver.findElement(manualEntrySubTab).click();
         
         //return a manual entry page
         return new ManualEntryPage(driver);

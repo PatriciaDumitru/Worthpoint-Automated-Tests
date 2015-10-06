@@ -37,6 +37,8 @@ public class MappingPage extends BasePage {
     By styleLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.headerinfo > td:nth-child(1) > label");
     By styleNoFieldLocator = By.id("BulkOrderLineProdStyleNo");
     By styleNoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.lineinfo > td:nth-child(1) > label");
+    By contractPONoLocator = By.id("BulkOrderLineContract");
+    By lineRefLocator = By.id("BulkOrderLineContract");
     By subAccountLocator = By.id("BulkOrderPayerId");
     By subAccountLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.headerinfopay > td:nth-child(1) > label");
     By shipToPartyFieldLocator = By.id("BulkOrderShipToPartyId");

@@ -2,6 +2,7 @@
 package AutomationFramework;
 
 
+import TestCases.Generated.Ecomm_CO_UORT;
 import TestCases.Cce_ConfirmProduction;
 import TestCases.Cce_DNReprint;
 import TestCases.Cce_FCETaskStatus;
@@ -16,7 +17,7 @@ import TestCases.Cce_RefillCabinet;
 import TestCases.Cce_SAPLog;
 import TestCases.Cce_SOC;
 import TestCases.Cce_TotalOrders;
-import TestCases.Ecomm_CO_ME;
+import TestCases.Generated.Ecomm_CO_ME;
 import TestCases.Ecomm_MainPage;
 import TestCases.Ecomm_SUSST_FEBO;
 import TestCases.Ecomm_SUSST_ME;
@@ -42,7 +43,7 @@ import TestCases.Login;
     //ForgotPassword.class,
     //Ecomm_MainPage.class,
     //Cce_MainPage.class,
-    Cce_SOC.class,
+    //Cce_SOC.class,
     //Cce_OrderStatus.class,
     //Cce_Hub.class,
     //Cce_Inbox.class,
@@ -62,7 +63,8 @@ import TestCases.Login;
     //Ecomm_SAPInterfaceLog.class,
     //Ecomm_Reports.class,
     //Ecomm_Dashboard.class, 
-    //Ecomm_CO_ME.class,
+    Ecomm_CO_ME.class,
+    //Ecomm_CO_UORT.class,
 })
 
 public class TestSuite {
@@ -74,7 +76,9 @@ public class TestSuite {
     
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_18\\chromedriver.exe";
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_15.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_15.xlsx"; 
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_18.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_19.xlsx";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
     
     //Some tests require files to be sent to the printer. Disabling will simply skip  the "click print" call during test
