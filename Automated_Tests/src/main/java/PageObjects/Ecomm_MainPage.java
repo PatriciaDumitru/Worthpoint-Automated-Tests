@@ -61,11 +61,11 @@ public class Ecomm_MainPage extends WBA_BasePage {
     
     public Ecomm_ManualEntryPage clickManualEntry() {
         //Wait for visibility of navigation bar
-        WebElement waitForNavBar = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        WebElement waitForNavBar = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersTab));
         //navigate to the manual entry link
         driver.findElement(ordersTab).click();
         //wait for menu to drop down
-        WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(manualEntrySubTab)));
+        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(manualEntrySubTab)));
         driver.findElement(manualEntrySubTab).click();
         
         //return a manual entry page
@@ -74,14 +74,12 @@ public class Ecomm_MainPage extends WBA_BasePage {
     
     public Ecomm_UploadOrderPage clickUploadOrder() {
         //Wait for orders tab
-        WebElement waitForOrders = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(ordersTab));
-        
-        //navigate to the Upload Order link
-        Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(ordersTab)).click().build().perform();
-        //wait for menu to drop down
-        WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(uploadOrderSubTab)));
-        action.click(driver.findElement(uploadOrderSubTab)).build().perform();
+        WebElement waitForOrders = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        //Navigate to the subtab link
+        driver.findElement(ordersTab).click();
+        //Wait for drop down
+        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(uploadOrderSubTab)));
+        driver.findElement(uploadOrderSubTab).click();
         
         //return a manual entry page
         return new Ecomm_UploadOrderPage(driver);

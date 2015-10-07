@@ -42,7 +42,7 @@ public class Ecomm_CO_ME {
     driver.manage().window().maximize();
   }
 
-  @Test //Manual Entry Page :: Contract order expecting "No matching contract reference" error
+  @Ignore @Test //Manual Entry Page :: Contract order expecting "No matching contract reference" error
   public void COME1() throws Exception {
     driver.get(baseUrl + "/");
     for (int second = 0;; second++) {
@@ -89,7 +89,7 @@ public class Ecomm_CO_ME {
     driver.findElement(quantityField).sendKeys(String.valueOf(TestSuite.conOrdQty));
     CommonTask.setDateField(driver, dateField);
     driver.findElement(contractPOField).clear();
-    driver.findElement(contractPOField).sendKeys(TestSuite.conOrdPO);
+    driver.findElement(contractPOField).sendKeys("random");
     driver.findElement(lineRefField).clear();
     driver.findElement(lineRefField).sendKeys(TestSuite.conOrdLineRef);
     

@@ -26,7 +26,7 @@ public class Ecomm_CO_UORT {
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
   public By contentLocator = By.id("BulkOrderLineViewUplodErrorListForm");
-  public By cancelButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(7) > div:nth-child(1) > div > input");
+  public By cancelButton = By.id("cancel1");
   
   @Before
   public void setUp() throws Exception {
@@ -104,7 +104,9 @@ public class Ecomm_CO_UORT {
     
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
-            
+          
+    WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
+    
     //Take a screenshot
     File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile8,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\4Error expected - Confirmation Page scrolled.png"));
@@ -127,7 +129,7 @@ public class Ecomm_CO_UORT {
     CommonTask.waitForPageLoad(driver);
   }
 
-  @Test
+  @Test //Upload Orders Page :: Realtime contract order upload, expecting validation success
   public void CORT2() throws IOException {
     driver.get(baseUrl + "/");
     
@@ -174,8 +176,13 @@ public class Ecomm_CO_UORT {
     assertTrue(alert.getText().matches("^Do you want to Upload the file[\\s\\S]$"));
     alert.accept();
     
-    Alert alert3 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-    alert3.accept();
+    try {
+        Alert alert3 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        alert3.accept();
+    } catch (Exception e) {
+        System.out.println("Alert not found");;
+    }
+    
     
     CommonTask.setSearchField(driver, By.id("s2id_BuyerId_0"), TestSuite.conOrdDetails[3]);
     
@@ -185,6 +192,8 @@ public class Ecomm_CO_UORT {
    
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
+
+    WebElement waitForPresence = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
     
     //Take a screenshot
     File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
