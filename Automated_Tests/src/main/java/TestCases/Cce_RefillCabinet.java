@@ -17,7 +17,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Cce_RefillCabinet {
     
-	@Test //Refill Cabinet Page :: Page and filter checks
+    @Test //Refill Cabinet Page :: Page and filter checks
     public void RC1() throws IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();

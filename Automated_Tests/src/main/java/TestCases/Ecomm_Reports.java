@@ -25,7 +25,7 @@ import org.junit.Ignore;
 
 public class Ecomm_Reports {
 
-	@Ignore @Test //Invoices Page :: Page and filter checks, reset, view, print, and export
+	@Test //Invoices Page :: Page and filter checks, reset, view, print, and export
 	public void I1() throws IOException, InterruptedException {
             //new driver instance
             WebDriver driver = new ChromeDriver();
@@ -111,7 +111,7 @@ public class Ecomm_Reports {
 		
 	}
 	
-	@Ignore @Test //Delivery Notes Page :: Page and filter checks, view, print, and export
+	@Test //Delivery Notes Page :: Page and filter checks, view, print, and export
         public void D1() throws InterruptedException, IOException {
             //new driver instance
             WebDriver driver = new ChromeDriver();
@@ -204,7 +204,7 @@ public class Ecomm_Reports {
             System.out.println("----------------------------------------------------");
         }
 	
-        @Ignore @Test //Summary of Purchases Page :: Page and filter checks,reset, view and export
+        @Test //Summary of Purchases Page :: Page and filter checks,reset, view and export
         public void SoP1() throws IOException, InterruptedException {
             //new driver instance
             WebDriver driver = new ChromeDriver();
@@ -284,7 +284,7 @@ public class Ecomm_Reports {
             driver.close();
         }
         
-        @Ignore @Test //Outstanding Payments Page :: Page and filter checks, reset, view, and export
+        @Test //Outstanding Payments Page :: Page and filter checks, reset, view, and export
         public void OP1() throws IOException {
             //new driver instance
             WebDriver driver = new ChromeDriver();

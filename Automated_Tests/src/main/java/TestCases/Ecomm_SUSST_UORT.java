@@ -142,7 +142,7 @@ public class Ecomm_SUSST_UORT {
         
     }
     
-    @Ignore @Test //Upload Order Page :: Contract order
+    @Test //Upload Order Page :: Contract order
     public void UORT2() throws AWTException, IOException {
         //new chrome driver
         WebDriver driver = new ChromeDriver();
