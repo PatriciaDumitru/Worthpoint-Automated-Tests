@@ -5,8 +5,9 @@ import AutomationFramework.TestSuite;
 import PageObjects.Ecomm_OrderInformationPage;
 import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_PendingApprovalListPage;
-import PageObjects.Ecomm_SNAOrderConfirmationPage;
+import PageObjects.Ecomm_ShadeOrderConfirmationPage;
 import PageObjects.Ecomm_ShadeNotAvailablePage;
+import PageObjects.Ecomm_WaitingForShadePage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -23,7 +24,7 @@ public class Ecomm_Shade {
     @Test //Shade Not Available Page :: Page and filter checks, view and edit
     public void SNA1() throws IOException {
         //new driver instance
-         WebDriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
 		
         //New eComm base test to handle log-in and navigation
         Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
@@ -91,7 +92,7 @@ public class Ecomm_Shade {
         
         System.out.println("View closed. Editing top item...");
         
-        Ecomm_SNAOrderConfirmationPage snaConf = snaPage.pressEdit();
+        Ecomm_ShadeOrderConfirmationPage snaConf = snaPage.pressEdit();
         snaConf.waitForLoad();
         
         //Take a screenshot
@@ -146,6 +147,48 @@ public class Ecomm_Shade {
         driver.close();
         driver.quit();
         
+    }
+    
+    @Test //Waiting for Shade Code Page :: Page and filter checks, view and edit
+    public void WFS1() {
+        //new driver instance
+        WebDriver driver = new ChromeDriver();
+		
+        //New eComm base test to handle log-in and navigation
+        Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+        PageObjects.Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Waiting for Shade Page WFS1: Page and filter checks, view and edit", "UNKNOWN");
+        
+        System.out.println("Navigating to Waiting for Shade page...");
+        
+        Ecomm_WaitingForShadePage wfsPage = eCommPage.clickWaitingForShade();
+        wfsPage.waitForLoad();
+        
+        System.out.println("Waiting for shade page reached. Checking title...");
+        
+        Assert.assertTrue("Waiting For Shade Page: Title not as expected",wfsPage.getBreadcrumbText2().equals("Orders | Waiting For Shade Code"));
+    
+        System.out.println("Title checked.");
+        
+        wfsPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        wfsPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        wfsPage.setSalesOrg("ID50");
+        wfsPage.setCustName(TestSuite.custDetails[0]);
+        
+        System.out.println("Criteria entered. Listing records...");
+        
+        wfsPage.pressSearch();
+        wfsPage.waitForLoad();
+        
+        System.out.println("Records listed. Resetting filter...");
+        
+        wfsPage.pressReset();
+        wfsPage.waitForLoad();
     }
     
 }

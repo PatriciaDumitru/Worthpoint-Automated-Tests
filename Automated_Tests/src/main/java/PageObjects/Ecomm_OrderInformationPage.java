@@ -89,18 +89,18 @@ public class Ecomm_OrderInformationPage {
         return driver.findElement(cancelButton);
     }
     
-    public Ecomm_SNAOrderConfirmationPage pressSubmit() {
+    public Ecomm_ShadeOrderConfirmationPage pressSubmit() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitButton));
         driver.findElement(submitButton).submit();
         Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
         alert.accept();
-        return new Ecomm_SNAOrderConfirmationPage(driver);
+        return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
     
-    public Ecomm_SNAOrderConfirmationPage pressCancel() {
+    public Ecomm_ShadeOrderConfirmationPage pressCancel() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
         driver.findElement(cancelButton).click();
-        return new Ecomm_SNAOrderConfirmationPage(driver);
+        return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
     
     public Ecomm_OrderInformationPage setShadeCode(String item) {

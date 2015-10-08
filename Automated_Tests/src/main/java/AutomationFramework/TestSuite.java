@@ -45,9 +45,9 @@ import org.openqa.selenium.By;
     //A LIST OF ALL TEST CLASSES IN THE PROJECT. COMMMENT-OUT TO DISABLE. 
     //USE @IGNORE ANNOTATION TO DISBALE INDIVIDUAL TESTS WITHIN EACH CLASS
     
-    //WBA_Login.class,
-    //WBA_ForgotPassword.class,
-    //Ecomm_MainPage.class,
+    WBA_Login.class,
+    WBA_ForgotPassword.class,
+    Ecomm_MainPage.class,
     //Cce_MainPage.class,
     //Cce_SOC.class,
     //Cce_OrderStatus.class,
@@ -62,16 +62,16 @@ import org.openqa.selenium.By;
     //Cce_TotalOrders.class,
     //Cce_LRMLog.class,
     //Cce_SAPLog.class,
-    //Ecomm_SUSST_ME.class,
-    //Ecomm_SUSST_UORT.class,
-    //Ecomm_SUSST_FEBO.class,
-    Ecomm_Shade.class
-    //Ecomm_OOD.class,
-    //Ecomm_SAPInterfaceLog.class,
-    //Ecomm_Reports.class,
-    //Ecomm_Dashboard.class, 
-    //Ecomm_CO_ME.class,
-    //Ecomm_CO_UORT.class,
+    Ecomm_SUSST_ME.class,
+    Ecomm_SUSST_UORT.class,
+    Ecomm_SUSST_FEBO.class,
+    Ecomm_Shade.class,
+    Ecomm_OOD.class,
+    Ecomm_SAPInterfaceLog.class,
+    Ecomm_Reports.class,
+    Ecomm_Dashboard.class, 
+    Ecomm_CO_ME.class,
+    Ecomm_CO_UORT.class,
 })
 
 public class TestSuite {

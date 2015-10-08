@@ -26,6 +26,7 @@ public class Ecomm_MainPage extends WBA_BasePage {
     static By uploadOrderSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
     static By fromExistingSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3) > a");
     static By shadeNotAvailSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(4)");
+    static By waitingForShadeSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(5)");
     static By invoicesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(1)");
     static By deliveryNotesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(2)");
     static By summaryOfSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(3)");
@@ -34,6 +35,7 @@ public class Ecomm_MainPage extends WBA_BasePage {
     static By backendIPSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(2)");
     static By backendFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(3)");
     static By ftpFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(4) > a"); 
+    
     
     public Ecomm_MainPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -107,6 +109,17 @@ public class Ecomm_MainPage extends WBA_BasePage {
         driver.findElement(shadeNotAvailSubTab).click();
         
         return new Ecomm_ShadeNotAvailablePage(driver);
+    }
+    
+    public Ecomm_WaitingForShadePage clickWaitingForShade() {
+        //Wait for orders tab
+        WebElement waitForOrders = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        driver.findElement(ordersTab).click();
+        
+        WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(waitingForShadeSubTab)));
+        driver.findElement(waitingForShadeSubTab).click();
+        
+        return new Ecomm_WaitingForShadePage(driver);
     }
     
     public Ecomm_OutstandingOrderDraftPage clickOutstandingDraft() {

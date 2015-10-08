@@ -125,10 +125,10 @@ public class Ecomm_ShadeNotAvailablePage extends WBA_BasePage {
         return this;
     }
     
-    public Ecomm_SNAOrderConfirmationPage pressEdit() {
+    public Ecomm_ShadeOrderConfirmationPage pressEdit() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(editButton));
         driver.findElement(editButton).click();
-        return new Ecomm_SNAOrderConfirmationPage(driver);
+        return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
     
     public Ecomm_OrderViewPage pressView() {
