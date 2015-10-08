@@ -46,7 +46,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By orderedQtyCell = By.xpath("//*[@id=\"remove_0\"]/td[6]");
       
     //Button locators
-    static By submitButtonLocator = By.id("submit1");
+    static By submitButtonLocator = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(7) > div:nth-child(2) > input");
     static By cancelButtonLocator = By.id("cancel1");
     static By saveDraftButtonLocator = By.id("drafts");
     static By backButtonLocator = By.id("backLink");
@@ -203,19 +203,23 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         Actions clickEdit = new Actions(driver);
         clickEdit.click(driver.findElement(editBtnLocator)).build().perform();
         //Wait for overlay to load
-        WebElement waitForOverlay = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(driver.findElement(editOverlayLocator)));
+        WebElement waitForOverlay = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(driver.findElement(editOverlayLocator)));
         return new Ecomm_OrderEditPage(driver);
     }
     
-    public Ecomm_OutstandingOrdersPage pressSubmit() {
+    public Ecomm_PendingApprovalListPage pressSubmit() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
-        //click submit
-        Actions clickSubmit = new Actions(driver);
-        clickSubmit.click(driver.findElement(submitButtonLocator)).build().perform();   
-        //wait for alert and confirm
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
-        alert.accept();
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(submitButtonLocator));
+        driver.findElement(submitButtonLocator).click();  
+        
+        try {
+            //wait for alert and confirm
+            Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+            alert.accept();
+        } catch (Exception e) {
+            
+        }
+        
         
         //Sometimes unexpected alerts appear. Catch these and accept by default
         boolean alertPresence;
@@ -233,7 +237,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             driver.switchTo().alert().accept();
         }
         
-        return new Ecomm_OutstandingOrdersPage(driver);
+        return new Ecomm_PendingApprovalListPage(driver);
     }
     
     public Ecomm_OrderConfirmationPage setRequestor(String requester) {

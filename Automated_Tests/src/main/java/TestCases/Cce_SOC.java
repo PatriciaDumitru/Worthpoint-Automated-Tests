@@ -122,7 +122,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\5Order details added.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\5Order details added.png"));
         
         System.out.println("Order details added. Submitting order...");
         
@@ -130,7 +130,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Order Samples\\6Order submitted.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\6Order submitted.png"));
         
         System.out.println("Order submitted. Verifying order details...");
         
@@ -141,7 +141,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\7View Order.png"));
+        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\7View Order.png"));
         
         Verify.verify(viewPage.getCustName().equals(TestSuite.custDetails[0]),"Sample Order View: Customer name incorrect in view");
         Verify.verify(viewPage.getRequestorName().equals(TestSuite.custDetails[2]),"Sample Order View: Requestor name incorrect in view");
@@ -197,7 +197,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\8Line added.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\8Line added.png"));
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
         addOrder.inputAdditionalLines(TestSuite.article3,
@@ -206,7 +206,7 @@ public class Cce_SOC {
         System.out.println("Details added. Submitting order...");
         
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\9Line filled.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\9Line filled.png"));
         
         CCE_OrderStatusPage outstOrders = addOrder.pressSubmit();
         
@@ -218,7 +218,7 @@ public class Cce_SOC {
         viewPage.waitForContent();
         
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\10View multiple lines.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\10View multiple lines.png"));
         
         //Ensure iframe is selected
         //viewPage.switchTo();
@@ -287,7 +287,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\11Rejected Order.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\11Rejected Order.png"));
         
         System.out.println("----------------------------------------------------");
         
@@ -327,7 +327,7 @@ public class Cce_SOC {
         
          //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\12Line1 details added.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\12Line1 details added.png"));
         
         System.out.println("Line 0 order details added. Adding new line...");
         
@@ -341,7 +341,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\13Line1 details copied.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\13Line1 details copied.png"));
         
         System.out.println("Data copied. Adding remaining line 1 order details...");
         
@@ -365,7 +365,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\14View multiline copied.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\14View multiline copied.png"));
         
         System.out.println("Details verified.");
         
@@ -414,7 +414,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\15Pend order pressed.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\15Pend order pressed.png"));
         
         System.out.println("Order pended. Getting order stage...");
         

@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -95,8 +96,22 @@ public class CommonTask {
     	WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fieldLocator));
     	driver.findElement(fieldLocator).click();
     	driver.findElement(fieldLocator).sendKeys(item);
-    	boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElement(fieldLocator, item));
+    	boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
 
+    }
+    
+    public static void setInputField(WebDriver driver, By fieldLocator, String item) {
+        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+    	driver.findElement(fieldLocator).click();
+    	driver.findElement(fieldLocator).sendKeys(item);
+    	boolean waitForText = new WebDriverWait(driver,10).until(textToBePresentInput(fieldLocator,item));
+    }
+    
+    public static void setInputFieldAlt(WebDriver driver, String id, String item) {
+        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id(id))));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.getElementById('"+id+"').setAttribute('attr', '"+item+"')");
+        boolean waitForText = new WebDriverWait(driver,10).until(textToBePresentInput(By.id(id),item));
     }
     
     public static void setCheckBox(WebDriver driver, By fieldLocator) {
@@ -150,6 +165,19 @@ public class CommonTask {
         return new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver f) {
                 if (element.getAttribute("checked").equals("true")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
+    
+    public static ExpectedCondition<Boolean> textToBePresentInput(final By locator, final String text) {
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver f) {
+                WebElement inputField = f.findElement(locator);
+                if (inputField.getAttribute("value").equals(text)) {
                     return true;
                 } else {
                     return false;

@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -118,9 +119,4 @@ public class Ecomm_MainPage {
         driver.close();   
 
     }
-    
-    @Test //EComm Page :: Navigation bar link checks
-    public void ECOMM2() {
-        
-    } //Checks navigation tabs link to correct pages
 }

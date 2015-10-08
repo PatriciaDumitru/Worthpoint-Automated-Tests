@@ -7,6 +7,7 @@ import PageObjects.Ecomm_MappingAlert;
 import PageObjects.Ecomm_MappingPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
+import PageObjects.Ecomm_PendingApprovalListPage;
 import PageObjects.Ecomm_UploadConfirmationPage;
 import PageObjects.Ecomm_UploadOrderPage;
 import java.awt.AWTException;
@@ -43,12 +44,13 @@ public class Ecomm_SUSST_UORT {
         
         //new upload order page
         Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
+        uploadPage.waitForLoad();
         
-        System.out.println("Upload Order loaded.");
+        System.out.println("Upload Order page loaded.");
         
-        System.out.println("Asserting elements...");
         //make assertions for base page elements and upload page elements
         uploadPage.assertBaseElements();
+        System.out.println("Asserting other elements...");
         //Wait for page to load before asserting the other elements
         WebElement waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(uploadPage.getUploadButton()));
         Assert.assertTrue("Upload Order page: File name field not displayed",uploadPage.getFileNameOutputField().isDisplayed());
@@ -116,33 +118,36 @@ public class Ecomm_SUSST_UORT {
         FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\2Mapping set.png")); 
         
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
+        orderConf.waitForLoad();
         
-        System.out.println("Map confirmed.");
-        
-        //Set requester name
-        orderConf.setRequestor(TestSuite.UORTrequestor);
-        
+        System.out.println("Map confirmed. Submitting order...");
+             
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\3Upload Confirmation page.png"));                    
         
-        Ecomm_OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
+        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
+        pendPage.waitForLoad();
         
-        System.out.println("Order submitted.");
-        
-        System.out.println("Order number: "+outstOrders.getOrderNumber(0));
+        System.out.println("Order submitted. Navigating to Outstanding Upload Order...");
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\4Oustanding upload orders.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\4Pending Approval List Page.png"));
+                
+        String orderNo = pendPage.getOrderNo(1);
+        
+        System.out.println("Order number: "+orderNo);
+        
+        
         
         driver.close();
         
         System.out.println("----------------------------------------------------");
         
     }
-    
-    @Test //Upload Order Page :: Contract order
+
+    @Ignore @Test //Upload Order Page :: Contract order
     public void UORT2() throws AWTException, IOException {
         //new chrome driver
         WebDriver driver = new ChromeDriver();

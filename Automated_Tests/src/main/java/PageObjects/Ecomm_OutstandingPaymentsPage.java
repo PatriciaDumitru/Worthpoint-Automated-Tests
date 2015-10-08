@@ -16,6 +16,7 @@ public class Ecomm_OutstandingPaymentsPage extends WBA_BasePage {
     By by30Button = By.cssSelector("#FilterPaymentForm > div.grid_12 > table > tbody > tr:nth-child(1) > td:nth-child(4) > label:nth-child(2)");
     By by60Button = By.cssSelector("#FilterPaymentForm > div.grid_12 > table > tbody > tr:nth-child(1) > td:nth-child(4) > label:nth-child(5)");
     By by90Button = By.cssSelector("#FilterPaymentForm > div.grid_12 > table > tbody > tr:nth-child(1) > td:nth-child(4) > label:nth-child(8)");
+    By by90Box = By.xpath("//*[@id=\"FilterPaymentForm\"]/div[2]/table/tbody/tr[1]/td[2]/input[3]");
     By allButton = By.cssSelector("#FilterPaymentForm > div.grid_12 > table > tbody > tr:nth-child(1) > td:nth-child(4) > label:nth-child(11)");
     By searchButton = By.cssSelector("#FilterPaymentForm > div.grid_12 > table > tbody > tr:nth-child(2) > td > div > input");
     By resetButton = By.cssSelector("#FilterPaymentForm > div.grid_12 > table > tbody > tr:nth-child(2) > td > a");
@@ -106,6 +107,7 @@ public class Ecomm_OutstandingPaymentsPage extends WBA_BasePage {
     public Ecomm_OutstandingPaymentsPage pressOverdue90() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(by90Button));
         driver.findElement(by90Button).click();
+        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(by90Box)));
         return this;
     }
     

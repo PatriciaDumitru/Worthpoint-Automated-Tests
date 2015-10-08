@@ -2,7 +2,7 @@
 package AutomationFramework;
 
 
-import PageObjects.Ecomm_MainPage;
+import TestCases.Ecomm_MainPage;
 import TestCases.Cce_ConfirmProduction;
 import TestCases.Cce_DNReprint;
 import TestCases.Cce_FCETaskStatus;
@@ -24,6 +24,7 @@ import TestCases.Ecomm_SAPInterfaceLog;
 import TestCases.Ecomm_SUSST_FEBO;
 import TestCases.Ecomm_SUSST_ME;
 import TestCases.Ecomm_SUSST_UORT;
+import TestCases.Ecomm_Shade;
 import TestCases.Generated.Ecomm_CO_ME;
 import TestCases.Generated.Ecomm_CO_UORT;
 import TestCases.WBA_ForgotPassword;
@@ -44,32 +45,33 @@ import org.openqa.selenium.By;
     //A LIST OF ALL TEST CLASSES IN THE PROJECT. COMMMENT-OUT TO DISABLE. 
     //USE @IGNORE ANNOTATION TO DISBALE INDIVIDUAL TESTS WITHIN EACH CLASS
     
-    WBA_Login.class,
-    WBA_ForgotPassword.class,
-    Ecomm_MainPage.class,
-    Cce_MainPage.class,
-    Cce_SOC.class,
-    Cce_OrderStatus.class,
-    Cce_Hub.class,
-    Cce_Inbox.class,
-    Cce_ConfirmProduction.class,
-    Cce_RefillCabinet.class,    
-    Cce_DNReprint.class,
-    Cce_Feedback.class,
-    Cce_FCETaskStatus.class,
-    Cce_OrderCycleTime.class,
-    Cce_TotalOrders.class,
-    Cce_LRMLog.class,
-    Cce_SAPLog.class,
-    Ecomm_SUSST_ME.class,
-    Ecomm_SUSST_UORT.class,
-    Ecomm_SUSST_FEBO.class,
-    Ecomm_OOD.class,
-    Ecomm_SAPInterfaceLog.class,
-    Ecomm_Reports.class,
-    Ecomm_Dashboard.class, 
-    Ecomm_CO_ME.class,
-    Ecomm_CO_UORT.class,
+    //WBA_Login.class,
+    //WBA_ForgotPassword.class,
+    //Ecomm_MainPage.class,
+    //Cce_MainPage.class,
+    //Cce_SOC.class,
+    //Cce_OrderStatus.class,
+    //Cce_Hub.class,
+    //Cce_Inbox.class,
+    //Cce_ConfirmProduction.class,
+    //Cce_RefillCabinet.class,    
+    //Cce_DNReprint.class,
+    //Cce_Feedback.class,
+    //Cce_FCETaskStatus.class,
+    //Cce_OrderCycleTime.class,
+    //Cce_TotalOrders.class,
+    //Cce_LRMLog.class,
+    //Cce_SAPLog.class,
+    //Ecomm_SUSST_ME.class,
+    //Ecomm_SUSST_UORT.class,
+    //Ecomm_SUSST_FEBO.class,
+    Ecomm_Shade.class
+    //Ecomm_OOD.class,
+    //Ecomm_SAPInterfaceLog.class,
+    //Ecomm_Reports.class,
+    //Ecomm_Dashboard.class, 
+    //Ecomm_CO_ME.class,
+    //Ecomm_CO_UORT.class,
 })
 
 public class TestSuite {
@@ -79,9 +81,9 @@ public class TestSuite {
     //Target URL
     public static String targetURL = "http://qawcs.coatscolourexpress.com/";
     
-    public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_18\\chromedriver.exe";
+    public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe";
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_16.xlsx"; 
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_19.xlsx"; 
     public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_37.xlsx";
     public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_38.xlsx";
     public static String createTestFilepath = "C:\\Selenium\\CreateTest.xlsx";

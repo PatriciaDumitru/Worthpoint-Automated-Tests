@@ -71,6 +71,20 @@ public class CCE_MainPage extends WBA_BasePage {
         return new CCE_OrderSamplesPage(driver);
     }
     
+    public CCE_OrderStatusPage pressOrderStatus() {
+        //Wait for header
+        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));       
+        //Wait for header
+        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        //Click header
+        driver.findElement(ordersHeader).click();
+        //Wait for order samples subtab
+        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderStatusSubtab));
+        //click subtab
+        driver.findElement(orderStatusSubtab).click();
+        return new CCE_OrderStatusPage(driver);
+    }
+    
     public CCE_DNReprintPage pressDNReprint() {
         
         WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));       
@@ -154,19 +168,7 @@ public class CCE_MainPage extends WBA_BasePage {
         return new CCE_ReceivedHubPage(driver);
     }
 
-    public CCE_OrderStatusPage pressOrderStatus() {
-        //Wait for header
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));       
-        //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersHeader));
-        //Click header
-        driver.findElement(ordersHeader).click();
-        //Wait for order samples subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderStatusSubtab));
-        //click subtab
-        driver.findElement(orderStatusSubtab).click();
-        return new CCE_OrderStatusPage(driver);
-    }
+    
     
     public CCE_InboxPage pressInbox() {
         //Wait for header

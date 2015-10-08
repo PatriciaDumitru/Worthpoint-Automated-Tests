@@ -204,10 +204,10 @@ public class CreateTest {
         
     }
     
-    public static void main(String[] args) throws IOException, FileNotFoundException, InvalidFormatException {
+    /*public static void main(String[] args) throws IOException, FileNotFoundException, InvalidFormatException {
        
         getData();
     
-    }
+    }*/
     
 }

@@ -32,6 +32,7 @@ public class WBA_BasePage {
     static By coatsLogoLocator = By.cssSelector("#header > a > img");
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
     public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
+    public static By breadcrumbLocator3 = By.cssSelector("#list_page_breadcrumb > h2");
     static By footerLocator = By.id("footer");
     private Object ExepectedConditions;
     static By contentFrame = By.id("content");
@@ -97,6 +98,10 @@ public class WBA_BasePage {
     
     public static String getBreadcrumbText2() {
         return driver.findElement(breadcrumbLocator2).getText();
+    }
+    
+    public static String getBreadcrumbText3() {
+        return driver.findElement(breadcrumbLocator3).getText();
     }
     
     public void assertBaseElements() {

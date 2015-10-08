@@ -16,15 +16,15 @@ public class Ecomm_OrderViewPage {
     WebDriver driver;
     
     //Table cell locators
-    static By yourMatNumCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr:nth-child(1) > td:nth-child(3)");
-    static By articleCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(4)");
-    static By brandCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(5)");
-    static By ticketCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(6)");
-    static By shadeCodeCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(7)");
-    static By requiredDateCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(16)");
+    static By yourMatNumCellLocator = By.cssSelector("#BulkOrderLineViewOrderDetailForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(2)");
+    static By articleCellLocator = By.cssSelector("#BulkOrderLineViewOrderDetailForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(3)");
+    static By brandCellLocator = By.cssSelector("#BulkOrderLineViewOrderDetailForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(4)");
+    static By ticketCellLocator = By.cssSelector("#BulkOrderLineViewOrderDetailForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(5)");
+    static By shadeCodeCellLocator = By.cssSelector("#BulkOrderLineViewOrderDetailForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(8)");
     static By printButton = By.cssSelector("#tbl > tbody > tr:nth-child(8) > td:nth-child(2) > a");
     static By frameLocator = By.id("TB_iframeContent");
     static By contentLocator = By.cssSelector("body > div.grid_12");
+    static By ftDataTable = By.cssSelector("body > div > table:nth-child(5) > tbody > tr > td > pre");
     
     public Ecomm_OrderViewPage(WebDriver passedDriver) {
         driver = passedDriver;
@@ -55,11 +55,6 @@ public class Ecomm_OrderViewPage {
         return driver.findElement(shadeCodeCellLocator);
     }
     
-    public WebElement getRequiredDateCell() {
-        //find and return element
-        return driver.findElement(requiredDateCellLocator);
-    }
-    
     public void switchTo() {
     	WebDriver waitForFrame = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
     }
@@ -80,6 +75,10 @@ public class Ecomm_OrderViewPage {
     
     public void waitForContent() {
     	WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+    }
+    
+    public void waitForFTData() {
+        WebElement waitForVisible = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(ftDataTable));
     }
     
     public void waitForErrorTable() {

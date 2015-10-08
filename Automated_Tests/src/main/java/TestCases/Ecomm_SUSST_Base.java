@@ -45,6 +45,7 @@ public class Ecomm_SUSST_Base {
         System.out.println("Selection page loaded. eComm selected...");
 
         Ecomm_MainPage eCommPage = selectPage.pressEcomm();
+        eCommPage.waitForLoad();
 
         System.out.println("eComm page loaded.");
         
@@ -77,7 +78,8 @@ public class Ecomm_SUSST_Base {
         System.out.println("Selection page loaded. eComm selected...");
 
         Ecomm_MainPage eCommPage = selectPage.pressEcomm();
-
+        eCommPage.waitForLoad();
+        
         System.out.println("eComm page loaded.");
         
         return eCommPage;

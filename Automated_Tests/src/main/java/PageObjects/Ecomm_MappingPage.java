@@ -39,8 +39,6 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     By styleNoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.lineinfo > td:nth-child(1) > label");
     By contractPONoLocator = By.id("BulkOrderLineContract");
     By lineRefLocator = By.id("BulkOrderLineContract");
-    By subAccountLocator = By.id("BulkOrderPayerId");
-    By subAccountLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.headerinfopay > td:nth-child(1) > label");
     By shipToPartyFieldLocator = By.id("BulkOrderShipToPartyId");
     By shipToPartyLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr:nth-child(1) > td:nth-child(3) > label");
     By yourMaterialNumberFieldLocator = By.id("BulkOrderLineCustomerMaterialNo");
@@ -145,14 +143,6 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     public WebElement getStyleNoLabel() {
         return driver.findElement(styleNoLabelLocator);
     }
-    
-    public WebElement getSubAccountLabel() {
-        return driver.findElement(subAccountLabelLocator);
-    }
-    
-    public WebElement getSubAccountField() {
-        return driver.findElement(subAccountLocator);
-    }  
     
     public WebElement getStyleNoField() {
         return driver.findElement(styleNoFieldLocator);
@@ -339,13 +329,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         Assert.assertTrue("Mapping page: Style No field not displayed",this.getStyleNoField().isDisplayed());
         Assert.assertTrue("Mapping page: Style No. label incorrectly displayed",this.getStyleNoLabel().getText().equals(mapping[8][0]));
         inputKeys.click(this.getStyleNoField()).build().perform();
-        inputKeys.sendKeys(mapping[8][1]).build().perform();
-        
-        //Sub Account
-        Assert.assertTrue("Mapping page: Sub account field not displayed",this.getSubAccountField().isDisplayed());
-        Assert.assertTrue("Mapping page: Sub account label incorrectly displayed",this.getSubAccountLabel().getText().equals(mapping[9][0]));
-        inputKeys.click(this.getSubAccountField()).build().perform();
-        inputKeys.sendKeys(mapping[9][1]).build().perform();
+        inputKeys.sendKeys(mapping[8][1]).build().perform();       
         
         //Ship to party name
         Assert.assertTrue("Mapping page: Ship to party name field not displayed",this.getShipToPartyField().isDisplayed());

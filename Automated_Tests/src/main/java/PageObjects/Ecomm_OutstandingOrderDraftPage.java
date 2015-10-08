@@ -44,12 +44,17 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     static By cancelButtonLocator = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > a");
     static By cancelMessageLocator = By.id("flashMessage");
     static By overlayLocator = By.id("TB_iframeContent");
-    
+    static By poNumberCell = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(6)");
     
     public Ecomm_OutstandingOrderDraftPage(WebDriver passedDriver) {
         super(passedDriver);
     }
    
+    public String getPONumber() {
+        WebElement waitForVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(poNumberCell));
+        return driver.findElement(poNumberCell).getText();
+    }
+    
     public Ecomm_OutstandingOrderDraftPage setCustName(String custName) {       
         
         //Wait for customer name field to be clickable

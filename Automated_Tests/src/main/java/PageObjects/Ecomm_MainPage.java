@@ -4,6 +4,7 @@ package PageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,6 +25,7 @@ public class Ecomm_MainPage extends WBA_BasePage {
     static By manualEntrySubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(1)");
     static By uploadOrderSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
     static By fromExistingSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3) > a");
+    static By shadeNotAvailSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(4)");
     static By invoicesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(1)");
     static By deliveryNotesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(2)");
     static By summaryOfSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(3)");
@@ -61,11 +63,11 @@ public class Ecomm_MainPage extends WBA_BasePage {
     
     public Ecomm_ManualEntryPage clickManualEntry() {
         //Wait for visibility of navigation bar
-        WebElement waitForNavBar = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        WebElement waitForVisible = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersTab));
         //navigate to the manual entry link
         driver.findElement(ordersTab).click();
         //wait for menu to drop down
-        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(manualEntrySubTab)));
+        WebElement waitForMenuVis = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(manualEntrySubTab));
         driver.findElement(manualEntrySubTab).click();
         
         //return a manual entry page
@@ -87,27 +89,34 @@ public class Ecomm_MainPage extends WBA_BasePage {
     
     public Ecomm_FromExistingPage clickFromExisting() {
         //Wait for orders tab
-        WebElement waitForOrders = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(ordersTab));
+        WebElement waitForOrders = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        driver.findElement(ordersTab).click();
         
-        //navigate to the Upload Order link
-        Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(ordersTab)).click().build().perform();
-        //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(fromExistingSubTab)));
-        action.click(driver.findElement(fromExistingSubTab)).build().perform();
+        driver.findElement(fromExistingSubTab).click();
         
         return new Ecomm_FromExistingPage(driver);
     }
     
+    public Ecomm_ShadeNotAvailablePage clickShadeNotAvailable() {
+        //Wait for orders tab
+        WebElement waitForOrders = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        driver.findElement(ordersTab).click();
+        
+        WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(shadeNotAvailSubTab)));
+        driver.findElement(shadeNotAvailSubTab).click();
+        
+        return new Ecomm_ShadeNotAvailablePage(driver);
+    }
+    
     public Ecomm_OutstandingOrderDraftPage clickOutstandingDraft() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));      
+        driver.findElement(outstandingOrdersTab).click();
         
-        Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
-        //wait for menu to drop down
-        WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstOrderDraftSubTab)));
-        action.click(driver.findElement(outstOrderDraftSubTab)).build().perform();
+        //Wait for subtab
+        WebElement waitForSubTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstOrderDraftSubTab)));      
+        driver.findElement(outstOrderDraftSubTab).click();
         
         return new Ecomm_OutstandingOrderDraftPage(driver);
     }

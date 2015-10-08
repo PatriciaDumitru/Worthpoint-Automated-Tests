@@ -11,11 +11,13 @@ import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_OutstandingOrderDraftPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_OutstandingUploadDraftPage;
+import PageObjects.Ecomm_PendingApprovalListPage;
 import PageObjects.Ecomm_UploadConfirmationPage;
 import PageObjects.WBA_SelectionPage;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -34,33 +36,12 @@ public class Ecomm_OOD {
     public void ODP2() throws IOException {
         WebDriver driver = new ChromeDriver();
         
-        System.out.println("OUTSTANDING ORDER DRAFT TEST 2: Complete order from draft");
-        System.out.println("Scenario ID: G_OP_ODP_3");
-        
-        //navigate to QA site
-        driver.get(TestSuite.targetURL);
-    
-        //maximise browser window
-        driver.manage().window().maximize();
-        
-        System.out.println("Logging in...");
-    
-        //new LoginPage
-        WBA_LoginPage liPage = new WBA_LoginPage(driver);
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("OUTSTANDING ORDER DRAFTS ODP2: Complete order from draft","G_OP_ODP_3");
 
-        //log in
-        WBA_ContinuePage cont = liPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
-
-        System.out.println("Logged in. Continuing to selection page...");
-
-        //press continue, select eComm
-        WBA_SelectionPage selectPage = cont.pressContinue();
-
-        System.out.println("Selection page loaded. eComm selected...");
-
-        Ecomm_MainPage eCommPage = selectPage.pressEcomm();
-
-        System.out.println("eComm page loaded. Selecting Outstanding Orders Draft page...");
+        System.out.println("Navigating to Outstanding Order Draft Page...");
         
         Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
         
@@ -69,16 +50,25 @@ public class Ecomm_OOD {
                 
         System.out.println("Draft page reached. Pressing edit draft...");
         
+        String poNo = draftPage.getPONumber();
+        
         Ecomm_ManualEntryPage manualEntry = draftPage.pressEdit();
+        manualEntry.waitForLoad();
         
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\2Edit pressed.png"));
         
-        System.out.println("Edit draft pressed. Checking all mandatory customer details are entered...");
+        System.out.println("Edit draft pressed. Pressing next...");
         
         //Add checks
         
         Ecomm_OrderConfirmationPage orderConf = manualEntry.pressNext();
+        orderConf.waitForLoad();
+        
+        System.out.println("Order confirmation page reached.");
+        
+        File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\3Order confirmation.png"));
         
         try {
             WebElement message = driver.findElement(By.id("flashMessage"));
@@ -87,12 +77,19 @@ public class Ecomm_OOD {
                 System.out.println("Test will now terminate.");
             }
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\3Next pressed.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\4Error reached.png"));
         } catch (Exception e) {
-            Ecomm_OutstandingOrdersPage outstOrders = orderConf.pressSubmit();
+            System.out.println("Submitting order...");
+            Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
+            pendPage.waitForLoad();
             System.out.println("Order submitted.");
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\3Submit pressed.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\4Submit pressed.png"));
+            Ecomm_OrderViewPage orderView = pendPage.pressView(pendPage.getRow(poNo));
+            orderView.waitForContent();
+            File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\5Order view.png"));
+            System.out.println("PO Number: "+poNo);
         }
         
         driver.close();
@@ -104,51 +101,35 @@ public class Ecomm_OOD {
     public void ODP1() throws IOException {
         WebDriver driver = new ChromeDriver();
         
-        System.out.println("OUTSTANDING ORDER DRAFT TEST 1: Page check, search, view, edit, cancel draft");
-        System.out.println("Scenario ID: G_OP_ODP_1 to 5");
-        
-        //navigate to QA site
-        driver.get("https://qawcs.coatscolourexpress.com");
-    
-        //maximise browser window
-        driver.manage().window().maximize();
-        
-        System.out.println("Logging in...");
-    
-        //new LoginPage
-        WBA_LoginPage liPage = new WBA_LoginPage(driver);
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("OUTSTANDING ORDER DRAFTS ODP1: Page check, search, view, edit, cancel draft","G_OP_ODP_1 to 5");
 
-        //log in
-        WBA_ContinuePage cont = liPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        System.out.println("Navigating to Outstanding Order Draft Page...");
 
-        System.out.println("Logged in. Continuing to selection page...");
-
-        //press continue, select eComm
-        WBA_SelectionPage selectPage = cont.pressContinue();
-
-        System.out.println("Selection page loaded. eComm selected...");
-
-        Ecomm_MainPage eCommPage = selectPage.pressEcomm();
-
-        System.out.println("eComm page loaded. Asserting base elements...");
+        System.out.println("eComm page loaded. Navigating to Outstanding Draft Page...");
         
         Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
+        
+        System.out.println("Outstanding Draft Page reached.");
                 
         draftPage.assertBaseElements();
         
-        System.out.println("Assertions successful. Entering PO number for search criteria...");
-        
-        //Take a screenshot
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Orders Draft\\4PO entered.png"));
+        System.out.println("Entering PO number for search criteria...");
         
         draftPage.setPONumber("AutoTestPO");
         
+        //Take a screenshot
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\6PO entered.png"));
+        
         draftPage.pressSearch();
+        draftPage.waitForLoad();
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Orders Draft\\5Search pressed.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\7Search pressed.png"));
         
         System.out.println("Search complete. Viewing draft...");
         
@@ -156,7 +137,7 @@ public class Ecomm_OOD {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Orders Draft\\6View pressed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\8View pressed.png"));
         
         //Close view
         Ecomm_OutstandingOrderDraftPage draftPage2 = draftPage.closeView();
@@ -176,7 +157,7 @@ public class Ecomm_OOD {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Orders Draft\\7Cancel pressed.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\9Cancel pressed.png"));
         
         System.out.println("Draft cancelled.");
         
@@ -189,71 +170,53 @@ public class Ecomm_OOD {
     public void UODP1() throws IOException {
         WebDriver driver = new ChromeDriver();
         
-        System.out.println("OUTSTANDING UPLOAD DRAFT TEST: Page checks, edit, cancel upload order draft");
-        System.out.println("Scenario ID: G_OP_UODP_1 to 4");
-        
-        //navigate to QA site
-        driver.get("https://qawcs.coatscolourexpress.com");
-    
-        //maximise browser window
-        driver.manage().window().maximize();
-        
-        System.out.println("Logging in...");
-    
-        //new LoginPage
-        WBA_LoginPage liPage = new WBA_LoginPage(driver);
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("OUTSTANDING UPLOAD DRAFTS UODP1: Page check, search, view, edit, cancel draft","G_OP_UODP_1 to 5");
 
-        //log in
-        WBA_ContinuePage cont = liPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
-
-        System.out.println("Logged in. Continuing to selection page...");
-
-        //press continue, select eComm
-        WBA_SelectionPage selectPage = cont.pressContinue();
-
-        System.out.println("Selection page loaded. eComm selected...");
-
-        Ecomm_MainPage eCommPage = selectPage.pressEcomm();
-
-        System.out.println("eComm page loaded. Navigating to Outstanding Upload Drafts...");
+        System.out.println("Navigating to Outstanding Upload Drafts Page...");
         
         Ecomm_OutstandingUploadDraftPage upDraftPage = eCommPage.clickOutstandingUploadDraft();
-                
-        System.out.println("Outstanding Upload Drafts reached. Asserting base elements...");
+        upDraftPage.waitForLoad();
+        
+        System.out.println("Outstanding Upload Drafts reached.");
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\1Outstanding Upload Draft Page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\1Outstanding Upload Draft Page.png"));
         
         upDraftPage.assertBaseElements();
         
-        System.out.println("Assertions successful. Entering Customer Name for search criteria...");
-        
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\2Customer Name entered.png"));
+        System.out.println("Entering Customer Name for search criteria...");
         
         upDraftPage.setCustomerName(TestSuite.custDetails[0]);
         
+        //Take a screenshot
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\2Customer Name entered.png"));
+        
         upDraftPage.pressSearch();
+        upDraftPage.waitForLoad();
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\3Search pressed.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\3Search pressed.png"));
         
         System.out.println("Search complete. Pressing edit...");
         
         Ecomm_OrderConfirmationPage upConf = upDraftPage.pressEdit();
+        upConf.waitForLoad();
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\4Edit pressed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\4Edit pressed.png"));
         
         System.out.println("Order confirmation page reached. Asserting base elements...");
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\5Confirmation page.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\5Confirmation page.png"));
         
         upConf.assertBaseElements();
         
@@ -267,7 +230,7 @@ public class Ecomm_OOD {
                 
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Outstanding Orders\\Oustanding Upload Draft\\5Draft deleted.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\5Draft deleted.png"));
         
         System.out.println("Draft deleted.");
         

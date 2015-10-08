@@ -47,7 +47,7 @@ public class Ecomm_Reports {
 		
             System.out.println("Checking title...");
             
-            Assert.assertTrue("Invoice Report Page: Title not as expected",invPage.getBreadcrumbText().equals("Reports | Invoices"));
+            Assert.assertTrue("Invoice Report Page: Title not as expected",invPage.getBreadcrumbText3().equals("Reports | Invoices"));
             
             System.out.println("Title checked. Checking fields...");
 		
@@ -133,7 +133,7 @@ public class Ecomm_Reports {
 		
             System.out.println("Checking title...");
             
-            Assert.assertTrue("Delivery Notes Page: Title not displayed as expected",dnPage.getBreadcrumbText().equals("Reports | Delivery Notes"));
+            Assert.assertTrue("Delivery Notes Page: Title not displayed as expected",dnPage.getBreadcrumbText3().equals("Reports | Delivery Notes"));
             
             System.out.println("Title checked. Checking fields...");
 		
@@ -226,7 +226,7 @@ public class Ecomm_Reports {
 		
             System.out.println("Checking title...");
             
-            Assert.assertTrue("Summary of Purchase Page: Title not displayed as expected",spPage.getBreadcrumbText().equals("Reports | Summary of Purchase"));
+            Assert.assertTrue("Summary of Purchase Page: Title not displayed as expected",spPage.getBreadcrumbText3().equals("Reports | Summary of Purchase"));
             
             System.out.println("Title checked. Checking fields...");
 		
@@ -306,7 +306,7 @@ public class Ecomm_Reports {
             
             System.out.println("Checking title...");
             
-            Assert.assertTrue("Outstanding Payments Page: Title not displayed as expected",opPage.getBreadcrumbText().equals("Reports | Outstanding Payments"));
+            Assert.assertTrue("Outstanding Payments Page: Title not displayed as expected",opPage.getBreadcrumbText3().equals("Reports | Outstanding Payments"));
 		
             System.out.println("Title checked. Checking fields...");
 		
@@ -388,6 +388,8 @@ public class Ecomm_Reports {
             Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
             Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("My Report Page MR1: Page and filter checks, reset, print, save, and export", "G_R_CU_SUSST_5");
 				
+            System.out.println("Navigating to My Reports page...");
+            
             Ecomm_MyReportsPage mrPage = eCommPage.clickMyReports();
             mrPage.waitForLoad();
             
@@ -487,6 +489,7 @@ public class Ecomm_Reports {
             FileUtils.copyFile(scrFile8,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\8Title entered.png"));
             
             srPage.pressSave();
+            srPage.waitForInvisibility();
             
             //Take a screenshot
             File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

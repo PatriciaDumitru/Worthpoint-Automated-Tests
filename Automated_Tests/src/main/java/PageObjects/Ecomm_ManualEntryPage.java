@@ -1,5 +1,6 @@
 package PageObjects;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.TestSuite;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -108,6 +109,11 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return this;
     }
     
+    public Ecomm_ManualEntryPage setCustomerNameNew(String item) {
+        CommonTask.setSearchField(driver, customerNameField, item);
+        return this;
+    }
+    
     public Ecomm_ManualEntryPage setShipToParty(String shipToParty) {
         //Wait for ship to party field to be clickable
         WebElement waitToClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
@@ -118,6 +124,12 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         typeShipToParty.sendKeys(shipToParty + Keys.ENTER).build().perform();
         return this;
     }
+    
+    public Ecomm_ManualEntryPage setShipToPartyNew(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver, shipToPartyField, item);
+        return this;
+    }
+    
     
     public Ecomm_ManualEntryPage setRequestor(String requestor) {
         //Wait for requestor field to be clickable
@@ -133,6 +145,11 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return this;
     }
     
+    public Ecomm_ManualEntryPage setRequestorNew(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver, requestorField, item);
+        return this;
+    }
+    
     public Ecomm_ManualEntryPage setBuyers(String buyer) {
         //Wait for buyers field to be clickable
         WebElement waitToClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(buyersField));
@@ -144,6 +161,11 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         //Wait for text to appear in field before pressing enter
         WebElement waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(buyersSearchResult));
         typeBuyer.sendKeys(driver.findElement(buyersSearchField),Keys.ENTER).build().perform();
+        return this;
+    }
+    
+    public Ecomm_ManualEntryPage setBuyersNew(String item) throws InterruptedException {
+        CommonTask.setSearchField(driver, buyersField, item);
         return this;
     }
 
@@ -187,6 +209,40 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             System.out.println("IO exception handling the ID file");
         }
 
+        return this;
+    }
+    
+    public Ecomm_ManualEntryPage setPoNumberNew(String item) throws InterruptedException {
+        
+        try {
+            //Access file to read
+            FileReader fr = new FileReader(TestSuite.idFilepath);
+            BufferedReader br = new BufferedReader(fr);
+            //Get current ID
+            String idString = br.readLine();
+            int id = Integer.valueOf(idString);
+            //Increment ID to be written back to file
+            id++;
+            br.close();
+            fr.close();
+            
+            //Access file to write
+            FileWriter fw = new FileWriter(TestSuite.idFilepath);
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            //Write incremented id to file
+            bw.write(String.valueOf(id));
+            bw.close();
+            fw.close();
+            //Append the ID and type the PO number
+            String PONumber = item+idString;
+            CommonTask.setInputField(driver, poNumberField, PONumber);
+            TestSuite.lastUsedPO = PONumber;
+            
+        } catch (IOException e) {
+            System.out.println("Customer PO Number method: IO exception handling the ID file");
+        }
+        
         return this;
     }
     

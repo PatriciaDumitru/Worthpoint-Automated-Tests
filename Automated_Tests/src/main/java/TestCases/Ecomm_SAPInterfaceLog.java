@@ -17,20 +17,20 @@ import PageObjects.Ecomm_SAPInterfaceLogPage;
 
 public class Ecomm_SAPInterfaceLog {
 	
-	@Test //SAP Interface Log Page :: Page and filter checks, view and reset
-	public void SILM1() throws IOException {
+    @Test //SAP Interface Log Page :: Page and filter checks, view and reset
+    public void SILM1() throws IOException {
 		
-		//New driver instance
-		WebDriver driver = new ChromeDriver();
+        //New driver instance
+        WebDriver driver = new ChromeDriver();
 		
-		//New eComm base test to handle log-in and navigation
-		Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-		Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("SAP Interface Log SILM1: Page and filter checks, views and reset", "G_CoUA_SILM_1 to 4");
+        //New eComm base test to handle log-in and navigation
+        Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+        Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("SAP Interface Log SILM1: Page and filter checks, views and reset", "G_CoUA_SILM_1 to 4");
 		
-		Ecomm_SAPInterfaceLogPage logPage = eCommPage.clickSAPInterfaceLog();
-		logPage.waitForLoad();
+        Ecomm_SAPInterfaceLogPage logPage = eCommPage.clickSAPInterfaceLog();
+        logPage.waitForLoad();
 		
-		//Take a screenshot
+	//Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\SAP Interface Log\\1SAP Interface Log.png"));
 		
@@ -83,17 +83,20 @@ public class Ecomm_SAPInterfaceLog {
         FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\SAP Interface Log\\5View displayed.png"));
         
         viewPage.closeView();
+        viewPage.waitForInvisibility();
         
         System.out.println("View closed. Pressing File Transfer View...");
         
         Ecomm_OrderViewPage ftView = logPage.pressFtView();
         ftView.waitForContent();
+        ftView.switchTo();
+        ftView.waitForFTData();
         
         System.out.println("File Transfer View displayed. Closing view...");
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\SAP Interface Log\\6File Transfer View.png"));
+        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\EComm\\SAP Interface Log\\6File Transfer View.png"));
         
         ftView.closeView();
         

@@ -18,6 +18,7 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     //Element locators
     static By custPOFieldLocator = By.id("BulkOrderPoNumber");
     static By orderNoFieldLocator = By.cssSelector("#s2id_BulkOrderId");
+    static String orderNOID = "s2id_BulkOrderId";
     static By orderNoSearchLocator = By.cssSelector("#select2-drop > div > input");
     static By orderNoResultLocator = By.cssSelector("#select2-drop > ul > li:nth-child(1)");
     static By ymnFieldLocator = By.id("material_no");
@@ -111,7 +112,7 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     }
     
     public Ecomm_FromExistingPage setOrderNo(String orderNo) {
-        CommonTask.setSearchField(driver, orderNoFieldLocator, orderNo);
+        CommonTask.setInputFieldAlt(driver, "", orderNo);
         return this;
     }
     

@@ -49,7 +49,6 @@ public class Cce_OrderStatus {
         System.out.println("Fields checked. Entering filter criteria...");
         
         orderStatus.setCustName(TestSuite.custDetails[0]);
-        orderStatus.setShadeCode(TestSuite.expShadeCode2);
         
         System.out.println("Criteria entered. Listing orders...");
         
