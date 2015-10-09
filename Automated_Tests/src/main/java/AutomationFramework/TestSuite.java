@@ -45,9 +45,9 @@ import org.openqa.selenium.By;
     //A LIST OF ALL TEST CLASSES IN THE PROJECT. COMMMENT-OUT TO DISABLE. 
     //USE @IGNORE ANNOTATION TO DISBALE INDIVIDUAL TESTS WITHIN EACH CLASS
     
-    WBA_Login.class,
-    WBA_ForgotPassword.class,
-    Ecomm_MainPage.class,
+    //WBA_Login.class,
+    //WBA_ForgotPassword.class,
+    //Ecomm_MainPage.class,
     //Cce_MainPage.class,
     //Cce_SOC.class,
     //Cce_OrderStatus.class,
@@ -63,15 +63,15 @@ import org.openqa.selenium.By;
     //Cce_LRMLog.class,
     //Cce_SAPLog.class,
     Ecomm_SUSST_ME.class,
-    Ecomm_SUSST_UORT.class,
-    Ecomm_SUSST_FEBO.class,
-    Ecomm_Shade.class,
-    Ecomm_OOD.class,
-    Ecomm_SAPInterfaceLog.class,
-    Ecomm_Reports.class,
-    Ecomm_Dashboard.class, 
-    Ecomm_CO_ME.class,
-    Ecomm_CO_UORT.class,
+    //Ecomm_SUSST_UORT.class,
+    //Ecomm_SUSST_FEBO.class,
+    //Ecomm_Shade.class,
+    //Ecomm_OOD.class,
+    //Ecomm_SAPInterfaceLog.class,
+    //Ecomm_Reports.class,
+    //Ecomm_Dashboard.class, 
+    //Ecomm_CO_ME.class,
+    //Ecomm_CO_UORT.class,
 })
 
 public class TestSuite {
@@ -88,6 +88,7 @@ public class TestSuite {
     public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_38.xlsx";
     public static String createTestFilepath = "C:\\Selenium\\CreateTest.xlsx";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
+    public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
     
     //Some tests require files to be sent to the printer. Disabling will simply skip  the "click print" call during test
     public static boolean printingEnabled = false;
@@ -96,6 +97,8 @@ public class TestSuite {
     public static String validCoatsUsername = "joe.sykes@coats.com";
     public static String validCoatsPassword = "password";
     public static String expectedUserName = "Joe Sykes";
+    public static String validCustUsername = "joecontract@coats.com";
+    public static String validCustPassword = "password";
     public static String invalidUsername = "jfdkjal@jfdalka.com";
     public static String invalidPassword = "invalidpassword";
     

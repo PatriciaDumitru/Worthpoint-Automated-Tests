@@ -1,213 +1,152 @@
 
 package AutomationFramework;
 
-
+import TestTemplates.Ecomm_ManualEntryTemplate;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.poi.hssf.util.CellReference;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-
+import org.w3c.dom.NamedNodeMap;
 
 public class CreateTest {
     
-    public static Cell getCell(Sheet sheet,String ref) {
-        CellReference reference = new CellReference(ref);
-        Row row = sheet.getRow(reference.getRow());
-        return row.getCell(reference.getCol());
+    private static String testReference;
+    private static String testType;
+    private static String userType;
+    private static String customerName;
+    private static String shipToPartyName;
+    private static String requestor;
+    private static String buyer;
+    private static String customerPONo;
+    private static String[][] lineDetails;
+    
+    public static void main(String[] args) {
+        readXML(TestSuite.xmlFilepath);
     }
     
-    public static void getData() throws FileNotFoundException, IOException, InvalidFormatException {
+    public static boolean readXML(String xmlFilepath) {
         
-        String[] accountDetails = getAccountDetails();
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         
-        String[][] eCommTestDetails = getECommTestDetails();
-        
-        System.out.println("done.");
-        
-    }
-    
-    public static String[] getAccountDetails() throws IOException, InvalidFormatException {
-        //Open file
-        File f = new File(TestSuite.createTestFilepath);
-        
-        System.out.println("Opening workbook...");
-        Workbook wb = WorkbookFactory.create(f);
-        
-        System.out.println("Workbook open. Fetching account sheet...");
-        Sheet accSheet = wb.getSheet("account");
-        
-        System.out.println("Sheet received. Fetching Account details...");
-        
-        List<String> accountCells = new ArrayList<String>();
-        accountCells.add("C3");
-        accountCells.add("C4");
-        accountCells.add("C5");
-        accountCells.add("C6");
-        
-        String[] accountDetails = new String[4];
-        
-        for (int i = 0; i < accountCells.size(); i++) {
-            Cell cell = getCell(accSheet,accountCells.get(i));
-            accountDetails[i] = cell.getStringCellValue();
-        }
-        
-        System.out.println("Account details fetched.");
-        
-        wb.close();
-        
-        return accountDetails;
-    }
-    
-    public static String[][] getECommTestDetails() throws IOException, InvalidFormatException {
-        //Open file
-        File f = new File(TestSuite.createTestFilepath);
-        
-        System.out.println("Opening workbook...");
-        Workbook wb = WorkbookFactory.create(f);
-        
-        System.out.println("Workbook open. Fetching eComm sheet...");
-        Sheet eCommSheet = wb.getSheet("eComm");
-        
-        System.out.println("Sheet received. Fetching eComm Test details...");
-        
-        Cell testCountCell = getCell(eCommSheet,"B1");
-        int testCount = (int) testCountCell.getNumericCellValue();
-        
-        System.out.println("Number of tests: "+testCount);
-        
-        String[][] testData = new String[testCount][20]; 
-        
-        List<String>customerDetails = new ArrayList<String>();
-        
-        for (int counter = 0; counter < testCount; counter++) {
-            System.out.println("Fetching test "+(counter+1)+ " customer details...");
+        try {
             
-            Cell testType = getCell(eCommSheet,"B"+(4+counter*16));
-            testType.setCellType(Cell.CELL_TYPE_STRING);
-            customerDetails.add(testType.getStringCellValue());
+            System.out.println("Setting up...");
             
-            Cell custName = getCell(eCommSheet,"C"+(5+counter*16));
-            custName.setCellType(Cell.CELL_TYPE_STRING);
-            customerDetails.add(custName.getStringCellValue());
+            File xmlFile = new File(xmlFilepath);
+            DocumentBuilder db = dbf.newDocumentBuilder();           
+            Document doc = db.parse(xmlFile);           
             
-            Cell shipToPartyName = getCell(eCommSheet,"C"+(6+counter*16));
-            shipToPartyName.setCellType(Cell.CELL_TYPE_STRING);
-            customerDetails.add(shipToPartyName.getStringCellValue());
+            System.out.println("File parsed. Normalising...");
             
-            Cell requestorName = getCell(eCommSheet,"C"+(7+counter*16));
-            requestorName.setCellType(Cell.CELL_TYPE_STRING);
-            customerDetails.add(requestorName.getStringCellValue());
+            doc.getDocumentElement().normalize();
             
-            Cell buyers = getCell(eCommSheet,"C"+(8+counter*16));
-            buyers.setCellType(Cell.CELL_TYPE_STRING);
-            customerDetails.add(buyers.getStringCellValue());
+            System.out.println("Normalised.");
             
-            Cell custPONo = getCell(eCommSheet,"C"+(9+counter*16));
-            custPONo.setCellType(Cell.CELL_TYPE_STRING);
-            customerDetails.add(custPONo.getStringCellValue());
-                    
-            Cell lineCount = getCell(eCommSheet,"C"+(10+counter*16));
-            lineCount.setCellType(Cell.CELL_TYPE_STRING);
-            int noOfLines = Integer.valueOf(lineCount.getStringCellValue());
-            customerDetails.add(lineCount.getStringCellValue());
+            System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
             
-            System.out.println("Customer details fetched. Fetching line details...");
+            System.out.println("Getting list of test elements...");
             
-            String[][] lineDetails = new String[noOfLines][13];
+            NodeList nList = doc.getElementsByTagName("test");
             
-            int desiredColInt = 70;
+            System.out.println("List fetched. Iterating through tests...");
             
-            for (int lineCounter = 0; lineCounter < noOfLines; lineCounter++) {
+            for (int count = 0; count < nList.getLength(); count++) {
+                Node test = nList.item(count);
+                System.out.println("Current element: "+test.getNodeName());
+                       
+                NamedNodeMap attributes = test.getAttributes();
+                testReference = attributes.getNamedItem("testReference").getTextContent();
+                testType = attributes.getNamedItem("testType").getTextContent();
+                userType = attributes.getNamedItem("userType").getTextContent();
                 
-                char desiredCol = (char) desiredColInt;
+                NodeList testComponents = test.getChildNodes();
+                Node customerDetailsNode = testComponents.item(1);
+
+                ArrayList<Node> custDetails = new ArrayList<Node>();
                 
-                Cell lineRef = getCell(eCommSheet,desiredCol + "" + (5+(lineCounter*15)));
-                lineRef.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][0] = lineRef.getStringCellValue();
                 
-                Cell yourMatNum = getCell(eCommSheet,desiredCol + "" + (6+(lineCounter*15)));
-                yourMatNum.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][1] = yourMatNum.getStringCellValue();
                 
-                Cell article = getCell(eCommSheet,desiredCol + "" + (7+(lineCounter*15)));
-                article.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][2] = article.getStringCellValue();
-                
-                Cell brand = getCell(eCommSheet,desiredCol + "" + (8+(lineCounter*15)));
-                brand.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][3] = brand.getStringCellValue();
-                
-                Cell ticket = getCell(eCommSheet,desiredCol + "" + (9+(lineCounter*15)));
-                ticket.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][4] = ticket.getStringCellValue();
-                
-                Cell length = getCell(eCommSheet,desiredCol + "" + (10+(lineCounter*15)));
-                length.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][5] = length.getStringCellValue();
-                
-                Cell finish = getCell(eCommSheet,desiredCol + "" + (11+(lineCounter*15)));
-                finish.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][6] = finish.getStringCellValue();
-                
-                Cell shadeCode = getCell(eCommSheet,desiredCol + "" + (12+(lineCounter*15)));
-                shadeCode.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][7] = shadeCode.getStringCellValue();
-                
-                Cell quantity = getCell(eCommSheet,desiredCol + "" + (13+(lineCounter*15)));
-                quantity.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][8] = quantity.getStringCellValue();
-                
-                Cell requiredDate = getCell(eCommSheet,desiredCol + "" + (14+(lineCounter*15)));
-                requiredDate.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][9] = requiredDate.getStringCellValue();
-                
-                Cell styleNo = getCell(eCommSheet,desiredCol + "" + (15+(lineCounter*15)));
-                styleNo.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][10] = styleNo.getStringCellValue();
-                
-                Cell otherInfo = getCell(eCommSheet,desiredCol + "" + (16+(lineCounter*15)));
-                otherInfo.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][11] = ticket.getStringCellValue();
-                
-                Cell custPrice = getCell(eCommSheet,desiredCol + "" + (17+(lineCounter*15)));
-                ticket.setCellType(Cell.CELL_TYPE_STRING);
-                lineDetails[lineCounter][12] = ticket.getStringCellValue();
-                
-                desiredColInt++;
-            }
-            
-            System.out.println("Line details fetched. Sorting to single array...");
-            
-            for (int i = 0; i < testCount; i++) {
-                for (int j = 0; j < 7; j++) {
-                    testData[i][j] = customerDetails.get(j);
-                }
-                for (int k = 0; k < noOfLines; k++) {
-                    for (int l = 7; l < 19; l++) {
-                    testData[i][l] = lineDetails[k][l];
+                for (int i = 0; i < customerDetailsNode.getChildNodes().getLength(); i++) {
+                    Node temp = customerDetailsNode.getChildNodes().item(i);
+                    if (temp.getNodeType()== Node.ELEMENT_NODE) {
+                        custDetails.add(temp);
                     }
-                }               
+                }
+                System.out.println("Cust detail nodes added. Setting values...");
+                
+                customerName = custDetails.get(0).getTextContent();
+                shipToPartyName = custDetails.get(1).getTextContent();
+                requestor = custDetails.get(2).getTextContent();
+                buyer = custDetails.get(3).getTextContent();;
+                customerPONo = custDetails.get(4).getTextContent();
+                
+                System.out.println("Customer Details received:");
+                System.out.println(customerName);
+                System.out.println(shipToPartyName);
+                System.out.println(requestor);
+                System.out.println(buyer);
+                System.out.println(customerPONo);
+                
+                NodeList lines = doc.getElementsByTagName("line");
+                
+                lineDetails = new String[lines.getLength()][10];
+                
+                for (int lineCount = 0; lineCount < lines.getLength(); lineCount++) {
+                    Node line = lines.item(lineCount);
+                    Element lineElement = (Element) line;
+                    
+                    lineDetails[lineCount][0] = lineElement.getElementsByTagName("lineRef").item(0).getTextContent();
+                    lineDetails[lineCount][1] = lineElement.getElementsByTagName("yourMaterialNumber").item(0).getTextContent();
+                    lineDetails[lineCount][2] = lineElement.getElementsByTagName("article").item(0).getTextContent();
+                    lineDetails[lineCount][3] = lineElement.getElementsByTagName("brand").item(0).getTextContent();
+                    lineDetails[lineCount][4] = lineElement.getElementsByTagName("ticket").item(0).getTextContent();
+                    lineDetails[lineCount][5] = lineElement.getElementsByTagName("length").item(0).getTextContent();
+                    lineDetails[lineCount][6] = lineElement.getElementsByTagName("finish").item(0).getTextContent();
+                    lineDetails[lineCount][7] = lineElement.getElementsByTagName("shadeCode").item(0).getTextContent();
+                    lineDetails[lineCount][8] = lineElement.getElementsByTagName("quantity").item(0).getTextContent();
+                    lineDetails[lineCount][9] = lineElement.getElementsByTagName("requiredDate").item(0).getTextContent();
+                
+                    System.out.println("Line Details received: ");
+
+                    for (int i =0; i < lineDetails[lineCount].length;i++) {
+                        System.out.println(lineDetails[lineCount][i]);
+                    }
+                    
+                }
+                
+                triggerTest(testReference, testType, userType, customerName,shipToPartyName,requestor,buyer,customerPONo,lineDetails);
+                
+                customerName="";
+                shipToPartyName="";
+                requestor="";
+                buyer="";
+                customerPONo="";
+                
             }
-            System.out.println("Data sorted. Returning data...");
+    
+        } catch (Exception e) {
+            System.out.println("Exception occurred reading XML");
+            e.printStackTrace();
         }
         
-        return testData;
-        
+        return true;
     }
     
-    /*public static void main(String[] args) throws IOException, FileNotFoundException, InvalidFormatException {
-       
-        getData();
-    
-    }*/
+    public static void triggerTest(String testReference, String testType, String userType,String customerName, String shipToPartyName, String requestor, String buyer, String customerPONo, String[][] lineDetails) {
+        
+        String[] testDetails = {testReference,testType,userType};
+        String[] custDetails = {customerName,shipToPartyName,requestor,buyer,customerPONo};
+        
+        if (testType.equals("manual entry")) {
+            Ecomm_ManualEntryTemplate meTemp = new Ecomm_ManualEntryTemplate(testDetails,custDetails,lineDetails);
+        } else if (testType.equals("upload order")) {
+            
+        }
+    }
     
 }
