@@ -4,6 +4,8 @@ package TestTemplates;
 import AutomationFramework.TestSuite;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
+import PageObjects.Ecomm_OrderConfirmationPage;
+import PageObjects.Ecomm_PendingApprovalListPage;
 import PageObjects.WBA_ContinuePage;
 import PageObjects.WBA_LoginPage;
 import PageObjects.WBA_SelectionPage;
@@ -29,92 +31,113 @@ boolean finishProvided;
 boolean shadeCodeProvided;
 boolean qtyProvided;
 boolean requiredDateProvided;
+boolean styleNoProvided;
+boolean otherInfoProvided;
+boolean contractPOProvided;
 
 private int lineCount;
     
-    public Ecomm_ManualEntryTemplate(String[] testDetails,String[] custDetails,String[][] lineDetails) {
+    public Ecomm_ManualEntryTemplate(String[] testDetails,String[] custDetails,String[][] lineDetails) throws InterruptedException {
         //Work out which values have been provided
         for (int count = 0; count < lineDetails.length; count++) {
-            System.out.println("-----Line "+ (count+1)+ " items:-----");
             switch (lineDetails[count][0]) {
-                case "": lineRefProvided = false; System.out.println("Line Reference not provided"); break;
-                default: lineRefProvided = true; System.out.println("Line Reference found"); break;
+                case "": lineRefProvided = false; break;
+                default: lineRefProvided = true; break;
             }
             switch (lineDetails[count][1]) {
-                case "": ymnProvided = false; System.out.println("Your Material Number not provided"); break;
-                default: ymnProvided = true; System.out.println("Your Material Number found");
+                case "": ymnProvided = false; break;
+                default: ymnProvided = true; break;
             }
             switch (lineDetails[count][2]) {
-                case "": articleProvided = false; System.out.println("Article not provided"); break;
-                default: articleProvided = true; System.out.println("Article found"); break;
+                case "": articleProvided = false; break;
+                default: articleProvided = true; break;
             }
             switch (lineDetails[count][3]) {
-                case "": brandProvided = false; System.out.println("Brand not provided"); break;
-                default: brandProvided = true; System.out.println("Brand found"); break;
+                case "": brandProvided = false; break;
+                default: brandProvided = true; break;
             }
             switch (lineDetails[count][4]) {
-                case "": ticketProvided = false; System.out.println("Ticket not provided"); break;
-                default: ticketProvided = true; System.out.println("Ticket found");
+                case "": ticketProvided = false; break;
+                default: ticketProvided = true; break;
             }
             switch (lineDetails[count][5]) {
-                case "": lengthProvided = false; System.out.println("Length not provided"); break;
-                default: lengthProvided = true; System.out.println("Length found");
+                case "": lengthProvided = false; break;
+                default: lengthProvided = true; break;
             }
             switch (lineDetails[count][6]) {
-                case "": finishProvided = false; System.out.println("Finish not provided"); break;
-                default: finishProvided = true; System.out.println("Finish found");
+                case "": finishProvided = false; break;
+                default: finishProvided = true; break;
             }
             switch (lineDetails[count][7]) {
-                case "": shadeCodeProvided = false; System.out.println("Shade Code not provided"); break;
-                default: shadeCodeProvided = true; System.out.println("Shade Code found");
+                case "": shadeCodeProvided = false; break;
+                default: shadeCodeProvided = true; break;
             }
             switch (lineDetails[count][8]) {
-                case "": qtyProvided = false; System.out.println("Quantity not provided"); break;
-                default: qtyProvided = true; System.out.println("Quantity found");
+                case "": qtyProvided = false; break;
+                default: qtyProvided = true; break;
             }
             switch (lineDetails[count][9]) {
-                case "": ymnProvided = false; System.out.println("Required date not provided"); break;
-                default: ymnProvided = true; System.out.println("Required date found");
-            }         
-        }
-        
-        boolean[] itemsProvided = {lineRefProvided,ymnProvided,articleProvided,brandProvided,ticketProvided,
-            lengthProvided,finishProvided,shadeCodeProvided,qtyProvided,requiredDateProvided};
-        
-        identifyCombination(itemsProvided,testDetails[1]);
-        
-        
-    }
-    
-    public void identifyCombination(boolean[] provided,String userType) {
-        if (provided[1] && !provided[2] && !provided[3] && !provided[4] && !provided[5] && !provided[6] && !provided[7] && provided[8] && provided[9]) {
-            System.out.println("Your Material Number with all master data test");
-            Ecomm_ManualEntryPage mePage = setUp(userType);
+                case "": requiredDateProvided = false; break;
+                default: requiredDateProvided = true; break;
+            }
+            switch (lineDetails[count][10]) {
+                case "": styleNoProvided = false; break;
+                default: styleNoProvided = true; break;
+            }
+            switch (lineDetails[count][11]) {
+                case "": otherInfoProvided = false; break;
+                default: otherInfoProvided = true; break;
+            }
+            switch (lineDetails[count][12]) {
+                case "": contractPOProvided = false; break;
+                default: contractPOProvided = true; break;
+            }
             
-        } else if (provided[1] && !provided[2] && !provided[3] && !provided[4] && !provided[5] && !provided[6] && provided[7] && provided[8] && provided[9]) {
+            boolean[] itemsProvided = {lineRefProvided,ymnProvided,articleProvided,brandProvided,ticketProvided,
+            lengthProvided,finishProvided,shadeCodeProvided,qtyProvided,requiredDateProvided,styleNoProvided,
+            otherInfoProvided,contractPOProvided};
+            
+            String combination = identifyCombination(itemsProvided);
+            System.out.println("Combination: " + combination);
+        }
+        
+        runTest(testDetails,custDetails,lineDetails);
+        
+    }
+    
+    public String identifyCombination(boolean[] provided) {
+        if (provided[1] && !provided[2] && !provided[3] && !provided[4] && !provided[5] && !provided[6] && !provided[7] && provided[8] && !provided[0] && !provided[12]) {
+            System.out.println("Your Material Number with all master data test");
+            return "Your Material Number with master data shade";           
+        } else if (provided[1] && !provided[2] && !provided[3] && !provided[4] && !provided[5] && !provided[6] && provided[7] && provided[8] && !provided[0] && !provided[12]) {
             System.out.println("Your Material Number without master shade code test");
-            Ecomm_ManualEntryPage mePage = setUp(userType);
-        } else if (!provided[1] && provided[2] && !provided[3] && !provided[4] && !provided[5] && !provided[6] && provided[7] && provided[8] && provided[9]) {
+            return "Your Material Number without master data shade";
+        } else if (!provided[1] && provided[2] && !provided[3] && !provided[4] && !provided[5] && !provided[6] && provided[7] && provided[8] && !provided[0] && !provided[12]) {
             System.out.println("Article and shade code test");
-            Ecomm_ManualEntryPage mePage = setUp(userType);
-        } else if (!provided[1] && !provided[2] && provided[3] && provided[4] && provided[5] && provided[6] && provided[7] && provided[8] && provided[9]) {
+            return "Article and shade code";
+        } else if (!provided[1] && !provided[2] && provided[3] && provided[4] && provided[5] && provided[6] && provided[7] && provided[8] && !provided[0] && !provided[12]) {
             System.out.println("Brand/Ticket/Length/Finish/Shade Code combination test");
-            Ecomm_ManualEntryPage mePage = setUp(userType);
+            return "Brand/Ticket etc";
+        } else if (provided[0] && provided[2] && provided[7] && provided[12]){
+            System.out.println("Contract Order: Article/Shade/PO/Line ref test");
+            return "contract order";
         } else {
-            System.out.println("Combination not recognised");
-            Ecomm_ManualEntryPage mePage = setUp(userType);
+            return "not recognised";
         }
     }
     
-    public Ecomm_ManualEntryPage setUp(String userType) {
+    public void runTest(String[] testDetails, String[] custDetails, String[][] lineDetails) throws InterruptedException {
         
+        //Check user type in test details to find username and password
         String username="";
         String password="";
-        switch(userType) {
+        switch(testDetails[2]) {
             case "susst coats": username = TestSuite.validCoatsUsername; password = TestSuite.validCoatsPassword; break;
             case "susst customer": username = TestSuite.validCustUsername; password = TestSuite.validCustPassword; break;
         }
 
+        System.out.println("===Starting test: "+testDetails[0]+"===");
+        
         //New driver instance
         System.setProperty("webdriver.chrome.driver",TestSuite.chromeDriverFilepath);
         WebDriver driver = new ChromeDriver();
@@ -142,10 +165,107 @@ private int lineCount;
         Ecomm_MainPage eCommPage = selectPage.pressEcomm();
         eCommPage.waitForLoad();
 
-        System.out.println("eComm page loaded.");
+        System.out.println("eComm page loaded. Navigating to Manual Entry...");
 
         Ecomm_ManualEntryPage mePage = eCommPage.clickManualEntry();
-        return new Ecomm_ManualEntryPage(driver);
+        mePage.waitForLoad();
+        
+        System.out.println("Manual Entry Page reached. Setting customer details...");
+        
+        if (!custDetails[0].equals("")) {
+            mePage.setCustomerName(custDetails[0]);
+        }
+        if (!custDetails[1].equals("")) {
+            mePage.setShipToParty(custDetails[1]);
+        }
+        if (!custDetails[2].equals("")) {
+           mePage.setRequestor(custDetails[2]); 
+        }
+        if (!custDetails[3].equals("")) {
+           mePage.setBuyers(custDetails[3]);
+        }
+        if (!custDetails[4].equals("")) {
+           mePage.setPoNumberNew(custDetails[4]);
+        }
+         
+        System.out.println("Customer details set. Entering line details...");
+        
+        for (int i = 0; i < lineDetails.length; i++) {
+            if (!lineDetails[i][1].equals("")) {
+                mePage.setYourMaterialNumber(lineDetails[i][1], i);
+            }
+            
+            if (!lineDetails[i][2].equals("")) {
+                mePage.setArticle(lineDetails[i][2], i);
+            }
+            
+            if (!lineDetails[i][3].equals("")) {
+                mePage.setBrand(lineDetails[i][3], i);
+            }
+            
+            if (!lineDetails[i][4].equals("")) {
+                mePage.setTicket(lineDetails[i][4], i);
+            }
+            
+            if (!lineDetails[i][5].equals("")) {
+                mePage.setLength(lineDetails[i][5], i);
+            }
+            
+            if(!lineDetails[i][6].equals("")) {
+                mePage.setFinish(lineDetails[i][6],i);
+            }
+            
+            if(!lineDetails[i][7].equals("")) {
+                mePage.setShadeCode(lineDetails[i][7],i);
+            }
+            
+            if(!lineDetails[i][8].equals("")) {
+                mePage.setQty(Integer.valueOf(lineDetails[i][8]),i);
+            }
+            
+            mePage.setDate(i);
+            
+            if (!lineDetails[i][10].equals("")) {
+                mePage.setStyleNo(lineDetails[i][9],i);
+            }
+            
+            if (!lineDetails[i][11].equals("")) {
+                mePage.setOtherInfo(lineDetails[i][10],i);
+            }
+            
+            if (!lineDetails[i][12].equals("")) {
+                mePage.setContractPO(lineDetails[i][12],i);
+            }
+            
+            if (!lineDetails[i][0].equals("")) {
+                mePage.setLineRef(lineDetails[i][0],i);
+            }
+        }
+        
+        System.out.println("Line details entered. Pressing next...");
+        
+        Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
+        orderConf.waitForLoad();
+        
+        System.out.println("Confirmation page reached. Submitting order...");
+        
+        if (!lineDetails[0][12].equals("")) {
+            Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
+            pendPage.waitForLoad(); 
+            System.out.println("Order Submitted");
+        } else {
+            System.out.println("Contract Order detected: order not submitted to avoid call-off");
+        }
+        
+        System.out.println("----------------------------------------------------");
+        
+        driver.close();
+        driver.quit();
+        
     }
 
+    public void runContractTest(String[] testDetails, String[] custDetails, String[][] lineDetails) {
+        
+    }
+    
 }

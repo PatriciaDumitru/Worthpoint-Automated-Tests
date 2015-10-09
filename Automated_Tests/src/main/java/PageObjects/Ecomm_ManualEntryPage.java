@@ -130,7 +130,6 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return this;
     }
     
-    
     public Ecomm_ManualEntryPage setRequestor(String requestor) {
         //Wait for requestor field to be clickable
         WebElement waitToClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requestorField));
@@ -385,6 +384,30 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return this;
     }
     
+    public Ecomm_ManualEntryPage setStyleNo(String item, int lineNumber) {
+        By locator = By.id("txtStyleno"+lineNumber);
+        CommonTask.setTextField(driver, locator, item);
+        return this;
+    }
+    
+    public Ecomm_ManualEntryPage setOtherInfo(String item, int lineNumber) {
+        By locator = By.id("txtOtherInfo"+lineNumber);
+        CommonTask.setTextField(driver, locator, item);
+        return this;
+    }
+    
+    public Ecomm_ManualEntryPage setContractPO(String item, int lineNumber) {
+        By locator = By.id("txtContract"+lineNumber);
+        CommonTask.setInputField(driver, locator, item);
+        return this;
+    }
+    
+    public Ecomm_ManualEntryPage setLineRef(String item, int lineNumber) {
+        By locator = By.id("txtContractLine"+lineNumber);
+        CommonTask.setInputField(driver, locator, item);
+        return this;
+    }
+    
     public WebElement getQty() {
         By qtyLocator = By.id("quantity0");
         return driver.findElement(qtyLocator);
@@ -420,6 +443,17 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             By thirdOfMonthLocator = By.xpath("//a[contains(text(),\"3\")]");
             clickDatePicked.click(driver.findElement(thirdOfMonthLocator)).click().perform();
         }       
+        return this;
+    }
+    
+    public Ecomm_ManualEntryPage setSpecificDate(String date, int lineNumber) {
+        //produce locator for field. Line numbers start from 0
+        By dateFieldLocator = By.id("required_date_"+lineNumber);
+        
+        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(dateFieldLocator));
+        Actions action = new Actions(driver);
+        action.sendKeys(driver.findElement(dateFieldLocator),date);
+        
         return this;
     }
     

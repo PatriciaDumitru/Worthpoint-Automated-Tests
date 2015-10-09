@@ -114,6 +114,7 @@ public class Cce_Hub {
         System.out.println("----------------------------------------------------");
         
         driver.close();
+        driver.quit();
     } //Field checks, view check, adjust and save
     
     @Test 
