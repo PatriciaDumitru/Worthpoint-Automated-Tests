@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.TestSuite;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
@@ -38,6 +39,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     By styleNoFieldLocator = By.id("BulkOrderLineProdStyleNo");
     By styleNoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.lineinfo > td:nth-child(1) > label");
     By contractPONoLocator = By.id("BulkOrderLineContract");
+    By subAccountFieldLocator = By.id("BulkOrderPayerId");
     By lineRefLocator = By.id("BulkOrderLineContract");
     By shipToPartyFieldLocator = By.id("BulkOrderShipToPartyId");
     By shipToPartyLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr:nth-child(1) > td:nth-child(3) > label");
@@ -59,6 +61,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     By buyerNumberLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr:nth-child(9) > td:nth-child(3) > label");
     By otherInformationFieldLocator = By.id("BulkOrderLineOtherinfo");
     By otherInformationLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.lineinfo > td:nth-child(3) > label");
+    By lineRefFieldLocator = By.id("BulkOrderLineLineReference");
     By customerPriceFieldLocator = By.id("BulkOrderLineCustomerPrice");
     By customerPriceLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.headerinfopay > td:nth-child(3) > label");
     By confirmButtonLocator = By.id("trigger");
@@ -400,6 +403,126 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         //Remove focus from final field to complete input
         inputKeys.click(this.getCustomerPriceLabel()).build().perform();
         
+        return this;
+    }
+    
+    public Ecomm_MappingPage setSalesOrg(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver, salesOrgFieldLocator, item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setCustomerName(String item) {
+        CommonTask.setSearchField(driver, custNameFieldLocator, item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setArticle(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,articleFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setTicket(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,ticketFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setFinish(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,finishFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setShadeCode(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,shadeCodeFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setRequiredDate(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,requiredDateFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setQty(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,quantityFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setStyle(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,styleFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setStyleNo(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,styleNoFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setContractPO(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,contractPONoLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setSubAcct(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,subAccountFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setShipToParty(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,shipToPartyFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setYourMatNum(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,yourMaterialNumberFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setBrand(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,brandFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setLength(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,lengthFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setBuyers(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,buyersFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setCustPO(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,customerPOFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setRequestor(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,requestorNameFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setWarehouseInst(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,warehouseInstFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setBuyerNumber(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,buyerNumberFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setOtherInfo(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,otherInformationFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setLineRef(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,lineRefFieldLocator,item);
+        return this;
+    }
+    
+    public Ecomm_MappingPage setCustPrice(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,customerPriceFieldLocator,item);
         return this;
     }
     

@@ -28,6 +28,7 @@ import TestCases.Ecomm_Shade;
 import TestCases.Generated.Ecomm_CO_ME;
 import TestCases.Generated.Ecomm_CO_UORT;
 import TestCases.WBA_ForgotPassword;
+import TestCases.WBA_Generated;
 import TestCases.WBA_Login;
 import java.net.MalformedURLException;
 
@@ -47,6 +48,7 @@ import org.openqa.selenium.By;
     
     //WBA_Login.class,
     //WBA_ForgotPassword.class,
+    WBA_Generated.class,
     //Ecomm_MainPage.class,
     //Cce_MainPage.class,
     //Cce_SOC.class,
@@ -83,9 +85,9 @@ public class TestSuite {
     
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe";
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_26.xlsx"; 
-    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_41.xlsx";
-    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_42.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_28C.xlsx"; 
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_43.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_44.xlsx";
     public static String createTestFilepath = "C:\\Selenium\\CreateTest.xlsx";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
     public static String xmlFilepath = "C:\\Selenium\\createTest.xml";

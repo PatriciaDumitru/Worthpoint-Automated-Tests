@@ -1,6 +1,7 @@
 
 package TestTemplates;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.TestSuite;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
@@ -44,7 +45,7 @@ private int lineCount;
     
     public Ecomm_ManualEntryTemplate(String[] testDetails,String[] custDetails,String[][] lineDetails) throws InterruptedException, IOException {
         //Work out which values have been provided
-        for (int count = 0; count < lineDetails.length; count++) {
+        /*for (int count = 0; count < lineDetails.length; count++) {
             switch (lineDetails[count][0]) {
                 case "": lineRefProvided = false; break;
                 default: lineRefProvided = true; break;
@@ -104,7 +105,7 @@ private int lineCount;
             
             String combination = identifyCombination(itemsProvided);
             System.out.println("Combination: " + combination);
-        }
+        }*/
         
         runTest(testDetails,custDetails,lineDetails);
         
@@ -136,9 +137,9 @@ private int lineCount;
         //Check user type in test details to find username and password
         String username="";
         String password="";
-        switch(testDetails[2]) {
-            case "susst coats": username = TestSuite.validCoatsUsername; password = TestSuite.validCoatsPassword; break;
-            case "susst customer": username = TestSuite.validCustUsername; password = TestSuite.validCustPassword; break;
+        switch(testDetails[1]) {
+            case "SUSST Coats": username = TestSuite.validCoatsUsername; password = TestSuite.validCoatsPassword; break;
+            case "SUSST Customer": username = TestSuite.validCustUsername; password = TestSuite.validCustPassword; break;
         }
 
         System.out.println("===Starting test: "+testDetails[0]+"===");
@@ -200,7 +201,7 @@ private int lineCount;
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\2Customer details set.png"));
-        
+
         System.out.println("Customer details set. Entering line details...");
         
         for (int i = 0; i < lineDetails.length; i++) {
@@ -273,12 +274,22 @@ private int lineCount;
         if (lineDetails[0][12].equals("")) {
             Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
             outOrdersPage.waitForLoad(); 
+            CommonTask.waitForPageLoad(driver);
             System.out.println("Order Submitted");
             //Take a screenshot
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
         } else {
-            System.out.println("Contract Order detected: order not submitted to avoid call-off");
+            if (TestSuite.contractOrderCallOff) {
+                Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+                outOrdersPage.waitForLoad(); 
+                System.out.println("Contract Order detected: Order submitted");
+                //Take a screenshot
+                File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
+            } else {
+                System.out.println("Contract Order detected: Submit disabled to avoid call-off");
+            }           
         }
         
         System.out.println("----------------------------------------------------");
