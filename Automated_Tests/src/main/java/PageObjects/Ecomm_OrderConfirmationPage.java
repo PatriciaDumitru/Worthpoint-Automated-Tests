@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.TestSuite;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -195,6 +196,10 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return getOrderedQtyCell().getText();
     }
     
+    public WebElement getCancelButton() {
+        return driver.findElement(cancelButtonLocator);
+    }
+    
     public Ecomm_OrderEditPage pressEditLine(int lineNumber) {
         //Create locator for edit button in correct line. Line numbers start from 0
         By editBtnLocator = By.cssSelector("#remove_"+lineNumber+" > td:nth-child(1) > a");
@@ -207,7 +212,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return new Ecomm_OrderEditPage(driver);
     }
     
-    public Ecomm_PendingApprovalListPage pressSubmit() {
+    public Ecomm_OutstandingOrdersPage pressSubmit() {
         //Wait for element to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(submitButtonLocator));
         driver.findElement(submitButtonLocator).click();  
@@ -237,7 +242,14 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             driver.switchTo().alert().accept();
         }
         
-        return new Ecomm_PendingApprovalListPage(driver);
+        return new Ecomm_OutstandingOrdersPage(driver);
+    }
+    
+    public Ecomm_ManualEntryPage pressCancel() {
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
+        driver.findElement(cancelButtonLocator).click();
+        
+        return new Ecomm_ManualEntryPage(driver);
     }
     
     public Ecomm_OrderConfirmationPage setRequestor(String requester) {

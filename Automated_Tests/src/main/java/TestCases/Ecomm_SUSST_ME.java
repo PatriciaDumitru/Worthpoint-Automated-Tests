@@ -110,8 +110,8 @@ public class Ecomm_SUSST_ME {
         System.out.println("Order confirmation page reached. Submitting order...");
         
         //Press Submit
-        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit(); 
-        pendPage.waitForLoad();
+        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
+        outOrders.waitForLoad();
         
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\5Order submitted.png"));
@@ -120,8 +120,8 @@ public class Ecomm_SUSST_ME {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = pendPage.getRow(TestSuite.lastUsedPO);
-        Ecomm_OrderViewPage orderView = pendPage.pressView(rowNumber);       
+        int rowNumber = outOrders.getRow(TestSuite.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
         orderView.switchTo();
@@ -147,10 +147,11 @@ public class Ecomm_SUSST_ME {
         System.out.println("View closed.");
         
         //Output order number for test reference
-        String orderNumber = pendPage.getOrderNo(rowNumber);
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
     
         driver.close();
+        driver.quit();
     
         System.out.println("----------------------------------------------------");
     
@@ -206,15 +207,15 @@ public class Ecomm_SUSST_ME {
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
-        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
-        pendPage.waitForLoad();
+        Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        outOrdersPage.waitForLoad();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = pendPage.getRow(TestSuite.lastUsedPO);
-        Ecomm_OrderViewPage orderView = pendPage.pressView(rowNumber);
+        int rowNumber = outOrdersPage.getRow(TestSuite.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
 
@@ -232,12 +233,13 @@ public class Ecomm_SUSST_ME {
         driver.switchTo().defaultContent();
 
         //Output order number for test reference
-        String orderNumber = pendPage.getOrderNo(rowNumber);
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
     
         System.out.println("----------------------------------------------------");
         
         driver.close();
+        driver.quit();
     } 
     
     @Test //Manual Entry Page :: Single line order, YMN without master shade code
@@ -287,16 +289,16 @@ public class Ecomm_SUSST_ME {
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
-        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
+        Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
-        pendPage.waitForLoad();
+        outOrdersPage.waitForLoad();
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = pendPage.getRow(TestSuite.lastUsedPO);
-        Ecomm_OrderViewPage orderView = pendPage.pressView(rowNumber);
+        int rowNumber = outOrdersPage.getRow(TestSuite.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
         
@@ -314,16 +316,17 @@ public class Ecomm_SUSST_ME {
         driver.switchTo().defaultContent();
 
         //Output order number for test reference
-        String orderNumber = pendPage.getOrderNo(rowNumber);
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
         
         System.out.println("----------------------------------------------------");
         
         driver.close();
+        driver.quit();
         
     }
     
-    @Test //Manual Entry Page :: Multi-line order, YMN without master shade code
+    @Ignore @Test //Manual Entry Page :: Multi-line order, YMN without master shade code
     public void SUSST4() throws InterruptedException {
         //New driver
         WebDriver driver = new ChromeDriver();
@@ -370,15 +373,15 @@ public class Ecomm_SUSST_ME {
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
-        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
-        pendPage.waitForLoad();
+        Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        outOrdersPage.waitForLoad();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = pendPage.getRow(TestSuite.lastUsedPO);
-        Ecomm_OrderViewPage orderView = pendPage.pressView(rowNumber);
+        int rowNumber = outOrdersPage.getRow(TestSuite.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
         
@@ -396,12 +399,13 @@ public class Ecomm_SUSST_ME {
         driver.switchTo().defaultContent();
         
         //Output order number for test reference
-        String orderNumber = pendPage.getOrderNo(rowNumber);
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
         
         System.out.println("----------------------------------------------------");
         
         driver.close();
+        driver.quit();
     }
     
     @Test //Manual Entry Page :: Single line order, article and shade code
@@ -450,15 +454,15 @@ public class Ecomm_SUSST_ME {
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
-        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
-        pendPage.waitForLoad();
+        Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        outOrdersPage.waitForLoad();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = pendPage.getRow(TestSuite.lastUsedPO);
-        Ecomm_OrderViewPage orderView = pendPage.pressView(rowNumber);
+        int rowNumber = outOrdersPage.getRow(TestSuite.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
         
@@ -475,10 +479,11 @@ public class Ecomm_SUSST_ME {
         driver.switchTo().defaultContent();
 
         //Output order number for test reference
-        String orderNumber = pendPage.getOrderNo(rowNumber);
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
         driver.close();
+        driver.quit();
 
         System.out.println("----------------------------------------------------");
         
@@ -532,15 +537,15 @@ public class Ecomm_SUSST_ME {
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
-        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
-        pendPage.waitForLoad();
+        Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        outOrdersPage.waitForLoad();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = pendPage.getRow(TestSuite.lastUsedPO);
-        Ecomm_OrderViewPage orderView = pendPage.pressView(rowNumber);
+        int rowNumber = outOrdersPage.getRow(TestSuite.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
 
@@ -557,10 +562,11 @@ public class Ecomm_SUSST_ME {
         driver.switchTo().defaultContent();
         
         //Output order number for test reference
-        String orderNumber = pendPage.getOrderNo(rowNumber);
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
         driver.close();
+        driver.quit();
 
         System.out.println("----------------------------------------------------");
     } 
@@ -611,15 +617,15 @@ public class Ecomm_SUSST_ME {
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
-        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
-        pendPage.waitForLoad();
+        Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        outOrdersPage.waitForLoad();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = pendPage.getRow(TestSuite.lastUsedPO);
-        Ecomm_OrderViewPage orderView = pendPage.pressView(rowNumber);
+        int rowNumber = outOrdersPage.getRow(TestSuite.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
        
@@ -635,10 +641,11 @@ public class Ecomm_SUSST_ME {
         driver.switchTo().defaultContent();
         
         //Output order number for test reference
-        String orderNumber = pendPage.getOrderNo(rowNumber);
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
         driver.close();
+        driver.quit();
 
         System.out.println("----------------------------------------------------");
     }
@@ -693,15 +700,15 @@ public class Ecomm_SUSST_ME {
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
-        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
-        pendPage.waitForLoad();
+        Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        outOrdersPage.waitForLoad();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = pendPage.getRow(TestSuite.lastUsedPO);
-        Ecomm_OrderViewPage orderView = pendPage.pressView(rowNumber);
+        int rowNumber = outOrdersPage.getRow(TestSuite.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
         
@@ -717,11 +724,12 @@ public class Ecomm_SUSST_ME {
         driver.switchTo().defaultContent();
 
         //Output order number for test reference
-        String orderNumber = pendPage.getOrderNo(rowNumber);
+        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
         driver.close();
-
+        driver.quit();
+        
         System.out.println("----------------------------------------------------");
     }
     

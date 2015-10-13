@@ -79,7 +79,7 @@ public void FEBO1() throws IOException {
     File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\4Next pressed.png"));
     
-    Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
+    Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
     
     //Take a screenshot
     File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

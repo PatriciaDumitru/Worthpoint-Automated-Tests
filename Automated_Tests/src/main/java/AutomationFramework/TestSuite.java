@@ -62,7 +62,7 @@ import org.openqa.selenium.By;
     //Cce_TotalOrders.class,
     //Cce_LRMLog.class,
     //Cce_SAPLog.class,
-    Ecomm_SUSST_ME.class,
+    //Ecomm_SUSST_ME.class,
     //Ecomm_SUSST_UORT.class,
     //Ecomm_SUSST_FEBO.class,
     //Ecomm_Shade.class,
@@ -83,15 +83,18 @@ public class TestSuite {
     
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe";
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_19.xlsx"; 
-    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_37.xlsx";
-    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_38.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_26.xlsx"; 
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_41.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_42.xlsx";
     public static String createTestFilepath = "C:\\Selenium\\CreateTest.xlsx";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
     public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
     
     //Some tests require files to be sent to the printer. Disabling will simply skip  the "click print" call during test
     public static boolean printingEnabled = false;
+    
+    //To prevent contract orders being called off, set boolean to false
+    public static boolean contractOrderCallOff = false;
     
     //Login details used in Login test case
     public static String validCoatsUsername = "joe.sykes@coats.com";
@@ -116,8 +119,17 @@ public class TestSuite {
             "User Types","Coats Users","","Lrm Log","SAP Log",""
     };
     
+    public static String[] eCommExpectedTitles = {"Orders | Manual Entry","","Orders | From Existing Bulk Order",
+        "Orders | Shade Not Available","Orders | Waiting For Shade Code","Orders | Outstanding","Orders | Drafts",
+        "Orders | Upload Drafts","Orders | Pending Approval List","Orders | Denied Order List","SAP Interface Log",
+        "Reports | Invoices","Reports | Delivery Notes","Reports | Summary of Purchase","Reports | Outstanding Payments",
+        "Reports | Customer Care","Terms and Conditions Report","Real Upload Failed Files","Backend In Process Files",
+        "Backend Failed Files","FTP Failed Files",""     
+    };
+    
     //Generic breadcrumb locator
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
+    public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
     
     //Customer details to be used in manual entry tests
     public static String[] custDetails = {"Life Easy Customer","CCE HUB OFFICES","approver 1 test","*OTHERS*","AutoTestPO_"};

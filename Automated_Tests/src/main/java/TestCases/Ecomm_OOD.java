@@ -80,12 +80,12 @@ public class Ecomm_OOD {
             FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\4Error reached.png"));
         } catch (Exception e) {
             System.out.println("Submitting order...");
-            Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
-            pendPage.waitForLoad();
+            Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+            outOrdersPage.waitForLoad();
             System.out.println("Order submitted.");
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\4Submit pressed.png"));
-            Ecomm_OrderViewPage orderView = pendPage.pressView(pendPage.getRow(poNo));
+            Ecomm_OrderViewPage orderView = outOrdersPage.pressView(outOrdersPage.getRow(poNo));
             orderView.waitForContent();
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\5Order view.png"));

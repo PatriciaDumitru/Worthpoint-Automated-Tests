@@ -5,10 +5,15 @@ import AutomationFramework.TestSuite;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
-import PageObjects.Ecomm_PendingApprovalListPage;
+import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.WBA_ContinuePage;
 import PageObjects.WBA_LoginPage;
 import PageObjects.WBA_SelectionPage;
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -37,7 +42,7 @@ boolean contractPOProvided;
 
 private int lineCount;
     
-    public Ecomm_ManualEntryTemplate(String[] testDetails,String[] custDetails,String[][] lineDetails) throws InterruptedException {
+    public Ecomm_ManualEntryTemplate(String[] testDetails,String[] custDetails,String[][] lineDetails) throws InterruptedException, IOException {
         //Work out which values have been provided
         for (int count = 0; count < lineDetails.length; count++) {
             switch (lineDetails[count][0]) {
@@ -126,7 +131,7 @@ private int lineCount;
         }
     }
     
-    public void runTest(String[] testDetails, String[] custDetails, String[][] lineDetails) throws InterruptedException {
+    public void runTest(String[] testDetails, String[] custDetails, String[][] lineDetails) throws InterruptedException, IOException {
         
         //Check user type in test details to find username and password
         String username="";
@@ -170,6 +175,10 @@ private int lineCount;
         Ecomm_ManualEntryPage mePage = eCommPage.clickManualEntry();
         mePage.waitForLoad();
         
+        //Take a screenshot
+        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\1Manual Entry Page.png"));
+        
         System.out.println("Manual Entry Page reached. Setting customer details...");
         
         if (!custDetails[0].equals("")) {
@@ -188,6 +197,10 @@ private int lineCount;
            mePage.setPoNumberNew(custDetails[4]);
         }
          
+        //Take a screenshot
+        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\2Customer details set.png"));
+        
         System.out.println("Customer details set. Entering line details...");
         
         for (int i = 0; i < lineDetails.length; i++) {
@@ -242,17 +255,28 @@ private int lineCount;
             }
         }
         
+        //Take a screenshot
+        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\3Line details set.png"));
+        
         System.out.println("Line details entered. Pressing next...");
         
         Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
         orderConf.waitForLoad();
         
+        //Take a screenshot
+        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Order confirmation page.png"));
+        
         System.out.println("Confirmation page reached. Submitting order...");
         
-        if (!lineDetails[0][12].equals("")) {
-            Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
-            pendPage.waitForLoad(); 
+        if (lineDetails[0][12].equals("")) {
+            Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+            outOrdersPage.waitForLoad(); 
             System.out.println("Order Submitted");
+            //Take a screenshot
+            File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
         } else {
             System.out.println("Contract Order detected: order not submitted to avoid call-off");
         }
@@ -261,10 +285,6 @@ private int lineCount;
         
         driver.close();
         driver.quit();
-        
-    }
-
-    public void runContractTest(String[] testDetails, String[] custDetails, String[][] lineDetails) {
         
     }
     

@@ -117,6 +117,7 @@ public class Cce_MainPage {
         System.out.println("----------------------------------------------------");
         
         driver.close();
+        driver.quit();
         
     } //Checks navigation bar works
     
@@ -184,7 +185,6 @@ public class Cce_MainPage {
                     String actualTitle = driver.findElement(TestSuite.breadcrumbLocator).getText();
                     
                     Verify.verify(expectedTitle.equals(actualTitle),"***"+expectedTitle + " page title not displayed as expected, or page incorrectly linked***");
-                    System.out.println(expectedTitle + " page correctly linked");
                     
                     String fileName;
                     if (expectedTitle.contains("|")) {
@@ -255,6 +255,7 @@ public class Cce_MainPage {
             
         System.out.println("----------------------------------------------------");
         driver.close();
+        driver.quit();
     }
     
 }

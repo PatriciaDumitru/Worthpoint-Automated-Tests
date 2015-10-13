@@ -120,14 +120,16 @@ public class Ecomm_SUSST_UORT {
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
         orderConf.waitForLoad();
         
+        //orderConf.setRequestor(TestSuite.custDetails[2]);
+        
         System.out.println("Map confirmed. Submitting order...");
              
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\3Upload Confirmation page.png"));                    
         
-        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSubmit();
-        pendPage.waitForLoad();
+        Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        outOrdersPage.waitForLoad();
         
         System.out.println("Order submitted. Navigating to Outstanding Upload Order...");
         
@@ -135,13 +137,14 @@ public class Ecomm_SUSST_UORT {
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\4Pending Approval List Page.png"));
                 
-        String orderNo = pendPage.getOrderNo(1);
+        String orderNo = outOrdersPage.getOrderNumber(1);
         
         System.out.println("Order number: "+orderNo);
         
         
         
         driver.close();
+        driver.quit();
         
         System.out.println("----------------------------------------------------");
         

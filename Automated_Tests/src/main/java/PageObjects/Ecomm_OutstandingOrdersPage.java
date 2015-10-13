@@ -16,7 +16,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         super(driver);
     }
     
-    public int getOrderRow(String poNumber) {
+    public int getRow(String poNumber) {
         //wait for table to load
         boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No."));
         boolean found = false;

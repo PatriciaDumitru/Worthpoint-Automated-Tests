@@ -5,6 +5,7 @@ import AutomationFramework.TestSuite;
 import PageObjects.WBA_ContinuePage;
 import PageObjects.WBA_LoginPage;
 import PageObjects.WBA_SelectionPage;
+import com.google.common.base.Verify;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -118,5 +119,126 @@ public class Ecomm_MainPage {
         
         driver.close();   
 
+    }
+    
+    @Ignore @Test //EComm Page :: Link checks (only works up to Reports due to breadcrumb locator)
+    public void ECOMM2() throws IOException {
+        //New driver instance
+        WebDriver driver = new ChromeDriver();
+		
+        //New eComm base test to handle log-in and navigation
+        Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+        PageObjects.Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("eComm Main Page ECOMM2: Navigation link checks", "no ID");
+        
+        String[][] expectedSubMenu = new String[][] {
+            {"manual entry","upload orders","from existing bulk order","shade not available","waiting for shade code"},
+            {"outstanding orders list","outstanding orders draft list","outstanding upload draft","pending approval list","denied order"},
+            {},
+            {"invoices","delivery notes","summary of purcchase","outstanding payments","my reports","privacy policy and term & condition"},
+            {"real upload failed files","backend in process files","backend failed files","ftp failed files"},
+            {}            
+        };   
+        
+        int pageCount = 0;
+        
+        for (int count = 0; count < expectedSubMenu.length; count++) {
+            
+            By headerLocator = By.cssSelector("#topnav > li:nth-child("+(count+1)+")");
+            WebElement header = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(headerLocator));
+            
+            String expectedTitle = TestSuite.eCommExpectedTitles[pageCount];
+            
+            if (expectedSubMenu[count].length == 0) {
+
+                header.click();
+                System.out.println("header clicked");
+                WebElement breadcrumb = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(TestSuite.breadcrumbLocator2));
+                System.out.println("breadcrumb present");
+                if (!expectedTitle.equals("")) {
+                    String actualTitle = breadcrumb.getText();
+                    System.out.println("title expected");
+                    System.out.println(expectedTitle);
+                    Verify.verify(expectedTitle.equals(actualTitle),"eComm link checks: " + expectedTitle + " page not correctly linked/title incorrect");
+
+                    String fileName;
+                    if (expectedTitle.contains("|")) {
+                        String[] parts = expectedTitle.split("\\|");
+                        fileName = parts[1];
+                    } else {
+                        fileName = expectedTitle;
+                    }
+
+                    //Take a screenshot
+                    File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                    FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+pageCount+fileName+".png"));
+
+                    
+                } else {
+                    System.out.println("no title expected");
+                    String fileName;
+                    if (expectedTitle.contains("|")) {
+                        String[] parts = expectedTitle.split("\\|");
+                        fileName = parts[1];
+                    } else {
+                        fileName = expectedTitle;
+                    }
+
+                    //Take a screenshot
+                    File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                    FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+pageCount+fileName+".png"));
+                }
+                
+                pageCount++;
+                
+            } else {
+                
+                for (int subCount = 0; subCount < expectedSubMenu[count].length; subCount++) {
+                    expectedTitle = TestSuite.eCommExpectedTitles[pageCount];
+                    System.out.println(expectedTitle);
+                    System.out.println("subtab game");
+                    driver.findElement(headerLocator).click();
+                    System.out.println("header clicked");
+                    By subTabLocator = By.cssSelector("#topnav > li:nth-child("+(count+1)+") > div > div > ul > li:nth-child("+(subCount+1)+")");
+                    WebElement subTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(subTabLocator));
+         
+                    subTab.click();
+                    System.out.println("subtab clicked");
+                    String fileName = "";
+                    
+                    if (!expectedTitle.equals("")) {
+                        WebElement breadcrumb = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(TestSuite.breadcrumbLocator2));
+                    
+                        String actualTitle = breadcrumb.getText();
+                        System.out.println("breadcrumb got");
+
+                        if (expectedTitle.contains("|")) {
+                            String[] parts = expectedTitle.split("\\|");
+                            fileName = parts[1];
+                        } else {
+                            fileName = expectedTitle;
+                        }
+                        Verify.verify(expectedTitle.equals(actualTitle),"eComm link checks: " + expectedTitle + " page not correctly linked/title incorrect");
+                        
+                    } else {
+ 
+                        if (expectedTitle.contains("|")) {
+                            String[] parts = expectedTitle.split("\\|");
+                            fileName = parts[1];
+                        } else {
+                            fileName = expectedTitle;
+                        }
+                    }
+                    
+                    //Take a screenshot
+                    File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                    FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+pageCount+fileName+".png"));
+                    
+                    pageCount++;
+                    
+                }
+                
+            }
+        }
+        
     }
 }
