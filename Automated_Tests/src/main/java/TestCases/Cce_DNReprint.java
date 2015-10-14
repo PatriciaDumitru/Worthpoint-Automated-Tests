@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Cce_DNReprint {
     
-    @Test
+    @Test //DN Reprint Page :: Page checks
     public void DR1() throws IOException {
         //New driver object to control browser
         WebDriver driver = new ChromeDriver();
@@ -36,7 +36,7 @@ public class Cce_DNReprint {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\DN Reprint\\1DN Reprint page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\1DN Reprint page.png"));
         
         System.out.println("DN Reprint loaded.");
         
@@ -58,9 +58,9 @@ public class Cce_DNReprint {
         
         driver.close();
         
-    } //Check fields
+    }
     
-    @Test
+    @Test //DN Reprint Page :: Filter checks and confirm
     public void DR2() throws IOException {
                 
         //New driver object to control browser
@@ -82,7 +82,7 @@ public class Cce_DNReprint {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\DN Reprint\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing orders...");
         
@@ -91,7 +91,7 @@ public class Cce_DNReprint {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\DN Reprint\\3Orders listed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\3Orders listed.png"));
         
         System.out.println("Orders listed. Pressing confirm...");
         
@@ -99,7 +99,7 @@ public class Cce_DNReprint {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\DN Reprint\\4Confirm pressed.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\4Confirm pressed.png"));
         
         System.out.println("Confirm pressed. Pressing print...");
         
@@ -114,7 +114,7 @@ public class Cce_DNReprint {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\CCE\\DN Reprint\\5DN displayed.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\5DN displayed.png"));
         
         if (TestSuite.printingEnabled) {           
             dnReprint = printPage.pressPrint();
@@ -130,7 +130,7 @@ public class Cce_DNReprint {
         
         driver.close();
 
-    } //Filter and confirm
+    }
     
     
 }

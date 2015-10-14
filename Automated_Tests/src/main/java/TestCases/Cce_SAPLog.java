@@ -103,6 +103,6 @@ public class Cce_SAPLog {
         
         System.out.println("----------------------------------------------------");
         driver.close();
-
+        driver.quit();
     }
 }

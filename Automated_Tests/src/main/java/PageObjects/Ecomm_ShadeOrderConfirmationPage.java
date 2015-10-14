@@ -16,6 +16,7 @@ public class Ecomm_ShadeOrderConfirmationPage extends WBA_BasePage {
     By backButton = By.id("backLink");
     By cancelButton = By.id("cancel1");
     By sendForApprovalButton = By.cssSelector("#BulkOrderShadenotavailableConfirmForm > div:nth-child(7) > div:nth-child(3) > input");
+    By submitButton = By.id("submit1");
     
     public Ecomm_ShadeOrderConfirmationPage(WebDriver driver) {
         super(driver);
@@ -55,6 +56,12 @@ public class Ecomm_ShadeOrderConfirmationPage extends WBA_BasePage {
         WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sendForApprovalButton));
         driver.findElement(sendForApprovalButton).click();
         return new Ecomm_PendingApprovalListPage(driver);
+    }
+    
+    public Ecomm_OutstandingOrdersPage pressSubmit() {
+        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitButton));
+        driver.findElement(submitButton).click();
+        return new Ecomm_OutstandingOrdersPage(driver);
     }
     
     public void checkFields() {

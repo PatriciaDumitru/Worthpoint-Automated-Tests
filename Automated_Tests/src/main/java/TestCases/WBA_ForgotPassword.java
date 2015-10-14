@@ -27,6 +27,8 @@ public class WBA_ForgotPassword {
         //navigate to QA page
         driver.get(TestSuite.targetURL);
         
+        driver.manage().window().maximize();
+        
         //new login page
         WBA_LoginPage liPage = new WBA_LoginPage(driver);
         

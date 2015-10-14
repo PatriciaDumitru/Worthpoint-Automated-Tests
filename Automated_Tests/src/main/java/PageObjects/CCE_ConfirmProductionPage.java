@@ -259,8 +259,13 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     public CCE_ConfirmProductionPage pressCancel() {
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
         driver.findElement(cancelButton).click();
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
-        alert.accept();
+        try {
+            Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+            alert.accept(); 
+        } catch (Exception e) {
+            System.out.println("No alert upon cancel.");
+        }
+
         return this;
     }
     

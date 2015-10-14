@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -28,7 +29,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Cce_MainPage {
     
-    @Test //CCE Main Page :: Navigation bar check
+    @Ignore @Test //CCE Main Page :: Navigation bar check
     public void CCE1() throws IOException {
         
         System.out.println("TEST: CCE HOME PAGE");
@@ -199,7 +200,7 @@ public class Cce_MainPage {
                     
                     pageCounter++;
                 } else {
-                    
+                    header.click();
                     String fileName;
                     if (expectedTitle.contains("|")) {
                         String[] titleParts = expectedTitle.split("\\|");
@@ -246,8 +247,11 @@ public class Cce_MainPage {
                         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
                         FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
 
-                        pageCounter++;
-                    }                  
+                        
+                    }
+                    
+                    pageCounter++;
+                    
                 }
             }
             

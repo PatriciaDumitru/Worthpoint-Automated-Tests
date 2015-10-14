@@ -50,26 +50,10 @@ public class Ecomm_CO_ME {
 
   @Test //Manual Entry Page :: Contract order expecting "No matching contract reference" error
   public void COME1() throws Exception {
-    driver.get(baseUrl + "/");
-    for (int second = 0;; second++) {
-    	if (second >= 60) fail("timeout");
-    	try { if (isElementPresent(By.id("UserUsername"))) break; } catch (Exception e) {}
-    	Thread.sleep(1000);
-    }
-
-    driver.findElement(By.id("UserUsername")).clear();
-    driver.findElement(By.id("UserUsername")).sendKeys("joecontract@coats.com");
     
-    driver.findElement(By.id("UserPassword")).clear();
-    driver.findElement(By.id("UserPassword")).sendKeys("password");
+    Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #1", "CO_ME_1", TestSuite.validCustUsername, TestSuite.validCustPassword);
     
-    driver.findElement(By.cssSelector("input.loginbutton")).click();
-    
-    driver.findElement(By.xpath("//div[@id='wrapper']/div[4]/a[2]/img")).click();
-    
-    driver.findElement(By.xpath("//area[4]")).click();
-    
-    Ecomm_MainPage eComm = new Ecomm_MainPage(driver);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     CommonTask.waitForPageLoad(driver);
     
@@ -104,17 +88,8 @@ public class Ecomm_CO_ME {
     File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\3Material details entered.png"));
     
-    mePage.pressNext();
-    
-    try {
-        Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-        alert2.accept();
-    } catch (Exception e) {
-        System.out.println("No additional alerts");
-    }
-    
-    
-    CommonTask.waitForPageLoad(driver);
+    Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
+    orderConf.waitForLoad();
     
     //Take a screenshot
     File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -128,17 +103,23 @@ public class Ecomm_CO_ME {
     FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\5Error expected - Confirmation page scrolled.png"));
     
     driver.findElement(By.linkText("Line with Error")).click();
-    CommonTask.waitForOverlay(driver,overlayContent);
+    Ecomm_OrderViewPage viewPage = new Ecomm_OrderViewPage(driver);
+    viewPage.waitForContent();
     
     //Take a screenshot
     File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\6Error line view.png"));
     
-    CommonTask.closeView(driver);
+    viewPage.closeView();
+    viewPage.waitForInvisibility();
     
-    Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-    assertTrue(alert2.getText().matches("^Do you want to cancel the current operation[\\s\\S]$"));
-    alert2.accept();
+    try {
+        Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        assertTrue(alert2.getText().matches("^Do you want to cancel the current operation[\\s\\S]$"));
+        alert2.accept();
+    } catch (Exception e) {
+        System.out.println("No alert upon view close");
+    }
     
     if (TestSuite.contractOrderCallOff) {
         driver.findElement(submitButton).click();
@@ -148,36 +129,17 @@ public class Ecomm_CO_ME {
         CommonTask.waitForPageLoad(driver);
         
     }
-    
-    
   }
 
   @Test //Manual Entry Page :: Contract Order expecting validation success
   public void COME2() throws Exception {
-      driver.get(baseUrl + "/");
-    for (int second = 0;; second++) {
-    	if (second >= 60) fail("timeout");
-    	try { if (isElementPresent(By.id("UserUsername"))) break; } catch (Exception e) {}
-    	Thread.sleep(1000);
-    }
+    Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #2", "CO_ME_2", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    
+    Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
+    mePage.waitForLoad();
 
-    driver.findElement(By.id("UserUsername")).clear();
-    driver.findElement(By.id("UserUsername")).sendKeys("joecontract@coats.com");
-    
-    driver.findElement(By.id("UserPassword")).clear();
-    driver.findElement(By.id("UserPassword")).sendKeys("password");
-    
-    driver.findElement(By.cssSelector("input.loginbutton")).click();
-    
-    driver.findElement(By.xpath("//div[@id='wrapper']/div[4]/a[2]/img")).click();
-    
-    driver.findElement(By.xpath("//area[4]")).click();
-    
-    Ecomm_MainPage eComm = new Ecomm_MainPage(driver);
-    eComm.clickManualEntry();
-    CommonTask.waitForPageLoad(driver);  
-
-    CommonTask.setSearchField(driver, buyersField, TestSuite.custDetails[3]);
+    mePage.setBuyers(TestSuite.custDetails[3]);
     
     driver.findElement(poField).clear();
     String po = CommonTask.generatePO("contract");
@@ -196,12 +158,17 @@ public class Ecomm_CO_ME {
     driver.findElement(lineRefField).clear();
     driver.findElement(lineRefField).sendKeys(TestSuite.conOrdLineRef);
     
-    driver.findElement(By.id("next")).click();
+    Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     
-    Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
-    assertTrue(alert.getText().matches("^Do you want to SUBMIT the order[\\s\\S]$"));
-    alert.accept();
+    try {
+        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        assertTrue(alert.getText().matches("^Do you want to SUBMIT the order[\\s\\S]$"));
+        alert.accept();
+    } catch (Exception e) {
+        System.out.println("No alert before confirmation");
+    }
     
+    orderConf.waitForLoad();
     CommonTask.waitForPageLoad(driver);
     
     //Take a screenshot
@@ -227,20 +194,17 @@ public class Ecomm_CO_ME {
   
   @Test //Manual Entry Page :: Contract Order using Quantity/LineRef/ContractPO expecting validation success
   public void COME3() throws Exception {
-    driver.get(baseUrl + "/");
-    driver.findElement(By.id("UserUsername")).clear();
-    driver.findElement(By.id("UserUsername")).sendKeys("joecontract@coats.com");
-    driver.findElement(By.id("UserPassword")).clear();
-    driver.findElement(By.id("UserPassword")).sendKeys("password");
-    driver.findElement(By.cssSelector("input.loginbutton")).click();
-    driver.findElement(By.xpath("//div[@id='wrapper']/div[4]/a[2]/img")).click();
-    driver.findElement(By.cssSelector("area[alt=\"Coats eComm\"]")).click();
-    Ecomm_MainPage eCommPage = new Ecomm_MainPage(driver);
-    Ecomm_ManualEntryPage mePage = eCommPage.clickManualEntry();
+    
+    Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #3", "CO_ME_3", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
+    
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(By.id("BulkOrderPoNumber")).sendKeys(po);
+    
     System.out.println("PO used: " + po);
+    
     mePage.setBuyers("*OTHERS*");
     driver.findElement(By.id("quantity0")).clear();
     driver.findElement(By.id("quantity0")).sendKeys("1");
@@ -268,8 +232,8 @@ public class Ecomm_CO_ME {
         driver.findElement(submitButton).click();
         CommonTask.waitForPageLoad(driver);
         //Take a screenshot
-    File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\11Order confirmed.png"));
+        File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\11Order confirmed.png"));
     } else {
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
@@ -277,23 +241,15 @@ public class Ecomm_CO_ME {
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\11Order cancelled.png"));
     }
-    
-    
-    
   }
   
   @Test //Manual Entry Page :: Conract Order using all but quantity expecting validation success
   public void COME4() throws Exception {
-    driver.get(baseUrl);
-    driver.findElement(By.id("UserUsername")).clear();
-    driver.findElement(By.id("UserUsername")).sendKeys("joecontract@coats.com");
-    driver.findElement(By.id("UserPassword")).clear();
-    driver.findElement(By.id("UserPassword")).sendKeys("password");
-    driver.findElement(By.cssSelector("input.loginbutton")).click();
-    driver.findElement(By.xpath("//div[@id='wrapper']/div[4]/a[2]/img")).click();
-    driver.findElement(By.xpath("//area[4]")).click();
-    Ecomm_MainPage eCommPage = new Ecomm_MainPage(driver);
-    Ecomm_ManualEntryPage mePage = eCommPage.clickManualEntry();
+    
+    Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #4", "CO_ME_4", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
+    
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     driver.findElement(By.id("BulkOrderPoNumber")).sendKeys("ContractPO");
     mePage.setBuyers(TestSuite.custDetails[3]);
@@ -332,17 +288,11 @@ public class Ecomm_CO_ME {
   
   @Test //Manual Entry Page :: Contract Order using all but Contract PO expecting error
   public void COME5() throws Exception {
-      driver.get(baseUrl);
-    driver.findElement(By.id("UserUsername")).clear();
-    driver.findElement(By.id("UserUsername")).sendKeys("joecontract@coats.com");
-    driver.findElement(By.id("UserPassword")).clear();
-    driver.findElement(By.id("UserPassword")).sendKeys("password");
-    driver.findElement(By.cssSelector("input.loginbutton")).click();
-    driver.findElement(By.xpath("//div[@id='wrapper']/div[4]/a[2]/img")).click();
-    driver.findElement(By.cssSelector("area[alt=\"Coats eComm\"]")).click();
-    Ecomm_MainPage ecommPage = new Ecomm_MainPage(driver);
-    Ecomm_ManualEntryPage mePage = ecommPage.clickManualEntry();
+    Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #5", "CO_ME_5", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     mePage.waitForLoad();
+    
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     driver.findElement(By.id("BulkOrderPoNumber")).sendKeys("TEST ZCQ ARUN 02");
     mePage.setBuyers(TestSuite.custDetails[3]);
@@ -353,12 +303,18 @@ public class Ecomm_CO_ME {
     driver.findElement(By.id("txtContractLine0")).sendKeys("10");
     
     //Take a screenshot
-        File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\14All but contractPO entered.png"));
+    File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+    FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\14All but contractPO entered.png"));
 
     driver.findElement(By.id("next")).click();
-    Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-    alert.accept();
+    
+    try {
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+    } catch (Exception e) {
+        System.out.println("No alert before confirmation");
+    }  
+    
     try {
         Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert2.accept();
@@ -379,16 +335,11 @@ public class Ecomm_CO_ME {
   
   @Test //Manual Entry Page :: Contract Order using only Contract PO expecting error
   public void COME6() throws Exception {
-    driver.get(baseUrl);
-    driver.findElement(By.id("UserUsername")).clear();
-    driver.findElement(By.id("UserUsername")).sendKeys("joecontract@coats.com");
-    driver.findElement(By.id("UserPassword")).clear();
-    driver.findElement(By.id("UserPassword")).sendKeys("password");
-    driver.findElement(By.cssSelector("input.loginbutton")).click();
-    driver.findElement(By.xpath("//div[@id='wrapper']/div[4]/a[2]/img")).click();
-    driver.findElement(By.xpath("//area[4]")).click();
-    Ecomm_MainPage eCommPage = new Ecomm_MainPage(driver);
-    Ecomm_ManualEntryPage mePage = eCommPage.clickManualEntry();
+    
+    Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #6", "CO_ME_6", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
+    
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     driver.findElement(By.id("BulkOrderPoNumber")).sendKeys("ContractPO");
     mePage.setBuyers(TestSuite.custDetails[3]);
@@ -431,16 +382,11 @@ public class Ecomm_CO_ME {
   
   @Test //Manual Entry Page :: Contract Order using only quantity expecting error
   public void COME7() throws Exception {
-    driver.get(baseUrl);
-    driver.findElement(By.id("UserUsername")).clear();
-    driver.findElement(By.id("UserUsername")).sendKeys("joecontract@coats.com");
-    driver.findElement(By.id("UserPassword")).clear();
-    driver.findElement(By.id("UserPassword")).sendKeys("password");
-    driver.findElement(By.cssSelector("input.loginbutton")).click();
-    driver.findElement(By.xpath("//div[@id='wrapper']/div[4]/a[2]/img")).click();
-    driver.findElement(By.cssSelector("area[alt=\"Coats eComm\"]")).click();
-    Ecomm_MainPage eCommPage = new Ecomm_MainPage(driver);
-    Ecomm_ManualEntryPage mePage = eCommPage.clickManualEntry();
+    
+    Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #7", "CO_ME_7", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
+    
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     driver.findElement(By.id("BulkOrderPoNumber")).sendKeys("TEST ZCQ ARUN 02");
     mePage.setBuyers(TestSuite.custDetails[3]);
@@ -480,6 +426,7 @@ public class Ecomm_CO_ME {
   public void tearDown() throws Exception {
     driver.close();
     driver.quit();
+      System.out.println("----------------------------------------------------");
     String verificationErrorString = verificationErrors.toString();
     if (!"".equals(verificationErrorString)) {
       fail(verificationErrorString);

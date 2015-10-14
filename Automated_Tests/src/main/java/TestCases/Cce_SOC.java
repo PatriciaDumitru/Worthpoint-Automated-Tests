@@ -42,7 +42,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\1Order Samples Page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\1Order Samples Page.png"));
         
         System.out.println("Order samples loaded. Checking Customer Name, Customer Code, and Requestor fields...");
         
@@ -57,7 +57,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\2Customer details entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\2Customer details entered.png"));
         
         CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
         addOrder.waitForLoad();
@@ -66,7 +66,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\3Prompt submitted.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\3Prompt submitted.png"));
         
         //Check all fields are clickable
         addOrder.checkFields();
@@ -79,7 +79,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Order Samples\\4Order cancelled.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\4Order cancelled.png"));
         
         System.out.println("Order cancelled.");
         

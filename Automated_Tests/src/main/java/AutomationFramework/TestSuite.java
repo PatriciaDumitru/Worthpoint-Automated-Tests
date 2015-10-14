@@ -2,34 +2,7 @@
 package AutomationFramework;
 
 
-import TestCases.Ecomm_MainPage;
-import TestCases.Cce_ConfirmProduction;
-import TestCases.Cce_DNReprint;
-import TestCases.Cce_FCETaskStatus;
-import TestCases.Cce_Feedback;
-import TestCases.Cce_Hub;
-import TestCases.Cce_Inbox;
-import TestCases.Cce_LRMLog;
-import TestCases.Cce_MainPage;
-import TestCases.Cce_OrderCycleTime;
-import TestCases.Cce_OrderStatus;
-import TestCases.Cce_RefillCabinet;
-import TestCases.Cce_SAPLog;
-import TestCases.Cce_SOC;
-import TestCases.Cce_TotalOrders;
-import TestCases.Ecomm_Dashboard;
-import TestCases.Ecomm_OOD;
-import TestCases.Ecomm_Reports;
-import TestCases.Ecomm_SAPInterfaceLog;
-import TestCases.Ecomm_SUSST_FEBO;
-import TestCases.Ecomm_SUSST_ME;
-import TestCases.Ecomm_SUSST_UORT;
-import TestCases.Ecomm_Shade;
-import TestCases.Generated.Ecomm_CO_ME;
-import TestCases.Generated.Ecomm_CO_UORT;
-import TestCases.WBA_ForgotPassword;
-import TestCases.WBA_Generated;
-import TestCases.WBA_Login;
+import TestCases.Ecomm_ProductAvailabilityCheck;
 import java.net.MalformedURLException;
 
 import org.junit.After;
@@ -48,7 +21,7 @@ import org.openqa.selenium.By;
     
     //WBA_Login.class,
     //WBA_ForgotPassword.class,
-    WBA_Generated.class,
+    //WBA_Generated.class,
     //Ecomm_MainPage.class,
     //Cce_MainPage.class,
     //Cce_SOC.class,
@@ -74,6 +47,8 @@ import org.openqa.selenium.By;
     //Ecomm_Dashboard.class, 
     //Ecomm_CO_ME.class,
     //Ecomm_CO_UORT.class,
+    Ecomm_ProductAvailabilityCheck.class
+    
 })
 
 public class TestSuite {
@@ -85,9 +60,9 @@ public class TestSuite {
     
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe";
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_28C.xlsx"; 
-    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_43.xlsx";
-    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_44.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_32.xlsx"; 
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_49.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_50.xlsx";
     public static String createTestFilepath = "C:\\Selenium\\CreateTest.xlsx";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
     public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
@@ -121,17 +96,21 @@ public class TestSuite {
             "User Types","Coats Users","","Lrm Log","SAP Log",""
     };
     
-    public static String[] eCommExpectedTitles = {"Orders | Manual Entry","","Orders | From Existing Bulk Order",
+    public static String[][] eCommExpectedTitles = {
+        {"Orders | Manual Entry","","Orders | From Existing Bulk Order",
         "Orders | Shade Not Available","Orders | Waiting For Shade Code","Orders | Outstanding","Orders | Drafts",
         "Orders | Upload Drafts","Orders | Pending Approval List","Orders | Denied Order List","SAP Interface Log",
         "Reports | Invoices","Reports | Delivery Notes","Reports | Summary of Purchase","Reports | Outstanding Payments",
         "Reports | Customer Care","Terms and Conditions Report","Real Upload Failed Files","Backend In Process Files",
         "Backend Failed Files","FTP Failed Files",""     
+        },
+        {"2","","2","2","2","2","2","2","2","2","2","3","3","3","3","1","2","2","2","2","2",""}
     };
     
     //Generic breadcrumb locator
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
     public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
+    public static By breadcrumbLocator3 = By.cssSelector("#list_page_breadcrumb > h2");
     
     //Customer details to be used in manual entry tests
     public static String[] custDetails = {"Life Easy Customer","CCE HUB OFFICES","approver 1 test","*OTHERS*","AutoTestPO_"};
@@ -204,9 +183,9 @@ public class TestSuite {
     
     //Order numbers. sampRequester is the requester for sampOrderNo, sampCustName is the customer name for sampOrderNo
     public static String bulkOrderNo = "5020757";
-    public static String sampOrderNo = "1129107";
+    public static String sampOrderNo = "1129108";
     public static String sampCustName = "Life Easy Customer";
-    public static String sampRequester = "Test two";
+    public static String sampRequester = "approver 1 test";
     
     //MUM types for CCE
     public static String copMUM = "Cop";

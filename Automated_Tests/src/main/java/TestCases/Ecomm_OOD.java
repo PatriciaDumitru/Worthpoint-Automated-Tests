@@ -93,6 +93,7 @@ public class Ecomm_OOD {
         }
         
         driver.close();
+        driver.quit();
         
         System.out.println("----------------------------------------------------");
     }

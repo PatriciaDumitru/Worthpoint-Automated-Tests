@@ -97,19 +97,28 @@ public class Cce_ConfirmProduction {
         System.out.println("Closing view...");
         
         viewPage.closeView();
+        viewPage.waitForInvisibility();
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\CCE\\Confirm Production\\6DN View.png"));
         
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
-        String alertMsg = alert.getText();
+        try {
+            Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+            String alertMsg = alert.getText();
         
-        System.out.println("View closed. Alert appeared: "+alertMsg +". Dismissing alert...");
+            System.out.println("View closed. Alert appeared: "+alertMsg +". Dismissing alert...");
         
-        alert.dismiss();
+            alert.dismiss();
+            
+            System.out.println("Alert dismissed.");
+        } catch (Exception e) {
+            System.out.println("No additional alerts upon close.");
+        }
         
-        System.out.println("Alert dismissed. Selecting MUM Type...");
+        
+        
+        System.out.println("Selecting MUM Type...");
         
         cpPage.setMUMType(TestSuite.copMUM);
         
@@ -174,8 +183,8 @@ public class Cce_ConfirmProduction {
         
         System.out.println("Criteria entered. Pressing reset...");
         
-        cpPage.pressReset();
-        cpPage.waitForLoad();
+        CCE_ConfirmProductionPage cpPage2 = cpPage.pressReset();
+        cpPage2.waitForLoad();
         
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -183,8 +192,8 @@ public class Cce_ConfirmProduction {
         
         System.out.println("Filter reset. Pressing cancel...");
         
-        cpPage.pressCancel();
-        cpPage.waitForLoad();
+        cpPage2.pressCancel();
+        cpPage2.waitForLoad();
         
         //Take a screenshot
         File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

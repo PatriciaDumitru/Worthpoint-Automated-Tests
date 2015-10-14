@@ -35,7 +35,7 @@ public class Ecomm_MainPage extends WBA_BasePage {
     static By backendIPSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(2)");
     static By backendFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(3)");
     static By ftpFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(4) > a"); 
-    
+    static By pacTab = By.cssSelector("#topnav > li:nth-child(3)");
     
     public Ecomm_MainPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -149,11 +149,18 @@ public class Ecomm_MainPage extends WBA_BasePage {
 
     public Ecomm_SAPInterfaceLogPage clickSAPInterfaceLog() {
     	//Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(sapInterfaceLogTab)));
+        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(sapInterfaceLogTab)));
         
         driver.findElement(sapInterfaceLogTab).click();
         
         return new Ecomm_SAPInterfaceLogPage(driver);
+    }
+    
+    public Ecomm_ProductAvailabilityCheckPage clickProductAvailabilityCheck() {
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(pacTab));
+        driver.findElement(pacTab).click();
+        return new Ecomm_ProductAvailabilityCheckPage(driver);
     }
     
     public Ecomm_InvoicesPage clickInvoices() {

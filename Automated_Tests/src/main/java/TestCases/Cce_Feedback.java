@@ -86,6 +86,8 @@ public class Cce_Feedback {
         System.out.println("Criteria entered. Entering Yes/No: ");
         fbPage.pressYesSatisfied();
         
+        fbPage.setRequester(TestSuite.sampRequester);
+        
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\2Criteria entered.png"));

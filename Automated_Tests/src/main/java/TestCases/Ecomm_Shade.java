@@ -4,6 +4,7 @@ package TestCases;
 import AutomationFramework.TestSuite;
 import PageObjects.Ecomm_OrderInformationPage;
 import PageObjects.Ecomm_OrderViewPage;
+import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_PendingApprovalListPage;
 import PageObjects.Ecomm_ShadeOrderConfirmationPage;
 import PageObjects.Ecomm_ShadeNotAvailablePage;
@@ -13,10 +14,13 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class Ecomm_Shade {
@@ -93,6 +97,15 @@ public class Ecomm_Shade {
         System.out.println("View closed. Editing top item...");
         
         Ecomm_ShadeOrderConfirmationPage snaConf = snaPage.pressEdit();
+        
+        try {
+            Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+            alert.accept();
+            System.out.println("Alert appeared: " + alert.getText());
+        } catch (Exception e) {
+            System.out.println("No alert.");
+        }
+        
         snaConf.waitForLoad();
         
         //Take a screenshot
@@ -133,8 +146,8 @@ public class Ecomm_Shade {
         File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile9,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\9Information view closed.png"));
         
-        Ecomm_PendingApprovalListPage pendPage = snaConf.pressSend();
-        pendPage.waitForLoad();
+        Ecomm_OutstandingOrdersPage outPage = snaConf.pressSubmit();
+        outPage.waitForLoad();
         
         System.out.println("Order sent for approval.");
         
@@ -189,6 +202,13 @@ public class Ecomm_Shade {
         
         wfsPage.pressReset();
         wfsPage.waitForLoad();
+        
+        System.out.println("Filter reset.");
+        
+        System.out.println("----------------------------------------------------");
+        
+        driver.close();
+        driver.quit();
     }
     
 }
