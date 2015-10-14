@@ -1,7 +1,8 @@
 
 package TestCases;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.Categories;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.Ecomm_OrderInformationPage;
 import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -22,7 +24,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
+@Category(Categories.eComm.class)
 public class Ecomm_Shade {
     
     @Test //Shade Not Available Page :: Page and filter checks, view and edit
@@ -41,7 +43,7 @@ public class Ecomm_Shade {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\1Shade Not Available Page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\1Shade Not Available Page.png"));
         
         System.out.println("Shade Not Available page reached. Checking title...");
         
@@ -56,11 +58,11 @@ public class Ecomm_Shade {
         System.out.println("Fields checked. Entering filter criteria...");
         
         snaPage.setSalesOrg("ID50");
-        snaPage.setCustName(TestSuite.custDetails[0]);
+        snaPage.setCustName(TestSuiteOLD.custDetails[0]);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing records...");
         
@@ -69,7 +71,7 @@ public class Ecomm_Shade {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\3Records listed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\3Records listed.png"));
         
         System.out.println("Records listed. Resetting filter...");
         
@@ -78,7 +80,7 @@ public class Ecomm_Shade {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\4Filter reset.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\4Filter reset.png"));
         
         System.out.println("Filter reset. Viewing top record...");
         
@@ -87,7 +89,7 @@ public class Ecomm_Shade {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\5Order view displayed.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\5Order view displayed.png"));
         
         System.out.println("View displayed. Closing view...");
         
@@ -110,7 +112,7 @@ public class Ecomm_Shade {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\6Shade Not Available Order Confirmation Page.png"));
+        FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\6Shade Not Available Order Confirmation Page.png"));
         
         System.out.println("Shade Not Available Order Confirmation Page reached. Checking fields...");
         
@@ -124,16 +126,16 @@ public class Ecomm_Shade {
         
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\7Order Information Page.png"));
+        FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\7Order Information Page.png"));
         
         System.out.println("Information page reached. Setting shade code and required date...");
         
-        infoPage.setShadeCode(TestSuite.expShadeCode);
+        infoPage.setShadeCode(TestSuiteOLD.expShadeCode);
         infoPage.setRequiredDate();
         
         //Take a screenshot
         File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile8,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\8Shade code set.png"));
+        FileUtils.copyFile(scrFile8,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\8Shade code set.png"));
         
         System.out.println("Details set. Submitting order information...");
         
@@ -144,7 +146,7 @@ public class Ecomm_Shade {
         
         //Take a screenshot
         File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile9,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\9Information view closed.png"));
+        FileUtils.copyFile(scrFile9,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\9Information view closed.png"));
         
         Ecomm_OutstandingOrdersPage outPage = snaConf.pressSubmit();
         outPage.waitForLoad();
@@ -153,7 +155,7 @@ public class Ecomm_Shade {
         
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile10,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\10Order submitted.png"));
+        FileUtils.copyFile(scrFile10,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\10Order submitted.png"));
         
         System.out.println("----------------------------------------------------");
         
@@ -191,7 +193,7 @@ public class Ecomm_Shade {
         System.out.println("Fields checked. Entering filter criteria...");
         
         wfsPage.setSalesOrg("ID50");
-        wfsPage.setCustName(TestSuite.custDetails[0]);
+        wfsPage.setCustName(TestSuiteOLD.custDetails[0]);
         
         System.out.println("Criteria entered. Listing records...");
         

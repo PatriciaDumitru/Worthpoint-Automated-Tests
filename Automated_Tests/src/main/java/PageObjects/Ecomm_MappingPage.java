@@ -2,7 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -271,16 +271,16 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         Assert.assertTrue("Mapping page: Sales organisation field not displayed", this.getSalesOrgField().isDisplayed());
         Assert.assertTrue("Mapping page: Sales Organisation label incorrectly displayed",this.getSalesOrgLabel().getText().equals("Sales Organization"));
         inputKeys.click(this.getSalesOrgField()).build().perform();
-        inputKeys.sendKeys(TestSuite.salesOrganisation+Keys.ENTER).build().perform();
+        inputKeys.sendKeys(TestSuiteOLD.salesOrganisation+Keys.ENTER).build().perform();
         
         //Customer Name
         Assert.assertTrue("Mapping page: Customer name field not displayed",this.getCustNameField().isDisplayed());
         Assert.assertTrue("Mapping page: Custome name label incorrectly displayed",this.getCustNameLabel().getText().equals(mapping[0][0]));
         inputKeys.click(this.getCustNameField()).build().perform();
-        inputKeys.sendKeys(TestSuite.custDetails[0]).build().perform();
+        inputKeys.sendKeys(TestSuiteOLD.custDetails[0]).build().perform();
         //Wait for result to appear and press enter
         WebElement waitForResult = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(custNameResultLocator));
-        boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(custNameResultLocator, TestSuite.custDetails[0]));
+        boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(custNameResultLocator, TestSuiteOLD.custDetails[0]));
         inputKeys.sendKeys(Keys.ENTER);
         
         //Article

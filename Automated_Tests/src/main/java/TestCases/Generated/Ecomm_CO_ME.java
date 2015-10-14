@@ -1,7 +1,8 @@
 package TestCases.Generated;
 
+import AutomationFramework.Categories;
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
@@ -14,6 +15,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -22,6 +24,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Category(Categories.ContractOrder.class)
 public class Ecomm_CO_ME {
   private WebDriver driver;
   private String baseUrl;
@@ -48,20 +51,21 @@ public class Ecomm_CO_ME {
     driver.manage().window().maximize();
   }
 
+  @Category(Categories.OrderCreation.class)
   @Test //Manual Entry Page :: Contract order expecting "No matching contract reference" error
   public void COME1() throws Exception {
     
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #1", "CO_ME_1", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #1", "CO_ME_1", TestSuiteOLD.validCustUsername, TestSuiteOLD.validCustPassword);
     
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     CommonTask.waitForPageLoad(driver);
     
     //Take a screenshot
     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\1Manual Entry Page.png"));
+    FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\1Manual Entry Page.png"));
     
-    CommonTask.setSearchField(driver, buyersField, TestSuite.custDetails[3]);
+    CommonTask.setSearchField(driver, buyersField, TestSuiteOLD.custDetails[3]);
     
     driver.findElement(poField).clear();
     String po = CommonTask.generatePO("contract");
@@ -72,35 +76,35 @@ public class Ecomm_CO_ME {
     
     //Take a screenshot
     File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\2Cust Details entered.png"));
+    FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\2Cust Details entered.png"));
     
-    CommonTask.setSearchField(driver, articleField, TestSuite.conOrdArticle);
-    CommonTask.setSearchField(driver,shadeCodeField,TestSuite.conOrdShadeCode);
+    CommonTask.setSearchField(driver, articleField, TestSuiteOLD.conOrdArticle);
+    CommonTask.setSearchField(driver,shadeCodeField,TestSuiteOLD.conOrdShadeCode);
     driver.findElement(quantityField).clear();
-    driver.findElement(quantityField).sendKeys(String.valueOf(TestSuite.conOrdQty));
+    driver.findElement(quantityField).sendKeys(String.valueOf(TestSuiteOLD.conOrdQty));
     CommonTask.setDateField(driver, dateField);
     driver.findElement(contractPOField).clear();
     driver.findElement(contractPOField).sendKeys("random");
     driver.findElement(lineRefField).clear();
-    driver.findElement(lineRefField).sendKeys(TestSuite.conOrdLineRef);
+    driver.findElement(lineRefField).sendKeys(TestSuiteOLD.conOrdLineRef);
     
     //Take a screenshot
     File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\3Material details entered.png"));
+    FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\3Material details entered.png"));
     
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     orderConf.waitForLoad();
     
     //Take a screenshot
     File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\4Error expected - Confirmation page.png"));
+    FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\4Error expected - Confirmation page.png"));
     
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
     
     //Take a screenshot
     File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\5Error expected - Confirmation page scrolled.png"));
+    FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\5Error expected - Confirmation page scrolled.png"));
     
     driver.findElement(By.linkText("Line with Error")).click();
     Ecomm_OrderViewPage viewPage = new Ecomm_OrderViewPage(driver);
@@ -108,7 +112,7 @@ public class Ecomm_CO_ME {
     
     //Take a screenshot
     File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\6Error line view.png"));
+    FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\6Error line view.png"));
     
     viewPage.closeView();
     viewPage.waitForInvisibility();
@@ -121,7 +125,7 @@ public class Ecomm_CO_ME {
         System.out.println("No alert upon view close");
     }
     
-    if (TestSuite.contractOrderCallOff) {
+    if (TestSuiteOLD.contractOrderCallOff) {
         driver.findElement(submitButton).click();
         CommonTask.waitForPageLoad(driver);
     } else {
@@ -131,15 +135,16 @@ public class Ecomm_CO_ME {
     }
   }
 
+  @Category(Categories.OrderCreation.class)
   @Test //Manual Entry Page :: Contract Order expecting validation success
   public void COME2() throws Exception {
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #2", "CO_ME_2", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #2", "CO_ME_2", TestSuiteOLD.validCustUsername, TestSuiteOLD.validCustPassword);
     
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     mePage.waitForLoad();
 
-    mePage.setBuyers(TestSuite.custDetails[3]);
+    mePage.setBuyers(TestSuiteOLD.custDetails[3]);
     
     driver.findElement(poField).clear();
     String po = CommonTask.generatePO("contract");
@@ -148,15 +153,15 @@ public class Ecomm_CO_ME {
     
     CommonTask.waitForPageLoad(driver);
     
-    CommonTask.setSearchField(driver, articleField, TestSuite.conOrdArticle);
-    CommonTask.setSearchField(driver,shadeCodeField,TestSuite.conOrdShadeCode);
+    CommonTask.setSearchField(driver, articleField, TestSuiteOLD.conOrdArticle);
+    CommonTask.setSearchField(driver,shadeCodeField,TestSuiteOLD.conOrdShadeCode);
     driver.findElement(quantityField).clear();
-    driver.findElement(quantityField).sendKeys(String.valueOf(TestSuite.conOrdQty));
+    driver.findElement(quantityField).sendKeys(String.valueOf(TestSuiteOLD.conOrdQty));
     CommonTask.setDateField(driver, dateField);
     driver.findElement(contractPOField).clear();
-    driver.findElement(contractPOField).sendKeys(TestSuite.conOrdPO);
+    driver.findElement(contractPOField).sendKeys(TestSuiteOLD.conOrdPO);
     driver.findElement(lineRefField).clear();
-    driver.findElement(lineRefField).sendKeys(TestSuite.conOrdLineRef);
+    driver.findElement(lineRefField).sendKeys(TestSuiteOLD.conOrdLineRef);
     
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     
@@ -173,16 +178,16 @@ public class Ecomm_CO_ME {
     
     //Take a screenshot
     File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\7Validadtion success - Confirmation page.png"));
+    FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\7Validadtion success - Confirmation page.png"));
     
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
     
     //Take a screenshot
     File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\8Validadtion success - Confirmation page scrolled.png"));
+    FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\8Validadtion success - Confirmation page scrolled.png"));
     
-    if (TestSuite.contractOrderCallOff) {
+    if (TestSuiteOLD.contractOrderCallOff) {
         driver.findElement(submitButton).click();
         CommonTask.waitForPageLoad(driver);
     } else {
@@ -192,11 +197,12 @@ public class Ecomm_CO_ME {
     
   }
   
+  @Category(Categories.OrderCreation.class)
   @Test //Manual Entry Page :: Contract Order using Quantity/LineRef/ContractPO expecting validation success
   public void COME3() throws Exception {
     
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #3", "CO_ME_3", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #3", "CO_ME_3", TestSuiteOLD.validCustUsername, TestSuiteOLD.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
@@ -216,43 +222,44 @@ public class Ecomm_CO_ME {
     
     //Take a screenshot
     File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile9,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\9Quantity PO Line Ref entered.png"));
+    FileUtils.copyFile(scrFile9,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\9Quantity PO Line Ref entered.png"));
     
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     orderConf.waitForLoad();
     
     //Take a screenshot
     File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile10,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\10Order Confirmation page.png"));
+    FileUtils.copyFile(scrFile10,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\10Order Confirmation page.png"));
     
     Actions action = new Actions(driver);
     action.moveToElement(orderConf.getCancelButton()).build().perform();
     
-    if (TestSuite.contractOrderCallOff) {
+    if (TestSuiteOLD.contractOrderCallOff) {
         driver.findElement(submitButton).click();
         CommonTask.waitForPageLoad(driver);
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\11Order confirmed.png"));
+        FileUtils.copyFile(scrFile11,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\11Order confirmed.png"));
     } else {
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\11Order cancelled.png"));
+        FileUtils.copyFile(scrFile11,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\11Order cancelled.png"));
     }
   }
   
+  @Category(Categories.OrderCreation.class)
   @Test //Manual Entry Page :: Conract Order using all but quantity expecting validation success
   public void COME4() throws Exception {
     
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #4", "CO_ME_4", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #4", "CO_ME_4", TestSuiteOLD.validCustUsername, TestSuiteOLD.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     driver.findElement(By.id("BulkOrderPoNumber")).sendKeys("ContractPO");
-    mePage.setBuyers(TestSuite.custDetails[3]);
+    mePage.setBuyers(TestSuiteOLD.custDetails[3]);
     mePage.setDate(0);
     driver.findElement(By.id("txtContract0")).clear();
     driver.findElement(By.id("txtContract0")).sendKeys("40000992");
@@ -261,7 +268,7 @@ public class Ecomm_CO_ME {
     
     //Take a screenshot
     File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile9,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\12All but quantity entered.png"));
+    FileUtils.copyFile(scrFile9,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\12All but quantity entered.png"));
     
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     orderConf.waitForLoad();
@@ -269,33 +276,34 @@ public class Ecomm_CO_ME {
     Actions scroll = new Actions(driver);
     scroll.moveToElement(driver.findElement(cancelButton)).build().perform();
 
-    if (TestSuite.contractOrderCallOff) {
+    if (TestSuiteOLD.contractOrderCallOff) {
         Ecomm_OutstandingOrdersPage outPage = orderConf.pressSubmit();
         outPage.waitForLoad();
         CommonTask.waitForPageLoad(driver);
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile10,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\13Order confirmation.png"));       
+        FileUtils.copyFile(scrFile10,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\13Order confirmation.png"));       
     } else {
         Ecomm_ManualEntryPage mePage2 = orderConf.pressCancel();
         mePage2.waitForLoad();
         CommonTask.waitForPageLoad(driver);
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\13Order cancelled.png"));
+        FileUtils.copyFile(scrFile11,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\13Order cancelled.png"));
     }
   }
   
+  @Category(Categories.OrderCreation.class)
   @Test //Manual Entry Page :: Contract Order using all but Contract PO expecting error
   public void COME5() throws Exception {
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #5", "CO_ME_5", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #5", "CO_ME_5", TestSuiteOLD.validCustUsername, TestSuiteOLD.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     mePage.waitForLoad();
     
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     driver.findElement(By.id("BulkOrderPoNumber")).sendKeys("TEST ZCQ ARUN 02");
-    mePage.setBuyers(TestSuite.custDetails[3]);
+    mePage.setBuyers(TestSuiteOLD.custDetails[3]);
     driver.findElement(By.id("quantity0")).clear();
     driver.findElement(By.id("quantity0")).sendKeys("1");
     mePage.setDate(0);
@@ -304,7 +312,7 @@ public class Ecomm_CO_ME {
     
     //Take a screenshot
     File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\14All but contractPO entered.png"));
+    FileUtils.copyFile(scrFile11,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\14All but contractPO entered.png"));
 
     driver.findElement(By.id("next")).click();
     
@@ -330,26 +338,27 @@ public class Ecomm_CO_ME {
     
     //Take a screenshot
     File scrFile16 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile16,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\16ContractPO field yellow.png"));
+    FileUtils.copyFile(scrFile16,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\16ContractPO field yellow.png"));
   }
   
+  @Category(Categories.OrderCreation.class)
   @Test //Manual Entry Page :: Contract Order using only Contract PO expecting error
   public void COME6() throws Exception {
     
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #6", "CO_ME_6", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #6", "CO_ME_6", TestSuiteOLD.validCustUsername, TestSuiteOLD.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     driver.findElement(By.id("BulkOrderPoNumber")).sendKeys("ContractPO");
-    mePage.setBuyers(TestSuite.custDetails[3]);
+    mePage.setBuyers(TestSuiteOLD.custDetails[3]);
     mePage.setDate(0);
     driver.findElement(By.id("txtContract0")).clear();
     driver.findElement(By.id("txtContract0")).sendKeys("40000992");
     
     //Take a screenshot
     File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile11,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\17Only contract PO.png"));
+    FileUtils.copyFile(scrFile11,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\17Only contract PO.png"));
     
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
 
@@ -364,14 +373,14 @@ public class Ecomm_CO_ME {
     
     //Take a screenshot
     File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile12,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\18Order confirmation.png"));
+    FileUtils.copyFile(scrFile12,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\18Order confirmation.png"));
     driver.findElement(By.linkText("Line with Error")).click();
     Ecomm_OrderViewPage viewPage = new Ecomm_OrderViewPage(driver);
     viewPage.waitForContent();
     
     //Take a screenshot
     File scrFile13 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile13,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\19Error view.png"));
+    FileUtils.copyFile(scrFile13,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\19Error view.png"));
     
     viewPage.closeView();
     viewPage.waitForInvisibility();
@@ -380,23 +389,24 @@ public class Ecomm_CO_ME {
     
   }
   
+  @Category(Categories.OrderCreation.class)
   @Test //Manual Entry Page :: Contract Order using only quantity expecting error
   public void COME7() throws Exception {
     
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #7", "CO_ME_7", TestSuite.validCustUsername, TestSuite.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #7", "CO_ME_7", TestSuiteOLD.validCustUsername, TestSuiteOLD.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     driver.findElement(By.id("BulkOrderPoNumber")).sendKeys("TEST ZCQ ARUN 02");
-    mePage.setBuyers(TestSuite.custDetails[3]);
+    mePage.setBuyers(TestSuiteOLD.custDetails[3]);
     driver.findElement(By.id("quantity0")).clear();
     driver.findElement(By.id("quantity0")).sendKeys("1");
     mePage.setDate(0);
     
     //Take a screenshot
     File scrFile13 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile13,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\20Quantity only entered.png"));
+    FileUtils.copyFile(scrFile13,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\20Quantity only entered.png"));
     
     mePage.pressNext();
     Ecomm_ManualEntryPage mePage2 = new Ecomm_ManualEntryPage(driver);
@@ -418,7 +428,7 @@ public class Ecomm_CO_ME {
     
     //Take a screenshot
     File scrFile14 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile14,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\21Error received.png"));
+    FileUtils.copyFile(scrFile14,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\21Error received.png"));
     
   } 
   

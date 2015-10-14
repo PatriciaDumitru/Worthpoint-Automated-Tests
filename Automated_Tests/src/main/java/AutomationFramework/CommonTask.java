@@ -218,7 +218,7 @@ public class CommonTask {
         String PONumber = "null";
         try {
             //Access file to read
-            FileReader fr = new FileReader(TestSuite.idFilepath);
+            FileReader fr = new FileReader(TestSuiteOLD.idFilepath);
             BufferedReader br = new BufferedReader(fr);
             
             //Get current ID
@@ -231,7 +231,7 @@ public class CommonTask {
             fr.close();
             
             //Access file to write
-            FileWriter fw = new FileWriter(TestSuite.idFilepath);
+            FileWriter fw = new FileWriter(TestSuiteOLD.idFilepath);
             BufferedWriter bw = new BufferedWriter(fw);
             
             //Write incremented id to file
@@ -239,9 +239,9 @@ public class CommonTask {
             //Append the ID and type the PO number
             String prefix;
             if (type.equals("contract")) {
-                prefix = TestSuite.conOrdDetails[4];
+                prefix = TestSuiteOLD.conOrdDetails[4];
             } else {
-                prefix = TestSuite.custDetails[4];
+                prefix = TestSuiteOLD.custDetails[4];
             }
             
             PONumber = prefix+idString;       

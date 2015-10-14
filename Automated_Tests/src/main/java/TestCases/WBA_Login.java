@@ -1,7 +1,8 @@
 
 package TestCases;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.Categories;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.CCE_MainPage;
 import PageObjects.WBA_ContinuePage;
 import PageObjects.Ecomm_MainPage;
@@ -14,6 +15,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -26,6 +28,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Category(Categories.General.class)
 public class WBA_Login {
     
     @Test //Login Page :: Page checks
@@ -34,14 +37,14 @@ public class WBA_Login {
         
         WebDriver driver = new ChromeDriver();
         //navigate to QA site
-        driver.get(TestSuite.targetURL);
+        driver.get(TestSuiteOLD.targetURL);
         
         //new LoginPage
         WBA_LoginPage liPage = new WBA_LoginPage(driver);
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\Login and Forgot Password\\1Login Page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuiteOLD.screenshotsFilepath+"\\Login and Forgot Password\\1Login Page.png"));
         
         System.out.println("Asserting elements are displayed...");
         
@@ -78,7 +81,7 @@ public class WBA_Login {
         WBA_LoginPage liPage = new WBA_LoginPage(driver);
         
         //login with valid coats details
-        WBA_ContinuePage contPage = liPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        WBA_ContinuePage contPage = liPage.loginAs(TestSuiteOLD.validCoatsUsername,TestSuiteOLD.validCoatsPassword);
         
         System.out.println("Logged in. Asserting continue page elements are displayed...");
         
@@ -87,7 +90,7 @@ public class WBA_Login {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\Login and Forgot Password\\2Continue Page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuiteOLD.screenshotsFilepath+"\\Login and Forgot Password\\2Continue Page.png"));
         
         //Assert that all Continue Page elements load correctly
         Assert.assertTrue(contPage.getWelcomeImage().isDisplayed());
@@ -103,13 +106,13 @@ public class WBA_Login {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Login and Forgot Password\\3Selection Page.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\Login and Forgot Password\\3Selection Page.png"));
         
         //Scroll down and take another screenshot
         Actions action = new Actions(driver);
         action.sendKeys(Keys.PAGE_DOWN).build().perform();
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Login and Forgot Password\\3Selection Page2.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\Login and Forgot Password\\3Selection Page2.png"));
         
         //Assert that all WBA selection page elements load correctly
         Assert.assertTrue(selectionPage.getMainImage().isDisplayed());
@@ -120,7 +123,7 @@ public class WBA_Login {
 
         //Press CCE
         CCE_MainPage ccePage = selectionPage.pressCce();
-        boolean waitForLoad2 = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuite.ccePageTitle));
+        boolean waitForLoad2 = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuiteOLD.ccePageTitle));
         
         System.out.println("CCE main page reached. Asserting elements are displayed...");
         
@@ -139,7 +142,7 @@ public class WBA_Login {
         Ecomm_MainPage eCommPage = selectionPage.pressEcomm();
         
         //Wait for page to load
-        boolean waitForLoad3 = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuite.eCommPageTitle));
+        boolean waitForLoad3 = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuiteOLD.eCommPageTitle));
         
         System.out.println("eComm reached. Asserting elements are displayed...");
         

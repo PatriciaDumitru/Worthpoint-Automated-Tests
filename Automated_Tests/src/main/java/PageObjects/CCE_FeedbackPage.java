@@ -2,7 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -81,7 +81,7 @@ public class CCE_FeedbackPage extends WBA_BasePage{
         CommonTask.setSearchField(driver, orderNoField, orderNo);
         
         //Wait for customer name to appear
-        boolean waitForName = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElement(custNameField, TestSuite.sampCustName));
+        boolean waitForName = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElement(custNameField, TestSuiteOLD.sampCustName));
         
         return this;
     }

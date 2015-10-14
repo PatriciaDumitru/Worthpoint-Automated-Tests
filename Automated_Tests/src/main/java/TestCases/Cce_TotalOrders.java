@@ -12,12 +12,13 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
+@Category(Categories.CCE.class)
 public class Cce_TotalOrders {
     
     @Test //Total Orders Page :: Page and filter checks, field selection, export and reset
@@ -38,7 +39,7 @@ public class Cce_TotalOrders {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\1Total Orders page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\1Total Orders page.png"));
         
         System.out.println("Total Orders reached. Checking title...");
         
@@ -66,17 +67,17 @@ public class Cce_TotalOrders {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\2Fields set.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\2Fields set.png"));
         
         System.out.println("Fields set. Entering filter criteria...");
         
-        toPage.setCustName(TestSuite.custDetails[0]);
-        toPage.setRequester(TestSuite.custDetails[2]);
-        toPage.setMUMType(TestSuite.coneMUM);
+        toPage.setCustName(TestSuiteOLD.custDetails[0]);
+        toPage.setRequester(TestSuiteOLD.custDetails[2]);
+        toPage.setMUMType(TestSuiteOLD.coneMUM);
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\3Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\3Filter criteria entered.png"));
         
         System.out.println("Filter criteria entered. Printing records...");
         
@@ -85,7 +86,7 @@ public class Cce_TotalOrders {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\4Records displayed.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\Total Orders\\4Records displayed.png"));
         
         System.out.println("View displayed. Closing view...");
         

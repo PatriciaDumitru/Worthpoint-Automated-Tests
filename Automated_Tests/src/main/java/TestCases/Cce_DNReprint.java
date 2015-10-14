@@ -1,7 +1,8 @@
 
 package TestCases;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.Categories;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_DNPrintPage;
 import PageObjects.CCE_DNReprintPage;
@@ -11,11 +12,13 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+@Category(Categories.CCE.class)
 public class Cce_DNReprint {
     
     @Test //DN Reprint Page :: Page checks
@@ -36,7 +39,7 @@ public class Cce_DNReprint {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\1DN Reprint page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\1DN Reprint page.png"));
         
         System.out.println("DN Reprint loaded.");
         
@@ -78,11 +81,11 @@ public class Cce_DNReprint {
         
         System.out.println("DN Reprint loaded. Entering filter criteria...");
         
-        dnReprint.setShipToPartyName(TestSuite.custDetails[1]);
+        dnReprint.setShipToPartyName(TestSuiteOLD.custDetails[1]);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing orders...");
         
@@ -91,7 +94,7 @@ public class Cce_DNReprint {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\3Orders listed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\3Orders listed.png"));
         
         System.out.println("Orders listed. Pressing confirm...");
         
@@ -99,7 +102,7 @@ public class Cce_DNReprint {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\4Confirm pressed.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\4Confirm pressed.png"));
         
         System.out.println("Confirm pressed. Pressing print...");
         
@@ -114,9 +117,9 @@ public class Cce_DNReprint {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\5DN displayed.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\5DN displayed.png"));
         
-        if (TestSuite.printingEnabled) {           
+        if (TestSuiteOLD.printingEnabled) {           
             dnReprint = printPage.pressPrint();
             System.out.println("Delivery notes sent to printer.");
         } else {

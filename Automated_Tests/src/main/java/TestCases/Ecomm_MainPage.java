@@ -1,7 +1,8 @@
 
 package TestCases;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.Categories;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.WBA_ContinuePage;
 import PageObjects.WBA_LoginPage;
 import PageObjects.WBA_SelectionPage;
@@ -15,6 +16,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -25,7 +27,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
+@Category(Categories.eComm.class)
 public class Ecomm_MainPage {
     
     @Test //EComm Page :: Page checks, navigation bar check
@@ -37,7 +39,7 @@ public class Ecomm_MainPage {
         WebDriver driver = new ChromeDriver();
         
         //Navigate to site
-        driver.get(TestSuite.targetURL);
+        driver.get(TestSuiteOLD.targetURL);
         
         //Maxmimise window
         driver.manage().window().maximize();
@@ -48,7 +50,7 @@ public class Ecomm_MainPage {
         WBA_LoginPage loginPage = new WBA_LoginPage(driver);
         
         //Login and press continue
-        WBA_ContinuePage contPage = loginPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        WBA_ContinuePage contPage = loginPage.loginAs(TestSuiteOLD.validCoatsUsername,TestSuiteOLD.validCoatsPassword);
         WBA_SelectionPage selectionPage = contPage.pressContinue();
         
         System.out.println("Logged in. Continuing to selection page...");
@@ -59,13 +61,13 @@ public class Ecomm_MainPage {
         System.out.println("Selection page loaded. eComm selected...");
         
         //Wait for page to load
-        boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuite.eCommPageTitle));
+        boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuiteOLD.eCommPageTitle));
         
         System.out.println("eComm page loaded.");
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\EComm\\Main Page\\1Ecomm page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Main Page\\1Ecomm page.png"));
         
         //Assert that all elements on eComm page load correctly (from top left to bottom right)
         eCommPage.assertBaseElements();
@@ -147,15 +149,15 @@ public class Ecomm_MainPage {
             WebElement waitForHead = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(headLocator));
             
             if (expectedSubMenu[headCount].length == 0) {
-                String expectedTitle = TestSuite.eCommExpectedTitles[0][pageCount];
+                String expectedTitle = TestSuiteOLD.eCommExpectedTitles[0][pageCount];
                 driver.findElement(headLocator).click();
                 
                 By breadcrumbLocator = null;
                 
-                switch (TestSuite.eCommExpectedTitles[1][pageCount]) {
-                    case "1": breadcrumbLocator = TestSuite.breadcrumbLocator; break;
-                    case "2": breadcrumbLocator = TestSuite.breadcrumbLocator2; break;
-                    case "3": breadcrumbLocator = TestSuite.breadcrumbLocator3; break;
+                switch (TestSuiteOLD.eCommExpectedTitles[1][pageCount]) {
+                    case "1": breadcrumbLocator = TestSuiteOLD.breadcrumbLocator; break;
+                    case "2": breadcrumbLocator = TestSuiteOLD.breadcrumbLocator2; break;
+                    case "3": breadcrumbLocator = TestSuiteOLD.breadcrumbLocator3; break;
                     default: break;
                 }
                 
@@ -172,7 +174,7 @@ public class Ecomm_MainPage {
                     
                     //Take a screenshot
                     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                    FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+fileName+".png"));
+                    FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+fileName+".png"));
                     
                     Assert.assertTrue(expectedTitle + " page: Link or title incorrect",actualTitle.equals(expectedTitle));
                 } else {
@@ -187,7 +189,7 @@ public class Ecomm_MainPage {
                     
                     //Take a screenshot
                     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                    FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+fileName+".png"));
+                    FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+fileName+".png"));
                 }
          
                 pageCount++;
@@ -196,7 +198,7 @@ public class Ecomm_MainPage {
                 
                 for (int subCount = 0; subCount < expectedSubMenu[headCount].length; subCount++) {
                     
-                    String expectedTitle = TestSuite.eCommExpectedTitles[0][pageCount];
+                    String expectedTitle = TestSuiteOLD.eCommExpectedTitles[0][pageCount];
                     
                     By subTabLocator = By.cssSelector("#topnav > li:nth-child("+(headCount+1)+") > div > div > ul > li:nth-child("+(subCount+1)+")");
                     
@@ -208,10 +210,10 @@ public class Ecomm_MainPage {
                     
                     By breadcrumbLocator = null;
                 
-                    switch (TestSuite.eCommExpectedTitles[1][pageCount]) {
-                        case "1": breadcrumbLocator = TestSuite.breadcrumbLocator; break;
-                        case "2": breadcrumbLocator = TestSuite.breadcrumbLocator2; break;
-                        case "3": breadcrumbLocator = TestSuite.breadcrumbLocator3; break;
+                    switch (TestSuiteOLD.eCommExpectedTitles[1][pageCount]) {
+                        case "1": breadcrumbLocator = TestSuiteOLD.breadcrumbLocator; break;
+                        case "2": breadcrumbLocator = TestSuiteOLD.breadcrumbLocator2; break;
+                        case "3": breadcrumbLocator = TestSuiteOLD.breadcrumbLocator3; break;
                         default: break;
                     }
                 
@@ -228,7 +230,7 @@ public class Ecomm_MainPage {
                     
                     //Take a screenshot
                     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                    FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+fileName+".png"));
+                    FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+fileName+".png"));
                     
                     Assert.assertTrue(expectedTitle + " page: Link or title incorrect",actualTitle.equals(expectedTitle));
                     
@@ -243,7 +245,7 @@ public class Ecomm_MainPage {
                     
                         //Take a screenshot
                         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+fileName+".png"));
+                        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\ALL PAGES\\"+fileName+".png"));
                     }
                     
                     pageCount++;

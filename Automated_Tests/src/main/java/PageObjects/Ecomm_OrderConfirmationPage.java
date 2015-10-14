@@ -1,7 +1,7 @@
 
 package PageObjects;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;

@@ -1,7 +1,8 @@
 
 package TestCases;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.Categories;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_FromExistingPage;
 import PageObjects.Ecomm_ManualEntryPage;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -23,7 +25,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
+@Category(Categories.eComm.class)
 public class Ecomm_SUSST_FEBO {
       
 @Test //From Existing Bulk Order Page :: Page checks, create order 
@@ -47,7 +49,7 @@ public void FEBO1() throws IOException {
 
     //Take a screenshot
     File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\1From Ex Bulk Page.png"));
+    FileUtils.copyFile(scrFile,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\1From Ex Bulk Page.png"));
     
     //make assertions for base page elements and upload page elements
     fromExistingPage.assertBaseElements();
@@ -55,11 +57,11 @@ public void FEBO1() throws IOException {
     System.out.println("Entering criteria...");
     
     //Enter criteria
-    fromExistingPage.setOrderNo(TestSuite.bulkOrderNo);
+    fromExistingPage.setOrderNo(TestSuiteOLD.bulkOrderNo);
     
     //Take a screenshot
     File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\2Order number entered.png"));
+    FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\2Order number entered.png"));
     
     //Submit search
     Ecomm_ManualEntryPage manualEntryPage = fromExistingPage.pressLoad();
@@ -70,20 +72,20 @@ public void FEBO1() throws IOException {
     
     //Take a screenshot
     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\3Order loaded.png"));
+    FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\3Order loaded.png"));
     
     Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
     orderConf.waitForLoad();
     
     //Take a screenshot
     File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\4Next pressed.png"));
+    FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\4Next pressed.png"));
     
     Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
     
     //Take a screenshot
     File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\5Order confirmed.png"));
+    FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\From Ex Bulk\\5Order confirmed.png"));
     
     driver.close();
     driver.quit();

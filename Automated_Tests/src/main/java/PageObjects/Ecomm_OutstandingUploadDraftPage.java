@@ -1,7 +1,7 @@
 
 package PageObjects;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 import static PageObjects.WBA_BasePage.driver;
 import static PageObjects.Ecomm_ManualEntryPage.customerNameField;
 import org.openqa.selenium.Alert;

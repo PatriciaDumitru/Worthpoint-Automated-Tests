@@ -1,8 +1,9 @@
 
 package TestCases;
 
+import AutomationFramework.Categories;
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.WBA_BasePage;
 import PageObjects.CCE_MainPage;
 import PageObjects.WBA_ContinuePage;
@@ -15,6 +16,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -26,7 +28,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
+@Category(Categories.CCE.class)
 public class Cce_MainPage {
     
     @Ignore @Test //CCE Main Page :: Navigation bar check
@@ -38,7 +40,7 @@ public class Cce_MainPage {
         WebDriver driver = new ChromeDriver();
         
         //Navigate to site
-        driver.get(TestSuite.targetURL);
+        driver.get(TestSuiteOLD.targetURL);
         
         //Maxmimise window
         driver.manage().window().maximize();
@@ -49,7 +51,7 @@ public class Cce_MainPage {
         WBA_LoginPage loginPage = new WBA_LoginPage(driver);
         
         //Login and press continue
-        WBA_ContinuePage contPage = loginPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        WBA_ContinuePage contPage = loginPage.loginAs(TestSuiteOLD.validCoatsUsername,TestSuiteOLD.validCoatsPassword);
         WBA_SelectionPage selectionPage = contPage.pressContinue();
         
         System.out.println("Logged in. Continuing to selection page...");
@@ -58,11 +60,11 @@ public class Cce_MainPage {
         CCE_MainPage ccePage = selectionPage.pressCce();
         
         //Wait for page to load
-        Boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuite.ccePageTitle));
+        Boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuiteOLD.ccePageTitle));
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\CCE\\Main Page\\1Main page.png"));
+        FileUtils.copyFile(scrFile,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Main Page\\1Main page.png"));
         
         System.out.println("Asserting elements on CCE page...");
         
@@ -131,7 +133,7 @@ public class Cce_MainPage {
         WebDriver driver = new ChromeDriver();
         
         //Navigate to site
-        driver.get(TestSuite.targetURL);
+        driver.get(TestSuiteOLD.targetURL);
         
         //Maxmimise window
         driver.manage().window().maximize();
@@ -142,7 +144,7 @@ public class Cce_MainPage {
         WBA_LoginPage loginPage = new WBA_LoginPage(driver);
         
         //Login and press continue
-        WBA_ContinuePage contPage = loginPage.loginAs(TestSuite.validCoatsUsername,TestSuite.validCoatsPassword);
+        WBA_ContinuePage contPage = loginPage.loginAs(TestSuiteOLD.validCoatsUsername,TestSuiteOLD.validCoatsPassword);
         WBA_SelectionPage selectionPage = contPage.pressContinue();
         
         System.out.println("Logged in. Continuing to selection page...");
@@ -153,7 +155,7 @@ public class Cce_MainPage {
         System.out.println("CCE main page reached. Checking links...");
         
         //Wait for page to load
-        Boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuite.ccePageTitle));
+        Boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(TestSuiteOLD.ccePageTitle));
         
         //Expected subheadings for each navbar tab in order from left to right
         String[][] expectedSubMenu = new String[][] {
@@ -178,12 +180,12 @@ public class Cce_MainPage {
             if (expectedSubMenu[count].length == 0) {
                 
                 //Get expected title
-                String expectedTitle = TestSuite.cceExpectedTitles[pageCounter];
+                String expectedTitle = TestSuiteOLD.cceExpectedTitles[pageCounter];
                 
                 if (!expectedTitle.equals("")) {
                     header.click();
-                    WebElement waitForBreadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(TestSuite.breadcrumbLocator));
-                    String actualTitle = driver.findElement(TestSuite.breadcrumbLocator).getText();
+                    WebElement waitForBreadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(TestSuiteOLD.breadcrumbLocator));
+                    String actualTitle = driver.findElement(TestSuiteOLD.breadcrumbLocator).getText();
                     
                     Verify.verify(expectedTitle.equals(actualTitle),"***"+expectedTitle + " page title not displayed as expected, or page incorrectly linked***");
                     
@@ -196,7 +198,7 @@ public class Cce_MainPage {
                     }
                     
                     File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
+                    FileUtils.copyFile(scrFile,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
                     
                     pageCounter++;
                 } else {
@@ -210,7 +212,7 @@ public class Cce_MainPage {
                     }
                     
                     File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                    FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
+                    FileUtils.copyFile(scrFile,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
                     
                     pageCounter++;
                 }         
@@ -219,7 +221,7 @@ public class Cce_MainPage {
                 for (int subCount = 0; subCount < expectedSubMenu[count].length; subCount++) {
                     
                     //Get expected title
-                    String expectedTitle = TestSuite.cceExpectedTitles[pageCounter];
+                    String expectedTitle = TestSuiteOLD.cceExpectedTitles[pageCounter];
                     
                     if (!expectedTitle.equals("")) {
                         //Generate subtab locator
@@ -231,8 +233,8 @@ public class Cce_MainPage {
                         WebElement subtab = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(subtabLocator));
                         driver.findElement(subtabLocator).click();
                         //Wait for title to display
-                        WebElement breadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(TestSuite.breadcrumbLocator));
-                        String actualTitle = driver.findElement(TestSuite.breadcrumbLocator).getText();
+                        WebElement breadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(TestSuiteOLD.breadcrumbLocator));
+                        String actualTitle = driver.findElement(TestSuiteOLD.breadcrumbLocator).getText();
                         Verify.verify(expectedTitle.equals(actualTitle),"***"+expectedTitle+" page title not displayed as expected, or page incorrectly linked***");
                         System.out.println(expectedTitle+" page correctly linked");
 
@@ -245,7 +247,7 @@ public class Cce_MainPage {
                         }
 
                         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                        FileUtils.copyFile(scrFile,new File(TestSuite.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
+                        FileUtils.copyFile(scrFile,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
 
                         
                     }

@@ -1,7 +1,8 @@
 
 package TestCases;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.Categories;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_FeedbackPage;
 import PageObjects.CCE_HubSosPage;
@@ -13,12 +14,13 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
+@Category(Categories.CCE.class)
 public class Cce_Hub {
     
     @Test
@@ -41,7 +43,7 @@ public class Cce_Hub {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\1Hub SOS Page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\1Hub SOS Page.png"));
         
         Assert.assertTrue("Hub SOS Page: Title not displayed as expected",hsPage.getTitle().equals("Orders | Hub SOS"));
         
@@ -55,12 +57,12 @@ public class Cce_Hub {
         
         System.out.println("Entering filter criteria...");
         
-        hsPage.setCustName(TestSuite.custDetails[0]);
-        hsPage.setBrand(TestSuite.expBrand);
+        hsPage.setCustName(TestSuiteOLD.custDetails[0]);
+        hsPage.setBrand(TestSuiteOLD.expBrand);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Pressing list orders...");
         
@@ -69,7 +71,7 @@ public class Cce_Hub {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\3Orders listed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\3Orders listed.png"));
         
         System.out.println("Orders listed. Viewing first item...");
         
@@ -78,7 +80,7 @@ public class Cce_Hub {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\4Order view.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\4Order view.png"));
         
         System.out.println("View reached. Closing view...");
         
@@ -86,12 +88,12 @@ public class Cce_Hub {
         
         System.out.println("View closed. Adjusting MUM type of first item...");
         
-        String mumType = TestSuite.viconeMUM;
+        String mumType = TestSuiteOLD.viconeMUM;
         hsPage.adjustMUMType(mumType);
         
          //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\5MUM type adjusted.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\5MUM type adjusted.png"));
         
         System.out.println("MUM type adjusted to " + mumType+". Adjusting SOS assignment...");
         
@@ -100,7 +102,7 @@ public class Cce_Hub {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\6SOS assignment adjusted.png"));
+        FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\6SOS assignment adjusted.png"));
         
         System.out.println("SOS assignment set. Saving changes...");
         
@@ -109,7 +111,7 @@ public class Cce_Hub {
         
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\7Changes saved.png"));
+        FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\7Changes saved.png"));
         
         System.out.println("----------------------------------------------------");
         
@@ -135,7 +137,7 @@ public class Cce_Hub {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\1Received Hub Page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\1Received Hub Page.png"));
         
         System.out.println("Received Hub reached. Checking title...");
         
@@ -151,11 +153,11 @@ public class Cce_Hub {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        rhPage.setCustName(TestSuite.custDetails[0]);
+        rhPage.setCustName(TestSuiteOLD.custDetails[0]);
         
          //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing orders...");
         
@@ -164,7 +166,7 @@ public class Cce_Hub {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\3Orders listed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\3Orders listed.png"));
         
         System.out.println("Orders listed. Resetting filter...");
         
@@ -173,7 +175,7 @@ public class Cce_Hub {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\4Filter reset.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\4Filter reset.png"));
         
         System.out.println("Filter reset. Viewing first order...");
         
@@ -183,7 +185,7 @@ public class Cce_Hub {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\5Order View.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\5Order View.png"));
         
         System.out.println("View displayed. Closing view...");
         
@@ -195,7 +197,7 @@ public class Cce_Hub {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\6Send to Cust pressed.png"));
+        FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\6Send to Cust pressed.png"));
         
         System.out.println("Send to customer selected. Saving...");
         
@@ -204,7 +206,7 @@ public class Cce_Hub {
         
          //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\7Order saved.png"));
+        FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\7Order saved.png"));
         
         System.out.println("----------------------------------------------------");
         

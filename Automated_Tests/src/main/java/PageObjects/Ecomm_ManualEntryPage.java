@@ -1,7 +1,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -105,7 +105,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         //Press enter
         typeCustomerName.sendKeys(driver.findElement(customerNameSearchField), Keys.ENTER).build().perform();
         //wait for fields to update
-        Boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(buyersField, TestSuite.custDetails[3]));
+        Boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(buyersField, TestSuiteOLD.custDetails[3]));
         return this;
     }
     
@@ -199,7 +199,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             //Append the ID and type the PO number
             String PONumber = poNumber+idString;
             typePoNumber.sendKeys(driver.findElement(poNumberField),PONumber).build().perform();
-            TestSuite.lastUsedPO = PONumber;
+            TestSuiteOLD.lastUsedPO = PONumber;
             
             bw.close();
             fw.close();
@@ -215,7 +215,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         
         try {
             //Access file to read
-            FileReader fr = new FileReader(TestSuite.idFilepath);
+            FileReader fr = new FileReader(TestSuiteOLD.idFilepath);
             BufferedReader br = new BufferedReader(fr);
             //Get current ID
             String idString = br.readLine();
@@ -226,7 +226,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             fr.close();
             
             //Access file to write
-            FileWriter fw = new FileWriter(TestSuite.idFilepath);
+            FileWriter fw = new FileWriter(TestSuiteOLD.idFilepath);
             BufferedWriter bw = new BufferedWriter(fw);
             
             //Write incremented id to file
@@ -236,7 +236,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             //Append the ID and type the PO number
             String PONumber = item+idString;
             CommonTask.setInputField(driver, poNumberField, PONumber);
-            TestSuite.lastUsedPO = PONumber;
+            TestSuiteOLD.lastUsedPO = PONumber;
             
         } catch (IOException e) {
             System.out.println("Customer PO Number method: IO exception handling the ID file");
@@ -257,7 +257,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         clickAndType.click(driver.findElement(headerLocator)).build().perform();
         //Wait for finish detail to be added to ensure table is updated
         By finishLocator = By.id("Finish"+lineNumber);
-        Boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(finishLocator, TestSuite.expFinish));
+        Boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(finishLocator, TestSuiteOLD.expFinish));
         return this;
     }
     

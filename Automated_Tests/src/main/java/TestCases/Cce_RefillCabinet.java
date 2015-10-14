@@ -1,7 +1,8 @@
 
 package TestCases;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.Categories;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_ConfirmProductionPage;
 import PageObjects.CCE_RefillCabinetPage;
@@ -10,11 +11,13 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+@Category(Categories.CCE.class)
 public class Cce_RefillCabinet {
     
     @Test //Refill Cabinet Page :: Page and filter checks
@@ -35,7 +38,7 @@ public class Cce_RefillCabinet {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Refill Cabinet\\1Refill cabinet page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Refill Cabinet\\1Refill cabinet page.png"));
         
         System.out.println("Refill Cabinet loaded.");
         
@@ -52,11 +55,11 @@ public class Cce_RefillCabinet {
         
         System.out.println("Fields checked. Entering filter crtieria...");
         
-        rcPage.setShipTo(TestSuite.custDetails[1]);
+        rcPage.setShipTo(TestSuiteOLD.custDetails[1]);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Refill Cabinet\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Refill Cabinet\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Pressing cancel...");
         
@@ -65,7 +68,7 @@ public class Cce_RefillCabinet {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Refill Cabinet\\3Refill cancelled.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Refill Cabinet\\3Refill cancelled.png"));
         
         System.out.println("Cancel pressed.");
         

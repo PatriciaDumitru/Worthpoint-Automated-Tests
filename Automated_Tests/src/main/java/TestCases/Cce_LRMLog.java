@@ -1,7 +1,8 @@
 
 package TestCases;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.Categories;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_ExportDownloadPage;
 import PageObjects.CCE_LRMLogPage;
@@ -12,12 +13,13 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
+@Category(Categories.CCE.class)
 public class Cce_LRMLog {
     
     @Test
@@ -38,7 +40,7 @@ public class Cce_LRMLog {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\1LRM Log Page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\1LRM Log Page.png"));
         
         System.out.println("LRM Log reached. Checking title...");
         
@@ -54,12 +56,12 @@ public class Cce_LRMLog {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        lrmPage.setShadeCode(TestSuite.expShadeCode2);
+        lrmPage.setShadeCode(TestSuiteOLD.expShadeCode2);
         lrmPage.setErrorMessage("Yes");
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. List orders....");
 
@@ -68,7 +70,7 @@ public class Cce_LRMLog {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\3Records listed.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\3Records listed.png"));
         
          System.out.println("Orders listed. Pressing view...");
         
@@ -78,7 +80,7 @@ public class Cce_LRMLog {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\4View displayed.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\4View displayed.png"));
         
         System.out.println("View displayed. Closing view...");
         
@@ -87,7 +89,7 @@ public class Cce_LRMLog {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\5View closed.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\5View closed.png"));
         
         System.out.println("View closed. Pressing re-send...");
         
@@ -96,17 +98,17 @@ public class Cce_LRMLog {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\6Order resent.png"));
+        FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\6Order resent.png"));
         
         System.out.println("Re-sent. Re-entering critera and listing orders...");
         
-        lrmPage.setShadeCode(TestSuite.expShadeCode2);
+        lrmPage.setShadeCode(TestSuiteOLD.expShadeCode2);
         lrmPage.setErrorMessage("Yes");
         lrmPage.pressSearch();
         
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\7Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\7Filter criteria entered.png"));
         
         System.out.println("Orders listed. Exporting records...");
         
@@ -120,7 +122,7 @@ public class Cce_LRMLog {
         
         //Take a screenshot
         File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile8,new File(TestSuite.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\8Filter reset.png"));
+        FileUtils.copyFile(scrFile8,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\8Filter reset.png"));
         
         System.out.println("Filter reset.");
         

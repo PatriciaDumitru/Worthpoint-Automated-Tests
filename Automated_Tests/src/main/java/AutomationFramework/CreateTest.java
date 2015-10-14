@@ -25,7 +25,7 @@ public class CreateTest {
     private static List<Node> testNodes;
     
     public CreateTest() throws InterruptedException, IOException, AWTException {
-        xmlFilepath = TestSuite.xmlFilepath;
+        xmlFilepath = TestSuiteOLD.xmlFilepath;
         
         System.out.println("Scanning XML File for tests...");
         findTests();

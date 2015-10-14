@@ -1,5 +1,6 @@
 package TestCases;
 
+import AutomationFramework.Categories;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,7 +11,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.Ecomm_DeliveryNotesPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ExportDownloadPage;
@@ -22,7 +23,9 @@ import PageObjects.Ecomm_SaveReportPage;
 import PageObjects.Ecomm_SummaryOfPurchasePage;
 import org.junit.Assert;
 import org.junit.Ignore;
+import org.junit.experimental.categories.Category;
 
+@Category(Categories.eComm.class)
 public class Ecomm_Reports {
 
 	@Test //Invoices Page :: Page and filter checks, reset, view, print, and export
@@ -39,7 +42,7 @@ public class Ecomm_Reports {
 		
             //Take a screenshot
             File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\1Invoices Page.png"));
+            FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\1Invoices Page.png"));
 		
             System.out.println("Invoices page reached.");
 		
@@ -55,12 +58,12 @@ public class Ecomm_Reports {
 		
             System.out.println("Fields checked. Entering filter criteria...");
 		
-            invPage.setCustName(TestSuite.custDetails[0]);
-            invPage.setShipToName(TestSuite.custDetails[1]);
+            invPage.setCustName(TestSuiteOLD.custDetails[0]);
+            invPage.setShipToName(TestSuiteOLD.custDetails[1]);
 		
             //Take a screenshot
             File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\2Filter criteria entered.png"));
+            FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\2Filter criteria entered.png"));
 		
             System.out.println("Filter criteria entered. Resetting filter...");
 		
@@ -69,7 +72,7 @@ public class Ecomm_Reports {
 		
             //Take a screenshot
             File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\3Filter reset.png"));
+            FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\3Filter reset.png"));
 		
             System.out.println("Filter reset. Viewing invoice...");
 		
@@ -78,7 +81,7 @@ public class Ecomm_Reports {
 		
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\4Order view.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\4Order view.png"));
 		
 		System.out.println("View displayed. Closing view...");
 		
@@ -92,7 +95,7 @@ public class Ecomm_Reports {
 		
 		//Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\5Invoice view.png"));
+        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\5Invoice view.png"));
 		
 		printPage.pressPrint();
 		
@@ -125,7 +128,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\1Delivery Notes Page.png"));
+            FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\1Delivery Notes Page.png"));
 		
             System.out.println("Delivery Notes page reached.");
 		
@@ -141,12 +144,12 @@ public class Ecomm_Reports {
 		
             System.out.println("Fields checked. Entering filter criteria...");
 		
-            dnPage.setCustName(TestSuite.custDetails[0]);
-            dnPage.setRequester(TestSuite.custDetails[2]);
+            dnPage.setCustName(TestSuiteOLD.custDetails[0]);
+            dnPage.setRequester(TestSuiteOLD.custDetails[2]);
             
             //Take a screenshot
             File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\2Filter criteria entered.png"));
+            FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\2Filter criteria entered.png"));
             
             System.out.println("Filter criteria entered. Listing orders...");
             
@@ -155,7 +158,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\3Orders listed.png"));
+            FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\3Orders listed.png"));
             
             System.out.println("Orders listed. Resetting filter...");
             
@@ -164,7 +167,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\4Filter reset.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\4Filter reset.png"));
             
             System.out.println("Filter reset. Viewing record...");
             
@@ -173,7 +176,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\5View displayed.png"));
+            FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\5View displayed.png"));
             
             System.out.println("View displayed. Closing view...");
             
@@ -186,7 +189,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\6Print view.png"));
+            FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Delivery Notes\\6Print view.png"));
             
             System.out.println("Print view displayed. Sending item to printer...");
             
@@ -218,7 +221,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\1Summary of Purchases Page.png"));
+            FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\1Summary of Purchases Page.png"));
 		
             System.out.println("Summary of Purchases page reached.");
 		
@@ -234,12 +237,12 @@ public class Ecomm_Reports {
 		
             System.out.println("Fields checked. Entering filter criteria...");
             
-            spPage.setCustName(TestSuite.custDetails[0]);
-            spPage.setBrand(TestSuite.expBrand);
+            spPage.setCustName(TestSuiteOLD.custDetails[0]);
+            spPage.setBrand(TestSuiteOLD.expBrand);
             
             //Take a screenshot
             File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\2Filter criteria entered.png"));
+            FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\2Filter criteria entered.png"));
             
             System.out.println("Criteria entered. Listing records...");
             
@@ -248,7 +251,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\3Records listed.png"));
+            FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\3Records listed.png"));
             
             System.out.println("Records listed. Resetting filter...");
             
@@ -257,7 +260,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\4Filter reset.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\4Filter reset.png"));
             
             System.out.println("Filter reset. Viewing top item...");
             
@@ -266,7 +269,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\5View displayed.png"));
+            FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Summary of Purchases\\5View displayed.png"));
             
             System.out.println("View displayed. Closing view...");
             
@@ -298,7 +301,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\1Outstanding Payments Page.png"));
+            FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\1Outstanding Payments Page.png"));
 		
             System.out.println("Outstanding Payments page reached.");
 		
@@ -314,12 +317,12 @@ public class Ecomm_Reports {
 		
             System.out.println("Fields checked. Entering filter criteria...");
             
-            opPage.setCustName(TestSuite.custDetails[0]);
+            opPage.setCustName(TestSuiteOLD.custDetails[0]);
             opPage.pressOverdue30();
             
             //Take a screenshot
             File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\2Filter criteria entered.png"));
+            FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\2Filter criteria entered.png"));
             
             System.out.println("Filter criteria entered. Listing records...");
             
@@ -328,7 +331,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\3Records listed.png"));
+            FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\3Records listed.png"));
             
             System.out.println("Records listed. Resetting filter...");
             
@@ -337,7 +340,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\4Filter reset.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\4Filter reset.png"));
             
             System.out.println("Filter reset. Viewing oustsanding payment...");
             
@@ -346,7 +349,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\5View displayed.png"));
+            FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\5View displayed.png"));
             
             System.out.println("View displayed. Closing view...");
             
@@ -359,7 +362,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\6Overdue by 90 selected.png"));
+            FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\Outstanding Payments\\6Overdue by 90 selected.png"));
             
             System.out.println("Criteria entered. Listing orders...");
             
@@ -395,7 +398,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\1My Reports Page.png"));
+            FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\1My Reports Page.png"));
 		
             System.out.println("My Reports page reached.");
 		
@@ -415,7 +418,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\2All fields selected.png"));
+            FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\2All fields selected.png"));
             
             System.out.println("All selected. Resetting filter...");
             
@@ -424,7 +427,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\3Filter reset.png"));
+            FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\3Filter reset.png"));
             
             System.out.println("Filter reset. Selecting PO Number, Article, Brand, Ticket, Invoice No, Delivery No...");
             
@@ -437,16 +440,16 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\4Fields set.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\4Fields set.png"));
             
             System.out.println("Items selected. Entering filter criteria...");
             
-            mrPage.setCustName(TestSuite.custDetails[0]);
-            mrPage.setOrderNo(TestSuite.bulkOrderNo);
+            mrPage.setCustName(TestSuiteOLD.custDetails[0]);
+            mrPage.setOrderNo(TestSuiteOLD.bulkOrderNo);
             
             //Take a screenshot
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\5Filter criteria entered.png"));
+            FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\5Filter criteria entered.png"));
             
             System.out.println("Criteria entered. Printing report...");
             
@@ -455,7 +458,7 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\6Print view displayed.png"));
+            FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\6Print view displayed.png"));
             
             viewPage.closeView();
             viewPage.waitForInvisibility();
@@ -478,22 +481,22 @@ public class Ecomm_Reports {
             
             //Take a screenshot
             File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\7Save report page.png"));
+            FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\7Save report page.png"));
             
             System.out.println("Page reached. Entering title...");
             
-            srPage.setTitle(TestSuite.reportTitle);
+            srPage.setTitle(TestSuiteOLD.reportTitle);
             
             //Take a screenshot
             File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile8,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\8Title entered.png"));
+            FileUtils.copyFile(scrFile8,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\8Title entered.png"));
             
             srPage.pressSave();
             srPage.waitForInvisibility();
             
             //Take a screenshot
             File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile8,new File(TestSuite.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\9Report saved.png"));
+            FileUtils.copyFile(scrFile8,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\9Report saved.png"));
             
             String message = mrPage.getFlashMessage().getText();
             if (message.contains("has been saved")) {

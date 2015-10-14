@@ -2,7 +2,7 @@
 package TestTemplates;
 
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_MappingAlert;
@@ -36,17 +36,17 @@ public class Ecomm_UploadOrderTemplate {
         String username="";
         String password="";
         switch(testDetails[1]) {
-            case "SUSST Coats": username = TestSuite.validCoatsUsername; password = TestSuite.validCoatsPassword; break;
-            case "SUSST Customer": username = TestSuite.validCustUsername; password = TestSuite.validCustPassword; break;
+            case "SUSST Coats": username = TestSuiteOLD.validCoatsUsername; password = TestSuiteOLD.validCoatsPassword; break;
+            case "SUSST Customer": username = TestSuiteOLD.validCustUsername; password = TestSuiteOLD.validCustPassword; break;
         }
 
         System.out.println("===Starting test: "+testDetails[0]+"===");
         
         //New driver instance
-        System.setProperty("webdriver.chrome.driver",TestSuite.chromeDriverFilepath);
+        System.setProperty("webdriver.chrome.driver",TestSuiteOLD.chromeDriverFilepath);
         WebDriver driver = new ChromeDriver();
         
-        driver.get(TestSuite.targetURL);
+        driver.get(TestSuiteOLD.targetURL);
         
         //maximise browser window
         driver.manage().window().maximize();
@@ -76,7 +76,7 @@ public class Ecomm_UploadOrderTemplate {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\1Upload Order Page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\1Upload Order Page.png"));
         
         System.out.println("Upload Order Page reached. Setting filepath...");
         
@@ -89,13 +89,13 @@ public class Ecomm_UploadOrderTemplate {
             System.out.println("Realtime selected. Uploading...");
             //Take a screenshot
             File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\2Upload in Realtime.png"));
+            FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\2Upload in Realtime.png"));
         } else {
             uoPage.pressBackend();
             System.out.println("Backend selected. Uploading...");
             //Take a screenshot
             File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\2Upload in Backend.png"));
+            FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\2Upload in Backend.png"));
         }
         
         Ecomm_MappingAlert mapAlert = uoPage.pressUpload();
@@ -104,7 +104,7 @@ public class Ecomm_UploadOrderTemplate {
             Ecomm_MappingPage mapPage = mapAlert.pressYes();
             //Take a screenshot
             File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\3Mapping alert.png"));
+            FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\3Mapping alert.png"));
             CommonTask.waitForPageLoad(driver);
             System.out.println("Existing map selected. Confirming map...");
             
@@ -123,7 +123,7 @@ public class Ecomm_UploadOrderTemplate {
             
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Mapping confirmed.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Mapping confirmed.png"));
             
             Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit();
             outOrders.waitForLoad();
@@ -131,13 +131,13 @@ public class Ecomm_UploadOrderTemplate {
             
             //Take a screenshot
             File scrFile5= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
+            FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
             
         } else {
             Ecomm_MappingPage mapPage = mapAlert.pressNo();
             //Take a screenshot
             File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\3Mapping alert.png"));
+            FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\3Mapping alert.png"));
             System.out.println("Existing map rejected. Re-mapping...");
             
             if (testDetails[1].equals("SUSST Coats")) {
@@ -170,14 +170,14 @@ public class Ecomm_UploadOrderTemplate {
             
              //Take a screenshot
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Mapping set.png"));
+            FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Mapping set.png"));
 
             Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
             orderConf.waitForLoad();
             
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Mapping confirmed.png"));
+            FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Mapping confirmed.png"));
             
             if (!custDetails[0].equals("")) {
                 orderConf.setRequestor(custDetails[0]);
@@ -189,7 +189,7 @@ public class Ecomm_UploadOrderTemplate {
             
             //Take a screenshot
             File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile6,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\6Order submitted.png"));
+            FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\6Order submitted.png"));
             
             
         }
@@ -200,7 +200,7 @@ public class Ecomm_UploadOrderTemplate {
         
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\6Order view.png"));
+        FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\6Order view.png"));
         
         viewPage.closeView();
         viewPage.waitForInvisibility();

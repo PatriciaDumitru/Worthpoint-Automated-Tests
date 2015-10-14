@@ -2,7 +2,7 @@
 package TestTemplates;
 
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
@@ -138,17 +138,17 @@ private int lineCount;
         String username="";
         String password="";
         switch(testDetails[1]) {
-            case "SUSST Coats": username = TestSuite.validCoatsUsername; password = TestSuite.validCoatsPassword; break;
-            case "SUSST Customer": username = TestSuite.validCustUsername; password = TestSuite.validCustPassword; break;
+            case "SUSST Coats": username = TestSuiteOLD.validCoatsUsername; password = TestSuiteOLD.validCoatsPassword; break;
+            case "SUSST Customer": username = TestSuiteOLD.validCustUsername; password = TestSuiteOLD.validCustPassword; break;
         }
 
         System.out.println("===Starting test: "+testDetails[0]+"===");
         
         //New driver instance
-        System.setProperty("webdriver.chrome.driver",TestSuite.chromeDriverFilepath);
+        System.setProperty("webdriver.chrome.driver",TestSuiteOLD.chromeDriverFilepath);
         WebDriver driver = new ChromeDriver();
         
-        driver.get(TestSuite.targetURL);
+        driver.get(TestSuiteOLD.targetURL);
         
         //maximise browser window
         driver.manage().window().maximize();
@@ -178,7 +178,7 @@ private int lineCount;
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\1Manual Entry Page.png"));
+        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\1Manual Entry Page.png"));
         
         System.out.println("Manual Entry Page reached. Setting customer details...");
         
@@ -200,7 +200,7 @@ private int lineCount;
          
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\2Customer details set.png"));
+        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\2Customer details set.png"));
 
         System.out.println("Customer details set. Entering line details...");
         
@@ -258,7 +258,7 @@ private int lineCount;
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\3Line details set.png"));
+        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\3Line details set.png"));
         
         System.out.println("Line details entered. Pressing next...");
         
@@ -267,7 +267,7 @@ private int lineCount;
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Order confirmation page.png"));
+        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Order confirmation page.png"));
         
         System.out.println("Confirmation page reached. Submitting order...");
         
@@ -278,15 +278,15 @@ private int lineCount;
             System.out.println("Order Submitted");
             //Take a screenshot
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
+            FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
         } else {
-            if (TestSuite.contractOrderCallOff) {
+            if (TestSuiteOLD.contractOrderCallOff) {
                 Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
                 outOrdersPage.waitForLoad(); 
                 System.out.println("Contract Order detected: Order submitted");
                 //Take a screenshot
                 File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scrFile5,new File(TestSuite.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
+                FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
             } else {
                 System.out.println("Contract Order detected: Submit disabled to avoid call-off");
             }           

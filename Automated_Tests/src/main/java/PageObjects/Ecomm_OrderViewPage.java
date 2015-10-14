@@ -10,7 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import AutomationFramework.TestSuite;
+import AutomationFramework.TestSuiteOLD;
 
 public class Ecomm_OrderViewPage {
     WebDriver driver;
@@ -63,7 +63,7 @@ public class Ecomm_OrderViewPage {
     public void pressPrint() {
     	switchTo();
     	WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printButton));
-    	if (TestSuite.printingEnabled) {
+    	if (TestSuiteOLD.printingEnabled) {
         	driver.findElement(printButton).click();
         	System.out.println("Item sent to printer");
     	} else {

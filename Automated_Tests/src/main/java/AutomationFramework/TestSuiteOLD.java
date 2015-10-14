@@ -2,27 +2,20 @@
 package AutomationFramework;
 
 
-import AutomationFramework.Categories.CCE;
-import AutomationFramework.Categories.ContractOrder;
-import AutomationFramework.Categories.Unstable;
-import AutomationFramework.Categories.eComm;
 import TestCases.Ecomm_ProductAvailabilityCheck;
 import java.net.MalformedURLException;
 
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.experimental.categories.Categories;
-import org.junit.experimental.categories.Categories.ExcludeCategory;
-import org.junit.experimental.categories.Categories.IncludeCategory;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.openqa.selenium.By;
 
-@RunWith(Categories.class)
-@IncludeCategory({ContractOrder.class})
-@ExcludeCategory(Unstable.class)
+
+@RunWith(Suite.class)
 @Suite.SuiteClasses({
-    
+
     //A LIST OF ALL TEST CLASSES IN THE PROJECT. COMMMENT-OUT TO DISABLE. 
     //USE @IGNORE ANNOTATION TO DISBALE INDIVIDUAL TESTS WITHIN EACH CLASS
     
@@ -54,11 +47,11 @@ import org.openqa.selenium.By;
     //Ecomm_Dashboard.class, 
     //Ecomm_CO_ME.class,
     //Ecomm_CO_UORT.class,
-    //Ecomm_ProductAvailabilityCheck.class
+    Ecomm_ProductAvailabilityCheck.class
     
 })
 
-public class TestSuite {
+public class TestSuiteOLD {
     
     //PRE-REQUISITE VARIABLES TO BE CONFIGURED
     
@@ -229,4 +222,3 @@ public class TestSuite {
     }
     
 }
-
