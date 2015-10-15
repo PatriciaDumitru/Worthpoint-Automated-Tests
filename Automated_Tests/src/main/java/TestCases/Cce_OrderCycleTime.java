@@ -39,7 +39,7 @@ public class Cce_OrderCycleTime {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\1Order Cycle Time Page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\1Order Cycle Time Page.png"));
         
         System.out.println("Order Cycle Time reached. Checking title...");
         
@@ -55,11 +55,11 @@ public class Cce_OrderCycleTime {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        octPage.setShipToPartyName(TestSuiteOLD.custDetails[1]);
+        octPage.setShipToPartyName(DataItems.custDetails[1]);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\2Filter Criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\2Filter Criteria entered.png"));
         
         System.out.println("Criteria entered. Printing records...");
         
@@ -68,7 +68,7 @@ public class Cce_OrderCycleTime {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\3Orders displayed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\3Orders displayed.png"));
         
         System.out.println("Record view displayed. Closing view...");
         
@@ -87,7 +87,7 @@ public class Cce_OrderCycleTime {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\4Filter reset.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\4Filter reset.png"));
         
         System.out.println("Filter reset.");
         

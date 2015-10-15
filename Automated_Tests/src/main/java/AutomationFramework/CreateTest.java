@@ -25,7 +25,7 @@ public class CreateTest {
     private static List<Node> testNodes;
     
     public CreateTest() throws InterruptedException, IOException, AWTException {
-        xmlFilepath = TestSuiteOLD.xmlFilepath;
+        xmlFilepath = DataItems.xmlFilepath;
         
         System.out.println("Scanning XML File for tests...");
         findTests();
@@ -51,7 +51,7 @@ public class CreateTest {
             Element testsNode = doc.getDocumentElement();           
             testsNode.normalize();
             
-            System.out.println(testsNode.getNodeName());
+            System.out.println("Document Element:" + testsNode.getNodeName());
             
             //Retrieve all element nodes in tests
             testNodes = getElementNodes(testsNode);
@@ -71,7 +71,7 @@ public class CreateTest {
             //Get current test and evaluate
             Node currentTest = testNodes.get(i);
             if(currentTest.getNodeName().equals("METest")) {
-                System.out.println("Generating Test " + i + ": eComm Manual Entry Test");
+                System.out.println("Generating Test " + (i+1) + ": eComm Manual Entry Test");
                 createManualEntryTest(currentTest);
             } else if (currentTest.getNodeName().equals("UOTest")) {
                 System.out.println("Generating Test " + (i+1) + ": eComm Upload Order Test");

@@ -1,7 +1,8 @@
 
 package TestCases;
 
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.Categories;
+import AutomationFramework.DataItems;
 import PageObjects.WBA_BasePage;
 import PageObjects.CCE_MainPage;
 import PageObjects.WBA_ContinuePage;
@@ -26,7 +27,7 @@ public class Cce_SOC_Base {
         System.out.println("Scenario ID: "+scenarioID);
     
         //navigate to QA site
-        driver.get(TestSuiteOLD.targetURL);
+        driver.get(DataItems.targetURL);
     
         //maximise browser window
         driver.manage().window().maximize();
@@ -37,7 +38,7 @@ public class Cce_SOC_Base {
         WBA_LoginPage liPage = new WBA_LoginPage(driver);
 
         //log in
-        WBA_ContinuePage cont = liPage.loginAs(TestSuiteOLD.validCoatsUsername,TestSuiteOLD.validCoatsPassword);
+        WBA_ContinuePage cont = liPage.loginAs(DataItems.validCoatsUsername,DataItems.validCoatsPassword);
 
         System.out.println("Logged in. Continuing to selection page...");
 

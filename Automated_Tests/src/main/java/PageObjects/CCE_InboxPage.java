@@ -1,8 +1,9 @@
 
 package PageObjects;
 
+import AutomationFramework.Categories;
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -214,7 +215,7 @@ public class CCE_InboxPage extends WBA_BasePage {
     public void pressPrint() {
         //Wait for clickable
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printButton));
-        if (TestSuiteOLD.printingEnabled) {
+        if (DataItems.printingEnabled) {
             driver.findElement(printButton).click();
             System.out.println("Print enabled, print pressed.");
         } else {

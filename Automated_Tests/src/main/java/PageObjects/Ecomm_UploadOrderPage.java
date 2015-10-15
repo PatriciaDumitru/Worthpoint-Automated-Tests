@@ -1,7 +1,8 @@
 
 package PageObjects;
 
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.Categories;
+import AutomationFramework.DataItems;
 import java.awt.AWTException;
 import java.awt.Robot;
 import javax.swing.KeyStroke;
@@ -57,7 +58,7 @@ public class Ecomm_UploadOrderPage extends WBA_BasePage {
         //new action to click field
         Actions clickField = new Actions(driver);
         //clickField.click(driver.findElement(fileNameFieldLocator)).build().perform();
-        driver.findElement(fileNameFieldLocator).sendKeys(TestSuiteOLD.uploadOrderFilepath);      
+        driver.findElement(fileNameFieldLocator).sendKeys(DataItems.uploadOrderFilepath);      
         //wait for txt to appear in field
         //boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(fileNameOutputLocator, TestSuite.uploadOrderPath));
         

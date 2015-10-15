@@ -36,6 +36,7 @@ public class Ecomm_MainPage extends WBA_BasePage {
     static By backendFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(3)");
     static By ftpFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(4) > a"); 
     static By pacTab = By.cssSelector("#topnav > li:nth-child(3)");
+    static By outOrdersSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
     
     public Ecomm_MainPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -120,6 +121,18 @@ public class Ecomm_MainPage extends WBA_BasePage {
         driver.findElement(waitingForShadeSubTab).click();
         
         return new Ecomm_WaitingForShadePage(driver);
+    }
+    
+    public Ecomm_OutstandingOrdersPage clickOutstandingOrders() {
+         //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));      
+        driver.findElement(outstandingOrdersTab).click();
+        
+        //Wait for subtab
+        WebElement waitForSubTab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(driver.findElement(outOrdersSubTab)));      
+        driver.findElement(outOrdersSubTab).click();
+        
+        return new Ecomm_OutstandingOrdersPage(driver);
     }
     
     public Ecomm_OutstandingOrderDraftPage clickOutstandingDraft() {

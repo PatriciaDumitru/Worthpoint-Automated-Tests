@@ -2,7 +2,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_MappingAlert;
 import PageObjects.Ecomm_MappingPage;
@@ -32,7 +32,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 @Category(Categories.eComm.class)
 public class Ecomm_SUSST_UORT {
     
-    @Category(Categories.OrderCreation.class)
+    @Category({Categories.eComm_Orders_UploadOrder.class,Categories.QuickSuite.class})
     @Test //Upload Order Page :: Page checks and realtime upload order of <100 lines
     public void UORT1() throws AWTException, IOException {
         //new chrome driver
@@ -63,18 +63,18 @@ public class Ecomm_SUSST_UORT {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\1Upload Order page.png"));
+        FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\1Upload Order page.png"));
         
         System.out.println("Assertions successful. Sending file path...");
         
         //Send file path to field
-        uploadPage.setFilePath(TestSuiteOLD.uploadOrderFilepath);
+        uploadPage.setFilePath(DataItems.uploadOrderFilepath);
         //Select realtime upload
         uploadPage.pressRealtime();
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\2Filepath set.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\2Filepath set.png"));
         
         //Press upload
         Ecomm_MappingAlert alert = uploadPage.pressUpload();
@@ -118,18 +118,18 @@ public class Ecomm_SUSST_UORT {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\2Mapping set.png")); 
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\2Mapping set.png")); 
         
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
         orderConf.waitForLoad();
         
-        orderConf.setRequestor(TestSuiteOLD.custDetails[2]);
+        orderConf.setRequestor(DataItems.custDetails[2]);
         
         System.out.println("Map confirmed. Submitting order...");
              
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\3Upload Confirmation page.png"));                    
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\3Upload Confirmation page.png"));                    
         
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
         outOrdersPage.waitForLoad();
@@ -138,7 +138,7 @@ public class Ecomm_SUSST_UORT {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\4Outstanding Order Page.png"));
+        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\4Outstanding Order Page.png"));
                 
         String orderNo = outOrdersPage.getOrderNumber(1);
         

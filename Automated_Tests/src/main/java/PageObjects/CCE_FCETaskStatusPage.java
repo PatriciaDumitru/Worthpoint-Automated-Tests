@@ -2,7 +2,6 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuiteOLD;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -2,7 +2,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.WBA_ForgotPasswordPage;
 import PageObjects.WBA_LoginPage;
 import java.io.File;
@@ -18,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 @Category(Categories.General.class)
 public class WBA_ForgotPassword {
     
+    @Category(Categories.QuickSuite.class)
     @Test //Forgot Password Page :: Reset password
     public void FP1() throws IOException {
         System.out.println("TEST: FORGOT PASSWORD: Coats user forgot password process");
@@ -27,7 +28,7 @@ public class WBA_ForgotPassword {
         WebDriver driver = new ChromeDriver();
         
         //navigate to QA page
-        driver.get(TestSuiteOLD.targetURL);
+        driver.get(DataItems.targetURL);
         
         driver.manage().window().maximize();
         
@@ -41,12 +42,12 @@ public class WBA_ForgotPassword {
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(TestSuiteOLD.screenshotsFilepath+"\\Login and Forgot Password\\4Forgot Password page.png"));
+        FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\Login and Forgot Password\\4Forgot Password page.png"));
         
         System.out.println("Reset page reached. Entering e-mail...");
         
         //Provide email and click recover
-        forgotPage.setEmail(TestSuiteOLD.validCoatsUsername);
+        forgotPage.setEmail(DataItems.validCoatsUsername);
         
         System.out.println("E-mail entered. Submitting page...");
         
@@ -54,7 +55,7 @@ public class WBA_ForgotPassword {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\Login and Forgot Password\\5Password reset requested.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\Login and Forgot Password\\5Password reset requested.png"));
         
         System.out.println("Reset requested.");
         

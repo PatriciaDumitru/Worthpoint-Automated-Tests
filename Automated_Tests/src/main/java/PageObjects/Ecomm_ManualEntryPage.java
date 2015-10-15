@@ -1,7 +1,8 @@
 package PageObjects;
 
+import AutomationFramework.Categories;
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -29,9 +30,9 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     static By nextButtonLocator = By.id("next");
     static By saveDraftLocator = By.id("drafts");
     static By cancelButtonLocator = By.id("cancel1");
+    static By flashMessageLocator = By.id("flashMessage");
     
     //Customer detail field locators
-    
     static By customerNameField = By.cssSelector("#s2id_customer_id > a > span.select2-chosen.select_image_add");//Initial customer name field to click
     static By customerNameSearchField = By.cssSelector("#select2-drop > div > input");//Search field which appears after click
     static By customerNameSearchResult = By.cssSelector("#select2-drop > ul > li");//The result which is displayed after typing
@@ -105,7 +106,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         //Press enter
         typeCustomerName.sendKeys(driver.findElement(customerNameSearchField), Keys.ENTER).build().perform();
         //wait for fields to update
-        Boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(buyersField, TestSuiteOLD.custDetails[3]));
+        Boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(buyersField, DataItems.custDetails[3]));
         return this;
     }
     
@@ -199,7 +200,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             //Append the ID and type the PO number
             String PONumber = poNumber+idString;
             typePoNumber.sendKeys(driver.findElement(poNumberField),PONumber).build().perform();
-            TestSuiteOLD.lastUsedPO = PONumber;
+            DataItems.lastUsedPO = PONumber;
             
             bw.close();
             fw.close();
@@ -215,7 +216,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         
         try {
             //Access file to read
-            FileReader fr = new FileReader(TestSuiteOLD.idFilepath);
+            FileReader fr = new FileReader(DataItems.idFilepath);
             BufferedReader br = new BufferedReader(fr);
             //Get current ID
             String idString = br.readLine();
@@ -226,7 +227,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             fr.close();
             
             //Access file to write
-            FileWriter fw = new FileWriter(TestSuiteOLD.idFilepath);
+            FileWriter fw = new FileWriter(DataItems.idFilepath);
             BufferedWriter bw = new BufferedWriter(fw);
             
             //Write incremented id to file
@@ -236,7 +237,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             //Append the ID and type the PO number
             String PONumber = item+idString;
             CommonTask.setInputField(driver, poNumberField, PONumber);
-            TestSuiteOLD.lastUsedPO = PONumber;
+            DataItems.lastUsedPO = PONumber;
             
         } catch (IOException e) {
             System.out.println("Customer PO Number method: IO exception handling the ID file");
@@ -257,7 +258,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         clickAndType.click(driver.findElement(headerLocator)).build().perform();
         //Wait for finish detail to be added to ensure table is updated
         By finishLocator = By.id("Finish"+lineNumber);
-        Boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(finishLocator, TestSuiteOLD.expFinish));
+        Boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(finishLocator, DataItems.expFinish));
         return this;
     }
     
@@ -534,6 +535,24 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         }
         
         return new Ecomm_OrderConfirmationPage(driver);
+    }
+    
+    public void pressNextExpectingFailure() {
+        //Wait for button to be clickable
+        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
+        //Click next
+        Actions clickNext = new Actions(driver);
+        clickNext.click(driver.findElement(nextButtonLocator)).build().perform();
+        //Submit the alert
+        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        this.waitForLoad();
+
+    }
+    
+    public WebElement waitForError() {
+        return new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
     }
     
     public String getCustomerName() {

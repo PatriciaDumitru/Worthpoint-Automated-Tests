@@ -2,7 +2,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_ConfirmProductionPage;
 import PageObjects.CCE_RefillCabinetPage;
@@ -38,7 +38,7 @@ public class Cce_RefillCabinet {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Refill Cabinet\\1Refill cabinet page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Refill Cabinet\\1Refill cabinet page.png"));
         
         System.out.println("Refill Cabinet loaded.");
         
@@ -55,11 +55,11 @@ public class Cce_RefillCabinet {
         
         System.out.println("Fields checked. Entering filter crtieria...");
         
-        rcPage.setShipTo(TestSuiteOLD.custDetails[1]);
+        rcPage.setShipTo(DataItems.custDetails[1]);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Refill Cabinet\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Refill Cabinet\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Pressing cancel...");
         
@@ -68,7 +68,7 @@ public class Cce_RefillCabinet {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Refill Cabinet\\3Refill cancelled.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Refill Cabinet\\3Refill cancelled.png"));
         
         System.out.println("Cancel pressed.");
         

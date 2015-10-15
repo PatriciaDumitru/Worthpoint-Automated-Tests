@@ -2,7 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -49,7 +49,7 @@ public class Ecomm_OrderSamplesPage {
     
     public Ecomm_OrderSamplesPage setRequestor(String requestorName) throws InterruptedException {
         //Wait for entry in customer name
-        Boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(custCodeFieldLocator, TestSuiteOLD.custCode));
+        Boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(custCodeFieldLocator, DataItems.custCode));
         
         CommonTask.setDropDownField(driver, requestorNameFieldLocator, requestorName);
         return this;

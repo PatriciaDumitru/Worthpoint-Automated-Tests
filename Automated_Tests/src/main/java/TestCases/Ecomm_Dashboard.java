@@ -2,7 +2,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.Ecomm_BackendFailedFilesPage;
 import PageObjects.Ecomm_BackendInProcessPage;
 import PageObjects.Ecomm_MainPage;
@@ -38,7 +38,7 @@ public class Ecomm_Dashboard {
             
             //Take a screenshot
             File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Dashboard\\Backend In Process Files\\1Backend In Process Page.png"));
+            FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Backend In Process Files\\1Backend In Process Page.png"));
 		
             System.out.println("Backend In Process page reached.");
 		
@@ -54,11 +54,11 @@ public class Ecomm_Dashboard {
             
             System.out.println("Fields checked. Entering filter criteria...");
             
-            bipPage.setCustName(TestSuiteOLD.custDetails[0]);
+            bipPage.setCustName(DataItems.custDetails[0]);
             
             //Take a screenshot
             File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Dashboard\\Backend In Process Files\\2Filter criteria entered.png"));
+            FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Backend In Process Files\\2Filter criteria entered.png"));
             
             System.out.println("Criteria entered. Listing files...");
             
@@ -90,7 +90,7 @@ public class Ecomm_Dashboard {
             
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\1Backend Failed Files Page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\1Backend Failed Files Page.png"));
 		
         System.out.println("Backend Failed Files page reached.");
 		
@@ -106,11 +106,11 @@ public class Ecomm_Dashboard {
             
         System.out.println("Fields checked. Entering filter criteria...");
             
-        bffPage.setCustName(TestSuiteOLD.custDetails[0]);
+        bffPage.setCustName(DataItems.custDetails[0]);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\2Filter criteria entered.png"));
         
         System.out.println("Filter criteria entered. Lisitng files...");
         
@@ -119,7 +119,7 @@ public class Ecomm_Dashboard {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\3Files listed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\3Files listed.png"));
         
         System.out.println("Files listed. Viewing top item...");
         
@@ -128,7 +128,7 @@ public class Ecomm_Dashboard {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\4View displayed.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\4View displayed.png"));
         
         System.out.println("View displayed. Closing view...");
         
@@ -162,7 +162,7 @@ public class Ecomm_Dashboard {
             
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\1FTP Failed Files Page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\1FTP Failed Files Page.png"));
 		
         System.out.println("FTP Failed Files page reached.");
 		
@@ -178,11 +178,11 @@ public class Ecomm_Dashboard {
             
         System.out.println("Fields checked. Entering filter criteria...");
             
-        ftpPage.setCustName(TestSuiteOLD.custDetails[0]);
+        ftpPage.setCustName(DataItems.custDetails[0]);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\2Filter criteria entered.png"));
         
         System.out.println("Filter criteria entered. Lisitng files...");
         
@@ -191,7 +191,7 @@ public class Ecomm_Dashboard {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\3Files listed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\3Files listed.png"));
         
         System.out.println("Files listed. Viewing top item...");
         
@@ -200,7 +200,7 @@ public class Ecomm_Dashboard {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\4View displayed.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\4View displayed.png"));
         
         System.out.println("View displayed. Closing view...");
         

@@ -18,18 +18,23 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     
     public int getRow(String poNumber) {
         //wait for table to load
-        boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No."));
+        boolean waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No."));
         boolean found = false;
         int i = 0;
-        By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(7)");
-        while(!found) {
+        while(!found && i < 8) {
+            By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(7)");
             if (driver.findElement(locator).getText().equals(poNumber)) {
                 found = true;
             }
             i++;
         }
         
-        return (i-1);
+        if (found) {
+            return i-1;
+        } else {
+            return -1;
+        }
+        
     }
     
     public Ecomm_OrderViewPage pressView(int orderRow) {

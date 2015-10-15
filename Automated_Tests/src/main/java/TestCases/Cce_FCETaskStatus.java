@@ -2,7 +2,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_ExportDownloadPage;
 import PageObjects.CCE_FCETaskStatusPage;
@@ -41,7 +41,7 @@ public class Cce_FCETaskStatus {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\1FCE Task status page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\1FCE Task status page.png"));
         
         System.out.println("FCE Task Status reached. Checking title...");
         
@@ -64,7 +64,7 @@ public class Cce_FCETaskStatus {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Printing records...");
         
@@ -73,7 +73,7 @@ public class Cce_FCETaskStatus {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\3View records.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\3View records.png"));
         
         System.out.println("Records displayed. Closing view...");
 
@@ -114,7 +114,7 @@ public class Cce_FCETaskStatus {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\4Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\4Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Pressing reset...");
         
@@ -123,7 +123,7 @@ public class Cce_FCETaskStatus {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\5Filter reset.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\5Filter reset.png"));
         
         System.out.println("Filter reset.");
                 

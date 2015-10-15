@@ -1,8 +1,9 @@
 
 package TestCases;
 
+import AutomationFramework.Categories;
 import AutomationFramework.Categories.CCE;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_ConfirmProductionPage;
 import PageObjects.CCE_InboxPage;
@@ -43,7 +44,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\1Confirm production page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\1Confirm production page.png"));
         
         System.out.println("Confirm Production loaded.");
         
@@ -60,12 +61,12 @@ public class Cce_ConfirmProduction {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        cpPage.setCustName(TestSuiteOLD.custDetails[0]);
+        cpPage.setCustName(DataItems.custDetails[0]);
         cpPage.setRequestType("Sewing");
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing orders...");
         
@@ -74,7 +75,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\3Orders Listed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\3Orders Listed.png"));
         
         System.out.println("Orders listed. Pressing confirm...");
         
@@ -82,7 +83,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\4Confirm selected.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\4Confirm selected.png"));
         
         System.out.println("Confirm selected. Pressing DN Print...");
         
@@ -90,7 +91,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\5DN view.png"));
+        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\5DN view.png"));
         
         System.out.println("View displayed. Pressing print...");
         
@@ -103,7 +104,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\6DN View.png"));
+        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\6DN View.png"));
         
         try {
             Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
@@ -122,19 +123,19 @@ public class Cce_ConfirmProduction {
         
         System.out.println("Selecting MUM Type...");
         
-        cpPage.setMUMType(TestSuiteOLD.copMUM);
+        cpPage.setMUMType(DataItems.copMUM);
         
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\7MUM type set.png"));
+        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\7MUM type set.png"));
         
         System.out.println("MUM Type set. Setting quantity produced...");
         
-        cpPage.setQtyProd(String.valueOf(TestSuiteOLD.quantity));
+        cpPage.setQtyProd(String.valueOf(DataItems.quantity));
         
         //Take a screenshot
         File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile8,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\8Quantity produced set.png"));
+        FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\8Quantity produced set.png"));
         
         System.out.println("Quantity produced set. Setting 'Send To' to 'Deliver to customer'...");
         
@@ -142,7 +143,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile9,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\9Send to set.png"));
+        FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\9Send to set.png"));
         
         System.out.println("Send To set. Saving...");
         
@@ -151,7 +152,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile10,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\10Changes saved.png"));
+        FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\10Changes saved.png"));
         
         System.out.println("----------------------------------------------------");
         
@@ -176,12 +177,12 @@ public class Cce_ConfirmProduction {
         
         System.out.println("Confirm Production loaded. Entering filter criteria...");
         
-        cpPage.setCustName(TestSuiteOLD.custDetails[0]);
-        cpPage.setShipToName(TestSuiteOLD.custDetails[1]);
+        cpPage.setCustName(DataItems.custDetails[0]);
+        cpPage.setShipToName(DataItems.custDetails[1]);
         
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile10,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\10Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\10Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Pressing reset...");
         
@@ -190,7 +191,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\11Reset pressed.png"));
+        FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\11Reset pressed.png"));
         
         System.out.println("Filter reset. Pressing cancel...");
         
@@ -199,7 +200,7 @@ public class Cce_ConfirmProduction {
         
         //Take a screenshot
         File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile12,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Confirm Production\\12Page cancelled.png"));
+        FileUtils.copyFile(scrFile12,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\12Page cancelled.png"));
         
         System.out.println("Cancel pressed.");
         

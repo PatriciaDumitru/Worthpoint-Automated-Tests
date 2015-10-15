@@ -1,6 +1,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
+import AutomationFramework.DataItems;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,8 +11,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import AutomationFramework.TestSuiteOLD;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_SAPInterfaceLogPage;
@@ -35,7 +34,7 @@ public class Ecomm_SAPInterfaceLog {
 		
 	//Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\SAP Interface Log\\1SAP Interface Log.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\1SAP Interface Log.png"));
 		
         System.out.println("SAP Interface Log page reached.");
         
@@ -47,14 +46,14 @@ public class Ecomm_SAPInterfaceLog {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        logPage.setBrand(TestSuiteOLD.brand);
-        logPage.setTicket(TestSuiteOLD.ticket);
-        logPage.setFinish(TestSuiteOLD.finish);
-        logPage.setSAPMessage(TestSuiteOLD.sapMessage);
+        logPage.setBrand(DataItems.brand);
+        logPage.setTicket(DataItems.ticket);
+        logPage.setFinish(DataItems.finish);
+        logPage.setSAPMessage(DataItems.sapMessage);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\SAP Interface Log\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Searching...");
         
@@ -63,7 +62,7 @@ public class Ecomm_SAPInterfaceLog {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\SAP Interface Log\\3Records listed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\3Records listed.png"));
         
         System.out.println("Records listed. Pressing reset...");
         
@@ -72,7 +71,7 @@ public class Ecomm_SAPInterfaceLog {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\SAP Interface Log\\4Filter reset.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\4Filter reset.png"));
         
         System.out.println("Filter reset. Viewing record...");
         
@@ -83,7 +82,7 @@ public class Ecomm_SAPInterfaceLog {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\SAP Interface Log\\5View displayed.png"));
+        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\5View displayed.png"));
         
         viewPage.closeView();
         viewPage.waitForInvisibility();
@@ -99,7 +98,7 @@ public class Ecomm_SAPInterfaceLog {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\SAP Interface Log\\6File Transfer View.png"));
+        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\6File Transfer View.png"));
         
         ftView.closeView();
         

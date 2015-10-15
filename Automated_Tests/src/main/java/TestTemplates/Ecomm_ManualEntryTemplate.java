@@ -1,11 +1,13 @@
 
 package TestTemplates;
 
+import AutomationFramework.Categories;
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
+import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.WBA_ContinuePage;
 import PageObjects.WBA_LoginPage;
@@ -16,7 +18,9 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Ecomm_ManualEntryTemplate {
     
@@ -138,17 +142,17 @@ private int lineCount;
         String username="";
         String password="";
         switch(testDetails[1]) {
-            case "SUSST Coats": username = TestSuiteOLD.validCoatsUsername; password = TestSuiteOLD.validCoatsPassword; break;
-            case "SUSST Customer": username = TestSuiteOLD.validCustUsername; password = TestSuiteOLD.validCustPassword; break;
+            case "SUSST Coats": username = DataItems.validCoatsUsername; password = DataItems.validCoatsPassword; break;
+            case "SUSST Customer": username = DataItems.validCustUsername; password = DataItems.validCustPassword; break;
         }
 
         System.out.println("===Starting test: "+testDetails[0]+"===");
         
         //New driver instance
-        System.setProperty("webdriver.chrome.driver",TestSuiteOLD.chromeDriverFilepath);
+        System.setProperty("webdriver.chrome.driver",DataItems.chromeDriverFilepath);
         WebDriver driver = new ChromeDriver();
         
-        driver.get(TestSuiteOLD.targetURL);
+        driver.get(DataItems.targetURL);
         
         //maximise browser window
         driver.manage().window().maximize();
@@ -178,7 +182,7 @@ private int lineCount;
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\1Manual Entry Page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\1Manual Entry Page.png"));
         
         System.out.println("Manual Entry Page reached. Setting customer details...");
         
@@ -196,11 +200,12 @@ private int lineCount;
         }
         if (!custDetails[4].equals("")) {
            mePage.setPoNumberNew(custDetails[4]);
+           DataItems.lastUsedPO = custDetails[4];
         }
          
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\2Customer details set.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\2Customer details set.png"));
 
         System.out.println("Customer details set. Entering line details...");
         
@@ -258,7 +263,7 @@ private int lineCount;
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\3Line details set.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\3Line details set.png"));
         
         System.out.println("Line details entered. Pressing next...");
         
@@ -267,29 +272,72 @@ private int lineCount;
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Order confirmation page.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Order confirmation page.png"));
         
-        System.out.println("Confirmation page reached. Submitting order...");
+        System.out.println("Confirmation page reached.");
         
-        if (lineDetails[0][12].equals("")) {
-            Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
-            outOrdersPage.waitForLoad(); 
-            CommonTask.waitForPageLoad(driver);
-            System.out.println("Order Submitted");
-            //Take a screenshot
-            File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
-        } else {
-            if (TestSuiteOLD.contractOrderCallOff) {
-                Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        if (testDetails[2].equals("Positive")) {
+            boolean viewRequired = false;
+            Ecomm_OutstandingOrdersPage outOrdersPage = null;
+
+            if (lineDetails[0][12].equals("")) {
+                outOrdersPage = orderConf.pressSubmit();
                 outOrdersPage.waitForLoad(); 
-                System.out.println("Contract Order detected: Order submitted");
+                CommonTask.waitForPageLoad(driver);
+                System.out.println("Order Submitted");
                 //Take a screenshot
                 File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
+                FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
+                viewRequired = true;
             } else {
-                System.out.println("Contract Order detected: Submit disabled to avoid call-off");
-            }           
+                if (DataItems.contractOrderCallOff) {
+                    outOrdersPage = orderConf.pressSubmit();
+                    outOrdersPage.waitForLoad(); 
+                    System.out.println("Contract Order detected: Order submitted");
+                    //Take a screenshot
+                    File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                    FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\5Order submitted.png"));
+                    viewRequired = true;
+                } else {
+                    System.out.println("Contract Order detected: Submit disabled to avoid call-off");
+                }           
+            }
+
+            if (viewRequired) {
+                int row = outOrdersPage.getRow(DataItems.lastUsedPO);
+                Ecomm_OrderViewPage viewPage = outOrdersPage.pressView(row);
+                viewPage.waitForContent();
+
+                //Take a screenshot
+                File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\6Order view displayed.png"));
+
+                viewPage.closeView();
+                viewPage.waitForInvisibility();
+                driver.switchTo().defaultContent();
+
+                //Take a screenshot
+                File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\7View closed.png"));
+            }
+        } else if (testDetails[2].equals("Negative")) {
+            
+            System.out.println("Error expected. Waiting for page load...");
+            
+            Ecomm_ManualEntryPage mePage2 = new Ecomm_ManualEntryPage(driver);
+            mePage.pressNextExpectingFailure();
+            
+            //Take a screenshot
+            File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\6Error expected.png"));
+            
+            try {
+                WebElement flashMessage = mePage2.waitForError();
+                System.out.println("Error received: " + flashMessage.getText());
+            } catch (Exception e) {
+                System.out.println("***ERROR: NO ERROR DISPLAYED UPON VALIDATION***");
+            }
+
         }
         
         System.out.println("----------------------------------------------------");

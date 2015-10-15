@@ -2,7 +2,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.CCE_AddOrderPage;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_OrderSamplesPage;
@@ -24,10 +24,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-@Category(Categories.CCE.class)
+@Category(Categories.CCE_Orders.class)
 public class Cce_SOC {
     
 
+    @Category(Categories.CCE_Orders.class)
     @Test // Order Samples Page :: Page and filter checks, cancel function 
     public void SOC1() throws InterruptedException, IOException {
         //New driver object to control browser
@@ -45,7 +46,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\1Order Samples Page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\1Order Samples Page.png"));
         
         System.out.println("Order samples loaded. Checking Customer Name, Customer Code, and Requestor fields...");
         
@@ -55,12 +56,12 @@ public class Cce_SOC {
         System.out.println("Fields checked. Entering customer details and submitting...");
         
         //Enter customer details, submit prompt and check order detail fields
-        orderSamples.setCustName(TestSuiteOLD.custDetails[0]);
-        orderSamples.setRequestor(TestSuiteOLD.custDetails[2]);
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\2Customer details entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\2Customer details entered.png"));
         
         CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
         addOrder.waitForLoad();
@@ -69,7 +70,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\3Prompt submitted.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\3Prompt submitted.png"));
         
         //Check all fields are clickable
         addOrder.checkFields();
@@ -82,7 +83,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\4Order cancelled.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\4Order cancelled.png"));
         
         System.out.println("Order cancelled.");
         
@@ -92,7 +93,7 @@ public class Cce_SOC {
         
     }
     
-    @Category(Categories.OrderCreation.class)
+    @Category({Categories.CCE_Orders.class,Categories.QuickSuite.class})
     @Test //Order Samples Page :: Single line order
     public void SOC2() throws InterruptedException, IOException {
         
@@ -111,8 +112,8 @@ public class Cce_SOC {
         
         System.out.println("Order samples loaded. Entering customer details...");
         
-        orderSamples.setCustName(TestSuiteOLD.custDetails[0]);
-        orderSamples.setRequestor(TestSuiteOLD.custDetails[2]);
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
         
         System.out.println("Customer details entered. Submitting...");
         
@@ -121,12 +122,12 @@ public class Cce_SOC {
         System.out.println("Prompt submitted. Adding order details...");
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputDetails(TestSuiteOLD.custDetails[1],TestSuiteOLD.custDetails[3],TestSuiteOLD.expArticle,
-                TestSuiteOLD.expShadeCode,TestSuiteOLD.copMUM,TestSuiteOLD.sewing,TestSuiteOLD.salesSamp,1);
+        addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
+                DataItems.expShadeCode,DataItems.copMUM,DataItems.sewing,DataItems.salesSamp,1);
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\5Order details added.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\5Order details added.png"));
         
         System.out.println("Order details added. Submitting order...");
         
@@ -134,7 +135,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\6Order submitted.png"));
+        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\6Order submitted.png"));
         
         System.out.println("Order submitted. Verifying order details...");
         
@@ -145,11 +146,11 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\7View Order.png"));
+        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\7View Order.png"));
         
-        Verify.verify(viewPage.getCustName().equals(TestSuiteOLD.custDetails[0]),"Sample Order View: Customer name incorrect in view");
-        Verify.verify(viewPage.getRequestorName().equals(TestSuiteOLD.custDetails[2]),"Sample Order View: Requestor name incorrect in view");
-        Verify.verify(viewPage.getShadeCode(2).equals(TestSuiteOLD.expShadeCode),"Sample Order View: Shade code incorrect in view");        
+        Verify.verify(viewPage.getCustName().equals(DataItems.custDetails[0]),"Sample Order View: Customer name incorrect in view");
+        Verify.verify(viewPage.getRequestorName().equals(DataItems.custDetails[2]),"Sample Order View: Requestor name incorrect in view");
+        Verify.verify(viewPage.getShadeCode(2).equals(DataItems.expShadeCode),"Sample Order View: Shade code incorrect in view");        
         
         System.out.println("Details verified. Exiting view page and ending test.");
         
@@ -163,7 +164,7 @@ public class Cce_SOC {
         
     } 
     
-    @Category(Categories.OrderCreation.class)
+    @Category(Categories.CCE_Orders.class)
     @Test //Order Samples Page :: Multi-line order
     public void SOC3() throws InterruptedException, IOException {
         //New driver object to control browser
@@ -181,8 +182,8 @@ public class Cce_SOC {
         
         System.out.println("Order samples loaded. Entering customer details...");
         
-        orderSamples.setCustName(TestSuiteOLD.custDetails[0]);
-        orderSamples.setRequestor(TestSuiteOLD.custDetails[2]);
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
         
         System.out.println("Customer details entered. Submitting...");
         
@@ -191,8 +192,8 @@ public class Cce_SOC {
         System.out.println("Prompt submitted. Adding order details...");
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputDetails(TestSuiteOLD.custDetails[1],TestSuiteOLD.custDetails[3],TestSuiteOLD.expArticle,
-                TestSuiteOLD.expShadeCode,TestSuiteOLD.copMUM,TestSuiteOLD.sewing,TestSuiteOLD.salesSamp,1);
+        addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
+                DataItems.expShadeCode,DataItems.copMUM,DataItems.sewing,DataItems.salesSamp,1);
         
         System.out.println("Line 1 details added. Creating new line and adding details...");
               
@@ -202,16 +203,16 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\8Line added.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\8Line added.png"));
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputAdditionalLines(TestSuiteOLD.article3,
-                TestSuiteOLD.shadeCode3,TestSuiteOLD.copMUM,TestSuiteOLD.sewing,TestSuiteOLD.salesSamp,1,1);
+        addOrder.inputAdditionalLines(DataItems.article3,
+                DataItems.shadeCode3,DataItems.copMUM,DataItems.sewing,DataItems.salesSamp,1,1);
         
         System.out.println("Details added. Submitting order...");
         
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\9Line filled.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\9Line filled.png"));
         
         CCE_OrderStatusPage outstOrders = addOrder.pressSubmit();
         
@@ -223,14 +224,14 @@ public class Cce_SOC {
         viewPage.waitForContent();
         
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\10View multiple lines.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\10View multiple lines.png"));
         
         //Ensure iframe is selected
         //viewPage.switchTo();
         
-        Verify.verify(viewPage.getCustName().equals(TestSuiteOLD.custDetails[0]),"Sample Order View: Customer name incorrect in view");
-        Verify.verify(viewPage.getRequestorName().equals(TestSuiteOLD.custDetails[2]),"Sample Order View: Requestor name incorrect in view");
-        Verify.verify(viewPage.getShadeCode(2).equals(TestSuiteOLD.expShadeCode),"Sample Order View: Shade code incorrect in view");        
+        Verify.verify(viewPage.getCustName().equals(DataItems.custDetails[0]),"Sample Order View: Customer name incorrect in view");
+        Verify.verify(viewPage.getRequestorName().equals(DataItems.custDetails[2]),"Sample Order View: Requestor name incorrect in view");
+        Verify.verify(viewPage.getShadeCode(2).equals(DataItems.expShadeCode),"Sample Order View: Shade code incorrect in view");        
         
         System.out.println("Order details verified. Exiting view and ending test.");
         
@@ -244,7 +245,7 @@ public class Cce_SOC {
         
     }
     
-    @Category(Categories.OrderCreation.class)
+    @Category(Categories.CCE_Orders.class)
     @Test //Order Samples Page :: Single line order, quantity above threshold
     public void SOC4() throws InterruptedException, IOException {
         //New driver object to control browser
@@ -262,8 +263,8 @@ public class Cce_SOC {
         
         System.out.println("Order samples loaded. Entering customer details...");
         
-        orderSamples.setCustName(TestSuiteOLD.custDetails[0]);
-        orderSamples.setRequestor(TestSuiteOLD.custDetails[2]);
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
         
         System.out.println("Customer details entered. Submitting...");
         
@@ -272,8 +273,8 @@ public class Cce_SOC {
         System.out.println("Prompt submitted. Adding order details...");
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputDetails(TestSuiteOLD.custDetails[1],TestSuiteOLD.custDetails[3],TestSuiteOLD.expArticle,
-                TestSuiteOLD.expShadeCode,TestSuiteOLD.coneMUM,TestSuiteOLD.sewing,TestSuiteOLD.salesSamp,15);
+        addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
+                DataItems.expShadeCode,DataItems.coneMUM,DataItems.sewing,DataItems.salesSamp,15);
         
         System.out.println("Details added. Submitting order, expecting rejection...");
         
@@ -293,7 +294,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\11Rejected Order.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\11Rejected Order.png"));
         
         System.out.println("----------------------------------------------------");
         
@@ -301,7 +302,7 @@ public class Cce_SOC {
         
     }
     
-    @Category(Categories.OrderCreation.class)
+    @Category({Categories.CCE_Orders.class,Categories.QuickSuite.class})
     @Test //Order Samples Page :: Multi-line copied data
     public void SOC5() throws InterruptedException, IOException {
         //New driver object to control browser
@@ -319,8 +320,8 @@ public class Cce_SOC {
         
         System.out.println("Order samples loaded. Entering customer details...");
         
-        orderSamples.setCustName(TestSuiteOLD.custDetails[0]);
-        orderSamples.setRequestor(TestSuiteOLD.custDetails[2]);
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
         
         System.out.println("Customer details entered. Submitting...");
         
@@ -329,12 +330,12 @@ public class Cce_SOC {
         System.out.println("Prompt submitted. Adding line 0 order details...");
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputDetails(TestSuiteOLD.custDetails[1],TestSuiteOLD.custDetails[3],TestSuiteOLD.expArticle,
-                TestSuiteOLD.expShadeCode,TestSuiteOLD.coneMUM,TestSuiteOLD.sewing,TestSuiteOLD.salesSamp,2);
+        addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
+                DataItems.expShadeCode,DataItems.coneMUM,DataItems.sewing,DataItems.salesSamp,2);
         
          //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\12Line1 details added.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\12Line1 details added.png"));
         
         System.out.println("Line 0 order details added. Adding new line...");
         
@@ -348,14 +349,14 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\13Line1 details copied.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\13Line1 details copied.png"));
         
         System.out.println("Data copied. Adding remaining line 1 order details...");
         
         //Enter brand, ticket
-        addOrder.setBrand(TestSuiteOLD.brand,1);
-        addOrder.setTicket(TestSuiteOLD.ticket,1);
-        addOrder.setShadeCode(TestSuiteOLD.shadeCode,1);
+        addOrder.setBrand(DataItems.brand,1);
+        addOrder.setTicket(DataItems.ticket,1);
+        addOrder.setShadeCode(DataItems.shadeCode,1);
         
         System.out.println("Order details added. Submitting...");
         
@@ -372,7 +373,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\14View multiline copied.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\14View multiline copied.png"));
         
         System.out.println("Details verified.");
         
@@ -384,7 +385,7 @@ public class Cce_SOC {
         
     }
 
-    @Category(Categories.OrderCreation.class)
+    @Category(Categories.CCE_Orders.class)
     @Test //Order Samples Page :: Pend order 
     public void SOC6() throws InterruptedException, IOException {
         //New driver object to control browser
@@ -402,8 +403,8 @@ public class Cce_SOC {
         
         System.out.println("Order samples loaded. Entering customer details...");
         
-        orderSamples.setCustName(TestSuiteOLD.custDetails[0]);
-        orderSamples.setRequestor(TestSuiteOLD.custDetails[2]);
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
         
         System.out.println("Customer details entered. Submitting...");
         
@@ -412,8 +413,8 @@ public class Cce_SOC {
         System.out.println("Prompt submitted. Adding order details...");
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputDetails(TestSuiteOLD.custDetails[1],TestSuiteOLD.custDetails[3],TestSuiteOLD.expArticle,
-                TestSuiteOLD.expShadeCode,TestSuiteOLD.coneMUM,TestSuiteOLD.sewing,TestSuiteOLD.salesSamp,2);
+        addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
+                DataItems.expShadeCode,DataItems.coneMUM,DataItems.sewing,DataItems.salesSamp,2);
         
         System.out.println("Order details added. Pressing pend order...");
         
@@ -422,7 +423,7 @@ public class Cce_SOC {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\15Pend order pressed.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\15Pend order pressed.png"));
         
         System.out.println("Order pended. Getting order stage...");
         

@@ -1,7 +1,8 @@
 
 package PageObjects;
 
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.Categories;
+import AutomationFramework.DataItems;
 import com.google.common.base.Verify;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -71,7 +72,7 @@ public class CCE_OrderViewPage {
     public CCE_ConfirmProductionPage pressPrint() {
         switchTo();
         
-        if (TestSuiteOLD.printingEnabled) {
+        if (DataItems.printingEnabled) {
             driver.findElement(printButton).click();
             System.out.println("DN sent to printer.");
         } else {

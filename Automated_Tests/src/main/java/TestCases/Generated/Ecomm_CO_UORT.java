@@ -2,7 +2,7 @@ package TestCases.Generated;
 
 import AutomationFramework.Categories;
 import AutomationFramework.CommonTask;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_MappingAlert;
@@ -24,7 +24,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-@Category(Categories.ContractOrder.class)
+@Category(Categories.eComm_Orders_ContractOrder.class)
 public class Ecomm_CO_UORT {
   private WebDriver driver;
   private String baseUrl;
@@ -42,11 +42,11 @@ public class Ecomm_CO_UORT {
     driver.manage().window().maximize();
   }
 
-  @Category(Categories.OrderCreation.class)
+  @Category({Categories.eComm_Orders_ContractOrder_UploadOrder.class,Categories.QuickSuite.class})
   @Test //Upload Orders Page :: Realtime contract order upload, expecting "No matching reference" error
   public void CORT1() throws Exception {
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Upload Order Contract Order #1", "CO_UO_1", TestSuiteOLD.validCustUsername, TestSuiteOLD.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Upload Order Contract Order #1", "CO_UO_1", DataItems.validCustUsername, DataItems.validCustPassword);
     
       System.out.println("Navigating to Upload Order...");
     
@@ -56,7 +56,7 @@ public class Ecomm_CO_UORT {
       System.out.println("Upload Order reached. Setting filepath and upload method...");
     
     driver.findElement(By.id("filename")).clear();
-    driver.findElement(By.id("filename")).sendKeys(TestSuiteOLD.co_uploadOrderFilepath);
+    driver.findElement(By.id("filename")).sendKeys(DataItems.co_uploadOrderFilepath);
     
     driver.findElement(By.id("bulkuploadprocess1")).click();
     
@@ -64,7 +64,7 @@ public class Ecomm_CO_UORT {
     
     //Take a screenshot
     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\1Filepath entered.png"));
+    FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\1Filepath entered.png"));
     
     driver.findElement(By.cssSelector("input.btn-submit-upload")).click();
     
@@ -93,7 +93,7 @@ public class Ecomm_CO_UORT {
     
     //Take a screenshot
     File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\2Mapping page.png"));
+    FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\2Mapping page.png"));
     
     driver.findElement(By.id("trigger")).click();
     
@@ -116,7 +116,7 @@ public class Ecomm_CO_UORT {
     
     //Take a screenshot
     File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\3Error expected - Confirmation Page.png"));
+    FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\3Error expected - Confirmation Page.png"));
     
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
@@ -125,7 +125,7 @@ public class Ecomm_CO_UORT {
     
     //Take a screenshot
     File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile8,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\4Error expected - Confirmation Page scrolled.png"));
+    FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\4Error expected - Confirmation Page scrolled.png"));
     
       System.out.println("Viewing error...");
     
@@ -136,7 +136,7 @@ public class Ecomm_CO_UORT {
     
     //Take a screenshot
     File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\5Error View.png"));
+    FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\5Error View.png"));
     
     Actions action = new Actions(driver);
     action.sendKeys(Keys.ESCAPE).build().perform();
@@ -156,21 +156,21 @@ public class Ecomm_CO_UORT {
         System.out.println("Order cancelled, as Contract Order Call-off is disabled");
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\6Order cancelled.png"));
+        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\6Order cancelled.png"));
 
   }
 
-  @Category(Categories.OrderCreation.class)
+  @Category({Categories.eComm_Orders_ContractOrder_UploadOrder.class,Categories.QuickSuite.class})
   @Test //Upload Orders Page :: Realtime contract order upload, expecting validation success
   public void CORT2() throws IOException {
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Upload Order Contract Order #2", "CO_ME_2", TestSuiteOLD.validCustUsername, TestSuiteOLD.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Upload Order Contract Order #2", "CO_ME_2", DataItems.validCustUsername, DataItems.validCustPassword);
     
     Ecomm_MainPage ecomm = new Ecomm_MainPage(driver);
     ecomm.clickUploadOrder();
     
     driver.findElement(By.id("filename")).clear();
-    driver.findElement(By.id("filename")).sendKeys(TestSuiteOLD.co_uploadOrderFilepath2);
+    driver.findElement(By.id("filename")).sendKeys(DataItems.co_uploadOrderFilepath2);
     
     driver.findElement(By.cssSelector("input.btn-submit-upload")).click();
     
@@ -205,11 +205,11 @@ public class Ecomm_CO_UORT {
     }
     
     
-    CommonTask.setSearchField(driver, By.id("s2id_BuyerId_0"), TestSuiteOLD.conOrdDetails[3]);
+    CommonTask.setSearchField(driver, By.id("s2id_BuyerId_0"), DataItems.conOrdDetails[3]);
     
     //Take a screenshot
     File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\7Validation success - Confirmation page.png"));
+    FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\7Validation success - Confirmation page.png"));
    
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
@@ -218,22 +218,22 @@ public class Ecomm_CO_UORT {
     
     //Take a screenshot
     File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\8Validation success - Confirmation page scrolled.png"));
+    FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\8Validation success - Confirmation page scrolled.png"));
     
-    if (TestSuiteOLD.contractOrderCallOff) {
+    if (DataItems.contractOrderCallOff) {
         driver.findElement(confirmButton).click();
         CommonTask.waitForPageLoad(driver);
         System.out.println("Order confirmed.");
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\9Order confirmed.png"));
+        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\9Order confirmed.png"));
     } else {
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
         System.out.println("Order cancelled, as Conract Call-off is disabled");
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\9Order cancelled.png"));
+        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\9Order cancelled.png"));
     }
     
     

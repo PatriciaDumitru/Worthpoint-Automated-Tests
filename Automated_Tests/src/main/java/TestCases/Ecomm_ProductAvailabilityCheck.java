@@ -2,7 +2,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,7 +27,7 @@ public class Ecomm_ProductAvailabilityCheck {
         WebDriver driver = new ChromeDriver();
         
         Ecomm_SUSST_Base base = new Ecomm_SUSST_Base(driver);
-        Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",TestSuiteOLD.validCustUsername,TestSuiteOLD.validCustPassword);
+        Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",DataItems.validCustUsername,DataItems.validCustPassword);
     
         System.out.println("Navigating to Product Availability Check Page...");
         
@@ -36,7 +36,7 @@ public class Ecomm_ProductAvailabilityCheck {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Product Availability Check\\1Product Availability Check Page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\1Product Availability Check Page.png"));
         
         System.out.println("Page reached.");
         
@@ -44,7 +44,7 @@ public class Ecomm_ProductAvailabilityCheck {
         
         System.out.println("Checking title...");
 
-        Assert.assertTrue("Product Availability Check Page: Title not as expected",driver.findElement(TestSuiteOLD.breadcrumbLocator2).getText().equals("Product Availability Check"));
+        Assert.assertTrue("Product Availability Check Page: Title not as expected",driver.findElement(DataItems.breadcrumbLocator2).getText().equals("Product Availability Check"));
     
         System.out.println("Title as expected. Checking fields...");
         
@@ -52,14 +52,14 @@ public class Ecomm_ProductAvailabilityCheck {
         
         System.out.println("Fields checked. Entering details...");
         
-        pacPage.setYourMatNum(TestSuiteOLD.yourMatNum);
-        pacPage.setBrand(TestSuiteOLD.expBrand);
-        pacPage.setShadeCode(TestSuiteOLD.expShadeCode);
+        pacPage.setYourMatNum(DataItems.yourMatNum);
+        pacPage.setBrand(DataItems.expBrand);
+        pacPage.setShadeCode(DataItems.expShadeCode);
         pacPage.setQty("1");
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Product Availability Check\\2Details entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\2Details entered.png"));
         
         System.out.println("Details entered. Searching for product...");
         
@@ -69,7 +69,7 @@ public class Ecomm_ProductAvailabilityCheck {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Product Availability Check\\3Search view.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\3Search view.png"));
         
         System.out.println("View displayed. Closing view...");
         
@@ -79,7 +79,7 @@ public class Ecomm_ProductAvailabilityCheck {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Product Availability Check\\4View closed.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\4View closed.png"));
         
         System.out.println("View closed.");
         
@@ -95,7 +95,7 @@ public class Ecomm_ProductAvailabilityCheck {
         WebDriver driver = new ChromeDriver();
         
         Ecomm_SUSST_Base base = new Ecomm_SUSST_Base(driver);
-        Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",TestSuiteOLD.validCustUsername,TestSuiteOLD.validCustPassword);
+        Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",DataItems.validCustUsername,DataItems.validCustPassword);
     
         System.out.println("Navigating to Product Availability Check Page...");
         
@@ -104,13 +104,13 @@ public class Ecomm_ProductAvailabilityCheck {
         
         System.out.println("Page reached. Entering details...");
         
-        pacPage.setArticle(TestSuiteOLD.conOrdArticle);
-        pacPage.setShadeCode(TestSuiteOLD.expShadeCode);
+        pacPage.setArticle(DataItems.conOrdArticle);
+        pacPage.setShadeCode(DataItems.expShadeCode);
         pacPage.setQty("1");
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Product Availability Check\\5Details entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\5Details entered.png"));
         
         System.out.println("Details entered. Searching for product...");
         
@@ -120,7 +120,7 @@ public class Ecomm_ProductAvailabilityCheck {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\EComm\\Product Availability Check\\6Search view.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\6Search view.png"));
         
         System.out.println("View displayed. Closing view...");
         

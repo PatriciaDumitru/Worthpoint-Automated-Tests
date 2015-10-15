@@ -1,7 +1,7 @@
 
 package PageObjects;
 
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.CommonTask;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -54,6 +54,8 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     //Edit order overlay locator
     static By editOverlayLocator = By.id("TB_window");
+    
+    static By flashMessageLocator = By.id("flashMessage");
     
     
     public Ecomm_OrderConfirmationPage(WebDriver passedDriver) {
@@ -245,6 +247,27 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return new Ecomm_OutstandingOrdersPage(driver);
     }
     
+    public Ecomm_OrderConfirmationPage pressSubmitExpectingFailure() {
+        //Wait for element to be clickable
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(submitButtonLocator));
+        driver.findElement(submitButtonLocator).click();  
+        
+        try {
+            //wait for alert and confirm
+            Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+            alert.accept();
+        } catch (Exception e) {
+            
+        }
+        
+        return new Ecomm_OrderConfirmationPage(driver);
+        
+    }
+    
+    public WebElement waitForError() {
+        return new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
+    }
+    
     public Ecomm_ManualEntryPage pressCancel() {
         WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
         driver.findElement(cancelButtonLocator).click();
@@ -261,6 +284,11 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         typeDetails.sendKeys(requester).build().perform(); 
         
         return new Ecomm_OrderConfirmationPage(driver);
+    }
+    
+    public Ecomm_OrderConfirmationPage setShipToParty(String shipToParty) throws InterruptedException {
+        CommonTask.setDropDownField(driver, shipToPartyField, shipToParty);
+        return this;
     }
     
 }

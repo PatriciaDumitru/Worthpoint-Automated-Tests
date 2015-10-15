@@ -39,7 +39,7 @@ public class Cce_OrderStatus {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\1Order Status Page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\1Order Status Page.png"));
         
         orderStatus.assertBaseElements();
         
@@ -49,20 +49,20 @@ public class Cce_OrderStatus {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        orderStatus.setCustName(TestSuiteOLD.custDetails[0]);
+        orderStatus.setCustName(DataItems.custDetails[0]);
         
         System.out.println("Criteria entered. Listing orders...");
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\2Filter criteria entered.png"));
         
         orderStatus.pressListOrders();
         orderStatus.waitForLoad();
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\3Orders listed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\3Orders listed.png"));
         
         System.out.println("Orders listed. Exporting data...");
         
@@ -78,7 +78,7 @@ public class Cce_OrderStatus {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\4Filter reset.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\4Filter reset.png"));
         
         System.out.println("----------------------------------------------------");
         

@@ -1,6 +1,8 @@
 
 package PageObjects;
 
+import AutomationFramework.Categories;
+import AutomationFramework.DataItems;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -9,8 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import AutomationFramework.TestSuiteOLD;
 
 public class Ecomm_OrderViewPage {
     WebDriver driver;
@@ -63,7 +63,7 @@ public class Ecomm_OrderViewPage {
     public void pressPrint() {
     	switchTo();
     	WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printButton));
-    	if (TestSuiteOLD.printingEnabled) {
+    	if (DataItems.printingEnabled) {
         	driver.findElement(printButton).click();
         	System.out.println("Item sent to printer");
     	} else {

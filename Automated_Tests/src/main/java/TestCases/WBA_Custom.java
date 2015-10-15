@@ -11,7 +11,7 @@ import org.junit.experimental.categories.Category;
 @Category(Categories.Custom.class)
 public class WBA_Custom {
 
-    @Category(Categories.OrderCreation.class)
+
     @Test
     public void generated() throws InterruptedException, IOException, AWTException {
         CreateTest generate = new CreateTest();      

@@ -101,18 +101,12 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     }
     
     public Ecomm_FromExistingPage setCustPo(String poNumber) {
-        //Wait for element to be available and enter poNumber
-        WebElement waitForElement = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custPOFieldLocator));
-        //Click and type PO
-        Actions action = new Actions(driver);
-        action.click(driver.findElement(custPOFieldLocator)).build().perform();
-        action.sendKeys(poNumber).build().perform();
-        
+        CommonTask.setInputFieldAlt(driver,"BulkOrderPoNumber",poNumber); 
         return this;
     }
     
     public Ecomm_FromExistingPage setOrderNo(String orderNo) {
-        CommonTask.setInputFieldAlt(driver, "", orderNo);
+        CommonTask.setSearchField(driver, custPOFieldLocator, orderNo);
         return this;
     }
     

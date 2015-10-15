@@ -2,7 +2,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_ExportDownloadPage;
 import PageObjects.CCE_LRMLogPage;
@@ -40,7 +40,7 @@ public class Cce_SAPLog {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\SAP Log\\1SAP log page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Admin\\SAP Log\\1SAP log page.png"));
         
         System.out.println("SAP Log reached. Checking title...");
         
@@ -56,13 +56,13 @@ public class Cce_SAPLog {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        sapPage.setCustName(TestSuiteOLD.custDetails[0]);
-        sapPage.setMUMType(TestSuiteOLD.copMUM);
+        sapPage.setCustName(DataItems.custDetails[0]);
+        sapPage.setMUMType(DataItems.copMUM);
         sapPage.setSapStatus("Created in SAP");
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\SAP Log\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Admin\\SAP Log\\2Filter criteria entered.png"));
         
         System.out.println("Filter criteria entered. Pressing search...");
         
@@ -71,7 +71,7 @@ public class Cce_SAPLog {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\SAP Log\\3Records listed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Admin\\SAP Log\\3Records listed.png"));
         
         System.out.println("Records listed. Viewing top item...");
         
@@ -81,7 +81,7 @@ public class Cce_SAPLog {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\SAP Log\\4Record view.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Admin\\SAP Log\\4Record view.png"));
         
         System.out.println("View displayed. Closing view...");
         
@@ -100,7 +100,7 @@ public class Cce_SAPLog {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Admin\\SAP Log\\5Filter reset.png"));
+        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Admin\\SAP Log\\5Filter reset.png"));
         
         System.out.println("Filter reset.");
         

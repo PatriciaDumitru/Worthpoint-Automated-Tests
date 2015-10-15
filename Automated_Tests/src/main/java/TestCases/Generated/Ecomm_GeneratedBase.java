@@ -1,7 +1,7 @@
 
 package TestCases.Generated;
 
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.WBA_ContinuePage;
 import PageObjects.WBA_LoginPage;
@@ -20,7 +20,7 @@ public class Ecomm_GeneratedBase {
         System.out.println("TEST: "+testTitle);
         System.out.println("Scenario ID: "+scenarioID);
         
-        driver.get(TestSuiteOLD.targetURL);
+        driver.get(DataItems.targetURL);
         
         driver.manage().window().maximize();
         

@@ -34,15 +34,25 @@ public class CommonTask {
         Actions action = new Actions(driver);
         action.click(driver.findElement(fieldLocator)).build().perform();
         
-        WebElement waitForSearch = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(searchLocator));
+        WebElement waitForSearch = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(searchLocator));
         driver.findElement(searchLocator).sendKeys(item);
         //Wait for search result to load
-        Boolean waitForResult = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator, item));
+        Boolean waitForResult = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator, item));
         //Press enter
         action.sendKeys(driver.findElement(searchLocator), Keys.ENTER).build().perform();
         
         //Wait for update
-        boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item)); 
+        boolean waitForUpdate = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item)); 
+    }
+    
+    public static void resetSearchField(WebDriver driver, String id) {
+        
+        By resetButton = By.cssSelector("#"+id+" > a > abbr");
+        
+        driver.findElement(resetButton).click();
+        
+        //Wait for update
+        boolean waitForUpdate = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(By.id(id), "")); 
     }
     
     public static void setDropDownField(WebDriver driver,By fieldLocator,String item) throws InterruptedException {
@@ -218,7 +228,7 @@ public class CommonTask {
         String PONumber = "null";
         try {
             //Access file to read
-            FileReader fr = new FileReader(TestSuiteOLD.idFilepath);
+            FileReader fr = new FileReader(DataItems.idFilepath);
             BufferedReader br = new BufferedReader(fr);
             
             //Get current ID
@@ -231,7 +241,7 @@ public class CommonTask {
             fr.close();
             
             //Access file to write
-            FileWriter fw = new FileWriter(TestSuiteOLD.idFilepath);
+            FileWriter fw = new FileWriter(DataItems.idFilepath);
             BufferedWriter bw = new BufferedWriter(fw);
             
             //Write incremented id to file
@@ -239,9 +249,9 @@ public class CommonTask {
             //Append the ID and type the PO number
             String prefix;
             if (type.equals("contract")) {
-                prefix = TestSuiteOLD.conOrdDetails[4];
+                prefix = DataItems.conOrdDetails[4];
             } else {
-                prefix = TestSuiteOLD.custDetails[4];
+                prefix = DataItems.custDetails[4];
             }
             
             PONumber = prefix+idString;       

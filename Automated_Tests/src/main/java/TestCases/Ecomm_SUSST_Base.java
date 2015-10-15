@@ -1,7 +1,8 @@
 
 package TestCases;
 
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.Categories;
+import AutomationFramework.DataItems;
 import PageObjects.WBA_ContinuePage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.WBA_LoginPage;
@@ -24,7 +25,7 @@ public class Ecomm_SUSST_Base {
         System.out.println("Scenario ID: "+scenarioID);
     
         //navigate to QA site
-        driver.get(TestSuiteOLD.targetURL);
+        driver.get(DataItems.targetURL);
     
         //maximise browser window
         driver.manage().window().maximize();
@@ -35,7 +36,7 @@ public class Ecomm_SUSST_Base {
         WBA_LoginPage liPage = new WBA_LoginPage(driver);
 
         //log in
-        WBA_ContinuePage cont = liPage.loginAs(TestSuiteOLD.validCoatsUsername,TestSuiteOLD.validCoatsPassword);
+        WBA_ContinuePage cont = liPage.loginAs(DataItems.validCoatsUsername,DataItems.validCoatsPassword);
 
         System.out.println("Logged in. Continuing to selection page...");
 
@@ -57,7 +58,7 @@ public class Ecomm_SUSST_Base {
         System.out.println("Scenario ID: "+scenarioID);
     
         //navigate to QA site
-        driver.get(TestSuiteOLD.targetURL);
+        driver.get(DataItems.targetURL);
     
         //maximise browser window
         driver.manage().window().maximize();

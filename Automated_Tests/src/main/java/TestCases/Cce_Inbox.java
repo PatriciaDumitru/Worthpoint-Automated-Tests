@@ -2,7 +2,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_InboxPage;
 import PageObjects.CCE_InboxSAPPage;
@@ -40,7 +40,7 @@ public class Cce_Inbox {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\1Inbox page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\1Inbox page.png"));
         
         System.out.println("Inbox reached.");
         
@@ -57,11 +57,11 @@ public class Cce_Inbox {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        ibPage.setCustName(TestSuiteOLD.custDetails[0]);
+        ibPage.setCustName(DataItems.custDetails[0]);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing orders...");
         
@@ -70,7 +70,7 @@ public class Cce_Inbox {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\3Orders listed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\3Orders listed.png"));
         
         System.out.println("Orders listed. Viewing order...");
         
@@ -79,7 +79,7 @@ public class Cce_Inbox {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\4Order view.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\4Order view.png"));
         
         System.out.println("Order view displayed. Closing order...");
         
@@ -99,14 +99,14 @@ public class Cce_Inbox {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\5Send to selected.png"));
+        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\5Send to selected.png"));
         
         ibPage.pressSave();     
         ibPage.waitForLoad();
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\6Changes saved.png"));
+        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\6Changes saved.png"));
         
         System.out.println("----------------------------------------------------");
         driver.close();
@@ -130,12 +130,12 @@ public class Cce_Inbox {
         
         System.out.println("Inbox loaded. Entering filter criteria...");
         
-        ibPage.setCustName(TestSuiteOLD.custDetails[0]);
-        ibPage.setRequester(TestSuiteOLD.custDetails[2]);
+        ibPage.setCustName(DataItems.custDetails[0]);
+        ibPage.setRequester(DataItems.custDetails[2]);
         
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\7Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\7Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Pressing reset...");
         
@@ -144,7 +144,7 @@ public class Cce_Inbox {
         
         //Take a screenshot
         File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile8,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\8Filter reset.png"));
+        FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\8Filter reset.png"));
         
         System.out.println("Filter reset. Pressing 'send to SAP'...");
         
@@ -152,7 +152,7 @@ public class Cce_Inbox {
         
         //Take a screenshot
         File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile9,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\9Send to SAP selected.png"));
+        FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\9Send to SAP selected.png"));
         
         System.out.println("SAP selected. Pressing cancel...");
         
@@ -161,7 +161,7 @@ public class Cce_Inbox {
         
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile10,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\10Order cancelled.png"));
+        FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\10Order cancelled.png"));
         
         System.out.println("Cancel pressed. Pressing print...");
         
@@ -191,15 +191,15 @@ public class Cce_Inbox {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\1Inbox SAP page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\1Inbox SAP page.png"));
         
         System.out.println("Inbox loaded. Entering filter criteria...");
         
-        isPage.setHub(TestSuiteOLD.hub);
+        isPage.setHub(DataItems.hub);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing orders...");
         
@@ -208,16 +208,16 @@ public class Cce_Inbox {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\3Orders listed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\3Orders listed.png"));
         
         System.out.println("Orders listed. Entering search criteria...");
         
-        isPage.setSalesOrg(TestSuiteOLD.salesOrganisation);
-        isPage.setHub(TestSuiteOLD.hub);
+        isPage.setSalesOrg(DataItems.salesOrganisation);
+        isPage.setHub(DataItems.hub);
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\4Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\4Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Pressing reset...");
         
@@ -226,7 +226,7 @@ public class Cce_Inbox {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\5Filter reset.png"));
+        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\5Filter reset.png"));
         
         System.out.println("Reset pressed.");
         

@@ -2,7 +2,7 @@
 package TestCases;
 
 import AutomationFramework.Categories;
-import AutomationFramework.TestSuiteOLD;
+import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_FeedbackAwaitingPage;
 import PageObjects.CCE_FeedbackCompletedPage;
@@ -43,7 +43,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\1Feedback Page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\1Feedback Page.png"));
         
         System.out.println("Feedback page loaded. Checking title...");
         
@@ -83,16 +83,16 @@ public class Cce_Feedback {
         
         System.out.println("Feedback page loaded. Entering order no. and requester: ");
         
-        fbPage.setOrderNo(TestSuiteOLD.sampOrderNo);            
+        fbPage.setOrderNo(DataItems.sampOrderNo);            
         
         System.out.println("Criteria entered. Entering Yes/No: ");
         fbPage.pressYesSatisfied();
         
-        fbPage.setRequester(TestSuiteOLD.sampRequester);
+        fbPage.setRequester(DataItems.sampRequester);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\2Criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\2Criteria entered.png"));
         
         System.out.println("Yes selected. Saving feedback...");
         
@@ -101,7 +101,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\3Feedback saved.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\3Feedback saved.png"));
         
         System.out.println("Feedback saved.");
         
@@ -128,7 +128,7 @@ public class Cce_Feedback {
         
         System.out.println("Feedback page loaded. Entering order no. and requester: ");
         
-        fbPage.setOrderNo(TestSuiteOLD.sampOrderNo);      
+        fbPage.setOrderNo(DataItems.sampOrderNo);      
         
         System.out.println("Criteria entered. (Satisfied?) Entering No: ");
         
@@ -136,7 +136,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\4Not satisfied.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\4Not satisfied.png"));
         
         System.out.println("No selected. (Rematch?) Entering No: ");
         
@@ -144,7 +144,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\5No rematch.png"));
+        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\5No rematch.png"));
         
         System.out.println("No selected. Providing reason...");
         
@@ -152,7 +152,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\6Reason set.png"));
+        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\6Reason set.png"));
         
         System.out.println("Reason set. Saving feedback...");
         
@@ -161,7 +161,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\7Feedback saved.png"));
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback\\7Feedback saved.png"));
         
         System.out.println("Feedback saved.");
         
@@ -188,7 +188,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\1Feedback awaiting page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\1Feedback awaiting page.png"));
         
         System.out.println("Feedback Awaiting page reached. Checking title...");
         
@@ -228,11 +228,11 @@ public class Cce_Feedback {
         
         System.out.println("Feedback Awaiting page reached. Entering filter criteria...");
         
-        fbaPage.setCustName(TestSuiteOLD.custDetails[0]);
+        fbaPage.setCustName(DataItems.custDetails[0]);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing orders...");
         
@@ -241,7 +241,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\3Orders listed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\3Orders listed.png"));
         
         System.out.println("Orders listed. Loading top item...");
         
@@ -250,7 +250,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\4Feedback page loaded.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\4Feedback page loaded.png"));
         
         System.out.println("----------------------------------------------------");
         
@@ -276,19 +276,19 @@ public class Cce_Feedback {
         
         System.out.println("Feedback Awaiting page reached. Entering filter criteria...");
         
-        fbaPage.setCustName(TestSuiteOLD.custDetails[0]);
+        fbaPage.setCustName(DataItems.custDetails[0]);
         
         System.out.println("Criteria entered. Listing orders...");
         
         fbaPage.pressListOrders();
         
-        System.out.println("Orders listed. Accepting top item with code '"+TestSuiteOLD.acceptCode+"'...");
+        System.out.println("Orders listed. Accepting top item with code '"+DataItems.acceptCode+"'...");
         
-        fbaPage.pressAccept(TestSuiteOLD.acceptCode);
+        fbaPage.pressAccept(DataItems.acceptCode);
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\5Accept code entered.png"));
+        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\5Accept code entered.png"));
         
         System.out.println("Accept pressed. Saving feedback...");
         
@@ -297,7 +297,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\6Accept saved.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback Awaiting\\6Accept saved.png"));
         
         System.out.println("----------------------------------------------------");
         
@@ -323,7 +323,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback Completed\\1Feedback completed page.png"));
+        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback Completed\\1Feedback completed page.png"));
         
         System.out.println("Feedback completed reached. Checking page title...");
         
@@ -359,13 +359,13 @@ public class Cce_Feedback {
         
         System.out.println("Feedback completed reached. Entering filter criteria...");
         
-        fcPage.setCustName(TestSuiteOLD.custDetails[0]);
+        fcPage.setCustName(DataItems.custDetails[0]);
         fcPage.setRematch("No");
-        fcPage.setShadeCode(TestSuiteOLD.expShadeCode2);
+        fcPage.setShadeCode(DataItems.expShadeCode2);
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback Completed\\2Filter criteria entered.png"));
+        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback Completed\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing orders...");
         
@@ -374,7 +374,7 @@ public class Cce_Feedback {
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(TestSuiteOLD.screenshotsFilepath+"\\CCE\\Orders\\Feedback Completed\\3Orders listed.png"));
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Feedback Completed\\3Orders listed.png"));
         
         System.out.println("Orders listed. Exporting orders to excel spreadsheet...");
         
