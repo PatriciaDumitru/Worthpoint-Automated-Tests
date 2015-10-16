@@ -281,7 +281,7 @@ public class Cce_SOCtest {
         addOrder.pressSubmitExceeded();
         
         //Wait for message to appear
-        WebElement waitForMessage = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(CCE_AddOrderPage.flashMessageLocator));
+        WebElement waitForMessage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(CCE_AddOrderPage.flashMessageLocator));
         
         String message = driver.findElement(CCE_AddOrderPage.flashMessageLocator).getText();
         

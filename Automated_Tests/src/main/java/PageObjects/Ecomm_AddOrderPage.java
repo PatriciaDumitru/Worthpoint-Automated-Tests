@@ -236,11 +236,11 @@ public class Ecomm_AddOrderPage extends WBA_BasePage {
     
     public CCE_OrderStatusPage pressSubmit() {
         //Wait for button to be clickable and click
-        WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitOrderButton));
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitOrderButton));
         
         driver.findElement(submitOrderButton).click();
         
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
         return new CCE_OrderStatusPage(driver);
@@ -248,11 +248,11 @@ public class Ecomm_AddOrderPage extends WBA_BasePage {
     
     public Ecomm_AddOrderPage pressSubmitExceeded() {
         //Wait for button to be clickable and click
-        WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitOrderButton));
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitOrderButton));
         
         driver.findElement(submitOrderButton).click();
         
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
         return new Ecomm_AddOrderPage(driver);
@@ -261,10 +261,10 @@ public class Ecomm_AddOrderPage extends WBA_BasePage {
     public CCE_OrderStatusPage pressPendOrder() {
         
         //Wait for button to be clickable
-        WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(pendOrderButton));
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(pendOrderButton));
         driver.findElement(pendOrderButton).click();
         
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         
         alert.accept();
         
@@ -275,7 +275,7 @@ public class Ecomm_AddOrderPage extends WBA_BasePage {
     public Ecomm_OrderSamplesPage pressCancel() {
         
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
         driver.findElement(cancelButton).click();
         
         return new Ecomm_OrderSamplesPage(driver);
@@ -283,14 +283,14 @@ public class Ecomm_AddOrderPage extends WBA_BasePage {
     
     public Ecomm_AddOrderPage pressNewLine(int lineNumber) {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(newLineButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(newLineButton));
         driver.findElement(newLineButton).click();
         
         //Locator for quantity field in new line
         By fieldLocator = By.id("SampleOrderLine"+lineNumber+"OrderedQuantity");
         
         //Wait for new line form to load
-        WebElement waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        WebElement waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         
         return this;
     }
@@ -331,32 +331,32 @@ public class Ecomm_AddOrderPage extends WBA_BasePage {
         
         try {
             //Wait for all fields to be clickable
-            WebElement waitForShipTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
-            WebElement waitForBusPrinc = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(busPrincipalField));
-            WebElement waitForLightSrc1 = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(lightSource1Field));
-            WebElement waitForLightSrc2 = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(lightSource2Field));
-            WebElement waitForLightSrc3 = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(lightSource3Field));
-            WebElement waitForNewBuyerLink = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(newBuyerLink));
-            WebElement waitForArticle = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(articleField));
-            WebElement waitForBrand = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandField));
-            WebElement waitForTicket = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ticketField));
-            WebElement waitForShadeCode = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-            WebElement waitForCop = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(copButton));
-            WebElement waitForCone = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(coneButton));
-            WebElement waitForVicone = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viconeButton));
-            WebElement waitForColMat = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(colMatButton));
-            WebElement waitForSewing = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sewingButton));
-            WebElement waitForDirEnYes = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(dirEnYesButton));
-            WebElement waitForDirEnNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(dirEnNoButton));
-            WebElement waitForPurpose = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(purposeField));
-            WebElement waitForRequirements = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requirementsField));
-            WebElement waitForCustRef = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custRefField));
-            WebElement waitForFabRef = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fabRefField));
-            WebElement waitForQuantity = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(quantityField));
-            WebElement waitForNewLine = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(newLineButton));
-            WebElement waitForSubmit = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitOrderButton));
-            WebElement waitForPend = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(pendOrderButton));
-            WebElement waitForCancel = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));  
+            WebElement waitForShipTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
+            WebElement waitForBusPrinc = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(busPrincipalField));
+            WebElement waitForLightSrc1 = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lightSource1Field));
+            WebElement waitForLightSrc2 = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lightSource2Field));
+            WebElement waitForLightSrc3 = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lightSource3Field));
+            WebElement waitForNewBuyerLink = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(newBuyerLink));
+            WebElement waitForArticle = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(articleField));
+            WebElement waitForBrand = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandField));
+            WebElement waitForTicket = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketField));
+            WebElement waitForShadeCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
+            WebElement waitForCop = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(copButton));
+            WebElement waitForCone = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(coneButton));
+            WebElement waitForVicone = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viconeButton));
+            WebElement waitForColMat = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(colMatButton));
+            WebElement waitForSewing = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(sewingButton));
+            WebElement waitForDirEnYes = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(dirEnYesButton));
+            WebElement waitForDirEnNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(dirEnNoButton));
+            WebElement waitForPurpose = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(purposeField));
+            WebElement waitForRequirements = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requirementsField));
+            WebElement waitForCustRef = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custRefField));
+            WebElement waitForFabRef = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fabRefField));
+            WebElement waitForQuantity = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(quantityField));
+            WebElement waitForNewLine = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(newLineButton));
+            WebElement waitForSubmit = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitOrderButton));
+            WebElement waitForPend = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(pendOrderButton));
+            WebElement waitForCancel = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));  
             
             //Assert they are all displayed
             Assert.assertTrue("Add Order page: Ship To Party field not displayed", getShipToField().isDisplayed());

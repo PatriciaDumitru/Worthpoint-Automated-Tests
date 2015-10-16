@@ -87,7 +87,7 @@ public class WBA_Login {
         System.out.println("Logged in. Asserting continue page elements are displayed...");
         
         //Wait for page to load
-        WebElement waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(WBA_ContinuePage.getMainImage()));
+        WebElement waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(WBA_ContinuePage.getMainImage()));
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -124,7 +124,7 @@ public class WBA_Login {
 
         //Press CCE
         CCE_MainPage ccePage = selectionPage.pressCce();
-        boolean waitForLoad2 = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(DataItems.ccePageTitle));
+        boolean waitForLoad2 = new WebDriverWait(driver,5).until(ExpectedConditions.titleIs(DataItems.ccePageTitle));
         
         System.out.println("CCE main page reached. Asserting elements are displayed...");
         
@@ -143,7 +143,7 @@ public class WBA_Login {
         Ecomm_MainPage eCommPage = selectionPage.pressEcomm();
         
         //Wait for page to load
-        boolean waitForLoad3 = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(DataItems.eCommPageTitle));
+        boolean waitForLoad3 = new WebDriverWait(driver,5).until(ExpectedConditions.titleIs(DataItems.eCommPageTitle));
         
         System.out.println("eComm reached. Asserting elements are displayed...");
         

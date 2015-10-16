@@ -60,7 +60,7 @@ public class Cce_MainPagetest {
         CCE_MainPage ccePage = selectionPage.pressCce();
         
         //Wait for page to load
-        Boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(DataItems.ccePageTitle));
+        Boolean waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.titleIs(DataItems.ccePageTitle));
         
         //Take a screenshot
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -156,7 +156,7 @@ public class Cce_MainPagetest {
         System.out.println("CCE main page reached. Checking links...");
         
         //Wait for page to load
-        Boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(DataItems.ccePageTitle));
+        Boolean waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.titleIs(DataItems.ccePageTitle));
         
         //Expected subheadings for each navbar tab in order from left to right
         String[][] expectedSubMenu = new String[][] {
@@ -185,7 +185,7 @@ public class Cce_MainPagetest {
                 
                 if (!expectedTitle.equals("")) {
                     header.click();
-                    WebElement waitForBreadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+                    WebElement waitForBreadcrumb = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
                     String actualTitle = driver.findElement(DataItems.breadcrumbLocator).getText();
                     
                     Verify.verify(expectedTitle.equals(actualTitle),"***"+expectedTitle + " page title not displayed as expected, or page incorrectly linked***");
@@ -228,13 +228,13 @@ public class Cce_MainPagetest {
                         //Generate subtab locator
                         By subtabLocator = By.cssSelector("#topnav > li:nth-child("+(count+1)+") > div > div > ul > li:nth-child("+(subCount+1)+")");
                         //Click header
-                        WebElement waitForHeader = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(headerLocator));
+                        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(headerLocator));
                         driver.findElement(headerLocator).click();
                         //Wait for sub tab to appear and click
-                        WebElement subtab = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(subtabLocator));
+                        WebElement subtab = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(subtabLocator));
                         driver.findElement(subtabLocator).click();
                         //Wait for title to display
-                        WebElement breadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+                        WebElement breadcrumb = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
                         String actualTitle = driver.findElement(DataItems.breadcrumbLocator).getText();
                         Verify.verify(expectedTitle.equals(actualTitle),"***"+expectedTitle+" page title not displayed as expected, or page incorrectly linked***");
                         System.out.println(expectedTitle+" page correctly linked");

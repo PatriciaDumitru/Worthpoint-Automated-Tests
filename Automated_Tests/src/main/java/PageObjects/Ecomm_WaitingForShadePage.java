@@ -91,16 +91,16 @@ public class Ecomm_WaitingForShadePage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForSalesOrg = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement waitForCustName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForCreateFrom = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(createDateFromField));
-        WebElement waitForCreateTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(createDateToField));
-        WebElement waitForCustPO = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement waitForOrderNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForSearchBtn = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForResetBtn = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForEditBtn = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(editButton));
-        WebElement waitForViewBtn = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForSalesOrg = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForCreateFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createDateFromField));
+        WebElement waitForCreateTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createDateToField));
+        WebElement waitForCustPO = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custPOField));
+        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForSearchBtn = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForResetBtn = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForEditBtn = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editButton));
+        WebElement waitForViewBtn = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
     
         //Assert all elements are displayed
         Assert.assertTrue("Shade Not Available Page: Sales Org Field not displayed correctly",getSalesOrgField().isDisplayed());
@@ -116,25 +116,25 @@ public class Ecomm_WaitingForShadePage extends WBA_BasePage {
     }
     
     public Ecomm_WaitingForShadePage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
         driver.findElement(searchButton).click();
         return this;
     }
     
     public Ecomm_WaitingForShadePage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return this;
     }
     
     public Ecomm_ShadeOrderConfirmationPage pressEdit() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(editButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editButton));
         driver.findElement(editButton).click();
         return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
     
     public Ecomm_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
         driver.findElement(viewButton).click();
         return new Ecomm_OrderViewPage(driver);
     }

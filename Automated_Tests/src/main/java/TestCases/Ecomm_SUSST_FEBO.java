@@ -70,7 +70,7 @@ public void FEBO1() throws IOException {
     manualEntryPage.waitForLoad();
     
     //Wait for items to load
-    Boolean waitForItems = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElement(manualEntryPage.getQty(), "3"));
+    Boolean waitForItems = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElement(manualEntryPage.getQty(), "3"));
     
     //Take a screenshot
     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

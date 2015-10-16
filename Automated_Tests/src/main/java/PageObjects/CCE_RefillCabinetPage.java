@@ -62,10 +62,10 @@ public class CCE_RefillCabinetPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all fields to be clickable
-        WebElement waitForShipTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
-        WebElement waitForCabinetName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cabinetNameField));
-        WebElement waitForSubmit = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitButton));
-        WebElement waitForCancel = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement waitForShipTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
+        WebElement waitForCabinetName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cabinetNameField));
+        WebElement waitForSubmit = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitButton));
+        WebElement waitForCancel = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
         
         //Assert all elements are displayed
         Assert.assertTrue("Refill Cabinet Page: Ship to field not displayed correctly",getShipToField().isDisplayed());

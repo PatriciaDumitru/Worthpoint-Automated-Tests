@@ -121,7 +121,7 @@ public class Ecomm_CO_UORT {
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
           
-    WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
+    WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
     
     //Take a screenshot
     File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -214,7 +214,7 @@ public class Ecomm_CO_UORT {
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
 
-    WebElement waitForPresence = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
+    WebElement waitForPresence = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
     
     //Take a screenshot
     File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

@@ -107,7 +107,7 @@ public class WBA_BasePage {
         System.out.println("Asserting base elements...");
 
         //Wait for elements to be visible
-        WebElement waitForElements = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(getFooter()));
+        WebElement waitForElements = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(getFooter()));
 
         //Assert that all elements belonging to the base page (listed in the locators) are displayed correctly
         Assert.assertTrue("Base page: 'Today' label not displayed",getTodayLabel().isDisplayed());
@@ -127,7 +127,7 @@ public class WBA_BasePage {
     }
     
     public void waitForLoad() {
-        WebElement waitForContent = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
+        WebElement waitForContent = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
     }
     
 }

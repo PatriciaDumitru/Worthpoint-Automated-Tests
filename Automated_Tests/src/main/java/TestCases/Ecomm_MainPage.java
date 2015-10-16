@@ -61,7 +61,7 @@ public class Ecomm_MainPage {
         System.out.println("Selection page loaded. eComm selected...");
         
         //Wait for page to load
-        boolean waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.titleIs(DataItems.eCommPageTitle));
+        boolean waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.titleIs(DataItems.eCommPageTitle));
         
         System.out.println("eComm page loaded.");
         

@@ -291,7 +291,7 @@ public class CCE_TotalOrdersPage extends WBA_BasePage {
     }
     
     public CCE_TotalOrdersPage tickBusPrinc() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(busPrincBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(busPrincBox));
         driver.findElement(busPrincBox).click();
         return this;
     }
@@ -322,64 +322,64 @@ public class CCE_TotalOrdersPage extends WBA_BasePage {
     }
     
     public CCE_OrderViewPage pressPrint() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
         driver.findElement(printButton).click();
         return new CCE_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
         driver.findElement(exportButton).click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public CCE_TotalOrdersPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return new CCE_TotalOrdersPage(driver);
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForMUMbox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(mumTypeBox));
-        WebElement waitForArticlebox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(articleBox));
-        WebElement waitForBrandbox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandBox));
-        WebElement waitForTicketbox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ticketBox));
-        WebElement waitForCustRefbox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custRefBox));
-        WebElement waitForQtyProdbox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(qtyProducedBox));
-        WebElement waitForQtyOrdbox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(qtyOrderedBox));
-        WebElement waitForShadeCodebox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shadeCodeBox));
-        WebElement waitForCustNamebox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameBox));
-        WebElement waitForReqFirstbox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requesterFirstBox));
-        WebElement waitForReqSecondbox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requesterSecondBox));
-        WebElement waitForBusPrincbox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(busPrincBox));
-        WebElement waitForOrderNoField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForPlantNameField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(plantNameField));
-        WebElement waitForCustCodeField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement waitForRequesterField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForOrderTypeField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderTypeField));
-        WebElement waitForRequestTypeField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requestTypeField));
-        WebElement waitForBrandField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForTicketField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForCceSolutionField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cceSolutionField));
-        WebElement waitForDeliveredFromField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(deliveredFromField));
-        WebElement waitForDeliveredToField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(deliveredToField));
-        WebElement waitForCountryField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(countryField));
-        WebElement waitForBusPrincField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(busPrincField));
-        WebElement waitForShipToNameField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shipToNameField));
-        WebElement waitForHubField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement waitForMUMTypeField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(mumTypeField));
-        WebElement waitForOrderStageField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderStageField));
-        WebElement waitForCreatedFromField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(createdFromField));
-        WebElement waitForCreatedToField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(createdToField));
-        WebElement waitForSalesOrgField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement waitForCustNameField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForShipToCodeField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shipToCodeField));
-        WebElement waitForFCENameField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForScenarioField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(scenarioField));
-        WebElement waitForArticleField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement waitForOutstOfField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(outstOfField));
-        WebElement waitForFabRefField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fabRefField));
+        WebElement waitForMUMbox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(mumTypeBox));
+        WebElement waitForArticlebox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(articleBox));
+        WebElement waitForBrandbox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandBox));
+        WebElement waitForTicketbox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketBox));
+        WebElement waitForCustRefbox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custRefBox));
+        WebElement waitForQtyProdbox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(qtyProducedBox));
+        WebElement waitForQtyOrdbox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(qtyOrderedBox));
+        WebElement waitForShadeCodebox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeBox));
+        WebElement waitForCustNamebox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameBox));
+        WebElement waitForReqFirstbox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterFirstBox));
+        WebElement waitForReqSecondbox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterSecondBox));
+        WebElement waitForBusPrincbox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(busPrincBox));
+        WebElement waitForOrderNoField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForPlantNameField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(plantNameField));
+        WebElement waitForCustCodeField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custCodeField));
+        WebElement waitForRequesterField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterField));
+        WebElement waitForOrderTypeField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderTypeField));
+        WebElement waitForRequestTypeField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requestTypeField));
+        WebElement waitForBrandField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandField));
+        WebElement waitForTicketField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketField));
+        WebElement waitForCceSolutionField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cceSolutionField));
+        WebElement waitForDeliveredFromField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(deliveredFromField));
+        WebElement waitForDeliveredToField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(deliveredToField));
+        WebElement waitForCountryField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(countryField));
+        WebElement waitForBusPrincField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(busPrincField));
+        WebElement waitForShipToNameField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToNameField));
+        WebElement waitForHubField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubField));
+        WebElement waitForMUMTypeField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(mumTypeField));
+        WebElement waitForOrderStageField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderStageField));
+        WebElement waitForCreatedFromField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createdFromField));
+        WebElement waitForCreatedToField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createdToField));
+        WebElement waitForSalesOrgField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+        WebElement waitForCustNameField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForShipToCodeField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToCodeField));
+        WebElement waitForFCENameField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fceNameField));
+        WebElement waitForScenarioField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(scenarioField));
+        WebElement waitForArticleField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(articleField));
+        WebElement waitForOutstOfField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(outstOfField));
+        WebElement waitForFabRefField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fabRefField));
         
         //Assert all elements are displayed
         Assert.assertTrue("Total Orders Page: MUM Type checkbox not displayed",getMUMTypeBox().isDisplayed());

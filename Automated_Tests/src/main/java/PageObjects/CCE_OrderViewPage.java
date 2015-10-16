@@ -112,8 +112,8 @@ public class CCE_OrderViewPage {
     
     public void waitForLoad() {
         switchTo();
-        WebElement waitForColumnHeaders = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(custNameHeader));
-        WebElement waitForPrintButton = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(printButton));
+        WebElement waitForColumnHeaders = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(custNameHeader));
+        WebElement waitForPrintButton = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(printButton));
     }
     
     public void waitForContent() {
@@ -130,6 +130,6 @@ public class CCE_OrderViewPage {
     }
     
     public void waitForInvisibility() {
-        boolean waitForInvisiblility = new WebDriverWait(driver,10).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+        boolean waitForInvisiblility = new WebDriverWait(driver,5).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
     }
 }

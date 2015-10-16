@@ -56,7 +56,7 @@ public class Ecomm_SUSST_UORT {
         uploadPage.assertBaseElements();
         System.out.println("Asserting other elements...");
         //Wait for page to load before asserting the other elements
-        WebElement waitForLoad = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(uploadPage.getUploadButton()));
+        WebElement waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(uploadPage.getUploadButton()));
         Assert.assertTrue("Upload Order page: File name field not displayed",uploadPage.getFileNameOutputField().isDisplayed());
         Assert.assertTrue("Upload Order page: Realtime upload radio button not displayed",uploadPage.getRealtimeRadio().isDisplayed());
         Assert.assertTrue("Upload Order page: Backend upload radio button not displayed",uploadPage.getBackendRadio().isDisplayed());

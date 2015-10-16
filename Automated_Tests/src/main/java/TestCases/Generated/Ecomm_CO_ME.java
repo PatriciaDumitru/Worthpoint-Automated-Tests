@@ -177,7 +177,7 @@ public class Ecomm_CO_ME {
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     
     try {
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         assertTrue(alert.getText().matches("^Do you want to SUBMIT the order[\\s\\S]$"));
         alert.accept();
     } catch (Exception e) {
@@ -378,7 +378,7 @@ public class Ecomm_CO_ME {
     }
     Ecomm_ManualEntryPage mePage2 = new Ecomm_ManualEntryPage(driver);
 
-    boolean waitForError = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(flashMessage,"could not"));
+    boolean waitForError = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(flashMessage,"could not"));
     
       System.out.println("Error received. ");
     

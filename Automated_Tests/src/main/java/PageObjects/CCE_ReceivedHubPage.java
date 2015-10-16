@@ -143,11 +143,11 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     }
     
     public CCE_ReceivedHubPage pressSave() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(saveButton));
         
         driver.findElement(saveButton).click();
         
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
         String message = driver.findElement(flashMessage).getText();
@@ -171,26 +171,26 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     }
     
     public CCE_ReceivedHubPage pressSendToCust() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sendToCustButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(sendToCustButton));
         
         driver.findElement(sendToCustButton).click();
         
-        Boolean waitForSelected = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(sendToCustButton)));
+        Boolean waitForSelected = new WebDriverWait(driver,5).until(CommonTask.boxIsChecked(driver.findElement(sendToCustButton)));
         
         return this;
     }
     
     public void checkFields() {
         //Wait for all to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-        WebElement waitForRequester = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForFce = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForHub = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(hub));
-        WebElement waitForListOrders = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        WebElement waitForReset = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForOrderFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
+        WebElement waitForOrderTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateToField));
+        WebElement waitForRequester = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterField));
+        WebElement waitForFce = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fceNameField));
+        WebElement waitForHub = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hub));
+        WebElement waitForListOrders = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         
         //Assert all elements are displayed
         Assert.assertTrue("Hub SOS Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());

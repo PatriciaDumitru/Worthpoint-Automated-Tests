@@ -54,20 +54,20 @@ public class Ecomm_UploadOrderPage extends WBA_BasePage {
     
     public Ecomm_UploadOrderPage setFilePath(String filePath) throws AWTException {
         //Wait for element to be available
-        WebElement waitForVisible = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(fileNameOutputLocator));
+        WebElement waitForVisible = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(fileNameOutputLocator));
         //new action to click field
         Actions clickField = new Actions(driver);
         //clickField.click(driver.findElement(fileNameFieldLocator)).build().perform();
         driver.findElement(fileNameFieldLocator).sendKeys(DataItems.uploadOrderFilepath);      
         //wait for txt to appear in field
-        //boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(fileNameOutputLocator, TestSuite.uploadOrderPath));
+        //boolean waitForText = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(fileNameOutputLocator, TestSuite.uploadOrderPath));
         
         return this;
     }
     
     public Ecomm_UploadOrderPage pressRealtime() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(realtimeRadioLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(realtimeRadioLocator));
         //New action to click button
         Actions clickRealtime = new Actions(driver);
         clickRealtime.click(driver.findElement(realtimeRadioLocator));
@@ -77,7 +77,7 @@ public class Ecomm_UploadOrderPage extends WBA_BasePage {
     
     public Ecomm_UploadOrderPage pressBackend() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(backendRadioLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(backendRadioLocator));
         //New action to click button
         Actions clickRealtime = new Actions(driver);
         clickRealtime.click(driver.findElement(backendRadioLocator)).build().perform();
@@ -87,7 +87,7 @@ public class Ecomm_UploadOrderPage extends WBA_BasePage {
     
     public Ecomm_MappingAlert pressUpload() {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(uploadButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(uploadButtonLocator));
         //Click button
         Actions clickUpload = new Actions(driver);
         clickUpload.click(driver.findElement(uploadButtonLocator)).build().perform();
