@@ -33,7 +33,7 @@ public class CCE_OrderCycleTimePage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement waitForBreadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
+        WebElement waitForBreadcrumb = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
         return driver.findElement(breadcrumb);
     }
     
@@ -90,7 +90,7 @@ public class CCE_OrderCycleTimePage extends WBA_BasePage {
     }
     
     public CCE_OrderCycleTimePage setOrderLine(String item) {
-        WebElement waitForOrderLine = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderLineField));
+        WebElement waitForOrderLine = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderLineField));
         driver.findElement(orderLineField).click();
         driver.findElement(orderLineField).sendKeys(item);
         
@@ -116,38 +116,38 @@ public class CCE_OrderCycleTimePage extends WBA_BasePage {
     }
     
     public CCE_OrderViewPage pressPrint() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
         driver.findElement(printButton).click();
         driver.findElement(printButton).click();
         return new CCE_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
         driver.findElement(exportToExcelButton).click();
         
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public CCE_OrderCycleTimePage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return this;
     }
     
     public void checkFields() {
         //Wait for all fields to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForOrderLine = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderLineField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-        WebElement waitForHub = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement waitForFce = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForShipTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shipToNameField));
-        WebElement waitForPrintButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printButton));
-        WebElement waitForExportButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
-        WebElement waitForResetButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForOrderLine = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderLineField));
+        WebElement waitForOrderFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
+        WebElement waitForOrderTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateToField));
+        WebElement waitForHub = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubField));
+        WebElement waitForFce = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fceNameField));
+        WebElement waitForShipTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToNameField));
+        WebElement waitForPrintButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForExportButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
+        WebElement waitForResetButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         
         //Assert all elements displayed
         Assert.assertTrue("Order Cycle Time Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());

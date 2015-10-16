@@ -214,22 +214,22 @@ public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 
 	public void checkFields() {
 		//Wait for all fields to be clickable
-		WebElement waitForCustPO = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custPOField));
-		WebElement waitForCreationFrom = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(createDateFromField));
-		WebElement waitForYMN = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-		WebElement waitForTicket = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ticketField));
-		WebElement waitForFinish = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(finishField));
-		WebElement waitForSAPMsg = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sapMsgField));
-		WebElement waitForOrderNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderNoField));
-		WebElement waitForSalesOrg = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-		WebElement waitForBrand = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandField));
-		WebElement waitForArticle = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(articleField));
-		WebElement waitForLength = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(lengthField));
-		WebElement waitForShadeCode = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-		WebElement waitForSearch = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(searchButton));
-		WebElement waitForReset = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
-		WebElement waitForView = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButton));
-		WebElement waitForFtView = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ftViewButton));
+		WebElement waitForCustPO = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custPOField));
+		WebElement waitForCreationFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createDateFromField));
+		WebElement waitForYMN = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
+		WebElement waitForTicket = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketField));
+		WebElement waitForFinish = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(finishField));
+		WebElement waitForSAPMsg = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(sapMsgField));
+		WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
+		WebElement waitForSalesOrg = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+		WebElement waitForBrand = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandField));
+		WebElement waitForArticle = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(articleField));
+		WebElement waitForLength = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lengthField));
+		WebElement waitForShadeCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
+		WebElement waitForSearch = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+		WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+		WebElement waitForView = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
+		WebElement waitForFtView = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ftViewButton));
 		
 		//Assert all elements are displayed
 		Assert.assertTrue("SAP Interface Log Page: Customer PO Field not displayed",getCustPOField().isDisplayed());

@@ -120,19 +120,19 @@ public class Ecomm_ShadeNotAvailablePage extends WBA_BasePage {
     }
     
     public Ecomm_ShadeNotAvailablePage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return this;
     }
     
     public Ecomm_ShadeOrderConfirmationPage pressEdit() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(editButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editButton));
         driver.findElement(editButton).click();
         return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
     
     public Ecomm_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
         driver.findElement(viewButton).click();
         return new Ecomm_OrderViewPage(driver);
     }

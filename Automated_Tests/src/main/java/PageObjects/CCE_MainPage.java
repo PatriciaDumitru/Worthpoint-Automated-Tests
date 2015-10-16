@@ -59,13 +59,13 @@ public class CCE_MainPage extends WBA_BasePage {
     public CCE_OrderSamplesPage pressOrderSamples() {
 
         //Wait for header
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersHeader));
         //Click header
         driver.findElement(ordersHeader).click();
         //Wait for order samples subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderSamplesSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderSamplesSubtab));
         //click subtab
         driver.findElement(orderSamplesSubtab).click();
         return new CCE_OrderSamplesPage(driver);
@@ -107,33 +107,33 @@ public class CCE_MainPage extends WBA_BasePage {
         //Click header
         driver.findElement(ordersHeader).click();
         //Wait for feedback subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(feedbackSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(feedbackSubtab));
         //click subtab
         driver.findElement(feedbackSubtab).click();
         return new CCE_FeedbackPage(driver);
     }
     
     public CCE_FeedbackAwaitingPage pressFeedbackAwaiting() {
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersHeader));
         //Click header
         driver.findElement(ordersHeader).click();
         //Wait for feedback awaiting subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(feedbackAwaitingSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(feedbackAwaitingSubtab));
         //click subtab
         driver.findElement(feedbackAwaitingSubtab).click();
         return new CCE_FeedbackAwaitingPage(driver);
     }
     
     public CCE_FeedbackCompletedPage pressFeedbackCompleted() {
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersHeader));
         //Click header
         driver.findElement(ordersHeader).click();
         //Wait for feedback completed subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(feedbackCompletedSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(feedbackCompletedSubtab));
         //click subtab
         driver.findElement(feedbackCompletedSubtab).click();
         
@@ -141,13 +141,13 @@ public class CCE_MainPage extends WBA_BasePage {
     }
     
     public CCE_HubSosPage pressHubSos() {
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(hubHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(hubHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(hubHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubHeader));
         //Click header
         driver.findElement(hubHeader).click();
         //Wait for feedback completed subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(hubSosSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubSosSubtab));
         //click subtab
         driver.findElement(hubSosSubtab).click();
         
@@ -155,13 +155,13 @@ public class CCE_MainPage extends WBA_BasePage {
     }
     
     public CCE_ReceivedHubPage pressReceivedHub() {
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(hubHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(hubHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(hubHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubHeader));
         //Click header
         driver.findElement(hubHeader).click();
         //Wait for feedback completed subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(receivedHubSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(receivedHubSubtab));
         //click subtab
         driver.findElement(receivedHubSubtab).click();
         
@@ -172,13 +172,13 @@ public class CCE_MainPage extends WBA_BasePage {
     
     public CCE_InboxPage pressInbox() {
         //Wait for header
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(inboxHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(inboxHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(inboxHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(inboxHeader));
         //Click header
         driver.findElement(inboxHeader).click();
         //Wait for inbox subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(inboxSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(inboxSubtab));
         //click subtab
         driver.findElement(inboxSubtab).click();
         return new CCE_InboxPage(driver);
@@ -186,13 +186,13 @@ public class CCE_MainPage extends WBA_BasePage {
     
     public CCE_InboxSAPPage pressInboxSAP() {
         //Wait for header
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(inboxHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(inboxHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(inboxHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(inboxHeader));
         //Click header
         driver.findElement(inboxHeader).click();
         //Wait for inbox subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(inboxSAPSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(inboxSAPSubtab));
         //click subtab
         driver.findElement(inboxSAPSubtab).click();
         return new CCE_InboxSAPPage(driver);
@@ -200,9 +200,9 @@ public class CCE_MainPage extends WBA_BasePage {
     
     public CCE_ConfirmProductionPage pressConfirmProduction() {
         //Wait for header
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(conProdHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(conProdHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(conProdHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(conProdHeader));
         //Click header
         driver.findElement(conProdHeader).click();
         return new CCE_ConfirmProductionPage(driver);
@@ -210,22 +210,22 @@ public class CCE_MainPage extends WBA_BasePage {
     
     public CCE_RefillCabinetPage pressRefillCabinet() {
         //Wait for header
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(refCabHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(refCabHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(refCabHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(refCabHeader));
         //Click header
         driver.findElement(refCabHeader).click();
         return new CCE_RefillCabinetPage(driver);
     }
     
     public CCE_FCETaskStatusPage pressFCETaskStatus() {
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(reportsHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(reportsHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(reportsHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(reportsHeader));
         //Click header
         driver.findElement(reportsHeader).click();
         //Wait for feedback completed subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fceTaskStatusSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fceTaskStatusSubtab));
         //click subtab
         driver.findElement(fceTaskStatusSubtab).click();
         
@@ -233,13 +233,13 @@ public class CCE_MainPage extends WBA_BasePage {
     }
     
     public CCE_OrderCycleTimePage pressOrderCycleTime() {
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(reportsHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(reportsHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(reportsHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(reportsHeader));
         //Click header
         driver.findElement(reportsHeader).click();
         //Wait for feedback completed subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderCycleTimeSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderCycleTimeSubtab));
         //click subtab
         driver.findElement(orderCycleTimeSubtab).click();
         
@@ -247,13 +247,13 @@ public class CCE_MainPage extends WBA_BasePage {
     } 
     
     public CCE_TotalOrdersPage pressTotalOrders() {
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(reportsHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(reportsHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(reportsHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(reportsHeader));
         //Click header
         driver.findElement(reportsHeader).click();
         //Wait for feedback completed subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(totalOrdersSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(totalOrdersSubtab));
         //click subtab
         driver.findElement(totalOrdersSubtab).click();
         
@@ -261,13 +261,13 @@ public class CCE_MainPage extends WBA_BasePage {
     }
     
     public CCE_LRMLogPage pressLRMLog() {
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(adminHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(adminHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(adminHeader));
         //Click header
         driver.findElement(adminHeader).click();
         //Wait for lrm log subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(lrmLogSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lrmLogSubtab));
         //click subtab
         driver.findElement(lrmLogSubtab).click();
         
@@ -275,13 +275,13 @@ public class CCE_MainPage extends WBA_BasePage {
     }
     
     public CCE_SAPLogPage pressSAPLog() {
-        WebElement waitForHeaderVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(adminHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(adminHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(adminHeader));
         //Click header
         driver.findElement(adminHeader).click();
         //Wait for lrm log subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sapLogSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(sapLogSubtab));
         //click subtab
         driver.findElement(sapLogSubtab).click();
         

@@ -126,21 +126,21 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForOrderStage = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderStageField));
-        WebElement waitForRequestType = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requestTypeField));
-        WebElement waitForBusPrin = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(busPrincipalField));
-        WebElement waitForHub = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement waitForRequestor = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForScenario = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(scenarioField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-        WebElement waitForFce = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForFabRef = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fabRefField));
-        WebElement waitForShadeCode = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForCurrentSOS = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(currentSosField));
-        WebElement waitForCustRef = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custRefField));
+        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForOrderStage = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderStageField));
+        WebElement waitForRequestType = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requestTypeField));
+        WebElement waitForBusPrin = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(busPrincipalField));
+        WebElement waitForHub = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubField));
+        WebElement waitForRequestor = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterField));
+        WebElement waitForScenario = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(scenarioField));
+        WebElement waitForOrderFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
+        WebElement waitForOrderTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateToField));
+        WebElement waitForFce = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fceNameField));
+        WebElement waitForFabRef = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fabRefField));
+        WebElement waitForShadeCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
+        WebElement waitForCurrentSOS = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(currentSosField));
+        WebElement waitForCustRef = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custRefField));
         
         //Assert all elements are displayed
         Assert.assertTrue("Order Status Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
@@ -197,7 +197,7 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
     
     
     public CCE_OrderStatusPage waitForMessage() {
-        WebElement waitForVisibility = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        WebElement waitForVisibility = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
         return this;
     }
     
@@ -207,7 +207,7 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
         
         while (!found) {
             By orderNoLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+1)+") > td:nth-child(5)");
-            WebElement waitForCell = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(orderNoLocator));
+            WebElement waitForCell = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(orderNoLocator));
             
             if (driver.findElement(orderNoLocator).getText().equals(orderNo)) {
                 found = true;

@@ -93,7 +93,7 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     
     public Ecomm_OutstandingOrderDraftPage setPONumber(String poNumber) {
         //Wait for field
-        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custPOFieldLocator));
+        WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custPOFieldLocator));
         
         Actions clickAndType = new Actions(driver);
         clickAndType.click(driver.findElement(custPOFieldLocator)).build().perform();
@@ -105,14 +105,14 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     
     public Ecomm_OutstandingOrderDraftPage setBrand(String brand) {
         //Wait for field to load
-        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandFieldLocator));
+        WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandFieldLocator));
         
         Actions clickAndType = new Actions(driver);
         clickAndType.click(driver.findElement(brandFieldLocator)).build().perform();
-        WebElement waitForSearch = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(brandSearchLocator));
+        WebElement waitForSearch = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(brandSearchLocator));
         clickAndType.sendKeys(brand).build().perform();
         
-        WebElement waitForResult = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandResultLocator));
+        WebElement waitForResult = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandResultLocator));
         
         clickAndType.sendKeys(Keys.ENTER).build().perform();
         
