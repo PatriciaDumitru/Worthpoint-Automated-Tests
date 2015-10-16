@@ -17,7 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @Category(Categories.CCE.class)
-public class Cce_OrderStatus {
+public class Cce_OrderStatustest {
     
     @Test //Order status page :: page and filter checks, reset function, export data
     public void OS1() throws IOException {

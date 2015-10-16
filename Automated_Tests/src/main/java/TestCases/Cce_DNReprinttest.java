@@ -19,7 +19,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @Category(Categories.CCE.class)
-public class Cce_DNReprint {
+public class Cce_DNReprinttest {
     
     @Test //DN Reprint Page :: Page checks
     public void DR1() throws IOException {

@@ -140,7 +140,7 @@ public class Ecomm_SUSST_UORT {
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\4Outstanding Order Page.png"));
                 
-        String orderNo = outOrdersPage.getOrderNumber(1);
+        String orderNo = outOrdersPage.getOrderNumber(0);
         
         System.out.println("Order number: "+orderNo);
         

@@ -42,7 +42,7 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     }
     
     public String getTitle() {
-        WebElement waitForTitle = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
+        WebElement waitForTitle = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
         
         return driver.findElement(breadcrumb).getText();
     }
@@ -181,7 +181,7 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     
     public CCE_FeedbackCompletedPage pressListOrders() {
         //Wait for element
-        WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
         
         driver.findElement(filterForm).submit();
         
@@ -190,7 +190,7 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     
     public CCE_FeedbackCompletedPage pressReset() {
         //Wait for element
-        WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         
         driver.findElement(resetButton).click();
         
@@ -210,14 +210,14 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     
     public void pressCsv() {
         //Wait for export menu
-        WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportMenu));
+        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportMenu));
         
         //Click menu and select csv
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(exportMenu)).build().perform();
         
         //Wait for subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(csvButton));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(csvButton));
         
         //Click tab
         driver.findElement(csvButton).click();
@@ -227,14 +227,14 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     
     public void pressTxt() {
         //Wait for export menu
-        WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportMenu));
+        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportMenu));
         
         //Click menu and select txt
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(exportMenu)).build().perform();
         
         //Wait for subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(txtButton));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(txtButton));
         
         //Click tab
         driver.findElement(txtButton).click();
@@ -244,14 +244,14 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     
     public void pressXls() {
         //Wait for export menu
-        WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportMenu));
+        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportMenu));
         
         //Click menu and select xls
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(exportMenu)).build().perform();
         
         //Wait for subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(xlsButton));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(xlsButton));
         
         //Click tab
         driver.findElement(xlsButton).click();
@@ -261,14 +261,14 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     
     public void pressXlsx() {
         //Wait for export menu
-        WebElement waitForMenu = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportMenu));
+        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportMenu));
         
         //Click menu and select xlsx
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(exportMenu)).build().perform();
         
         //Wait for subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(xlsxButton));
+        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(xlsxButton));
         
         //Click tab
         driver.findElement(xlsxButton).click();
@@ -278,21 +278,21 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all to be clickable
-        WebElement waitForSalesOrg = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(salesOrg));
-        WebElement waitForHub = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(hub));
-        WebElement waitForOrderNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForRequester = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForShadeCode = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForOrderDateFrom = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-        WebElement waitForOrderDateTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-        WebElement waitForStatus = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(statusField));
-        WebElement waitForRematch = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(rematchField));
-        WebElement waitForFbFrom = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fbDateFromField));
-        WebElement waitForFbTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(fbDateToField));
-        WebElement waitForListOrders = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        WebElement waitForReset = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForExport = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportMenu));
+        WebElement waitForSalesOrg = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(salesOrg));
+        WebElement waitForHub = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hub));
+        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForRequester = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterField));
+        WebElement waitForShadeCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
+        WebElement waitForOrderDateFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
+        WebElement waitForOrderDateTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateToField));
+        WebElement waitForStatus = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(statusField));
+        WebElement waitForRematch = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(rematchField));
+        WebElement waitForFbFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fbDateFromField));
+        WebElement waitForFbTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fbDateToField));
+        WebElement waitForListOrders = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForExport = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportMenu));
         
         //Assert all elements are displayed
         Assert.assertTrue("Feedback Completed Page: Sales Organisation Field not displayed correctly",getSalesOrgField().isDisplayed());

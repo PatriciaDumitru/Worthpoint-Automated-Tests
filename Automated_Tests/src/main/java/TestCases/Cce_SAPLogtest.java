@@ -20,7 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @Category(Categories.CCE.class)
-public class Cce_SAPLog {
+public class Cce_SAPLogtest {
     
     @Test //SAP Log Page :: Page and filter checks, search, reset, and export
     public void SAP1() throws IOException {

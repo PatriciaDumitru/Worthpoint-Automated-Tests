@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Category(Categories.CCE.class)
-public class Cce_Feedback {
+public class Cce_Feedbacktest {
  
     @Test //Feedback Page :: Page and fields check
     public void FB1() throws IOException {

@@ -29,7 +29,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Category(Categories.CCE.class)
-public class Cce_MainPage {
+public class Cce_MainPagetest {
     
     @Test //CCE Main Page :: Navigation bar check
     public void CCE1() throws IOException {

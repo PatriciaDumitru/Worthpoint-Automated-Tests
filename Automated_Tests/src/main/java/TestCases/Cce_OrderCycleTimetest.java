@@ -19,7 +19,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @Category(Categories.CCE.class)
-public class Cce_OrderCycleTime {
+public class Cce_OrderCycleTimetest {
     
     @Test //Order Cycle Time Page :: Page and filter checks, print, export, and reset
     public void OCTR1() throws IOException {

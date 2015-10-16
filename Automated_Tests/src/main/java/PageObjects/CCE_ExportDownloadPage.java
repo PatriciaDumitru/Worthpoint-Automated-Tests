@@ -21,7 +21,7 @@ public class CCE_ExportDownloadPage {
     }
     
     public CCE_ExportDownloadPage switchTo() {
-        WebDriver waitForFrame = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver waitForFrame = new WebDriverWait(driver,5).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
         return this;
     }
     

@@ -14,7 +14,7 @@ public class TestRunner {
         System.out.println("Suite Failures:");
         int i = 1;
         for (Failure failure : result.getFailures()) {
-            System.out.println(i+")"+failure.toString());
+            System.out.println(i+") "+failure.toString());
             System.out.println("");
             i++;
         }

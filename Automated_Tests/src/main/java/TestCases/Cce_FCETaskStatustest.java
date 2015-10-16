@@ -21,7 +21,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @Category(Categories.CCE.class)
-public class Cce_FCETaskStatus {
+public class Cce_FCETaskStatustest {
     
     @Test //FCE Task Status Page :: Page and filter checks, print records and export
     public void TS1() throws IOException {

@@ -21,7 +21,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @Category(Categories.CCE.class)
-public class Cce_Hub {
+public class Cce_Hubtest {
     
     @Test
     public void HS1() throws InterruptedException, IOException {

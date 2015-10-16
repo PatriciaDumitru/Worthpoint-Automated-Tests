@@ -81,7 +81,7 @@ public class CCE_DNReprintPage extends WBA_BasePage {
     
     public void pressReset() {
         //Wait for button to be clickable
-        WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         
         driver.findElement(resetButton).click();
     }
@@ -89,12 +89,12 @@ public class CCE_DNReprintPage extends WBA_BasePage {
     public void checkFields() {
         
         //Wait for all fields to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderNumberLocator));
-        WebElement waitForShipToCode = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shipToPartyCodeLocator));
-        WebElement waitForShipToName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shipToPartyNameLocator));
-        WebElement waitForRequester = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requesterNameLocator));
-        WebElement waitForListOrders = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        WebElement waitForReset = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));       
+        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNumberLocator));
+        WebElement waitForShipToCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToPartyCodeLocator));
+        WebElement waitForShipToName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToPartyNameLocator));
+        WebElement waitForRequester = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterNameLocator));
+        WebElement waitForListOrders = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));       
         
         //Verify elements are displayed
         Verify.verify(driver.findElement(orderNumberLocator).isDisplayed(),"DN Reprint page: Order number field not displayed");
@@ -110,15 +110,15 @@ public class CCE_DNReprintPage extends WBA_BasePage {
     
     public void pressConfirm() {
         //Wait for checkbox
-        WebElement waitForVisible = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(confirmButton));
+        WebElement waitForVisible = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(confirmButton));
         
         driver.findElement(confirmButton).click();
         
         //Wait for print icon to appear
-        WebElement waitForIcon = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(printIcon));
+        WebElement waitForIcon = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(printIcon));
         
         //Wait for box to be checked
-        Boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(confirmButton)));
+        Boolean waitForChecked = new WebDriverWait(driver,5).until(CommonTask.boxIsChecked(driver.findElement(confirmButton)));
     }
     
     public CCE_DNPrintPage pressPrint() {

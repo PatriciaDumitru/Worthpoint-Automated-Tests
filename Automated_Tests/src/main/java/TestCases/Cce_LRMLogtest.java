@@ -20,7 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @Category(Categories.CCE.class)
-public class Cce_LRMLog {
+public class Cce_LRMLogtest {
     
     @Test
     public void LRM1() throws IOException {

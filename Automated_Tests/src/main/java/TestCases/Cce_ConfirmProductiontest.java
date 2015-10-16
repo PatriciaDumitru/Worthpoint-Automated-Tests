@@ -24,7 +24,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Category(CCE.class)
-public class Cce_ConfirmProduction {
+public class Cce_ConfirmProductiontest {
     
     @Test
     public void CP1() throws InterruptedException, IOException {

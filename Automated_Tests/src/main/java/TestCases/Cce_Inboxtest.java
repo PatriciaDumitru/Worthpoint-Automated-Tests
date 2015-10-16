@@ -20,7 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @Category(Categories.CCE.class)
-public class Cce_Inbox {
+public class Cce_Inboxtest {
     
     @Test
     public void I1() throws IOException {

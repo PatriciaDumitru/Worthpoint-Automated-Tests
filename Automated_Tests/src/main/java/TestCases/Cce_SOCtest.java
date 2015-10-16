@@ -25,7 +25,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Category(Categories.CCE_Orders.class)
-public class Cce_SOC {
+public class Cce_SOCtest {
     
 
     @Category(Categories.CCE_Orders.class)
