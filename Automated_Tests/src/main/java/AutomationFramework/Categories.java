@@ -45,6 +45,7 @@ public class Categories {
     public interface eComm_Orders_ManualEntry extends eComm_Orders{}
     public interface eComm_Orders_ManualEntry_Validation extends eComm_Orders_ManualEntry{}
     public interface eComm_Orders_UploadOrder extends eComm_Orders{}
+    public interface eComm_Orders_UploadOrder_Validation extends eComm_Orders_UploadOrder{}
     
     //CCE tests
     public interface CCE extends WBA{}

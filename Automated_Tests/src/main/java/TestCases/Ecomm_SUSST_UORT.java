@@ -19,6 +19,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -152,6 +153,100 @@ public class Ecomm_SUSST_UORT {
         System.out.println("----------------------------------------------------");
         
     }    
+    
+    @Category({Categories.eComm_Orders_UploadOrder_Validation.class,Categories.QuickSuite.class,Categories.Solo.class})
+    @Test //Upload Order Page :: Realtime upload order of <100 lines, removing mandatory fields at before submission
+    public void UORT2() throws AWTException, IOException, InterruptedException {
+        //new chrome driver
+        WebDriver driver = new ChromeDriver();
+        
+        //new base test to set up
+        Ecomm_SUSST_Base uortTest1 = new Ecomm_SUSST_Base(driver);
+        //Set up returns an eComm page
+        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT2: File of <100 lines, realtime upload, validation check", "G_OOC_UORT_SUSST");
+        
+        System.out.println("Navigating to Upload Order...");
+        
+        //new upload order page
+        Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
+        uploadPage.waitForLoad();
+        
+        System.out.println("Upload Order page loaded. Setting filepath and uploading...");
+        
+        //Send file path to field
+        uploadPage.setFilePath(DataItems.uploadOrderFilepath);
+        //Select realtime upload
+        uploadPage.pressRealtime();
+        
+        //Press upload
+        Ecomm_MappingAlert alert = uploadPage.pressUpload();
+        
+        System.out.println("Upload pressed. Choosing current mapping...");
+        
+        //Press "no" to alert, continuing to mapping page
+        Ecomm_MappingPage mapPage = alert.pressYes();
+        mapPage.waitForLoad();
+        
+        System.out.println("Mapping page reached. Entering Sales Org and Customer Name...");
+        
+        mapPage.setSalesOrg(DataItems.salesOrganisation);
+        mapPage.setCustomerName(DataItems.custDetails[0]);
+        
+        System.out.println("Details entered. Confirming map...");
+        
+        Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        
+        System.out.println("Map confirmed. Removing requester and Ship To Party...");
+        
+        orderConf.setShipToParty("Select");
+        orderConf.setRequestor("Select");
+        
+        DataItems.lastUsedPO = orderConf.getCustPoField().getText();
+
+        System.out.println("Requeser removed. Submitting, expecting failure...");
+        
+        Ecomm_OrderConfirmationPage orderConf2 = orderConf.pressSubmitExpectingFailure();
+        
+        try {
+            Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+            System.out.println("Alert appeared: " + alert2.getText());
+            alert2.accept();
+        } catch (Exception e) {
+            System.out.println("No alert appeared upon submission.");
+        }
+        
+        try {
+            
+            orderConf2.waitForLoad();
+            WebElement error = orderConf2.waitForError();
+            
+            System.out.println("Order confirmation page returned.");
+            
+            System.out.println("Error received: " + error.getText());
+            
+        } catch (Exception e) {
+            System.out.println("***Order confirmation page not returned***");
+            
+        }
+        
+        System.out.println("Checking no order was created...");
+        Ecomm_OutstandingOrdersPage outOrders = eCommPage.clickOutstandingOrders();
+        outOrders.waitForLoad();
+        int row = outOrders.getRow(DataItems.lastUsedPO);
+        if (row == -1) {
+            System.out.println("No order created as expected");
+        } else {
+            System.out.println("***ERROR: ORDER CREATED WITHOUT REQUESTER/SHIP TO PARTY***");
+            System.out.println("Order PO: " + DataItems.lastUsedPO);
+            System.out.println("Order No: " + outOrders.getOrderNumber(row));
+            System.out.println("Table row: " + row);
+        }
+        
+        driver.close();
+        driver.quit();
+        
+        System.out.println("----------------------------------------------------");
+    }
     
 }
     

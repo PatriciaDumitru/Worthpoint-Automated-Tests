@@ -9,6 +9,7 @@ import AutomationFramework.Categories.eComm;
 import AutomationFramework.Categories.eComm_Orders;
 import AutomationFramework.Categories.eComm_Orders_ContractOrder;
 import AutomationFramework.Categories.eComm_Orders_UploadOrder;
+import AutomationFramework.Categories.eComm_Orders_UploadOrder_Validation;
 import PageObjects.Ecomm_MainPage;
 import TestCases.Cce_ConfirmProductiontest;
 import TestCases.Cce_DNReprinttest;
@@ -49,7 +50,7 @@ import org.junit.runners.Suite;
 import org.openqa.selenium.By;
 
 @RunWith(Categories.class)
-@IncludeCategory(eComm_Orders_UploadOrder.class)
+@IncludeCategory(Solo.class)
 @Suite.SuiteClasses({
     
     //A LIST OF ALL TEST CLASSES IN THE PROJECT. COMMMENT-OUT TO DISABLE. 
