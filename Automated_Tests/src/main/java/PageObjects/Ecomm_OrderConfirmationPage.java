@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -43,8 +44,9 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By currencyField = By.id("currency_0");
     
     //Table cell locators
-    static By yourMatNumCell = By.xpath("//*[@id=\"remove_0\"]/td[4]");
-    static By orderedQtyCell = By.xpath("//*[@id=\"remove_0\"]/td[6]");
+    static By yourMatNumCell = By.cssSelector("#remove_0 > td:nth-child(4)");
+    static By orderedQtyCell = By.cssSelector("#remove_0 > td:nth-child(6)");
+    static By requiredDateCell = By.cssSelector("#remove_0 > td:nth-child(13)");
       
     //Button locators
     static By submitButtonLocator = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(7) > div:nth-child(2) > input");
@@ -182,6 +184,10 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return driver.findElement(orderedQtyCell);
     }
     
+    public WebElement getRequiredDateCell() {
+        return driver.findElement(requiredDateCell);
+    }
+    
     public String getCustomerName() {
         return getCustNameField().getText();
     }
@@ -190,16 +196,37 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return getCustPoField().getText();
     }
     
+    public String getRequester() {
+        Boolean waitForSelection = new WebDriverWait(driver,5).until(CommonTask.selectionToBePresent(requestorField));
+        Select select = new Select(driver.findElement(requestorField));
+        return select.getFirstSelectedOption().getText();
+    }
+    
     public String getYourMatNum() {
         return getYourMatNumCell().getText();
     }
     
-    public String getOrderedQty() {
-        return getOrderedQtyCell().getText();
+    public int getOrderedQty() {
+        return Integer.valueOf(getOrderedQtyCell().getText());
+    }
+    
+    public String getRequiredDate() {
+        return getRequiredDateCell().getText();
     }
     
     public WebElement getCancelButton() {
         return driver.findElement(cancelButtonLocator);
+    }
+    
+    public String getShipToParty() {
+        Boolean waitForSelection = new WebDriverWait(driver,5).until(CommonTask.selectionToBePresent(shipToPartyField));
+        Select select = new Select(driver.findElement(shipToPartyField));
+        return select.getFirstSelectedOption().getText();
+    }
+    
+    public String getBuyers() {
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(buyersField));
+        return driver.findElement(buyersField).getText();
     }
     
     public Ecomm_OrderEditPage pressEditLine(int lineNumber) {
@@ -262,6 +289,16 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         
         return new Ecomm_OrderConfirmationPage(driver);
         
+    }
+    
+    public Ecomm_OutstandingOrderDraftPage pressSaveDraft() {
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(saveDraftButtonLocator));
+        driver.findElement(saveDraftButtonLocator).click();
+        
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        return new Ecomm_OutstandingOrderDraftPage(driver);
     }
     
     public WebElement waitForError() {

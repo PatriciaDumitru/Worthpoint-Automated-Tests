@@ -18,6 +18,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Ecomm_ManualEntryPage extends WBA_BasePage {
@@ -31,6 +32,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     static By saveDraftLocator = By.id("drafts");
     static By cancelButtonLocator = By.id("cancel1");
     static By flashMessageLocator = By.id("flashMessage");
+    static By titleLocator = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > div.tbl-title > h1");
     
     //Customer detail field locators
     static By customerNameField = By.cssSelector("#s2id_customer_id > a > span.select2-chosen.select_image_add");//Initial customer name field to click
@@ -409,9 +411,14 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return this;
     }
     
-    public WebElement getQty() {
+    public WebElement getQtyField() {
         By qtyLocator = By.id("quantity0");
         return driver.findElement(qtyLocator);
+    }
+    
+    public String getQuantity(int row) {
+        By qtyLocator = By.id("quantity"+row);
+        return driver.findElement(qtyLocator).getAttribute("value");
     }
     
     public Ecomm_ManualEntryPage setDate(int lineNumber) {
@@ -445,6 +452,12 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             clickDatePicked.click(driver.findElement(thirdOfMonthLocator)).click().perform();
         }       
         return this;
+    }
+    
+    public String getDate(int lineNumber) {
+        By dateFieldLocator = By.id("required_date_" + lineNumber);
+        
+        return driver.findElement(dateFieldLocator).getAttribute("value");
     }
     
     public Ecomm_ManualEntryPage setSpecificDate(String date, int lineNumber) {
@@ -555,25 +568,40 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
     }
     
+    public boolean waitForTitle() {
+        boolean waitForText = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(titleLocator,"Manual Entry"));
+        return waitForText;
+    }
+    
     public String getCustomerName() {
         return driver.findElement(customerNameField).getText();
     }
     
     public String getShipToName() {
-        return driver.findElement(shipToPartyField).getText();
+        Boolean waitForSelection = new WebDriverWait(driver,5).until(CommonTask.selectionToBePresent(shipToPartyField));
+        
+        Select select = new Select(driver.findElement(shipToPartyField));
+        return select.getFirstSelectedOption().getText();
     }
     
     public String getRequestorName() {
-        return driver.findElement(requestorField).getText();
+        Boolean waitForSelection = new WebDriverWait(driver,5).until(CommonTask.selectionToBePresent(requestorField));
+        
+        Select select = new Select(driver.findElement(requestorField));
+        return select.getFirstSelectedOption().getText();
     }
     
     public String getBuyer() {
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(buyersField));
         return driver.findElement(buyersField).getText();
     }
     
     public String getCustPONo() {
-        return driver.findElement(poNumberField).getText();
+        return driver.findElement(poNumberField).getAttribute("value");
     }
     
-    
+    public String getYourMatNum(int row) {
+        By ymnFieldLocator = By.id("materialno_"+row);
+        return driver.findElement(ymnFieldLocator).getAttribute("value");
+    }
 }

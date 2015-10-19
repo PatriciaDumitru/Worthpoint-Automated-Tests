@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.CommonTask;
 import static PageObjects.WBA_BasePage.driver;
 import static PageObjects.Ecomm_ManualEntryPage.customerNameField;
 import org.openqa.selenium.Alert;
@@ -79,6 +80,21 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
         return new Ecomm_OrderConfirmationPage(driver);
     }
     
+    public Ecomm_OrderConfirmationPage pressEdit(By editButton) {
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editButton));
+        driver.findElement(editButton).click();
+        try {
+            Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+            System.out.println("Alert appeared: " + alert.getText());
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert appeared");
+        }
+             
+        return new Ecomm_OrderConfirmationPage(driver);
+        
+    }
+    
     public Ecomm_OrderConfirmationPage pressDelete() {
         
         //Wait for button to be clickable
@@ -96,6 +112,35 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
         WebElement waitForMessage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(messageLocator));
         
         return new Ecomm_OrderConfirmationPage(driver);
+        
+    }
+    
+    public boolean findDraft(String poNumber) {
+        boolean found = false;
+        
+        for (int i = 0; i < 5; i++) {
+            
+            By editButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(1) > span > a > span");
+            
+            Ecomm_OrderConfirmationPage orderConf = pressEdit(editButton);
+            orderConf.waitForLoad();
+            
+            String poFound = orderConf.getPONumber();
+            
+            if (poFound == poNumber) {
+                System.out.println("***DRAFT CREATED UNEXPECTEDLY***");
+                System.out.println("Table row: "+i);
+                System.out.println("Customer PO No.: " + poFound);
+                found = true;
+                break;
+            } else {
+                driver.navigate().back();
+                CommonTask.waitForPageLoad(driver);
+            }
+            
+        }
+        
+        return found;
         
     }
     

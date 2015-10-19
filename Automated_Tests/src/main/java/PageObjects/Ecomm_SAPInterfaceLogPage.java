@@ -206,7 +206,7 @@ public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 	}
 
 	public Ecomm_OrderViewPage pressFtView() {
-		WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ftViewButton));
+		WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ftViewButton));
 		driver.findElement(ftViewButton).click();
 		
 		return new Ecomm_OrderViewPage(driver);

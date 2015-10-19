@@ -35,39 +35,39 @@ public class Ecomm_ShadeOrderConfirmationPage extends WBA_BasePage {
     }
     
     public Ecomm_ShadeNotAvailablePage pressBack() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(backButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(backButton));
         driver.findElement(backButton).click();
         return new Ecomm_ShadeNotAvailablePage(driver);
     }
     
     public Ecomm_ShadeNotAvailablePage pressCancel() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
         driver.findElement(cancelButton).click();
         return new Ecomm_ShadeNotAvailablePage(driver);
     }
     
     public Ecomm_OrderInformationPage pressEdit() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(editButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editButton));
         driver.findElement(editButton).click();
         return new Ecomm_OrderInformationPage(driver);
     }
     
     public Ecomm_PendingApprovalListPage pressSend() {
-        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(sendForApprovalButton));
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(sendForApprovalButton));
         driver.findElement(sendForApprovalButton).click();
         return new Ecomm_PendingApprovalListPage(driver);
     }
     
     public Ecomm_OutstandingOrdersPage pressSubmit() {
-        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitButton));
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitButton));
         driver.findElement(submitButton).click();
         return new Ecomm_OutstandingOrdersPage(driver);
     }
     
     public void checkFields() {
-        WebElement waitForEdit = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(editButton));
-        WebElement waitForBack = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(backButton));
-        WebElement waitForCancel = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement waitForEdit = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editButton));
+        WebElement waitForBack = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(backButton));
+        WebElement waitForCancel = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
         
         Assert.assertTrue("Shade Not Available Order Confirmation Page: Edit button not displayed correctly",getEditButton().isDisplayed());
         Assert.assertTrue("Shade Not Available Order Confirmation Page: Back button not displayed correctly",getBackButton().isDisplayed());

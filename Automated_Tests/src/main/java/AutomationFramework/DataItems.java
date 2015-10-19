@@ -17,7 +17,7 @@ public class DataItems {
     public static String idFilepath = "C:\\Selenium\\ID.txt";
     public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_55.xlsx";
     public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_56.xlsx";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_46.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_53 - Copy.xlsx";
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";

@@ -12,6 +12,7 @@ import PageObjects.WBA_LoginPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
 import PageObjects.Ecomm_OrderViewPage;
+import PageObjects.Ecomm_OutstandingOrderDraftPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_PendingApprovalListPage;
 import PageObjects.WBA_SelectionPage;
@@ -1351,5 +1352,238 @@ public class Ecomm_SUSST_ME {
         
         System.out.println("----------------------------------------------------");
     }
+    
+    @Category({Categories.eComm_Orders_ManualEntry.class,Categories.DraftCreation.class})
+    @Test //Manual Entry Page :: Order Draft creation and cancellation
+    public void SUSST15() throws InterruptedException, IOException {
+        
+        //New driver
+        WebDriver driver = new ChromeDriver();
+  
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        //Set up returns an eComm main page
+        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST15: Draft creation/order simulation","G_OOC_ME_SUSST_Unknown");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForLoad();
+        
+        System.out.println("Manual Entry page reached. Entering customer details...");
+        
+        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
+        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        System.out.println("Customer PO used: "+DataItems.lastUsedPO);
+        
+        System.out.println("Customer details entered. Entering line details...");
+        
+        manualEntryPage.setYourMaterialNumber(DataItems.yourMatNum, 0);
+        manualEntryPage.setQty(3, 0);
+        manualEntryPage.setDate(0);
+        
+        //Take a screenshot
+        File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\27Order details entered.png"));
+        
+        String date = manualEntryPage.getDate(0);
+                
+        System.out.println("Line details entered. Pressing next...");
+        
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+        orderConf.waitForLoad();
+        
+        System.out.println("Confirmation page reached. Checking details...");
+        
+        Verify.verify(orderConf.getYourMatNum().equals(DataItems.yourMatNum),"Order Confirmation Page: Your Material Number does not match input");
+        Verify.verify(orderConf.getOrderedQty() == 3,"Order Confirmation Page: Ordered Quantity does not match input");
+        Verify.verify(orderConf.getRequiredDate().equals(date),"Order Confirmation Page: Required Date does not match input");
+        
+        //Take a screenshot
+        File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\28Confirmation page reached.png"));
+        
+        Actions scroller = new Actions(driver);
+        scroller.moveToElement(orderConf.getCancelButton()).build().perform();
+        
+        WebElement waitForVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
+        
+        //Take a screenshot
+        File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\29Confirmation page reached scrolled.png"));
+        
+        
+        System.out.println("Details checked. Cancelling order...");
+        
+        Ecomm_ManualEntryPage mePage = orderConf.pressCancel();
+        mePage.waitForTitle();
+        mePage.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\30Order cancelled.png"));
+        
+        System.out.println("Order cancelled. Checking no draft was saved...");
+        
+        Ecomm_MainPage eCommPage2 = new Ecomm_MainPage(driver);
+        Ecomm_OutstandingOrderDraftPage draftPage = eCommPage2.clickOutstandingDraft();
+        draftPage.waitForLoad();
+        
+        System.out.println("Draft page reached.");
+        
+        //Take a screenshot
+        File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\31Draft page (no draft expected).png"));
+        
+        String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
+        
+        if (orderNo.equals("")) {
+            System.out.println("Draft not created, as expected.");
+        } else {
+            System.out.println("***ORDER DRAFT UNEXPECTEDLY CREATED***");
+        }
+        
+        driver.close();
+        driver.quit();
+        
+        System.out.println("----------------------------------------------------");
+        
+    }
+    
+    @Category({Categories.eComm_Orders_ManualEntry.class,Categories.DraftCreation.class})
+    @Test //Manual Entry Page :: Order Draft continuation and cancellation
+    public void SUSST16() throws InterruptedException, IOException {
+        //New driver
+        WebDriver driver = new ChromeDriver();
+  
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        //Set up returns an eComm main page
+        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST16: Draft creation/order simulation - cancelling saved draft","G_OOC_ME_SUSST_Unknown");
+        
+        System.out.println("Navigating to Outstanding Orders Draft Page...");
+        
+        Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
+        draftPage.waitForLoad();
+        
+        System.out.println("Outstanding Order Draft page reached. Editing top draft...");
+        
+        draftPage.pressEdit();
+        Ecomm_OrderConfirmationPage orderConf = new Ecomm_OrderConfirmationPage(driver);
+        orderConf.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\32Draft open.png"));
+        
+        DataItems.lastUsedPO = orderConf.getPONumber();
+        
+        System.out.println("Order confirmation page reached. Cancelling order draft...");
+        
+        Ecomm_ManualEntryPage mePage = orderConf.pressCancel();
+        mePage.waitForTitle();
+        
+        //Take a screenshot
+        File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile12,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\33Draft cancelled.png"));
+        
+        System.out.println("Draft cancelled. Checking draft is deleted...");
+        
+        Ecomm_MainPage eComm = new Ecomm_MainPage(driver);
+        Ecomm_OutstandingOrderDraftPage draftPage2 = eComm.clickOutstandingDraft();
+        draftPage2.waitForLoad();
+        
+        //Take a screenshot
+        File scrFile13 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile13,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\34Draft removed.png"));
+   
+        String orderNo = draftPage2.findDraft(DataItems.lastUsedPO);
+        
+        if (orderNo.equals("")) {
+            System.out.println("No draft found, as expected");
+        } else {
+            System.out.println("***ORDER DRAFT NOT DELETED***");
+        }
+        
+        driver.close();
+        driver.quit();
+        
+        System.out.println("----------------------------------------------------");
+        
+    }
+    
+    @Category({Categories.eComm_Orders_ManualEntry.class,Categories.DraftCreation.class})
+    @Test //Manual Entry Page :: Order Draft continuation
+    public void SUSST17() throws InterruptedException {
+         //New driver
+        WebDriver driver = new ChromeDriver();
+  
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        //Set up returns an eComm main page
+        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST15: Draft creation/order simulation","G_OOC_ME_SUSST_Unknown");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForLoad();
+        
+        System.out.println("Manual Entry page reached. Entering customer details...");
+        
+        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
+        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        System.out.println("Customer PO used: "+DataItems.lastUsedPO);
+        
+        System.out.println("Customer details entered. Entering line details...");
+        
+        manualEntryPage.setYourMaterialNumber(DataItems.yourMatNum, 0);
+        manualEntryPage.setQty(3, 0);
+        manualEntryPage.setDate(0);
+        
+        String date = manualEntryPage.getDate(0);
+                
+        System.out.println("Line details entered. Pressing next...");
+        
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+        orderConf.waitForLoad();
+        
+        System.out.println("Confirmation page reached. Saving as draft...");
+        
+        Actions scroller = new Actions(driver);
+        scroller.moveToElement(orderConf.getCancelButton()).build().perform();
+        
+        WebElement waitForVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
+        
+        Ecomm_OutstandingOrderDraftPage draftPage = orderConf.pressSaveDraft();
+        draftPage.waitForLoad();
+        
+        System.out.println("Draft saved. Continuing draft...");
+        
+        Ecomm_ManualEntryPage mePage = draftPage.pressEdit();
+        mePage.waitForLoad();
+        
+        System.out.println("Manual Entry Page reached. Checking details are consistent with input...");
+        
+        Verify.verify(mePage.getCustomerName().equals(DataItems.custDetails[0]),"Order Draft Edit: Customer name not consistent with input");
+        Verify.verify(mePage.getShipToName().equals(DataItems.custDetails[1]),"Order Draft Edit: Ship To Name not consistent with input");
+        Verify.verify(mePage.getRequestorName().equals(DataItems.custDetails[2]),"Order Draft Edit: Requester Name not consistent with input");
+        Verify.verify(mePage.getBuyer().equals(DataItems.custDetails[3]),"Order Draft Edit: Buyers not consistent with input");
+        Verify.verify(mePage.getCustPONo().equals(DataItems.lastUsedPO),"Order Draft Edit: Customer PO No. not consistent with input");
+        Verify.verify(mePage.getYourMatNum(0).equals(DataItems.yourMatNum),"Order Draft Edit: Your Material Number not consistent with input");
+        Verify.verify(mePage.getQuantity(0).equals("3"),"Order Draft Edit: Quantity not consistent with input");
+        Verify.verify(mePage.getDate(0).equals(date),"Order Draft Edit: Date not consistent with input");
+        
+        System.out.println("Details checked.");
+        
+        driver.close();
+        driver.quit();
+        System.out.println("----------------------------------------------------");
+    }   
     
 }

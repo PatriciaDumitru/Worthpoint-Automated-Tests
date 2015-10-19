@@ -105,29 +105,29 @@ public class Ecomm_OutstandingPaymentsPage extends WBA_BasePage {
     }
     
     public Ecomm_OutstandingPaymentsPage pressOverdue90() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(by90Button));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(by90Button));
         driver.findElement(by90Button).click();
-        boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(by90Box)));
+        boolean waitForChecked = new WebDriverWait(driver,5).until(CommonTask.boxIsChecked(driver.findElement(by90Box)));
         return this;
     }
     
     public Ecomm_OutstandingPaymentsPage pressAll() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(allButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(allButton));
         driver.findElement(allButton).click();
         return this;
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForCustName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitFor30Button = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(by30Button));
-        WebElement waitFor60Button = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(by60Button));
-        WebElement waitFor90Button = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(by90Button));
-        WebElement waitForAllButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(allButton));
-        WebElement waitForSearchButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForResetButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForViewButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButton));
-        WebElement waitForExportButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitFor30Button = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(by30Button));
+        WebElement waitFor60Button = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(by60Button));
+        WebElement waitFor90Button = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(by90Button));
+        WebElement waitForAllButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(allButton));
+        WebElement waitForSearchButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForResetButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForViewButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForExportButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
         
         //Assert all elements are displayed
         Assert.assertTrue("Outstanding Payments Page: Customer Name Field not displayed correctly",getCustNameField().isDisplayed());       

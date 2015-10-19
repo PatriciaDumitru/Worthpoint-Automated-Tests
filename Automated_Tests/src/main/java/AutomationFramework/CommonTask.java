@@ -16,6 +16,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -190,6 +191,19 @@ public class CommonTask {
                     return true;
                 } else {
                     return false;
+                }
+            }
+        };
+    }
+    
+    public static ExpectedCondition<Boolean> selectionToBePresent(final By locator) {
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver f) {
+                Select select = new Select(f.findElement(locator));
+                if (select.getFirstSelectedOption().equals(null)) {
+                    return false;
+                } else {
+                    return true;
                 }
             }
         };

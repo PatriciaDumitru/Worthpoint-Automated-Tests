@@ -131,6 +131,30 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
         return this;
     }
     
+    public String getOrderNo(int lineNumber) {
+        By locator = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+lineNumber+") > td:nth-child(7)");
+        return driver.findElement(locator).getText();
+    }
+    
+    public String findDraft(String poNumber) {
+        
+        String orderNo = "";
+        
+        for (int i = 1; i <= 10; i++) {
+            By poLocator = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(6)");
+            String cellPO = driver.findElement(poLocator).getText();
+            if (cellPO.equals(poNumber)) {
+                System.out.println("Draft found in outstanding drafts:");
+                orderNo = getOrderNo(i);
+                System.out.println("Table row: " + i);
+                System.out.println("Order No.: " + orderNo);
+            }
+        }
+        
+        return orderNo;
+        
+    }
+    
     public Ecomm_OrderViewPage pressView() {
         
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButtonLocator));

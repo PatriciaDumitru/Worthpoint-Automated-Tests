@@ -66,4 +66,7 @@ public class Categories {
     //QuickSuite:  run in under 10 minutes
     public interface QuickSuite{}
     
+    //Draft Creation tests ensure drafts are only created when appropriate and retain data correctly
+    public interface DraftCreation{}
+    
 }
