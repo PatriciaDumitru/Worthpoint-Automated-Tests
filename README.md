@@ -1,9 +1,6 @@
-Selenium-Maven-Template
-=======================
-
-[![Join the chat at https://gitter.im/Ardesco/Selenium-Maven-Template](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Ardesco/Selenium-Maven-Template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-A maven template for Selenium that has the latest dependencies so that you can just check out and start writing tests in five easy steps.
+WBA-Automated-test-Scripts
+==========================
+Steps to run Automated scripts.
 
 
 1. Open a terminal window/command prompt
@@ -35,10 +32,10 @@ Not got PhantomJS?  Don't worry that will be automatically downloaded for you as
 
 You can specify a grid to connect to where you can choose your browser, browser version and platform:
 
-- -Dremote=true 
-- -DseleniumGridURL=http://{username}:{accessKey}@ondemand.saucelabs.com:80/wd/hub 
-- -Dplatform=xp 
-- -Dbrowser=firefox 
+- -Dremote=true
+- -DseleniumGridURL=http://{username}:{accessKey}@ondemand.saucelabs.com:80/wd/hub
+- -Dplatform=xp
+- -Dbrowser=firefox
 - -DbrowserVersion=33
 
 You can even specify multiple threads (you can do it on a grid as well!):
