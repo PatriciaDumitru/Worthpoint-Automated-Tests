@@ -33,7 +33,8 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     //Field locators
     static By custNameField = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(2)");
-    static By customerPOField = By.id("po_number_0");
+    static By custUploadPOField = By.id("po_number_0");
+    static By customerPOField = By.id("BulkOrderPoNumber");
     static By creationDateField = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(4)");
     static By requestorField = By.id("requester_id_0");
     static By shipToPartyField = By.id("ship_to_party_id_0");
@@ -97,6 +98,10 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     public WebElement getCustPoNumHeading() {
         //find and return element
         return driver.findElement(customerPoNoHeadingLocator);
+    }
+    
+    public WebElement getUploadCustPOField() {
+        return driver.findElement(custUploadPOField);
     }
     
     public WebElement getCustPoField() {
@@ -301,6 +306,16 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return new Ecomm_OutstandingOrderDraftPage(driver);
     }
     
+    public Ecomm_OutstandingUploadDraftPage pressSaveUploadDraft() {
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(saveDraftButtonLocator));
+        driver.findElement(saveDraftButtonLocator).click();
+        
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        return new Ecomm_OutstandingUploadDraftPage(driver);
+    }
+    
     public WebElement waitForError() {
         return new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
     }
@@ -326,6 +341,12 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     public Ecomm_OrderConfirmationPage setShipToParty(String shipToParty) throws InterruptedException {
         CommonTask.setDropDownField(driver, shipToPartyField, shipToParty);
         return this;
+    }
+    
+    public Ecomm_OutstandingOrderDraftPage pressCancelToDrafts() {
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
+        driver.findElement(cancelButtonLocator).click();
+        return new Ecomm_OutstandingOrderDraftPage(driver);
     }
     
 }

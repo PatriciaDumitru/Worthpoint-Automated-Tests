@@ -58,9 +58,7 @@ public class Ecomm_UploadOrderPage extends WBA_BasePage {
         //new action to click field
         Actions clickField = new Actions(driver);
         //clickField.click(driver.findElement(fileNameFieldLocator)).build().perform();
-        driver.findElement(fileNameFieldLocator).sendKeys(DataItems.uploadOrderFilepath);      
-        //wait for txt to appear in field
-        //boolean waitForText = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(fileNameOutputLocator, TestSuite.uploadOrderPath));
+        driver.findElement(fileNameFieldLocator).sendKeys(filePath);      
         
         return this;
     }

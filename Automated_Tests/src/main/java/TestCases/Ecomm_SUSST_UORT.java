@@ -271,7 +271,7 @@ public class Ecomm_SUSST_UORT {
         System.out.println("Upload Order page loaded. Setting filepath and uploading...");
         
         //Send file path to field
-        uploadPage.setFilePath(DataItems.uploadOrderFilepath);
+        uploadPage.setFilePath(DataItems.uploadDraftFilepath);
         //Select realtime upload
         uploadPage.pressRealtime();
         
@@ -298,7 +298,7 @@ public class Ecomm_SUSST_UORT {
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
         orderConf.waitForLoad();
         
-        DataItems.lastUsedPO = orderConf.getCustPoField().getText();
+        DataItems.lastUsedPO = orderConf.getUploadCustPOField().getText();
         
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -344,7 +344,7 @@ public class Ecomm_SUSST_UORT {
     
     @Category({Categories.eComm_Orders_UploadOrder.class,Categories.DraftCreation.class})
     @Test //Upload Order Page :: Upload draft continuation and cancellation
-    public void UORT4() throws IOException {
+    public void UORT4() throws IOException, InterruptedException, AWTException {
         //new chrome driver
         WebDriver driver = new ChromeDriver();
         
@@ -353,14 +353,45 @@ public class Ecomm_SUSST_UORT {
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT4: Upload Draft continuation and cancellation", "G_OOC_UORT_Unknown");
         
-        System.out.println("Navigating to Outstanding Upload Draft Page...");
+        System.out.println("Navigating to upload order page...");
         
-        Ecomm_OutstandingUploadDraftPage uoDraft = eCommPage.clickOutstandingUploadDraft();
-        uoDraft.waitForLoad();
+        Ecomm_UploadOrderPage uoPage = eCommPage.clickUploadOrder();
+        uoPage.waitForLoad();
+        
+        //Send file path to field
+        uoPage.setFilePath(DataItems.uploadDraftFilepath);
+        //Select realtime upload
+        uoPage.pressRealtime();
+        
+        //Press upload
+        Ecomm_MappingAlert alert = uoPage.pressUpload();
+        
+        System.out.println("Upload pressed. Choosing current mapping...");
+        
+        //Press "no" to alert, continuing to mapping page
+        Ecomm_MappingPage mapPage = alert.pressYes();
+        mapPage.waitForLoad();
+        
+        System.out.println("Mapping page reached. Entering Sales Org and Customer Name...");
+        
+        mapPage.setSalesOrg(DataItems.salesOrganisation);
+        mapPage.setCustomerName(DataItems.custDetails[0]);
+        
+        System.out.println("Details entered. Confirming map...");
+        
+        Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        orderConf.waitForLoad();
+        
+        DataItems.lastUsedPO = orderConf.getUploadCustPOField().getText();
+        
+        System.out.println("Map confirmed. Saving as draft...");
+        
+        Ecomm_OutstandingUploadDraftPage draftsPage = orderConf.pressSaveUploadDraft();
+        draftsPage.waitForLoad();
         
         System.out.println("Upload Draft Page reached. Editing top item...");
         
-        Ecomm_OrderConfirmationPage orderConf = uoDraft.pressEdit();
+        Ecomm_OrderConfirmationPage orderConf2 = draftsPage.pressEdit();
         orderConf.waitForLoad();
         
         //Take a screenshot
@@ -369,10 +400,10 @@ public class Ecomm_SUSST_UORT {
         
         System.out.println("Order Confirmation Page reached. Cancelling draft...");
         
-        DataItems.lastUsedPO = orderConf.getPONumber();
+        DataItems.lastUsedPO = orderConf2.getUploadCustPOField().getText();
         
-        orderConf.pressCancel();
-        Ecomm_UploadOrderPage uoPage = new Ecomm_UploadOrderPage(driver);
+        orderConf2.pressCancel();
+        Ecomm_UploadOrderPage uoPage2 = new Ecomm_UploadOrderPage(driver);
         uoPage.waitForElements();
         
         //Take a screenshot
@@ -402,7 +433,7 @@ public class Ecomm_SUSST_UORT {
         
     }
     
-    @Category({Categories.eComm_Orders_UploadOrder.class,Categories.DraftCreation.class,Categories.Solo.class})
+    @Category({Categories.eComm_Orders_UploadOrder.class,Categories.DraftCreation.class})
     @Test //Upload Order Page :: Upload draft continuation
     public void UORT5() throws IOException, AWTException, InterruptedException {
         //new chrome driver
@@ -421,7 +452,7 @@ public class Ecomm_SUSST_UORT {
         System.out.println("Upload Order page reached. Creating draft...");
         
         //Send file path to field
-        uoPage.setFilePath(DataItems.uploadOrderFilepath);
+        uoPage.setFilePath(DataItems.uploadDraftFilepath);
         //Select realtime upload
         uoPage.pressRealtime(); 
         
@@ -446,7 +477,7 @@ public class Ecomm_SUSST_UORT {
         
         orderConf.setRequestor(DataItems.custDetails[2]);
         
-        DataItems.lastUsedPO = orderConf.getCustPoField().getText();
+        DataItems.lastUsedPO = orderConf.getUploadCustPOField().getText();
         String date = orderConf.getRequiredDate();
         
         Actions scroller = new Actions(driver);
@@ -479,7 +510,7 @@ public class Ecomm_SUSST_UORT {
         File scrFile15 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile15,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\13Draft reopened.png"));
          
-        Verify.verify(orderConf2.getPONumber().equals(DataItems.lastUsedPO),"Order Confirmation Page: Customer PO not consistent with input");
+        Verify.verify(orderConf2.getUploadCustPOField().getText().equals(DataItems.lastUsedPO),"Order Confirmation Page: Customer PO not consistent with input");
         Verify.verify(orderConf2.getRequester().equals(DataItems.custDetails[2]),"Order Confirmation Page: Requester not consistent with input");
         Verify.verify(orderConf2.getShipToParty().equals(DataItems.custDetails[1]),"Order Confirmation Page: Ship to Party Name not consistent with input");
         Verify.verify(orderConf2.getBuyers().equals(DataItems.custDetails[3]),"Order Confirmation Page: Buyers not consistent with input");

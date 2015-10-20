@@ -45,6 +45,7 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     static By cancelMessageLocator = By.id("flashMessage");
     static By overlayLocator = By.id("TB_iframeContent");
     static By poNumberCell = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(6)");
+    static By titleLocator = By.cssSelector("#sap_error_head > h1");
     
     public Ecomm_OutstandingOrderDraftPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -136,6 +137,10 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
         return driver.findElement(locator).getText();
     }
     
+    public void waitForElements() {
+        Boolean waitForTitle = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(titleLocator, "Outstanding Order Draft List"));
+    }
+    
     public String findDraft(String poNumber) {
         
         String orderNo = "";
@@ -175,6 +180,14 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
         
         return new Ecomm_ManualEntryPage(driver);
         
+    }
+    
+    public Ecomm_OrderConfirmationPage pressEditToConf() {
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editButtonLocator));
+        Actions clickEdit = new Actions(driver);
+        clickEdit.click(driver.findElement(editButtonLocator)).build().perform();
+        
+        return new Ecomm_OrderConfirmationPage(driver);
     }
     
     public Ecomm_OutstandingOrderDraftPage closeView() {

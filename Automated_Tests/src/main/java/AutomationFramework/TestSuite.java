@@ -3,6 +3,7 @@ package AutomationFramework;
 
 import AutomationFramework.Categories.CCE;
 import AutomationFramework.Categories.Custom;
+import AutomationFramework.Categories.DraftCreation;
 import AutomationFramework.Categories.Solo;
 import AutomationFramework.Categories.Unstable;
 import AutomationFramework.Categories.eComm;

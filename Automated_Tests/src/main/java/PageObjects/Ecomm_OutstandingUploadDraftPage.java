@@ -123,9 +123,17 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
             By editButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(1) > span > a > span");
             
             Ecomm_OrderConfirmationPage orderConf = pressEdit(editButton);
+            
+            try {
+                Alert alert = new WebDriverWait(driver,3).until(ExpectedConditions.alertIsPresent());
+                alert.accept();
+            } catch (Exception e) {
+                
+            }
+            
             orderConf.waitForLoad();
             
-            String poFound = orderConf.getPONumber();
+            String poFound = orderConf.getUploadCustPOField().getText();
             
             if (poFound == poNumber) {
                 System.out.println("***DRAFT CREATED UNEXPECTEDLY***");

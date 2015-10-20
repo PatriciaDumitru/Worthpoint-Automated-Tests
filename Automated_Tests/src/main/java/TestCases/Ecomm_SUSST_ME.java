@@ -1419,17 +1419,15 @@ public class Ecomm_SUSST_ME {
         System.out.println("Details checked. Cancelling order...");
         
         Ecomm_ManualEntryPage mePage = orderConf.pressCancel();
-        mePage.waitForTitle();
-        mePage.waitForLoad();
-        
+        mePage.waitForElement();
+
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\30Order cancelled.png"));
         
         System.out.println("Order cancelled. Checking no draft was saved...");
-        
-        Ecomm_MainPage eCommPage2 = new Ecomm_MainPage(driver);
-        Ecomm_OutstandingOrderDraftPage draftPage = eCommPage2.clickOutstandingDraft();
+
+        Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
         draftPage.waitForLoad();
         
         System.out.println("Draft page reached.");
@@ -1453,7 +1451,7 @@ public class Ecomm_SUSST_ME {
         
     }
     
-    @Category({Categories.eComm_Orders_ManualEntry.class,Categories.DraftCreation.class})
+    @Category({Categories.eComm_Orders_ManualEntry.class,Categories.DraftCreation.class,Categories.Solo.class})
     @Test //Manual Entry Page :: Order Draft continuation and cancellation
     public void SUSST16() throws InterruptedException, IOException {
         //New driver
@@ -1464,27 +1462,53 @@ public class Ecomm_SUSST_ME {
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST16: Draft creation/order simulation - cancelling saved draft","G_OOC_ME_SUSST_Unknown");
         
-        System.out.println("Navigating to Outstanding Orders Draft Page...");
+        System.out.println("Navigating to Manual Entry Page...");
         
-        Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        
+        System.out.println("Manual Entry page reached. Entering customer details...");
+        
+        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
+        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        System.out.println("Customer PO used: "+DataItems.lastUsedPO);
+        
+        System.out.println("Customer details entered. Entering line details...");
+        
+        manualEntryPage.setYourMaterialNumber(DataItems.yourMatNum, 0);
+        manualEntryPage.setQty(3, 0);
+        manualEntryPage.setDate(0);
+        
+        System.out.println("Line details entered. Pressing next...");
+        
+        Ecomm_OrderConfirmationPage orderConf3 = manualEntryPage.pressNext();
+        orderConf3.waitForLoad();
+        
+        System.out.println("Order confirmation reached. Saving draft...");
+        
+        Ecomm_OutstandingOrderDraftPage draftPage = orderConf3.pressSaveDraft();
         draftPage.waitForLoad();
         
         System.out.println("Outstanding Order Draft page reached. Editing top draft...");
-        
-        draftPage.pressEdit();
-        Ecomm_OrderConfirmationPage orderConf = new Ecomm_OrderConfirmationPage(driver);
-        orderConf.waitForLoad();
+       
+        Ecomm_ManualEntryPage mePage2 = draftPage.pressEdit();
+        mePage2.waitForLoad();
         
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\32Draft open.png"));
         
-        DataItems.lastUsedPO = orderConf.getPONumber();
+        DataItems.lastUsedPO = mePage2.getCustPONo();
+        
+        Ecomm_OrderConfirmationPage orderConf = mePage2.pressNext();
+        orderConf.waitForLoad();
         
         System.out.println("Order confirmation page reached. Cancelling order draft...");
         
-        Ecomm_ManualEntryPage mePage = orderConf.pressCancel();
-        mePage.waitForTitle();
+        Ecomm_ManualEntryPage mePage3 = orderConf.pressCancel();
+        mePage3.waitForLoad();
         
         //Take a screenshot
         File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -1492,8 +1516,8 @@ public class Ecomm_SUSST_ME {
         
         System.out.println("Draft cancelled. Checking draft is deleted...");
         
-        Ecomm_MainPage eComm = new Ecomm_MainPage(driver);
-        Ecomm_OutstandingOrderDraftPage draftPage2 = eComm.clickOutstandingDraft();
+        Ecomm_MainPage mainPage = new Ecomm_MainPage(driver);
+        Ecomm_OutstandingOrderDraftPage draftPage2 = mainPage.clickOutstandingDraft();
         draftPage2.waitForLoad();
         
         //Take a screenshot

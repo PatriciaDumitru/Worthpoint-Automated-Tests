@@ -32,7 +32,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     static By saveDraftLocator = By.id("drafts");
     static By cancelButtonLocator = By.id("cancel1");
     static By flashMessageLocator = By.id("flashMessage");
-    static By titleLocator = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > div.tbl-title > h1");
+    static By titleLocator = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > div.tbl-title.minus.plus > h1");
     
     //Customer detail field locators
     static By customerNameField = By.cssSelector("#s2id_customer_id > a > span.select2-chosen.select_image_add");//Initial customer name field to click
@@ -550,6 +550,16 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return new Ecomm_OrderConfirmationPage(driver);
     }
     
+    public Ecomm_OutstandingOrderDraftPage pressSaveAsDraft() {
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(saveDraftLocator));
+        driver.findElement(saveDraftLocator).click();
+        
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        return new Ecomm_OutstandingOrderDraftPage(driver);
+    }
+    
     public void pressNextExpectingFailure() {
         //Wait for button to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
@@ -571,6 +581,10 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public boolean waitForTitle() {
         boolean waitForText = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(titleLocator,"Manual Entry"));
         return waitForText;
+    }
+    
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(cancelButtonLocator));
     }
     
     public String getCustomerName() {

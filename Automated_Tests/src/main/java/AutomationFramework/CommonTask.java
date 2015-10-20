@@ -69,7 +69,7 @@ public class CommonTask {
         //Press enter
         driver.findElement(fieldLocator).sendKeys(Keys.ENTER);
         //Wait again
-        boolean waitForUpdate2 = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
+        Boolean waitForSelection = new WebDriverWait(driver,5).until(CommonTask.selectionToBe(fieldLocator, item));
     }
     
     public static void setChoiceField(WebDriver driver, By fieldLocator, String item) {
@@ -204,6 +204,19 @@ public class CommonTask {
                     return false;
                 } else {
                     return true;
+                }
+            }
+        };
+    }
+    
+    public static ExpectedCondition<Boolean> selectionToBe(final By locator, final String item) {
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver f) {
+                Select select = new Select(f.findElement(locator));
+                if (select.getFirstSelectedOption().getText().equals(item)) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
         };
