@@ -15,12 +15,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateTest {
+public class CustomFactory {
     
     private static String xmlFilepath;
     private static List<Node> testNodes;
     
-    public CreateTest() throws InterruptedException, IOException, AWTException, Exception {
+    public CustomFactory() throws InterruptedException, IOException, AWTException, Exception {
         xmlFilepath = DataItems.xmlFilepath;
         
         System.out.println("Scanning XML File for tests...");

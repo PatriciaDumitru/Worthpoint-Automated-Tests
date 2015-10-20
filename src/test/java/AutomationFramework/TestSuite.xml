@@ -1,32 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="com.lazerycode.selenium_maven-template_jar_1.0-SNAPSHOT">
-
-    <!--
-    see examples at http://testng.org/doc/documentation-main.html#testng-xml
-
-    <suite-files>
-        <suite-file path="./junit-suite.xml" />
-    </suite-files>
-
-    <test name="TimeOut">
+<suite name="AutomatedSuite">   
+    
+    <test name="eCommOrders">
+        <groups>
+            <run>
+                <include name="eComm_Orders"/>
+                <exclude name="Unstable"/>
+            </run>
+        </groups> 
         <classes>
-            <class name="test.timeout.TimeOutTest" />
-            <class name="test.timeout.TimeOutFromXmlTest"/>
-            <class name="test.timeout.TimeOutThreadLocalSampleTest"/>
+            <class name="com.coats.selenium.tests.Ecomm_SUSST_ME_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_SUSST_UORT_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_SUSST_FEBO_IT"/>
+            <class name="com.coats.selenium.tests.RCTests.Ecomm_CO_ME_IT"/>
+            <class name="com.coats.selenium.tests.RCTests.Ecomm_CO_UORT_IT"/>
         </classes>
     </test>
-    -->
     
-    <test name="eComm_Orders">
+    <test name="Quick">
         <groups>
-            <group name="eComm_Orders"/>
+            <run>
+                <include name="QuickTest"/>
+            </run>
         </groups>
-    </test>
-    
-    <test name="Login test">
         <classes>
-            <class name="com.coats.selenium.tests.WBA_Login_IT"/>
+            <class name="com.coats.selenium.tests.WBA_Login_IT" />
+            <class name="com.coats.selenium.tests.Ecomm_MainPage_IT" />
+            <class name="com.coats.selenium.tests.Ecomm_SUSST_ME_IT" />
+            <class name="com.coats.selenium.tests.Cce_MainPage_IT" />
+            <class name="com.coats.selenium.tests.Cce_SOC_IT" />
         </classes>
     </test>
 

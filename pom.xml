@@ -125,7 +125,7 @@
                                 <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
                             </systemPropertyVariables>
                             <suiteXmlFiles>
-                                <suiteXmlFile>${project.basedir}/src/test/java/AutomationFramework/TestSuite.xml</suiteXmlFile>
+                                <suiteXmlFile>TestSuite.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                         <executions>

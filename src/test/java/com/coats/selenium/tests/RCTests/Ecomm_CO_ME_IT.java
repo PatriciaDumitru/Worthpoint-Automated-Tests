@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.*;
 
-public class Ecomm_CO_ME extends DriverFactory {
+public class Ecomm_CO_ME_IT extends DriverFactory {
 
   private String baseUrl;
   private boolean acceptNextAlert = true;

@@ -18,7 +18,7 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_CO_UORT extends DriverFactory {
+public class Ecomm_CO_UORT_IT extends DriverFactory {
     
   private String baseUrl;
   private boolean acceptNextAlert = true;
