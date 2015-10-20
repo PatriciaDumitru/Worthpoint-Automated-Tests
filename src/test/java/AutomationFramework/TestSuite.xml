@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<<<<<<< HEAD
 <suite name="AutomatedSuite">   
     
     <test name="eCommOrders">
@@ -24,6 +25,28 @@
                 <include name="QuickTest"/>
             </run>
         </groups>
+=======
+<suite name="com.lazerycode.selenium_maven-template_jar_1.0-SNAPSHOT">
+
+
+    <!-- see examples at http://testng.org/doc/documentation-main.html#testng-xml -->
+
+    <test name="Ecomm_orders">
+        <classes>
+            <class name="com.coats.selenium.tests.Ecomm_Dashboard_IT" />
+            <class name="com.coats.selenium.tests.Ecomm_MainPage_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_OOD_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_ProductAvailabilityCheck_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_Reports_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_SAPInterfaceLog_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_Shade_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_SUSST_FEBO_IT"/>
+        </classes>
+    </test>
+
+
+    <test name="Login test">
+>>>>>>> origin/master
         <classes>
             <class name="com.coats.selenium.tests.WBA_Login_IT" />
             <class name="com.coats.selenium.tests.Ecomm_MainPage_IT" />
