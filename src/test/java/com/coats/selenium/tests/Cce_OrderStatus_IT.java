@@ -19,6 +19,7 @@ import org.testng.annotations.Test;
 public class Cce_OrderStatus_IT extends DriverFactory {
     
     @Test //Order status page :: page and filter checks, reset function, export data
+    (groups = {"CCE"})
     public void OS1() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

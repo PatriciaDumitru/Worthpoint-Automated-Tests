@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 public class Cce_SAPLog_IT extends DriverFactory {
     
     @Test //SAP Log Page :: Page and filter checks, search, reset, and export
+    (groups = {"CCE"})
     public void SAP1() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();

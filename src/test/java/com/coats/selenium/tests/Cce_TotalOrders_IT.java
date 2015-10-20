@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 public class Cce_TotalOrders_IT extends DriverFactory {
     
     @Test //Total Orders Page :: Page and filter checks, field selection, export and reset
+    (groups = {"CCE"})
     public void TOR1() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();

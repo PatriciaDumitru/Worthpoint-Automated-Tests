@@ -24,6 +24,7 @@ import org.testng.annotations.Test;
 public class Cce_SOC_IT extends DriverFactory {
 
     @Test // Order Samples Page :: Page and filter checks, cancel function 
+    (groups = {"QuickTest","CCE","CCE_Orders"})
     public void SOC1() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -84,6 +85,7 @@ public class Cce_SOC_IT extends DriverFactory {
     }
     
     @Test //Order Samples Page :: Single line order
+    (groups = {"CCE","CCE_Orders"})
     public void SOC2() throws InterruptedException, IOException, Exception {
         
         //New driver object to control browser
@@ -150,6 +152,7 @@ public class Cce_SOC_IT extends DriverFactory {
     } 
     
     @Test //Order Samples Page :: Multi-line order
+    (groups = {"CCE","CCE_Orders"})
     public void SOC3() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -226,6 +229,7 @@ public class Cce_SOC_IT extends DriverFactory {
     }
 
     @Test //Order Samples Page :: Single line order, quantity above threshold
+    (groups = {"CCE","CCE_Orders"})
     public void SOC4() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -278,6 +282,7 @@ public class Cce_SOC_IT extends DriverFactory {
     }
 
     @Test //Order Samples Page :: Multi-line copied data
+    (groups = {"CCE","CCE_Orders"})
     public void SOC5() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -356,6 +361,7 @@ public class Cce_SOC_IT extends DriverFactory {
     }
 
     @Test //Order Samples Page :: Pend order 
+    (groups = {"CCE","CCE_Orders"})
     public void SOC6() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

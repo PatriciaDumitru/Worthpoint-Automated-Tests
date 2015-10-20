@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 public class Cce_LRMLog_IT extends DriverFactory {
     
     @Test
+    (groups = {"CCE"})
     public void LRM1() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();

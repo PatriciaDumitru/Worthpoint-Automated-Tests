@@ -18,6 +18,7 @@ import org.testng.annotations.Test;
 public class Cce_DNReprint_IT extends DriverFactory {
     
     @Test //DN Reprint Page :: Page checks
+    (groups = {"CCE"})
     public void DR1() throws IOException,Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -56,6 +57,7 @@ public class Cce_DNReprint_IT extends DriverFactory {
     }
     
     @Test //DN Reprint Page :: Filter checks and confirm
+    (groups = {"CCE"})
     public void DR2() throws IOException,Exception {
                 
         //New driver object to control browser
@@ -122,6 +124,5 @@ public class Cce_DNReprint_IT extends DriverFactory {
         System.out.println("Test complete.");
 
     }
-    
     
 }

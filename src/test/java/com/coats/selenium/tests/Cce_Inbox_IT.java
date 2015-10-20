@@ -18,6 +18,7 @@ import org.testng.annotations.Test;
 public class Cce_Inbox_IT {
     
     @Test //Inbox Page :: Page and filter checks, list orders, save, and re-assign SOS
+    (groups = {"CCE"})
     public void I1() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -106,6 +107,7 @@ public class Cce_Inbox_IT {
     }
     
     @Test //Inbox Page : Reset, cancel, and print
+    (groups = {"CCE"})
     public void I2() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -164,6 +166,7 @@ public class Cce_Inbox_IT {
     } 
     
     @Test 
+    (groups = {"CCE"})
     public void IS1() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

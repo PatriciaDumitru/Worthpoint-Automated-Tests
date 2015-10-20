@@ -18,6 +18,7 @@ import org.testng.annotations.Test;
 public class Cce_Hub_IT extends DriverFactory {
     
     @Test //Hub SOS Page :: Page and filter checks
+    (groups = {"CCE"})
     public void HS1() throws InterruptedException, IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();
@@ -110,6 +111,7 @@ public class Cce_Hub_IT extends DriverFactory {
     } 
     
     @Test //Received Hub Page :: Page and filter checks, reset, view and send to customer
+    (groups = {"CCE"})
     public void RH1() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();

@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 public class Cce_Feedback_IT extends DriverFactory {
  
     @Test //Feedback Page :: Page and fields check
+    (groups = {"CCE"})
     public void FB1() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -57,6 +58,7 @@ public class Cce_Feedback_IT extends DriverFactory {
     }
     
     @Test //Feedback Page :: Submit feedback process: satisfied
+    (groups = {"CCE"})
     public void FB2() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -98,6 +100,7 @@ public class Cce_Feedback_IT extends DriverFactory {
     }
     
     @Test //Feedback Page :: Submit feedback process: dissatisfied
+    (groups = {"CCE"})
     public void FB3() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -154,6 +157,7 @@ public class Cce_Feedback_IT extends DriverFactory {
     } 
     
     @Test //Feedback Awaiting Page :: Page and fields check
+    (groups = {"CCE"})
     public void FBA1() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -190,6 +194,7 @@ public class Cce_Feedback_IT extends DriverFactory {
     }
     
     @Test //Feedback Awaiting Page :: Filter orders and load
+    (groups = {"CCE"})
     public void FBA2() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -233,6 +238,7 @@ public class Cce_Feedback_IT extends DriverFactory {
     }
     
     @Test //Feedback Awaiting Page :: Accept awaiting feedback with code
+    (groups = {"CCE"})
     public void FBA3() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -275,6 +281,7 @@ public class Cce_Feedback_IT extends DriverFactory {
     }
     
     @Test //Feedback Completed Page :: Page and field checks
+    (groups = {"CCE"})
     public void FC1() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -309,6 +316,7 @@ public class Cce_Feedback_IT extends DriverFactory {
     }
     
     @Test //Feedback Completed Page :: Filter and export test
+    (groups = {"CCE"})
     public void FC2() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

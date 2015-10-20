@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 public class Ecomm_SUSST_FEBO_IT extends DriverFactory {
 
     @Test //From Existing Bulk Order Page :: Page checks, create order 
+    (groups = {"eComm","eComm_Orders","Unstable"})
     public void FEBO1() throws IOException, Exception {
     //New driver
     WebDriver driver = getDriver();

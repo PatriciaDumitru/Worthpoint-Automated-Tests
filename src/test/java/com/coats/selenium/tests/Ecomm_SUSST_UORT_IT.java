@@ -30,6 +30,7 @@ import org.testng.annotations.Test;
 public class Ecomm_SUSST_UORT_IT extends DriverFactory {
     
     @Test //Upload Order Page :: Page checks and realtime upload order of <100 lines
+    (groups = {"eComm","eComm_Orders"})
     public void UORT1() throws AWTException, IOException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -143,6 +144,7 @@ public class Ecomm_SUSST_UORT_IT extends DriverFactory {
     }    
 
     @Test //Upload Order Page :: Realtime upload order of <100 lines, removing mandatory fields at before submission
+    (groups = {"eComm","eComm_Orders"})
     public void UORT2() throws AWTException, IOException, InterruptedException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -231,6 +233,7 @@ public class Ecomm_SUSST_UORT_IT extends DriverFactory {
     }
 
     @Test //Upload Order Page :: Upload draft creation and cancellation
+    (groups = {"eComm","eComm_Orders"})
     public void UORT3() throws AWTException, InterruptedException, IOException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -316,6 +319,7 @@ public class Ecomm_SUSST_UORT_IT extends DriverFactory {
     }
     
     @Test //Upload Order Page :: Upload draft continuation and cancellation
+    (groups = {"eComm","eComm_Orders"})
     public void UORT4() throws IOException, InterruptedException, AWTException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -401,6 +405,7 @@ public class Ecomm_SUSST_UORT_IT extends DriverFactory {
     }
     
     @Test //Upload Order Page :: Upload draft continuation
+    (groups = {"eComm","eComm_Orders"})
     public void UORT5() throws IOException, AWTException, InterruptedException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();

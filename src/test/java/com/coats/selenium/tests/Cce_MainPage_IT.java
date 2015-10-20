@@ -25,6 +25,7 @@ import org.testng.annotations.Test;
 public class Cce_MainPage_IT extends DriverFactory {
     
     @Test //CCE Main Page :: Navigation bar check
+    (groups = {"CCE"})
     public void CCE1() throws IOException, Exception {
         
         System.out.println("TEST: CCE HOME PAGE");
@@ -112,7 +113,8 @@ public class Cce_MainPage_IT extends DriverFactory {
         
     }
 
-    @Test //CCE Main Page :: Navigation bar check links 
+    //CCE Main Page :: Navigation bar check links 
+    @Test(groups = {"QuickTest","CCE"})
     public void CCE2() throws InterruptedException, IOException, Exception {
         System.out.println("TEST: CCE NAVIGATION TAB LINKS");
         System.out.println("Scenario ID: G_CCE_MS_02 to 23");

@@ -23,6 +23,7 @@ import org.testng.annotations.Test;
 public class Ecomm_OOD_IT extends DriverFactory {
     
     @Test //Outstanding Order Drafts Page :: Complete an order from draft
+    (groups = {"eComm"})
     public void ODP2() throws IOException, Exception {
         WebDriver driver = getDriver();
         
@@ -84,6 +85,7 @@ public class Ecomm_OOD_IT extends DriverFactory {
     }
     
     @Test //Outstanding Order Drafts Page :: Page and filter checks, view, edit, and cancel
+    (groups = {"eComm"})
     public void ODP1() throws IOException, Exception {
         WebDriver driver = getDriver();
         
@@ -150,6 +152,7 @@ public class Ecomm_OOD_IT extends DriverFactory {
     }
        
     @Test //Upload Order Drafts Page :: Page checks, edit, and cancel upload order draft
+    (groups = {"eComm"})
     public void UODP1() throws IOException, Exception {
         WebDriver driver = getDriver();
         

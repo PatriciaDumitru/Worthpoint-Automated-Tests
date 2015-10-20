@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 public class WBA_Custom_IT {
     
     @Test
+    (groups = {"General"})
     public void generated() throws InterruptedException, IOException, AWTException, Exception {
         CreateTest generate = new CreateTest();      
     }

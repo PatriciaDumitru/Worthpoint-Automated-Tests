@@ -24,7 +24,8 @@ import org.testng.annotations.Test;
 public class Ecomm_Reports_IT extends DriverFactory {
 
 	@Test //Invoices Page :: Page and filter checks, reset, view, print, and export
-	public void I1() throws IOException, InterruptedException, Exception {
+	(groups = {"eComm"})
+        public void I1() throws IOException, InterruptedException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
 		
@@ -106,6 +107,7 @@ public class Ecomm_Reports_IT extends DriverFactory {
 	}
 	
 	@Test //Delivery Notes Page :: Page and filter checks, view, print, and export
+        (groups = {"eComm"})
         public void D1() throws InterruptedException, IOException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -195,6 +197,7 @@ public class Ecomm_Reports_IT extends DriverFactory {
         }
 	
         @Test //Summary of Purchases Page :: Page and filter checks,reset, view and export
+        (groups = {"eComm"})
         public void SoP1() throws IOException, InterruptedException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -272,6 +275,7 @@ public class Ecomm_Reports_IT extends DriverFactory {
         }
         
         @Test //Outstanding Payments Page :: Page and filter checks, reset, view, and export
+        (groups = {"eComm"})
         public void OP1() throws IOException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -363,6 +367,7 @@ public class Ecomm_Reports_IT extends DriverFactory {
         } 
         
         @Test //My Reports Page :: Page and filter checks, print, export, save, and reset
+        (groups = {"eComm"})
         public void MR1() throws IOException, Exception {
             //new driver instance
             WebDriver driver = getDriver();

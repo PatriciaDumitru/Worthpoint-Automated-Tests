@@ -23,6 +23,7 @@ import org.testng.annotations.Test;
 public class Cce_ConfirmProduction_IT extends DriverFactory {
     
     @Test //Confirm Production Page :: Page and filer checks, view and confirm
+    (groups = {"CCE"})
     public void CP1() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -154,6 +155,7 @@ public class Cce_ConfirmProduction_IT extends DriverFactory {
     }
     
     @Test //Confirm Production Page :: Reset and Cancel
+    (groups = {"CCE"})
     public void CP2() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

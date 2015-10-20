@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 public class Ecomm_Dashboard_IT extends DriverFactory {
     
     @Test
+    (groups = {"eComm"})
     public void BIP1() throws IOException, Exception {
         //new driver instance
             WebDriver driver = getDriver();
@@ -70,6 +71,7 @@ public class Ecomm_Dashboard_IT extends DriverFactory {
     }
     
     @Test
+    (groups = {"eComm"})
     public void BFF1() throws IOException, Exception {
         //new driver instance
         WebDriver driver = getDriver();
@@ -140,6 +142,7 @@ public class Ecomm_Dashboard_IT extends DriverFactory {
     }
     
     @Test
+    (groups = {"eComm"})
     public void FTPF1() throws IOException, Exception {
         //new driver instance
         WebDriver driver = getDriver();

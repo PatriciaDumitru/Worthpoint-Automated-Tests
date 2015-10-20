@@ -28,6 +28,7 @@ import org.testng.annotations.Test;
 public class Ecomm_SUSST_ME_IT extends DriverFactory {
     
     @Test //Manual Entry Page :: Page checks, single line order with YMN and master shade code
+    (groups = {"QuickTest","eComm","eComm_Orders"})
     public void SUSST1() throws IOException, InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
@@ -147,6 +148,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
 
     @Test //Manual Entry Page :: Multiple line order, YMN with master shade code
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST2() throws InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
@@ -228,6 +230,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     } 
 
     @Test //Manual Entry Page :: Single line order, YMN without master shade code
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST3() throws InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
@@ -307,6 +310,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
 
     @Test //Manual Entry Page :: Multi-line order, YMN without master shade code
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST4() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -385,6 +389,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Single line order, article and shade code
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST5() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -461,6 +466,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
 
     @Test //Manual Entry Page :: Multi-line order, using Article and shade code
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST6() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -539,6 +545,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     } 
 
     @Test //Manual Entry Page :: Single line order, using brand/ticket/length/finish and shade code
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST7() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -614,6 +621,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
 
     @Test //Manual Entry Page :: Multi-line order, using brand/ticket/length/finish and shade code
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST8() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -693,6 +701,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Validation tests, no requester at manual entry page
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST9() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -782,6 +791,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
 
     @Test //Manual Entry Page :: Validation tests, no ship to party name at manual entry page
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST10() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -870,6 +880,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Validation tests, no buyer at manual entry page
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST11() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -960,6 +971,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Validation tests, no requester at confirmation page
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST12() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1061,6 +1073,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Validation tests, no Ship To Party Name at confirmation page
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST13() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1163,6 +1176,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Validation tests, no Buyer at confirmation page
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST14() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1265,6 +1279,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Order Draft creation and cancellation
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST15() throws InterruptedException, IOException, Exception {
         
         //New driver
@@ -1357,6 +1372,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Order Draft continuation and cancellation
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST16() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1439,6 +1455,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Order Draft continuation
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST17() throws InterruptedException, Exception {
          //New driver
         WebDriver driver = getDriver();

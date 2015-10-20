@@ -24,7 +24,9 @@ import org.testng.annotations.Test;
 
 public class WBA_Login_IT extends DriverFactory {
     
-    @Test //Login Page :: Page checks
+    //Login Page :: Page checks
+    @Test 
+    (groups = {"General"})
     public void L1() throws IOException, Exception {
         System.out.println("TEST: LOGIN PAGE: Check elements are displayed");
         
@@ -53,7 +55,9 @@ public class WBA_Login_IT extends DriverFactory {
 
     }
  
+    
     @Test //Login Page :: Login using valid Coats user details, navigate to and from CCE and eComm
+    (groups = {"QuickTest","General"})
     public void L2() throws InterruptedException, IOException, Exception {
         System.out.println("TEST: LOGIN PAGE/CONTINUE PAGE/SELECTION PAGE: Check elements are displayed");
         

@@ -19,6 +19,7 @@ import org.testng.annotations.Test;
 public class Cce_FCETaskStatus_IT extends DriverFactory {
     
     @Test //FCE Task Status Page :: Page and filter checks, print records and export
+    (groups = {"CCE"})
     public void TS1() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();
@@ -86,6 +87,7 @@ public class Cce_FCETaskStatus_IT extends DriverFactory {
     }
     
     @Test //FCE Task Status Page :: Filter reset
+    (groups = {"CCE"})
     public void TS2() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();
