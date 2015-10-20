@@ -2,22 +2,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="com.lazerycode.selenium_maven-template_jar_1.0-SNAPSHOT">
 
-    <!--
-    see examples at http://testng.org/doc/documentation-main.html#testng-xml
 
-    <suite-files>
-        <suite-file path="./junit-suite.xml" />
-    </suite-files>
+    <!-- see examples at http://testng.org/doc/documentation-main.html#testng-xml -->
 
-    <test name="TimeOut">
+    <test name="Ecomm_orders">
         <classes>
-            <class name="test.timeout.TimeOutTest" />
-            <class name="test.timeout.TimeOutFromXmlTest"/>
-            <class name="test.timeout.TimeOutThreadLocalSampleTest"/>
+            <class name="com.coats.selenium.tests.Ecomm_Dashboard_IT" />
+            <class name="com.coats.selenium.tests.Ecomm_MainPage_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_OOD_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_ProductAvailabilityCheck_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_Reports_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_SAPInterfaceLog_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_Shade_IT"/>
+            <class name="com.coats.selenium.tests.Ecomm_SUSST_FEBO_IT"/>
         </classes>
     </test>
-    -->
-    
+
+
     <test name="Login test">
         <classes>
             <class name="com.coats.selenium.tests.WBA_Login_IT"/>
