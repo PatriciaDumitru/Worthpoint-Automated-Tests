@@ -1,32 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<<<<<<< HEAD
-<suite name="AutomatedSuite">   
-    
-    <test name="eCommOrders">
-        <groups>
-            <run>
-                <include name="eComm_Orders"/>
-                <exclude name="Unstable"/>
-            </run>
-        </groups> 
-        <classes>
-            <class name="com.coats.selenium.tests.Ecomm_SUSST_ME_IT"/>
-            <class name="com.coats.selenium.tests.Ecomm_SUSST_UORT_IT"/>
-            <class name="com.coats.selenium.tests.Ecomm_SUSST_FEBO_IT"/>
-            <class name="com.coats.selenium.tests.RCTests.Ecomm_CO_ME_IT"/>
-            <class name="com.coats.selenium.tests.RCTests.Ecomm_CO_UORT_IT"/>
-        </classes>
-    </test>
-    
-    <test name="Quick">
-        <groups>
-            <run>
-                <include name="QuickTest"/>
-            </run>
-        </groups>
-=======
-<suite name="com.lazerycode.selenium_maven-template_jar_1.0-SNAPSHOT">
+
+<suite name="AutomatedSuite">
 
 
     <!-- see examples at http://testng.org/doc/documentation-main.html#testng-xml -->
@@ -46,7 +21,6 @@
 
 
     <test name="Login test">
->>>>>>> origin/master
         <classes>
             <class name="com.coats.selenium.tests.WBA_Login_IT" />
             <class name="com.coats.selenium.tests.Ecomm_MainPage_IT" />
