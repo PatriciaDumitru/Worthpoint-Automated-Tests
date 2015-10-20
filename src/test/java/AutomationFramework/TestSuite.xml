@@ -7,6 +7,12 @@
     <!-- see examples at http://testng.org/doc/documentation-main.html#testng-xml -->
 
     <test name="Ecomm_orders">
+        <groups>
+            <run>
+                <include name="eComm_Orders"/>
+                <exclude name="Unstable"/>
+            </run>
+        </groups>
         <classes>
             <class name="com.coats.selenium.tests.Ecomm_Dashboard_IT" />
             <class name="com.coats.selenium.tests.Ecomm_MainPage_IT"/>
@@ -20,7 +26,13 @@
     </test>
 
 
-    <test name="Login test">
+    <test name="QuickTest">
+        <groups>
+            <run>
+                <include name="QuickTest"/>
+                <exclude name="Unstable"/>
+            </run>
+        </groups>
         <classes>
             <class name="com.coats.selenium.tests.WBA_Login_IT" />
             <class name="com.coats.selenium.tests.Ecomm_MainPage_IT" />
