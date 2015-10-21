@@ -6,26 +6,6 @@
 
     <!-- see examples at http://testng.org/doc/documentation-main.html#testng-xml -->
 
-    <test name="Ecomm_orders">
-        <groups>
-            <run>
-                <include name="eComm_Orders"/>
-                <exclude name="Unstable"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="com.coats.selenium.tests.Ecomm_Dashboard_IT" />
-            <class name="com.coats.selenium.tests.Ecomm_MainPage_IT"/>
-            <class name="com.coats.selenium.tests.Ecomm_OOD_IT"/>
-            <class name="com.coats.selenium.tests.Ecomm_ProductAvailabilityCheck_IT"/>
-            <class name="com.coats.selenium.tests.Ecomm_Reports_IT"/>
-            <class name="com.coats.selenium.tests.Ecomm_SAPInterfaceLog_IT"/>
-            <class name="com.coats.selenium.tests.Ecomm_Shade_IT"/>
-            <class name="com.coats.selenium.tests.Ecomm_SUSST_FEBO_IT"/>
-        </classes>
-    </test>
-
-
     <test name="QuickTest">
         <groups>
             <run>

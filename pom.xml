@@ -12,7 +12,6 @@
     <name>WBA-Automated-test-Scripts</name>
     <description>WBA-Automated-test-Scripts</description>
 
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -124,9 +123,6 @@
                                 <webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>
                                 <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
                             </systemPropertyVariables>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>TestSuite.xml</suiteXmlFile>
-                            </suiteXmlFiles>
                         </configuration>
                         <executions>
                             <execution>
@@ -137,6 +133,23 @@
                             </execution>
                         </executions>
                     </plugin> 
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.18.1</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <!--Set properties passed in by the driver binary downloader-->
+                                <phantomjs.binary.path>${phantomjs.binary.path}</phantomjs.binary.path>
+                                <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+                                <webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>
+                                <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
+                            </systemPropertyVariables>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\TestSuite.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                  </plugin>
                 </plugins>
             </build>
         </profile>
