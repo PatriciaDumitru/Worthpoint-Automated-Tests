@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -298,16 +299,21 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         By fieldLocator = By.id("SampleOrderLine"+lineNumber+"OrderedQuantity");
         
         //Wait for new line form to load
-        WebElement waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        By quantityLocator = By.id("SampleOrderLine1OrderedQuantity");
+        WebElement waitForLoaded = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(quantityLocator));
         
         return this;
     }
     
     public CCE_AddOrderPage pressCopy(int lineNumber) {
         
-        By copyDataButton = By.id("copy_line_item_"+String.valueOf(lineNumber));       
+        By copyDataButton = By.id("copy_line_item_"+lineNumber);       
         WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(copyDataButton));       
-        driver.findElement(copyDataButton).click();
+        
+        Actions action = new Actions(driver);
+        action.click(driver.findElement(copyDataButton)).build().perform();
+        
+        boolean waitForChecked = new WebDriverWait(driver,5).until(CommonTask.boxIsChecked(driver.findElement(copyDataButton)));
         
         return this;
     }

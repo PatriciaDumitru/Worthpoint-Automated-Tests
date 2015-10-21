@@ -281,9 +281,9 @@ public class Cce_SOC_IT extends DriverFactory {
         FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\11Rejected Order.png"));
         
     }
-
+    
     @Test //Order Samples Page :: Multi-line copied data
-    (groups = {"CCE","CCE_Orders","Unstable"})
+    (groups = {"CCE","CCE_Orders"})
     public void SOC5() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -360,7 +360,7 @@ public class Cce_SOC_IT extends DriverFactory {
         System.out.println("Order No.: "+viewPage.getOrderNumber());
 
     }
-
+    
     @Test //Order Samples Page :: Pend order 
     (groups = {"CCE","CCE_Orders"})
     public void SOC6() throws InterruptedException, IOException, Exception {
@@ -415,5 +415,4 @@ public class Cce_SOC_IT extends DriverFactory {
         System.out.println("Order No.: "+orderNo);
 
     } 
-
 }
