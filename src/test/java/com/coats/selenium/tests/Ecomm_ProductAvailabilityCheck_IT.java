@@ -13,6 +13,7 @@ import org.apache.commons.io.FileUtils;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_ProductAvailabilityCheck_IT extends DriverFactory {

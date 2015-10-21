@@ -96,12 +96,14 @@ public class CCE_FeedbackPage extends WBA_BasePage{
     }
     
     public CCE_FeedbackPage pressYesSatisfied() {
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(acceptedYesButton));
         driver.findElement(acceptedYesButton).click();
         boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(acceptedYesButton)));
         return this;
     }
     
     public CCE_FeedbackPage pressNoSatisfied() {
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(acceptedNoButton));
         driver.findElement(acceptedNoButton).click();
         boolean waitForChecked = new WebDriverWait(driver,10).until(CommonTask.boxIsChecked(driver.findElement(acceptedYesButton)));
         return this;

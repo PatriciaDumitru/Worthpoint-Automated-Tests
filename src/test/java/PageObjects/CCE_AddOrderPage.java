@@ -22,6 +22,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By lightSource2Field = By.id("SampleOrderLsSecondaryId");
     static By lightSource3Field = By.id("SampleOrderLsThirdId");
     static By newBuyerLink = By.cssSelector("#SampleOrderAddForm > div:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(3) > a");
+    
     //Locators for fields in line 0, to check they are clickable
     static By articleField = By.id("SampleOrderLine0ArticleId");
     static By brandField = By.id("SampleOrderLine0BrandId");
@@ -42,7 +43,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By newLineButton = By.id("add_tab");
     static By submitOrderButton = By.id("submit");
     static By pendOrderButton = By.id("pending");
-    static By cancelButton = By.cssSelector("#SampleOrderAddForm > div:nth-child(4) > div.actions > ul > li:nth-child(3) > a");
+    static By cancelButton = By.cssSelector("#SampleOrderAddForm > div:nth-child(5) > div.actions > ul > li:nth-child(3) > a");
 
     
     public CCE_AddOrderPage(WebDriver passedDriver) {
@@ -255,6 +256,14 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
+        try {
+            Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+            System.out.println("Alert appeared: " + alert2.getText());
+            alert2.accept();        
+        } catch(Exception e) {
+            System.out.println("Quantity Exceeded alert did not appear");
+        }
+        
         return new CCE_AddOrderPage(driver);
     }
     
@@ -273,7 +282,6 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     }
     
     public CCE_OrderSamplesPage pressCancel() {
-        
         //Wait for element to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
         driver.findElement(cancelButton).click();
@@ -297,10 +305,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     
     public CCE_AddOrderPage pressCopy(int lineNumber) {
         
-        By copyDataButton = By.id("copy_line_item_"+lineNumber);
-        
-        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(copyDataButton));
-        
+        By copyDataButton = By.id("copy_line_item_"+String.valueOf(lineNumber));       
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(copyDataButton));       
         driver.findElement(copyDataButton).click();
         
         return this;

@@ -50,7 +50,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By requiredDateCell = By.cssSelector("#remove_0 > td:nth-child(13)");
       
     //Button locators
-    static By submitButtonLocator = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(7) > div:nth-child(2) > input");
+    static By submitButtonLocator = By.id("submit1");
     static By cancelButtonLocator = By.id("cancel1");
     static By saveDraftButtonLocator = By.id("drafts");
     static By backButtonLocator = By.id("backLink");
@@ -258,8 +258,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         } catch (Exception e) {
             
         }
-        
-        
+
         //Sometimes unexpected alerts appear. Catch these and accept by default
         boolean alertPresence;
         try {

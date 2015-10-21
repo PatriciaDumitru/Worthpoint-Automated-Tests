@@ -22,6 +22,7 @@ public class Ecomm_FTPFailedFilesPage extends WBA_BasePage {
     By viewButton = By.cssSelector("#FilterShowinerrorlistForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(6) > a");
     By downloadButton = By.cssSelector("#FilterShowinerrorlistForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(7) > a");
     By errorTitle = By.cssSelector("#content > h1");
+    By noRecordsField = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div");
     
     public Ecomm_FTPFailedFilesPage(WebDriver driver) {
         super(driver);
@@ -125,6 +126,19 @@ public class Ecomm_FTPFailedFilesPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Backend Failed Files Page: View Button not displayed correctly",getViewButton().isDisplayed());
         AssertJUnit.assertTrue("Backend Failed Files Page: Download Button not displayed correctly",getDownloadButton().isDisplayed());
         
+    }
+    
+    public boolean checkForRecords() {
+        boolean returnMe = true;
+        
+        try {
+            WebElement waitForElement = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(noRecordsField));
+            returnMe = false;
+        } catch (Exception e) {
+            returnMe = true;
+        }
+        
+        return returnMe;
     }
     
 }

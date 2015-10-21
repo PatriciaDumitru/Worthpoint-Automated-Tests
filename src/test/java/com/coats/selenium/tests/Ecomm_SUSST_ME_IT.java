@@ -23,6 +23,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_SUSST_ME_IT extends DriverFactory {
@@ -714,6 +715,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForLoad();
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
@@ -732,15 +734,13 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
         manualEntryPage.setShadeCode(DataItems.conOrdShadeCode,0);
         manualEntryPage.setQty(3, 0);
         manualEntryPage.setDate(0);
-        
-        
+          
         System.out.println("Line details entered. Pressing next expecting failure...");
         
-        manualEntryPage.pressNextExpectingFailure();
+        Ecomm_ManualEntryPage mePage = manualEntryPage.pressNextExpectingFailure();
+        mePage.waitForLoad();
         
         try {
-            
-            Ecomm_ManualEntryPage mePage = new Ecomm_ManualEntryPage(driver);
             
             WebElement flashMessage = mePage.waitForError();
             
@@ -825,12 +825,12 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
         
         System.out.println("Line details entered. Pressing next expecting failure...");
         
-        manualEntryPage.pressNextExpectingFailure();
+        Ecomm_ManualEntryPage mePage2 = manualEntryPage.pressNextExpectingFailure();
+        mePage2.waitForLoad();
         
         try {
-            
-            Ecomm_ManualEntryPage mePage = new Ecomm_ManualEntryPage(driver);
-            WebElement flashMessage = mePage.waitForError();
+
+            WebElement flashMessage = mePage2.waitForError();
             
             System.out.println("Next pressed");
             System.out.println("Error received: " + flashMessage.getText());
@@ -916,11 +916,11 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
         
         System.out.println("Line details entered. Pressing next expecting failure...");
         
-        manualEntryPage.pressNextExpectingFailure();
+        Ecomm_ManualEntryPage mePage = manualEntryPage.pressNextExpectingFailure();
+        mePage.waitForLoad();
         
         try {
             
-            Ecomm_ManualEntryPage mePage = new Ecomm_ManualEntryPage(driver);
             WebElement flashMessage = mePage.waitForError();
             
             System.out.println("Next pressed");
@@ -1344,6 +1344,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
         System.out.println("Details checked. Cancelling order...");
         
         Ecomm_ManualEntryPage mePage = orderConf.pressCancel();
+        mePage.waitForLoad();
         mePage.waitForElement();
 
         //Take a screenshot
@@ -1352,7 +1353,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
         
         System.out.println("Order cancelled. Checking no draft was saved...");
 
-        Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
+        Ecomm_OutstandingOrderDraftPage draftPage = mePage.clickOutstandingDraft();
         draftPage.waitForLoad();
         
         System.out.println("Draft page reached.");
@@ -1436,8 +1437,7 @@ public class Ecomm_SUSST_ME_IT extends DriverFactory {
         
         System.out.println("Draft cancelled. Checking draft is deleted...");
         
-        Ecomm_MainPage mainPage = new Ecomm_MainPage(driver);
-        Ecomm_OutstandingOrderDraftPage draftPage2 = mainPage.clickOutstandingDraft();
+        Ecomm_OutstandingOrderDraftPage draftPage2 = mePage3.clickOutstandingDraft();
         draftPage2.waitForLoad();
         
         //Take a screenshot

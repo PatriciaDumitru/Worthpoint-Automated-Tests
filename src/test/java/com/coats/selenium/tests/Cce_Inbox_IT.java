@@ -5,6 +5,7 @@ import PageObjects.CCE_MainPage;
 import PageObjects.CCE_InboxPage;
 import PageObjects.CCE_InboxSAPPage;
 import PageObjects.CCE_OrderViewPage;
+import com.coats.selenium.DriverFactory;
 import static com.coats.selenium.DriverFactory.getDriver;
 import java.io.File;
 import java.io.IOException;
@@ -13,9 +14,10 @@ import org.testng.AssertJUnit;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_Inbox_IT {
+public class Cce_Inbox_IT extends DriverFactory {
     
     @Test //Inbox Page :: Page and filter checks, list orders, save, and re-assign SOS
     (groups = {"CCE"})

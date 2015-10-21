@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WBA_ContinuePage {
     
@@ -22,16 +24,19 @@ public class WBA_ContinuePage {
     
     public static WebElement getWelcomeImage() {
         //find and return element
+        WebElement waitForImage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(welcomeImageLocator));
         return driver.findElement(welcomeImageLocator);
     }
     
     public static WebElement getMainImage() {
         //find and return element
+        WebElement waitForImage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(mainImageLocator));
         return driver.findElement(mainImageLocator);       
     }
     
     public static WebElement getContinueImage() {
         //find and return element
+        WebElement waitForImage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(continueImageLocator));
         return driver.findElement(continueImageLocator);
     }
     

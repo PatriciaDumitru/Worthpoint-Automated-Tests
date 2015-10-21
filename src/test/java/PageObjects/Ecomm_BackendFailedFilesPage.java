@@ -20,6 +20,7 @@ public class Ecomm_BackendFailedFilesPage extends WBA_BasePage {
     By viewButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(3) > tr:nth-child(1) > td:nth-child(6) > a");
     By downloadButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(3) > tr:nth-child(1) > td:nth-child(7) > a");
     By errorTitle = By.cssSelector("#content > h1");
+    By noRecordsField = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div");
     
     public Ecomm_BackendFailedFilesPage(WebDriver driver) {
         super(driver);
@@ -125,4 +126,16 @@ public class Ecomm_BackendFailedFilesPage extends WBA_BasePage {
         
     }
     
+    public boolean checkForRecords() {
+        boolean returnMe = true;
+        
+        try {
+            WebElement waitForElement = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(noRecordsField));
+            returnMe = false;
+        } catch (Exception e) {
+            returnMe = true;
+        }
+        
+        return returnMe;
+    }
 }

@@ -25,6 +25,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_SUSST_UORT_IT extends DriverFactory {
@@ -335,7 +336,7 @@ public class Ecomm_SUSST_UORT_IT extends DriverFactory {
         uoPage.waitForLoad();
         
         //Send file path to field
-        uoPage.setFilePath(DataItems.uploadDraftFilepath);
+        uoPage.setFilePath(DataItems.uploadDraftFilepath2);
         //Select realtime upload
         uoPage.pressRealtime();
         
@@ -423,7 +424,7 @@ public class Ecomm_SUSST_UORT_IT extends DriverFactory {
         System.out.println("Upload Order page reached. Creating draft...");
         
         //Send file path to field
-        uoPage.setFilePath(DataItems.uploadDraftFilepath);
+        uoPage.setFilePath(DataItems.uploadDraftFilepath3);
         //Select realtime upload
         uoPage.pressRealtime(); 
         

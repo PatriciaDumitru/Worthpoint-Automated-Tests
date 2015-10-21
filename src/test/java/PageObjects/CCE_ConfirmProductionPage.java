@@ -31,12 +31,13 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     By finalSOSField = By.id("s2id_filterSampleOrderLineSosId");
     By listOrdersButton = By.cssSelector("#FilterConfirmProductionForm > div.actions > ul > li:nth-child(1)");
     By resetButton = By.cssSelector("#FilterConfirmProductionForm > div.actions > ul > li:nth-child(2)");
-    By confirmButton = By.xpath("//*[@id=\"SampleOrderLineConfirmProductionForm\"]/table/tbody/tr[3]/td[10]/input[@value='1']");
-    By finalShadeField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(9)");
-    By MUMTypeField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(12) > select");
-    By qtyProdField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(14) > input");
-    By sendToField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(15) > select");
-    By dnButton = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(5) > a");
+    By confirmButton = By.xpath("//*[@id=\"SampleOrderLineConfirmProductionForm\"]/table/tbody/tr[3]/td[9]/input[2]");
+    By finalShadeField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(8) > input");
+    By MUMTypeField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(11) > select");
+    By qtyProdField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(13) > input");
+    By sendToField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(14) > select");
+    By dnButton = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(17) > a");
+    By packageLabelButton = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(16) > a");
     By saveButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1)");
     By cancelButton = By.cssSelector("#content > div.actions > ul > li:nth-child(2)");
     By flashMessage = By.id("flashMessage");
@@ -128,6 +129,10 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     
     public WebElement getQtyProdField() {
         return driver.findElement(qtyProdField);
+    }
+    
+    public WebElement getPackageLabelButton() {
+        return driver.findElement(packageLabelButton);
     }
     
     public WebElement getSendToField() {

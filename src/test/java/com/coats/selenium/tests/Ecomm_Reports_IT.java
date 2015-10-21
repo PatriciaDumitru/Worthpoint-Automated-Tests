@@ -19,10 +19,11 @@ import PageObjects.Ecomm_SaveReportPage;
 import PageObjects.Ecomm_SummaryOfPurchasePage;
 import com.coats.selenium.DriverFactory;
 import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_Reports_IT extends DriverFactory {
-
+    
 	@Test //Invoices Page :: Page and filter checks, reset, view, print, and export
 	(groups = {"eComm"})
         public void I1() throws IOException, InterruptedException, Exception {

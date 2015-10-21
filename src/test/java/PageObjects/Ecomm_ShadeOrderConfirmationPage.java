@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import org.openqa.selenium.Alert;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -61,6 +62,18 @@ public class Ecomm_ShadeOrderConfirmationPage extends WBA_BasePage {
     public Ecomm_OutstandingOrdersPage pressSubmit() {
         WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitButton));
         driver.findElement(submitButton).click();
+        
+        Alert alert = new WebDriverWait(driver,3).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        try {
+            Alert alert2 = new WebDriverWait(driver,3).until(ExpectedConditions.alertIsPresent());
+            System.out.println("Alert appeared: " + alert2.getText());
+            alert2.accept();
+        } catch (Exception e) {
+           
+        }
+        
         return new Ecomm_OutstandingOrdersPage(driver);
     }
     

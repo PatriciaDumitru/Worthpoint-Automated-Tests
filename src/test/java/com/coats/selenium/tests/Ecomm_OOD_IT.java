@@ -18,10 +18,11 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_OOD_IT extends DriverFactory {
-    
+
     @Test //Outstanding Order Drafts Page :: Complete an order from draft
     (groups = {"eComm"})
     public void ODP2() throws IOException, Exception {

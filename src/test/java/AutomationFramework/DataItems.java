@@ -15,10 +15,12 @@ public class DataItems {
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
     public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
-    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_55.xlsx";
-    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_56.xlsx";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_46.xlsx";
-    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_7.xlsx";
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_57.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_58.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_47.xlsx";
+    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_8.xlsx";
+    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_9.xlsx";
+    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_10.xlsx";
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";
@@ -139,7 +141,7 @@ public class DataItems {
     public static String protoPurpose = "Prototype";
     
     //Sample order details
-    public static String sampOrderNo = "1129108";
+    public static String sampOrderNo = "1129113";
     public static String sampCustName = "Life Easy Customer";
     public static String sampRequester = "approver 1 test";
     

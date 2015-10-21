@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -55,21 +56,11 @@ public class CommonTask {
         boolean waitForUpdate = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(By.id(id), "")); 
     }
     
-    public static void setDropDownField(WebDriver driver,By fieldLocator,String item) throws InterruptedException {
-               
-        //Wait for field to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
-        //Click and type
-        Actions action = new Actions(driver);
-        action.click(driver.findElement(fieldLocator)).build().perform();
-        action.sendKeys(driver.findElement(fieldLocator),item).build().perform();
-        Thread.sleep(200);
-        //Wait for field to update
-        boolean waitForUpdate = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
-        //Press enter
-        driver.findElement(fieldLocator).sendKeys(Keys.ENTER);
-        //Wait again
-        Boolean waitForSelection = new WebDriverWait(driver,5).until(CommonTask.selectionToBe(fieldLocator, item));
+    public static void setDropDownField(WebDriver driver,By fieldLocator,String item) throws InterruptedException {        
+        Select select = new Select(driver.findElement(fieldLocator));
+        driver.findElement(fieldLocator).click();
+        Boolean waitForOption = new WebDriverWait(driver,5).until(CommonTask.optionPresent(item,select));
+        select.selectByVisibleText(item);
     }
     
     public static void setChoiceField(WebDriver driver, By fieldLocator, String item) {
@@ -218,6 +209,22 @@ public class CommonTask {
                 } else {
                     return false;
                 }
+            }
+        };
+    }
+    
+    public static ExpectedCondition<Boolean> optionPresent(final String item, final Select select) {
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver f) {
+                List<WebElement> options = select.getOptions();
+                boolean returnMe = false;
+                for (WebElement element : options) {
+                    if (element.getText().equals(item)) {
+                        returnMe = true;
+                        break;
+                    }
+                }
+                return returnMe;
             }
         };
     }

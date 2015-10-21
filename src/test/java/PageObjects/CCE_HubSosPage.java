@@ -238,22 +238,24 @@ public class CCE_HubSosPage extends WBA_BasePage {
         Actions action = new Actions(driver);
         action.sendKeys(Keys.ESCAPE).build().perform();
         
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
-        Alert alert2 = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert.dismiss();
         
         return new CCE_HubSosPage(driver);
     }
         
     public CCE_HubSosPage pressSave() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(saveButton));
         
         driver.findElement(saveButton).click();
         
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert.accept();
+        
+        WebElement waitForMessage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
         
         String message = driver.findElement(flashMessage).getText();
         

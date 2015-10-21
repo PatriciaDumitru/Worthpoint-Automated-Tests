@@ -33,6 +33,8 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     By viewFrame = By.id("TB_iframeContent");
     By sendToCustButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.flexi-grid > table > tbody > tr:nth-child(3) > td:nth-child(6) > input");
     
+    By noRecordsField = By.cssSelector("#SampleOrderLineReceivedHubForm > div.flexi-grid > div");
+    
     public CCE_ReceivedHubPage(WebDriver passedDriver) {
         super(passedDriver);
     }
@@ -200,6 +202,12 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Hub SOS Page: FCE Field not displayed correctly",getFceNameField().isDisplayed());
         AssertJUnit.assertTrue("Hub SOS Page: Requester Field not displayed correctly",getRequesterField().isDisplayed());
                
+    }
+    
+    public boolean checkForRecords() {
+        WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(noRecordsField));
+        
+        return driver.findElement(noRecordsField).getText().equals("No records found.");
     }
     
 }

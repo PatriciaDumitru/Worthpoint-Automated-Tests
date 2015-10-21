@@ -15,10 +15,11 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Cce_Feedback_IT extends DriverFactory {
- 
+    
     @Test //Feedback Page :: Page and fields check
     (groups = {"CCE"})
     public void FB1() throws IOException, Exception {
@@ -194,7 +195,7 @@ public class Cce_Feedback_IT extends DriverFactory {
     }
     
     @Test //Feedback Awaiting Page :: Filter orders and load
-    (groups = {"CCE"})
+    (groups = {"CCE"}) 
     public void FBA2() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

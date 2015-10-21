@@ -19,10 +19,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Cce_SOC_IT extends DriverFactory {
-
+    
     @Test // Order Samples Page :: Page and filter checks, cancel function 
     (groups = {"QuickTest","CCE","CCE_Orders"})
     public void SOC1() throws InterruptedException, IOException, Exception {
@@ -282,7 +283,7 @@ public class Cce_SOC_IT extends DriverFactory {
     }
 
     @Test //Order Samples Page :: Multi-line copied data
-    (groups = {"CCE","CCE_Orders"})
+    (groups = {"CCE","CCE_Orders","Unstable"})
     public void SOC5() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

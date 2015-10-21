@@ -23,7 +23,6 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     //general page element locators
     static By navBarLocator = By.id("navigation");
-    static By breadcrumbLocator = By.cssSelector("#list_page_breadcrumb > h1");
     static By productDetailsTableLocator = By.id("t1");
     static By customerDetailsTableLocator = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > table");
     static By nextButtonLocator = By.id("next");
@@ -31,9 +30,10 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     static By cancelButtonLocator = By.id("cancel1");
     static By flashMessageLocator = By.id("flashMessage");
     static By titleLocator = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > div.tbl-title.minus.plus > h1");
+    static By articleHeadCell = By.cssSelector("#t1 > thead > tr > th:nth-child(4)");
     
     //Customer detail field locators
-    static By customerNameField = By.cssSelector("#s2id_customer_id > a > span.select2-chosen.select_image_add");//Initial customer name field to click
+    static By customerNameField = By.cssSelector("#s2id_customer_id > a");//Initial customer name field to click
     static By customerNameSearchField = By.cssSelector("#select2-drop > div > input");//Search field which appears after click
     static By customerNameSearchResult = By.cssSelector("#select2-drop > ul > li");//The result which is displayed after typing
     static By shipToPartyField = By.id("ship_to_party_id"); //Initial dropdown menu field
@@ -263,23 +263,9 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public Ecomm_ManualEntryPage setArticle(String article,int lineNumber) {
-        WebElement articleField = driver.findElement(By.cssSelector("#s2id_BulkOrderLine"+lineNumber+"ArticleId > a"));
-        
-        //Wait for field to be accessible
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(articleField));
-        //Click field and type article
-        Actions clickAndType = new Actions(driver);
-        clickAndType.click(articleField).build().perform();
-        
-        By articleSearchLocator = By.cssSelector("#select2-drop > div > input");
-        WebElement waitForSearch = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(articleSearchLocator));
-        clickAndType.sendKeys(driver.findElement(articleSearchLocator),article).build().perform();
-        
-        By articleResultLocator = By.cssSelector("#select2-drop > ul > li.select2-results-dept-0.select2-result.select2-result-selectable.select2-highlighted");
-        //Wait for result to appear
-        WebElement waitForResult = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(articleResultLocator));
-        //Press enter
-        clickAndType.sendKeys(driver.findElement(articleSearchLocator),Keys.ENTER).build().perform();
+        By articleField = By.id("s2id_BulkOrderLine"+lineNumber+"ArticleId");
+        CommonTask.setSearchField(driver, articleField, article);
+        driver.findElement(articleHeadCell).click();
         
         return this;
     }
@@ -558,7 +544,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return new Ecomm_OutstandingOrderDraftPage(driver);
     }
     
-    public void pressNextExpectingFailure() {
+    public Ecomm_ManualEntryPage pressNextExpectingFailure() {
         //Wait for button to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
         //Click next
@@ -568,8 +554,8 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
-        this.waitForLoad();
-
+        return new Ecomm_ManualEntryPage(driver);
+        
     }
     
     public WebElement waitForError() {

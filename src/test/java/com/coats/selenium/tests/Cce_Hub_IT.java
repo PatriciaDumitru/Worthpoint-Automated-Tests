@@ -13,6 +13,7 @@ import org.testng.AssertJUnit;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Cce_Hub_IT extends DriverFactory {
@@ -171,34 +172,40 @@ public class Cce_Hub_IT extends DriverFactory {
         
         System.out.println("Filter reset. Viewing first order...");
         
-        CCE_OrderViewPage orderView = rhPage.pressView();
-        orderView.switchTo();
-        orderView.waitForContent();
+        if (!rhPage.checkForRecords()) {
+            CCE_OrderViewPage orderView = rhPage.pressView();
+            orderView.switchTo();
+            orderView.waitForContent();
+
+            //Take a screenshot
+            File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\5Order View.png"));
+
+            System.out.println("View displayed. Closing view...");
+
+            orderView.closeView();
+
+            System.out.println("Order view closed. Pressing send to customer for first item...");
+
+            rhPage.pressSendToCust();
+
+            //Take a screenshot
+            File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\6Send to Cust pressed.png"));
+
+            System.out.println("Send to customer selected. Saving...");
+
+            rhPage.pressSave();
+            rhPage.waitForLoad();
+
+             //Take a screenshot
+            File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\7Order saved.png"));
+        } else {
+            System.out.println("No records found, test incomplete");
+        }
         
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\5Order View.png"));
         
-        System.out.println("View displayed. Closing view...");
-        
-        orderView.closeView();
-        
-        System.out.println("Order view closed. Pressing send to customer for first item...");
-        
-        rhPage.pressSendToCust();
-        
-        //Take a screenshot
-        File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\6Send to Cust pressed.png"));
-        
-        System.out.println("Send to customer selected. Saving...");
-        
-        rhPage.pressSave();
-        rhPage.waitForLoad();
-        
-         //Take a screenshot
-        File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Received Hub\\7Order saved.png"));
         
     } 
     

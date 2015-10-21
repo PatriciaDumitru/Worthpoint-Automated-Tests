@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -156,10 +157,9 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     public Ecomm_FromExistingPage setBrand(String brand) {
         //Wait for element to be available and enter brand
         WebElement waitForElement = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandFieldLocator));
-        //Click and type brand
-        Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(brandFieldLocator)).build().perform();
-        clickAndType.sendKeys(brand).build().perform();
+        
+        Select select = new Select(driver.findElement(brandFieldLocator));
+        select.selectByVisibleText(brand);
         
         return this;
     }

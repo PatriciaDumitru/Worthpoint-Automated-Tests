@@ -94,6 +94,15 @@ public class Ecomm_OrderInformationPage {
         driver.findElement(submitButton).submit();
         Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
         alert.accept();
+        
+        try {
+            Alert alert2 = new WebDriverWait(driver,3).until(ExpectedConditions.alertIsPresent());
+            System.out.println("Alert appeared: " + alert2.getText());
+            alert2.accept();
+        } catch (Exception e) {
+            
+        }
+        
         return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
     

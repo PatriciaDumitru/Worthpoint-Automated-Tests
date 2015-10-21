@@ -19,6 +19,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_MainPage_IT extends DriverFactory {
@@ -154,6 +155,7 @@ public class Ecomm_MainPage_IT extends DriverFactory {
                 }
                 
                 if (!(breadcrumbLocator == null)) {
+                    WebElement wait = new WebDriverWait(driver,2).until(ExpectedConditions.presenceOfElementLocated(breadcrumbLocator));
                     String actualTitle = driver.findElement(breadcrumbLocator).getText();
                     
                     String fileName = "";
@@ -210,6 +212,7 @@ public class Ecomm_MainPage_IT extends DriverFactory {
                     }
                 
                     if (!(breadcrumbLocator == null)) {
+                        WebElement wait = new WebDriverWait(driver,2).until(ExpectedConditions.presenceOfElementLocated(breadcrumbLocator));
                         String actualTitle = driver.findElement(breadcrumbLocator).getText();
                     
                         String fileName = "";

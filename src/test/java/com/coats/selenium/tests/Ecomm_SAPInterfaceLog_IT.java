@@ -12,10 +12,11 @@ import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_SAPInterfaceLogPage;
 import com.coats.selenium.DriverFactory;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_SAPInterfaceLog_IT extends DriverFactory {
-	
+    
     @Test //SAP Interface Log Page :: Page and filter checks, view and reset
     (groups = {"eComm"})
     public void SILM1() throws IOException, Exception {

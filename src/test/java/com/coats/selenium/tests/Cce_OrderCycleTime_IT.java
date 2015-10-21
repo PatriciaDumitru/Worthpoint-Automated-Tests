@@ -14,9 +14,10 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_OrderCycleTime_IT extends DriverFactory {
+public class Cce_OrderCycleTime_IT extends DriverFactory { 
     
     @Test //Order Cycle Time Page :: Page and filter checks, print, export, and reset
     (groups = {"CCE"})

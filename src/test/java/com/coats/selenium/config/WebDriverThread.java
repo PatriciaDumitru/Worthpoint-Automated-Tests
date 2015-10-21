@@ -1,5 +1,7 @@
 package com.coats.selenium.config;
 
+
+import static com.coats.selenium.config.DriverType.CHROME;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +20,7 @@ public class WebDriverThread {
     private WebDriver webdriver;
     private DriverType selectedDriverType;
 
-    private final DriverType defaultDriverType = FIREFOX;
+    private final DriverType defaultDriverType = CHROME;
     private final String browser = System.getProperty("browser", defaultDriverType.toString()).toUpperCase();
     private final String operatingSystem = System.getProperty("os.name").toUpperCase();
     private final String systemArchitecture = System.getProperty("os.arch");

@@ -17,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
@@ -200,4 +201,5 @@ public class Cce_ConfirmProduction_IT extends DriverFactory {
         System.out.println("Cancel pressed.");
 
     }
+
 }

@@ -17,6 +17,7 @@ public class Ecomm_BackendInProcessPage extends WBA_BasePage {
     By fileNameField = By.id("filterInProcessFileFileName");
     By searchButton = By.cssSelector("#FilterShowlistForm > div.grid_12 > table > tbody > tr:nth-child(2) > td > div > table > tbody > tr > td > div > input");
     By resetButton = By.cssSelector("#FilterShowlistForm > div.grid_12 > table > tbody > tr:nth-child(2) > td > div > table > tbody > tr > td > a");
+    By noRecordsField = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div");
     
     public Ecomm_BackendInProcessPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -72,6 +73,19 @@ public class Ecomm_BackendInProcessPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Backend In Process Files Page: File name field not displayed",getFileNameField().isDisplayed());
         AssertJUnit.assertTrue("Backend In Process Files Page: Search button not displayed",getSearchButton().isDisplayed());
         AssertJUnit.assertTrue("Backend In Process Files Page: Reset button not displayed",getResetButton().isDisplayed());
+    }
+    
+    public boolean checkForRecords() {
+        boolean returnMe = true;
+        
+        try {
+            WebElement waitForElement = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(noRecordsField));
+            returnMe = false;
+        } catch (Exception e) {
+            returnMe = true;
+        }
+        
+        return returnMe;
     }
     
 }
