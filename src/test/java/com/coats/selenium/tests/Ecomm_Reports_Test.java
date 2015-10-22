@@ -22,7 +22,7 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_Reports_IT extends DriverFactory {
+public class Ecomm_Reports_Test extends DriverFactory {
     
 	@Test //Invoices Page :: Page and filter checks, reset, view, print, and export
 	(groups = {"eComm"})

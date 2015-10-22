@@ -15,8 +15,8 @@ public class DataItems {
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
     public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
-    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_57.xlsx";
-    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_58.xlsx";
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_65.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_66.xlsx";
     public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_47.xlsx";
     public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_8.xlsx";
     public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_9.xlsx";

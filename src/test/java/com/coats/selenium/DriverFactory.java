@@ -18,7 +18,7 @@ public class DriverFactory {
     private static List<WebDriverThread> webDriverThreadPool = Collections.synchronizedList(new ArrayList<WebDriverThread>());
     private static ThreadLocal<WebDriverThread> driverThread;
 
-    @BeforeSuite
+    @BeforeSuite (alwaysRun=true)
     public static void instantiateDriverObject() {
         driverThread = new ThreadLocal<WebDriverThread>() {
             @Override
@@ -34,7 +34,7 @@ public class DriverFactory {
         return driverThread.get().getDriver();
     }
 
-    @AfterMethod
+    @AfterMethod (alwaysRun=true)
     public static void clearCookies() throws Exception {
         getDriver().manage().deleteAllCookies();
         System.out.println("----------------------------------------------------");

@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_SAPLog_IT extends DriverFactory {
+public class Cce_SAPLog_Test extends DriverFactory {
     
     @Test //SAP Log Page :: Page and filter checks, search, reset, and export
     (groups = {"CCE"})

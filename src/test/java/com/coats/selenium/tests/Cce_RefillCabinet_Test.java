@@ -15,7 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_RefillCabinet_IT extends DriverFactory {
+public class Cce_RefillCabinet_Test extends DriverFactory {
     
     @Test //Refill Cabinet Page :: Page and filter checks
     (groups = {"CCE"})

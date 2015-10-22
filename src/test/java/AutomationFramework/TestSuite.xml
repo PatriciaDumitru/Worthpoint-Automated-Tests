@@ -3,23 +3,18 @@
 
 <suite name="AutomatedSuite">
 
-
     <!-- see examples at http://testng.org/doc/documentation-main.html#testng-xml -->
 
     <test name="QuickTest">
         <groups>
             <run>
                 <include name="QuickTest"/>
-                <exclude name="Unstable"/>
             </run>
         </groups>
-        <classes>
-            <class name="com.coats.selenium.tests.WBA_Login_IT" />
-            <class name="com.coats.selenium.tests.Ecomm_MainPage_IT" />
-            <class name="com.coats.selenium.tests.Ecomm_SUSST_ME_IT" />
-            <class name="com.coats.selenium.tests.Cce_MainPage_IT" />
-            <class name="com.coats.selenium.tests.Cce_SOC_IT" />
-        </classes>
+        <packages>
+            <package name="com.coats.selenium.tests"/>
+        </packages>
     </test>
+    
 
 </suite>

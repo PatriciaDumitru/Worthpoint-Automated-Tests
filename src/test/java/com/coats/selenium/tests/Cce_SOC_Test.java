@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_SOC_IT extends DriverFactory {
+public class Cce_SOC_Test extends DriverFactory {
     
     @Test // Order Samples Page :: Page and filter checks, cancel function 
     (groups = {"QuickTest","CCE","CCE_Orders"})

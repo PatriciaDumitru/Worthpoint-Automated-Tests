@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_Feedback_IT extends DriverFactory {
+public class Cce_Feedback_Test extends DriverFactory {
     
     @Test //Feedback Page :: Page and fields check
     (groups = {"CCE"})

@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.*;
 
-public class Ecomm_CO_ME_IT extends DriverFactory {
+public class Ecomm_CO_ME_Test extends DriverFactory {
 
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -35,7 +35,6 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
   private By cancelButton = By.id("cancel1");
   private By flashMessage = By.id("flashMessage");
   
-
   @Test //Manual Entry Page :: Contract order expecting "No matching contract reference" error
   (groups = {"eComm","eComm_Orders"})
   public void COME1() throws Exception {
@@ -126,10 +125,11 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
     if (DataItems.contractOrderCallOff) {
         driver.findElement(submitButton).click();
         CommonTask.waitForPageLoad(driver);
+        System.out.println("Order submitted");
     } else {
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
-        
+        System.out.println("Order cancelled as call-off is disabled");   
     }
   }
 
@@ -191,9 +191,11 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
     if (DataItems.contractOrderCallOff) {
         driver.findElement(submitButton).click();
         CommonTask.waitForPageLoad(driver);
+        System.out.println("Order submitted");
     } else {
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
+        System.out.println("Order cancelled as call-off is disabled");
     }
     
   }
@@ -208,14 +210,15 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
     Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME3", "CO_ME_3", DataItems.validCustUsername, DataItems.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     
-      System.out.println("Manual Entry Page reached. Entering customer details...");
+    System.out.println("Manual Entry Page reached. Entering customer details...");
     
+    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
     System.out.println("PO used: "+po);
     
-      System.out.println("Customer details entered. Entering line details...");
+    System.out.println("Customer details entered. Entering line details...");
     
     mePage.setBuyers("*OTHERS*");
     driver.findElement(By.id("quantity0")).clear();
@@ -259,7 +262,7 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\11Order cancelled.png"));
-        System.out.println("Order cancelled.");
+        System.out.println("Order cancelled as call-off is disabled");
     }
   }
   
@@ -275,6 +278,7 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
     
       System.out.println("Manual Entry Page reached. Entering Customer details...");
     
+    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));  
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
@@ -319,7 +323,7 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\13Order cancelled.png"));
-        System.out.println("Order cancelled.");
+        System.out.println("Order cancelled as call-off is disabled");
     }
   }
   
@@ -334,8 +338,9 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     mePage.waitForLoad();
     
-      System.out.println("Manual Entry page reached. Entering customer details...");
+    System.out.println("Manual Entry page reached. Entering customer details...");
     
+    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
@@ -377,8 +382,9 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
 
     boolean waitForError = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(flashMessage,"could not"));
     
-      System.out.println("Error received. ");
+    System.out.println("Error received. ");
     
+    WebElement wait2 = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(contractPOField));  
     Actions action = new Actions(driver);
     action.moveToElement(driver.findElement(contractPOField)).build().perform();
     
@@ -397,8 +403,9 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
     Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #6", "CO_ME_6", DataItems.validCustUsername, DataItems.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     
-      System.out.println("Manual Entry Page reached. Entering customer details...");
+    System.out.println("Manual Entry Page reached. Entering customer details...");
     
+    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
@@ -423,7 +430,7 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
         Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert2.accept();
     } catch (Exception e) {
-        System.out.println(e.toString());
+        System.out.println("No additional alert");
     }
 
     CommonTask.waitForPageLoad(driver);
@@ -431,6 +438,9 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
     //Take a screenshot
     File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile12,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\18Order confirmation.png"));
+    
+      System.out.println("Viewing error...");
+    
     driver.findElement(By.linkText("Line with Error")).click();
     Ecomm_OrderViewPage viewPage = new Ecomm_OrderViewPage(driver);
     viewPage.waitForContent();
@@ -439,9 +449,13 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
     File scrFile13 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile13,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\19Error view.png"));
     
+      System.out.println("View displayed. Closing view...");
+    
     viewPage.closeView();
     viewPage.waitForInvisibility();
     driver.switchTo().defaultContent();
+    
+      System.out.println("View closed.");
     
     
   }
@@ -456,6 +470,7 @@ public class Ecomm_CO_ME_IT extends DriverFactory {
     Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #7", "CO_ME_7", DataItems.validCustUsername, DataItems.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     
+    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);

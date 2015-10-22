@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_LRMLog_IT extends DriverFactory {
+public class Cce_LRMLog_Test extends DriverFactory {
     
     @Test
     (groups = {"CCE"})

@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_Shade_IT extends DriverFactory {
+public class Ecomm_Shade_Test extends DriverFactory {
     
     @Test //Shade Not Available Page :: Page and filter checks, view and edit
     (groups = {"eComm"})

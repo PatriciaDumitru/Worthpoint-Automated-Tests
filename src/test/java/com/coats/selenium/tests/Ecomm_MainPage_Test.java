@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_MainPage_IT extends DriverFactory {
+public class Ecomm_MainPage_Test extends DriverFactory {
     
     @Test //EComm Page :: Page checks, navigation bar check
     (groups = {"eComm"})

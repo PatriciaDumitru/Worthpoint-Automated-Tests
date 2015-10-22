@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_MainPage_IT extends DriverFactory {
+public class Cce_MainPage_Test extends DriverFactory {
     
     @Test //CCE Main Page :: Navigation bar check
     (groups = {"CCE"})

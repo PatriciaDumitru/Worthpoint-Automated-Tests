@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_Hub_IT extends DriverFactory {
+public class Cce_Hub_Test extends DriverFactory {
     
     @Test //Hub SOS Page :: Page and filter checks
     (groups = {"CCE"})

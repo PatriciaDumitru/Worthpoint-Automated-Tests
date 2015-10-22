@@ -15,10 +15,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_CO_UORT_IT extends DriverFactory {
+public class Ecomm_CO_UORT_Test extends DriverFactory {
     
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -26,7 +26,7 @@ public class Ecomm_CO_UORT_IT extends DriverFactory {
   public By contentLocator = By.id("BulkOrderLineViewUplodErrorListForm");
   public By cancelButton = By.id("cancel1");
   public By confirmButton = By.id("submit1");
-
+  
   @Test //Upload Orders Page :: Realtime contract order upload, expecting "No matching reference" error
   (groups ={"eComm","eComm_Orders"})
   public void CORT1() throws Exception {
@@ -36,19 +36,19 @@ public class Ecomm_CO_UORT_IT extends DriverFactory {
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
     Ecomm_MainPage eComm = base.setUp("eComm Upload Order Contract Order #1", "CO_UO_1", DataItems.validCustUsername, DataItems.validCustPassword);
     
-      System.out.println("Navigating to Upload Order...");
+    System.out.println("Navigating to Upload Order...");
     
     Ecomm_UploadOrderPage uoPage = eComm.clickUploadOrder();
     uoPage.waitForLoad();
     
-      System.out.println("Upload Order reached. Setting filepath and upload method...");
+    System.out.println("Upload Order reached. Setting filepath and upload method...");
     
-    driver.findElement(By.id("filename")).clear();
+    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(By.id("filename")));
     driver.findElement(By.id("filename")).sendKeys(DataItems.co_uploadOrderFilepath);
     
     driver.findElement(By.id("bulkuploadprocess1")).click();
     
-      System.out.println("Method set. Submitting...");
+    System.out.println("Method set. Submitting...");
     
     //Take a screenshot
     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -56,13 +56,15 @@ public class Ecomm_CO_UORT_IT extends DriverFactory {
     
     driver.findElement(By.cssSelector("input.btn-submit-upload")).click();
     
-      System.out.println("Submitted. Select 'no' in alert...");
+    System.out.println("Submitted. Select 'no' in alert...");
     
     Ecomm_MappingAlert mapAlert = new Ecomm_MappingAlert(driver);
     mapAlert.pressNo();
     
     System.out.println("Mapping page reached. Setting mapping...");
     
+    WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderLineCustomerMaterialNo")));
+    driver.findElement(By.id("BulkOrderLineCustomerMaterialNo")).click();
     new Select(driver.findElement(By.id("BulkOrderLineCustomerMaterialNo"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineArticleId"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderBuyerId"))).selectByVisibleText("Requestor Name");
@@ -139,6 +141,7 @@ public class Ecomm_CO_UORT_IT extends DriverFactory {
         System.out.println("No alert upon closing view.");
     }
       
+        WebElement waitForButton2 = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
         System.out.println("Order cancelled, as Contract Order Call-off is disabled");
@@ -160,13 +163,15 @@ public class Ecomm_CO_UORT_IT extends DriverFactory {
     Ecomm_MainPage ecomm = new Ecomm_MainPage(driver);
     ecomm.clickUploadOrder();
     
-    driver.findElement(By.id("filename")).clear();
+    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(By.id("filename")));
     driver.findElement(By.id("filename")).sendKeys(DataItems.co_uploadOrderFilepath2);
     
     driver.findElement(By.cssSelector("input.btn-submit-upload")).click();
     
     Ecomm_MappingAlert mapAlert = new Ecomm_MappingAlert(driver);
     mapAlert.pressNo();
+    
+    WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderLineCustomerMaterialNo")));
     
     new Select(driver.findElement(By.id("BulkOrderLineCustomerMaterialNo"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineArticleId"))).selectByVisibleText("N/A");

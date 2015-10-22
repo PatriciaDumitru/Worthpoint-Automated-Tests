@@ -17,7 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_Inbox_IT extends DriverFactory {
+public class Cce_Inbox_Test extends DriverFactory {
     
     @Test //Inbox Page :: Page and filter checks, list orders, save, and re-assign SOS
     (groups = {"CCE"})

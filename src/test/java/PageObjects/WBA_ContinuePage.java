@@ -16,6 +16,7 @@ public class WBA_ContinuePage {
     static By welcomeImageLocator = By.cssSelector("#wrapper > div.logo1 > a > img");
     static By mainImageLocator = By.cssSelector("#wrapper > div:nth-child(4) > a:nth-child(1) > img");
     static By continueImageLocator = By.cssSelector("#wrapper > div:nth-child(4) > a:nth-child(2) > img");
+    static By continueImageDuringMaintenance = By.cssSelector("#wrapper > div:nth-child(4) > a > img");
     
     public WBA_ContinuePage(WebDriver passedDriver) {
         //Initialise driver
@@ -36,8 +37,8 @@ public class WBA_ContinuePage {
     
     public static WebElement getContinueImage() {
         //find and return element
-        WebElement waitForImage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(continueImageLocator));
-        return driver.findElement(continueImageLocator);
+        WebElement waitForImage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(continueImageDuringMaintenance));
+        return driver.findElement(continueImageDuringMaintenance);
     }
     
     public WBA_SelectionPage pressContinue() {

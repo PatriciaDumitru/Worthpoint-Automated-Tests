@@ -15,7 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_SUSST_FEBO_IT extends DriverFactory {
+public class Ecomm_SUSST_FEBO_Test extends DriverFactory {
     
     @Test //From Existing Bulk Order Page :: Page checks, create order 
     (groups = {"eComm","eComm_Orders","Unstable"})

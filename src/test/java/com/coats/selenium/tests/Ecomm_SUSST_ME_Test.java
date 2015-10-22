@@ -24,7 +24,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-public class Ecomm_SUSST_ME_IT extends DriverFactory {
+public class Ecomm_SUSST_ME_Test extends DriverFactory {
     
     @Test //Manual Entry Page :: Page checks, single line order with YMN and master shade code
     (groups = {"QuickTest","eComm","eComm_Orders"})

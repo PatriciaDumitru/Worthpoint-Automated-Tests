@@ -14,7 +14,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
-public class Cce_DNReprint_IT extends DriverFactory {
+public class Cce_DNReprint_Test extends DriverFactory {
     
     @Test //DN Reprint Page :: Page checks
     (groups = {"CCE"})

@@ -16,7 +16,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_ProductAvailabilityCheck_IT extends DriverFactory {
+public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
     
     @Test //Product Availability Check Page :: Page and field checks, make check using YMN
     (groups = {"eComm"})

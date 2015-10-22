@@ -61,6 +61,7 @@ public class WBA_BasePage {
     static By ftpFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(4) > a"); 
     static By pacTab = By.cssSelector("#topnav > li:nth-child(3)");
     static By outOrdersSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
+    static By failedContractOrderSubtab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(5)");
     
     public WBA_BasePage(WebDriver passedDriver) {
         driver = passedDriver;
@@ -362,6 +363,18 @@ public class WBA_BasePage {
         driver.findElement(ftpFailedSubTab).click();
 		
         return new Ecomm_FTPFailedFilesPage(driver);
+    }
+    
+    public Ecomm_FailedContractOrderPage clickFailedContractOrder() {
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
+        driver.findElement(dashboardTab).click();
+		
+        //Wait for subtab
+        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(failedContractOrderSubtab)));
+        driver.findElement(failedContractOrderSubtab).click();
+		
+        return new Ecomm_FailedContractOrderPage(driver);
     }
     
 }

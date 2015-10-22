@@ -21,7 +21,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_OOD_IT extends DriverFactory {
+public class Ecomm_OOD_Test extends DriverFactory {
 
     @Test //Outstanding Order Drafts Page :: Complete an order from draft
     (groups = {"eComm"})

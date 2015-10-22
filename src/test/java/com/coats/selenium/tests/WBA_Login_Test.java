@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class WBA_Login_IT extends DriverFactory {
+public class WBA_Login_Test extends DriverFactory {
     
     //Login Page :: Page checks
     @Test 
@@ -55,8 +55,7 @@ public class WBA_Login_IT extends DriverFactory {
         System.out.println("Assertions successful.");
 
     }
- 
-    
+  
     @Test //Login Page :: Login using valid Coats user details, navigate to and from CCE and eComm
     (groups = {"QuickTest","General"})
     public void L2() throws InterruptedException, IOException, Exception {

@@ -21,7 +21,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-public class Cce_ConfirmProduction_IT extends DriverFactory {
+public class Cce_ConfirmProduction_Test extends DriverFactory {
     
     @Test //Confirm Production Page :: Page and filer checks, view and confirm
     (groups = {"CCE"})

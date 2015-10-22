@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_TotalOrders_IT extends DriverFactory {
+public class Cce_TotalOrders_Test extends DriverFactory {
     
     @Test //Total Orders Page :: Page and filter checks, field selection, export and reset
     (groups = {"CCE"})

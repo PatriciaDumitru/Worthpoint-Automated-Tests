@@ -15,7 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class WBA_ForgotPassword_IT extends DriverFactory {
+public class WBA_ForgotPassword_Test extends DriverFactory {
     
     @Test //Forgot Password Page :: Reset password
     (groups = {"General"})

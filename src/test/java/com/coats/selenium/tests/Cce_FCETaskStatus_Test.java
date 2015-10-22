@@ -17,7 +17,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Cce_FCETaskStatus_IT extends DriverFactory {
+public class Cce_FCETaskStatus_Test extends DriverFactory {
     
     @Test //FCE Task Status Page :: Page and filter checks, print records and export
     (groups = {"CCE"})

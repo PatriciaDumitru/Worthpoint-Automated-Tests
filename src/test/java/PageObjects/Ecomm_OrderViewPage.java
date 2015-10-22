@@ -19,6 +19,8 @@ public class Ecomm_OrderViewPage {
     static By brandCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(5)");
     static By ticketCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(6)");
     static By shadeCodeCellLocator = By.cssSelector("#BulkOrderLineViewOutstandingOrderListForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(7)");
+    static By COError = By.cssSelector("#BulkOrderLineViewContractLinesForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(17) > span");
+    static By errorHeader = By.cssSelector("#BulkOrderLineViewContractLinesForm > div.grid_12 > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(17)");
     static By printButton = By.cssSelector("#tbl > tbody > tr:nth-child(8) > td:nth-child(2) > a");
     static By frameLocator = By.id("TB_iframeContent");
     static By productInfoLocator = By.cssSelector("#content > div > div.tbl-title.upload");
@@ -52,6 +54,12 @@ public class Ecomm_OrderViewPage {
     public WebElement getShadeCodeCell() {
         //find and return element
         return driver.findElement(shadeCodeCellLocator);
+    }
+    
+    public String getCOError() {
+        switchTo();
+        WebElement waitForCell = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(COError));
+        return driver.findElement(COError).getText();
     }
     
     public void switchTo() {

@@ -28,7 +28,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_SUSST_UORT_IT extends DriverFactory {
+public class Ecomm_SUSST_UORT_Test extends DriverFactory {
     
     @Test //Upload Order Page :: Page checks and realtime upload order of <100 lines
     (groups = {"eComm","eComm_Orders"})

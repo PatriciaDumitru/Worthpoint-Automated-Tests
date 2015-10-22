@@ -18,7 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_Dashboard_IT extends DriverFactory {
+public class Ecomm_Dashboard_Test extends DriverFactory {
     
     @Test
     (groups = {"eComm"})
