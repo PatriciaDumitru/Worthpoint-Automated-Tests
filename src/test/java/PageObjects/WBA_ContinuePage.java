@@ -37,8 +37,8 @@ public class WBA_ContinuePage {
     
     public static WebElement getContinueImage() {
         //find and return element
-        WebElement waitForImage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(continueImageDuringMaintenance));
-        return driver.findElement(continueImageDuringMaintenance);
+        WebElement waitForImage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(continueImageLocator));
+        return driver.findElement(continueImageLocator);
     }
     
     public WBA_SelectionPage pressContinue() {
