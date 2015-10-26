@@ -40,7 +40,7 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     }
     
     public String getTitle() {
-        WebElement waitForVis = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
+        WebElement waitForVis = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
         
         return driver.findElement(breadcrumb).getText();
     }
@@ -126,7 +126,7 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     
     public CCE_ReceivedHubPage pressListOrders() {
         //Wait for button
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
         
         //submit form
         driver.findElement(filterForm).submit();
@@ -136,7 +136,7 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     
     public CCE_ReceivedHubPage pressReset() {
         //Wait for reset button
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         
         driver.findElement(resetButton).click();
         
@@ -164,7 +164,7 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     }
     
     public CCE_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
         
         driver.findElement(viewButton).click();
         

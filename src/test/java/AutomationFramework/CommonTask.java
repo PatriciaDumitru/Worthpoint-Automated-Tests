@@ -57,10 +57,20 @@ public class CommonTask {
     }
     
     public static void setDropDownField(WebDriver driver,By fieldLocator,String item) throws InterruptedException {        
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         Select select = new Select(driver.findElement(fieldLocator));
         driver.findElement(fieldLocator).click();
         Boolean waitForOption = new WebDriverWait(driver,5).until(CommonTask.optionPresent(item,select));
         select.selectByVisibleText(item);
+    }
+    
+    public static void clearDropDownField(WebDriver driver, By fieldLocator) {
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        
+        Select select = new Select(driver.findElement(fieldLocator));
+        driver.findElement(fieldLocator).click();
+        select.selectByIndex(0);
+                
     }
     
     public static void setChoiceField(WebDriver driver, By fieldLocator, String item) {
@@ -230,20 +240,20 @@ public class CommonTask {
     }
     
     public static void waitForPageLoad(WebDriver driver) {
-        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(contentLocator));
+        WebElement wait = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(contentLocator));
     }
     
     public static void waitForOverlay(WebDriver driver) {
-        WebDriver wait = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver wait = new WebDriverWait(driver,8).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
     }
     
     public static void waitForOverlay(WebDriver driver, By overylayContent) {
-        WebDriver wait = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
-        WebElement waitAgain = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(overylayContent));
+        WebDriver wait = new WebDriverWait(driver,8).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebElement waitAgain = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(overylayContent));
     }
     
     public static void waitForViewClose(WebDriver driver) {
-        boolean waitForClose = new WebDriverWait(driver,10).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+        boolean waitForClose = new WebDriverWait(driver,8).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
     }
     
     public static void waitForFieldUpdate(WebDriver driver, By fieldLocator, String item) {

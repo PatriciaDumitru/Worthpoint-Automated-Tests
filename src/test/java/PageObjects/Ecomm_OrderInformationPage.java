@@ -90,9 +90,9 @@ public class Ecomm_OrderInformationPage {
     }
     
     public Ecomm_ShadeOrderConfirmationPage pressSubmit() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitButton));
         driver.findElement(submitButton).submit();
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,8).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
         try {
@@ -107,7 +107,7 @@ public class Ecomm_OrderInformationPage {
     }
     
     public Ecomm_ShadeOrderConfirmationPage pressCancel() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
         driver.findElement(cancelButton).click();
         return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
@@ -124,19 +124,19 @@ public class Ecomm_OrderInformationPage {
     
     public void checkFields() {
         //Wait for all fields to be clickable
-        WebElement waitForYMN = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-        WebElement waitForArticle = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement waitForBrand = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForTicket = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForLength = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement waitForStyleNo= new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(styleNoField));
-        WebElement waitForshadeCode= new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForRequiredDate= new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requiredDateField));
-        WebElement waitForOrderedQty= new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderedQtyField));
-        WebElement waitForFinish= new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(finishField));
-        WebElement waitForOtherInfo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(otherInfoField));
-        WebElement waitForSubmit = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitButton));
-        WebElement waitForCancel = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement waitForYMN = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
+        WebElement waitForArticle = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(articleField));
+        WebElement waitForBrand = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandField));
+        WebElement waitForTicket = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketField));
+        WebElement waitForLength = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lengthField));
+        WebElement waitForStyleNo= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(styleNoField));
+        WebElement waitForshadeCode= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
+        WebElement waitForRequiredDate= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requiredDateField));
+        WebElement waitForOrderedQty= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderedQtyField));
+        WebElement waitForFinish= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(finishField));
+        WebElement waitForOtherInfo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(otherInfoField));
+        WebElement waitForSubmit = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitButton));
+        WebElement waitForCancel = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Order Information Page (overlay): Your Material Number Field not displayed correctly",getYourMatNumField().isDisplayed());
@@ -155,15 +155,15 @@ public class Ecomm_OrderInformationPage {
     }
     
     public void switchTo() {
-        WebDriver wait = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver wait = new WebDriverWait(driver,8).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
     }
     
     public void waitForContent() {
-        WebElement waitForVisibility = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+        WebElement waitForVisibility = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
     }
     
     public void waitForInvisibility() {
-        boolean wait = new WebDriverWait(driver,10).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+        boolean wait = new WebDriverWait(driver,8).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
     }
     
     public void exitView() {

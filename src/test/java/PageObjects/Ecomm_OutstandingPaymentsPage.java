@@ -69,37 +69,37 @@ public class Ecomm_OutstandingPaymentsPage extends WBA_BasePage {
     }
     
     public Ecomm_OutstandingPaymentsPage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
         driver.findElement(searchButton).click();
         return new Ecomm_OutstandingPaymentsPage(driver);
     }
     
     public Ecomm_OutstandingPaymentsPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return new Ecomm_OutstandingPaymentsPage(driver);
     }
     
     public Ecomm_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
         driver.findElement(viewButton).click();
         return new Ecomm_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
         driver.findElement(exportButton).click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public Ecomm_OutstandingPaymentsPage pressOverdue30() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(by30Button));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(by30Button));
         driver.findElement(by30Button).click();
         return this;
     }
     
     public Ecomm_OutstandingPaymentsPage pressOverdue60() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(by60Button));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(by60Button));
         driver.findElement(by60Button).click();
         return this;
     }

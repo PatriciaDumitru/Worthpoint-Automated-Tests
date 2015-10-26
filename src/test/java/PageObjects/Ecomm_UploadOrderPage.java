@@ -88,7 +88,7 @@ public class Ecomm_UploadOrderPage extends WBA_BasePage {
         return new Ecomm_MappingAlert(driver);
     }
     
-    public void waitForElements() {
+    public void waitForElement() {
         WebElement waitForUploadBtn = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(uploadButtonLocator));
     }
     

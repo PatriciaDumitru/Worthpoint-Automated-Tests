@@ -41,33 +41,34 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
 
         //press manual entry
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
 
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\1Manual Entry Page.png"));
         
         System.out.println("Manual Entry loaded.");
 
-        System.out.println("Asserting elements...");
         //Make assertions
         manualEntryPage.assertBaseElements();
-        AssertJUnit.assertTrue("eComm page: navigation bar not displayed",manualEntryPage.getNavBar().isDisplayed());
-        AssertJUnit.assertTrue("eComm page: breadcrumb not displayed",manualEntryPage.getBreadcrumb().isDisplayed());
-        AssertJUnit.assertTrue("eComm page: customer details table not displayed",manualEntryPage.getCustomerTable().isDisplayed());
-        AssertJUnit.assertTrue("eComm page: product details table not displayed",manualEntryPage.getProductTable().isDisplayed());
-        AssertJUnit.assertTrue("eComm page: 'Next' button not displayed",manualEntryPage.getNextButton().isDisplayed());
-        AssertJUnit.assertTrue("eComm page: 'Save draft' button not displayed",manualEntryPage.getSaveDraftButton().isDisplayed());
-        AssertJUnit.assertTrue("eComm page: 'Cancel' button not displayed",manualEntryPage.getCancelButton().isDisplayed());
 
-        System.out.println("Assertions successful.");
+        System.out.println("Checking title...");
+        
+        AssertJUnit.assertTrue("Manual Entry Page: Title not displayed as expected",manualEntryPage.getBreadcrumb().getText().equals("Orders | Manual Entry"));
+        
+        System.out.println("Title checked. Checking fields...");
+        
+        manualEntryPage.checkFields();
+        
+        System.out.println("Fields checked. ");
 
         System.out.println("Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);    
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
-        manualEntryPage.setBuyersNew(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);    
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\2Customer details entered.png"));
@@ -96,7 +97,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\4Next pressed.png"));
@@ -105,7 +106,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         //Press Submit
         Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
-        outOrders.waitForLoad();
+        outOrders.waitForElement();
         
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\5Order submitted.png"));
@@ -160,15 +161,16 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
         
         System.out.println("Manual Entry page loaded. Entering customer details...");
         
         //Input Customer Details
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);    
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
-        manualEntryPage.setBuyersNew(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);    
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         System.out.println("Customer details entered. Entering product details...");
 
@@ -192,13 +194,13 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
-        outOrdersPage.waitForLoad();
+        outOrdersPage.waitForElement();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
@@ -246,11 +248,11 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Manual Entry page loaded. Entering customer details...");
         
         //Input Customer Details
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);    
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
-        manualEntryPage.setBuyersNew(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);    
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         System.out.println("Customer details entered. Entering product details...");
 
@@ -280,7 +282,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
-        outOrdersPage.waitForLoad();
+        outOrdersPage.waitForElement();
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
@@ -324,11 +326,11 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
         
         //Input Customer Details
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);    
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
-        manualEntryPage.setBuyersNew(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);    
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         System.out.println("Customer details entered. Entering product details...");
 
@@ -351,13 +353,13 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
-        outOrdersPage.waitForLoad();
+        outOrdersPage.waitForElement();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
@@ -403,11 +405,11 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
         
         //Input customer details
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);    
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
-        manualEntryPage.setBuyersNew(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);    
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         System.out.println("Customer details entered. Entering product details...");
 
@@ -429,13 +431,13 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
-        outOrdersPage.waitForLoad();
+        outOrdersPage.waitForElement();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
@@ -480,11 +482,11 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
         
         //Input customer details
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);    
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
-        manualEntryPage.setBuyersNew(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);    
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         System.out.println("Customer details entered. Entering product details...");
 
@@ -494,7 +496,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         //Order details to be entered
         String[][] details = {
             //line 1 details
-            {DataItems.article,DataItems.shadeCode,String.valueOf(DataItems.quantity)},
+            {DataItems.expArticle,DataItems.expShadeCode,String.valueOf(DataItems.quantity)},
             //line 2 details
             {DataItems.expArticle2,DataItems.expShadeCode2,String.valueOf(DataItems.quantity)}
         };
@@ -508,13 +510,13 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
-        outOrdersPage.waitForLoad();
+        outOrdersPage.waitForElement();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
@@ -525,10 +527,10 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         orderView.waitForContent();
         orderView.switchTo();
 
-        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.article),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
         Verify.verify(orderView.getBrandCell().getText().equals(DataItems.expBrand),"Order view: Brand does not match expected input");
         Verify.verify(orderView.getTicketCell().getText().equals(DataItems.expTicket),"Order view: Ticket does not match expected input");
-        Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.shadeCode),"Order view: Shade code does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
 
         System.out.println("Values verified.");
         
@@ -557,41 +559,39 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
         
         //Input customer details
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);    
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
-        manualEntryPage.setBuyersNew(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);    
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         System.out.println("Customer details entered. Entering product details...");
 
         //Number of order lines
         int numberOfLines = 1;
         
-        //Order details to be entered
-        String[][] details = {
-            //line 1 details
-            {DataItems.brand,DataItems.ticket,DataItems.length,DataItems.finish,DataItems.shadeCode,String.valueOf(DataItems.quantity)},           
-        };
-
-        //Input details for each line
-        for (int i = 0; i < numberOfLines; i++) {
-            manualEntryPage = manualEntryPage.setOrderDetailsCombination(details[i], i);
-        }
-
+        manualEntryPage.setBrand(DataItems.brand, 0);
+        manualEntryPage.setTicket(DataItems.ticket,0);
+        manualEntryPage.setLength(DataItems.length,0);
+        manualEntryPage.setFinish(DataItems.finish,0);
+        manualEntryPage.setShadeCode(DataItems.shadeCode,0);
+        manualEntryPage.setQty(DataItems.quantity,0);
+        manualEntryPage.setDate(0);
+        
         System.out.println("Product details entered. Pressing next...");
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
-        outOrdersPage.waitForLoad();
+        outOrdersPage.waitForElement();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
@@ -633,15 +633,16 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
         //Input customer details
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);  
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
-        manualEntryPage.setBuyersNew(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);  
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         System.out.println("Customer details entered. Entering product details...");
 
@@ -665,13 +666,13 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
-        outOrdersPage.waitForLoad();
+        outOrdersPage.waitForElement();
 
         System.out.println("Order submitted. Verifying values in outstanding order against inputs...");
         
@@ -713,14 +714,14 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
-        manualEntryPage.waitForLoad();
+        manualEntryPage.waitForElement();
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setBuyersNew(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -736,7 +737,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next expecting failure...");
         
         Ecomm_ManualEntryPage mePage = manualEntryPage.pressNextExpectingFailure();
-        mePage.waitForLoad();
+        mePage.waitForElement();
         
         try {
             
@@ -797,17 +798,18 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST9: Check validation at Manual Entry Page (no requester)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST10: Check validation at Manual Entry Page (no ship to)","G_OOC_ME_SUSST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
         manualEntryPage.setRequestor(DataItems.custDetails[2]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -819,12 +821,11 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         manualEntryPage.setShadeCode(DataItems.conOrdShadeCode,0);
         manualEntryPage.setQty(3, 0);
         manualEntryPage.setDate(0);
-        
-        
+
         System.out.println("Line details entered. Pressing next expecting failure...");
         
         Ecomm_ManualEntryPage mePage2 = manualEntryPage.pressNextExpectingFailure();
-        mePage2.waitForLoad();
+        mePage2.waitForElement();
         
         try {
 
@@ -894,11 +895,11 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
         CommonTask.resetSearchField(driver, "s2id_BuyerId");
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -915,7 +916,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next expecting failure...");
         
         Ecomm_ManualEntryPage mePage = manualEntryPage.pressNextExpectingFailure();
-        mePage.waitForLoad();
+        mePage.waitForElement();
         
         try {
             
@@ -982,15 +983,15 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
-        manualEntryPage.waitForLoad();
+        manualEntryPage.waitForElement();
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
         manualEntryPage.setBuyers(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         System.out.println("Customer details entered. Entering line details...");
         
@@ -1002,7 +1003,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next...");
         
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         System.out.println("Confirmation page reached, removing requestor...");
         
@@ -1025,7 +1026,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
             FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\17Alert open.png"));
             
             alert.accept();            
-            orderConf2.waitForLoad();
+            orderConf2.waitForElement();
             
             //Take a screenshot
             File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -1084,15 +1085,15 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
-        manualEntryPage.waitForLoad();
+        manualEntryPage.waitForElement();
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
         manualEntryPage.setBuyers(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         System.out.println("Customer PO used: "+DataItems.lastUsedPO);
         
         System.out.println("Customer details entered. Entering line details...");
@@ -1105,7 +1106,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next...");
         
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         System.out.println("Confirmation page reached, removing Ship To Party Name...");
         
@@ -1128,7 +1129,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
             FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\20Alert open.png"));
             
             alert.accept();
-            orderConf2.waitForLoad();
+            orderConf2.waitForElement();
             
             //Take a screenshot
             File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -1187,15 +1188,15 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
-        manualEntryPage.waitForLoad();
+        manualEntryPage.waitForElement();
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
         manualEntryPage.setBuyers(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         System.out.println("Customer PO used: "+DataItems.lastUsedPO);
         
         System.out.println("Customer details entered. Entering line details...");
@@ -1208,7 +1209,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next...");
         
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         System.out.println("Confirmation page reached, removing Buyer...");
         
@@ -1231,7 +1232,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
             File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\23Alert open.png"));
             
-            orderConf2.waitForLoad();
+            orderConf2.waitForElement();
             
             //Take a screenshot
             File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -1286,20 +1287,20 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST15: Draft creation/order simulation","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST15: Draft creation/order simulation - check draft details and cancel","G_OOC_ME_SUSST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
-        manualEntryPage.waitForLoad();
+        manualEntryPage.waitForElement();
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
         manualEntryPage.setBuyers(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         System.out.println("Customer PO used: "+DataItems.lastUsedPO);
         
         System.out.println("Customer details entered. Entering line details...");
@@ -1317,7 +1318,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next...");
         
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         System.out.println("Confirmation page reached. Checking details...");
         
@@ -1342,7 +1343,6 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Details checked. Cancelling order...");
         
         Ecomm_ManualEntryPage mePage = orderConf.pressCancel();
-        mePage.waitForLoad();
         mePage.waitForElement();
 
         //Take a screenshot
@@ -1352,7 +1352,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Order cancelled. Checking no draft was saved...");
 
         Ecomm_OutstandingOrderDraftPage draftPage = mePage.clickOutstandingDraft();
-        draftPage.waitForLoad();
+        draftPage.waitForElement();
         
         System.out.println("Draft page reached.");
         
@@ -1387,11 +1387,11 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
         manualEntryPage.setBuyers(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         System.out.println("Customer PO used: "+DataItems.lastUsedPO);
         
         System.out.println("Customer details entered. Entering line details...");
@@ -1403,17 +1403,17 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next...");
         
         Ecomm_OrderConfirmationPage orderConf3 = manualEntryPage.pressNext();
-        orderConf3.waitForLoad();
+        orderConf3.waitForElement();
         
         System.out.println("Order confirmation reached. Saving draft...");
         
         Ecomm_OutstandingOrderDraftPage draftPage = orderConf3.pressSaveDraft();
-        draftPage.waitForLoad();
+        draftPage.waitForElement();
         
         System.out.println("Outstanding Order Draft page reached. Editing top draft...");
        
         Ecomm_ManualEntryPage mePage2 = draftPage.pressEdit();
-        mePage2.waitForLoad();
+        mePage2.waitForElement();
         
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -1422,12 +1422,12 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         DataItems.lastUsedPO = mePage2.getCustPONo();
         
         Ecomm_OrderConfirmationPage orderConf = mePage2.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         System.out.println("Order confirmation page reached. Cancelling order draft...");
         
         Ecomm_ManualEntryPage mePage3 = orderConf.pressCancel();
-        mePage3.waitForLoad();
+        mePage3.waitForElement();
         
         //Take a screenshot
         File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -1436,7 +1436,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Draft cancelled. Checking draft is deleted...");
         
         Ecomm_OutstandingOrderDraftPage draftPage2 = mePage3.clickOutstandingDraft();
-        draftPage2.waitForLoad();
+        draftPage2.waitForElement();
         
         //Take a screenshot
         File scrFile13 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -1461,20 +1461,20 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST15: Draft creation/order simulation","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST17: Draft creation/order simulation","G_OOC_ME_SUSST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
-        manualEntryPage.waitForLoad();
+        manualEntryPage.waitForElement();
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
-        manualEntryPage.setCustomerNameNew(DataItems.custDetails[0]);
-        manualEntryPage.setShipToPartyNew(DataItems.custDetails[1]);
-        manualEntryPage.setRequestorNew(DataItems.custDetails[2]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
         manualEntryPage.setBuyers(DataItems.custDetails[3]);
-        manualEntryPage.setPoNumberNew(DataItems.custDetails[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
         System.out.println("Customer PO used: "+DataItems.lastUsedPO);
         
         System.out.println("Customer details entered. Entering line details...");
@@ -1488,7 +1488,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next...");
         
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         System.out.println("Confirmation page reached. Saving as draft...");
         
@@ -1498,12 +1498,12 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebElement waitForVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
         
         Ecomm_OutstandingOrderDraftPage draftPage = orderConf.pressSaveDraft();
-        draftPage.waitForLoad();
+        draftPage.waitForElement();
         
         System.out.println("Draft saved. Continuing draft...");
         
         Ecomm_ManualEntryPage mePage = draftPage.pressEdit();
-        mePage.waitForLoad();
+        mePage.waitForElement();
         
         System.out.println("Manual Entry Page reached. Checking details are consistent with input...");
         

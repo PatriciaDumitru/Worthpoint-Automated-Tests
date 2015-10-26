@@ -15,12 +15,13 @@ public class DataItems {
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
     public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
-    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_65.xlsx";
-    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_66.xlsx";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_47.xlsx";
-    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_8.xlsx";
-    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_9.xlsx";
-    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_10.xlsx";
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_69.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_70.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_68.xlsx";
+    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_68C.xlsx";
+    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_23.xlsx";
+    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_24.xlsx";
+    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_25.xlsx";
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";
@@ -73,7 +74,7 @@ public class DataItems {
     public static String article = "8754180";
     public static String brand = "epic";
     public static String ticket = "025";
-    public static String length = "1000";
+    public static String length = "2000";
     public static String finish = "STANDARD";
     public static String shadeCode = "H0975";
     public static int quantity = 3;
@@ -96,7 +97,7 @@ public class DataItems {
     
     public static String brand2 = "gramax";
     public static String ticket2 = "080";   
-    public static String length2 = "2500";
+    public static String length2 = "5000";
     public static String finish2 = "STANDARD";
     public static String shadeCode2 = "C9455";
     public static int quantity2 = 6;

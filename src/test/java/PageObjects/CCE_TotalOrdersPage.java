@@ -64,7 +64,7 @@ public class CCE_TotalOrdersPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
+        WebElement wait = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
         return driver.findElement(breadcrumb);
     }
     
@@ -225,67 +225,67 @@ public class CCE_TotalOrdersPage extends WBA_BasePage {
     }
     
     public CCE_TotalOrdersPage tickMUMType() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(mumTypeBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(mumTypeBox));
         driver.findElement(mumTypeBox).click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickArticle() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(articleBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(articleBox));
         driver.findElement(articleBox).click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickBrand() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandBox));
         driver.findElement(brandBox).click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickTicket() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ticketBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketBox));
         driver.findElement(ticketBox).click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickCustRef() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custRefBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custRefBox));
         driver.findElement(custRefBox).click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickQtyProd() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(qtyProducedBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(qtyProducedBox));
         driver.findElement(qtyProducedBox).click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickQtyOrd() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(qtyOrderedBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(qtyOrderedBox));
         driver.findElement(qtyOrderedBox).click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickShadeCode() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shadeCodeBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeBox));
         driver.findElement(shadeCodeBox).click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickCustName() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameBox));
         driver.findElement(custNameBox).click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickRequesterFirst() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requesterFirstBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterFirstBox));
         driver.findElement(requesterFirstBox).click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickRequesterSecond() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requesterSecondBox));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterSecondBox));
         driver.findElement(requesterSecondBox).click();
         return this;
     }

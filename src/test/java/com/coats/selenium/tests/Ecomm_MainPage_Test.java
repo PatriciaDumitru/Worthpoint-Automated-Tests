@@ -155,7 +155,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
                 }
                 
                 if (!(breadcrumbLocator == null)) {
-                    WebElement wait = new WebDriverWait(driver,2).until(ExpectedConditions.presenceOfElementLocated(breadcrumbLocator));
+                    WebElement wait = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(breadcrumbLocator));
                     String actualTitle = driver.findElement(breadcrumbLocator).getText();
                     
                     String fileName = "";
@@ -212,7 +212,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
                     }
                 
                     if (!(breadcrumbLocator == null)) {
-                        WebElement wait = new WebDriverWait(driver,2).until(ExpectedConditions.presenceOfElementLocated(breadcrumbLocator));
+                        WebElement wait = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(breadcrumbLocator));
                         String actualTitle = driver.findElement(breadcrumbLocator).getText();
                     
                         String fileName = "";

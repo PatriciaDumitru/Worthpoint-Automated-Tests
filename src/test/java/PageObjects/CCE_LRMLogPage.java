@@ -37,7 +37,7 @@ public class CCE_LRMLogPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement waitForBreadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(breadcrumb));
+        WebElement waitForBreadcrumb = new WebDriverWait(driver,8).until(ExpectedConditions.elementToBeClickable(breadcrumb));
         return driver.findElement(breadcrumb);
     }
     

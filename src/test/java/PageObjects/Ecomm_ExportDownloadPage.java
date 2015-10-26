@@ -23,7 +23,7 @@ public class Ecomm_ExportDownloadPage {
     }
     
     public Ecomm_ExportDownloadPage switchTo() {
-        WebDriver waitForFrame = new WebDriverWait(driver,10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver waitForFrame = new WebDriverWait(driver,8).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
         return this;
     }
     
@@ -35,14 +35,14 @@ public class Ecomm_ExportDownloadPage {
     public void pressYes() {
         //For My Report exports, "Yes" will send the file to e-mail
         switchTo();
-        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(yesButton));
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(yesButton));
         driver.findElement(yesButton).click();
     }
     
     public void pressNo() {
         //For My Report exports, "Yes" will send the file to e-mail
         switchTo();
-        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(noButton));
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(noButton));
         driver.findElement(noButton).click();
     }
 }

@@ -119,53 +119,53 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
     }
     
     public Ecomm_DeliveryNotesPage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
         driver.findElement(searchButton).click();
         return this;
     }
     
     public Ecomm_DeliveryNotesPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return this;
     }
     
     public Ecomm_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
         driver.findElement(viewButton).click();
         return new Ecomm_OrderViewPage(driver);
     }
     
     public Ecomm_OrderViewPage pressPrint() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
         driver.findElement(printButton).click();
         return new Ecomm_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
         driver.findElement(exportButton).click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public void checkFields() {
         //Wait for all items to be clickable
-        WebElement waitForCustName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForDelFrom = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(delDateFromField));
-        WebElement waitForDelTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(delDateToField));
-        WebElement waitForMatNum = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(matNumField));
-        WebElement waitForBrand = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForLength = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement waitForRequester = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForDelNotes = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(delNotesField));
-        WebElement waitForYourMat = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-        WebElement waitForTicket = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForCustPO = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement waitForSearch = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForView = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButton));
-        WebElement waitForPrint = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printButton));
-        WebElement waitForExport = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForDelFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(delDateFromField));
+        WebElement waitForDelTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(delDateToField));
+        WebElement waitForMatNum = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(matNumField));
+        WebElement waitForBrand = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandField));
+        WebElement waitForLength = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lengthField));
+        WebElement waitForRequester = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterField));
+        WebElement waitForDelNotes = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(delNotesField));
+        WebElement waitForYourMat = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
+        WebElement waitForTicket = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketField));
+        WebElement waitForCustPO = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custPOField));
+        WebElement waitForSearch = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForView = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForPrint = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForExport = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
     
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Delivery Notes Page: Customer Name Field not displayed correctly",getCustNameField().isDisplayed());

@@ -75,7 +75,7 @@ public class CCE_DNReprintPage extends WBA_BasePage {
         driver.findElement(formLocator).submit();
         
         //Wait for confirm box to be clickable
-        WebElement waitForBox = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(confirmButton));
+        WebElement waitForBox = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(confirmButton));
         
     }
     
@@ -123,7 +123,7 @@ public class CCE_DNReprintPage extends WBA_BasePage {
     
     public CCE_DNPrintPage pressPrint() {
         //Wait for icon
-        WebElement waitForIcon = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printIcon));
+        WebElement waitForIcon = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printIcon));
         
         driver.findElement(printIcon).click();
         

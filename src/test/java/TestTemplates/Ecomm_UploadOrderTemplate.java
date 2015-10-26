@@ -71,7 +71,7 @@ public class Ecomm_UploadOrderTemplate extends DriverFactory {
         System.out.println("eComm page loaded. Navigating to Upload Order...");
 
         Ecomm_UploadOrderPage uoPage = eCommPage.clickUploadOrder();
-        uoPage.waitForLoad();
+        uoPage.waitForElement();
         
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -114,7 +114,7 @@ public class Ecomm_UploadOrderTemplate extends DriverFactory {
             }
             
             Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
-            orderConf.waitForLoad();
+            orderConf.waitForElement();
             
             if (!custDetails[0].equals("")) {
                 orderConf.setRequestor(custDetails[0]);
@@ -125,7 +125,7 @@ public class Ecomm_UploadOrderTemplate extends DriverFactory {
             FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Mapping confirmed.png"));
             
             Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit();
-            outOrders.waitForLoad();
+            outOrders.waitForElement();
             CommonTask.waitForPageLoad(driver);
             
             //Take a screenshot
@@ -172,7 +172,7 @@ public class Ecomm_UploadOrderTemplate extends DriverFactory {
             FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\Custom Tests\\"+testDetails[0]+"\\4Mapping set.png"));
 
             Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
-            orderConf.waitForLoad();
+            orderConf.waitForElement();
             
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -183,7 +183,7 @@ public class Ecomm_UploadOrderTemplate extends DriverFactory {
             }
             
             Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit();
-            outOrders.waitForLoad();
+            outOrders.waitForElement();
             CommonTask.waitForPageLoad(driver);
             
             //Take a screenshot

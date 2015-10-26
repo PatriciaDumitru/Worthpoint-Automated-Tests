@@ -84,7 +84,7 @@ public class CCE_OrderSamplesPage {
     }
 
     public CCE_OrderSamplesPage waitForLoad() {
-        WebElement waitForVisible = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
+        WebElement waitForVisible = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
         return this;
     }
 

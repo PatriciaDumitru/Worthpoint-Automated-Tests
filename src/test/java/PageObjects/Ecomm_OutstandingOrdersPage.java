@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     
-    //
+    By formLocator = By.id("FilterOutstandingOrderForm");
     
     public Ecomm_OutstandingOrdersPage(WebDriver driver) {
         super(driver);
@@ -41,7 +41,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         //create locator for view button in correct row
         By viewButtonLocator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(2) > a > span");
         //wait for page to load and button to become clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButtonLocator));
         //click view button
         Actions clickView = new Actions(driver);
         clickView.click(driver.findElement(viewButtonLocator)).build().perform();
@@ -52,8 +52,12 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         //Locator for order number cell in table
         By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(8)");
         //Wait for cell
-        WebElement waitForCell = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement waitForCell = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElement(locator).getText();
+    }
+    
+    public void waitForElement() {
+        WebElement waitForForm = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(formLocator));
     }
     
 }

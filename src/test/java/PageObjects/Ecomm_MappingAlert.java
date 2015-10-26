@@ -35,9 +35,9 @@ public class Ecomm_MappingAlert {
     
     public Ecomm_MappingPage pressYes() {
         //Wait for alert title to have loaded
-        boolean waitForTitle = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(messageBoxTitle, "Mapping Fields"));
+        boolean waitForTitle = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(messageBoxTitle, "Mapping Fields"));
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(yesButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(yesButton));
         //New action to click yes
         Actions clickYes = new Actions(driver);
         clickYes.click(driver.findElement(yesButton)).build().perform();
@@ -47,9 +47,9 @@ public class Ecomm_MappingAlert {
     
     public Ecomm_MappingPage pressNo() {
         //Wait for alert title to have loaded
-        boolean waitForTitle = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(messageBoxTitle, "Mapping Fields"));
+        boolean waitForTitle = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(messageBoxTitle, "Mapping Fields"));
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(noButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(noButton));
         //New action to click no
         Actions clickNo = new Actions(driver);
         clickNo.click(driver.findElement(noButton)).build().perform();

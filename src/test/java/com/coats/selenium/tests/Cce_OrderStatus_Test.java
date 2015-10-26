@@ -79,8 +79,6 @@ public class Cce_OrderStatus_Test extends DriverFactory {
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Status\\4Filter reset.png"));
-        
-        System.out.println("----------------------------------------------------");
 
     }
 

@@ -24,7 +24,7 @@ public class CCE_RefillCabinetPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement waitForBreadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
+        WebElement waitForBreadcrumb = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
         return driver.findElement(breadcrumb);
     }
     
@@ -55,7 +55,7 @@ public class CCE_RefillCabinetPage extends WBA_BasePage {
     }
     
     public CCE_RefillCabinetPage pressCancel() {
-        WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
         driver.findElement(cancelButton).click();
         return this;
     }

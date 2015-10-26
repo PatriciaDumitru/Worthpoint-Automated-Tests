@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="AutomatedSuite">
+<suite name="QuickSuite">
 
     <!-- see examples at http://testng.org/doc/documentation-main.html#testng-xml -->
-
+    
     <test name="QuickTest">
         <groups>
             <run>
                 <include name="QuickTest"/>
+                <exclude name="Unstable"/>
             </run>
         </groups>
         <packages>
             <package name="com.coats.selenium.tests"/>
         </packages>
     </test>
-    
 
 </suite>

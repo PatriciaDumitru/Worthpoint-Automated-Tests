@@ -49,7 +49,7 @@ public class Ecomm_OrderSamplesPage {
     
     public Ecomm_OrderSamplesPage setRequestor(String requestorName) throws InterruptedException {
         //Wait for entry in customer name
-        Boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(custCodeFieldLocator, DataItems.custCode));
+        Boolean waitForText = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(custCodeFieldLocator, DataItems.custCode));
         
         CommonTask.setDropDownField(driver, requestorNameFieldLocator, requestorName);
         return this;
@@ -57,7 +57,7 @@ public class Ecomm_OrderSamplesPage {
     
     public Ecomm_AddOrderPage pressSubmit() {
         //wait for button to be clickable
-        WebElement waitForButton = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
+        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
         //Click button
         driver.findElement(submitButtonLocator).click();
         return new Ecomm_AddOrderPage(driver);
@@ -67,9 +67,9 @@ public class Ecomm_OrderSamplesPage {
         
         try {
             //Wait for fields to be clickable
-            WebElement waitForCustName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(getCustNameField()));
-            WebElement waitForCustCode = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(getCustCodeField()));
-            WebElement waitForRequestor = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(getRequestorNameField()));        
+            WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(getCustNameField()));
+            WebElement waitForCustCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(getCustCodeField()));
+            WebElement waitForRequestor = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(getRequestorNameField()));        
             
             //Assert fields are displayed
             AssertJUnit.assertTrue("Order Samples page: Customer Name field not displayed", getCustNameField().isDisplayed());

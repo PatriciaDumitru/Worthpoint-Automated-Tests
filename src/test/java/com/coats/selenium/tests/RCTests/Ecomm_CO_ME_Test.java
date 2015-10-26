@@ -20,20 +20,20 @@ import org.testng.annotations.*;
 public class Ecomm_CO_ME_Test extends DriverFactory {
 
   private String baseUrl;
-  private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
-  private By poField = By.id("BulkOrderPoNumber");
-  private By dateField = By.id("required_date_0");
-  private By buyersField = By.id("s2id_BuyerId");
-  private By articleField = By.id("s2id_BulkOrderLine0ArticleId");
-  private By shadeCodeField = By.id("s2id_BulkOrderLine0ShadeId");
-  private By quantityField = By.id("quantity0");
-  private By contractPOField = By.id("txtContract0");
-  private By lineRefField = By.id("txtContractLine0");
-  private By overlayContent = By.cssSelector("#BulkOrderLineViewUplodErrorListForm");
-  private By submitButton = By.id("submit1");
-  private By cancelButton = By.id("cancel1");
-  private By flashMessage = By.id("flashMessage");
+  private final boolean acceptNextAlert = true;
+  private final StringBuffer verificationErrors = new StringBuffer();
+  private final By poField = By.id("BulkOrderPoNumber");
+  private final By dateField = By.id("required_date_0");
+  private final By buyersField = By.id("s2id_BuyerId");
+  private final By articleField = By.id("s2id_BulkOrderLine0ArticleId");
+  private final By shadeCodeField = By.id("s2id_BulkOrderLine0ShadeId");
+  private final By quantityField = By.id("quantity0");
+  private final By contractPOField = By.id("txtContract0");
+  private final By lineRefField = By.id("txtContractLine0");
+  private final By overlayContent = By.cssSelector("#BulkOrderLineViewUplodErrorListForm");
+  private final By submitButton = By.id("submit1");
+  private final By cancelButton = By.id("cancel1");
+  private final By flashMessage = By.id("flashMessage");
   
   @Test //Manual Entry Page :: Contract order expecting "No matching contract reference" error
   (groups = {"eComm","eComm_Orders"})
@@ -47,7 +47,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     CommonTask.waitForPageLoad(driver);
     
-      System.out.println("Manual Entry Page reached. Entering customer details...");
+    System.out.println("Manual Entry Page reached. Entering customer details...");
     
     //Take a screenshot
     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -59,7 +59,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
     
-      System.out.println("Customer details entered. Entering line details...");
+    System.out.println("Customer details entered. Entering line details...");
     
     System.out.println("Customer PO No.: "+po);
     
@@ -86,7 +86,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\3Material details entered.png"));
     
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
-    orderConf.waitForLoad();
+    orderConf.waitForElement();
     
       System.out.println("Order confirmation page reached. Viewing error...");
     
@@ -143,7 +143,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME2", "CO_ME_2", DataItems.validCustUsername, DataItems.validCustPassword);
     
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
-    mePage.waitForLoad();
+    mePage.waitForElement();
 
     mePage.setBuyers(DataItems.custDetails[3]);
     
@@ -174,7 +174,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         System.out.println("No alert before confirmation");
     }
     
-    orderConf.waitForLoad();
+    orderConf.waitForElement();
     CommonTask.waitForPageLoad(driver);
     
     //Take a screenshot
@@ -236,7 +236,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\9Quantity PO Line Ref entered.png"));
     
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
-    orderConf.waitForLoad();
+    orderConf.waitForElement();
     
       System.out.println("Order confirmation page reached.");
     
@@ -300,7 +300,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\12All but quantity entered.png"));
     
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
-    orderConf.waitForLoad();
+    orderConf.waitForElement();
     
       System.out.println("Order confirmation page reached. ");
     
@@ -310,7 +310,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     if (DataItems.contractOrderCallOff) {
         System.out.println("Submitting order...");
         Ecomm_OutstandingOrdersPage outPage = orderConf.pressSubmit();
-        outPage.waitForLoad();
+        outPage.waitForElement();
         CommonTask.waitForPageLoad(driver);
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -336,7 +336,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
     Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME5", "CO_ME_5", DataItems.validCustUsername, DataItems.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
-    mePage.waitForLoad();
+    mePage.waitForElement();
     
     System.out.println("Manual Entry page reached. Entering customer details...");
     
@@ -379,7 +379,6 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         System.out.println("Additional alert not displayed");
     }
     Ecomm_ManualEntryPage mePage2 = new Ecomm_ManualEntryPage(driver);
-
     boolean waitForError = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(flashMessage,"could not"));
     
     System.out.println("Error received. ");
@@ -494,7 +493,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         System.out.println("No additional alerts displayed. ");
     }
     
-    mePage2.waitForLoad();
+    mePage2.waitForElement();
     boolean waitForError = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(flashMessage, "could not"));
     System.out.println("Error received: "+driver.findElement(flashMessage).getText());
     

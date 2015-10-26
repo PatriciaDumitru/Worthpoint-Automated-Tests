@@ -35,6 +35,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By custNameField = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(2)");
     static By custUploadPOField = By.id("po_number_0");
     static By customerPOField = By.id("BulkOrderPoNumber");
+    static By uploadCustomerPOField = By.id("po_number_0");
     static By creationDateField = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(4)");
     static By requestorField = By.id("requester_id_0");
     static By shipToPartyField = By.id("ship_to_party_id_0");
@@ -107,6 +108,10 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     public WebElement getCustPoField() {
         //find and return element
         return driver.findElement(customerPOField);
+    }
+    
+    public WebElement getCustUploadPOField() {
+        return driver.findElement(uploadCustomerPOField);
     }
     
     public WebElement getRequestorHeading() {
@@ -238,7 +243,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         //Create locator for edit button in correct line. Line numbers start from 0
         By editBtnLocator = By.cssSelector("#remove_"+lineNumber+" > td:nth-child(1) > a");
         //New action to press button
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(editBtnLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editBtnLocator));
         Actions clickEdit = new Actions(driver);
         clickEdit.click(driver.findElement(editBtnLocator)).build().perform();
         //Wait for overlay to load
@@ -253,7 +258,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         
         try {
             //wait for alert and confirm
-            Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+            Alert alert = new WebDriverWait(driver,8).until(ExpectedConditions.alertIsPresent());
             alert.accept();
         } catch (Exception e) {
             
@@ -285,7 +290,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         
         try {
             //wait for alert and confirm
-            Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+            Alert alert = new WebDriverWait(driver,8).until(ExpectedConditions.alertIsPresent());
             alert.accept();
         } catch (Exception e) {
             
@@ -319,6 +324,10 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
     }
     
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(orderConfHeadingLocator));
+    }
+    
     public Ecomm_ManualEntryPage pressCancel() {
         WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
         driver.findElement(cancelButtonLocator).click();
@@ -326,19 +335,35 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return new Ecomm_ManualEntryPage(driver);
     }
     
-    public Ecomm_OrderConfirmationPage setRequestor(String requester) {
+    public Ecomm_UploadOrderPage pressCancelUpload() {
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
+        driver.findElement(cancelButtonLocator).click();
+        
+        return new Ecomm_UploadOrderPage(driver);
+    }
+    
+    public Ecomm_OrderConfirmationPage setRequestor(String requester) throws InterruptedException {
         //Wait for field to be clickable
-        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requestorField));
-        //Enter requestor
-        Actions typeDetails = new Actions(driver);
-        typeDetails.click(driver.findElement(requestorField)).build().perform();
-        typeDetails.sendKeys(requester).build().perform(); 
+        WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requestorField));
+        
+        if (requester.equals("Select")) {
+            CommonTask.clearDropDownField(driver, requestorField);
+        } else {
+            CommonTask.setDropDownField(driver,requestorField,requester);
+        }     
         
         return new Ecomm_OrderConfirmationPage(driver);
     }
     
     public Ecomm_OrderConfirmationPage setShipToParty(String shipToParty) throws InterruptedException {
-        CommonTask.setDropDownField(driver, shipToPartyField, shipToParty);
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
+        
+        if (shipToParty.equals("Select")) {
+            CommonTask.clearDropDownField(driver, shipToPartyField);
+        } else {
+            CommonTask.setDropDownField(driver, shipToPartyField, shipToParty);
+        }
+        
         return this;
     }
     

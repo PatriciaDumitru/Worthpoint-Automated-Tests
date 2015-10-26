@@ -161,7 +161,7 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
     
     public CCE_OrderStatusPage pressListOrders() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
         
         driver.findElement(filterForm).submit();
         
@@ -169,13 +169,13 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
     }
     
     public CCE_OrderStatusPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return this;
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
         
         Actions action = new Actions(driver);
         action.click(driver.findElement(exportButton)).build().perform();
@@ -188,7 +188,7 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
         //Form locator
         By viewButtonLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+lineNumber+") > td:nth-child(16) > a");
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(viewButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButtonLocator));
         //Click button
         driver.findElement(viewButtonLocator).click();
         

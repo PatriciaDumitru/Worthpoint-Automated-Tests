@@ -45,7 +45,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         //new upload order page
         Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
-        uploadPage.waitForLoad();
+        uploadPage.waitForElement();
         
         System.out.println("Upload Order page loaded.");
         
@@ -119,7 +119,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\2Mapping set.png")); 
         
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         orderConf.setRequestor(DataItems.custDetails[2]);
         
@@ -130,7 +130,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\3Upload Confirmation page.png"));                    
         
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
-        outOrdersPage.waitForLoad();
+        outOrdersPage.waitForElement();
         
         System.out.println("Order submitted. Navigating to Outstanding Upload Order...");
         
@@ -159,12 +159,12 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         //new upload order page
         Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
-        uploadPage.waitForLoad();
+        uploadPage.waitForElement();
         
         System.out.println("Upload Order page loaded. Setting filepath and uploading...");
         
         //Send file path to field
-        uploadPage.setFilePath(DataItems.uploadOrderFilepath);
+        uploadPage.setFilePath(DataItems.uploadOrderFilepath2);
         //Select realtime upload
         uploadPage.pressRealtime();
         
@@ -175,7 +175,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         //Press "no" to alert, continuing to mapping page
         Ecomm_MappingPage mapPage = alert.pressYes();
-        mapPage.waitForLoad();
+        mapPage.waitForElement();
         
         System.out.println("Mapping page reached. Entering Sales Org and Customer Name...");
         
@@ -185,13 +185,15 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         System.out.println("Details entered. Confirming map...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         System.out.println("Map confirmed. Removing requester and Ship To Party...");
         
         orderConf.setShipToParty("Select");
         orderConf.setRequestor("Select");
         
-        DataItems.lastUsedPO = orderConf.getCustPoField().getText();
+        DataItems.lastUsedPO = orderConf.getCustUploadPOField().getText();
 
         System.out.println("Requeser removed. Submitting, expecting failure...");
         
@@ -207,7 +209,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         try {
             
-            orderConf2.waitForLoad();
+            orderConf2.waitForElement();
             WebElement error = orderConf2.waitForError();
             
             System.out.println("Order confirmation page returned.");
@@ -221,7 +223,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         System.out.println("Checking no order was created...");
         Ecomm_OutstandingOrdersPage outOrders = eCommPage.clickOutstandingOrders();
-        outOrders.waitForLoad();
+        outOrders.waitForElement();
         int row = outOrders.getRow(DataItems.lastUsedPO);
         if (row == -1) {
             System.out.println("No order created as expected");
@@ -248,7 +250,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         //new upload order page
         Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
-        uploadPage.waitForLoad();
+        uploadPage.waitForElement();
         
         System.out.println("Upload Order page loaded. Setting filepath and uploading...");
         
@@ -268,7 +270,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         //Press "no" to alert, continuing to mapping page
         Ecomm_MappingPage mapPage = alert.pressYes();
-        mapPage.waitForLoad();
+        mapPage.waitForElement();
         
         System.out.println("Mapping page reached. Entering Sales Org and Customer Name...");
         
@@ -278,7 +280,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         System.out.println("Details entered. Confirming map...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         DataItems.lastUsedPO = orderConf.getUploadCustPOField().getText();
         
@@ -295,17 +297,15 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\7Order confirmation page scrolled.png"));
         
         System.out.println("Map confirmed. Cancelling order...");
-        
-        orderConf.pressCancel();
-        Ecomm_UploadOrderPage uoPage = new Ecomm_UploadOrderPage(driver);
-        uoPage.waitForElements();
-        uoPage.waitForLoad();
+    
+        Ecomm_UploadOrderPage uoPage = orderConf.pressCancelUpload();
+        uoPage.waitForElement();
         
         System.out.println("Order cancelled. Checking no draft was created...");
         
         Ecomm_MainPage eComm = new Ecomm_MainPage(driver);
         Ecomm_OutstandingUploadDraftPage draftPage = eComm.clickOutstandingUploadDraft();
-        draftPage.waitForLoad();
+        draftPage.waitForElement();
         
         //Take a screenshot
         File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -333,7 +333,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         System.out.println("Navigating to upload order page...");
         
         Ecomm_UploadOrderPage uoPage = eCommPage.clickUploadOrder();
-        uoPage.waitForLoad();
+        uoPage.waitForElement();
         
         //Send file path to field
         uoPage.setFilePath(DataItems.uploadDraftFilepath2);
@@ -347,7 +347,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         //Press "no" to alert, continuing to mapping page
         Ecomm_MappingPage mapPage = alert.pressYes();
-        mapPage.waitForLoad();
+        mapPage.waitForElement();
         
         System.out.println("Mapping page reached. Entering Sales Org and Customer Name...");
         
@@ -357,19 +357,19 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         System.out.println("Details entered. Confirming map...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         DataItems.lastUsedPO = orderConf.getUploadCustPOField().getText();
         
         System.out.println("Map confirmed. Saving as draft...");
         
         Ecomm_OutstandingUploadDraftPage draftsPage = orderConf.pressSaveUploadDraft();
-        draftsPage.waitForLoad();
+        draftsPage.waitForElement();
         
         System.out.println("Upload Draft Page reached. Editing top item...");
         
         Ecomm_OrderConfirmationPage orderConf2 = draftsPage.pressEdit();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         //Take a screenshot
         File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -379,9 +379,8 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         DataItems.lastUsedPO = orderConf2.getUploadCustPOField().getText();
         
-        orderConf2.pressCancel();
-        Ecomm_UploadOrderPage uoPage2 = new Ecomm_UploadOrderPage(driver);
-        uoPage.waitForElements();
+        Ecomm_UploadOrderPage uoPage2 = orderConf2.pressCancelUpload();
+        uoPage2.waitForElement();
         
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -389,9 +388,8 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         System.out.println("Draft cancelled. Checking draft is deleted...");
         
-        Ecomm_MainPage eComm = new Ecomm_MainPage(driver);
-        Ecomm_OutstandingUploadDraftPage uoDraft2 = eComm.clickOutstandingUploadDraft();
-        uoDraft2.waitForLoad();
+        Ecomm_OutstandingUploadDraftPage uoDraft2 = uoPage2.clickOutstandingUploadDraft();
+        uoDraft2.waitForElement();
         
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -419,7 +417,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         System.out.println("Navigating to Upload Order Page...");
         
         Ecomm_UploadOrderPage uoPage = eCommPage.clickUploadOrder();
-        uoPage.waitForLoad();
+        uoPage.waitForElement();
         
         System.out.println("Upload Order page reached. Creating draft...");
         
@@ -435,7 +433,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         //Press "no" to alert, continuing to mapping page
         Ecomm_MappingPage mapPage = alert.pressYes();
-        mapPage.waitForLoad();
+        mapPage.waitForElement();
         
         System.out.println("Mapping page reached. Entering Sales Org and Customer Name...");
         
@@ -445,7 +443,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         System.out.println("Details entered. Confirming map...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         orderConf.setRequestor(DataItems.custDetails[2]);
         
@@ -465,12 +463,12 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         orderConf.pressSaveDraft();
         
         Ecomm_OutstandingUploadDraftPage uoDraft = new Ecomm_OutstandingUploadDraftPage(driver);
-        uoDraft.waitForLoad();
+        uoDraft.waitForElement();
         
         System.out.println("Draft saved. Editing draft...");
         
         Ecomm_OrderConfirmationPage orderConf2 = uoDraft.pressEdit();
-        orderConf2.waitForLoad();
+        orderConf2.waitForElement();
         
         System.out.println("Order confirmation page reached. Checking details...");
         

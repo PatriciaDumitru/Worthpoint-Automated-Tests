@@ -24,6 +24,7 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
     By editButtonLocator = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_0 > td:nth-child(1) > span > a > span");
     By deleteButtonLocator = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_0 > td:nth-child(2) > span > a > span");
     By messageLocator = By.id("flashMessage");
+    By formLocator = By.id("FilterDraftsUploadForm");
     
     public Ecomm_OutstandingUploadDraftPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -118,7 +119,7 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
     public boolean findDraft(String poNumber) {
         boolean found = false;
         
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             
             By editButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(1) > span > a > span");
             
@@ -152,7 +153,9 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
         
     }
     
-    
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(formLocator));
+    }
     
     
 }

@@ -11,6 +11,7 @@ import org.testng.annotations.Listeners;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Listeners(ScreenshotListener.class)
 public class DriverFactory {
@@ -40,7 +41,7 @@ public class DriverFactory {
         System.out.println("----------------------------------------------------");
     }
 
-    @AfterSuite
+    @AfterSuite (alwaysRun=true)
     public static void closeDriverObjects() {
         for (WebDriverThread webDriverThread : webDriverThreadPool) {
             webDriverThread.quitDriver();

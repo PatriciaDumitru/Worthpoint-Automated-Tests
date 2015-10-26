@@ -31,18 +31,13 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     static By flashMessageLocator = By.id("flashMessage");
     static By titleLocator = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > div.tbl-title.minus.plus > h1");
     static By articleHeadCell = By.cssSelector("#t1 > thead > tr > th:nth-child(4)");
+    static By formLocator = By.id("BulkOrderOrdermanualForm");
     
     //Customer detail field locators
     static By customerNameField = By.cssSelector("#s2id_customer_id > a");//Initial customer name field to click
-    static By customerNameSearchField = By.cssSelector("#select2-drop > div > input");//Search field which appears after click
-    static By customerNameSearchResult = By.cssSelector("#select2-drop > ul > li");//The result which is displayed after typing
     static By shipToPartyField = By.id("ship_to_party_id"); //Initial dropdown menu field
-    static By shipToPartyOption = By.cssSelector("#ship_to_party_id > option:nth-child(2)");//First option in drop down menu
     static By requestorField = By.id("BulkOrderRequesterId"); //Initial dropdown menu field
-    static By requestorOption = By.cssSelector("##BulkOrderRequesterId > option:nth-child(1)"); //First option in drop down menu
     static By buyersField = By.cssSelector("#s2id_BuyerId > a > span.select2-chosen.select_image_add");//Initial dropdown menu field
-    static By buyersSearchField = By.cssSelector("#select2-drop > div > input");//Search field which appears after click
-    static By buyersSearchResult = By.cssSelector("#select2-drop > ul > li");//First search result to appear after typing
     static By poNumberField = By.id("BulkOrderPoNumber");//Text field to enter PO Number
     static By shipToAddressOutput = By.id("ship_to_party_address");//Text output area to display address
     
@@ -57,7 +52,27 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     public WebElement getBreadcrumb() {
         //find and return element
-        return driver.findElement(breadcrumbLocator);
+        return driver.findElement(breadcrumbLocator2);
+    }
+    
+    public WebElement getCustNameField() {
+        return driver.findElement(customerNameField);
+    }
+    
+    public WebElement getShipToPartyField() {
+        return driver.findElement(shipToPartyField);
+    }
+    
+    public WebElement getRequestorField() {
+        return driver.findElement(requestorField);
+    }
+     
+    public WebElement getBuyersField() {
+        return driver.findElement(buyersField);
+    }
+     
+    public WebElement getPONumberField() {
+        return driver.findElement(poNumberField);
     }
     
     public WebElement getCustomerTable() {
@@ -91,128 +106,29 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         Actions deleteLine = new Actions(driver);
         deleteLine.click(driver.findElement(deleteLineLocator));
         return this;
-    }
+    }  
     
-    public Ecomm_ManualEntryPage setCustomerName(String customerName) {
-        //Wait for customer name field to be clickable
-        WebElement waitToClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(customerNameField));
-        //click field and type customer name
-        Actions typeCustomerName = new Actions(driver);
-        typeCustomerName.click(driver.findElement(customerNameField)).build().perform();
-        WebElement waitForSearchField = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(customerNameSearchField));
-        driver.findElement(customerNameSearchField).sendKeys(customerName);
-        //Wait for search result to load
-        Boolean waitForResult = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(customerNameSearchResult, customerName));
-        //Press enter
-        typeCustomerName.sendKeys(driver.findElement(customerNameSearchField), Keys.ENTER).build().perform();
-        //wait for fields to update
-        Boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(buyersField, DataItems.custDetails[3]));
-        return this;
-    }
-    
-    public Ecomm_ManualEntryPage setCustomerNameNew(String item) {
+    public Ecomm_ManualEntryPage setCustomerName(String item) {
         CommonTask.setSearchField(driver, customerNameField, item);
         return this;
     }
     
-    public Ecomm_ManualEntryPage setShipToParty(String shipToParty) {
-        //Wait for ship to party field to be clickable
-        WebElement waitToClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
-        //click field and type ship to party name
-        Actions typeShipToParty = new Actions(driver);
-        typeShipToParty.click(driver.findElement(shipToPartyField)).build().perform();
-        WebElement waitForDropDown = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(driver.findElement(shipToPartyOption)));
-        typeShipToParty.sendKeys(shipToParty + Keys.ENTER).build().perform();
-        return this;
-    }
-    
-    public Ecomm_ManualEntryPage setShipToPartyNew(String item) throws InterruptedException {
+    public Ecomm_ManualEntryPage setShipToParty(String item) throws InterruptedException {
         CommonTask.setDropDownField(driver, shipToPartyField, item);
         return this;
     }
     
-    public Ecomm_ManualEntryPage setRequestor(String requestor) {
-        //Wait for requestor field to be clickable
-        WebElement waitToClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(requestorField));
-        //click field and type requestor name
-        Actions typeRequestorName = new Actions(driver);
-        typeRequestorName.click(driver.findElement(requestorField)).build().perform();
-        //Type requestor name
-        typeRequestorName.sendKeys(driver.findElement(requestorField),requestor).build().perform();
-        //Wait for text to appear in field before pressing enter
-        boolean waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(requestorField, requestor));
-        typeRequestorName.sendKeys(Keys.ENTER);
-        return this;
-    }
-    
-    public Ecomm_ManualEntryPage setRequestorNew(String item) throws InterruptedException {
+    public Ecomm_ManualEntryPage setRequestor(String item) throws InterruptedException {
         CommonTask.setDropDownField(driver, requestorField, item);
         return this;
     }
     
-    public Ecomm_ManualEntryPage setBuyers(String buyer) {
-        //Wait for buyers field to be clickable
-        WebElement waitToClick = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(buyersField));
-        //Click field and wait for search to appear
-        Actions typeBuyer = new Actions(driver);
-        typeBuyer.click(driver.findElement(buyersField)).build().perform();
-        //Type buyer 
-        typeBuyer.sendKeys(driver.findElement(buyersSearchField),buyer).build().perform();
-        //Wait for text to appear in field before pressing enter
-        WebElement waitForText = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(buyersSearchResult));
-        typeBuyer.sendKeys(driver.findElement(buyersSearchField),Keys.ENTER).build().perform();
-        return this;
-    }
-    
-    public Ecomm_ManualEntryPage setBuyersNew(String item) throws InterruptedException {
+    public Ecomm_ManualEntryPage setBuyers(String item) throws InterruptedException {
         CommonTask.setSearchField(driver, buyersField, item);
         return this;
     }
-
-    public Ecomm_ManualEntryPage setPoNumber(String poNumber) {
-        //Wait for field to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(poNumberField));
-        //Click field and enter PO number
-        Actions typePoNumber = new Actions(driver);
-        typePoNumber.click(driver.findElement(poNumberField)).build().perform();
-        
-
-        try {
-            //Access file to read
-            FileReader fr = new FileReader("C:\\Screenshots\\ID.txt");
-            BufferedReader br = new BufferedReader(fr);
-            
-            //Get current ID
-            String idString = br.readLine();
-            int id = Integer.valueOf(idString);
-            //Increment ID to be written back to file
-            id++;
-            
-            br.close();
-            fr.close();
-            
-            //Access file to write
-            FileWriter fw = new FileWriter("C:\\Screenshots\\ID.txt");
-            BufferedWriter bw = new BufferedWriter(fw);
-            
-            //Write incremented id to file
-            bw.write(String.valueOf(id));
-            //Append the ID and type the PO number
-            String PONumber = poNumber+idString;
-            typePoNumber.sendKeys(driver.findElement(poNumberField),PONumber).build().perform();
-            DataItems.lastUsedPO = PONumber;
-            
-            bw.close();
-            fw.close();
-            
-        } catch (IOException e) {
-            System.out.println("IO exception handling the ID file");
-        }
-
-        return this;
-    }
     
-    public Ecomm_ManualEntryPage setPoNumberNew(String item) throws InterruptedException {
+    public Ecomm_ManualEntryPage setPONumber(String item) throws InterruptedException {
         
         try {
             //Access file to read
@@ -249,16 +165,16 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setYourMaterialNumber(String yourMaterialNumber,int lineNumber) {
         //produce locator for field. Line numbers start from 0
         By ymnLocator = By.id("materialno_"+lineNumber);
-        //new action to click and send text to field:
-        Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(ymnLocator)).build().perform();
-        clickAndType.sendKeys(yourMaterialNumber).build().perform();
+        CommonTask.setInputField(driver, ymnLocator, yourMaterialNumber);
+        
         //Click away from field (in the table header) to prompt input and wait for table to update
         By headerLocator = By.cssSelector("#t1 > thead > tr > th:nth-child(3)");
-        clickAndType.click(driver.findElement(headerLocator)).build().perform();
+        driver.findElement(headerLocator).click();
+        
         //Wait for finish detail to be added to ensure table is updated
         By finishLocator = By.id("Finish"+lineNumber);
-        Boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(finishLocator, DataItems.expFinish));
+        Boolean waitForUpdate = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(finishLocator, DataItems.expFinish));
+        
         return this;
     }
     
@@ -273,17 +189,14 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setBrand(String brand, int lineNumber) {
         //Produce locator for field
         By brandLocator = By.id("Brand"+lineNumber);
+        WebElement field = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandLocator));
         
-        //Wait for field to be available
-        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandLocator));
-        
-        //New action to click and send text to field
-        Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(brandLocator)).build().perform();
-        clickAndType.sendKeys(driver.findElement(brandLocator),brand+Keys.ENTER).build().perform();
+        Select select = new Select(field);
+        field.click();
+        select.selectByVisibleText(brand);
         
         //Wait for field to update
-        boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(brandLocator, brand));
+        boolean waitForUpdate = new WebDriverWait(driver,5).until(CommonTask.selectionToBe(brandLocator, brand));
         
         return this;
     }
@@ -291,17 +204,14 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setTicket(String ticket,int lineNumber) {
         //Produce locator for field
         By ticketLocator = By.id("Ticket"+lineNumber);
+        WebElement field = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketLocator));
         
-        //Wait for field to be available
-        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ticketLocator));
-        
-        //New action to click and send text to field
-        Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(ticketLocator)).build().perform();
-        clickAndType.sendKeys(driver.findElement(ticketLocator),ticket+Keys.ENTER).build().perform();
+        Select select = new Select(field);
+        field.click();
+        select.selectByVisibleText(ticket);
         
         //Wait for field to update
-        boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(ticketLocator, ticket));
+        boolean waitForUpdate = new WebDriverWait(driver,5).until(CommonTask.selectionToBe(ticketLocator, ticket));
         
         return this;
     }
@@ -309,17 +219,14 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setLength(String length, int lineNumber) {
         //Produce locator for field
         By lengthLocator = By.id("Length"+lineNumber);
+        WebElement field = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lengthLocator));
         
-        //Wait for field to be available
-        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(lengthLocator));
-        
-        //New action to click and send text to field
-        Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(lengthLocator)).build().perform();
-        clickAndType.sendKeys(driver.findElement(lengthLocator),length+Keys.ENTER).build().perform();
+        Select select = new Select(field);
+        field.click();
+        select.selectByVisibleText(length);
         
         //Wait for field to update
-        boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(lengthLocator, length));
+        boolean wait = new WebDriverWait(driver,5).until(CommonTask.selectionToBe(lengthLocator, length));
         
         return this;
     }
@@ -327,47 +234,29 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setFinish(String finish, int lineNumber) {
         //Produce locator for field
         By finishLocator = By.id("Finish"+lineNumber);
+        WebElement field = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(finishLocator));
         
-        //Wait for field to be available
-        WebElement waitForField = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(finishLocator));
-        
-        //New action to click and send text to field
-        Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(finishLocator)).build().perform();
-        clickAndType.sendKeys(driver.findElement(finishLocator),finish+Keys.ENTER).build().perform();
+        Select select = new Select(field);
+        field.click();
+        select.selectByVisibleText(finish);
         
         //Wait for field to update
-        boolean waitForUpdate = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(finishLocator, finish));
+        boolean wait = new WebDriverWait(driver,5).until(CommonTask.selectionToBe(finishLocator, finish));
         
         return this;
     }
     
     public Ecomm_ManualEntryPage setShadeCode(String shadeCode,int lineNumber) {
         //produce locator for field. Line numbers start from 0
-        By shadeCodeLocator = By.id("s2id_BulkOrderLine"+lineNumber+"ShadeId");
-        //produce locator for search field
-        By shadeCodeSearchLocator = By.cssSelector("#select2-drop > div > input");
-        //locator for first search result
-        By shadeCodeResult = By.cssSelector("#select2-drop > ul > li");
-        //new action to click and send text to field
-        Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(shadeCodeLocator)).build().perform();
-        //wait for search field to appear
-        WebElement waitForSearchField = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(shadeCodeSearchLocator));
-        driver.findElement(shadeCodeSearchLocator).sendKeys(shadeCode);
-        //Wait for search result to load and press enter
-        boolean waitForResult = new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(shadeCodeResult,shadeCode));
-        clickAndType.sendKeys(Keys.ENTER).build().perform();
+        By shadeCodeLocator = By.cssSelector("#s2id_BulkOrderLine"+lineNumber+"ShadeId > a");
+        CommonTask.setSearchField(driver, shadeCodeLocator, shadeCode);
         return this;
     }
     
     public Ecomm_ManualEntryPage setQty(int quantity, int lineNumber) {
         //produce locator for field. Line numbers start from 0
         By qtyLocator = By.id("quantity"+lineNumber);
-        //new action to click and send text to field:
-        Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(qtyLocator)).build().perform();
-        clickAndType.sendKeys(String.valueOf(quantity)).build().perform();
+        CommonTask.setInputField(driver,qtyLocator,String.valueOf(quantity));
         return this;
     }
     
@@ -448,9 +337,9 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         //produce locator for field. Line numbers start from 0
         By dateFieldLocator = By.id("required_date_"+lineNumber);
         
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(dateFieldLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(dateFieldLocator));
         Actions action = new Actions(driver);
-        action.sendKeys(driver.findElement(dateFieldLocator),date);
+        action.sendKeys(driver.findElement(dateFieldLocator),date).build().perform();
         
         return this;
     }
@@ -458,7 +347,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     //set order details using Your Material Number and shade code from master data
     public Ecomm_ManualEntryPage setOrderDetailsYMN(String[] details,int lineNumber) {
         //Wait for field to be available
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(By.id("materialno_"+lineNumber)));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("materialno_"+lineNumber)));
         setYourMaterialNumber(details[0],lineNumber);
         setQty(Integer.valueOf(details[1]),lineNumber);
         setDate(lineNumber);
@@ -469,7 +358,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     //Set order details using Your Material Number and separate shade code (not in master data)
     public Ecomm_ManualEntryPage setOrderDetailsYMNShadeCode(String[] details, int lineNumber) {
         //Wait for field to be available
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(By.id("materialno_"+lineNumber)));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("materialno_"+lineNumber)));
         setYourMaterialNumber(details[0],lineNumber);
         setShadeCode(details[1],lineNumber);
         setQty(Integer.valueOf(details[2]),lineNumber);
@@ -507,18 +396,18 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     public Ecomm_OrderConfirmationPage pressNext() {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
         //Click next
         Actions clickNext = new Actions(driver);
         clickNext.click(driver.findElement(nextButtonLocator)).build().perform();
         //Submit the alert
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
         //Sometimes additional alerts appear. Catch these, output their text, and accept by default
         boolean alertPresence;
         try {
-            Alert secondAlert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+            Alert secondAlert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
             driver.switchTo().alert();
             String alertText = secondAlert.getText();
             alertPresence = true;
@@ -546,12 +435,12 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     public Ecomm_ManualEntryPage pressNextExpectingFailure() {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
         //Click next
         Actions clickNext = new Actions(driver);
         clickNext.click(driver.findElement(nextButtonLocator)).build().perform();
         //Submit the alert
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
         return new Ecomm_ManualEntryPage(driver);
@@ -568,7 +457,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(cancelButtonLocator));
+        WebElement wait = new WebDriverWait(driver,7).until(ExpectedConditions.presenceOfElementLocated(formLocator));
     }
     
     public String getCustomerName() {
@@ -601,5 +490,22 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public String getYourMatNum(int row) {
         By ymnFieldLocator = By.id("materialno_"+row);
         return driver.findElement(ymnFieldLocator).getAttribute("value");
+    }
+    
+    public void checkFields() {
+        //Wait for all elements to be clickable
+        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(customerNameField));
+        WebElement waitForShipTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
+        WebElement waitForRequestor = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requestorField));
+        WebElement waitForBuyers = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(buyersField));
+        WebElement waitForPOField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(poNumberField));
+        
+        //Assert all elements are displayed
+        AssertJUnit.assertTrue("Manual Entry Page: Customer Name field not displayed correctly", getCustNameField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", getShipToPartyField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Requestor field not displayed correctly", getRequestorField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", getBuyersField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", getPONumberField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());
     }
 }

@@ -52,4 +52,8 @@ public class WBA_SelectionPage {
         return new Ecomm_MainPage(driver);
     }
     
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(mainImageLocator));
+    }
+    
 }

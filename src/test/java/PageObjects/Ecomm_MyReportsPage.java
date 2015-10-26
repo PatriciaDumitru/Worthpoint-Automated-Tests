@@ -174,45 +174,45 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
     }
     
     public Ecomm_OrderViewPage pressPrint() {
-        WebElement waitForClickable = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
         driver.findElement(printButton).click();
         return new Ecomm_OrderViewPage(driver);
     }
     
     public Ecomm_SaveReportPage pressSaveReport() {
-        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(saveMyReportButton));
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(saveMyReportButton));
         driver.findElement(saveMyReportButton).click();
         return new Ecomm_SaveReportPage(driver);
     }
  
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
         driver.findElement(exportButton).click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public Ecomm_MyReportsPage pressReset() {
-        WebElement wait = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return this;
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable 
-        WebElement waitForOrderNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustName = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForCustCode = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement waitForDateFrom = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(createDateFromField));
-        WebElement waitForDateTo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(createDateToField));
-        WebElement waitForSelectAll = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(selectAllButton));
-        WebElement waitForCreatedDate = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(createdDateButton));
-        WebElement waitForPONumber = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(poNumberButton));
-        WebElement waitForArticle = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(articleButton));
-        WebElement waitForBrand = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(brandButton));
-        WebElement waitForTicket = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(ticketButton));
-        WebElement waitForshadecode = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(shadeCodeButton));
-        WebElement waitForInvoiceNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(invoiceNoButton));
-        WebElement waitForDelNo = new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(deliveryNoButton));
+        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForCustCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custCodeField));
+        WebElement waitForDateFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createDateFromField));
+        WebElement waitForDateTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createDateToField));
+        WebElement waitForSelectAll = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(selectAllButton));
+        WebElement waitForCreatedDate = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createdDateButton));
+        WebElement waitForPONumber = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(poNumberButton));
+        WebElement waitForArticle = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(articleButton));
+        WebElement waitForBrand = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandButton));
+        WebElement waitForTicket = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketButton));
+        WebElement waitForshadecode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeButton));
+        WebElement waitForInvoiceNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(invoiceNoButton));
+        WebElement waitForDelNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(deliveryNoButton));
     
         //Assert all elements are displayed
         AssertJUnit.assertTrue("My Reports Page: Order No Field not displayed",getOrderNoField().isDisplayed());

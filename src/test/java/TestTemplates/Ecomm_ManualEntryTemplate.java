@@ -197,7 +197,7 @@ private int lineCount;
            mePage.setBuyers(custDetails[3]);
         }
         if (!custDetails[4].equals("")) {
-           mePage.setPoNumberNew(custDetails[4]);
+           mePage.setPONumber(custDetails[4]);
            DataItems.lastUsedPO = custDetails[4];
         }
          
