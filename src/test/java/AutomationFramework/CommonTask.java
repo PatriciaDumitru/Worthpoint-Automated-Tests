@@ -50,6 +50,8 @@ public class CommonTask {
         
         By resetButton = By.cssSelector("#"+id+" > a > abbr");
         
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        
         driver.findElement(resetButton).click();
         
         //Wait for update

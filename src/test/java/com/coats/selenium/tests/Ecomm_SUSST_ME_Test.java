@@ -1175,7 +1175,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Validation tests, no Buyer at confirmation page
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders","Solo"})
     public void SUSST14() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1255,6 +1255,32 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
                 System.out.println("Table row: " + row);
             }
             
+            System.out.println("Checking outstanding order draft list...");
+            
+            Ecomm_OutstandingOrderDraftPage draftPage = outPage.clickOutstandingDraft();
+            draftPage.waitForElement();
+            
+            System.out.println("Draft page reached. Checking draft was created...");     
+        
+            try {
+               String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
+            
+               //Take a screenshot
+               File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+               FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\26Drafts page expecting draft.png"));
+               
+               if (orderNo.equals("")) {
+                   System.out.println("***NO DRAFT FOUND***");
+               } else {
+                   System.out.println("Draft found.");
+                   System.out.println("Order No.: " + orderNo);
+                   System.out.println("Customer PO No.: " + DataItems.lastUsedPO);
+               }          
+                
+            } catch (Exception e) {
+                System.out.println("Try-catch caught while checking for draft");
+            }
+            
         } catch (Exception e) {
             
             try {
@@ -1268,13 +1294,36 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
             WebElement flashMessage = orderConf2.waitForError();
             
             //Take a screenshot
-            File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\26Error received as expected.png"));
+            File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\27Error received as expected.png"));
             
             System.out.println("Error received as expected");
             System.out.println("Error: " + flashMessage.getText());
+            
+            System.out.println("Checking outstanding order draft list...");
+            
+            Ecomm_OutstandingOrderDraftPage draftPage = orderConf2.clickOutstandingDraft();
+            draftPage.waitForElement();
+            
+            System.out.println("Draft page reached. Checking draft was created...");     
+        
+        try {
+               String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
+            
+               //Take a screenshot
+               File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+               FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\26Drafts page expecting draft.png"));
+               
+               if (orderNo.equals("")) {
+                   System.out.println("***NO DRAFT FOUND***");
+               }        
+                
+            } catch (Exception f) {
+                System.out.println("Try-catch caught while checking for draft");
+            }
+            
         }
-
+        
     }
     
     @Test //Manual Entry Page :: Order Draft creation and cancellation
@@ -1311,7 +1360,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\27Order details entered.png"));
+        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\28Order details entered.png"));
         
         String date = manualEntryPage.getDate(0);
                 
@@ -1328,7 +1377,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         //Take a screenshot
         File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\28Confirmation page reached.png"));
+        FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\29Confirmation page reached.png"));
         
         Actions scroller = new Actions(driver);
         scroller.moveToElement(orderConf.getCancelButton()).build().perform();
@@ -1337,7 +1386,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         //Take a screenshot
         File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\29Confirmation page reached scrolled.png"));
+        FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\30Confirmation page reached scrolled.png"));
         
         
         System.out.println("Details checked. Cancelling order...");
@@ -1347,7 +1396,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
 
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\30Order cancelled.png"));
+        FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\31Order cancelled.png"));
         
         System.out.println("Order cancelled. Checking no draft was saved...");
 
@@ -1358,7 +1407,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\31Draft page (no draft expected).png"));
+        FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\32Draft page (no draft expected).png"));
         
         String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
         
@@ -1417,7 +1466,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         //Take a screenshot
         File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\32Draft open.png"));
+        FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\33Draft open.png"));
         
         DataItems.lastUsedPO = mePage2.getCustPONo();
         
@@ -1431,7 +1480,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         //Take a screenshot
         File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile12,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\33Draft cancelled.png"));
+        FileUtils.copyFile(scrFile12,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\34Draft cancelled.png"));
         
         System.out.println("Draft cancelled. Checking draft is deleted...");
         
@@ -1440,7 +1489,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         //Take a screenshot
         File scrFile13 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile13,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\34Draft removed.png"));
+        FileUtils.copyFile(scrFile13,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\35Draft removed.png"));
    
         String orderNo = draftPage2.findDraft(DataItems.lastUsedPO);
         

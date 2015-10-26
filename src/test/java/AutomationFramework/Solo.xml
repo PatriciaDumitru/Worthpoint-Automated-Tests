@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SoloSuite">
+    
+    <test name="SoloTest">
+        <groups>
+            <run>
+                <include name="Solo" />
+            </run>
+        </groups>
+        <packages>
+            <package name="com.coats.selenium.tests"/>
+        </packages>
+    </test>
+
+</suite>
