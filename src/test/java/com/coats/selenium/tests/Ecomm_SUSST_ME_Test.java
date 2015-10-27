@@ -8,6 +8,7 @@ import PageObjects.Ecomm_OrderConfirmationPage;
 import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_OutstandingOrderDraftPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
+import PageObjects.Ecomm_UploadProcessPage;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
 import java.io.File;
@@ -26,7 +27,7 @@ import org.testng.annotations.Test;
 
 public class Ecomm_SUSST_ME_Test extends DriverFactory {
     
-    @Test //Manual Entry Page :: Page checks, single line order with YMN and master shade code
+    @Test //Manual Entry Page :: Page checks, single line order using YMN and shade code from master data
     (groups = {"QuickTest","eComm","eComm_Orders"})
     public void SUSST1() throws IOException, InterruptedException, Exception {
         //New chrome driver
@@ -737,55 +738,58 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next expecting failure...");
         
         Ecomm_ManualEntryPage mePage = manualEntryPage.pressNextExpectingFailure();
-        mePage.waitForElement();
+        
+        System.out.println("Next pressed");
+        
+        boolean errorDisplayed = false;
         
         try {
-            
             WebElement flashMessage = mePage.waitForError();
-            
-            System.out.println("Next pressed.");
             System.out.println("Error received: " + flashMessage.getText());
-            
+            errorDisplayed = true;
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\8Error received as expected.png"));
-            
-            System.out.println("Checking no order has been created...");
-            
         } catch (Exception e) {
-            
-            try {
-                Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-                System.out.println("Alert appeared: " + alert2.getText());
-                alert2.accept();
-            } catch (Exception f) {
-                System.out.println("No alert appeared");
-            }
-            
-            System.out.println("***NEXT PRESSED, UNEXPECTED RESULT***");
+            System.out.println("No error dispayed");
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\8Error - unexpected result.png"));
         }
         
-        Ecomm_OutstandingOrdersPage outPage =  eCommPage.clickOutstandingOrders();
-            
-            System.out.println("Outstanding orders page reached.");
-            
-            int row = outPage.getRow(DataItems.lastUsedPO);
-            
-            if (row == -1) {
-                System.out.println("No order found in Outstanding Orders Page, as expected");
-            } else {
-                System.out.println("***ORDER FOUND IN OUTSTANDING ORDERS PAGE***");
-                System.out.println("Order PO No.: " + DataItems.lastUsedPO);
-                System.out.println("Order No.: " + outPage.getOrderNumber(row));
-                System.out.println("Table row: " + row);
-                
-                //Take a screenshot
-                File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\9Error - order created without requester.png"));
-            }
+        AssertJUnit.assertTrue("Manual Entry Page: No error displayed despite missing mandatory field(s)",errorDisplayed);
+        
+        System.out.println("Checking no order has been created...");
+        
+        Ecomm_OutstandingOrdersPage outOrder = mePage.clickOutstandingOrders();
+        outOrder.waitForLoad();
+        
+        System.out.println("Outstanding Orders Page reached. Searching for record...");
+        
+        int row = outOrder.getRow(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)"
+                + "\n Table Row: " + row
+                + "\n Customer PO No.: " + DataItems.lastUsedPO,row==-1);
+        
+        System.out.println("No order found, as expected. Checking no draft was created...");
+        
+        Ecomm_OutstandingOrderDraftPage draftPage = outOrder.clickOutstandingDraft();
+        draftPage.waitForLoad();
+        
+        System.out.println("Outstanding Order Draft Page reached. Searching for record...");
+        
+        String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Order Draft Page: Draft created after order submission failed due to missing mandatory field(s)"
+                + "Customer PO No.: "+DataItems.lastUsedPO
+                + "Order No.: " + orderNo,orderNo.equals(""));
+        
+        //Take a screenshot
+        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\9No Draft created.png"));
+        
+        System.out.println("No draft created");
          
     }
 
@@ -825,56 +829,60 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next expecting failure...");
         
         Ecomm_ManualEntryPage mePage2 = manualEntryPage.pressNextExpectingFailure();
-        mePage2.waitForElement();
+        
+        boolean errorDisplayed;
         
         try {
-
             WebElement flashMessage = mePage2.waitForError();
-            
-            System.out.println("Next pressed");
             System.out.println("Error received: " + flashMessage.getText());
             
-            System.out.println("Checking order was not created...");
-       
+            errorDisplayed = true;
+            
+            //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\10Error received as expected.png"));
-            
+        
         } catch (Exception e) {
-            System.out.println("***NEXT PRESSED, UNEXPECTED RESULT***");
-            
-            try {
-                Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-                System.out.println("Alert appeared: " + alert.getText());
-                alert.accept();
-            } catch (Exception f) {
-                System.out.println("No alert appeared.");
-            }
-            
-            CommonTask.waitForPageLoad(driver);
+            System.out.println("No error displayed");
+            errorDisplayed = false;
             
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\11Error - unexpected result.png"));
+        
         }
         
-        Ecomm_OutstandingOrdersPage outPage =  eCommPage.clickOutstandingOrders();
-            
-            System.out.println("Outstanding orders page reached.");
-            
-            int row = outPage.getRow(DataItems.lastUsedPO);
-            
-            if (row == -1) {
-                System.out.println("No order found in Outstanding Orders Page, as expected");
-            } else {
-                System.out.println("***ORDER FOUND IN OUTSTANDING ORDERS PAGE***");
-                System.out.println("Order PO No.: " + DataItems.lastUsedPO);
-                System.out.println("Order No.: " + outPage.getOrderNumber(row));
-                System.out.println("Table row: " + row);
-                
-                //Take a screenshot
-                File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\12Error - order created without shipto.png"));
-            }
+        AssertJUnit.assertTrue("Manual Entry Page: No error displayed despite missing mandatory field(s)", errorDisplayed);
+        
+        System.out.println("Checking no order has been created...");
+        
+        Ecomm_OutstandingOrdersPage outPage = mePage2.clickOutstandingOrders();
+        outPage.waitForElement();
+        
+        System.out.println("Outstanding orders page reached. Searching for record...");
+
+        int row = outPage.getRow(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)",row==-1);
+        
+        System.out.println("No order created, as expected. Checking no draft was created...");
+        
+        Ecomm_OutstandingOrderDraftPage draftPage = outPage.clickOutstandingDraft();
+        draftPage.waitForLoad();
+        
+        System.out.println("Draft page reached. Searching for draft...");
+        
+        String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Draft Page: Draft created despite missing mandatory field(s)"
+                +"\nCustomer PO No.: " + DataItems.lastUsedPO
+                +"\nOrder No.: " + orderNo,orderNo.equals(""));
+        
+        System.out.println("No draft found, as expected");
+        
+        //Take a screenshot
+        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\12Error - order created without shipto.png"));
 
     }
     
@@ -916,56 +924,50 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next expecting failure...");
         
         Ecomm_ManualEntryPage mePage = manualEntryPage.pressNextExpectingFailure();
-        mePage.waitForElement();
+        
+        boolean errorDisplayed;
         
         try {
-            
             WebElement flashMessage = mePage.waitForError();
-            
-            System.out.println("Next pressed");
-            System.out.println("Error received: " + flashMessage.getText());
-            
-            System.out.println("Checking order was not created...");
-       
-            File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\14Error received as expected.png"));
-            
-        } catch (Exception e) {
-            System.out.println("***NEXT PRESSED, NO ERROR RECEIVED***");
-            
-            try {
-                Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-                System.out.println("Alert appeared: " + alert.getText());
-                alert.accept();
-            } catch (Exception f) {
-                System.out.println("No alert appeared.");
-            }
-            
-            CommonTask.waitForPageLoad(driver);
+            errorDisplayed = true;
+        
+            System.out.println("Error received: "+flashMessage.getText());
             
             //Take a screenshot
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\14Error - No error received.png"));
+            FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\14Error received as expected.png"));
+        } catch (Exception e) {
+            errorDisplayed = false;
+            System.out.println("No error displayed");
         }
         
-        Ecomm_OutstandingOrdersPage outPage =  eCommPage.clickOutstandingOrders();
-            
-            System.out.println("Outstanding orders page reached.");
-            
-            int row = outPage.getRow(DataItems.lastUsedPO);
-            
-            if (row == -1) {
-                System.out.println("No order found in Outstanding Orders Page, as expected");
-            } else {
-                System.out.println("***ORDER FOUND IN OUTSTANDING ORDERS PAGE***");
-                System.out.println("Order PO No.: " + DataItems.lastUsedPO);
-                System.out.println("Order No.: " + outPage.getOrderNumber(row));
-                System.out.println("Table row: " + row);
-                
-                //Take a screenshot
-                File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\15Error - order created without buyer.png"));
-            }
+        AssertJUnit.assertTrue("Manual Entry Page: No error displayed despite missing mandatory field(s)", errorDisplayed);
+        
+        System.out.println("Checking no order has been created...");
+        
+        Ecomm_OutstandingOrdersPage outPage = mePage.clickOutstandingOrders();
+        outPage.waitForElement();
+        
+        System.out.println("Outstanding orders page reached. Searching for record...");
+
+        int row = outPage.getRow(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)",row==-1);
+        
+        System.out.println("No order created, as expected. Checking no draft was created...");
+        
+        Ecomm_OutstandingOrderDraftPage draftPage = outPage.clickOutstandingDraft();
+        draftPage.waitForLoad();
+        
+        System.out.println("Draft page reached. Searching for draft...");
+        
+        String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Draft Page: Draft created despite missing mandatory field(s)"
+                +"\nCustomer PO No.: " + DataItems.lastUsedPO
+                +"\nOrder No.: " + orderNo,orderNo.equals(""));
+        
+        System.out.println("No draft found, as expected");
         
     }
     
@@ -1015,60 +1017,47 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         System.out.println("Requestor removed. Confirming...");
         
-        Ecomm_OrderConfirmationPage orderConf2 = orderConf.pressSubmitExpectingFailure();
+        Ecomm_UploadProcessPage errorPage = orderConf.pressSubmitExpectingFailure();
  
+        boolean errorDisplayed;
+        
         try {
-            Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-            System.out.println("Alert appeared: " + alert.getText());
-            
-            //Take a screenshot
-            File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\17Alert open.png"));
-            
-            alert.accept();            
-            orderConf2.waitForElement();
-            
-            //Take a screenshot
-            File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\18Confirmation page return.png"));
-            
-            Ecomm_OutstandingOrdersPage outPage = eCommPage.clickOutstandingOrders();
-            int row = outPage.getRow(DataItems.lastUsedPO);
-            
-            if (row == -1) {
-                System.out.println("No order created.");
-            } else {
-                System.out.println("***ERROR: ORDER CREATED ALTHOUGH VALIDATION FAILED***");
-                
-                //Take a screenshot
-                File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\17Error - order created without requestor.png"));
-                
-                System.out.println("Order PO No.: " + DataItems.lastUsedPO);
-                System.out.println("Order No.: " + outPage.getOrderNumber(row));
-                System.out.println("Table row: " + row);
-            }
-            
+            WebElement flashMessage = errorPage.waitForError();
+            System.out.println("Error received: "+flashMessage.getText());
+            errorDisplayed = true;
         } catch (Exception e) {
-            
-            try {
-                Alert alert3 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-                System.out.println("Alert appeared: " + alert3.getText());
-                alert3.accept();
-            } catch (Exception g) {
-                System.out.println("No alert appeared");
-            }
-            
-            WebElement flashMessage = orderConf2.waitForError();
-            
-            System.out.println("Error received as expected");
-            System.out.println("Error: " + flashMessage.getText());
-            
-             //Take a screenshot
-            File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\18Error displayed as expected.png"));
-            
+            System.out.println("No error displayed");
+            errorDisplayed = false;
         }
+                
+        AssertJUnit.assertTrue("Order Confirmation Page: No error displayed despite missing mandatory field(s)",errorDisplayed);
+        
+        System.out.println("Checking no order was created...");
+        
+        Ecomm_OutstandingOrdersPage outPage = errorPage.clickOutstandingOrders();
+        outPage.waitForLoad();
+        
+        System.out.println("Outstanding orders page reached. Searching for record...");
+
+        int row = outPage.getRow(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)",row==-1);
+        
+        System.out.println("No order created, as expected. Checking no draft was created...");
+        
+        Ecomm_OutstandingOrderDraftPage draftPage = outPage.clickOutstandingDraft();
+        draftPage.waitForLoad();
+        
+        System.out.println("Draft page reached. Searching for draft...");
+        
+        String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Draft Page: Draft not created despite confirmation page reached"
+                +"\nCustomer PO No.: " + DataItems.lastUsedPO
+                +"\nOrder No.: " + orderNo,(!orderNo.equals("")));
+        
+        System.out.println("Draft found, as expected");
+        
     }
     
     @Test //Manual Entry Page :: Validation tests, no Ship To Party Name at confirmation page
@@ -1118,64 +1107,51 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         System.out.println("Ship To Party removed. Confirming...");
         
-        Ecomm_OrderConfirmationPage orderConf2 = orderConf.pressSubmitExpectingFailure();
+        Ecomm_UploadProcessPage errorPage = orderConf.pressSubmitExpectingFailure();
 
+        boolean errorDisplayed;
+        
         try {
-            Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-            System.out.println("Alert appeared: " + alert.getText());
-            
-            //Take a screenshot
-            File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\20Alert open.png"));
-            
-            alert.accept();
-            orderConf2.waitForElement();
-            
-            //Take a screenshot
-            File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\21Confirmation page return.png"));
-            
-            Ecomm_OutstandingOrdersPage outPage = eCommPage.clickOutstandingOrders();
-            int row = outPage.getRow(DataItems.lastUsedPO);
-            
-            if (row == -1) {
-                System.out.println("No order created.");
-            } else {
-                System.out.println("***ERROR: ORDER CREATED ALTHOUGH VALIDATION FAILED***");
-                
-                //Take a screenshot
-                File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\21Error - order created without ship to.png"));
-                
-                System.out.println("Order PO No.: " + DataItems.lastUsedPO);
-                System.out.println("Order No.: " + outPage.getOrderNumber(row));
-                System.out.println("Table row: " + row);
-            }
-            
+            WebElement flashMessage = errorPage.waitForError();
+            System.out.println("Error received: "+flashMessage.getText());
+            errorDisplayed = true;
         } catch (Exception e) {
-            
-            try {
-                Alert alert3 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-                System.out.println("Alert appeared: " + alert3.getText());
-                alert3.accept();
-            } catch (Exception g) {
-                System.out.println("No alert appeared");
-            }
-            
-            WebElement flashMessage = orderConf2.waitForError();
-            
-            //Take a screenshot
-            File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\15Error received as expected.png"));
-            
-            System.out.println("Error received as expected");
-            System.out.println("Error: " + flashMessage.getText());
+            System.out.println("No error displayed");
+            errorDisplayed = false;
         }
+                
+        AssertJUnit.assertTrue("Order Confirmation Page: No error displayed despite missing mandatory field(s)",errorDisplayed);
+        
+        System.out.println("Checking no order was created...");
+        
+        Ecomm_OutstandingOrdersPage outPage = errorPage.clickOutstandingOrders();
+        outPage.waitForLoad();
+        
+        System.out.println("Outstanding orders page reached. Searching for record...");
+
+        int row = outPage.getRow(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)",row==-1);
+        
+        System.out.println("No order created, as expected. Checking no draft was created...");
+        
+        Ecomm_OutstandingOrderDraftPage draftPage = outPage.clickOutstandingDraft();
+        draftPage.waitForLoad();
+        
+        System.out.println("Draft page reached. Searching for draft...");
+        
+        String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Draft Page: Draft not created despite confirmation page reached"
+                +"\nCustomer PO No.: " + DataItems.lastUsedPO
+                +"\nOrder No.: " + orderNo,(!orderNo.equals("")));
+        
+        System.out.println("Draft found, as expected");
 
     }
     
     @Test //Manual Entry Page :: Validation tests, no Buyer at confirmation page
-    (groups = {"eComm","eComm_Orders","Solo"})
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST14() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1221,112 +1197,50 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         
         System.out.println("Buyer removed. Confirming...");
         
-        Ecomm_OrderConfirmationPage orderConf2 = orderConf.pressSubmitExpectingFailure();
+        Ecomm_UploadProcessPage errorPage = orderConf.pressSubmitExpectingFailure();
  
-        try {
-            Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-            System.out.println("Alert appeared: " + alert.getText());
-            alert.accept();
-            
-            //Take a screenshot
-            File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\23Alert open.png"));
-            
-            orderConf2.waitForElement();
-            
-            //Take a screenshot
-            File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\24Confirmation page return.png"));
-            
-            Ecomm_OutstandingOrdersPage outPage = eCommPage.clickOutstandingOrders();
-            int row = outPage.getRow(DataItems.lastUsedPO);
-            
-            if (row == -1) {
-                System.out.println("No order created.");
-            } else {
-                System.out.println("***ERROR: ORDER CREATED ALTHOUGH VALIDATION FAILED***");
-                
-                //Take a screenshot
-                File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\25Error - order created without buyer.png"));
-                
-                System.out.println("Order PO No.: " + DataItems.lastUsedPO);
-                System.out.println("Order No.: " + outPage.getOrderNumber(row));
-                System.out.println("Table row: " + row);
-            }
-            
-            System.out.println("Checking outstanding order draft list...");
-            
-            Ecomm_OutstandingOrderDraftPage draftPage = outPage.clickOutstandingDraft();
-            draftPage.waitForElement();
-            
-            System.out.println("Draft page reached. Checking draft was created...");     
+        boolean errorDisplayed;
         
-            try {
-               String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
-            
-               //Take a screenshot
-               File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-               FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\26Drafts page expecting draft.png"));
-               
-               if (orderNo.equals("")) {
-                   System.out.println("***NO DRAFT FOUND***");
-               } else {
-                   System.out.println("Draft found.");
-                   System.out.println("Order No.: " + orderNo);
-                   System.out.println("Customer PO No.: " + DataItems.lastUsedPO);
-               }          
-                
-            } catch (Exception e) {
-                System.out.println("Try-catch caught while checking for draft");
-            }
-            
+        try {
+            WebElement flashMessage = errorPage.waitForError();
+            System.out.println("Error received: "+flashMessage.getText());
+            errorDisplayed = true;
         } catch (Exception e) {
-            
-            try {
-                Alert alert3 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
-                System.out.println("Alert appeared: " + alert3.getText());
-                alert3.accept();
-            } catch (Exception g) {
-                System.out.println("No alert appeared");
-            }
-            
-            WebElement flashMessage = orderConf2.waitForError();
-            
-            //Take a screenshot
-            File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\27Error received as expected.png"));
-            
-            System.out.println("Error received as expected");
-            System.out.println("Error: " + flashMessage.getText());
-            
-            System.out.println("Checking outstanding order draft list...");
-            
-            Ecomm_OutstandingOrderDraftPage draftPage = orderConf2.clickOutstandingDraft();
-            draftPage.waitForElement();
-            
-            System.out.println("Draft page reached. Checking draft was created...");     
-        
-        try {
-               String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
-            
-               //Take a screenshot
-               File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-               FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\26Drafts page expecting draft.png"));
-               
-               if (orderNo.equals("")) {
-                   System.out.println("***NO DRAFT FOUND***");
-               }        
-                
-            } catch (Exception f) {
-                System.out.println("Try-catch caught while checking for draft");
-            }
-            
+            System.out.println("No error displayed");
+            errorDisplayed = false;
         }
+                
+        AssertJUnit.assertTrue("Order Confirmation Page: No error displayed despite missing mandatory field(s)",errorDisplayed);
         
-    }
+        System.out.println("Checking no order was created...");
+        
+        Ecomm_OutstandingOrdersPage outPage = errorPage.clickOutstandingOrders();
+        outPage.waitForLoad();
+        
+        System.out.println("Outstanding orders page reached. Searching for record...");
+
+        int row = outPage.getRow(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)",row==-1);
+        
+        System.out.println("No order created, as expected. Checking no draft was created...");
+        
+        Ecomm_OutstandingOrderDraftPage draftPage = outPage.clickOutstandingDraft();
+        draftPage.waitForLoad();
+        
+        System.out.println("Draft page reached. Searching for draft...");
+        
+        String orderNo = draftPage.findDraft(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertTrue("Outstanding Draft Page: Draft not created despite confirmation page reached"
+                +"\nCustomer PO No.: " + DataItems.lastUsedPO
+                +"\nOrder No.: " + orderNo,(!orderNo.equals("")));
+        
+        System.out.println("Draft found, as expected");
     
-    @Test //Manual Entry Page :: Order Draft creation and cancellation
+    }
+        
+    @Test //Manual Entry Page :: Create order and cancel from confirmation page
     (groups = {"eComm","eComm_Orders"})
     public void SUSST15() throws InterruptedException, IOException, Exception {
         

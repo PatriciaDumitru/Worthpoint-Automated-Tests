@@ -19,9 +19,9 @@ public class DataItems {
     public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_70.xlsx";
     public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_68.xlsx";
     public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_68C.xlsx";
-    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_23.xlsx";
-    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_24.xlsx";
-    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_25.xlsx";
+    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_26.xlsx";
+    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_27.xlsx";
+    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_28.xlsx";
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";
@@ -140,6 +140,9 @@ public class DataItems {
     public static String bulkPurpose = "Bulk (Samples for Bulk Fabric)";
     public static String preprodPurpose = "Pre-production";
     public static String protoPurpose = "Prototype";
+    
+    //Cancellation reasons
+    public static String wrongEntryCust = "Wrong Entry by Customer";
     
     //Sample order details
     public static String sampOrderNo = "1129113";

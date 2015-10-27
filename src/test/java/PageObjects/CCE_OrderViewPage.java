@@ -24,6 +24,7 @@ public class CCE_OrderViewPage {
     By custNameHeader = By.cssSelector("#content > div > table > tbody > tr:nth-child(1) > th:nth-child(1)");
     By popupContent = By.id("popup_content");
     By contentFrame = By.id("content");
+    By tableLocator = By.id("#popup_content > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(2)");
     
     public CCE_OrderViewPage(WebDriver passedDriver) {
         driver = passedDriver;
@@ -116,15 +117,15 @@ public class CCE_OrderViewPage {
     
     public void waitForContent() {
         //switchTo();
-        WebElement waitForPopup = new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOfElementLocated(popupContent));
+        WebElement waitForPopup = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(popupContent));
     }
     
     public void waitForContentPresence() {
-        WebElement waitForPopup = new WebDriverWait(driver,20).until(ExpectedConditions.presenceOfElementLocated(popupContent));
+        WebElement waitForPopup = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(popupContent));
     }
     
     public void waitForContentAlt2() {
-        WebElement waitForContent = new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
+        WebElement waitForContent = new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
     }
     
     public void waitForInvisibility() {

@@ -283,7 +283,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return new Ecomm_OutstandingOrdersPage(driver);
     }
     
-    public Ecomm_OrderConfirmationPage pressSubmitExpectingFailure() {
+    public Ecomm_UploadProcessPage pressSubmitExpectingFailure() {
         //Wait for element to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(submitButtonLocator));
         driver.findElement(submitButtonLocator).click();  
@@ -296,7 +296,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             
         }
         
-        return new Ecomm_OrderConfirmationPage(driver);
+        return new Ecomm_UploadProcessPage(driver);
         
     }
     

@@ -9,6 +9,7 @@ import PageObjects.Ecomm_OrderConfirmationPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_OutstandingUploadDraftPage;
 import PageObjects.Ecomm_UploadOrderPage;
+import PageObjects.Ecomm_UploadProcessPage;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
 import java.awt.AWTException;
@@ -197,7 +198,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
 
         System.out.println("Requeser removed. Submitting, expecting failure...");
         
-        Ecomm_OrderConfirmationPage orderConf2 = orderConf.pressSubmitExpectingFailure();
+        Ecomm_UploadProcessPage errorPage = orderConf.pressSubmitExpectingFailure();
         
         try {
             Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
@@ -209,8 +210,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         try {
             
-            orderConf2.waitForElement();
-            WebElement error = orderConf2.waitForError();
+            WebElement error = errorPage.waitForError();
             
             System.out.println("Order confirmation page returned.");
             
@@ -236,7 +236,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: Upload draft creation and cancellation
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders","Solo"})
     public void UORT3() throws AWTException, InterruptedException, IOException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -303,24 +303,17 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         System.out.println("Order cancelled. Checking no draft was created...");
         
-        Ecomm_MainPage eComm = new Ecomm_MainPage(driver);
-        Ecomm_OutstandingUploadDraftPage draftPage = eComm.clickOutstandingUploadDraft();
-        draftPage.waitForElement();
+        Ecomm_OutstandingUploadDraftPage draftPage = uoPage.clickOutstandingUploadDraft();
+        boolean found = draftPage.findDraft(DataItems.lastUsedPO);
         
-        //Take a screenshot
-        File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\8Outstanding drafts page (no draft expected).png"));
-    
-        boolean draftFound = draftPage.findDraft(DataItems.lastUsedPO);
+        AssertJUnit.assertFalse("Outstanding Upload Draft Page: Draft created despite cancellation",found);
         
-        if (!draftFound) {
-            System.out.println("Draft not created, as expected");
-        }
+        System.out.println("No draft created, as expected");
         
     }
     
     @Test //Upload Order Page :: Upload draft continuation and cancellation
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders","Solo"})
     public void UORT4() throws IOException, InterruptedException, AWTException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -397,14 +390,12 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         boolean found = uoDraft2.findDraft(DataItems.lastUsedPO);
         
-        if (!found) {
-            System.out.println("No draft found, as expected");
-        }        
+        AssertJUnit.assertFalse("Outstanding Upload Draft Page: Draft not deleted despite cancellation",found);   
         
     }
     
     @Test //Upload Order Page :: Upload draft continuation
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders","Solo"})
     public void UORT5() throws IOException, AWTException, InterruptedException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();

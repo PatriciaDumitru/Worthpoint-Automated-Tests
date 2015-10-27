@@ -216,8 +216,9 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
         } 
         
         By orderStageLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+1)+") > td:nth-child(12)");
-        return driver.findElement(orderStageLocator).getText();
         
+        if (found) return driver.findElement(orderStageLocator).getText();
+        return "not found";
         
     }
     

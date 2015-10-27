@@ -11,9 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class CCE_OrderSamplesPage {
-    
-    WebDriver driver;
+public class CCE_OrderSamplesPage extends WBA_BasePage {
     
     //Locators
     static By custNameFieldLocator = By.id("s2id_customer_id");
@@ -23,7 +21,7 @@ public class CCE_OrderSamplesPage {
     static By contentFrame = By.id("content");
     
     public CCE_OrderSamplesPage(WebDriver passedDriver) {
-        driver = passedDriver;
+        super(passedDriver);
     }
     
     public WebElement getCustNameField() {
@@ -83,9 +81,12 @@ public class CCE_OrderSamplesPage {
         }
     }
 
-    public CCE_OrderSamplesPage waitForLoad() {
+    public CCE_OrderSamplesPage waitForLoad2() {
         WebElement waitForVisible = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
         return this;
     }
 
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameFieldLocator));
+    }
 }

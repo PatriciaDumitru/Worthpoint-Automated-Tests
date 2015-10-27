@@ -23,6 +23,13 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By lightSource2Field = By.id("SampleOrderLsSecondaryId");
     static By lightSource3Field = By.id("SampleOrderLsThirdId");
     static By newBuyerLink = By.cssSelector("#SampleOrderAddForm > div:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(3) > a");
+    static By creationDateField = By.cssSelector("#SampleOrderAddForm > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(4)");
+    
+    //Locators for returning details
+    static By customerNameField = By.cssSelector("#SampleOrderEditForm > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2)");
+    static By requesterField = By.cssSelector("#SampleOrderEditForm > div:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2)");
+    static By shipToField = By.id("ship_to_party_name");
+    static By articleField2 = By.cssSelector("#s2id_SampleOrderLine0ArticleId > a > span.select2-chosen");
     
     //Locators for fields in line 0, to check they are clickable
     static By articleField = By.id("SampleOrderLine0ArticleId");
@@ -44,12 +51,31 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By newLineButton = By.id("add_tab");
     static By submitOrderButton = By.id("submit");
     static By pendOrderButton = By.id("pending");
-    static By cancelButton = By.cssSelector("#SampleOrderAddForm > div:nth-child(5) > div.actions > ul > li:nth-child(3) > a");
+    static By cancelButton = By.xpath("//*[@id=\"SampleOrderEditForm\"]/div[4]/div[3]/ul/li[3]/a");
 
     
     public CCE_AddOrderPage(WebDriver passedDriver) {
        super(passedDriver);
     } 
+    
+    public String getCustomerName() {
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(customerNameField));
+        return driver.findElement(customerNameField).getText();
+    }
+    
+    public String getRequesterName() {
+        return driver.findElement(requesterField).getText();
+    }
+    
+    public String getShipToParty() {
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(shipToField));
+        return driver.findElement(shipToField).getAttribute("text");
+    }
+    
+    public String getArticle() {
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(articleField2));
+        return driver.findElement(articleField2).getText();
+    }
     
     public WebElement getShipToField() {
         return driver.findElement(shipToPartyField);
@@ -236,6 +262,10 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         return this;
     }
     
+    public String getCreationDate() {
+        return driver.findElement(creationDateField).getText();
+    }
+    
     public CCE_OrderStatusPage pressSubmit() {
         //Wait for button to be clickable and click
         WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitOrderButton));
@@ -283,11 +313,26 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     }
     
     public CCE_OrderSamplesPage pressCancel() {
-        //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
-        driver.findElement(cancelButton).click();
+        
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(cancelButton)).build().perform();
+        
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(cancelButton));
+        
+        action.click(driver.findElement(cancelButton)).build().perform();
         
         return new CCE_OrderSamplesPage(driver);
+    }
+    
+    public CCE_OutstandingDraftPage pressCancelToDrafts() {
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(cancelButton)).build().perform();
+        
+        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(cancelButton));
+        
+        action.click(driver.findElement(cancelButton)).build().perform();
+        
+        return new CCE_OutstandingDraftPage(driver);
     }
     
     public CCE_AddOrderPage pressNewLine(int lineNumber) {
