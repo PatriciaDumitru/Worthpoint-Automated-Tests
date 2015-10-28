@@ -98,7 +98,7 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>  
+                    </plugin>
                      <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
@@ -132,7 +132,7 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>                  
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
@@ -146,7 +146,7 @@
                                 <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
                             </systemPropertyVariables>
                             <suiteXmlFiles>
-                                <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\QuickTest.xml</suiteXmlFile>
+                                <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\Solo.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                         <dependencies>
