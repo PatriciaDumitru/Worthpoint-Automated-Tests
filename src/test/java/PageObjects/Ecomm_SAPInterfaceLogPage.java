@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 
 public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 
@@ -181,7 +182,7 @@ public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 	}
 
 	public Ecomm_SAPInterfaceLogPage pressSearch() {
-		WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+		WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
 		driver.findElement(searchButton).click();
 		
 		this.waitForLoad();
@@ -190,7 +191,7 @@ public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 	}
 	
 	public Ecomm_SAPInterfaceLogPage pressReset() {
-		WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+		WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
 		driver.findElement(resetButton).click();
 		
 		this.waitForLoad();
@@ -199,14 +200,14 @@ public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 	}
 
 	public Ecomm_OrderViewPage pressView() {
-		WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
+		WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
 		driver.findElement(viewButton).click();
 		
 		return new Ecomm_OrderViewPage(driver);
 	}
 
 	public Ecomm_OrderViewPage pressFtView() {
-		WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ftViewButton));
+		WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ftViewButton));
 		driver.findElement(ftViewButton).click();
 		
 		return new Ecomm_OrderViewPage(driver);
@@ -214,22 +215,22 @@ public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 
 	public void checkFields() {
 		//Wait for all fields to be clickable
-		WebElement waitForCustPO = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custPOField));
-		WebElement waitForCreationFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createDateFromField));
-		WebElement waitForYMN = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-		WebElement waitForTicket = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketField));
-		WebElement waitForFinish = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(finishField));
-		WebElement waitForSAPMsg = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(sapMsgField));
-		WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
-		WebElement waitForSalesOrg = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-		WebElement waitForBrand = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandField));
-		WebElement waitForArticle = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(articleField));
-		WebElement waitForLength = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lengthField));
-		WebElement waitForShadeCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-		WebElement waitForSearch = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
-		WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
-		WebElement waitForView = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
-		WebElement waitForFtView = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ftViewButton));
+		WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
+		WebElement waitForCreationFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateFromField));
+		WebElement waitForYMN = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
+		WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
+		WebElement waitForFinish = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishField));
+		WebElement waitForSAPMsg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sapMsgField));
+		WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+		WebElement waitForSalesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+		WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
+		WebElement waitForArticle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
+		WebElement waitForLength = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
+		WebElement waitForShadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
+		WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+		WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+		WebElement waitForView = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
+		WebElement waitForFtView = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ftViewButton));
 		
 		//Assert all elements are displayed
 		AssertJUnit.assertTrue("SAP Interface Log Page: Customer PO Field not displayed",getCustPOField().isDisplayed());

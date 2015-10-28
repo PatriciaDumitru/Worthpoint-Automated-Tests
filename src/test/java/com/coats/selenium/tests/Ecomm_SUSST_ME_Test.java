@@ -702,7 +702,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Validation tests, no requester at manual entry page
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders","QuickTest"})
     public void SUSST9() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1061,7 +1061,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Validation tests, no Ship To Party Name at confirmation page
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders","QuickTest"})
     public void SUSST13() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1296,7 +1296,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         Actions scroller = new Actions(driver);
         scroller.moveToElement(orderConf.getCancelButton()).build().perform();
         
-        WebElement waitForVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
+        WebElement waitForVis = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
         
         //Take a screenshot
         File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -1416,7 +1416,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: Order Draft continuation
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders","QuickTest"})
     public void SUSST17() throws InterruptedException, Exception {
          //New driver
         WebDriver driver = getDriver();
@@ -1458,7 +1458,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         Actions scroller = new Actions(driver);
         scroller.moveToElement(orderConf.getCancelButton()).build().perform();
         
-        WebElement waitForVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
+        WebElement waitForVis = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
         
         Ecomm_OutstandingOrderDraftPage draftPage = orderConf.pressSaveDraft();
         draftPage.waitForElement();

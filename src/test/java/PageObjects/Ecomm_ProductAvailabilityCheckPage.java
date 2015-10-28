@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -104,7 +105,7 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
     }
     
     public Ecomm_OrderViewPage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         driver.findElement(searchButton).click();
         
         return new Ecomm_OrderViewPage(driver);
@@ -112,15 +113,15 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForYourMatNum = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-        WebElement waitForArticle = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement waitForBrand = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForTicket = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForLength = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement waitForFinish = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(finishField));
-        WebElement waitForShadeCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForQty = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(quantityField));
-        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForYourMatNum = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
+        WebElement waitForArticle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
+        WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
+        WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
+        WebElement waitForLength = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
+        WebElement waitForFinish = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishField));
+        WebElement waitForShadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
+        WebElement waitForQty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityField));
+        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
     
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Product Availability Check Page: Your Material Number field not displayed correctly",getYourMatNumField().isDisplayed());

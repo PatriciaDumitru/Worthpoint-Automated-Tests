@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.DataItems;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -23,26 +24,26 @@ public class Ecomm_ExportDownloadPage {
     }
     
     public Ecomm_ExportDownloadPage switchTo() {
-        WebDriver waitForFrame = new WebDriverWait(driver,8).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver waitForFrame = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
         return this;
     }
     
     public void waitForDownloadCompletion() {
         //switchTo();
-        Boolean waitForInvisibility = new WebDriverWait(driver,60).ignoring(NoSuchElementException.class).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));      
+        Boolean waitForInvisibility = new WebDriverWait(driver,DataItems.downloadWait).ignoring(NoSuchElementException.class).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));      
     }
     
     public void pressYes() {
         //For My Report exports, "Yes" will send the file to e-mail
         switchTo();
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(yesButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yesButton));
         driver.findElement(yesButton).click();
     }
     
     public void pressNo() {
         //For My Report exports, "Yes" will send the file to e-mail
         switchTo();
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(noButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(noButton));
         driver.findElement(noButton).click();
     }
 }

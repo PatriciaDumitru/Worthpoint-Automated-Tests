@@ -230,7 +230,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
 
     @Test //Order Samples Page :: Single line order, quantity above threshold
-    (groups = {"CCE","CCE_Orders"})
+    (groups = {"CCE","CCE_Orders","QuickTest"})
     public void SOC4() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -265,7 +265,7 @@ public class Cce_SOC_Test extends DriverFactory {
         addOrder.pressSubmitExceeded();
         
         //Wait for message to appear
-        WebElement waitForMessage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(CCE_AddOrderPage.flashMessageLocator));
+        WebElement waitForMessage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(CCE_AddOrderPage.flashMessageLocator));
         
         String message = driver.findElement(CCE_AddOrderPage.flashMessageLocator).getText();
         
@@ -283,7 +283,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: Multi-line copied data
-    (groups = {"CCE","CCE_Orders"})
+    (groups = {"CCE","CCE_Orders","QuickTest"})
     public void SOC5() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -306,12 +306,13 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Customer details entered. Submitting...");
         
         CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
+        addOrder.waitForElement();
         
         System.out.println("Prompt submitted. Adding line 0 order details...");
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
         addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
-                DataItems.expShadeCode,DataItems.coneMUM,DataItems.sewing,DataItems.salesSamp,2);
+                DataItems.expShadeCode,DataItems.coneMUM,DataItems.sewing,DataItems.salesSamp,1);
         
          //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -337,6 +338,7 @@ public class Cce_SOC_Test extends DriverFactory {
         addOrder.setBrand(DataItems.brand,1);
         addOrder.setTicket(DataItems.ticket,1);
         addOrder.setShadeCode(DataItems.shadeCode,1);
+        addOrder.setQuantity(1, 1);
         
         System.out.println("Order details added. Submitting...");
         
@@ -362,7 +364,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: Pend order 
-    (groups = {"CCE","CCE_Orders"})
+    (groups = {"CCE","CCE_Orders","QuickTest"})
     public void SOC6() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

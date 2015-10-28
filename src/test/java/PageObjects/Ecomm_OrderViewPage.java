@@ -58,17 +58,17 @@ public class Ecomm_OrderViewPage {
     
     public String getCOError() {
         switchTo();
-        WebElement waitForCell = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(COError));
+        WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(COError));
         return driver.findElement(COError).getText();
     }
     
     public void switchTo() {
-    	WebDriver waitForFrame = new WebDriverWait(driver,8).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+    	WebDriver waitForFrame = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
     }
     
     public void pressPrint() {
     	switchTo();
-    	WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
+    	WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
     	if (DataItems.printingEnabled) {
         	driver.findElement(printButton).click();
         	System.out.println("Item sent to printer");
@@ -81,24 +81,24 @@ public class Ecomm_OrderViewPage {
     }
     
     public void waitForContent() {
-    	WebElement wait = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+    	WebElement wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
     }
     
     public void waitForFTData() {
-        WebElement waitForVisible = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(ftDataTable));
+        WebElement waitForVisible = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(ftDataTable));
     }
     
     public void waitForErrorTable() {
         switchTo();
-        WebElement waitForTable = new WebDriverWait(driver,8).until(ExpectedConditions.presenceOfElementLocated(contentLocator));
+        WebElement waitForTable = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.presenceOfElementLocated(contentLocator));
     }
     
     public void waitForProductInfo() {
-        Boolean waitForTitle = new WebDriverWait(driver,8).until(ExpectedConditions.textToBePresentInElementLocated(productInfoLocator,"Product Information"));
+        Boolean waitForTitle = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.textToBePresentInElementLocated(productInfoLocator,"Product Information"));
     }
     
     public void waitForInvisibility() {
-    	Boolean wait = new WebDriverWait(driver,8).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+    	Boolean wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
     }
     
     public void closeView() {
@@ -106,7 +106,7 @@ public class Ecomm_OrderViewPage {
     	Actions pressEsc = new Actions(driver);
     	pressEsc.sendKeys(Keys.ESCAPE).build().perform();
     	//Accept alert
-    	Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+    	Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
     	alert.accept();
     	
     	this.waitForInvisibility();
@@ -118,7 +118,7 @@ public class Ecomm_OrderViewPage {
         Actions pressEsc = new Actions(driver);
         pressEsc.sendKeys(Keys.ESCAPE).build().perform();
         //Accept alert
-        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
         return new Ecomm_OutstandingOrdersPage(driver);

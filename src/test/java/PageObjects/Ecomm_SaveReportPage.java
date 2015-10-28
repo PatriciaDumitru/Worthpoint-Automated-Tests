@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -26,25 +27,25 @@ public class Ecomm_SaveReportPage {
     
     public Ecomm_SaveReportPage setTitle(String item) {
         switchTo();
-        WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(titleField));
+        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(titleField));
         driver.findElement(titleField).sendKeys(item);
         return this;
     }
     
     public void switchTo() {
-        WebDriver wait = new WebDriverWait(driver,8).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
     }
     
     public void waitForContent() {
-        WebElement wait = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+        WebElement wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
     }
     
     public void waitForInvisibility() {
-        Boolean wait = new WebDriverWait(driver,5).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+        Boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
     }
     
     public void pressSave() {
-        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
         driver.findElement(saveButton).click();
         waitForInvisibility();
     }
@@ -54,7 +55,7 @@ public class Ecomm_SaveReportPage {
     	Actions pressEsc = new Actions(driver);
     	pressEsc.sendKeys(Keys.ESCAPE).build().perform();
     	//Accept alert
-    	Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+    	Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
     	alert.accept();
     	
     	this.waitForInvisibility();

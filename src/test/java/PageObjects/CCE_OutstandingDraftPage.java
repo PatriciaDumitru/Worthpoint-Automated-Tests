@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.DataItems;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -64,13 +65,13 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     }
     
     public CCE_OutstandingDraftPage pressListOrders() {
-        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
         driver.findElement(listOrdersButton).click();
         return new CCE_OutstandingDraftPage(driver);
     }
     
     public CCE_OutstandingDraftPage pressReset() {
-        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return new CCE_OutstandingDraftPage(driver);
     }
@@ -78,7 +79,7 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     public CCE_OrderViewPage pressView(int row) {
         By viewButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(row+2)+") > td:nth-child(13) > a");
         
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
         
         driver.findElement(viewButton).click();
         
@@ -89,7 +90,7 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     public CCE_AddOrderPage pressEdit(int row) {
         By editButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(row+2)+") > td:nth-child(12) > a:nth-child(1)");
         
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButton));
         
         driver.findElement(editButton).click();
         
@@ -99,8 +100,8 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     public CCE_CancelDraftPage pressCancel(int row) {
         By cancelButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(row+2)+") > td:nth-child(12) > a.thickbox");
 
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(cancelButton));
-        WebElement wait2 = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cancelButton));
+        WebElement wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
         
         driver.findElement(cancelButton).click();
         
@@ -113,7 +114,7 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
         for (int i = 0; i < 10; i++) {
             By dateCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+2)+") > td:nth-child(4)");
             
-            WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(dateCell));
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(dateCell));
             
             
             //The creation date can differ by 1 minute between the drafts page and the creation page, producing false negatives
@@ -144,7 +145,7 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
         
         for (int i = 0; i < 5; i++) {
             By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+2)+") > td:nth-child(3)");
-            WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
             String cellOrderNo = driver.findElement(orderNoCell).getText();
             
             if (cellOrderNo.equals(orderNo)) {
@@ -157,12 +158,12 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     }
     
     public String getOrderNo(int row) {
-        By orderNoField = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(3)");
-        return driver.findElement(orderNoField).getText();
+        By desiredOrderNoField = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(3)");
+        return driver.findElement(desiredOrderNoField).getText();
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
     }
     
 }

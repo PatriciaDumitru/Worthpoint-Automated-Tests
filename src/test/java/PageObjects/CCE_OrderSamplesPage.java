@@ -48,7 +48,7 @@ public class CCE_OrderSamplesPage extends WBA_BasePage {
     
     public CCE_OrderSamplesPage setRequestor(String requestorName) throws InterruptedException {
         //Wait for entry in customer name
-        Boolean waitForText = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(custCodeFieldLocator, DataItems.custCode));
+        Boolean waitForText = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(custCodeFieldLocator, DataItems.custCode));
         
         CommonTask.setDropDownField(driver, requestorNameFieldLocator, requestorName);
         return this;
@@ -56,7 +56,7 @@ public class CCE_OrderSamplesPage extends WBA_BasePage {
     
     public CCE_AddOrderPage pressSubmit() {
         //wait for button to be clickable
-        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
+        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
         //Click button
         driver.findElement(submitButtonLocator).click();
         return new CCE_AddOrderPage(driver);
@@ -66,9 +66,9 @@ public class CCE_OrderSamplesPage extends WBA_BasePage {
         
         try {
             //Wait for fields to be clickable
-            WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(getCustNameField()));
-            WebElement waitForCustCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(getCustCodeField()));
-            WebElement waitForRequestor = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(getRequestorNameField()));        
+            WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(getCustNameField()));
+            WebElement waitForCustCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(getCustCodeField()));
+            WebElement waitForRequestor = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(getRequestorNameField()));        
             
             //Assert fields are displayed
             AssertJUnit.assertTrue("Order Samples page: Customer Name field not displayed", getCustNameField().isDisplayed());
@@ -82,11 +82,11 @@ public class CCE_OrderSamplesPage extends WBA_BasePage {
     }
 
     public CCE_OrderSamplesPage waitForLoad2() {
-        WebElement waitForVisible = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
+        WebElement waitForVisible = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
         return this;
     }
 
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameFieldLocator));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameFieldLocator));
     }
 }

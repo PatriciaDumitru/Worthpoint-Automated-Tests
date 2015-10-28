@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.DataItems;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,7 +34,7 @@ public class WBA_ForgotPasswordPage {
     
     public WBA_ForgotPasswordPage setEmail(String email) {
         //Wait for field to be clickable and enter e-mail
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(emailFieldLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(emailFieldLocator));
         Actions clickAndType = new Actions(driver);
         clickAndType.click(driver.findElement(emailFieldLocator)).sendKeys(email).build().perform();
         return this;
@@ -41,7 +42,7 @@ public class WBA_ForgotPasswordPage {
     
     public WBA_ForgotPasswordPage pressRecover() {
         //Wait for field to be clickable and click
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(recoverButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(recoverButtonLocator));
         Actions clickRecover = new Actions(driver);
         clickRecover.click(driver.findElement(recoverButtonLocator)).build().perform();
         return this;

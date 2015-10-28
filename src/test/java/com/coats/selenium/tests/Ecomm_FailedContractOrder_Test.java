@@ -102,7 +102,7 @@ public class Ecomm_FailedContractOrder_Test extends DriverFactory {
             Ecomm_OrderConfirmationPage orderConf = fcoPage3.pressEdit(1);
             
             try {
-                Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+                Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
                 System.out.println("Alert appeared: " + alert.getText());
                 alert.accept();
             } catch (Exception e) {

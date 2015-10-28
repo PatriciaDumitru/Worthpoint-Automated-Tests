@@ -30,44 +30,44 @@ public class CommonTask {
         By searchLocator = By.cssSelector("#select2-drop > div > input");
         By resultLocator = By.cssSelector("#select2-drop > ul > li");
         
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         
         Actions action = new Actions(driver);
         action.click(driver.findElement(fieldLocator)).build().perform();
         
-        WebElement waitForSearch = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(searchLocator));
+        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(searchLocator));
         driver.findElement(searchLocator).sendKeys(item);
         //Wait for search result to load
-        Boolean waitForResult = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator, item));
+        Boolean waitForResult = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator, item));
         //Press enter
         action.sendKeys(driver.findElement(searchLocator), Keys.ENTER).build().perform();
         
         //Wait for update
-        boolean waitForUpdate = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item)); 
+        boolean waitForUpdate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item)); 
     }
     
     public static void resetSearchField(WebDriver driver, String id) {
         
         By resetButton = By.cssSelector("#"+id+" > a > abbr");
         
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         
         driver.findElement(resetButton).click();
         
         //Wait for update
-        boolean waitForUpdate = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(By.id(id), "")); 
+        boolean waitForUpdate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(By.id(id), "")); 
     }
     
     public static void setDropDownField(WebDriver driver,By fieldLocator,String item) throws InterruptedException {        
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         Select select = new Select(driver.findElement(fieldLocator));
         driver.findElement(fieldLocator).click();
-        Boolean waitForOption = new WebDriverWait(driver,5).until(CommonTask.optionPresent(item,select));
+        Boolean waitForOption = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.optionPresent(item,select));
         select.selectByVisibleText(item);
     }
     
     public static void clearDropDownField(WebDriver driver, By fieldLocator) {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         
         Select select = new Select(driver.findElement(fieldLocator));
         driver.findElement(fieldLocator).click();
@@ -78,12 +78,12 @@ public class CommonTask {
     public static void setChoiceField(WebDriver driver, By fieldLocator, String item) {
         By resultLocator = By.cssSelector("#select2-drop > ul > li.select2-results-dept-0.select2-result.select2-result-selectable.select2-highlighted");
         //Wait for box to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         //click and enter item
         driver.findElement(fieldLocator).click();
         driver.findElement(fieldLocator).sendKeys(item);
         //Wait for result
-        boolean waitForResult = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator,item));
+        boolean waitForResult = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator,item));
         
         //Press enter
         driver.findElement(fieldLocator).sendKeys(Keys.ENTER);
@@ -94,47 +94,47 @@ public class CommonTask {
         By resultLocator = By.cssSelector("#select2-drop > ul > li");
         
         //Wait for box to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         //click and enter item
         driver.findElement(fieldLocator).click();
         driver.findElement(fieldLocator).sendKeys(item);
         //Wait for result
-        boolean waitForResult = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator,item));
+        boolean waitForResult = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator,item));
         
         //Press enter
         driver.findElement(fieldLocator).sendKeys(Keys.ENTER);
     }
     
     public static void setTextField(WebDriver driver,By fieldLocator, String item) {
-    	WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+    	WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
     	driver.findElement(fieldLocator).click();
     	driver.findElement(fieldLocator).sendKeys(item);
-    	boolean waitForText = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
+    	boolean waitForText = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
 
     }
     
     public static void setInputField(WebDriver driver, By fieldLocator, String item) {
-        WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
     	driver.findElement(fieldLocator).click();
     	driver.findElement(fieldLocator).sendKeys(item);
-    	boolean waitForText = new WebDriverWait(driver,5).until(textToBePresentInput(fieldLocator,item));
+    	boolean waitForText = new WebDriverWait(driver,DataItems.shortWait).until(textToBePresentInput(fieldLocator,item));
     }
     
     public static void setInputFieldAlt(WebDriver driver, String id, String item) {
-        WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id(id))));
+        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id(id))));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.getElementById('"+id+"').setAttribute('attr', '"+item+"')");
-        boolean waitForText = new WebDriverWait(driver,5).until(textToBePresentInput(By.id(id),item));
+        boolean waitForText = new WebDriverWait(driver,DataItems.shortWait).until(textToBePresentInput(By.id(id),item));
     }
     
     public static void setCheckBox(WebDriver driver, By fieldLocator) {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         driver.findElement(fieldLocator).click();
-        Boolean waitForChecked = new WebDriverWait(driver,5).until(CommonTask.boxIsChecked(driver.findElement(fieldLocator)));
+        Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(fieldLocator)));
     }
     
     public static void setDateField(WebDriver driver, By fieldLocator) {
-        WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         
         driver.findElement(fieldLocator).click();
         //Get the current day of the month
@@ -259,7 +259,7 @@ public class CommonTask {
     }
     
     public static void waitForFieldUpdate(WebDriver driver, By fieldLocator, String item) {
-        boolean wait = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
+        boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
     }
     
     public static void closeView(WebDriver driver) {

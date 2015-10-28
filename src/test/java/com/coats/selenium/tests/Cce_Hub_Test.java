@@ -33,7 +33,7 @@ public class Cce_Hub_Test extends DriverFactory {
         System.out.println("Navigating to Hub SOS...");
         
         CCE_HubSosPage hsPage = ccePage.pressHubSos();
-        hsPage.waitForLoad();
+        hsPage.waitForElement();
         
         System.out.println("Hub SOS reached. Checking title...");
         
@@ -69,45 +69,59 @@ public class Cce_Hub_Test extends DriverFactory {
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\3Orders listed.png"));
         
-        System.out.println("Orders listed. Viewing first item...");
+        System.out.println("Orders listed. Checking for records...");
         
-        CCE_OrderViewPage viewPage = hsPage.pressView();
-        viewPage.waitForContent();
+        if (hsPage.findRecords()) {
+            System.out.println("Records foud. Viewing first item...");
         
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\4Order view.png"));
+            CCE_OrderViewPage viewPage = hsPage.pressView();
+            viewPage.waitForContent();
+
+            //Take a screenshot
+            File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\4Order view.png"));
+
+            System.out.println("View reached. Closing view...");
+
+            hsPage.closeView();
+
+            System.out.println("View closed.");
+            
+        } else {
+            System.out.println("No records found under filter. Resetting...");
+            hsPage.pressReset();
+            hsPage.waitForElement();
+            System.out.println("Filter reset");
+        }
         
-        System.out.println("View reached. Closing view...");
+        System.out.println("Adjusting MUM type of first item...");
+
+            String mumType = DataItems.viconeMUM;
+            hsPage.adjustMUMType(mumType);
+
+             //Take a screenshot
+            File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\5MUM type adjusted.png"));
+
+            System.out.println("MUM type adjusted to " + mumType+". Adjusting SOS assignment...");
+
+            String assignment = "SOS Lab";
+            hsPage.adjustAssignment(assignment);
+
+            //Take a screenshot
+            File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\6SOS assignment adjusted.png"));
+
+            System.out.println("SOS assignment set. Saving changes...");
+
+            hsPage.pressSave();
+            hsPage.waitForLoad();
+
+            //Take a screenshot
+            File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\7Changes saved.png"));
         
-        hsPage.closeView();
         
-        System.out.println("View closed. Adjusting MUM type of first item...");
-        
-        String mumType = DataItems.viconeMUM;
-        hsPage.adjustMUMType(mumType);
-        
-         //Take a screenshot
-        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\5MUM type adjusted.png"));
-        
-        System.out.println("MUM type adjusted to " + mumType+". Adjusting SOS assignment...");
-        
-        String assignment = "SOS Lab";
-        hsPage.adjustAssignment(assignment);
-        
-        //Take a screenshot
-        File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\6SOS assignment adjusted.png"));
-        
-        System.out.println("SOS assignment set. Saving changes...");
-        
-        hsPage.pressSave();
-        hsPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\7Changes saved.png"));
         
     } 
     

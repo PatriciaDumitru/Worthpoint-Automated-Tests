@@ -115,7 +115,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     viewPage.waitForInvisibility();
     
     try {
-        Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         AssertJUnit.assertTrue(alert2.getText().matches("^Do you want to cancel the current operation[\\s\\S]$"));
         alert2.accept();
     } catch (Exception e) {
@@ -167,7 +167,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     
     try {
-        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         AssertJUnit.assertTrue(alert.getText().matches("^Do you want to SUBMIT the order[\\s\\S]$"));
         alert.accept();
     } catch (Exception e) {
@@ -212,7 +212,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
     System.out.println("Manual Entry Page reached. Entering customer details...");
     
-    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
+    WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
@@ -278,7 +278,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
       System.out.println("Manual Entry Page reached. Entering Customer details...");
     
-    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));  
+    WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));  
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
@@ -340,7 +340,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
     System.out.println("Manual Entry page reached. Entering customer details...");
     
-    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
+    WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
@@ -366,24 +366,24 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
       System.out.println("Next pressed, expecting error...");
     
     try {
-        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
     } catch (Exception e) {
         System.out.println("No alert before confirmation");
     }  
     
     try {
-        Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert2.accept();
     } catch (Exception e) {
         System.out.println("Additional alert not displayed");
     }
     Ecomm_ManualEntryPage mePage2 = new Ecomm_ManualEntryPage(driver);
-    boolean waitForError = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(flashMessage,"could not"));
+    boolean waitForError = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(flashMessage,"could not"));
     
     System.out.println("Error received. ");
     
-    WebElement wait2 = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(contractPOField));  
+    WebElement wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractPOField));  
     Actions action = new Actions(driver);
     action.moveToElement(driver.findElement(contractPOField)).build().perform();
     
@@ -404,7 +404,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
     System.out.println("Manual Entry Page reached. Entering customer details...");
     
-    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
+    WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
@@ -426,7 +426,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
 
     try {
-        Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert2.accept();
     } catch (Exception e) {
         System.out.println("No additional alert");
@@ -469,7 +469,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order #7", "CO_ME_7", DataItems.validCustUsername, DataItems.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     
-    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
+    WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
     driver.findElement(By.id("BulkOrderPoNumber")).clear();
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
@@ -487,19 +487,19 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     Ecomm_ManualEntryPage mePage2 = new Ecomm_ManualEntryPage(driver);
 
     try {
-        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
     } catch (Exception e) {
         System.out.println("No additional alerts displayed. ");
     }
     
     mePage2.waitForElement();
-    boolean waitForError = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(flashMessage, "could not"));
+    boolean waitForError = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(flashMessage, "could not"));
     System.out.println("Error received: "+driver.findElement(flashMessage).getText());
     
     Actions action = new Actions(driver);
     action.moveToElement(driver.findElement(contractPOField)).build().perform();
-    WebElement waitForVisible = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(contractPOField));
+    WebElement waitForVisible = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(contractPOField));
     
     //Take a screenshot
     File scrFile14 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

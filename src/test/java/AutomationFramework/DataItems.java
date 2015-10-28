@@ -15,13 +15,13 @@ public class DataItems {
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
     public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
-    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_69.xlsx";
-    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_70.xlsx";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_68.xlsx";
-    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_68C.xlsx";
-    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_26.xlsx";
-    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_27.xlsx";
-    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_28.xlsx";
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_71.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_72.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_69.xlsx";
+    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_69C.xlsx";
+    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_29.xlsx";
+    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_30.xlsx";
+    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_31.xlsx";
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";
@@ -168,5 +168,11 @@ public class DataItems {
     public static String sapMessage = "Success";
     
     public static String lastUsedPO = "";
+    
+    //Wait times in seconds
+    public static int shorterWait = 8;
+    public static int shortWait = 10;
+    public static int longWait = 20;
+    public static int downloadWait = 60;
     
 }

@@ -99,7 +99,7 @@ public class Ecomm_Shade_Test extends DriverFactory {
         Ecomm_ShadeOrderConfirmationPage snaConf = snaPage.pressEdit();
         
         try {
-            Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
             alert.accept();
             System.out.println("Alert appeared: " + alert.getText());
         } catch (Exception e) {

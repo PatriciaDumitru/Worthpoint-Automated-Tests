@@ -74,13 +74,13 @@ public class Ecomm_FailedContractOrderPage extends WBA_BasePage {
     }
     
     public Ecomm_FailedContractOrderPage pressSearch() {
-        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         driver.findElement(searchButton).click();
         return new Ecomm_FailedContractOrderPage(driver);
     }
     
     public Ecomm_FailedContractOrderPage pressReset() {
-        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return new Ecomm_FailedContractOrderPage(driver);
     }   
@@ -88,7 +88,7 @@ public class Ecomm_FailedContractOrderPage extends WBA_BasePage {
     public Ecomm_OrderViewPage pressView(int row) {
         By viewButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(2) > a > span");
         
-        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
         driver.findElement(viewButton).click();
         
         return new Ecomm_OrderViewPage(driver);      
@@ -97,7 +97,7 @@ public class Ecomm_FailedContractOrderPage extends WBA_BasePage {
     public Ecomm_OrderConfirmationPage pressEdit(int row) {
         By editButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(1) > a > span");
         
-        WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(editButton));
+        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(editButton));
         driver.findElement(editButton).click();
         
         return new Ecomm_OrderConfirmationPage(driver);
@@ -105,13 +105,13 @@ public class Ecomm_FailedContractOrderPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForSalesOrg = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement waitForCustPO = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForDateFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createDateFromField));
-        WebElement waitForDateTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createDateToField));
-        WebElement waitForSearch = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForSalesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+        WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
+        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForDateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateFromField));
+        WebElement waitForDateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateToField));
+        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Failed Contract Order Page: Sales Organisation Field not displayed correctly",getSalesOrgField().isDisplayed());
@@ -128,7 +128,7 @@ public class Ecomm_FailedContractOrderPage extends WBA_BasePage {
         boolean returnMe = false;
         
         try {
-            WebElement waitForRecords = new WebDriverWait(driver,3).until(ExpectedConditions.visibilityOfElementLocated(noRecordsLabel));
+            WebElement waitForRecords = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(noRecordsLabel));
         } catch (Exception e) {
             returnMe = true;
         }

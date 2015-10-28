@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +33,7 @@ public class CCE_FCETaskStatusPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement waitForBreadcrumb = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
+        WebElement waitForBreadcrumb = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
         return driver.findElement(breadcrumb);
     }
     
@@ -111,19 +112,19 @@ public class CCE_FCETaskStatusPage extends WBA_BasePage {
     }
     
     public CCE_OrderViewPage pressPrint() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
         driver.findElement(printButton).click();
         return new CCE_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
         driver.findElement(exportToExcelButton).click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public CCE_FCETaskStatusPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         
         return new CCE_FCETaskStatusPage(driver);
@@ -131,17 +132,17 @@ public class CCE_FCETaskStatusPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all fields to be clickable
-        WebElement waitForSalesOrg = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-        WebElement waitForHub = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement waitForTaskType = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(taskTypeField));
-        WebElement waitForFCE = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForTaskStatus = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(taskStatusField));
-        WebElement waitForPrint = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
-        WebElement waitForExport = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
-        WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForSalesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForOrderFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
+        WebElement waitForOrderTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateToField));
+        WebElement waitForHub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
+        WebElement waitForTaskType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(taskTypeField));
+        WebElement waitForFCE = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceNameField));
+        WebElement waitForTaskStatus = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(taskStatusField));
+        WebElement waitForPrint = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("FCE Task Status Page: Sales Org Field not displayed correctly",getSalesOrgField().isDisplayed());

@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.DataItems;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -21,13 +22,13 @@ public class CCE_ExportDownloadPage {
     }
     
     public CCE_ExportDownloadPage switchTo() {
-        WebDriver waitForFrame = new WebDriverWait(driver,5).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver waitForFrame = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
         return this;
     }
     
     public void waitForDownloadCompletion() {
         //switchTo();
-        Boolean waitForInvisibility = new WebDriverWait(driver,60).ignoring(NoSuchElementException.class).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));      
+        Boolean waitForInvisibility = new WebDriverWait(driver,DataItems.downloadWait).ignoring(NoSuchElementException.class).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));      
     }
     
 }

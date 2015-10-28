@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.DataItems;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -99,7 +100,7 @@ public class WBA_LoginPage {
     
     public WBA_ForgotPasswordPage pressForgotPassword() {
         //Wait for link element to be clickable
-        WebElement waitForLink = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(forgotPasswordLocator));
+        WebElement waitForLink = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(forgotPasswordLocator));
         //New action to press forgot password
         Actions clickForgotPassword = new Actions(driver);
         clickForgotPassword.click(driver.findElement(forgotPasswordLocator)).build().perform();

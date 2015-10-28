@@ -1,6 +1,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import PageObjects.Ecomm_ExportDownloadPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
@@ -18,11 +19,112 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_OOD_Test extends DriverFactory {
+public class Ecomm_OO_Test extends DriverFactory {
 
+    @Test //Outstanding Orders Page :: Page and filter checks
+    (groups ={"eComm"})
+    public void OP1() throws Exception{
+        WebDriver driver = getDriver();
+        
+        //new base test to handle set up
+        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("OUTSTANDING ORDERS OP1: Complete order from draft","G_OP_F_1");
+
+        System.out.println("Navigating to Outstanding Orders Page...");
+        
+        Ecomm_OutstandingOrdersPage outOrders = eCommPage.clickOutstandingOrders();
+        outOrders.waitForElement();
+        
+        System.out.println("Outstanding Orders Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Outstanding Orders Page: Title not displayed as expected",outOrders.getBreadcrumb().getText().equals("Orders | Outstanding"));
+        
+        System.out.println("Title checked.");
+        
+        outOrders.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        outOrders.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        outOrders.setCustomerName(DataItems.custDetails[0]);
+        outOrders.setOrderStatus("Open");
+        
+        System.out.println("Criteria entered. Press search...");
+        
+        outOrders.pressSearch();
+        outOrders.waitForElement();
+        
+        System.out.println("Orders listed. Checking for records...");
+        
+        if (outOrders.checkForRecords()) {
+            
+            System.out.println("Viewing top item...");
+            
+            Ecomm_OrderViewPage viewPage = outOrders.pressView(2);
+            viewPage.waitForContent();
+            
+            System.out.println("View displayed. Closing view...");
+            
+            viewPage.closeView();
+            viewPage.waitForInvisibility();
+            
+            System.out.println("View closed. Pressing print...");
+            
+            Ecomm_OrderViewPage printPage = outOrders.pressPrint(2);
+            printPage.waitForContent();
+            
+            System.out.println("Print page displayed. Closing page...");
+            
+            printPage.closeView();
+            printPage.waitForInvisibility();
+            
+            System.out.println("Print view closed.");
+            
+        } else {
+            System.out.println("No records found, cannot test View/Print");
+        }
+        
+        System.out.println("Resetting filter...");
+            
+        outOrders.pressReset();
+        outOrders.waitForElement();
+            
+        boolean reset;
+        
+        try {
+            Boolean wait = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.textToBePresentInElement(outOrders.getCustNameField(), ""));
+            reset = true;
+        } catch (Exception e) {
+            reset = false;
+        }
+        
+        AssertJUnit.assertTrue("Outstanding Order Page: Filter did not reset upon click",reset);
+        
+        System.out.println("Filter reset. Re-entering filter criteria, preparing to export...");
+        
+        outOrders.setCustomerName(DataItems.custDetails[0]);
+        outOrders.setOrderStatus("Picking In Warehouse");
+        
+        System.out.println("Criteria set. Exporting records...");
+        
+        Ecomm_ExportDownloadPage dlPage = outOrders.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export completed, file downloaded.");
+        
+    }
+    
     @Test //Outstanding Order Drafts Page :: Complete an order from draft
     (groups = {"eComm"})
     public void ODP2() throws IOException, Exception {

@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -121,53 +122,53 @@ public class CCE_LRMLogPage extends WBA_BasePage {
     }
     
     public CCE_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
         driver.findElement(viewButton).click();
         return new CCE_OrderViewPage(driver);
     }
     
     public CCE_LRMLogPage pressResend() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resendButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resendButton));
         driver.findElement(resendButton).click();
         return this;
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
         driver.findElement(exportButton).click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public CCE_LRMLogPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return new CCE_LRMLogPage(driver);
     }
     
     public CCE_LRMLogPage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         driver.findElement(searchButton).click();
         return new CCE_LRMLogPage(driver);
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForDelPlant = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(deliveryPlantField));
-        WebElement waitForShadeName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeNameField));
-        WebElement waitForOrderLine = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderLineField));
-        WebElement waitForSupplyPlant = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(supplyPlantField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderFromDateField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderToDateField));
-        WebElement waitForLabSosFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(labsosDateFromField));
-        WebElement waitForLabSosTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(labsosDateToField));
-        WebElement waitForShadeCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForErrorMessage = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(errorMessageField));
-        WebElement waitForSearch = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForExport = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
-        WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForView = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
-        WebElement waitForResend = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resendButton));
+        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForDelPlant = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveryPlantField));
+        WebElement waitForShadeName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeNameField));
+        WebElement waitForOrderLine = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderLineField));
+        WebElement waitForSupplyPlant = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(supplyPlantField));
+        WebElement waitForOrderFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderFromDateField));
+        WebElement waitForOrderTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderToDateField));
+        WebElement waitForLabSosFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(labsosDateFromField));
+        WebElement waitForLabSosTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(labsosDateToField));
+        WebElement waitForShadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
+        WebElement waitForErrorMessage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(errorMessageField));
+        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForView = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForResend = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resendButton));
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("LRM Log Page: Order Number field not displayed",getOrderNoField().isDisplayed());

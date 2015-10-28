@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 import static PageObjects.WBA_BasePage.driver;
 import static PageObjects.Ecomm_ManualEntryPage.customerNameField;
 import org.openqa.selenium.Alert;
@@ -54,7 +55,7 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     }
    
     public String getPONumber() {
-        WebElement waitForVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(poNumberCell));
+        WebElement waitForVis = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(poNumberCell));
         return driver.findElement(poNumberCell).getText();
     }
     
@@ -80,11 +81,11 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     
     public Ecomm_OutstandingOrderDraftPage pressSearch() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButtonLocator));
         Actions clickSearch = new Actions(driver);
         clickSearch.click(driver.findElement(searchButtonLocator)).build().perform();
         //Wait for update
-        WebElement waitForUpdate = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(resultTableLocator));
+        WebElement waitForUpdate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(resultTableLocator));
         
         return this;
     }
@@ -95,8 +96,8 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        Boolean waitForTitle = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(titleLocator, "Outstanding Order Draft List"));
-        WebElement waitForForm = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(formLocator));
+        Boolean waitForTitle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(titleLocator, "Outstanding Order Draft List"));
+        WebElement waitForForm = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(formLocator));
     }
     
     public String findDraft(String poNumber) {
@@ -120,11 +121,11 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     
     public Ecomm_OrderViewPage pressView() {
         
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButtonLocator));
         Actions clickView = new Actions(driver);
         clickView.click(driver.findElement(viewButtonLocator)).build().perform();
         
-        WebDriver waitForOverlay = new WebDriverWait(driver,8).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(overlayLocator));
+        WebDriver waitForOverlay = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(overlayLocator));
         
         return new Ecomm_OrderViewPage(driver);
     }
@@ -132,7 +133,7 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage pressEdit() {
         
         //Wait for button and press
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButtonLocator));
         Actions clickView = new Actions(driver);
         clickView.click(driver.findElement(editButtonLocator)).build().perform();
         
@@ -141,7 +142,7 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     }
     
     public Ecomm_OrderConfirmationPage pressEditToConf() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(editButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButtonLocator));
         Actions clickEdit = new Actions(driver);
         clickEdit.click(driver.findElement(editButtonLocator)).build().perform();
         
@@ -155,7 +156,7 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
         pressEsc.sendKeys(Keys.ESCAPE).build().perform();
         
         //Handle alert
-        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
         return new Ecomm_OutstandingOrderDraftPage(driver);
@@ -165,16 +166,16 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     public Ecomm_OutstandingOrderDraftPage pressCancel() {
         
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
         Actions clickView = new Actions(driver);
         clickView.click(driver.findElement(cancelButtonLocator)).build().perform();
         
         //Confirm alert
-        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
         //Wait for message to appear
-        WebElement waitForMessage = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(cancelMessageLocator));
+        WebElement waitForMessage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cancelMessageLocator));
         
         return this;
     }

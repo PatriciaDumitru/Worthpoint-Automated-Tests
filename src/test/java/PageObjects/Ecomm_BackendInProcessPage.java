@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -50,23 +51,23 @@ public class Ecomm_BackendInProcessPage extends WBA_BasePage {
     }
     
     public Ecomm_BackendInProcessPage pressSearch() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         driver.findElement(searchButton).click();
         return this;
     }
     
     public Ecomm_BackendInProcessPage pressReset() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(searchButton).click();
         return this;
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForFileName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fileNameField));
-        WebElement waitForSearch = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForFileName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fileNameField));
+        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
 
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Backend In Process Files Page: Customer name field not displayed",getCustNameField().isDisplayed());
@@ -79,7 +80,7 @@ public class Ecomm_BackendInProcessPage extends WBA_BasePage {
         boolean returnMe = true;
         
         try {
-            WebElement waitForElement = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(noRecordsField));
+            WebElement waitForElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(noRecordsField));
             returnMe = false;
         } catch (Exception e) {
             returnMe = true;

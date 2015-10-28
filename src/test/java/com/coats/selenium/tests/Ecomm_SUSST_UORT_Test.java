@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 public class Ecomm_SUSST_UORT_Test extends DriverFactory {
     
     @Test //Upload Order Page :: Page checks and realtime upload order of <100 lines
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders","QuickTest"})
     public void UORT1() throws AWTException, IOException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -54,7 +54,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         uploadPage.assertBaseElements();
         System.out.println("Asserting other elements...");
         //Wait for page to load before asserting the other elements
-        WebElement waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(uploadPage.getUploadButton()));
+        WebElement waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(uploadPage.getUploadButton()));
         AssertJUnit.assertTrue("Upload Order page: File name field not displayed",uploadPage.getFileNameOutputField().isDisplayed());
         AssertJUnit.assertTrue("Upload Order page: Realtime upload radio button not displayed",uploadPage.getRealtimeRadio().isDisplayed());
         AssertJUnit.assertTrue("Upload Order page: Backend upload radio button not displayed",uploadPage.getBackendRadio().isDisplayed());
@@ -146,7 +146,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
     }    
 
     @Test //Upload Order Page :: Realtime upload order of <100 lines, removing mandatory fields at before submission
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders","QuickTest"})
     public void UORT2() throws AWTException, IOException, InterruptedException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -201,7 +201,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         Ecomm_UploadProcessPage errorPage = orderConf.pressSubmitExpectingFailure();
         
         try {
-            Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+            Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
             System.out.println("Alert appeared: " + alert2.getText());
             alert2.accept();
         } catch (Exception e) {
@@ -236,7 +236,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: Upload draft creation and cancellation
-    (groups = {"eComm","eComm_Orders","Solo"})
+    (groups = {"eComm","eComm_Orders"})
     public void UORT3() throws AWTException, InterruptedException, IOException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -290,7 +290,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         Actions scroller = new Actions(driver);
         scroller.moveToElement(orderConf.getCancelButton()).build().perform();
-        WebElement waitForScroll = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
+        WebElement waitForScroll = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
         
         //Take a screenshot
         File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -313,7 +313,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
     }
     
     @Test //Upload Order Page :: Upload draft continuation and cancellation
-    (groups = {"eComm","eComm_Orders","Solo"})
+    (groups = {"eComm","eComm_Orders"})
     public void UORT4() throws IOException, InterruptedException, AWTException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -395,7 +395,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
     }
     
     @Test //Upload Order Page :: Upload draft continuation
-    (groups = {"eComm","eComm_Orders","Solo"})
+    (groups = {"eComm","eComm_Orders"})
     public void UORT5() throws IOException, AWTException, InterruptedException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -443,7 +443,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         Actions scroller = new Actions(driver);
         scroller.moveToElement(orderConf.getCancelButton()).build().perform();
-        WebElement waitForScroll = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
+        WebElement waitForScroll = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
         
         //Take a screenshot
         File scrFile13 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -465,7 +465,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         
         Actions scroller2 = new Actions(driver);
         scroller2.moveToElement(orderConf.getCancelButton()).build().perform();
-        WebElement waitForScroll2 = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
+        WebElement waitForScroll2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
         
         //Take a screenshot
         File scrFile15 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

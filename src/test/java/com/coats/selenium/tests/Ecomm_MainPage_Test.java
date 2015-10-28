@@ -56,7 +56,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
         System.out.println("Selection page loaded. eComm selected...");
         
         //Wait for page to load
-        boolean waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.titleIs(DataItems.eCommPageTitle));
+        boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.titleIs(DataItems.eCommPageTitle));
         
         System.out.println("eComm page loaded.");
         
@@ -100,7 +100,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
                 Actions hoverOverTab = new Actions(driver);
                 hoverOverTab.moveToElement(tab).click().build().perform();
                 //wait for submenu to be visible
-                WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#topnav > li:nth-child("+i+") > div > div > ul > li:nth-child(1)")));
+                WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#topnav > li:nth-child("+i+") > div > div > ul > li:nth-child(1)")));
                 //cycle through expected submenu items 
                 for (int k = 0; k < expectedSubMenu[i-1].length; k++) {
                     locator = By.cssSelector("#topnav > li:nth-child("+i+") > div > div > ul > li:nth-child("+(k+1)+")");
@@ -139,7 +139,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
         for (int headCount = 0; headCount < expectedSubMenu.length; headCount++) {
             
             By headLocator = By.cssSelector("#topnav > li:nth-child("+(headCount+1)+")");
-            WebElement waitForHead = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(headLocator));
+            WebElement waitForHead = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(headLocator));
             
             if (expectedSubMenu[headCount].length == 0) {
                 String expectedTitle = DataItems.eCommExpectedTitles[0][pageCount];
@@ -198,7 +198,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
                     
                     driver.findElement(headLocator).click();
                     
-                    WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(subTabLocator));
+                    WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subTabLocator));
                     
                     driver.findElement(subTabLocator).click();
                     

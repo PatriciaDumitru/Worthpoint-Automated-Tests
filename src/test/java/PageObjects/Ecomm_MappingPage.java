@@ -244,15 +244,15 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     
     public Ecomm_OrderConfirmationPage pressConfirm() {
         //wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
         //New action to click confirm
         Actions clickConfirm = new Actions(driver);
         clickConfirm.click(driver.findElement(confirmButtonLocator)).build().perform();
         //Confirm alert
-        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
-        Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert2.accept();
         
         return new Ecomm_OrderConfirmationPage(driver);
@@ -260,7 +260,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     
     public Ecomm_MappingPage setMapping(String[][] mapping) {
         //Wait for page to load
-        WebElement waitForLoad = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        WebElement waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
         
         Actions inputKeys = new Actions(driver);
         
@@ -278,18 +278,18 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         inputKeys.click(this.getCustNameField()).build().perform();
         inputKeys.sendKeys(DataItems.custDetails[0]).build().perform();
         //Wait for result to appear and press enter
-        WebElement waitForResult = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(custNameResultLocator));
-        boolean waitForText = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(custNameResultLocator, DataItems.custDetails[0]));
+        WebElement waitForResult = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custNameResultLocator));
+        boolean waitForText = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(custNameResultLocator, DataItems.custDetails[0]));
         inputKeys.sendKeys(Keys.ENTER);
         
         //Article
         AssertJUnit.assertTrue("Mapping page: Article field not displayed",this.getArticleField().isDisplayed());
         AssertJUnit.assertTrue("Mapping page: Article label incorrectly displayed",this.getArticleLabel().getText().equals(mapping[1][0]));
         inputKeys.click(this.getArticleField()).build().perform();
-        WebElement waitForOptions = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(articleOptionLocator));
+        WebElement waitForOptions = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(articleOptionLocator));
         inputKeys.sendKeys(mapping[1][1]).build().perform();
         //Wait for field to update
-        Boolean waitForUpdate = new WebDriverWait(driver,5).until(ExpectedConditions.textToBePresentInElementLocated(articleFieldLocator, mapping[1][1]));
+        Boolean waitForUpdate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(articleFieldLocator, mapping[1][1]));
         
         //Ticket
         AssertJUnit.assertTrue("Mapping page: Ticket field not displayed",this.getTicketField().isDisplayed());
@@ -526,7 +526,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
     }
     
 }

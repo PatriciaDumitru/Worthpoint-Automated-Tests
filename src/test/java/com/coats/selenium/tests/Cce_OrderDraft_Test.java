@@ -44,7 +44,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         System.out.println("Customer details entered. Submitting...");
         
         CCE_AddOrderPage orderPage = osPage.pressSubmit();
-        orderPage.waitForLoad();
+        orderPage.waitForElement();
         
         System.out.println("Submitted. Entering product details...");
         

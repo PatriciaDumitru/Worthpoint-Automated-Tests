@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 
 public class Ecomm_InvoicesPage extends WBA_BasePage {
 
@@ -29,7 +30,10 @@ public class Ecomm_InvoicesPage extends WBA_BasePage {
 	By printButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
 	By viewButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(2) > a");
 	By exportButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > a");
-	
+	public By noRecords = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > div");
+        public String shipToPart1 = "#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(";
+        public String shipToPart2 = ") > td:nth-child(10)";
+        
 	public Ecomm_InvoicesPage(WebDriver passedDriver) {
 		super(passedDriver);
 	}
@@ -143,53 +147,53 @@ public class Ecomm_InvoicesPage extends WBA_BasePage {
 	}
 	
 	public Ecomm_InvoicesPage pressSearch() {
-		WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+		WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
 		driver.findElement(searchButton).click();
 		return this;
 	}
 	
 	public Ecomm_InvoicesPage pressReset() {
-		WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+		WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
 		driver.findElement(resetButton).click();
 		return this;
 	}
 	
 	public Ecomm_OrderViewPage pressView() {
-		WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
+		WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
 		driver.findElement(viewButton).click();
 		return new Ecomm_OrderViewPage(driver);
 	}
 	
 	public Ecomm_OrderViewPage pressPrint() {
-		WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
+		WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
 		driver.findElement(printButton).click();
 		return new Ecomm_OrderViewPage(driver);
 	}
 	
 	public Ecomm_ExportDownloadPage pressExport() {
-		WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
+		WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
 		driver.findElement(exportButton).click();
 		return new Ecomm_ExportDownloadPage(driver);
 	}
 	
-	public void checkFields() {
+	public void checkFields_SUMST() {
             //Wait for all elements to be clickable
-            WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
-            WebElement waitForCustPO = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custPOField));
-            WebElement waitForOrderFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-            WebElement waitForOrderTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-            WebElement waitForYMN = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-            WebElement waitForPaymentFrom= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(paymentDateFromField));
-            WebElement waitForPaymentTo= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(paymentDateToField));
-            WebElement waitForShipToName= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToPartyNameField));
-            WebElement waitForInvoice= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(invoiceNoField));
-            WebElement waitForSAPOrderNo= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(sapOrderNoField));
-            WebElement waitForStatus= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(statusField));
-            WebElement waitForRequester= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requesterField));
-            WebElement waitForSearch= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
-            WebElement waitForReset= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
-            WebElement waitForPrint= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
-            WebElement waitForView= new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
+            WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
+            WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
+            WebElement waitForOrderFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
+            WebElement waitForOrderTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateToField));
+            WebElement waitForYMN = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
+            WebElement waitForPaymentFrom= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(paymentDateFromField));
+            WebElement waitForPaymentTo= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(paymentDateToField));
+            WebElement waitForShipToName= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyNameField));
+            WebElement waitForInvoice= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(invoiceNoField));
+            WebElement waitForSAPOrderNo= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sapOrderNoField));
+            WebElement waitForStatus= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(statusField));
+            WebElement waitForRequester= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
+            WebElement waitForSearch= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+            WebElement waitForReset= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+            WebElement waitForPrint= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
+            WebElement waitForView= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
 
             //Assert all elements are displayed
             AssertJUnit.assertTrue("Invoices Page: Customer Name field not displayed correctly",getCustNameField().isDisplayed());
@@ -210,6 +214,44 @@ public class Ecomm_InvoicesPage extends WBA_BasePage {
             AssertJUnit.assertTrue("Invoices Page: Print Button not displayed correctly",getPrintButton().isDisplayed());
             AssertJUnit.assertTrue("Invoices Page: Export Button not displayed correctly",getExportButton().isDisplayed());
 	}
+        
+        public void checkFields_SUSST() {
+            //Wait for all elements to be clickable
+            WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
+            WebElement waitForOrderFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
+            WebElement waitForOrderTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateToField));
+            WebElement waitForYMN = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
+            WebElement waitForPaymentFrom= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(paymentDateFromField));
+            WebElement waitForPaymentTo= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(paymentDateToField));
+            WebElement waitForShipToName= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyNameField));
+            WebElement waitForInvoice= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(invoiceNoField));
+            WebElement waitForSAPOrderNo= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sapOrderNoField));
+            WebElement waitForStatus= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(statusField));
+            WebElement waitForSearch= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+            WebElement waitForReset= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+            WebElement waitForPrint= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
+            WebElement waitForView= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
 
+            //Assert all elements are displayed
+            AssertJUnit.assertTrue("Invoices Page: Customer PO field not displayed correctly",getCustPOField().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Order Date From field not displayed correctly",getOrderDateFromField().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Order Date To field not displayed correctly",getOrderDateToField().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Your Material Number field not displayed correctly",getYourMatNumField().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Payment Date From field not displayed correctly",getPaymentDateFromField().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Payment Date To field not displayed correctly",getPaymentDateToField().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Ship To Name field not displayed correctly",getShipToNameField().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Invoice No Field not displayed correctly",getInvoiceField().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: SAP Order No Field not displayed correctly",getSAPOrderNoField().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Status Field not displayed correctly",getStatusField().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Search button not displayed correctly",getSearchButton().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Reset Button not displayed correctly",getResetButton().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: View Button not displayed correctly",getViewButton().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Print Button not displayed correctly",getPrintButton().isDisplayed());
+            AssertJUnit.assertTrue("Invoices Page: Export Button not displayed correctly",getExportButton().isDisplayed());
+        }
+        
+        public void waitForElement() {
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyNameField));
+        }
 	
 }

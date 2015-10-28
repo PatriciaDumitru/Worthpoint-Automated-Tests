@@ -43,7 +43,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     
     System.out.println("Upload Order reached. Setting filepath and upload method...");
     
-    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(By.id("filename")));
+    WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(By.id("filename")));
     driver.findElement(By.id("filename")).sendKeys(DataItems.co_uploadOrderFilepath);
     
     driver.findElement(By.id("bulkuploadprocess1")).click();
@@ -63,7 +63,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     
     System.out.println("Mapping page reached. Setting mapping...");
     
-    WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderLineCustomerMaterialNo")));
+    WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderLineCustomerMaterialNo")));
     driver.findElement(By.id("BulkOrderLineCustomerMaterialNo")).click();
     new Select(driver.findElement(By.id("BulkOrderLineCustomerMaterialNo"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineArticleId"))).selectByVisibleText("N/A");
@@ -88,7 +88,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     driver.findElement(By.id("trigger")).click();
     
     try {
-        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         AssertJUnit.assertTrue(alert.getText().matches("^Do you want to Upload the file[\\s\\S]$"));
         alert.accept();
     } catch(Exception e) {
@@ -96,7 +96,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     }
     
     try {
-        Alert alert3 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert3.accept();
     } catch (Exception e) {
         System.out.println("No additional alerts.");
@@ -111,7 +111,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
           
-    WebElement waitForButton = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
+    WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
     
     //Take a screenshot
     File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -134,14 +134,14 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     System.out.println("View closed.");
     
     try {
-        Alert alert2 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         AssertJUnit.assertTrue(alert2.getText().matches("^Do you want to cancel the current operation[\\s\\S]$"));
         alert2.accept();
     } catch (Exception e) {
         System.out.println("No alert upon closing view.");
     }
       
-        WebElement waitForButton2 = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement waitForButton2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
         System.out.println("Order cancelled, as Contract Order Call-off is disabled");
@@ -163,7 +163,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     Ecomm_MainPage ecomm = new Ecomm_MainPage(driver);
     ecomm.clickUploadOrder();
     
-    WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(By.id("filename")));
+    WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(By.id("filename")));
     driver.findElement(By.id("filename")).sendKeys(DataItems.co_uploadOrderFilepath2);
     
     driver.findElement(By.cssSelector("input.btn-submit-upload")).click();
@@ -171,7 +171,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     Ecomm_MappingAlert mapAlert = new Ecomm_MappingAlert(driver);
     mapAlert.pressNo();
     
-    WebElement waitForField = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderLineCustomerMaterialNo")));
+    WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderLineCustomerMaterialNo")));
     
     new Select(driver.findElement(By.id("BulkOrderLineCustomerMaterialNo"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineArticleId"))).selectByVisibleText("N/A");
@@ -189,12 +189,12 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     
     driver.findElement(By.id("trigger")).click();
     
-    Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+    Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
     AssertJUnit.assertTrue(alert.getText().matches("^Do you want to Upload the file[\\s\\S]$"));
     alert.accept();
     
     try {
-        Alert alert3 = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert3.accept();
     } catch (Exception e) {
         System.out.println("Alert not found");;
@@ -210,7 +210,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
 
-    WebElement waitForPresence = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
+    WebElement waitForPresence = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
     
     //Take a screenshot
     File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

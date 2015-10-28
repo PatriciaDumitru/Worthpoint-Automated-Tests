@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.DataItems;
 import static PageObjects.CCE_MainPage.ordersHeader;
 import static PageObjects.Ecomm_MainPage.ordersTab;
 import java.text.DateFormat;
@@ -161,7 +162,7 @@ public class WBA_BasePage {
         System.out.println("Asserting base elements...");
 
         //Wait for elements to be visible
-        WebElement waitForElements = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(getFooter()));
+        WebElement waitForElements = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(getFooter()));
 
         //Assert that all elements belonging to the base page (listed in the locators) are displayed correctly
         AssertJUnit.assertTrue("Base page: 'Today' label not displayed",getTodayLabel().isDisplayed());
@@ -180,16 +181,16 @@ public class WBA_BasePage {
     }
     
     public void waitForLoad() {
-        WebElement waitForContent = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(contentFrame));
+        WebElement waitForContent = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(contentFrame));
     }
     
     public Ecomm_ManualEntryPage clickManualEntry() {
         //Wait for visibility of navigation bar
-        WebElement waitForVisible = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        WebElement waitForVisible = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
         //navigate to the manual entry link
         driver.findElement(ordersTab).click();
         //wait for menu to drop down
-        WebElement waitForMenuVis = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(manualEntrySubTab));
+        WebElement waitForMenuVis = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(manualEntrySubTab));
         driver.findElement(manualEntrySubTab).click();
         
         //return a manual entry page
@@ -198,11 +199,11 @@ public class WBA_BasePage {
     
     public Ecomm_UploadOrderPage clickUploadOrder() {
         //Wait for orders tab
-        WebElement waitForOrders = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        WebElement waitForOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
         //Navigate to the subtab link
         driver.findElement(ordersTab).click();
         //Wait for drop down
-        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(uploadOrderSubTab)));
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(uploadOrderSubTab)));
         driver.findElement(uploadOrderSubTab).click();
         
         //return a manual entry page
@@ -211,10 +212,10 @@ public class WBA_BasePage {
     
     public Ecomm_FromExistingPage clickFromExisting() {
         //Wait for orders tab
-        WebElement waitForOrders = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        WebElement waitForOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
         driver.findElement(ordersTab).click();
         
-        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(fromExistingSubTab)));
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(fromExistingSubTab)));
         driver.findElement(fromExistingSubTab).click();
         
         return new Ecomm_FromExistingPage(driver);
@@ -222,10 +223,10 @@ public class WBA_BasePage {
     
     public Ecomm_ShadeNotAvailablePage clickShadeNotAvailable() {
         //Wait for orders tab
-        WebElement waitForOrders = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        WebElement waitForOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
         driver.findElement(ordersTab).click();
         
-        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(shadeNotAvailSubTab)));
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(shadeNotAvailSubTab)));
         driver.findElement(shadeNotAvailSubTab).click();
         
         return new Ecomm_ShadeNotAvailablePage(driver);
@@ -233,10 +234,10 @@ public class WBA_BasePage {
     
     public Ecomm_WaitingForShadePage clickWaitingForShade() {
         //Wait for orders tab
-        WebElement waitForOrders = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersTab));
+        WebElement waitForOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
         driver.findElement(ordersTab).click();
         
-        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(waitingForShadeSubTab)));
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(waitingForShadeSubTab)));
         driver.findElement(waitingForShadeSubTab).click();
         
         return new Ecomm_WaitingForShadePage(driver);
@@ -244,11 +245,11 @@ public class WBA_BasePage {
     
     public Ecomm_OutstandingOrdersPage clickOutstandingOrders() {
          //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));      
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));      
         driver.findElement(outstandingOrdersTab).click();
         
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(outOrdersSubTab)));      
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outOrdersSubTab)));      
         driver.findElement(outOrdersSubTab).click();
         
         return new Ecomm_OutstandingOrdersPage(driver);
@@ -256,11 +257,11 @@ public class WBA_BasePage {
     
     public Ecomm_OutstandingOrderDraftPage clickOutstandingDraft() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));      
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));      
         driver.findElement(outstandingOrdersTab).click();
         
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstOrderDraftSubTab)));      
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstOrderDraftSubTab)));      
         driver.findElement(outstOrderDraftSubTab).click();
         
         return new Ecomm_OutstandingOrderDraftPage(driver);
@@ -268,12 +269,12 @@ public class WBA_BasePage {
     
     public Ecomm_OutstandingUploadDraftPage clickOutstandingUploadDraft() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
         
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
         //wait for menu to drop down
-        WebElement waitForMenu = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstUploadDraftSubTab)));
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstUploadDraftSubTab)));
         action.click(driver.findElement(outstUploadDraftSubTab)).build().perform();
         
         return new Ecomm_OutstandingUploadDraftPage(driver);
@@ -281,7 +282,7 @@ public class WBA_BasePage {
 
     public Ecomm_SAPInterfaceLogPage clickSAPInterfaceLog() {
     	//Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(sapInterfaceLogTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(sapInterfaceLogTab)));
         
         driver.findElement(sapInterfaceLogTab).click();
         
@@ -290,18 +291,18 @@ public class WBA_BasePage {
     
     public Ecomm_ProductAvailabilityCheckPage clickProductAvailabilityCheck() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(pacTab));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(pacTab));
         driver.findElement(pacTab).click();
         return new Ecomm_ProductAvailabilityCheckPage(driver);
     }
     
     public Ecomm_InvoicesPage clickInvoices() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
         driver.findElement(reportsTab).click();
 		
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(invoicesSubTab)));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(invoicesSubTab)));
         driver.findElement(invoicesSubTab).click();
 		
         return new Ecomm_InvoicesPage(driver);
@@ -309,11 +310,11 @@ public class WBA_BasePage {
     
     public Ecomm_DeliveryNotesPage clickDeliveryNotes() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
         driver.findElement(reportsTab).click();
 		
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(deliveryNotesSubTab)));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(deliveryNotesSubTab)));
         driver.findElement(deliveryNotesSubTab).click();
 		
         return new Ecomm_DeliveryNotesPage(driver);
@@ -321,11 +322,11 @@ public class WBA_BasePage {
     
     public Ecomm_SummaryOfPurchasePage clickSummaryOfPurchases() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
         driver.findElement(reportsTab).click();
 		
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(summaryOfSubTab)));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(summaryOfSubTab)));
         driver.findElement(summaryOfSubTab).click();
 		
         return new Ecomm_SummaryOfPurchasePage(driver);
@@ -333,11 +334,11 @@ public class WBA_BasePage {
     
     public Ecomm_OutstandingPaymentsPage clickOutstandingPayments() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
         driver.findElement(reportsTab).click();
 		
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(outPaySubTab)));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outPaySubTab)));
         driver.findElement(outPaySubTab).click();
 		
         return new Ecomm_OutstandingPaymentsPage(driver);
@@ -345,11 +346,11 @@ public class WBA_BasePage {
     
     public Ecomm_MyReportsPage clickMyReports() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
         driver.findElement(reportsTab).click();
 		
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(myReportsSubTab)));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(myReportsSubTab)));
         driver.findElement(myReportsSubTab).click();
 		
         return new Ecomm_MyReportsPage(driver);
@@ -357,11 +358,11 @@ public class WBA_BasePage {
     
     public Ecomm_BackendInProcessPage clickBackendInProcess() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
         driver.findElement(dashboardTab).click();
 		
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(backendIPSubTab)));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(backendIPSubTab)));
         driver.findElement(backendIPSubTab).click();
 		
         return new Ecomm_BackendInProcessPage(driver);
@@ -369,11 +370,11 @@ public class WBA_BasePage {
     
     public Ecomm_BackendFailedFilesPage clickBackendFailedFiles() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
         driver.findElement(dashboardTab).click();
 		
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(backendFailedSubTab)));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(backendFailedSubTab)));
         driver.findElement(backendFailedSubTab).click();
 		
         return new Ecomm_BackendFailedFilesPage(driver);
@@ -381,11 +382,11 @@ public class WBA_BasePage {
     
     public Ecomm_FTPFailedFilesPage clickFTPFailedFiles() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
         driver.findElement(dashboardTab).click();
 		
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(ftpFailedSubTab)));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(ftpFailedSubTab)));
         driver.findElement(ftpFailedSubTab).click();
 		
         return new Ecomm_FTPFailedFilesPage(driver);
@@ -393,11 +394,11 @@ public class WBA_BasePage {
     
     public Ecomm_FailedContractOrderPage clickFailedContractOrder() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(dashboardTab)));
         driver.findElement(dashboardTab).click();
 		
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(driver.findElement(failedContractOrderSubtab)));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(failedContractOrderSubtab)));
         driver.findElement(failedContractOrderSubtab).click();
 		
         return new Ecomm_FailedContractOrderPage(driver);
@@ -407,20 +408,20 @@ public class WBA_BasePage {
     
     public CCE_OrderSamplesPage pressOrderSamples() {
 
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(ordersHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderSamplesSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderSamplesSubtab));
         action.click(driver.findElement(orderSamplesSubtab)).build().perform();
         
         return new CCE_OrderSamplesPage(driver);
     }
     
     public CCE_OutstandingDraftPage pressOutstandingDraft() {
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(ordersHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(outstandingDraftSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(outstandingDraftSubtab));
         action.click(driver.findElement(outstandingDraftSubtab)).build().perform();
         
         return new CCE_OutstandingDraftPage(driver);
@@ -428,10 +429,10 @@ public class WBA_BasePage {
     
     public CCE_OrderStatusPage pressOrderStatus() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(ordersHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderStatusSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderStatusSubtab));
         action.click(driver.findElement(orderStatusSubtab)).build().perform();
         
         return new CCE_OrderStatusPage(driver);
@@ -439,10 +440,10 @@ public class WBA_BasePage {
     
     public CCE_DNReprintPage pressDNReprint() {
         
-        WebElement waitForVisibility = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));
+        WebElement waitForVisibility = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(ordersHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(ordersHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(dnReprintSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dnReprintSubtab));
         action.click(driver.findElement(dnReprintSubtab)).build().perform();
         
         return new CCE_DNReprintPage(driver);
@@ -451,10 +452,10 @@ public class WBA_BasePage {
     
     public CCE_FeedbackPage pressFeedback() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(ordersHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(feedbackSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(feedbackSubtab));
         action.click(driver.findElement(feedbackSubtab)).build().perform();
         
         return new CCE_FeedbackPage(driver);
@@ -462,10 +463,10 @@ public class WBA_BasePage {
     
     public CCE_FeedbackAwaitingPage pressFeedbackAwaiting() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(ordersHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(feedbackAwaitingSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(feedbackAwaitingSubtab));
         action.click(driver.findElement(feedbackAwaitingSubtab)).build().perform();
         
         return new CCE_FeedbackAwaitingPage(driver);
@@ -473,10 +474,10 @@ public class WBA_BasePage {
     
     public CCE_FeedbackCompletedPage pressFeedbackCompleted() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(ordersHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(feedbackCompletedSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(feedbackCompletedSubtab));
         action.click(driver.findElement(feedbackCompletedSubtab)).build().perform();
         
         return new CCE_FeedbackCompletedPage(driver);
@@ -484,10 +485,10 @@ public class WBA_BasePage {
     
     public CCE_HubSosPage pressHubSos() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(hubHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubSosSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubSosSubtab));
         action.click(driver.findElement(hubSosSubtab)).build().perform();
         
         return new CCE_HubSosPage(driver);
@@ -495,10 +496,10 @@ public class WBA_BasePage {
     
     public CCE_ReceivedHubPage pressReceivedHub() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(hubHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(receivedHubSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(receivedHubSubtab));
         action.click(driver.findElement(receivedHubSubtab)).build().perform();
         
         return new CCE_ReceivedHubPage(driver);
@@ -506,10 +507,10 @@ public class WBA_BasePage {
     
     public CCE_InboxPage pressInbox() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(inboxHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(inboxHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(inboxHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(inboxSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(inboxSubtab));
         action.click(driver.findElement(inboxSubtab)).build().perform();
         
         return new CCE_InboxPage(driver);
@@ -517,10 +518,10 @@ public class WBA_BasePage {
     
     public CCE_InboxSAPPage pressInboxSAP() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(inboxHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(inboxHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(inboxHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(inboxSAPSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(inboxSAPSubtab));
         action.click(driver.findElement(inboxSAPSubtab)).build().perform();
         
         return new CCE_InboxSAPPage(driver);
@@ -528,9 +529,9 @@ public class WBA_BasePage {
     
     public CCE_ConfirmProductionPage pressConfirmProduction() {
         //Wait for header
-        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(conProdHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(conProdHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(conProdHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(conProdHeader));
         //Click header
         driver.findElement(conProdHeader).click();
         return new CCE_ConfirmProductionPage(driver);
@@ -538,22 +539,22 @@ public class WBA_BasePage {
     
     public CCE_RefillCabinetPage pressRefillCabinet() {
         //Wait for header
-        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(refCabHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(refCabHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(refCabHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(refCabHeader));
         //Click header
         driver.findElement(refCabHeader).click();
         return new CCE_RefillCabinetPage(driver);
     }
     
     public CCE_FCETaskStatusPage pressFCETaskStatus() {
-        WebElement waitForHeaderVis = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(reportsHeader));       
+        WebElement waitForHeaderVis = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(reportsHeader));       
         //Wait for header
-        WebElement waitForHeaderClick = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(reportsHeader));
+        WebElement waitForHeaderClick = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(reportsHeader));
         //Click header
         driver.findElement(reportsHeader).click();
         //Wait for feedback completed subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fceTaskStatusSubtab));
+        WebElement waitForSubtab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceTaskStatusSubtab));
         //click subtab
         driver.findElement(fceTaskStatusSubtab).click();
         
@@ -562,10 +563,10 @@ public class WBA_BasePage {
     
     public CCE_OrderCycleTimePage pressOrderCycleTime() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(reportsHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(reportsHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(reportsHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderCycleTimeSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderCycleTimeSubtab));
         action.click(driver.findElement(orderCycleTimeSubtab)).build().perform();
         
         return new CCE_OrderCycleTimePage(driver);
@@ -573,10 +574,10 @@ public class WBA_BasePage {
     
     public CCE_TotalOrdersPage pressTotalOrders() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(reportsHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(reportsHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(reportsHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(totalOrdersSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(totalOrdersSubtab));
         action.click(driver.findElement(totalOrdersSubtab)).build().perform();
         
         return new CCE_TotalOrdersPage(driver);
@@ -584,10 +585,10 @@ public class WBA_BasePage {
     
     public CCE_LRMLogPage pressLRMLog() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(adminHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(lrmLogSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lrmLogSubtab));
         action.click(driver.findElement(lrmLogSubtab)).build().perform();
         
         return new CCE_LRMLogPage(driver);
@@ -595,13 +596,43 @@ public class WBA_BasePage {
     
     public CCE_SAPLogPage pressSAPLog() {
         
-        WebElement waitForHeader = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(adminHeader)).build().perform();
-        WebElement waitForSubTab = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(sapLogSubtab));
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sapLogSubtab));
         action.click(driver.findElement(sapLogSubtab)).build().perform();
         
         return new CCE_SAPLogPage(driver);
+    }
+    
+    public boolean checkFiltration(String locator1, String locator2, By noRecords, String item, int firstRow) {
+        
+        System.out.println("Checking for records...");
+        
+        try {
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(noRecords));
+            System.out.println("No records found");
+            return true;           
+        } catch (Exception e) {
+            System.out.println("Records found");
+        }
+        
+
+        for (int i = 0; i < 5; i++) {
+            By cellLocator = By.cssSelector(locator1 + "" + (i+firstRow) + "" + locator2);
+            String text ="";
+            try {
+                text = driver.findElement(cellLocator).getText();
+            } catch(Exception e) {
+                System.out.println("All records searched");
+                return true;
+            }
+            if (!(text.equals(item))) {
+                return false;
+            }
+        }
+        return true;
+        
     }
     
 }

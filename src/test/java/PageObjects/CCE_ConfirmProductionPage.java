@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -32,7 +33,6 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     By listOrdersButton = By.cssSelector("#FilterConfirmProductionForm > div.actions > ul > li:nth-child(1)");
     By resetButton = By.cssSelector("#FilterConfirmProductionForm > div.actions > ul > li:nth-child(2)");
     By confirmButton = By.xpath("//*[@id=\"SampleOrderLineConfirmProductionForm\"]/table/tbody/tr[3]/td[9]/input[2]");
-    By finalShadeField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(8) > input");
     By MUMTypeField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(11) > select");
     By qtyProdField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(13) > input");
     By sendToField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(14) > select");
@@ -47,7 +47,7 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement waitForBreadcrumb = new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
+        WebElement waitForBreadcrumb = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
         return driver.findElement(breadcrumb);
     }
     
@@ -119,10 +119,6 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
         return driver.findElement(confirmButton);
     }
     
-    public WebElement getFinalShadeField() {
-        return driver.findElement(finalShadeField);
-    }
-    
     public WebElement getMUMTypeField() {
         return driver.findElement(MUMTypeField);
     }
@@ -192,11 +188,6 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
         return this;
     }
     
-    public CCE_ConfirmProductionPage setFinalShade(String item) throws InterruptedException {
-        CommonTask.setDropDownField(driver, finalShadeField, item);
-        return this;
-    }
-    
     public CCE_ConfirmProductionPage setMUMType(String item) throws InterruptedException {
         CommonTask.setDropDownField(driver, MUMTypeField, item);
         return this;
@@ -204,7 +195,7 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     
     public CCE_ConfirmProductionPage setQtyProd(String item) {
         //Wait for clickable
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(qtyProdField));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyProdField));
         driver.findElement(qtyProdField).click();
         driver.findElement(qtyProdField).sendKeys(Keys.DELETE);
         driver.findElement(qtyProdField).sendKeys(item);
@@ -218,37 +209,37 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     
     public CCE_ConfirmProductionPage pressListOrders() {
         //Wait for element
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
         driver.findElement(listOrdersButton).submit();
         return this;
     }
     
     public CCE_ConfirmProductionPage pressReset() {
         //Wait for element
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return this;
     }
     
     public CCE_ConfirmProductionPage pressConfirm() {
         //Wait for element
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(confirmButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButton));
         driver.findElement(confirmButton).click();
-        boolean waitForChecked = new WebDriverWait(driver,5).until(CommonTask.boxIsChecked(driver.findElement(confirmButton)));
+        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(confirmButton)));
         return this;
     }
     
     public CCE_OrderViewPage pressDnPrint() {
         //Wait for dn print button and press
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(dnButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dnButton));
         driver.findElement(dnButton).click();
         return new CCE_OrderViewPage(driver);
     }
     
     public CCE_ConfirmProductionPage pressSave() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
         driver.findElement(saveButton).click();
-        Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
         String message = driver.findElement(flashMessage).getText();
@@ -262,10 +253,10 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     }
     
     public CCE_ConfirmProductionPage pressCancel() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
         driver.findElement(cancelButton).click();
         try {
-            Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
             alert.accept(); 
         } catch (Exception e) {
             System.out.println("No alert upon cancel.");
@@ -276,19 +267,19 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for each element to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForFCE = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForCustCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement waitForReqType = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(requestTypeField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderFromField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderToField));
-        WebElement waitForShipToName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToNameField));
-        WebElement waitForShipToCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shipToCodeField));
-        WebElement waitForHub = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement waitForScenario = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(scenarioField));
-        WebElement waitForSAPStatus = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(sapStatusField));
-        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForFinalSOS = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(finalSOSField));
+        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForFCE = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceNameField));
+        WebElement waitForCustCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custCodeField));
+        WebElement waitForReqType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requestTypeField));
+        WebElement waitForOrderFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderFromField));
+        WebElement waitForOrderTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderToField));
+        WebElement waitForShipToName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToNameField));
+        WebElement waitForShipToCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToCodeField));
+        WebElement waitForHub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
+        WebElement waitForScenario = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(scenarioField));
+        WebElement waitForSAPStatus = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sapStatusField));
+        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForFinalSOS = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finalSOSField));
         
         //Assert all elements are displayed correctly
         AssertJUnit.assertTrue("Confirm Production page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
@@ -304,7 +295,6 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Confirm Production page: SAP Status Field not displayed correctly",getSapStatusField().isDisplayed());
         AssertJUnit.assertTrue("Confirm Production page: Customer name Field not displayed correctly",getCustNameField().isDisplayed());
         AssertJUnit.assertTrue("Confirm Production page: Final SOS Field not displayed correctly",getFinalSOSField().isDisplayed());
-        AssertJUnit.assertTrue("Confirm Production page: Final Shade Field not displayed correctly",getFinalShadeField().isDisplayed());
         AssertJUnit.assertTrue("Confirm Production page: Confirm button not displayed correctly",getConfirmButton().isDisplayed());
         AssertJUnit.assertTrue("Confirm Production page: MUM Field not displayed correctly",getMUMTypeField().isDisplayed());
         AssertJUnit.assertTrue("Confirm Production page: Quantity Produced field not displayed correctly",getQtyProdField().isDisplayed());

@@ -146,7 +146,7 @@
                                 <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
                             </systemPropertyVariables>
                             <suiteXmlFiles>
-                                <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\Solo.xml</suiteXmlFile>
+                                <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\QuickTest.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                         <dependencies>

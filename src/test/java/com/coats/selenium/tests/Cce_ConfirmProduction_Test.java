@@ -105,7 +105,7 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\6DN View.png"));
         
         try {
-            Alert alert = new WebDriverWait(driver,5).until(ExpectedConditions.alertIsPresent());
+            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
             String alertMsg = alert.getText();
         
             System.out.println("View closed. Alert appeared: "+alertMsg +". Dismissing alert...");

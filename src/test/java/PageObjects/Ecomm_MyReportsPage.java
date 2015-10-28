@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +31,7 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
     By saveMyReportButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1)");
     By printButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(2)");
     By exportButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3)");
-    By resetButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(4)");
+    By resetButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(4) > a");
     By flashMessage = By.id("flashMessage");
     
     public Ecomm_MyReportsPage(WebDriver driver) {
@@ -174,50 +175,91 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
     }
     
     public Ecomm_OrderViewPage pressPrint() {
-        WebElement waitForClickable = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
         driver.findElement(printButton).click();
         return new Ecomm_OrderViewPage(driver);
     }
     
     public Ecomm_SaveReportPage pressSaveReport() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(saveMyReportButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveMyReportButton));
         driver.findElement(saveMyReportButton).click();
         return new Ecomm_SaveReportPage(driver);
     }
  
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
         driver.findElement(exportButton).click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public Ecomm_MyReportsPage pressReset() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return this;
     }
     
-    public void checkFields() {
+    public void checkFields_SUMST() {
         //Wait for all elements to be clickable 
-        WebElement waitForOrderNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForCustCode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement waitForDateFrom = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createDateFromField));
-        WebElement waitForDateTo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createDateToField));
-        WebElement waitForSelectAll = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(selectAllButton));
-        WebElement waitForCreatedDate = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(createdDateButton));
-        WebElement waitForPONumber = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(poNumberButton));
-        WebElement waitForArticle = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(articleButton));
-        WebElement waitForBrand = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(brandButton));
-        WebElement waitForTicket = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(ticketButton));
-        WebElement waitForshadecode = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(shadeCodeButton));
-        WebElement waitForInvoiceNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(invoiceNoButton));
-        WebElement waitForDelNo = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(deliveryNoButton));
-    
+        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForCustCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custCodeField));
+        WebElement waitForDateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateFromField));
+        WebElement waitForDateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateToField));
+        WebElement waitForSelectAll = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(selectAllButton));
+        WebElement waitForCreatedDate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createdDateButton));
+        WebElement waitForPONumber = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(poNumberButton));
+        WebElement waitForArticle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleButton));
+        WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandButton));
+        WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketButton));
+        WebElement waitForshadecode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeButton));
+        WebElement waitForInvoiceNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(invoiceNoButton));
+        WebElement waitForDelNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveryNoButton));
+        WebElement waitForPrint = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForSave = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveMyReportButton));
+        
         //Assert all elements are displayed
         AssertJUnit.assertTrue("My Reports Page: Order No Field not displayed",getOrderNoField().isDisplayed());
         AssertJUnit.assertTrue("My Reports Page: Customer Name Field not displayed",getCustNameField().isDisplayed());
         AssertJUnit.assertTrue("My Reports Page: Customer Code Field not displayed",getCustCodeField().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Created Date From Field not displayed",getCreateFromField().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Created Date To Field not displayed",getCreateToField().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Select All Field not displayed",getSelectAllButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Created Date Field not displayed",getCreatedDateButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: PO Number Field not displayed",getPONumberButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Article Field not displayed",getArticleButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Brand Field not displayed",getBrandButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Ticket Field not displayed",getTicketButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Shade Code Field not displayed",getShadeCodeButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Invoice No Field not displayed",getInvoiceNoButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Delivery No Field not displayed",getDeliveryNoButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Print button not displayed",getPrintButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Export button not displayed",getExportButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Reset button not displayed",getResetButton().isDisplayed());
+    }
+    
+    public void checkFields_SUSST() {
+        //Wait for all elements to be clickable 
+        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForDateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateFromField));
+        WebElement waitForDateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateToField));
+        WebElement waitForSelectAll = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(selectAllButton));
+        WebElement waitForCreatedDate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createdDateButton));
+        WebElement waitForPONumber = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(poNumberButton));
+        WebElement waitForArticle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleButton));
+        WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandButton));
+        WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketButton));
+        WebElement waitForshadecode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeButton));
+        WebElement waitForInvoiceNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(invoiceNoButton));
+        WebElement waitForDelNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveryNoButton));
+        WebElement waitForPrint = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForSave = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveMyReportButton));
+        
+        //Assert all elements are displayed
+        AssertJUnit.assertTrue("My Reports Page: Order No Field not displayed",getOrderNoField().isDisplayed());
         AssertJUnit.assertTrue("My Reports Page: Created Date From Field not displayed",getCreateFromField().isDisplayed());
         AssertJUnit.assertTrue("My Reports Page: Created Date To Field not displayed",getCreateToField().isDisplayed());
         AssertJUnit.assertTrue("My Reports Page: Select All Field not displayed",getSelectAllButton().isDisplayed());

@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
@@ -72,23 +73,23 @@ public class Ecomm_FTPFailedFilesPage extends WBA_BasePage {
     }
     
     public Ecomm_FTPFailedFilesPage pressSearch() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         driver.findElement(searchButton).click();
         return this;
     }
     
     public Ecomm_FTPFailedFilesPage pressReset() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         driver.findElement(resetButton).click();
         return this;
     }
     
     public Ecomm_FTPFailedFilesPage pressDownload() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(downloadButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(downloadButton));
         driver.findElement(downloadButton).click();
         
         try {
-            WebElement waitForError = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(errorTitle));
+            WebElement waitForError = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(errorTitle));
             if (driver.findElement(errorTitle).getText().contains("Not Found")) {
                 System.out.println("***Error downloading file: File not found. Check manually that first line file can be downloaded***");
             } else {
@@ -102,20 +103,20 @@ public class Ecomm_FTPFailedFilesPage extends WBA_BasePage {
     }
     
     public Ecomm_OrderViewPage pressView() {
-        WebElement wait = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
         driver.findElement(viewButton).click();
         return new Ecomm_OrderViewPage(driver);
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForCustName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForSalesOrg = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement waitForFileName = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(fileNameField));
-        WebElement waitForSearch = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForView = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(viewButton));
-        WebElement waitForDownload = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(downloadButton));
+        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement waitForSalesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+        WebElement waitForFileName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fileNameField));
+        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForView = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForDownload = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(downloadButton));
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Backend Failed Files Page: Customer name field not displayed correctly",getCustNameField().isDisplayed());
@@ -132,7 +133,7 @@ public class Ecomm_FTPFailedFilesPage extends WBA_BasePage {
         boolean returnMe = true;
         
         try {
-            WebElement waitForElement = new WebDriverWait(driver,5).until(ExpectedConditions.presenceOfElementLocated(noRecordsField));
+            WebElement waitForElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(noRecordsField));
             returnMe = false;
         } catch (Exception e) {
             returnMe = true;

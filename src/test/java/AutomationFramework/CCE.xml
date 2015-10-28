@@ -9,6 +9,7 @@
             <run>
                 <include name="CCE" />
                 <exclude name="Unstable" />
+                <exclude name="CCE_Orders"/>
             </run>
         </groups>
         <packages>
