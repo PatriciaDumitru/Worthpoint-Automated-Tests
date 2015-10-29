@@ -529,7 +529,7 @@
                                 <webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>
                                 <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
                             </systemPropertyVariables>
-                            <groups>QuickTest,Unstable,CCE,CCE_Orders,eComm,eComm_Orders</groups>
+                            <groups>QuickTest,CCE,CCE_Orders,eComm,eComm_Orders</groups>
                             <!-- <suiteXmlFiles>
                                 <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\Solo.xml</suiteXmlFile>
                             </suiteXmlFiles> -->

@@ -17,11 +17,11 @@ public class DataItems {
     public static String idFilepath = "C:\\Selenium\\ID.txt";
     public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_71.xlsx";
     public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_72.xlsx";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_69.xlsx";
-    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_69C.xlsx";
-    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_29.xlsx";
-    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_30.xlsx";
-    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_31.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_70.xlsx";
+    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_70C.xlsx";
+    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_32.xlsx";
+    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_33.xlsx";
+    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_34.xlsx";
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";

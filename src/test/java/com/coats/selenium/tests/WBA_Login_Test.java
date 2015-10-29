@@ -55,7 +55,7 @@ public class WBA_Login_Test extends DriverFactory {
     }
   
     @Test //Login Page :: Login using valid Coats user details, navigate to and from CCE and eComm
-    (groups = {"QuickTest","General"})
+    (groups = {"QuickTest","General","Solo"})
     public void L2() throws InterruptedException, IOException, Exception {
         System.out.println("TEST: LOGIN PAGE/CONTINUE PAGE/SELECTION PAGE: Check elements are displayed");
         

@@ -393,11 +393,15 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public CCE_AddOrderPage pressCopy(int lineNumber) {
         
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(quantityFieldLine2));
+        WebElement waitMore = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityFieldLine2));
         
         By copyDataButton = By.id("copy_line_item_"+lineNumber);       
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(copyDataButton));       
+        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(copyDataButton));
+        WebElement waitForButton2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(copyDataButton));
         
-        driver.findElement(copyDataButton).click();
+        Actions moveAndClick = new Actions(driver);
+        moveAndClick.moveToElement(driver.findElement(copyDataButton)).build().perform();
+        moveAndClick.click().build().perform();
         
         boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(copyDataButton)));
         

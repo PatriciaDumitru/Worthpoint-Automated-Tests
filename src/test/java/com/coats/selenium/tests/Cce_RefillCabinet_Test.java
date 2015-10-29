@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 public class Cce_RefillCabinet_Test extends DriverFactory {
     
     @Test //Refill Cabinet Page :: Page and filter checks
-    (groups = {"CCE","Unstable"})
+    (groups = {})
     public void RC1() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

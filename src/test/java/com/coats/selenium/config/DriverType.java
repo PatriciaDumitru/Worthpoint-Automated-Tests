@@ -82,9 +82,9 @@ public enum DriverType implements DriverSetup {
         public DesiredCapabilities getDesiredCapabilities(Proxy proxySettings) {
             DesiredCapabilities capabilities = DesiredCapabilities.phantomjs();
             final List<String> cliArguments = new ArrayList<String>();
-            cliArguments.add("--web-security=false");
+            cliArguments.add("--web-security=no");
             cliArguments.add("--ssl-protocol=any");
-            cliArguments.add("--ignore-ssl-errors=true");
+            cliArguments.add("--ignore-ssl-errors=yes");
             capabilities.setCapability("phantomjs.cli.args", applyPhantomJSProxySettings(cliArguments, proxySettings));
             capabilities.setCapability("takesScreenshot", true);
 

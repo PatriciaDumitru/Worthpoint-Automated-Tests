@@ -577,7 +577,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: SUMST :: Direct enrich feature, Hub/Lab options working
-    (groups = {"CCE","CCE_Orders","Solo"})
+    (groups = {"CCE","CCE_Orders"})
     public void SOC9() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

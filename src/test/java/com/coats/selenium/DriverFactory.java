@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.Dimension;
+import org.testng.annotations.BeforeTest;
 
 @Listeners(ScreenshotListener.class)
 public class DriverFactory {
