@@ -265,6 +265,23 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
         return this;
     }
     
+    public boolean findOrder(String orderNo) {
+        for (int i = 2; i < 8; i++) {
+            By orderNoCell = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child("+i+") > td:nth-child(4)");
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            if (driver.findElement(orderNoCell).getText().equals(orderNo)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public CCE_ConfirmProductionPage acceptSave() {
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        return new CCE_ConfirmProductionPage(driver);
+    }
+    
     public void checkFields() {
         //Wait for each element to be clickable
         WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
@@ -301,5 +318,9 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Confirm Production page: Send to field not displayed correctly",getSendToField().isDisplayed());
         AssertJUnit.assertTrue("Confirm Production page: Save button not displayed correctly",getSaveButton().isDisplayed());
         
+    }
+    
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
     }
 }

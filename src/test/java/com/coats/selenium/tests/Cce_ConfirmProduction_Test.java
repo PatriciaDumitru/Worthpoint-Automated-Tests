@@ -4,8 +4,13 @@ package com.coats.selenium.tests;
 import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_ConfirmProductionPage;
+import PageObjects.CCE_EnrichOrderPage;
+import PageObjects.CCE_LRMLogPage;
+import PageObjects.CCE_ManualEnrichPage;
+import PageObjects.CCE_OrderStatusPage;
 import PageObjects.CCE_OrderViewPage;
 import com.coats.selenium.DriverFactory;
+import static com.coats.selenium.DriverFactory.getDriver;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -202,4 +207,84 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
 
     }
 
+    @Test //Confirm Production Page :: SUMST :: Lab SOS can be confirmed and status changes to Delivered
+    (groups = {"CCE","CCE_ORDERS"})
+    public void CP3() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.SUMST_SetUp("Confirm Production CP3: Lab SOS status update", "G_CCE_SOC_16");
+        
+        System.out.println("Navigating to Manual Enrich Page...");
+        
+        CCE_ManualEnrichPage mePage = mainPage.pressManualEnrich();
+        mePage.waitForElement();
+        
+        System.out.println("Manual Enrich Page reached. Checking for records...");
+        
+        if (mePage.checkForRecords()) {
+            System.out.println("Records found. Retrieving top item Order No. and pressing view...");
+            
+            String orderNo = mePage.getOrderNo(2);
+            
+            CCE_OrderViewPage viewPage = mePage.pressView(2);
+            viewPage.waitForContentAlt2();
+            
+            System.out.println("View displayed. Order No.: "+orderNo+". Closing view...");
+            
+            viewPage.closeView();
+            viewPage.waitForInvisibility();
+            
+            System.out.println("View closed. Enriching order...");
+            
+            CCE_EnrichOrderPage enrichPage = mePage.pressEnrich(2);
+            enrichPage.waitForElement();
+            
+            System.out.println("Enrich Order page reached. Setting customer reference...");
+            
+            enrichPage.setCustomerRef();
+            
+            System.out.println("Customer reference set. Setting SOS to Lab...");
+            enrichPage.pressLab();
+            
+            System.out.println("SOS set. Enriching All Order lines...");
+            
+            CCE_ManualEnrichPage mePage2 = enrichPage.pressEnrichAll();
+            mePage2.waitForElement();
+            
+            System.out.println("Order enriched. Navigating to Confirm Production Page...");
+            
+            CCE_ConfirmProductionPage cpPage = mePage2.pressConfirmProduction();
+            cpPage.waitForElement();
+            
+            System.out.println("Confirm Production page reached. Checking order is shown...");
+            
+            AssertJUnit.assertTrue("Confirm Production Page: Order (Order No.: "+orderNo+") does not appear after Lab SOS selected in enrichment",cpPage.findOrder(orderNo));
+            
+            System.out.println("Order found in table. Pressing confirm...");
+            
+            cpPage.pressConfirm();
+            
+            System.out.println("Confirm selected. Printing DN...");
+            
+            CCE_OrderViewPage viewPage2 = cpPage.pressDnPrint();
+            viewPage2.waitForContentAlt2();
+            
+            System.out.println("DN Printed. Closing view and saving...");
+            
+            viewPage2.closeView();
+            viewPage2.waitForInvisibility();
+            
+            CCE_ConfirmProductionPage cpPage2 = cpPage.acceptSave();
+            cpPage2.waitForElement();
+            
+            System.out.println("Saved. Checking order status...");
+            
+            CCE_OrderStatusPage statusPage = cpPage2.pressOrderStatus();
+            statusPage.waitForElement();
+            
+        } else {
+            System.out.println("No records found. Test was not completed");
+        }
+    } 
 }
