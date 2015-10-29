@@ -14,6 +14,7 @@
         </groups>
         <packages>
             <package name="com.coats.selenium.tests"/>
+            <package name="com.coats.selenium.RCTests"/>
         </packages>
     </test>
 

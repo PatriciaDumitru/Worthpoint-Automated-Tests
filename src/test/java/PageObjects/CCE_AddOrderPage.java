@@ -3,10 +3,12 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import java.io.IOException;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -55,6 +57,13 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By pendOrderButton = By.id("pending");
     static By cancelButton = By.cssSelector("#SampleOrderAddForm > div:nth-child(5) > div.actions > ul > li:nth-child(3) > a");
 
+    //Fields which appear upon click "Yes" to Direct Enrich
+    static By enrichCommentsField = By.id("SampleOrderLine0FceComments");
+    static By enrichCompletedYesButton = By.id("SampleOrderLine0IsOrderCompleted1");
+    static By enrichCompletedNoButton = By.id("SampleOrderLine0IsOrderCompleted0");
+    static By enrichHubButton = By.id("SampleOrderLine0SosId30");
+    static By enrichLabButton = By.id("SampleOrderLine0SosId50");
+    static By enrichWHSButton = By.id("SampleOrderLine0SosId40");
     
     public CCE_AddOrderPage(WebDriver passedDriver) {
        super(passedDriver);
@@ -183,6 +192,30 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         return driver.findElement(cancelButton);
     }
     
+    public WebElement getEnrichCommentsField() {
+        return driver.findElement(enrichCommentsField);
+    }
+    
+    public WebElement getEnrichCompletedYesButton() {
+        return driver.findElement(enrichCompletedYesButton);
+    }
+    
+     public WebElement getEnrichCompletedNoButton() {
+        return driver.findElement(enrichCompletedNoButton);
+    }
+     
+    public WebElement getEnrichHubButton() {
+        return driver.findElement(enrichHubButton);
+    }
+    
+    public WebElement getEnrichLabButton() {
+        return driver.findElement(enrichLabButton);
+    }
+    
+    public WebElement getEnrichWHSButton() {
+        return driver.findElement(enrichWHSButton);
+    }
+    
     public CCE_AddOrderPage setShipToParty(String shipToParty) throws InterruptedException {
         CommonTask.setDropDownField(driver, shipToPartyField, shipToParty);
         return this;
@@ -253,6 +286,15 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         //Line numbers start from 0
         By purpLocator = By.id("SampleOrderLine"+lineNumber+"PurposeTypeId");
         CommonTask.setDropDownField(driver, purpLocator, purpType);
+        return this;
+    }
+    
+    public CCE_AddOrderPage setCustomerRef(int lineNumber) throws IOException {
+        //Line numbers start from 0
+        By refLocator = By.id("SampleOrderLine"+lineNumber+"CustomerReference");
+        String PO = CommonTask.generatePO("noncontract");
+        DataItems.lastUsedPO = PO;
+        CommonTask.setInputField(driver, refLocator,PO);
         return this;
     }
     
@@ -457,8 +499,44 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     
     }
     
+    public void checkEnrichFields() {
+        //Wait for all elements to be clickable
+        WebElement waitForComments = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichCommentsField));
+        WebElement waitForCompYes = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichCompletedYesButton));
+        WebElement waitForCompNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichCompletedNoButton));
+        WebElement waitForHub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichHubButton));
+        WebElement waitForLab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichLabButton));
+        WebElement waitForWHS = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichWHSButton));
+        
+        //Assert all elements are displayed
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: FCE Comments box not displayed",getEnrichCommentsField().isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Order Completed=Yes Button not displayed",getEnrichCompletedYesButton().isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Order Completed=No Button not displayed",getEnrichCompletedNoButton().isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Hub SOS Button not displayed",getEnrichHubButton().isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Lab SOS Button not displayed",getEnrichLabButton().isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: WHS SOS Button not displayed",getEnrichWHSButton().isDisplayed());
+    }
+    
     public void waitForElement() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
+    }
+    
+    public boolean checkHidden(String type) {
+        By locator;
+        
+        switch (type) {
+            case "Cop": locator = copButton; break;
+            case "Cone": locator = viconeButton; break;
+            case "Vicone": locator = coneButton; break;
+            default: System.out.println("Type not recognised."); return false;
+        }
+        
+        try {
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return false;
+        } catch (TimeoutException e) {
+            return true;
+        }
     }
 
 }

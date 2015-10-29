@@ -318,4 +318,16 @@ public class CCE_HubSosPage extends WBA_BasePage {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
     }
     
+    public String findOrder(String orderNo) {
+        String found = null;
+        for (int i = 2; i < 6; i++) {
+            By orderNoCell = By.cssSelector("#SampleOrderHubSosForm > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(5)");
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            if (driver.findElement(orderNoCell).getText().equals(orderNo)) {
+                found = "Hub SOS";
+            }
+        }
+        return found;   
+    }
+    
 }

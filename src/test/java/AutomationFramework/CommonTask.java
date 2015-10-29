@@ -133,6 +133,17 @@ public class CommonTask {
         Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(fieldLocator)));
     }
     
+    public static void uncheckBox(WebDriver driver, By fieldLocator) {
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        driver.findElement(fieldLocator).click();
+        Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsUnchecked(driver.findElement(fieldLocator)));
+    }
+    
+    public static void setCheckBoxNoWait(WebDriver driver, By fieldLocator) {
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        driver.findElement(fieldLocator).click();
+    }
+    
     public static void setDateField(WebDriver driver, By fieldLocator) {
         WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         
@@ -181,6 +192,18 @@ public class CommonTask {
                     return true;
                 } else {
                     return false;
+                }
+            }
+        };
+    }
+    
+    public static ExpectedCondition<Boolean> boxIsUnchecked(final WebElement element) {
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply (WebDriver f) {
+                if (element.isSelected()) {
+                    return false;
+                } else {
+                    return true;
                 }
             }
         };

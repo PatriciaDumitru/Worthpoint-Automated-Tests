@@ -10,8 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-public class Ecomm_MyReportsPage extends WBA_BasePage {
+    public class Ecomm_MyReportsPage extends WBA_BasePage {
     
     //Locators
     By selectAllButton = By.id("Filter#");
@@ -28,10 +27,13 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
     By createDateFromField = By.id("filterBulkOrderCreatedFrom");
     By createDateToField = By.id("filterBulkOrderCreatedTo");
     By custCodeField = By.id("filterCustomerCustomerCode");
-    By saveMyReportButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1)");
-    By printButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(2)");
-    By exportButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3)");
-    By resetButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(4) > a");
+    By saveMyReportButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1) > input");
+    By printButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(2)");
+    By exportButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3)");
+    By resetButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(4) > a");
+    By printButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1)");
+    By exportButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(2)");
+    By resetButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3)");
     By flashMessage = By.id("flashMessage");
     
     public Ecomm_MyReportsPage(WebDriver driver) {
@@ -99,15 +101,27 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
     }
     
     public WebElement getPrintButton() {
-        return driver.findElement(printButton);
+        return driver.findElement(printButton_SUMST);
+    }
+    
+    public WebElement getPrintButton_SUSST() {
+        return driver.findElement(printButton_SUSST);
     }
     
     public WebElement getExportButton() {
-        return driver.findElement(exportButton);
+        return driver.findElement(exportButton_SUMST);
+    }
+    
+    public WebElement getExportButton_SUSST() {
+        return driver.findElement(exportButton_SUSST);
     }
     
     public WebElement getResetButton() {
-        return driver.findElement(resetButton);
+        return driver.findElement(resetButton_SUMST);
+    }
+    
+    public WebElement getResetButton_SUSST() {
+        return driver.findElement(resetButton_SUSST);
     }
     
     public WebElement getFlashMessage() {
@@ -119,43 +133,48 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
         return this;
     }
     
+    public Ecomm_MyReportsPage uncheckSelectAll() {
+        CommonTask.uncheckBox(driver, selectAllButton);
+        return this;
+    }
+    
     public Ecomm_MyReportsPage setCreatedDate() {
         CommonTask.setCheckBox(driver, createdDateButton);
         return this;
     }
     
     public Ecomm_MyReportsPage setPONumber() {
-        CommonTask.setCheckBox(driver, poNumberButton);
+        CommonTask.setCheckBoxNoWait(driver, poNumberButton);
         return this;
     }
     
     public Ecomm_MyReportsPage setArticle() {
-        CommonTask.setCheckBox(driver, articleButton);
+        CommonTask.setCheckBoxNoWait(driver, articleButton);
         return this;
     }
     
     public Ecomm_MyReportsPage setBrand() {
-        CommonTask.setCheckBox(driver, brandButton);
+        CommonTask.setCheckBoxNoWait(driver, brandButton);
         return this;
     }
     
     public Ecomm_MyReportsPage setTicket() {
-        CommonTask.setCheckBox(driver, ticketButton);
+        CommonTask.setCheckBoxNoWait(driver, ticketButton);
         return this;
     }
     
     public Ecomm_MyReportsPage setShadeCode() {
-        CommonTask.setCheckBox(driver, shadeCodeButton);
+        CommonTask.setCheckBoxNoWait(driver, shadeCodeButton);
         return this;
     }
     
     public Ecomm_MyReportsPage setInvoiceNo() {
-        CommonTask.setCheckBox(driver, invoiceNoButton);
+        CommonTask.setCheckBoxNoWait(driver, invoiceNoButton);
         return this;
     }
     
     public Ecomm_MyReportsPage setDeliveryNo() {
-        CommonTask.setCheckBox(driver, deliveryNoButton);
+        CommonTask.setCheckBoxNoWait(driver, deliveryNoButton);
         return this;
     }
     
@@ -175,8 +194,14 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
     }
     
     public Ecomm_OrderViewPage pressPrint() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        driver.findElement(printButton).click();
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton_SUMST));
+        driver.findElement(printButton_SUMST).click();
+        return new Ecomm_OrderViewPage(driver);
+    }
+    
+    public Ecomm_OrderViewPage pressPrint_SUSST() {
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton_SUSST));
+        driver.findElement(printButton_SUSST).click();
         return new Ecomm_OrderViewPage(driver);
     }
     
@@ -187,15 +212,20 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
     }
  
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
-        driver.findElement(exportButton).click();
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton_SUMST));
+        driver.findElement(exportButton_SUMST).click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public Ecomm_MyReportsPage pressReset() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton_SUMST));
+        driver.findElement(resetButton_SUMST).click();
+        Boolean wait2 = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsUnchecked(driver.findElement(selectAllButton)));
         return this;
+    }
+    
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(selectAllButton));
     }
     
     public void checkFields_SUMST() {
@@ -214,10 +244,9 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
         WebElement waitForshadecode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeButton));
         WebElement waitForInvoiceNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(invoiceNoButton));
         WebElement waitForDelNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveryNoButton));
-        WebElement waitForPrint = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
-        WebElement waitForSave = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveMyReportButton));
+        WebElement waitForPrint = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton_SUMST));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton_SUMST));
+        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton_SUMST));
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("My Reports Page: Order No Field not displayed",getOrderNoField().isDisplayed());
@@ -253,9 +282,9 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
         WebElement waitForshadecode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeButton));
         WebElement waitForInvoiceNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(invoiceNoButton));
         WebElement waitForDelNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveryNoButton));
-        WebElement waitForPrint = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement waitForPrint = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton_SUSST));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton_SUSST));
+        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton_SUSST));
         WebElement waitForSave = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveMyReportButton));
         
         //Assert all elements are displayed
@@ -271,10 +300,10 @@ public class Ecomm_MyReportsPage extends WBA_BasePage {
         AssertJUnit.assertTrue("My Reports Page: Shade Code Field not displayed",getShadeCodeButton().isDisplayed());
         AssertJUnit.assertTrue("My Reports Page: Invoice No Field not displayed",getInvoiceNoButton().isDisplayed());
         AssertJUnit.assertTrue("My Reports Page: Delivery No Field not displayed",getDeliveryNoButton().isDisplayed());
-        AssertJUnit.assertTrue("My Reports Page: Print button not displayed",getPrintButton().isDisplayed());
-        AssertJUnit.assertTrue("My Reports Page: Export button not displayed",getExportButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Print button not displayed",getPrintButton_SUSST().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Export button not displayed",getExportButton_SUSST().isDisplayed());
         AssertJUnit.assertTrue("My Reports Page: Save My Report button not displayed",getSaveMyReportButton().isDisplayed());
-        AssertJUnit.assertTrue("My Reports Page: Reset button not displayed",getResetButton().isDisplayed());
+        AssertJUnit.assertTrue("My Reports Page: Reset button not displayed",getResetButton_SUSST().isDisplayed());
     }
     
 }

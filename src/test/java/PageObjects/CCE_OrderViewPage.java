@@ -25,6 +25,7 @@ public class CCE_OrderViewPage {
     By popupContent = By.id("popup_content");
     By contentFrame = By.id("content");
     By tableLocator = By.id("#popup_content > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(2)");
+    By custRefLocator = By.cssSelector("#popup_content > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(10)");
     
     public CCE_OrderViewPage(WebDriver passedDriver) {
         driver = passedDriver;
@@ -55,6 +56,11 @@ public class CCE_OrderViewPage {
         By shadeCodeLocator = By.cssSelector("#popup_content > div:nth-child(3) > table > tbody > tr:nth-child("+lineNumber+") > td:nth-child(6)");
         WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(shadeCodeLocator));
         return driver.findElement(shadeCodeLocator).getText();
+    }
+    
+    public String getCustomerRef() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custRefLocator));
+        return driver.findElement(custRefLocator).getText();
     }
     
     public CCE_OrderStatusPage closeView() {

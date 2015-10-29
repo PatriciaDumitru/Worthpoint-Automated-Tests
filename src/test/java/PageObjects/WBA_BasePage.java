@@ -73,6 +73,7 @@ public class WBA_BasePage {
     static By refCabHeader = By.cssSelector("#topnav > li:nth-child(6)");
     static By reportsHeader = By.cssSelector("#topnav > li:nth-child(7)");
     static By adminHeader = By.cssSelector("#topnav > li:nth-child(8)");
+    static By mastersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3)");
     static By orderSamplesSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
     static By outstandingDraftSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
     static By orderStatusSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");   
@@ -90,6 +91,9 @@ public class WBA_BasePage {
     static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
     static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
     
+    
+    //CCE Master options
+    static By salesOrgMatOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(6)");
     
     public WBA_BasePage(WebDriver passedDriver) {
         driver = passedDriver;
@@ -632,6 +636,20 @@ public class WBA_BasePage {
             }
         }
         return true;
+        
+    }
+    
+    public Master_SalesOrgMaterialsPage selectSalesOrgMaterials() {
+        
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgMatOption));
+        action.click(driver.findElement(salesOrgMatOption)).build().perform();
+        
+        return new Master_SalesOrgMaterialsPage(driver);
         
     }
     

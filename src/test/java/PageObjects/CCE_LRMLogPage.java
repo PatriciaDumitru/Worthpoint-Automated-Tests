@@ -190,4 +190,26 @@ public class CCE_LRMLogPage extends WBA_BasePage {
     
     }
     
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+    }
+    
+    public String getErrorMessage(int row) {
+        By stageCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(5)");
+        
+        return driver.findElement(stageCell).getText();
+    }
+    
+    public String findOrder(String orderNo) {
+        for (int i = 2; i < 8; i++) {
+            By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(6)");
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            String cellValue = driver.findElement(orderNoCell).getText();
+            if (cellValue.equals(orderNo)) {
+                return getErrorMessage(i);
+            }
+        }
+        return null;
+    }
+    
 }

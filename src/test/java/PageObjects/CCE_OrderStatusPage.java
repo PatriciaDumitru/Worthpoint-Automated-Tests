@@ -201,6 +201,10 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
         return this;
     }
     
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+    }
+    
     public String getOrderStage(String orderNo) {
         boolean found = false;
         int i = 1;
@@ -221,6 +225,29 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
         if (found) return driver.findElement(orderStageLocator).getText();
         return "not found";
         
+    }
+    
+    public String getOrderNo(String PO) {
+        
+        for (int i = 2; i < 6; i++) {
+            CCE_OrderViewPage viewPage = pressView(i);
+            viewPage.switchTo();
+            viewPage.waitForContent();
+            
+            String custRef = viewPage.getCustomerRef().trim();
+            System.out.println("Cust ref: " + custRef);
+            System.out.println("PO: " + PO);
+            
+            if (PO.equals(custRef)) {
+                String orderNo = viewPage.getOrderNumber();
+                viewPage.closeView();
+                viewPage.waitForInvisibility();
+                return orderNo;
+            }
+            viewPage.closeView();
+            viewPage.waitForInvisibility();
+        }    
+        return null;
     }
     
     

@@ -816,37 +816,40 @@ public class Ecomm_Reports_Test extends DriverFactory {
             mrPage.pressReset();
             mrPage.waitForLoad();
             
-            System.out.println("Filter reset. Saving report...");
+            System.out.println("Filter reset. Checking for save button...");
             
-            Ecomm_SaveReportPage srPage = mrPage.pressSaveReport();
-            srPage.waitForContent();
-            
-            //Take a screenshot
-            File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\7Save report page.png"));
-            
-            System.out.println("Page reached. Entering title...");
-            
-            srPage.setTitle(DataItems.reportTitle);
-            
-            //Take a screenshot
-            File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\8Title entered.png"));
-            
-            srPage.pressSave();
-            srPage.waitForInvisibility();
-            
-            //Take a screenshot
-            File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\9Report saved.png"));
-            
-            String message = mrPage.getFlashMessage().getText();
-            if (message.contains("has been saved")) {
-                System.out.println("Report successfully saved");
-            } else {
-                System.out.println("***Unexpected message received: "+message+"***");
-            }
+            if (mrPage.getSaveMyReportButton().getText().contains("Save")) {
+                Ecomm_SaveReportPage srPage = mrPage.pressSaveReport();
+                srPage.waitForContent();
 
+                //Take a screenshot
+                File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\7Save report page.png"));
+
+                System.out.println("Page reached. Entering title...");
+
+                srPage.setTitle(DataItems.reportTitle);
+
+                //Take a screenshot
+                File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\8Title entered.png"));
+
+                srPage.pressSave();
+                srPage.waitForInvisibility();
+
+                //Take a screenshot
+                File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Reports\\My Reports\\9Report saved.png"));
+
+                String message = mrPage.getFlashMessage().getText();
+                if (message.contains("has been saved")) {
+                    System.out.println("Report successfully saved");
+                } else {
+                    System.out.println("***Unexpected message received: "+message+"***");
+                }
+            } else {
+                System.out.println("Save button not present, Save Report feature not tested");
+            }       
         }
         
         @Test //My Reports Page :: SUSST :: Page and filter checks, print, export, save, and reset
@@ -857,12 +860,12 @@ public class Ecomm_Reports_Test extends DriverFactory {
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
-            Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("My Report Page SUSST_MR1: Page and filter checks, reset, print, save, and export", "G_R_CU_SUSST_5");
+            Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("My Report Page SUSST_MR1: Page and filter checks, reset, print, save, and export", "G_R_CU_SUSST_5",DataItems.validCustUsername,DataItems.validCustPassword);
 				
             System.out.println("Navigating to My Reports page...");
             
             Ecomm_MyReportsPage mrPage = eCommPage.clickMyReports();
-            mrPage.waitForLoad();
+            mrPage.waitForElement();
 		
             System.out.println("My Reports page reached.");
 		
@@ -882,8 +885,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
             
             System.out.println("All selected. Resetting filter...");
             
-            mrPage.pressReset();
-            mrPage.waitForLoad();
+            mrPage.uncheckSelectAll();
             
             System.out.println("Filter reset. Selecting PO Number, Article, Brand, Ticket, Invoice No, Delivery No...");
             
@@ -894,47 +896,49 @@ public class Ecomm_Reports_Test extends DriverFactory {
             mrPage.setInvoiceNo();
             mrPage.setDeliveryNo();
             
-            System.out.println("Items selected. Entering filter criteria...");
-
-            mrPage.setOrderNo(DataItems.bulkOrderNo);
+            System.out.println("Items selected");
             
-            System.out.println("Criteria entered. Printing report...");
+            System.out.println("Printing report...");
             
-            Ecomm_OrderViewPage viewPage = mrPage.pressPrint();
+            Ecomm_OrderViewPage viewPage = mrPage.pressPrint_SUSST();
             viewPage.waitForContent();
+            viewPage.switchTo();
+            
+            System.out.println("Report printed. Closing...");
             
             viewPage.closeView();
             viewPage.waitForInvisibility();
             
-            System.out.println("Exporting file...");
-            
-            Ecomm_ExportDownloadPage dlPage = mrPage.pressExport();        
-            System.out.println("Export view displayed.");           
-            dlPage.waitForDownloadCompletion();
-            
-            System.out.println("File exported. Resetting filter...");
+            System.out.println("Print view closed. Resetting filter...");
             
             mrPage.pressReset();
             mrPage.waitForLoad();
             
-            System.out.println("Filter reset. Saving report...");
+            AssertJUnit.assertFalse("My Reports page: Reset button did not reset fields",mrPage.getSelectAllButton().isSelected());
             
-            Ecomm_SaveReportPage srPage = mrPage.pressSaveReport();
-            srPage.waitForContent();
+            System.out.println("Filter reset. Checking for save button...");
             
-            System.out.println("Page reached. Entering title...");
-            
-            srPage.setTitle(DataItems.reportTitle);
-            
-            srPage.pressSave();
-            srPage.waitForInvisibility();
-            
-            String message = mrPage.getFlashMessage().getText();
-            if (message.contains("has been saved")) {
-                System.out.println("Report successfully saved");
+            if (mrPage.getSaveMyReportButton().getAttribute("value").contains("Save")) {
+                Ecomm_SaveReportPage srPage = mrPage.pressSaveReport();
+                srPage.waitForContent();
+
+                System.out.println("Page reached. Entering title...");
+
+                srPage.setTitle(DataItems.reportTitle);
+
+                srPage.pressSave();
+                srPage.waitForInvisibility();
+
+                String message = mrPage.getFlashMessage().getText();
+                if (message.contains("has been saved")) {
+                    System.out.println("Report successfully saved");
+                } else {
+                    System.out.println("***Unexpected message received: "+message+"***");
+                }
             } else {
-                System.out.println("***Unexpected message received: "+message+"***");
-            }
+                System.out.println("Save button not present, Save Report feature not tested");
+            }       
+            
 
         }
 }

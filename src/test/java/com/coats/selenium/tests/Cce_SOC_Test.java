@@ -3,10 +3,14 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
 import PageObjects.CCE_AddOrderPage;
+import PageObjects.CCE_HubSosPage;
+import PageObjects.CCE_LRMLogPage;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_OrderSamplesPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.CCE_OrderStatusPage;
+import PageObjects.CCE_SAPLogPage;
+import PageObjects.Master_SalesOrgMaterialsPage;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
 import java.io.File;
@@ -19,6 +23,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -417,4 +422,294 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Order No.: "+orderNo);
 
     } 
+    
+    @Test //Order Samples Page :: SUMST :: Sales Org material auto-hides MUM type
+    (groups ={"CCE","CCE_Orders"})
+    public void SOC7() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+        
+        //New base object to handle log-in and set up
+        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC7: Sales Org Material Master hides MUM Type", "G_CCE_SOC_3");
+        
+        System.out.println("Navigaing to Sales Org Materials Master...");
+        
+        Master_SalesOrgMaterialsPage somPage = ccePage.selectSalesOrgMaterials();
+        somPage.waitForElement();
+        
+        System.out.println("Page reached. Setting article and sales org...");
+        
+        somPage.setArticle(DataItems.conOrdArticle);
+        somPage.setSalesOrg(DataItems.sampSalesOrg);
+        
+        System.out.println("Article set. Listing records...");
+        
+        somPage.pressSearch();
+        somPage.waitForElement();
+        
+        System.out.println("Records listed. Getting hidden MUM Types...");
+        
+        String type = somPage.getHiddenTypes();
+        
+        System.out.println("Type-to-hide received for Article: " + DataItems.conOrdArticle + " with Sales Org.: " + DataItems.sampSalesOrg + " is "  + type);
+        
+        System.out.println("Navigating to Order Samples...");
+        
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
+        
+        System.out.println("Order samples loaded. Entering customer details...");
+        
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
+        
+        System.out.println("Customer details entered. Submitting...");
+        
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
+        addOrder.waitForElement();
+        
+        System.out.println("Prompt submitted. Setting ship to party...");
+        
+        addOrder.setShipToParty(DataItems.custDetails[1]);
+        
+        System.out.println("Ship-to set. Setting article...");
+        
+        addOrder.setArticle(DataItems.conOrdArticle, 0);
+        boolean waitForTicketUpdate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElement(addOrder.getTicketField(), DataItems.conOrdTicket));
+        
+        System.out.println("Article set. Setting shade code to allow time for page update...");
+        
+        addOrder.setShadeCode(DataItems.shadeCode, 0);
+        
+        System.out.println("Shade code set. Checking MUM is hidden...");
+        
+        AssertJUnit.assertTrue("Order Samples (Add order) Page: MUM Type listed in Sales Org Materials not hidden when article entered",addOrder.checkHidden(type));
+        
+        System.out.println("MUM Type correctly hidden, consistent with master data.");
+    }
+    
+    @Test //Order Samples Page :: SUMST :: Direct enrich feature available and Warehouse option working
+    (groups = {"CCE","CCE_Orders"})
+    public void SOC8() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+        
+        //New base object to handle log-in and set up
+        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC8: Direct Enrich: Available and working. Warehouse SOS test", "G_CCE_SOC_12");
+        
+        System.out.println("Navigating to Order Samples...");
+        
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
+        
+        System.out.println("Order samples loaded. Entering customer details...");
+        
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
+        
+        System.out.println("Customer details entered. Submitting...");
+        
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
+        addOrder.waitForElement();
+        
+        System.out.println("Promt submitted. Entering ship-to: ");
+        
+        addOrder.setShipToParty(DataItems.custDetails[1]);
+        
+        System.out.println("Ship To entered. Adding order details...");
+        
+        addOrder.setArticle(DataItems.article, 0);
+        addOrder.setShadeCode(DataItems.shadeCode, 0);
+        addOrder.setMUMType("Cop", 0);
+        addOrder.setRequestType(DataItems.colourMatch, 0);
+        addOrder.setPurposeType(DataItems.bulkPurpose, 0);
+        addOrder.setCustomerRef(0);
+        addOrder.setQuantity(1, 0);
+        
+        System.out.println("Details set. Asserting Direct Enrich feature available...");
+        
+        AssertJUnit.assertTrue("Add Order (Order Samples) Page: Direct Enrich feature not displayed",
+                addOrder.getDirEnYesButton().isDisplayed() && addOrder.getDirEnNoButton().isDisplayed());
+        
+        System.out.println("Direct Enrich feature available. Select 'Yes'...");
+        
+        addOrder.getDirEnYesButton().click();
+        
+        System.out.println("Enrich selected. Checking fields appear...");
+        
+        addOrder.checkEnrichFields();
+        
+        System.out.println("Fields appear. Setting SOS to Warehouse...");
+        
+        addOrder.getEnrichWHSButton().click();
+        
+        System.out.println("SOS set. Submitting order...");
+        
+        CCE_OrderStatusPage statusPage = addOrder.pressSubmit();
+        statusPage.waitForElement();
+        
+        System.out.println("Order submitted. Finding order and retrieving order number...");
+        
+        String orderNo = statusPage.getOrderNo(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertFalse("Order Status Page: Order with reference:"+DataItems.lastUsedPO+" not found in table",orderNo==null);       
+        
+        AssertJUnit.assertTrue("Order Status Page: Order stage not as expected. Order No.: " + orderNo, statusPage.getOrderStage(orderNo).equals("Send to INBOX"));
+        
+        System.out.println("Order No.: " + orderNo + ". Searching for order in SAP Log...");
+        
+        CCE_SAPLogPage sapPage = statusPage.pressSAPLog();
+        sapPage.waitForElement();
+        
+        System.out.println("SAP Log reached. Searching for order...");
+        
+        AssertJUnit.assertFalse("SAP Log Page: Order with order no.: " + orderNo + " could not be found",sapPage.findOrder(orderNo)==null);
+        
+        System.out.println("Order found.");
+        System.out.println("Order No.: " + orderNo);
+        System.out.println("Customer Reference: " + DataItems.lastUsedPO);
+        System.out.println("Order Status: Send to INBOX");
+        System.out.println("SAP Status: " + sapPage.findOrder(orderNo));
+    }
+    
+    @Test //Order Samples Page :: SUMST :: Direct enrich feature, Hub/Lab options working
+    (groups = {"CCE","CCE_Orders","Solo"})
+    public void SOC9() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+        
+        //New base object to handle log-in and set up
+        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC9: Direct Enrich feature: Hub/Lab options test", "G_CCE_SOC_12");
+        
+        System.out.println("Navigating to Order Samples...");
+        
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
+        
+        System.out.println("Order samples loaded. Entering customer details...");
+        
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
+        
+        System.out.println("Customer details entered. Submitting...");
+        
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
+        addOrder.waitForElement();
+        
+        System.out.println("Promt submitted. Entering ship-to: ");
+        
+        addOrder.setShipToParty(DataItems.custDetails[1]);
+        
+        System.out.println("Ship To entered. Adding order details...");
+        
+        addOrder.setArticle(DataItems.article, 0);
+        addOrder.setShadeCode(DataItems.shadeCode, 0);
+        addOrder.setMUMType("Cop", 0);
+        addOrder.setRequestType(DataItems.colourMatch, 0);
+        addOrder.setPurposeType(DataItems.bulkPurpose, 0);
+        addOrder.setCustomerRef(0);
+        addOrder.setQuantity(1, 0);
+        addOrder.getDirEnYesButton().click();
+        
+        System.out.println("Details set. Setting SOS to Lab...");
+        
+        addOrder.getEnrichLabButton().click();
+        
+        System.out.println("SOS set. Submitting order...");
+        
+        CCE_OrderStatusPage statusPage = addOrder.pressSubmit();
+        statusPage.waitForElement();
+        
+        System.out.println("Order submitted. Finding order and retrieving order number...");
+        
+        String orderNo = statusPage.getOrderNo(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertFalse("Order Status Page: Order with reference:"+DataItems.lastUsedPO+" not found in table",orderNo==null); 
+        
+        AssertJUnit.assertTrue("Order Status Page: Order Stage not as expected. Order No.: " + orderNo, statusPage.getOrderStage(orderNo).equals("Lab SOS"));
+        
+        System.out.println("Order No.: " + orderNo + ". Searching for order in LRM Log...");
+        
+        CCE_LRMLogPage lrmPage = statusPage.pressLRMLog();
+        lrmPage.waitForElement();
+        
+        System.out.println("LRM Log reached. Searching for order...");
+        
+        AssertJUnit.assertFalse("LRM Log Page: Order with order no.: " + orderNo + " could not be found",lrmPage.findOrder(orderNo)==null);
+        
+        System.out.println("Order found.");
+        System.out.println("Order No.: " + orderNo);
+        System.out.println("Customer Reference: " + DataItems.lastUsedPO);
+        System.out.println("Order Stage: Lab SOS");
+        System.out.println("Error Message: " + lrmPage.findOrder(orderNo));
+        
+        System.out.println("Testing Hub SOS...");
+        
+        CCE_OrderSamplesPage samplesPage = lrmPage.pressOrderSamples();
+        samplesPage.waitForElement();
+        
+        System.out.println("Order prompt reached. Entering customer details...");
+        
+        samplesPage.setCustName(DataItems.custDetails[0]);
+        samplesPage.setRequestor(DataItems.custDetails[2]);
+        
+        System.out.println("Details entered. Submitting...");
+        
+        CCE_AddOrderPage orderPage = samplesPage.pressSubmit();
+        orderPage.waitForElement();
+        
+        System.out.println("Add Order Page reached. Entering ship-to...");
+        
+        orderPage.setShipToParty(DataItems.custDetails[1]);
+        
+        System.out.println("Ship-to set. Entering order line details...");
+        
+        addOrder.setArticle(DataItems.article, 0);
+        addOrder.setShadeCode(DataItems.shadeCode, 0);
+        addOrder.setMUMType("Cop", 0);
+        addOrder.setRequestType(DataItems.colourMatch, 0);
+        addOrder.setPurposeType(DataItems.bulkPurpose, 0);
+        addOrder.setCustomerRef(0);
+        addOrder.setQuantity(1, 0);
+        addOrder.getDirEnYesButton().click();
+        
+        System.out.println("Details set. Setting SOS to Hub...");
+        
+        addOrder.getEnrichHubButton().click();
+        
+        System.out.println("SOS Set. Submitting order...");
+        
+        CCE_OrderStatusPage statusPage2 = addOrder.pressSubmit();
+        statusPage2.waitForElement();
+        
+        System.out.println("Order submitted.");
+        
+        String orderNo2 = statusPage.getOrderNo(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertFalse("Order Status Page: Order with reference:"+DataItems.lastUsedPO+" not found in table",orderNo2==null); 
+        
+        AssertJUnit.assertTrue("Order Status Page: Order Stage not as expected. Order No.: " + orderNo2, statusPage.getOrderStage(orderNo2).equals("Hub SOS"));
+        
+        System.out.println("Order No.: " + orderNo2 + ". Searching for order in Hub SOS...");
+        
+        CCE_HubSosPage hubPage = statusPage2.pressHubSos();
+        hubPage.waitForElement();
+        
+        System.out.println("Hub SOS reached. Searching for order...");
+        
+        AssertJUnit.assertFalse("Hub SOS Page: Order with order no.: " + orderNo2 + " could not be found",hubPage.findOrder(orderNo2)==null);
+        
+        System.out.println("Order found.");
+        System.out.println("Order No.: " + orderNo2);
+        System.out.println("Customer Reference: " + DataItems.lastUsedPO);
+        System.out.println("Order Stage: Hub SOS");
+        
+    }
+    
 }

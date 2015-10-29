@@ -148,6 +148,7 @@ public class DataItems {
     public static String sampOrderNo = "1129113";
     public static String sampCustName = "Life Easy Customer";
     public static String sampRequester = "approver 1 test";
+    public static String sampSalesOrg = "ID52";
     
     //Sample bulk order number
     public static String bulkOrderNo = "5020757";

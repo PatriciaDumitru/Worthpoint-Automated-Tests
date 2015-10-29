@@ -218,4 +218,26 @@ public class CCE_SAPLogPage extends WBA_BasePage {
         AssertJUnit.assertTrue("SAP Log Page: Reset button not displayed",getResetButton().isDisplayed());
         AssertJUnit.assertTrue("SAP Log Page: Export button not displayed",getExportButton().isDisplayed());
     }
+    
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+    }
+    
+    public String getOrderStatus(int row) {
+        By stageCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(16)");
+        
+        return driver.findElement(stageCell).getText();
+    }
+    
+    public String findOrder(String orderNo) {
+        for (int i = 2; i < 8; i++) {
+            By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(3)");
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            String cellValue = driver.findElement(orderNoCell).getText();
+            if (cellValue.equals(orderNo)) {
+                return getOrderStatus(i);
+            }
+        }
+        return null;
+    }
 }
