@@ -75,6 +75,7 @@ public class WBA_BasePage {
     static By adminHeader = By.cssSelector("#topnav > li:nth-child(8)");
     static By mastersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3)");
     static By orderSamplesSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
+    static By manualEnrichSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
     static By outstandingDraftSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
     static By orderStatusSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");   
     static By dnReprintSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
@@ -419,6 +420,17 @@ public class WBA_BasePage {
         action.click(driver.findElement(orderSamplesSubtab)).build().perform();
         
         return new CCE_OrderSamplesPage(driver);
+    }
+    
+    public CCE_ManualEnrichPage pressManualEnrich() {
+        
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(ordersHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(manualEnrichSubtab));
+        action.click(driver.findElement(manualEnrichSubtab)).build().perform();
+        
+        return new CCE_ManualEnrichPage(driver);
     }
     
     public CCE_OutstandingDraftPage pressOutstandingDraft() {

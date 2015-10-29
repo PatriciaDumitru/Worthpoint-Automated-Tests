@@ -25,10 +25,10 @@ public class Cce_Hub_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Hub SOS: Page and filter checks", "C_CCE_HS_1-4");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Hub SOS: Page and filter checks", "C_CCE_HS_1-4");
         
         System.out.println("Navigating to Hub SOS...");
         
@@ -132,10 +132,10 @@ public class Cce_Hub_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Receieved Hub: Page and filter checks", "C_CCE_RH_1-3");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Receieved Hub: Page and filter checks", "C_CCE_RH_1-3");
         
         System.out.println("Navigating to Received Hub...");
         

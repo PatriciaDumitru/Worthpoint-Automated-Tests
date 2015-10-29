@@ -8,15 +8,15 @@ import PageObjects.WBA_LoginPage;
 import PageObjects.WBA_SelectionPage;
 import org.openqa.selenium.WebDriver;
 
-public class Cce_SOC_Base {
+public class Cce_Base {
     
     WebDriver driver;
     
-    public Cce_SOC_Base(WebDriver passedDriver) {
+    public Cce_Base(WebDriver passedDriver) {
         driver = passedDriver;
     }
     
-    public CCE_MainPage SUSST_SetUp(String testTitle,String scenarioID) {
+    public CCE_MainPage SUMST_SetUp(String testTitle,String scenarioID) {
         System.out.println("TEST: "+testTitle);
         System.out.println("Scenario ID: "+scenarioID);
     

@@ -26,10 +26,10 @@ public class Cce_Inbox_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Inbox I1: Page checks, filter function, list orders, saving, re-assigning SOS", "C_CCE_I_1,2,3,4,6");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Inbox I1: Page checks, filter function, list orders, saving, re-assigning SOS", "C_CCE_I_1,2,3,4,6");
         
         System.out.println("Navigating to Inbox...");
         
@@ -115,10 +115,10 @@ public class Cce_Inbox_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Inbox I2: Reset, cancel, and print", "C_CCE_I_5");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Inbox I2: Reset, cancel, and print", "C_CCE_I_5");
         
         System.out.println("Navigating to Inbox...");
         
@@ -174,10 +174,10 @@ public class Cce_Inbox_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Inbox SAP IS2: Page check, filter functions, list orders, reset", "C_CCE_I_5");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Inbox SAP IS2: Page check, filter functions, list orders, reset", "C_CCE_I_5");
         
         System.out.println("Navigating to Inbox...");
         

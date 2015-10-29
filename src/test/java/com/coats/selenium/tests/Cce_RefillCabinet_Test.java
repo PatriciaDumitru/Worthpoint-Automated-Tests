@@ -24,10 +24,10 @@ public class Cce_RefillCabinet_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Refill Cabinet RC1: Page checks, filter function", "C_CCE_RC_1-2");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Refill Cabinet RC1: Page checks, filter function", "C_CCE_RC_1-2");
         
         System.out.println("Navigating to Refill Cabinet...");
         

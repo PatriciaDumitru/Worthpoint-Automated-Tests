@@ -27,10 +27,10 @@ public class Cce_SAPLog_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("SAP Log: Page and filter checks, search, reset, export", "C_CCE_A_SAP_1-5");
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAP Log: Page and filter checks, search, reset, export", "C_CCE_A_SAP_1-5");
         
         System.out.println("Navigating to SAP Log Page...");
         

@@ -36,10 +36,10 @@ public class Cce_SOC_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC1: User can select all fields", "G_CCE_SOC_2");
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC1: User can select all fields", "G_CCE_SOC_2");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -98,10 +98,10 @@ public class Cce_SOC_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC2: Single line, within threshold", "G_CCE_SOC_1");
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC2: Single line, within threshold", "G_CCE_SOC_1");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -164,10 +164,10 @@ public class Cce_SOC_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC3: Multiple line, within threshold", "G_CCE_SOC_1 (multiple)");
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC3: Multiple line, within threshold", "G_CCE_SOC_1 (multiple)");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -241,10 +241,10 @@ public class Cce_SOC_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC4: Single line, above threshold", "G_CCE_SOC_6");
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC4: Single line, above threshold", "G_CCE_SOC_6");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -294,10 +294,10 @@ public class Cce_SOC_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC5: Multiple lines, copied data", "G_CCE_SOC_8");
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC5: Multiple lines, copied data", "G_CCE_SOC_8");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -375,10 +375,10 @@ public class Cce_SOC_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC6: Save as draft", "G_CCE_SOC_12");
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC6: Save as draft", "G_CCE_SOC_12");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -430,10 +430,10 @@ public class Cce_SOC_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC7: Sales Org Material Master hides MUM Type", "G_CCE_SOC_3");
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC7: Sales Org Material Master hides MUM Type", "G_CCE_SOC_3");
         
         System.out.println("Navigaing to Sales Org Materials Master...");
         
@@ -497,10 +497,10 @@ public class Cce_SOC_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC8: Direct Enrich: Available and working. Warehouse SOS test", "G_CCE_SOC_12");
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC8: Direct Enrich: Available and working. Warehouse SOS test", "G_CCE_SOC_12");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -577,16 +577,16 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: SUMST :: Direct enrich feature, Hub/Lab options working
-    (groups = {"CCE","CCE_Orders"})
+    (groups = {"CCE","CCE_Orders","Solo"})
     public void SOC9() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("SAMPLE ORDER SOC9: Direct Enrich feature: Hub/Lab options test", "G_CCE_SOC_12");
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC9: Direct Enrich feature: Hub/Lab options test", "G_CCE_SOC_12");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -708,7 +708,7 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Order found.");
         System.out.println("Order No.: " + orderNo2);
         System.out.println("Customer Reference: " + DataItems.lastUsedPO);
-        System.out.println("Order Stage: Hub SOS");
+        System.out.println("Order Stage: "+hubPage.findOrder(orderNo2));
         
     }
     

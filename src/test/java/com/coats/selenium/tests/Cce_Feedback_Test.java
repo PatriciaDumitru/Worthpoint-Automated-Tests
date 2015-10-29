@@ -27,10 +27,10 @@ public class Cce_Feedback_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FB1: Single feedback, using an order number to start process", "G_CCE_FB_1");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Feedback FB1: Single feedback, using an order number to start process", "G_CCE_FB_1");
         
         System.out.println("Navigating to Feedback...");
         
@@ -65,10 +65,10 @@ public class Cce_Feedback_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FB2: Satisfied feedback", "G_CCE_FB_1");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Feedback FB2: Satisfied feedback", "G_CCE_FB_1");
         
         System.out.println("Navigating to Feedback...");
         
@@ -107,10 +107,10 @@ public class Cce_Feedback_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FB3: Dissatisfied feedback", "G_CCE_FB_1");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Feedback FB3: Dissatisfied feedback", "G_CCE_FB_1");
         
         System.out.println("Navigating to Feedback...");
         
@@ -164,10 +164,10 @@ public class Cce_Feedback_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FBA1: Feedback Awaiting page checks", "G_CCE_FBA_1");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Feedback FBA1: Feedback Awaiting page checks", "G_CCE_FBA_1");
         
         System.out.println("Navigating to Feedback Awaiting...");
         
@@ -201,10 +201,10 @@ public class Cce_Feedback_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FBA2: Filter functioning", "G_CCE_FBA_2");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Feedback FBA2: Filter functioning", "G_CCE_FBA_2");
         
         System.out.println("Navigating to Feedback Awaiting...");
         
@@ -245,10 +245,10 @@ public class Cce_Feedback_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FBA2: Filter functioning", "G_CCE_FBA_2");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Feedback FBA2: Filter functioning", "G_CCE_FBA_2");
         
         System.out.println("Navigating to Feedback Awaiting...");
         
@@ -288,10 +288,10 @@ public class Cce_Feedback_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FC1: Check fields", "G_CCE_FC_1");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Feedback FC1: Check fields", "G_CCE_FC_1");
         
         System.out.println("Navigating to Feedback Completed...");
         
@@ -323,10 +323,10 @@ public class Cce_Feedback_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //New base object to handle log-in and set up
-        Cce_SOC_Base base = new Cce_SOC_Base(driver);
+        Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUSST_SetUp("Feedback FC1: Check fields", "G_CCE_FC_1");
+        CCE_MainPage ccePage = base.SUMST_SetUp("Feedback FC1: Check fields", "G_CCE_FC_1");
         
         System.out.println("Navigating to Feedback Completed...");
         
