@@ -32,12 +32,15 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     static By titleLocator = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > div.tbl-title.minus.plus > h1");
     static By articleHeadCell = By.cssSelector("#t1 > thead > tr > th:nth-child(4)");
     static By formLocator = By.id("BulkOrderOrdermanualForm");
+    static By addMaterial = By.className("msgBox");
+    static By addMaterialText = By.className("msgBoxTitle");
     
     //Customer detail field locators
     static By customerNameField = By.cssSelector("#s2id_customer_id > a");//Initial customer name field to click
     static By shipToPartyField = By.id("ship_to_party_id"); //Initial dropdown menu field
     static By requestorField = By.id("BulkOrderRequesterId"); //Initial dropdown menu field
     static By buyersField = By.cssSelector("#s2id_BuyerId > a > span.select2-chosen.select_image_add");//Initial dropdown menu field
+    static By subAccountField = By.id("payer_id");//Initial dropdown menu field
     static By poNumberField = By.id("BulkOrderPoNumber");//Text field to enter PO Number
     static By shipToAddressOutput = By.id("ship_to_party_address");//Text output area to display address
     
@@ -69,6 +72,11 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
      
     public WebElement getBuyersField() {
         return driver.findElement(buyersField);
+    }
+    
+    public WebElement getSubAccountField() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAccountField));
+        return driver.findElement(subAccountField);
     }
      
     public WebElement getPONumberField() {
@@ -126,6 +134,11 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setBuyers(String item) throws InterruptedException {
         CommonTask.setSearchField(driver, buyersField, item);
         return this;
+    }
+    
+    public Ecomm_ManualEntryPage setSubAccount(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver, subAccountField, item);
+        return new Ecomm_ManualEntryPage(driver);
     }
     
     public Ecomm_ManualEntryPage setPONumber(String item) throws InterruptedException {
@@ -492,6 +505,15 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return driver.findElement(ymnFieldLocator).getAttribute("value");
     }
     
+    public String getBrand(int row) {
+        By brandLocator = By.id("Brand"+row);
+        
+        Select select = new Select(driver.findElement(brandLocator));
+        
+        return select.getFirstSelectedOption().getText();
+        
+    }
+    
     public void checkFields() {
         //Wait for all elements to be clickable
         WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
@@ -508,4 +530,23 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", getPONumberField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());
     }
+    
+    public boolean waitForAddMaterialMessage() {
+        
+        boolean appears;
+        
+        try {
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(addMaterial));
+            appears = true;
+        } catch (Exception e) {
+            appears = false;
+        }  
+        return appears;   
+    }
+        
+    public String getAddMaterialAlertText() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(addMaterialText));
+        return driver.findElement(addMaterialText).getText();
+    }
+    
 }

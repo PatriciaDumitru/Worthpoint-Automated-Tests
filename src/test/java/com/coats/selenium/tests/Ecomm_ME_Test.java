@@ -8,6 +8,7 @@ import PageObjects.Ecomm_OrderConfirmationPage;
 import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_OutstandingOrderDraftPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
+import PageObjects.Ecomm_PendingApprovalListPage;
 import PageObjects.Ecomm_UploadProcessPage;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
@@ -25,7 +26,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-public class Ecomm_SUSST_ME_Test extends DriverFactory {
+public class Ecomm_ME_Test extends DriverFactory {
     
     @Test //Manual Entry Page :: Page checks, single line order using YMN and shade code from master data
     (groups = {"QuickTest","eComm","eComm_Orders"})
@@ -34,7 +35,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
 
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("MANUAL ENTRY SUSST1: Single line, Your Material Number with master data shade code","G_OOC_ME_SUSST_1");
 
@@ -155,7 +156,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
 
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("MANUAL ENTRY SUSST2: Multiple lines, Your Material Number with master data shade code","G_OOC_ME_SUSST_2");
         
@@ -238,7 +239,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
 
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest3 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest3 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest3.SUSST_SetUp("MANUAL ENTRY SUSST3: Single line, Your Material Number without master data shade code","G_OOC_ME_SUSST_3");
         
@@ -318,7 +319,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("MANUAL ENTRY SUSST4: Multiple lines, Your Material Number without master data shade code","G_OOC_ME_SUSST_4");
         
@@ -397,7 +398,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest5 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest5 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest5.SUSST_SetUp("MANUAL ENTRY SUSST5: Single line, using Article and shade code","G_OOC_ME_SUSST_5");
         
@@ -474,7 +475,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest6 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest6 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest6.SUSST_SetUp("MANUAL ENTRY SUSST6: Multiple lines, using Article and shade code","G_OOC_ME_SUSST_6");
         
@@ -553,7 +554,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest7 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest7 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest7.SUSST_SetUp("MANUAL ENTRY SUSST7: Single line, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUSST_7");
         
@@ -627,7 +628,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST8: Multiple lines, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUSST_8");
         
@@ -708,7 +709,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST9: Check validation at Manual Entry Page (no requester)","G_OOC_ME_SUSST_Unknown");
         
@@ -800,7 +801,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST10: Check validation at Manual Entry Page (no ship to)","G_OOC_ME_SUSST_Unknown");
         
@@ -893,7 +894,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST11: Check validation at Manual Entry Page (no buyer)","G_OOC_ME_SUSST_Unknown");
         
@@ -978,7 +979,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST12: Check validation at Confirmation Page (no requester)","G_OOC_ME_SUSST_Unknown");
         
@@ -1067,7 +1068,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST13: Check validation at Confirmation Page (no ship to)","G_OOC_ME_SUSST_Unknown");
         
@@ -1157,7 +1158,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST14: Check validation at Confirmation Page (no buyer)","G_OOC_ME_SUSST_Unknown");
         
@@ -1248,7 +1249,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST15: Draft creation/order simulation - check draft details and cancel","G_OOC_ME_SUSST_Unknown");
         
@@ -1340,7 +1341,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST16: Draft creation/order simulation - cancelling saved draft","G_OOC_ME_SUSST_Unknown");
         
@@ -1422,7 +1423,7 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         WebDriver driver = getDriver();
   
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST17: Draft creation/order simulation","G_OOC_ME_SUSST_Unknown");
         
@@ -1482,5 +1483,152 @@ public class Ecomm_SUSST_ME_Test extends DriverFactory {
         System.out.println("Details checked.");
         
     }   
+    
+    @Test //Manual Entry Page :: SUMST :: Sub-account test. Field appears and data included in Flat File
+    (groups ={"eComm","eComm_Orders"})
+    public void SUSST18() throws Exception {
+        //New driver
+        WebDriver driver = getDriver();
+  
+        //new base test to handle set up
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
+        //Set up returns an eComm main page
+        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST18: Sub-account availability and flat file inclusion","ME_SA_01");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+        
+        System.out.println("Manual Entry page reached. Entering customer details...");
+        
+        manualEntryPage.setCustomerName(DataItems.subCustDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.subCustDetails[1]);
+        manualEntryPage.setRequestor(DataItems.subCustDetails[2]);
+        manualEntryPage.setBuyers(DataItems.subCustDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+        System.out.println("Customer PO used: "+DataItems.lastUsedPO);
+        
+        System.out.println("Customer details entered. Checking for sub-account field...");
+        
+        AssertJUnit.assertTrue("Manual Entry Page: Sub-account field not displayed",manualEntryPage.getSubAccountField().isDisplayed());
+        
+        System.out.println("Sub-account field displayed. Entering sub-account...");
+        
+        manualEntryPage.setSubAccount(DataItems.subAccount);
+        
+        System.out.println("Sub-account entered. Entering line details...");
+        
+        manualEntryPage.setArticle(DataItems.article, 0);
+        manualEntryPage.setShadeCode(DataItems.shadeCode,0);
+        manualEntryPage.setQty(3, 0);
+        manualEntryPage.setDate(0);
+        
+        String date = manualEntryPage.getDate(0);
+                
+        System.out.println("Line details entered. Pressing next...");
+        
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+        orderConf.waitForElement();
+        
+        System.out.println("Order confirmation page reached. Checking sub-account field appears and is consistent...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Sub-account field does not appear",orderConf.getSubAccountField().isDisplayed());
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Sub-account field does not maintain value after simulation",orderConf.getSubAccount().equals(DataItems.subAccount));
+        
+        System.out.println("Sub-account field consistent. Sending for Approval...");
+        
+        Ecomm_PendingApprovalListPage appPage = orderConf.pressSendForApproval();
+        appPage.waitForElement();
+        
+        System.out.println("Pending Approval Page reached. Checking order appears...");
+        
+        int row = appPage.getRow(DataItems.lastUsedPO);
+        AssertJUnit.assertFalse("Pending Approval List Page: Order does not appear after Send for Approval pressed",row==-1);
+        
+        String orderNo = appPage.getOrderNo(row);
+        
+        System.out.println("Order appears. Order No.: " + orderNo);
+        
+        System.out.println("Navigating to SAP Log to access Flat file...");
+        
+        
+
+    }
+    
+    @Test //Manual Entry Page :: SUSST :: MOQ active, adjusted quantity rounds to nearest dye lot
+    (groups = {"eComm","eComm_Orders"})
+    public void SUSST19() throws Exception {
+        //New driver
+        WebDriver driver = getDriver();
+  
+        //new base test to handle set up
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
+        //Set up returns an eComm main page
+        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST19: MOQ Active using YMN and master shade","G_OOC_ME_SUSST_MOQ_1",DataItems.validCustUsername,DataItems.validCustPassword);
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+        
+        System.out.println("Manual Entry page reached. Entering customer details...");
+        
+        manualEntryPage.setCustomerName(DataItems.conOrdDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.conOrdDetails[1]);
+        manualEntryPage.setRequestor(DataItems.conOrdDetails[2]);
+        manualEntryPage.setBuyers(DataItems.conOrdDetails[3]);
+        manualEntryPage.setPONumber(DataItems.conOrdDetails[4]);
+
+        System.out.println("Customer details entered. Entering line details...");
+        
+        
+        
+    }
+    
+    @Test //Manual Entry Page :: Send for approval feature activated
+    (groups = {"eComm","eComm_Orders"})
+    public void SUSST20() throws Exception {
+        //New driver
+        WebDriver driver = getDriver();
+  
+        //new base test to handle set up
+        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
+        //Set up returns an eComm main page
+        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST19: MOQ Active using YMN and master shade","G_OOC_ME_SUSST_MOQ_1");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+        
+        System.out.println("Manual Entry page reached. Entering customer details...");
+        
+        manualEntryPage.setCustomerName(DataItems.subCustDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.subCustDetails[1]);
+        manualEntryPage.setBuyers(DataItems.subCustDetails[3]);
+        manualEntryPage.setRequestor(DataItems.subCustDetails[2]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+        
+        System.out.println("Details entered. Entering line details...");
+        
+        manualEntryPage.setArticle(DataItems.article, 0);
+        manualEntryPage.setShadeCode(DataItems.expShadeCode, 0);
+        manualEntryPage.setQty(6, 0);
+        manualEntryPage.setDate(0);
+        
+        System.out.println("Details entered. Pressing next...");
+        
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+        orderConf.waitForElement();
+        
+        System.out.println("Order confirmation page reached. Checking 'Send for Approval' button appears...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Send for Approval button not displayed as expected",orderConf.checkSendForApproval());
+        
+        System.out.println("Button correctly displayed.");
+
+    }
     
 }

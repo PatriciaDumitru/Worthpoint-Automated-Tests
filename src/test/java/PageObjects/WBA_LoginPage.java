@@ -24,6 +24,7 @@ public class WBA_LoginPage {
     static By loginButtonLocator = By.cssSelector("#login-bottom > div.submit > input");
     static By forgotPasswordLocator = By.cssSelector("#forgot-password > div > ul > li > a");
     static By remembermeLocator = By.className("remember");
+    static By failedLoginLocator = By.id("authMessage");
     
     public static WebElement getCoatsLogo() {
         //find and return element
@@ -53,6 +54,12 @@ public class WBA_LoginPage {
     public static WebElement getRememberme() {
         //find and return element
         return driver.findElement(remembermeLocator);
+    }
+    
+    public String getFailedLoginMessage() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(failedLoginLocator));
+        
+        return driver.findElement(failedLoginLocator).getText();
     }
     
     public WBA_LoginPage typeUsername(String username) {

@@ -1,11 +1,15 @@
 
 package com.coats.selenium.tests;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import PageObjects.CCE_AddOrderPage;
+import PageObjects.CCE_EnrichOrderPage;
 import PageObjects.CCE_HubSosPage;
 import PageObjects.CCE_LRMLogPage;
 import PageObjects.CCE_MainPage;
+import PageObjects.CCE_ManualEnrichPage;
+import PageObjects.CCE_NewBuyerPage;
 import PageObjects.CCE_OrderSamplesPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.CCE_OrderStatusPage;
@@ -16,6 +20,7 @@ import com.google.common.base.Verify;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -577,7 +582,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: SUMST :: Direct enrich feature, Hub/Lab options working
-    (groups = {"CCE","CCE_Orders","Solo"})
+    (groups = {"CCE","CCE_Orders"})
     public void SOC9() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -710,6 +715,129 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Customer Reference: " + DataItems.lastUsedPO);
         System.out.println("Order Stage: "+hubPage.findOrder(orderNo2));
         
+    }
+    
+    @Test //Order Samples Page :: SUMST :: New Buyer function
+    (groups = {"CCE"})
+    public void SOC10() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+        
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+        
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC10: New Buyer function", "OP_NBB_01");
+        
+        System.out.println("Navigating to Order Samples...");
+        
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
+        
+        System.out.println("Order samples loaded. Entering customer details...");
+        
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
+        
+        System.out.println("Customer details entered. Submitting...");
+        
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
+        addOrder.waitForElement();
+        
+        System.out.println("Promt submitted. Pressing new buyer...");
+        
+        CCE_NewBuyerPage nbPage = addOrder.pressNewBuyer();
+        nbPage.waitForElement();
+        
+        System.out.println("New Buyer page reached. Checking fields...");
+        
+        nbPage.checkFields();
+        
+        AssertJUnit.assertTrue("New Buyer Page: Title not as expected",nbPage.getTitleField().getText().equals("NEW BUYER"));
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        String buyerName = CommonTask.generatePO("buyer");
+        
+        System.out.println("Name requested: " + buyerName);
+        
+        nbPage.setCustomerName(DataItems.custDetails[0]);
+        nbPage.setBuyerName(buyerName);
+        nbPage.setBuyerDesc("Automated Test - no need to act");
+        
+        System.out.println("Details set. Submitting...");
+        
+        CCE_AddOrderPage addPage = nbPage.pressSubmit();
+        addPage.waitForElement();
+        
+        System.out.println("Add Order page reached.");
+    }
+    
+    @Test //Order Samples Page :: SUMST :: Above Qty for LAB but within threshold Qty
+    (groups = {"CCE","CCE_Orders"})
+    public void SOC11() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+        
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+        
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC5: Single line, above LAB qty but within threshold", "G_CCE_SOC_5");
+        
+        System.out.println("Navigating to Order Samples...");
+        
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
+        
+        System.out.println("Order samples loaded. Entering customer details...");
+        
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
+        
+        System.out.println("Customer details entered. Submitting...");
+        
+        CCE_AddOrderPage addOrder = orderSamples.pressSubmit();
+        
+        System.out.println("Prompt submitted. Adding order details...");
+        
+        //Adding details
+        addOrder.setShipToParty(DataItems.custDetails[1]);
+        addOrder.setBrand(DataItems.thresholdBrand, 0);
+        addOrder.setShadeCode(DataItems.shadeCode, 0);
+        addOrder.setMUMType(DataItems.thresholdMUMType, 0);
+        addOrder.setTicket(DataItems.thresholdTicket, 0);
+        addOrder.setCustomerRef(0);
+        addOrder.setPurposeType(DataItems.bulkPurpose, 0);
+        addOrder.setRequestType(DataItems.sewing, 0);
+        addOrder.setQuantity(DataItems.thresholdQty, 0);
+        
+        //Alert appears warning of sample limit exceeded
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        System.out.println("Alert appeared: " + alert.getText());
+        alert.accept();
+        
+        System.out.println("Details added. Submitting order...");
+        
+        CCE_OrderStatusPage statusPage = addOrder.pressSubmit();
+        statusPage.waitForElement();
+        
+        System.out.println("Order submitted. Retrieving Order No...");
+        
+        String orderNo = statusPage.getOrderNo(DataItems.lastUsedPO);
+        
+        System.out.println("Order No.: " + orderNo);
+        
+        System.out.println("Checking order appears in status page with correct SOS...");
+        
+        AssertJUnit.assertFalse("Order Status Page: Order (Order No.:" + orderNo+"), not found",statusPage.getCurrentSOS(orderNo).equals("not found"));
+        
+        String currentSOS = statusPage.getCurrentSOS(orderNo);
+        
+        AssertJUnit.assertTrue("Order Status Page: Current SOS not as expected. Warehouse expected", currentSOS.equals("Warehouse"));
+        
+        System.out.println("Current SOS as expected.");
+        System.out.println("Order No.: " + orderNo);
+        System.out.println("Customer PO: " + DataItems.lastUsedPO);
+        System.out.println("Current SOS: " + currentSOS);
     }
     
 }

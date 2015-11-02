@@ -368,6 +368,12 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         return new CCE_OrderSamplesPage(driver);
     }
     
+    public CCE_NewBuyerPage pressNewBuyer() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(newBuyerLink));
+        driver.findElement(newBuyerLink).click();
+        return new CCE_NewBuyerPage(driver);
+    }
+    
     public CCE_OutstandingDraftPage pressCancelToDrafts() {
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(cancelButton)).build().perform();

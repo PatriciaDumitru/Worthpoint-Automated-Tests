@@ -6,6 +6,7 @@ import AutomationFramework.DataItems;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -56,11 +57,17 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By cancelButtonLocator = By.id("cancel1");
     static By saveDraftButtonLocator = By.id("drafts");
     static By backButtonLocator = By.id("backLink");
+    static By sendForApprovalButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(7) > div:nth-child(2) > input");
+    
+    static By linesWithErrorButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
+    static By errorLine = By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr:nth-child(1) > td:nth-child(6)");
     
     //Edit order overlay locator
     static By editOverlayLocator = By.id("TB_window");
     
     static By flashMessageLocator = By.id("flashMessage");
+    
+    static By frameLocator = By.id("TB_iframeContent");
     
     
     public Ecomm_OrderConfirmationPage(WebDriver passedDriver) {
@@ -203,6 +210,12 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return getCustNameField().getText();
     }
     
+    public String getSubAccount() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(getSubAccountField()));
+        Select select = new Select(getSubAccountField());
+        return select.getFirstSelectedOption().getText();
+    }
+    
     public String getPONumber() {
         return getCustPoField().getText();
     }
@@ -238,6 +251,10 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     public String getBuyers() {
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyersField));
         return driver.findElement(buyersField).getText();
+    }
+    
+    public WebElement getSendForApprovalButton() {
+        return driver.findElement(sendForApprovalButton);
     }
     
     public Ecomm_OrderEditPage pressEditLine(int lineNumber) {
@@ -321,6 +338,12 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return new Ecomm_OutstandingUploadDraftPage(driver);
     }
     
+    public Ecomm_PendingApprovalListPage pressSendForApproval() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sendForApprovalButton));
+        driver.findElement(sendForApprovalButton).click();
+        return new Ecomm_PendingApprovalListPage(driver);
+    }
+    
     public WebElement waitForError() {
         return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
     }
@@ -372,6 +395,35 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
         driver.findElement(cancelButtonLocator).click();
         return new Ecomm_OutstandingOrderDraftPage(driver);
+    }
+    
+    public boolean checkSendForApproval() {
+        By approvalButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(7) > div:nth-child(2) > input");
+        
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(approvalButton));
+        
+        if (driver.findElement(approvalButton).getAttribute("value").equals("Send for Approval")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean viewErrors() {
+        
+        boolean errors;
+        
+        try {
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(linesWithErrorButton));
+            errors = true;
+            driver.findElement(linesWithErrorButton).click();
+            WebDriver wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+            WebElement wait3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(errorLine));
+            System.out.println(driver.findElement(errorLine).getText());
+        } catch (TimeoutException e) {
+            errors = false;
+        }
+        return errors;
     }
     
 }

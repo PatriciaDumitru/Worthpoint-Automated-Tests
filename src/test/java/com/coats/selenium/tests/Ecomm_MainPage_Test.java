@@ -122,7 +122,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
         WebDriver driver = getDriver();
 
         //New eComm base test to handle log-in and navigation
-        Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base baseTest = new Ecomm_Base(driver);
         PageObjects.Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("eComm Main Page ECOMM2: Navigation link checks", "no ID");
 
         String[][] expectedSubMenu = new String[][] {

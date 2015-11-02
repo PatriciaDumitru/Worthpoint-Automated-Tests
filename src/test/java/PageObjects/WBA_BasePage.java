@@ -621,6 +621,22 @@ public class WBA_BasePage {
         return new CCE_SAPLogPage(driver);
     }
     
+    public CCE_MainPage openMasters() {
+        By menuHead = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li.menuHead");
+        
+        WebElement admin = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(admin).build().perform();
+        
+        WebElement masters = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(masters).build().perform();
+        
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(menuHead));
+        
+        return new CCE_MainPage(driver);
+        
+    }
+    
     public boolean checkFiltration(String locator1, String locator2, By noRecords, String item, int firstRow) {
         
         System.out.println("Checking for records...");
@@ -649,6 +665,17 @@ public class WBA_BasePage {
         }
         return true;
         
+    }
+    
+    public boolean checkForFatalError() {
+        try {
+            boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(breadcrumbLocator, "Fatal Error"));
+            System.out.println("Fatal Error found");
+            return true;
+        } catch (Exception e) {
+            System.out.println("No error detected.");
+            return false;
+        }       
     }
     
     public Master_SalesOrgMaterialsPage selectSalesOrgMaterials() {

@@ -128,6 +128,10 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Pending Approval List Page: Print Button not displayed correctly",getPrintButton().isDisplayed());
     }
     
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPriceAvailField));
+    }
+    
     public int getRow(String PONumber) {
         AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",driver.findElement(custPOHead).getText().contains("Customer PO No."));
         int row = -1;

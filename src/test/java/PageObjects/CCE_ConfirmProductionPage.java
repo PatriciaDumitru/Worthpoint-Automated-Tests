@@ -266,7 +266,7 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     }
     
     public boolean findOrder(String orderNo) {
-        for (int i = 2; i < 8; i++) {
+        for (int i = 3; i < 8; i++) {
             By orderNoCell = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child("+i+") > td:nth-child(4)");
             WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
             if (driver.findElement(orderNoCell).getText().equals(orderNo)) {

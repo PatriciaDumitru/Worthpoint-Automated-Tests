@@ -24,6 +24,7 @@ public class Ecomm_OrderViewPage {
     static By printButton = By.cssSelector("#tbl > tbody > tr:nth-child(8) > td:nth-child(2) > a");
     static By frameLocator = By.id("TB_iframeContent");
     static By productInfoLocator = By.cssSelector("#content > div > div.tbl-title.upload");
+    static By productInfoText = By.cssSelector("#content > div > table > tbody > tr > td > h1");
     static By contentLocator = By.cssSelector("body > div.grid_12");
     static By ftDataTable = By.cssSelector("body > div > table:nth-child(5) > tbody > tr > td > pre");
     
@@ -54,6 +55,10 @@ public class Ecomm_OrderViewPage {
     public WebElement getShadeCodeCell() {
         //find and return element
         return driver.findElement(shadeCodeCellLocator);
+    }
+    
+    public String getInformation() {
+        return driver.findElement(productInfoText).getText();
     }
     
     public String getCOError() {

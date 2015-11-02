@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,12 +11,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.AssertJUnit;
 
 public class CCE_OutstandingDraftPage extends WBA_BasePage {
     
     //Locators
     By orderNoField = By.id("s2id_filterSampleOrderLineOrderId");
-    By hubField = By.id("ss2id_filterSampleOrderHubId");
+    By hubField = By.id("s2id_filterSampleOrderHubId");
     By dateFromField = By.id("filterSampleOrderCreatedFrom");
     By dateToField = By.id("filterSampleOrderCreatedTo");
     By custNameField = By.id("s2id_filterSampleOrderCustomerId");
@@ -160,6 +162,30 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     public String getOrderNo(int row) {
         By desiredOrderNoField = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(3)");
         return driver.findElement(desiredOrderNoField).getText();
+    }
+    
+    public void checkFields() {
+        WebElement orderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement hub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
+        WebElement dateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dateFromField));
+        WebElement dateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dateToField));
+        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+        WebElement requester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
+        WebElement listOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Hub Field not displayed correctly",getHubField().isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Created Date From Field not displayed correctly",getDateFromField().isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Created Date To Field not displayed correctly",getDateToField().isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Customer Name Field not displayed correctly",getCustomerNameField().isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Sales Organisation Field not displayed correctly",getSalesOrgField().isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Requester Field not displayed correctly",getRequesterField().isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: List Orders Button not displayed correctly",getListOrdersButton().isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Reset Button not displayed correctly",getResetButton().isDisplayed());
+        
+        CommonTask.checkPagination(driver);
     }
     
     public void waitForElement() {

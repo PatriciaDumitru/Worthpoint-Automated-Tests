@@ -24,7 +24,7 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         
         WebDriver driver = getDriver();
         
-        Ecomm_SUSST_Base base = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base base = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",DataItems.validCustUsername,DataItems.validCustPassword);
     
         System.out.println("Navigating to Product Availability Check Page...");
@@ -65,6 +65,10 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         viewPage.switchTo();
         viewPage.waitForProductInfo();
         
+        String information = viewPage.getInformation();
+        
+        System.out.println("Information: " + information);
+        
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\3Search view.png"));
@@ -88,8 +92,8 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
     public void PAC2() throws IOException, InterruptedException, Exception {
         WebDriver driver = getDriver();
         
-        Ecomm_SUSST_Base base = new Ecomm_SUSST_Base(driver);
-        Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",DataItems.validCustUsername,DataItems.validCustPassword);
+        Ecomm_Base base = new Ecomm_Base(driver);
+        Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check PAC2: Page and field checks, make request with article","G_PAC_SUSST_2",DataItems.validCustUsername,DataItems.validCustPassword);
     
         System.out.println("Navigating to Product Availability Check Page...");
         
@@ -112,6 +116,10 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         viewPage.switchTo();
         viewPage.waitForProductInfo();
         
+        String information = viewPage.getInformation();
+        
+        System.out.println("Information: " + information);
+        
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\6Search view.png"));
@@ -126,4 +134,43 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
 
     }
     
+    @Test //Product Availability Check Page :: Make check using brand/ticket/finish/length/shade
+    (groups = {"eComm"})
+    public void PAC3() throws IOException, InterruptedException, Exception {
+        WebDriver driver = getDriver();
+        
+        Ecomm_Base base = new Ecomm_Base(driver);
+        Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check PAC3: Page and field checks, make request with brand/ticket/etc","G_PAC_SUSST_3",DataItems.validCustUsername,DataItems.validCustPassword);
+    
+        System.out.println("Navigating to Product Availability Check Page...");
+        
+        Ecomm_ProductAvailabilityCheckPage pacPage = eCommPage.clickProductAvailabilityCheck();
+        pacPage.waitForLoad();
+        
+        System.out.println("Page reached. Entering details...");
+        
+        pacPage.setBrand("astra");
+        pacPage.setShadeCode(DataItems.expShadeCode);
+        pacPage.setTicket("120");       
+        pacPage.setQty("1");
+        
+        System.out.println("Details entered. Searching for product...");
+        
+        Ecomm_OrderViewPage viewPage = pacPage.pressSearch();
+        viewPage.switchTo();
+        viewPage.waitForProductInfo();
+        
+        String information = viewPage.getInformation();
+        
+        System.out.println("Information: " + information);
+        
+        System.out.println("View displayed. Closing view...");
+        
+        viewPage.closeView();
+        viewPage.waitForInvisibility();
+        driver.switchTo().defaultContent();
+        
+        System.out.println("View closed.");
+
+    }
 }

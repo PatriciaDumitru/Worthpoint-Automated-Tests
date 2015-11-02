@@ -135,6 +135,16 @@ public class CCE_ManualEnrichPage extends WBA_BasePage {
         return driver.findElement(orderNoCell).getText();
     }
     
+    public int getRow(String orderNo) {
+        for (int i = 2; i < 8; i++) {
+            By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(6)");
+            if (driver.findElement(orderNoCell).getText().equals(orderNo)) {
+                return i;
+            } 
+        }
+        return -1;
+    }
+    
     public boolean findOrder(String orderNo) {
         for (int i = 2; i < 8; i++) {
             By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(6)");

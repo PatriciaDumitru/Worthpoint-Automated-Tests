@@ -145,4 +145,86 @@ public class WBA_Login_Test extends DriverFactory {
          
     }
      
+    @Test //Login Page :: Login using invlaid username
+    (groups = {"QuickTest","General"})
+    public void L3() throws Exception {
+        System.out.println("TEST Login Page L3: Login with invalid username");
+        System.out.println("Scenario ID: GE_UL_L_2");
+        
+        //new driver to perform test
+        WebDriver driver = getDriver();
+        //navigate to QA site
+        driver.get("https://qawcs.coatscolourexpress.com");
+        //maximise the window
+        driver.manage().window().maximize();
+        
+        System.out.println("Logging in...");
+        
+        //new login page
+        WBA_LoginPage liPage = new WBA_LoginPage(driver);
+        
+        //login with valid coats details
+        liPage.typeUsername(DataItems.invalidUsername);
+        liPage.typePassword(DataItems.invalidPassword);
+        liPage.pressLoginExpectingFailure();
+        
+        System.out.println("Log-in attempted. Asserting continue page elements are not displayed...");
+        
+        boolean success;
+        
+        try {
+            WebElement waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(WBA_ContinuePage.getMainImage()));
+            success = true;
+        } catch (Exception e) {
+            success = false;
+        }
+        
+        AssertJUnit.assertFalse("Login page: Login page allowed invalid details to be used",success);
+        
+        AssertJUnit.assertTrue("Login page: Login unsuccessful message not displayed",liPage.getFailedLoginMessage().contains("Incorrect"));
+        
+        System.out.println("Login failed, as expected");
+        
+    }
+    
+    @Test //Login Page :; Login using invalid password
+    (groups = {"General"})
+    public void L4() throws Exception {
+        System.out.println("TEST: Login Page L4: Attempt to login with wrong password");
+        System.out.println("Scenario ID: GE_UL_L_3");
+        //new driver to perform test
+        WebDriver driver = getDriver();
+        //navigate to QA site
+        driver.get("https://qawcs.coatscolourexpress.com");
+        //maximise the window
+        driver.manage().window().maximize();
+        
+        System.out.println("Logging in...");
+        
+        //new login page
+        WBA_LoginPage liPage = new WBA_LoginPage(driver);
+        
+        //login with valid coats details
+        liPage.typeUsername(DataItems.validCoatsUsername);
+        liPage.typePassword(DataItems.invalidPassword);
+        liPage.pressLoginExpectingFailure();
+        
+        System.out.println("Log-in attempted. Asserting continue page elements are not displayed...");
+        
+        boolean success;
+        
+        try {
+            WebElement waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(WBA_ContinuePage.getMainImage()));
+            success = true;
+        } catch (Exception e) {
+            success = false;
+        }
+        
+        AssertJUnit.assertFalse("Login page: Login page allowed invalid details to be used",success);
+        
+        AssertJUnit.assertTrue("Login page: Login unsuccessful message not displayed",liPage.getFailedLoginMessage().contains("Incorrect"));
+        
+        System.out.println("Login failed, as expected");
+        
+    }
 }

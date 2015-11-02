@@ -15,7 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_SUSST_FEBO_Test extends DriverFactory {
+public class Ecomm_FEBO_Test extends DriverFactory {
     
     @Test //From Existing Bulk Order Page :: Page checks, create order 
     (groups = {})
@@ -24,7 +24,7 @@ public class Ecomm_SUSST_FEBO_Test extends DriverFactory {
     WebDriver driver = getDriver();
   
     //new base test to handle set up
-    Ecomm_SUSST_Base susstTest8 = new Ecomm_SUSST_Base(driver);
+    Ecomm_Base susstTest8 = new Ecomm_Base(driver);
     //Set up returns an eComm main page
     Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("FROM EXISTING BULK ORDER FEBO1: Page checks and creates order using existing order","G_OOC_FWBL_1-5");
         

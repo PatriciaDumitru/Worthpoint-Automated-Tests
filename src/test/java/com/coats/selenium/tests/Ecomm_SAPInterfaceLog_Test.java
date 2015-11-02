@@ -25,7 +25,7 @@ public class Ecomm_SAPInterfaceLog_Test extends DriverFactory {
         WebDriver driver = getDriver();
 		
         //New eComm base test to handle log-in and navigation
-        Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("SAP Interface Log SILM1: Page and filter checks, views and reset", "G_CoUA_SILM_1 to 4");
 		
         Ecomm_SAPInterfaceLogPage logPage = eCommPage.clickSAPInterfaceLog();

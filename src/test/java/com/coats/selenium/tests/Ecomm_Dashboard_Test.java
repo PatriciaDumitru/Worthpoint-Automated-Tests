@@ -27,7 +27,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
         WebDriver driver = getDriver();
 		
         //New eComm base test to handle log-in and navigation
-        Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Backend In Process Page BIP1: Page and filter checks, reset", "G_D_BIPL");
 				
             Ecomm_BackendInProcessPage bipPage = eCommPage.clickBackendInProcess();
@@ -86,7 +86,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
         WebDriver driver = getDriver();
 		
         //New eComm base test to handle log-in and navigation
-        Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Backend Failed Files Page BFF1: Page and filter checks, view, reset, download", "G_D_BFF_1");
 				
         Ecomm_BackendFailedFilesPage bffPage = eCommPage.clickBackendFailedFiles();
@@ -163,7 +163,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
         WebDriver driver = getDriver();
 		
         //New eComm base test to handle log-in and navigation
-        Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("FTP Failed Files Page FTPF1: Page and filter checks, view, reset, download", "G_D_FTPFF_1");
 				
         Ecomm_FTPFailedFilesPage ftpPage = eCommPage.clickFTPFailedFiles();

@@ -8,11 +8,11 @@ import PageObjects.WBA_LoginPage;
 import PageObjects.WBA_SelectionPage;
 import org.openqa.selenium.WebDriver;
 
-public class Ecomm_SUSST_Base {
+public class Ecomm_Base {
     
     WebDriver driver;
     
-    public Ecomm_SUSST_Base(WebDriver passedDriver) {
+    public Ecomm_Base(WebDriver passedDriver) {
         driver = passedDriver;
     }
     

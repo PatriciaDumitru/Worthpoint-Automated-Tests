@@ -34,7 +34,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("OUTSTANDING ORDERS OP1: Complete order from draft","G_OP_F_1");
 
@@ -131,7 +131,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("OUTSTANDING ORDER DRAFTS ODP2: Complete order from draft","G_OP_ODP_3");
 
@@ -193,7 +193,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("OUTSTANDING ORDER DRAFTS ODP1: Page check, search, view, edit, cancel draft","G_OP_ODP_1 to 5");
 
@@ -260,7 +260,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //new base test to handle set up
-        Ecomm_SUSST_Base susstTest4 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("OUTSTANDING UPLOAD DRAFTS UODP1: Page check, search, view, edit, cancel draft","G_OP_UODP_1 to 5");
 

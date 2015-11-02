@@ -22,14 +22,12 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ecomm_SUSST_UORT_Test extends DriverFactory {
+public class Ecomm_UORT_Test extends DriverFactory {
     
     @Test //Upload Order Page :: Page checks and realtime upload order of <100 lines
     (groups = {"eComm","eComm_Orders","QuickTest"})
@@ -38,7 +36,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //new base test to set up
-        Ecomm_SUSST_Base uortTest1 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST");
         
@@ -152,7 +150,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //new base test to set up
-        Ecomm_SUSST_Base uortTest1 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT2: File of <100 lines, realtime upload, validation check", "G_OOC_UORT_SUSST");
         
@@ -242,7 +240,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //new base test to set up
-        Ecomm_SUSST_Base uortTest1 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT3: Draft simulation/draft creation test", "G_OOC_UORT_Unknown");
         
@@ -319,7 +317,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //new base test to set up
-        Ecomm_SUSST_Base uortTest1 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT4: Upload Draft continuation and cancellation", "G_OOC_UORT_Unknown");
         
@@ -401,7 +399,7 @@ public class Ecomm_SUSST_UORT_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         //new base test to set up
-        Ecomm_SUSST_Base uortTest1 = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT5: Upload Draft continuation", "G_OOC_UORT_Unknown");
         

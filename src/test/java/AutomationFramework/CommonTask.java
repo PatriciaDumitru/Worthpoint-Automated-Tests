@@ -12,6 +12,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -19,12 +20,23 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.AssertJUnit;
 
 
 public class CommonTask {
     
     private static By contentLocator = By.id("content");
     private static By frameLocator = By.id("TB_iframeContent");
+    private static By showingLocator = By.xpath("//*[@id='recs-pp']/preceding-sibling::span");
+    private static By perPageMenu = By.cssSelector("#recs-pp > a");
+    private static By option10 = By.cssSelector("#recs-pp > ul > li:nth-child(1) > a");
+    private static By option25 = By.cssSelector("#recs-pp > ul > li:nth-child(2) > a");
+    private static By option50 = By.cssSelector("#recs-pp > ul > li:nth-child(3) > a");
+    private static By prevButton = By.cssSelector("#content > div.flexi-grid > dl > dd > span.prev");
+    private static By nextButton = By.cssSelector("#content > div.flexi-grid > dl > dd > span.next");
+    private static By lastButton = By.cssSelector("#content > div.flexi-grid > dl > dd > span.next + span");
+    private static By adminHeader = By.cssSelector("#topnav > li:nth-child(8)");
+    private static By mastersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3)");
 
     public static void setSearchField(WebDriver driver,By fieldLocator, String item) {
         By searchLocator = By.cssSelector("#select2-drop > div > input");
@@ -318,6 +330,8 @@ public class CommonTask {
             String prefix;
             if (type.equals("contract")) {
                 prefix = DataItems.conOrdDetails[4];
+            } else if (type.equals("buyer")) {
+                prefix = "BuyerRequest";
             } else {
                 prefix = DataItems.custDetails[4];
             }
@@ -332,6 +346,112 @@ public class CommonTask {
         }
          
          return PONumber;
+    }
+    
+    public static boolean checkPagination(WebDriver driver) {
+        
+        By noRecords = By.xpath("//*[contains(text(), 'No records found.')]");
+        
+        boolean records;
+        
+        try {
+            Boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.invisibilityOfElementLocated(noRecords));
+            System.out.println("Records found");
+            records = true;
+        } catch (TimeoutException t) {
+            System.out.println("No records found.");
+            records = false;
+        }
+        
+        if (records) {
+            
+            boolean showing;
+            int recordCount = -1;
+            try {
+                WebElement waitForShowing = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(showingLocator));
+                showing = true;
+            } catch (TimeoutException t) {
+                showing = false;
+            }
+            
+            if (showing) {
+                String[] showingText = driver.findElement(showingLocator).getText().split("of ");
+                String temp = showingText[1];
+                String[] tempArray = temp.split("\\|");
+                String numberOfRecords = tempArray[0];
+                recordCount = Integer.valueOf(numberOfRecords);
+            }
+
+            boolean perPage;
+            try {
+                WebElement waitForMenu = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(perPageMenu));
+                perPage = true;
+            } catch (TimeoutException t) {
+                perPage = false;
+            }
+            
+            boolean options;
+            
+            Actions action = new Actions(driver);
+            action.moveToElement(driver.findElement(perPageMenu)).build().perform();
+            
+            try {
+                WebElement waitFor10 = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.presenceOfElementLocated(option10));
+                WebElement waitFor25 = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.presenceOfElementLocated(option25));
+                WebElement waitFor50 = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.presenceOfElementLocated(option50));
+                options = true;
+            } catch (TimeoutException t) {
+                options = false;
+            }
+            
+            AssertJUnit.assertTrue("Pagination Check: One or more elements of 'Showing x-y of z', 'Records Per Page', '10/25/50 options' were not visible",
+                    showing&&perPage&&options);
+
+            boolean jumps;
+            
+            try {
+                WebElement waitForPrev = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(prevButton));
+                WebElement waitForNext = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(nextButton));
+                jumps = true;
+            } catch (TimeoutException t) {
+                jumps = false;
+            }
+            
+            
+            if ((recordCount/10) > 1) {
+                boolean last;
+                try {
+                    driver.findElement(lastButton);
+                    WebElement waitForLast = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(lastButton));
+                    last = true;
+                } catch (TimeoutException t) {
+                    last = false;
+                }
+                
+                AssertJUnit.assertTrue("Pagination check: Prev/Next/Last button not displayed",jumps&&last);
+            }
+            
+            AssertJUnit.assertTrue("Pagination check: Prev/Next button not displayed",jumps);
+            
+        }
+        
+        System.out.println("Pagination as expected");
+        
+        return true;
+        
+    }
+    
+    public static void openMasters(WebDriver driver) {
+        By menuHead = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li.menuHead");
+        
+        WebElement admin = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(admin).build().perform();
+        
+        WebElement masters = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(masters).build().perform();
+        
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(menuHead));
     }
     
 }

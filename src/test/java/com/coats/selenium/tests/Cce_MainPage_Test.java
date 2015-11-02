@@ -1,5 +1,6 @@
 package com.coats.selenium.tests;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.WBA_ContinuePage;
@@ -114,8 +115,8 @@ public class Cce_MainPage_Test extends DriverFactory {
         
     }
 
-    //CCE Main Page :: Navigation bar check links 
-    @Test(groups = {"QuickTest","CCE"})
+    @Test //CCE Main Page: Navigation bar link checks
+    (groups = {"QuickTest","CCE"})
     public void CCE2() throws InterruptedException, IOException, Exception {
         System.out.println("TEST: CCE NAVIGATION TAB LINKS");
         System.out.println("Scenario ID: G_CCE_MS_02 to 23");
@@ -250,6 +251,133 @@ public class Cce_MainPage_Test extends DriverFactory {
             
         }
             
+    }
+    
+    @Test //CCE Main Page: Masters headings appear
+    (groups = {"QuickTest","CCE"})
+    public void CCE3() throws Exception {
+        System.out.println("TEST: CCE Masters appear");
+        System.out.println("Scenario ID: WebPage 1 to 5.6.5");
+        
+        //New driver to perform test
+        WebDriver driver = getDriver();
+        
+        //Navigate to site
+        driver.get(DataItems.targetURL);
+        
+        //Maxmimise window
+        driver.manage().window().maximize();
+        
+        System.out.println("Logging in...");
+        
+        //new login page to allow login
+        WBA_LoginPage loginPage = new WBA_LoginPage(driver);
+        
+        //Login and press continue
+        WBA_ContinuePage contPage = loginPage.loginAs(DataItems.validCoatsUsername,DataItems.validCoatsPassword);
+        WBA_SelectionPage selectionPage = contPage.pressContinue();
+        
+        System.out.println("Logged in. Continuing to selection page...");
+        
+        //Choose CCE
+        CCE_MainPage ccePage = selectionPage.pressCce();
+        
+        System.out.println("CCE main page reached. Navigating to Masters...");
+        
+        //Wait for page to load
+        Boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.titleIs(DataItems.ccePageTitle));
+        
+        ccePage.openMasters();
+        
+        System.out.println("Masters open. Checking all sub-items are present...");
+        
+        for (int colCount = 1; colCount <= DataItems.masters.length; colCount++) {
+            
+            for (int subCount = 1; subCount <= DataItems.masters[colCount-1].length; subCount++) {
+                
+                String requiredItem = DataItems.masters[colCount-1][subCount-1];
+                
+                if (!requiredItem.equals("BLANK")) {
+                    By itemLocator = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child("+colCount+") > ul > li:nth-child("+subCount+")");
+                    String presentItem = driver.findElement(itemLocator).getText();
+                    
+                    AssertJUnit.assertTrue("Masters: " + requiredItem + " link not displayed correctly",requiredItem.equals(presentItem));
+                    
+                    WebElement wait = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.elementToBeClickable(itemLocator));
+
+                }
+                
+            }
+            
+        }
+        
+        System.out.println("Masters checked, all items present.");
+        
+        
+    }
+    
+    @Test //CCE Main Page: Masters Headings link to correct pages
+    (groups = {"CCE"})
+    public void CCE4() throws Exception {
+        System.out.println("TEST: CCE Masters Link correctly");
+        System.out.println("Scenario ID: WebPage 1 to 5.6.5");
+        
+        //New driver to perform test
+        WebDriver driver = getDriver();
+        
+        //Navigate to site
+        driver.get(DataItems.targetURL);
+        
+        //Maxmimise window
+        driver.manage().window().maximize();
+        
+        System.out.println("Logging in...");
+        
+        //new login page to allow login
+        WBA_LoginPage loginPage = new WBA_LoginPage(driver);
+        
+        //Login and press continue
+        WBA_ContinuePage contPage = loginPage.loginAs(DataItems.validCoatsUsername,DataItems.validCoatsPassword);
+        WBA_SelectionPage selectionPage = contPage.pressContinue();
+        
+        System.out.println("Logged in. Continuing to selection page...");
+        
+        //Choose CCE
+        CCE_MainPage ccePage = selectionPage.pressCce();
+        
+        System.out.println("CCE main page reached. Navigating to Masters...");
+        
+        //Wait for page to load
+        Boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.titleIs(DataItems.ccePageTitle));
+        
+        ccePage.openMasters();
+        
+        System.out.println("Masters open. Checking masters link to correct pages...");
+        
+        for (int colCount = 1; colCount <= DataItems.masters.length; colCount++) {
+            
+            for (int subCount = 1; subCount <= DataItems.masters[colCount-1].length; subCount++) {
+                
+                CommonTask.openMasters(driver);
+                
+                By breadcrumbLocator = By.cssSelector("#content > h2");
+                String requiredItem = DataItems.masters[colCount-1][subCount-1];
+                
+                if (!requiredItem.equals("BLANK")) {
+                    By itemLocator = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child("+colCount+") > ul > li:nth-child("+subCount+")");
+                    
+                    driver.findElement(itemLocator).click();
+                    
+                    WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(breadcrumbLocator));
+                    
+                    String title = driver.findElement(breadcrumbLocator).getText();
+                    
+                    AssertJUnit.assertTrue("Masters link checks: " + requiredItem + " not linked correctly/title not as expected",requiredItem.equals(title));
+                }
+                
+            }
+            
+        }
     }
     
 }

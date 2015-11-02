@@ -3,6 +3,7 @@ package com.coats.selenium.tests;
 import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_RefillCabinetPage;
+import PageObjects.CCE_RefillThreadListPage;
 import com.coats.selenium.DriverFactory;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import org.testng.annotations.Test;
 public class Cce_RefillCabinet_Test extends DriverFactory {
     
     @Test //Refill Cabinet Page :: Page and filter checks
-    (groups = {})
+    (groups = {"CCE"})
     public void RC1() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -51,24 +52,40 @@ public class Cce_RefillCabinet_Test extends DriverFactory {
         
         rcPage.checkFields();
         
-        System.out.println("Fields checked. Entering filter crtieria...");
+        System.out.println("Fields checked. Entering ship-to...");
         
         rcPage.setShipTo(DataItems.custDetails[1]);
         
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Refill Cabinet\\2Filter criteria entered.png"));
+        System.out.println("Ship-to entered. Checking cabinet name is as expected...");
         
-        System.out.println("Criteria entered. Pressing cancel...");
+        System.out.println(rcPage.getCabinetName());
         
-        rcPage.pressCancel();
-        rcPage.waitForLoad();
+        AssertJUnit.assertTrue("Refill Cabinet Page: Cabinet code not consistent with master data",rcPage.getCabinetName().equals(DataItems.cabinetName));
         
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Refill Cabinet\\3Refill cancelled.png"));
+        System.out.println("Cabinet name correct. Pressing submit...");
         
-        System.out.println("Cancel pressed.");
+        CCE_RefillThreadListPage rtPage = rcPage.pressSubmit();
+        rtPage.waitForElement();
+        
+        System.out.println("Refill Thread List Page reached. Entering refill thread details...");
+        
+        rtPage.setBrand("astra");
+        rtPage.setTicket("120");
+        rtPage.setShade("C9700");
+        rtPage.setMUMType("Cop");
+        rtPage.setROQ("3");
+        
+        System.out.println("Details entered. Pressing add thread expecting alert...");
+        
+        rtPage.pressAddThreadExpectingAlert();
+        
+        System.out.println("Pressing save...");
+        
+        rtPage.pressSave();
+        
+        AssertJUnit.assertFalse("Refill Thread List Page: Fatal error upon saving", rtPage.checkForFatalError());
+        
+        System.out.println("Save pressed. TEST NEEDS TO BE EXTENDED - BLOCKED BY FATAL ERROR");
         
     }
 

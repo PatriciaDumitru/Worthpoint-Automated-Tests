@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -15,7 +16,7 @@ public class CCE_RefillCabinetPage extends WBA_BasePage {
     
     //Locators
     By breadcrumb = By.cssSelector("#content > h2");
-    By shipToPartyField = By.id("select2-drop-mask");
+    By shipToPartyField = By.id("s2id_SampleOrderShipToPartyId");
     By cabinetNameField = By.id("SampleOrderCabinetId");
     By submitButton = By.cssSelector("#SampleOrderRefillCabinetForm > div.actions > ul > li:nth-child(1)");
     By cancelButton = By.cssSelector("#SampleOrderRefillCabinetForm > div.actions > ul > li:nth-child(2)");
@@ -54,6 +55,22 @@ public class CCE_RefillCabinetPage extends WBA_BasePage {
     public CCE_RefillCabinetPage setCabinetName(String item) {
         CommonTask.setSearchField(driver, cabinetNameField, item);
         return this;
+    }
+    
+    public String getCabinetName() {
+        Select select = new Select(driver.findElement(cabinetNameField));
+        try {
+            boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(cabinetNameField, DataItems.cabinetName));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return select.getFirstSelectedOption().getText();
+    }
+    
+    public CCE_RefillThreadListPage pressSubmit() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButton));
+        driver.findElement(submitButton).click();
+        return new CCE_RefillThreadListPage(driver);
     }
     
     public CCE_RefillCabinetPage pressCancel() {

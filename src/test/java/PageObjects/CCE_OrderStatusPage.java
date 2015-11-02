@@ -158,6 +158,9 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Order Status: Fabric Reference Field not displayed correctly",getFabRefField().isDisplayed());
         AssertJUnit.assertTrue("Order Status: Shade Code Field not displayed correctly",getShadeCodeField().isDisplayed());
         AssertJUnit.assertTrue("Order Status: Current SOS Field not displayed correctly",getCurrentSosField().isDisplayed());    
+        
+        //Check pagination
+        CommonTask.checkPagination(driver);
     }
     
     public CCE_OrderStatusPage pressListOrders() {
@@ -248,6 +251,22 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
             viewPage.waitForInvisibility();
         }    
         return null;
+    }
+    
+    public String getCurrentSOS(String orderNo) {
+        for (int i = 2; i < 8; i++) {
+            By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(5)");
+            
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            
+            if (driver.findElement(orderNoCell).getText().equals(orderNo)) {
+                By currentSOSCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(10)");
+                return driver.findElement(currentSOSCell).getText();
+            }
+            
+        }
+        
+        return "not found";
     }
     
     

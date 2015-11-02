@@ -31,7 +31,7 @@ public class Ecomm_Shade_Test extends DriverFactory {
         WebDriver driver = getDriver();
 		
         //New eComm base test to handle log-in and navigation
-        Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base baseTest = new Ecomm_Base(driver);
         PageObjects.Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Shade Not Available Page SNA1: Page and filter checks, view and edit", "UNKNOWN");
         
         System.out.println("Navigating to Shade Not Available page...");
@@ -164,7 +164,7 @@ public class Ecomm_Shade_Test extends DriverFactory {
         WebDriver driver = getDriver();
 		
         //New eComm base test to handle log-in and navigation
-        Ecomm_SUSST_Base baseTest = new Ecomm_SUSST_Base(driver);
+        Ecomm_Base baseTest = new Ecomm_Base(driver);
         PageObjects.Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Waiting for Shade Page WFS1: Page and filter checks, view and edit", "UNKNOWN");
         
         System.out.println("Navigating to Waiting for Shade page...");
