@@ -6,6 +6,7 @@ import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,7 +28,7 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     By listOrdersButton = By.cssSelector("#FilterReceivedHubForm > div.actions > ul > li:nth-child(1)");
     By resetButton = By.cssSelector("#FilterReceivedHubForm > div.actions > ul > li:nth-child(2)");   
     By viewButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.flexi-grid > table > tbody > tr:nth-child(3) > td:nth-child(13)");
-    By saveButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.actions > ul > li:nth-child(1)");
+    By saveButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By cancelButton = By.cssSelector("#SampleOrderLineReceivedHubForm > div.actions > ul > li:nth-child(2)");
     By filterForm = By.id("FilterReceivedHubForm");
     By flashMessage = By.id("flashMessage");
@@ -152,6 +153,8 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
         Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        
         String message = driver.findElement(flashMessage).getText();
         
         if (message.contains("Order has been")) {
@@ -206,9 +209,12 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     }
     
     public boolean checkForRecords() {
-        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(noRecordsField));
-        
-        return driver.findElement(noRecordsField).getText().equals("No records found.");
+        try {
+            WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(noRecordsField));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
     
 }

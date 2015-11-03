@@ -220,6 +220,10 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return getCustPoField().getText();
     }
     
+    public String getUploadPONumber() {
+        return getUploadCustPOField().getAttribute("value");
+    }
+    
     public String getRequester() {
         Boolean waitForSelection = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBePresent(requestorField));
         Select select = new Select(driver.findElement(requestorField));
@@ -271,7 +275,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public Ecomm_OutstandingOrdersPage pressSubmit() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(submitButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
         driver.findElement(submitButtonLocator).click();  
         
         try {
@@ -306,6 +310,9 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(submitButtonLocator));
         driver.findElement(submitButtonLocator).click();  
         
+        Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert2.accept();
+        
         try {
             //wait for alert and confirm
             Alert alert = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.alertIsPresent());
@@ -316,6 +323,24 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         
         return new Ecomm_UploadProcessPage(driver);
         
+    }
+    
+    public Ecomm_OrderConfirmationPage pressSubmitExpectingReturn() {
+        //Wait for element to be clickable
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(submitButtonLocator));
+        driver.findElement(submitButtonLocator).click();  
+        
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        try {
+            Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            alert2.accept();
+        } catch (TimeoutException t) {
+            
+        }
+        
+        return new Ecomm_OrderConfirmationPage(driver);
     }
     
     public Ecomm_OutstandingOrderDraftPage pressSaveDraft() {
@@ -425,5 +450,18 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         }
         return errors;
     }
+    
+    public boolean errorAppears() {
+        try {
+            WebElement flashMessage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
+            System.out.println("Error: " + flashMessage.getText());
+            return true;
+        } catch (TimeoutException t) {
+            System.out.println(t.toString());
+            return false;
+        }
+        
+    }
+            
     
 }

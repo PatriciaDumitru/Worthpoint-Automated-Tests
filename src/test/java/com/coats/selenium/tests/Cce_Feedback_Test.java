@@ -70,13 +70,27 @@ public class Cce_Feedback_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.SUMST_SetUp("Feedback FB2: Satisfied feedback", "G_CCE_FB_1");
         
+        System.out.println("Navigating to Feedback Awaiting to find appropriate Order No...");
+        
+        CCE_FeedbackAwaitingPage fbaPage = ccePage.pressFeedbackAwaiting();
+        fbaPage.waitForElement();
+        
+        System.out.println("Feedback Awaiting page reached. Finding order no...");
+        
+        String orderNo = fbaPage.findOrderAwaitingFeedback(DataItems.custDetails[0]);
+        
+        if (!orderNo.equals("not found")) {
+            DataItems.sampOrderNo = orderNo;
+        }
+        
         System.out.println("Navigating to Feedback...");
         
         CCE_FeedbackPage fbPage = ccePage.pressFeedback();
         
         System.out.println("Feedback page loaded. Entering order no. and requester: ");
         
-        fbPage.setOrderNo(DataItems.sampOrderNo);            
+        fbPage.setOrderNo(DataItems.sampOrderNo);       
+        fbPage.setRequester(DataItems.custDetails[2]);
         
         System.out.println("Criteria entered. Entering Yes/No: ");
         fbPage.pressYesSatisfied();
@@ -112,13 +126,27 @@ public class Cce_Feedback_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.SUMST_SetUp("Feedback FB3: Dissatisfied feedback", "G_CCE_FB_1");
         
+        System.out.println("Navigating to Feedback Awaiting to find appropriate Order No...");
+        
+        CCE_FeedbackAwaitingPage fbaPage = ccePage.pressFeedbackAwaiting();
+        fbaPage.waitForElement();
+        
+        System.out.println("Feedback Awaiting page reached. Finding order no...");
+        
+        String orderNo = fbaPage.findOrderAwaitingFeedback(DataItems.custDetails[0]);
+        
+        if (!orderNo.equals("not found")) {
+            DataItems.sampOrderNo = orderNo;
+        }
+        
         System.out.println("Navigating to Feedback...");
         
         CCE_FeedbackPage fbPage = ccePage.pressFeedback();
         
         System.out.println("Feedback page loaded. Entering order no. and requester: ");
         
-        fbPage.setOrderNo(DataItems.sampOrderNo);      
+        fbPage.setOrderNo(DataItems.sampOrderNo);   
+        fbPage.setRequester(DataItems.custDetails[2]);
         
         System.out.println("Criteria entered. (Satisfied?) Entering No: ");
         

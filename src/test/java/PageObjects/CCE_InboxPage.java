@@ -148,6 +148,8 @@ public class CCE_InboxPage extends WBA_BasePage {
     
     public CCE_InboxPage setCustName(String item) {
         CommonTask.setChoiceFieldAlt(driver, custNameField, item);
+        By customerNameChoice = By.cssSelector("#s2id_filterSampleOrderCustomerIdName > ul > li.select2-search-choice");
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(customerNameChoice));
         return this;
     }
     

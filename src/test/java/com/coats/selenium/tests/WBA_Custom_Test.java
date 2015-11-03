@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class WBA_Custom_Test {
     
     @Test
-    (groups = {"General"})
+    (groups = {})
     public void generated() throws InterruptedException, IOException, AWTException, Exception {
         CustomFactory generate = new CustomFactory();      
     }

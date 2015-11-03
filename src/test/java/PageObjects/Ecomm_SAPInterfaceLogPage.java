@@ -9,6 +9,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.TimeoutException;
 
 public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 
@@ -29,7 +35,7 @@ public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 	By resetButton = By.cssSelector("#FilterSapLogForm > div.grid_12 > table > tbody > tr:nth-child(7) > td > a");
 	By viewButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(1) > a");
 	By ftViewButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(10) > a");
-	
+	By noRecords = By.className("norec");
 	
 	public Ecomm_SAPInterfaceLogPage(WebDriver passedDriver) {
 		super(passedDriver);
@@ -212,6 +218,32 @@ public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 		
 		return new Ecomm_OrderViewPage(driver);
 	}
+        
+        public boolean getFlatFile(String orderNo) throws IOException {
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+            setOrderNo(orderNo);
+            pressSearch();
+            try {
+                WebElement wait2 = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(noRecords));
+                return false;
+            } catch (TimeoutException e) {
+                Ecomm_OrderViewPage viewPage = pressFtView();
+                viewPage.switchTo();
+                viewPage.waitForFTData();
+                
+                File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(scrFile,new File("C:\\AutomatedScreenshots\\File Transfer\\subaccount flatfile.png"));
+                
+                System.out.println("File Transfer View open. Closing...");
+                
+                viewPage.closeView();
+                viewPage.waitForInvisibility();
+                
+                System.out.println("View closed");
+                return true;
+            }
+
+        }
 
 	public void checkFields() {
 		//Wait for all fields to be clickable
@@ -250,5 +282,9 @@ public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
 		AssertJUnit.assertTrue("SAP Interface Log Page: View Button not displayed",getViewButton().isDisplayed());
 		AssertJUnit.assertTrue("SAP Interface Log Page: File Transfer View Button not displayed",getFTViewButton().isDisplayed());
 	}
+        
+        public void waitForElement() {
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+        }
 	
 }

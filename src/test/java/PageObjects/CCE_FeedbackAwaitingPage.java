@@ -125,6 +125,8 @@ public class CCE_FeedbackAwaitingPage extends WBA_BasePage{
         Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
+        WebElement waitForMessage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        
         String message = driver.findElement(flashMessage).getText();
         
         if (message.contains("Order has been updated")) {
@@ -155,6 +157,25 @@ public class CCE_FeedbackAwaitingPage extends WBA_BasePage{
         AssertJUnit.assertTrue("Feedback Awaiting Page: List orders button not displayed correctly",getListOrdersButton().isDisplayed());
         AssertJUnit.assertTrue("Feedback Awaiting Page: Reset button not displayed correctly",getResetButton().isDisplayed());
             
+    }
+    
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+    }
+    
+    public String findOrderAwaitingFeedback(String customerName) {
+        
+        for (int i = 2; i < 9; i++) {
+            By custNameCell = By.cssSelector("#SampleOrderFeedbackAwaitingForm > table > tbody > tr:nth-child("+i+") > td:nth-child(3)");
+            By orderNoCell = By.cssSelector("#SampleOrderFeedbackAwaitingForm > table > tbody > tr:nth-child("+i+") > td:nth-child(5)");
+        
+            if (driver.findElement(custNameCell).getText().equals(customerName)) {
+                return driver.findElement(orderNoCell).getText();
+            }
+        }
+        
+        return "not found";
+
     }
     
 }

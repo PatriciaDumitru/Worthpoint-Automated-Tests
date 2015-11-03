@@ -72,10 +72,15 @@ public class CommonTask {
     
     public static void setDropDownField(WebDriver driver,By fieldLocator,String item) throws InterruptedException {        
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        
         Select select = new Select(driver.findElement(fieldLocator));
         driver.findElement(fieldLocator).click();
+        
         Boolean waitForOption = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.optionPresent(item,select));
+        
         select.selectByVisibleText(item);
+        
+        boolean waitForSelection = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBe(fieldLocator,item));
     }
     
     public static void clearDropDownField(WebDriver driver, By fieldLocator) {

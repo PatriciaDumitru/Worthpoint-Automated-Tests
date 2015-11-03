@@ -159,4 +159,27 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         return new Ecomm_OrderViewPage(driver);
     }
     
+    public Ecomm_PendingApprovalListPage pressApprove(int row) {
+        By approveButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(10) > a");
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(approveButton));
+        driver.findElement(approveButton).click();
+        return new Ecomm_PendingApprovalListPage(driver);
+    }
+    
+    public boolean approveOrder(String orderNo) {
+        for (int i = 1; i < 10; i++) {
+            By orderNoCell = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");
+            
+            if (driver.findElement(orderNoCell).getText().equals(orderNo)) {
+                Ecomm_PendingApprovalListPage pendPage = pressApprove(i);
+                pendPage.waitForElement();
+                
+                return true;
+            } 
+            
+        }
+        return false;
+        
+    }
+    
 }

@@ -105,7 +105,8 @@ public class CCE_FeedbackPage extends WBA_BasePage{
     public CCE_FeedbackPage pressNoSatisfied() {
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(acceptedNoButton));
         driver.findElement(acceptedNoButton).click();
-        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(acceptedYesButton)));
+        WebElement waitForClickable2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(acceptedYesButton));
+        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(acceptedNoButton)));
         return this;
     }
     
@@ -146,7 +147,7 @@ public class CCE_FeedbackPage extends WBA_BasePage{
         Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();    
         //Wait for message to be present and output
-        WebElement waitForVisible = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOf(driver.findElement(confirmMessage)));
+        WebElement waitForVisible = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(confirmMessage));
         String message = driver.findElement(confirmMessage).getText();
         if (message.contains("cannot be updated")) {
             System.out.println("***Feedback save failed. Error message: " + message + "***");

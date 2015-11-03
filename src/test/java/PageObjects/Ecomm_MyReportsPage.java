@@ -220,6 +220,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     public Ecomm_MyReportsPage pressReset() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton_SUMST));
         driver.findElement(resetButton_SUMST).click();
+        CommonTask.waitForPageLoad(driver);
         Boolean wait2 = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsUnchecked(driver.findElement(selectAllButton)));
         return this;
     }

@@ -47,6 +47,7 @@ public class WBA_BasePage {
     static By reportsTab = By.cssSelector("#topnav > li:nth-child(4)");
     static By dashboardTab = By.cssSelector("#topnav > li:nth-child(5)");
     static By outstOrderDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
+    static By pendingApprovalSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
     static By outstUploadDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
     static By manualEntrySubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(1)");
     static By uploadOrderSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
@@ -283,6 +284,19 @@ public class WBA_BasePage {
         action.click(driver.findElement(outstUploadDraftSubTab)).build().perform();
         
         return new Ecomm_OutstandingUploadDraftPage(driver);
+    }
+    
+    public Ecomm_PendingApprovalListPage clickPendingApprovalListPage() {
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        //wait for menu to drop down
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(pendingApprovalSubTab)));
+        action.click(driver.findElement(pendingApprovalSubTab)).build().perform();
+        
+        return new Ecomm_PendingApprovalListPage(driver);
     }
 
     public Ecomm_SAPInterfaceLogPage clickSAPInterfaceLog() {
@@ -692,4 +706,11 @@ public class WBA_BasePage {
         
     }
     
+    public WBA_LoginPage pressLogout() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(logoutLabelLocator));
+    
+        driver.findElement(logoutLabelLocator).click();
+        
+        return new WBA_LoginPage(driver);
+    }
 }

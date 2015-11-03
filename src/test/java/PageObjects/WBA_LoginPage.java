@@ -63,6 +63,8 @@ public class WBA_LoginPage {
     }
     
     public WBA_LoginPage typeUsername(String username) {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(usernameFieldLocator));
+
         //new action to send keys to username field
         Actions typeUsername = new Actions(driver);
         typeUsername.sendKeys(getUsernameField(), username).build().perform();
@@ -70,6 +72,8 @@ public class WBA_LoginPage {
     }
     
     public WBA_LoginPage typePassword(String password) {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(passwordFieldLocator));
+
         //new action to send keys to password field
         Actions typePassword = new Actions(driver);
         typePassword.sendKeys(getPasswordField(),password).build().perform();
@@ -112,6 +116,10 @@ public class WBA_LoginPage {
         Actions clickForgotPassword = new Actions(driver);
         clickForgotPassword.click(driver.findElement(forgotPasswordLocator)).build().perform();
         return new WBA_ForgotPasswordPage(driver);
+    }
+    
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(usernameFieldLocator));
     }
     
 

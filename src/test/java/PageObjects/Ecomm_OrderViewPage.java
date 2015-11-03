@@ -26,7 +26,7 @@ public class Ecomm_OrderViewPage {
     static By productInfoLocator = By.cssSelector("#content > div > div.tbl-title.upload");
     static By productInfoText = By.cssSelector("#content > div > table > tbody > tr > td > h1");
     static By contentLocator = By.cssSelector("body > div.grid_12");
-    static By ftDataTable = By.cssSelector("body > div > table:nth-child(5) > tbody > tr > td > pre");
+    static By ftDataTable = By.className("frm");
     
     public Ecomm_OrderViewPage(WebDriver passedDriver) {
         driver = passedDriver;

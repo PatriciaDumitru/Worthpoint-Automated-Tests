@@ -9,7 +9,11 @@ import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_OutstandingOrderDraftPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_PendingApprovalListPage;
+import PageObjects.Ecomm_SAPInterfaceLogPage;
 import PageObjects.Ecomm_UploadProcessPage;
+import PageObjects.WBA_ContinuePage;
+import PageObjects.WBA_LoginPage;
+import PageObjects.WBA_SelectionPage;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
 import java.io.File;
@@ -1348,6 +1352,7 @@ public class Ecomm_ME_Test extends DriverFactory {
         System.out.println("Navigating to Manual Entry Page...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
         
         System.out.println("Manual Entry page reached. Entering customer details...");
         
@@ -1485,7 +1490,7 @@ public class Ecomm_ME_Test extends DriverFactory {
     }   
     
     @Test //Manual Entry Page :: SUMST :: Sub-account test. Field appears and data included in Flat File
-    (groups ={"eComm","eComm_Orders"})
+    (groups ={"eComm","eComm_Orders","Solo"})
     public void SUSST18() throws Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1551,14 +1556,50 @@ public class Ecomm_ME_Test extends DriverFactory {
         
         System.out.println("Order appears. Order No.: " + orderNo);
         
-        System.out.println("Navigating to SAP Log to access Flat file...");
+        System.out.println("Logging in to approver account to approve order...");
         
+        WBA_LoginPage liPage = appPage.pressLogout();
+        liPage.waitForElement();
         
+        WBA_ContinuePage contPage = liPage.loginAs(DataItems.approverUsername, DataItems.approverPassword);
+        WBA_SelectionPage selectPage = contPage.pressContinue();
+        Ecomm_MainPage mainPage = selectPage.pressEcomm();
+        mainPage.waitForLoad();
+        
+        System.out.println("Logged in. Navigating to Pending Approval List Page...");
 
+        Ecomm_PendingApprovalListPage pendPage = mainPage.clickPendingApprovalListPage();
+        pendPage.waitForElement();
+        
+        System.out.println("Pending Approval page reached. Finding order...");
+        
+        AssertJUnit.assertTrue("Pending Approval Page: Order (Order No.: "+orderNo+") not approved.",pendPage.approveOrder(orderNo));
+        
+        System.out.println("Order approved. Logging into other account to view SAP Log...");
+        
+        WBA_LoginPage liPage2 = pendPage.pressLogout();
+        liPage2.waitForElement();
+        
+        WBA_ContinuePage contPage2 = liPage.loginAs(DataItems.validCoatsUsername, DataItems.validCoatsPassword);
+        WBA_SelectionPage selectPage2 = contPage.pressContinue();
+        Ecomm_MainPage mainPage2 = selectPage.pressEcomm();
+        
+        mainPage2.waitForLoad();
+        
+        System.out.println("Logged in. Navigating to SAP Log Page...");
+        
+        Ecomm_SAPInterfaceLogPage sapPage = mainPage2.clickSAPInterfaceLog();
+        sapPage.waitForElement();
+        
+        System.out.println("SAP Log Page reached. Finding order and viewing Flat File...");
+        
+        sapPage.getFlatFile(orderNo);
+        
+        
     }
     
     @Test //Manual Entry Page :: SUSST :: MOQ active, adjusted quantity rounds to nearest dye lot
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {})
     public void SUSST19() throws Exception {
         //New driver
         WebDriver driver = getDriver();

@@ -6,6 +6,7 @@ import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -256,6 +257,39 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         alert2.accept();
         
         return new Ecomm_OrderConfirmationPage(driver);
+    }
+    
+    public Ecomm_ErrorPage pressConfirmExpectingError() {
+        //wait for button to be clickable
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        //New action to click confirm
+        Actions clickConfirm = new Actions(driver);
+        clickConfirm.click(driver.findElement(confirmButtonLocator)).build().perform();
+        //Confirm alert
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        try {
+            Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            alert2.accept();
+        } catch (TimeoutException e) {
+            
+        }
+        
+        return new Ecomm_ErrorPage(driver);
+    }
+    
+    public CCE_BackendProcessPage pressConfirmForBackend() {
+        //wait for button to be clickable
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        //New action to click confirm
+        Actions clickConfirm = new Actions(driver);
+        clickConfirm.click(driver.findElement(confirmButtonLocator)).build().perform();
+        //Confirm alert
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        return new CCE_BackendProcessPage(driver);
     }
     
     public Ecomm_MappingPage setMapping(String[][] mapping) {

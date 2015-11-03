@@ -15,14 +15,21 @@ public class DataItems {
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
     public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
-    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_71.xlsx";
-    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_72.xlsx";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_70.xlsx";
-    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_70C.xlsx";
-    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_32.xlsx";
-    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_33.xlsx";
-    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_34.xlsx";
-    public static String uploadExceptionFilepath = "C:\\Selenium\\Upload_Exception_test_5.xlsx";
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_73.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_74.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_72.xlsx";
+    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_72C.xlsx";
+    public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_35.xlsx";
+    public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_36.xlsx";
+    public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_37.xlsx";
+    public static String uploadYMNExceptionFilepath = "C:\\Selenium\\Upload_Exception_YMN_6.xlsx";
+    public static String uploadBrandExceptionFilepath = "C:\\Selenium\\Upload_Exception_Brnd_5.xlsx";
+    public static String uploadArticleExceptionFilepath = "C:\\Selenium\\Upload_Exception_Artc_3.xlsx";
+    public static String uploadTicketExceptionFilepath = "C:\\Selenium\\Upload_Exception_Tkt_2.xlsx";
+    public static String uploadLengthExceptionFilepath = "C:\\Selenium\\Upload_Exception_Lgth_2.xlsx";
+    public static String uploadFinishExceptionFilepath = "C:\\Selenium\\Upload_Exception_Fnsh_2.xlsx";
+    public static String uploadShadeExceptionFilepath = "C:\\Selenium\\Upload_Exception_Shde_2.xlsx";
+    public static String uploadShipToExceptionFilepath = "C:\\Selenium\\Upload_Exception_ShipTo_10.xlsx";
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";
@@ -35,6 +42,9 @@ public class DataItems {
     
     public static String invalidUsername = "jfdkjal@jfdalka.com";
     public static String invalidPassword = "invalidpassword";
+    
+    public static String approverUsername = "mail.kamleshpatidar@gmail.com";
+    public static String approverPassword = "password";
     
     //Login Page expected title (appears in browser tab)
     public static String loginPageTitle = "Coats";

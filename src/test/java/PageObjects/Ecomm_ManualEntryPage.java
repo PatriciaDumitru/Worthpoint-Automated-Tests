@@ -36,7 +36,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     static By addMaterialText = By.className("msgBoxTitle");
     
     //Customer detail field locators
-    static By customerNameField = By.cssSelector("#s2id_customer_id > a");//Initial customer name field to click
+    static By customerNameField = By.id("s2id_customer_id");//Initial customer name field to click
     static By shipToPartyField = By.id("ship_to_party_id"); //Initial dropdown menu field
     static By requestorField = By.id("BulkOrderRequesterId"); //Initial dropdown menu field
     static By buyersField = By.cssSelector("#s2id_BuyerId > a > span.select2-chosen.select_image_add");//Initial dropdown menu field

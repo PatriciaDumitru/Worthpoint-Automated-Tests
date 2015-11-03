@@ -43,6 +43,8 @@ public class WBA_ContinuePage {
     }
     
     public WBA_SelectionPage pressContinue() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(continueImageLocator));
+
         //new action to click continue button
         Actions clickContinue = new Actions(driver);
         clickContinue.click(getContinueImage()).build().perform();

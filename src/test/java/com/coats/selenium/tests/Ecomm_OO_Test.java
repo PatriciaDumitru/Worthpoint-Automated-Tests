@@ -157,7 +157,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         //Add checks
         
         Ecomm_OrderConfirmationPage orderConf = manualEntry.pressNext();
-        orderConf.waitForLoad();
+        orderConf.waitForElement();
         
         System.out.println("Order confirmation page reached.");
         
@@ -174,15 +174,21 @@ public class Ecomm_OO_Test extends DriverFactory {
             FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\4Error reached.png"));
         } catch (Exception e) {
             System.out.println("Submitting order...");
+            
             Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
             outOrdersPage.waitForLoad();
+            
             System.out.println("Order submitted.");
+            
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\4Submit pressed.png"));
+            
             Ecomm_OrderViewPage orderView = outOrdersPage.pressView(outOrdersPage.getRow(poNo));
             orderView.waitForContent();
+            
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\5Order view.png"));
+            
             System.out.println("PO Number: "+poNo);
         }
     }
@@ -202,6 +208,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         System.out.println("eComm page loaded. Navigating to Outstanding Draft Page...");
         
         Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
+        draftPage.waitForElement();
         
         System.out.println("Outstanding Draft Page reached.");
                 

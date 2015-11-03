@@ -22,6 +22,7 @@ import org.testng.AssertJUnit;
  */
 public class CCE_EnrichOrderPage extends WBA_BasePage {
     
+    By businessPrincipalLocator = By.id("SampleOrderBusinessPrincipalId");
     By articleLocator = By.id("s2id_SampleOrderLine0ArticleId");
     By brandLocator = By.id("temp0BrandName");
     By ticketLocator = By.id("temp0TicketName");
@@ -218,6 +219,6 @@ public class CCE_EnrichOrderPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleLocator));
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(businessPrincipalLocator));
     }
 }
