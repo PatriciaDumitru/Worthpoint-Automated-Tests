@@ -8,8 +8,13 @@ import PageObjects.Ecomm_MappingPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_OutstandingUploadDraftPage;
+import PageObjects.Ecomm_PendingApprovalListPage;
+import PageObjects.Ecomm_SAPInterfaceLogPage;
 import PageObjects.Ecomm_UploadOrderPage;
 import PageObjects.Ecomm_UploadProcessPage;
+import PageObjects.WBA_ContinuePage;
+import PageObjects.WBA_LoginPage;
+import PageObjects.WBA_SelectionPage;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
 import java.awt.AWTException;
@@ -476,6 +481,135 @@ public class Ecomm_UORT_Test extends DriverFactory {
         Verify.verify(orderConf2.getRequiredDate().equals(date),"Order Confirmation Page: Required Date not consistent with input");
         
         System.out.println("Details checked.");
+        
+    }
+    
+    @Test //Upload Order Page :: SUMST :: Sub-account
+    (groups = {"eComm","eComm_Orders","Upload_Orders","Solo"})
+    public void UORT6() throws Exception {
+        //new chrome driver
+        WebDriver driver = getDriver();
+        
+        //new base test to set up
+        Ecomm_Base uortTest1 = new Ecomm_Base(driver);
+        //Set up returns an eComm page
+        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT5: Upload Draft continuation", "G_OOC_UORT_Unknown");
+        
+        System.out.println("Navigating to Upload Order Page...");
+        
+        Ecomm_UploadOrderPage uoPage = eCommPage.clickUploadOrder();
+        uoPage.waitForElement();
+        
+        System.out.println("Upload Order page reached. Setting filepath...");
+        
+        uoPage.setFilePath(DataItems.uploadSubAcctFilepath);
+        
+        System.out.println("Filepath set. Uploading...");
+        
+        Ecomm_MappingAlert mapAlert = uoPage.pressUpload();
+        Ecomm_MappingPage mapPage = mapAlert.pressYes();
+        mapPage.waitForElement();
+        
+        System.out.println("Uploaded. Setting mapping...");
+        
+        mapPage.setSalesOrg("ID52");
+        mapPage.setCustomerName(DataItems.subCustDetails[0]);
+        
+        String[][] mapping = {  {"Customer Name","Customer Name"},
+                                {"Article","N/A"},
+                                {"Ticket","Ticket"},
+                                {"Finish","Finish"},
+                                {"Shade Code","Shade Code"},
+                                {"Required Date","Required Date"},
+                                {"Qty","Qty"},
+                                {"Style","N/A"},
+                                {"Style No./Production No.","N/A"},
+                                {"Sub Account","Sub Account"},
+                                {"Ship to Party Name","Ship to Party Name"},
+                                {"Your Material No.","N/A"},
+                                {"Brand","Brand"},
+                                {"Length","Length"},
+                                {"Buyers","N/A"},
+                                {"Customer PO No","Customer PO No"},
+                                {"Requestor Name","Requestor Name"},
+                                {"Warehouse Instruction","N/A"},
+                                {"Buyer Sales Order Number","N/A"},
+                                {"Other Information","N/A"},
+                                {"Customer Price","N/A"}
+                                };
+        
+        mapPage.setMappingNotCustomer(mapping);
+        
+        System.out.println("Mapping set. Confirming...");
+        
+        Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        orderConf.waitForElement();
+        
+        orderConf.setRequestor(DataItems.subCustDetails[2]);
+        
+        String poNumber = orderConf.getUploadPONumber();
+        
+        System.out.println("Order Confirmation Page reached. Checking sub-account field appears with correct value...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Sub-account field does not appear for upload order confirmation",orderConf.getSubAccountField().isDisplayed());
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Sub-account field does not hold correct value from spreadsheet",orderConf.getSubAccount().equals(DataItems.subAccount));
+    
+        System.out.println("Sub-account field present, with correct value. Submitting order...");
+        
+        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSendForApproval();
+        pendPage.waitForLoad();
+        
+        System.out.println("Order submitted. Checking order is in Pending Approval table...");
+        
+        int row = pendPage.getRow(poNumber);
+        
+        AssertJUnit.assertTrue("Pending Approval Page: Upload Order (Customer PO: "+poNumber+") not displayed in Pending Approval after confirmation",row!=-1);
+        
+        String orderNo = pendPage.getOrderNo(row);
+        
+        System.out.println("Order found.");
+        System.out.println("Order No.: " + orderNo);
+        System.out.println("Customer PO: " + poNumber);
+        
+        System.out.println("Logging out to approve order...");
+        
+        WBA_LoginPage liPage = pendPage.pressLogout();
+        liPage.waitForElement();
+        
+        WBA_ContinuePage contPage = liPage.loginAs(DataItems.approverUsername, DataItems.approverPassword);
+        WBA_SelectionPage selectPage = contPage.pressContinue();
+        Ecomm_MainPage mainPage = selectPage.pressEcomm();
+        mainPage.waitForLoad();
+        
+        System.out.println("Logged in. Navigating to Pending Approval List Page...");
+
+        Ecomm_PendingApprovalListPage pendPage2 = mainPage.clickPendingApprovalListPage();
+        pendPage2.waitForElement();
+        
+        System.out.println("Pending Approval page reached. Finding order...");
+        
+        AssertJUnit.assertTrue("Pending Approval Page: Order (Order No.: "+orderNo+") not approved.",pendPage2.approveOrder(orderNo));
+        
+        System.out.println("Order approved. Logging into other account to view SAP Log...");
+        
+        WBA_LoginPage liPage2 = pendPage2.pressLogout();
+        liPage2.waitForElement();
+        
+        WBA_ContinuePage contPage2 = liPage.loginAs(DataItems.validCoatsUsername, DataItems.validCoatsPassword);
+        WBA_SelectionPage selectPage2 = contPage.pressContinue();
+        Ecomm_MainPage mainPage2 = selectPage.pressEcomm();
+        
+        mainPage2.waitForLoad();
+        
+        System.out.println("Logged in. Navigating to SAP Log Page...");
+        
+        Ecomm_SAPInterfaceLogPage sapPage = mainPage2.clickSAPInterfaceLog();
+        sapPage.waitForElement();
+        
+        System.out.println("SAP Log Page reached. Finding order and viewing Flat File...");
+        
+        sapPage.getFlatFile(orderNo);
         
     }
     

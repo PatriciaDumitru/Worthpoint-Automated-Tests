@@ -115,6 +115,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public WebElement getCustPoField() {
         //find and return element
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(customerPOField));
         return driver.findElement(customerPOField);
     }
     

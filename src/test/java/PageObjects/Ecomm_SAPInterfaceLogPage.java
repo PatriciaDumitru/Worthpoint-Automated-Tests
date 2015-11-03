@@ -232,7 +232,7 @@ public class Ecomm_SAPInterfaceLogPage extends WBA_BasePage {
                 viewPage.waitForFTData();
                 
                 File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(scrFile,new File("C:\\AutomatedScreenshots\\File Transfer\\subaccount flatfile.png"));
+                FileUtils.copyFile(scrFile,new File("C:\\AutomatedScreenshots\\File Transfer\\subaccount flatfile "+orderNo+".png"));
                 
                 System.out.println("File Transfer View open. Closing...");
                 

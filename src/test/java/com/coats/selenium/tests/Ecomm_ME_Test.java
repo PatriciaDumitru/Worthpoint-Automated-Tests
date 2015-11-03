@@ -1490,7 +1490,7 @@ public class Ecomm_ME_Test extends DriverFactory {
     }   
     
     @Test //Manual Entry Page :: SUMST :: Sub-account test. Field appears and data included in Flat File
-    (groups ={"eComm","eComm_Orders","Solo"})
+    (groups ={"eComm","eComm_Orders"})
     public void SUSST18() throws Exception {
         //New driver
         WebDriver driver = getDriver();

@@ -30,6 +30,7 @@ public class DataItems {
     public static String uploadFinishExceptionFilepath = "C:\\Selenium\\Upload_Exception_Fnsh_2.xlsx";
     public static String uploadShadeExceptionFilepath = "C:\\Selenium\\Upload_Exception_Shde_2.xlsx";
     public static String uploadShipToExceptionFilepath = "C:\\Selenium\\Upload_Exception_ShipTo_10.xlsx";
+    public static String uploadSubAcctFilepath = "C:\\Selenium\\Upload_order_SubAcct_8.xlsx";
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";
