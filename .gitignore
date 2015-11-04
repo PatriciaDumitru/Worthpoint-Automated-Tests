@@ -63,3 +63,4 @@ selenium_standalone/osx/googlechrome/64bit/chromedriver
 selenium_standalone/osx/operachromium/64bit/operadriver
 
 selenium_standalone/osx/phantomjs/64bit/phantomjs
+/target/
