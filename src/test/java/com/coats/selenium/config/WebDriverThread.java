@@ -21,7 +21,7 @@ public class WebDriverThread {
     private final String browser = System.getProperty("browser", defaultDriverType.toString()).toUpperCase();
     private final String operatingSystem = System.getProperty("os.name").toUpperCase();
     private final String systemArchitecture = System.getProperty("os.arch");
-    private final boolean useRemoteWebDriver = Boolean.getBoolean("remoteDriver");
+    private final boolean useRemoteWebDriver = Boolean.getBoolean("remote");
     private final boolean proxyEnabled = Boolean.getBoolean("proxyEnabled");
     private final String proxyHostname = System.getProperty("proxyHost");
     private final Integer proxyPort = Integer.getInteger("proxyPort");
@@ -71,9 +71,10 @@ public class WebDriverThread {
 
         if (useRemoteWebDriver) {
         	System.out.println("Going to use REMOTE WEB DRIVER ");
-            URL seleniumGridURL = new URL(System.getProperty("gridURL"));
+            URL seleniumGridURL = new URL(System.getProperty("seleniumGridURL"));
             String desiredBrowserVersion = System.getProperty("desiredBrowserVersion");
             String desiredPlatform = System.getProperty("desiredPlatform");
+            
 
             if (null != desiredPlatform && !desiredPlatform.isEmpty()) {
                 desiredCapabilities.setPlatform(Platform.valueOf(desiredPlatform.toUpperCase()));
