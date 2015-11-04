@@ -24,8 +24,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
     (groups = {"eComm","Solo"})
     public void BIP1() throws IOException, Exception {
         //new driver instance
-    	System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = getDriver();
 		
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
