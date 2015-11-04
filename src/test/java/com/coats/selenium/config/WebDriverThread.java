@@ -70,6 +70,7 @@ public class WebDriverThread {
         System.out.println(" ");
 
         if (useRemoteWebDriver) {
+        	System.out.println("Going to use REMOTE WEB DRIVER ");
             URL seleniumGridURL = new URL(System.getProperty("gridURL"));
             String desiredBrowserVersion = System.getProperty("desiredBrowserVersion");
             String desiredPlatform = System.getProperty("desiredPlatform");
@@ -84,6 +85,7 @@ public class WebDriverThread {
 
             webdriver = new RemoteWebDriver(seleniumGridURL, desiredCapabilities);
         } else {
+        	System.out.println("Going to use LOCAL WEB DRIVER ");
             webdriver = selectedDriverType.getWebDriverObject(desiredCapabilities);
         }
     }
