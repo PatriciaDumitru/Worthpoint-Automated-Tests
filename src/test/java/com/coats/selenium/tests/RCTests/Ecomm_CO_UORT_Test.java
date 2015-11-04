@@ -28,7 +28,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
   public By confirmButton = By.id("submit1");
   
   @Test //Upload Orders Page :: Realtime contract order upload, expecting "No matching reference" error
-  (groups ={"eComm","eComm_Orders","Upload_Order"})
+  (groups ={"eComm","eComm_Orders","Upload_Order","QuickTest"})
   public void CORT1() throws Exception {
     
     WebDriver driver = getDriver();
@@ -152,7 +152,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
   }
 
   @Test //Upload Orders Page :: Realtime contract order upload, expecting validation success
-  (groups ={"eComm","eComm_Orders","Upload_Order"})
+  (groups ={"eComm","eComm_Orders","Upload_Order","QuickTest"})
   public void CORT2() throws IOException, Exception {
     
     WebDriver driver = getDriver();

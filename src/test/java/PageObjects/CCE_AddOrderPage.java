@@ -417,13 +417,15 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public void inputDetails(String shipTo, String buyer, String article, String shadeCode, String MUM, String request, String purpose, int quantity) throws InterruptedException {
 
         setShipToParty(shipTo);
-        setBusinessPrincipal(buyer);
+        //setBusinessPrincipal(buyer);
         setArticle(article,0);
         setShadeCode(shadeCode,0);
         setMUMType(MUM,0);
         setRequestType(request,0);
         setPurposeType(purpose,0);
         setQuantity(quantity,0);
+        
+        //Business principal not set - as when account was changed to Global Admin, the value shown in the drop down field had (10000001) appended. Possible extension to figure out why 
         
     }
     
