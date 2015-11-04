@@ -317,7 +317,7 @@ public class Cce_MainPage_Test extends DriverFactory {
     }
     
     @Test //CCE Main Page: Masters Headings link to correct pages
-    (groups = {"CCE"})
+    (groups = {"CCE","Solo"})
     public void CCE4() throws Exception {
         System.out.println("TEST: CCE Masters Link correctly");
         System.out.println("Scenario ID: WebPage 1 to 5.6.5");
@@ -363,8 +363,11 @@ public class Cce_MainPage_Test extends DriverFactory {
                 By breadcrumbLocator = By.cssSelector("#content > h2");
                 String requiredItem = DataItems.masters[colCount-1][subCount-1];
                 
-                if (!requiredItem.equals("BLANK")) {
+                if (!requiredItem.equals("BLANK") && !requiredItem.equals("Hierarchy") && !requiredItem.equals("Shade Card - Plants") && !requiredItem.equals("Warehouse Stocks") && !requiredItem.equals("Sub Account") && !requiredItem.equals("Multi Sold To Users") && !requiredItem.equals("Customer Ship To Party") && !requiredItem.equals("Marketing New Features") && !requiredItem.equals("Marketing Running Texts")) {
                     By itemLocator = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child("+colCount+") > ul > li:nth-child("+subCount+")");
+                    
+                    Actions action = new Actions(driver);
+                    action.moveToElement(driver.findElement(itemLocator)).build().perform();
                     
                     driver.findElement(itemLocator).click();
                     

@@ -67,7 +67,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
             System.out.println("Invoices listed. Checking filtration...");
             
             AssertJUnit.assertTrue("Invoice Page: Records displayed are not consistent with filter",
-                    invPage.checkFiltration(invPage.shipToPart1,invPage.shipToPart2 , invPage.noRecords,DataItems.conOrdDetails[1], 3));
+                    invPage.checkFiltrationAndRecords(invPage.shipToPart1,invPage.shipToPart2 , invPage.noRecords,DataItems.conOrdDetails[1], 3));
 		
             //Take a screenshot
             File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -163,7 +163,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
             System.out.println("Invoices listed. Checking filtration...");
             
             AssertJUnit.assertTrue("Invoice Page: Records displayed are not consistent with filter",
-                    invPage.checkFiltration(invPage.shipToPart1,invPage.shipToPart2 , invPage.noRecords,DataItems.conOrdDetails[1], 3));
+                    invPage.checkFiltrationAndRecords(invPage.shipToPart1,invPage.shipToPart2 , invPage.noRecords,DataItems.conOrdDetails[1], 3));
             
             System.out.println("Filtration checked. Resetting filter...");
 		
@@ -248,7 +248,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
             System.out.println("Orders listed. Checking filtration...");
             
             AssertJUnit.assertTrue("Delivery Notes Report Page: Records displayed are inconsistent with filter criteria",
-                    dnPage.checkFiltration(dnPage.requesterPart1, dnPage.requesterPart2, dnPage.noRecords, DataItems.custDetails[2], 3));
+                    dnPage.checkFiltrationAndRecords(dnPage.requesterPart1, dnPage.requesterPart2, dnPage.noRecords, DataItems.custDetails[2], 3));
             
             System.out.println("Filter checked. Resetting filter...");
             
@@ -335,7 +335,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
             System.out.println("Orders listed. Checking filtration...");
             
             AssertJUnit.assertTrue("Delivery Notes Report Page: Records displayed are inconsistent with filter criteria",
-                    dnPage.checkFiltration(dnPage.requesterPart1, dnPage.requesterPart2, dnPage.noRecords, DataItems.custDetails[2], 3));
+                    dnPage.checkFiltrationAndRecords(dnPage.requesterPart1, dnPage.requesterPart2, dnPage.noRecords, DataItems.custDetails[2], 3));
             
             System.out.println("Filtration checked. Resetting filter...");
             
@@ -419,7 +419,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
             
             System.out.println("Records listed. Checking filtration...");
             
-            spPage.checkFiltration(spPage.brandPart1, spPage.brandPart2, spPage.noRecords,tempRequester, 3);
+            spPage.checkFiltrationAndRecords(spPage.brandPart1, spPage.brandPart2, spPage.noRecords,tempRequester, 3);
             
             System.out.println("Filtration checked. Resetting filter...");
             
@@ -501,7 +501,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
             
             System.out.println("Records listed. Checking filtration...");
             
-            spPage.checkFiltration(spPage.brandPart1, spPage.brandPart2, spPage.noRecords, DataItems.expBrand, 3);
+            spPage.checkFiltrationAndRecords(spPage.brandPart1, spPage.brandPart2, spPage.noRecords, DataItems.expBrand, 3);
             
             System.out.println("Filtration checked. Resetting filter...");
             

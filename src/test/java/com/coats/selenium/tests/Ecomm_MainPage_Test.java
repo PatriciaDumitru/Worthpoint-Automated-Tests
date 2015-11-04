@@ -82,10 +82,10 @@ public class Ecomm_MainPage_Test extends DriverFactory {
         //Those tabs without submenus must have empty arrays (for example, SAP interface log)
         String[][] expectedSubMenu = new String[][] {
             {"manual entry","upload orders","from existing bulk order","shade not available","waiting for shade code"},
-            {"outstanding orders list","outstanding orders draft list","outstanding upload draft","pending approval list","denied order"},
+            {"outstanding orders list","outstanding orders draft list","outstanding upload draft","courier tracking update","pending approval list","denied order","upload draft with errors"},
             {},
-            {"invoices","delivery notes","summary of purchase","outstanding payments","my reports","privacy policy and term & condition"},
-            {"real upload failed files","backend in process files","backend failed files","ftp failed files"},
+            {"invoices","delivery notes","summary of purchase","outstanding payments","my reports","coats user report","privacy policy and term & condition","order approval history"},
+            {"real upload failed files","backend in process files","backend failed files","ftp failed files","failed contract order"},
             {}
         };
 
@@ -127,10 +127,10 @@ public class Ecomm_MainPage_Test extends DriverFactory {
 
         String[][] expectedSubMenu = new String[][] {
             {"Manual Entry","Upload Orders","From Existing Bulk Order","Shade Not Available","Waiting For Shade Code"},
-            {"Outstanding Orders List","Outstanding Orders Draft List","Outstanding Upload Draft","Pending Approval List","Denied Order"},
+            {"Outstanding Orders List","Outstanding Orders Draft List","Outstanding Upload Draft","Courier Tracking Update","Pending Approval List","Denied Order","Upload Draft With Errors"},
             {},
-            {"Invoices","Delivery Notes","Summary Of Purcchase","Outstanding Payments","My Reports","Privacy Policy And Term & Condition"},
-            {"Real Upload Failed Files","Backend In Process Files","Backend Failed Files","FTP Failed Files"},
+            {"Invoices","Delivery Notes","Summary Of Purcchase","Outstanding Payments","My Reports","Coats User Reports","Privacy Policy And Term & Condition","Order Approval History"},
+            {"Real Upload Failed Files","Backend In Process Files","Backend Failed Files","FTP Failed Files","Failed Contract Order"},
             {}
         };
 
@@ -151,6 +151,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
                     case "1": breadcrumbLocator = DataItems.breadcrumbLocator; break;
                     case "2": breadcrumbLocator = DataItems.breadcrumbLocator2; break;
                     case "3": breadcrumbLocator = DataItems.breadcrumbLocator3; break;
+                    case "4": breadcrumbLocator = DataItems.breadcrumbLocator4; break;
                     default: break;
                 }
 

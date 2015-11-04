@@ -15,10 +15,10 @@ public class DataItems {
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
     public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
-    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_73.xlsx";
-    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_74.xlsx";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_72.xlsx";
-    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_72C.xlsx";
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_75.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_76.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_73.xlsx";
+    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_73C.xlsx";
     public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_35.xlsx";
     public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_36.xlsx";
     public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_37.xlsx";
@@ -66,26 +66,32 @@ public class DataItems {
     
     //eComm Expected titles - the second array indicates which breadcrumb locator is used on each page, as the breadcrumb is not uniform across all pages
     public static String eCommPageTitle = "Coats eComm";
-    public static String[][] eCommExpectedTitles = {{"Orders | Manual Entry", "", "Orders | From Existing Bulk Order", 
-        "Orders | Shade Not Available", "Orders | Waiting For Shade Code", "Orders | Outstanding", "Orders | Drafts", 
-        "Orders | Upload Drafts", "Orders | Pending Approval List", "Orders | Denied Order List", "SAP Interface Log", 
-        "Reports | Invoices", "Reports | Delivery Notes", "Reports | Summary of Purchase", 
-        "Reports | Outstanding Payments", "Reports | Customer Care", "Terms and Conditions Report", "Real Upload Failed Files", 
-        "Backend In Process Files", "Backend Failed Files", "FTP Failed Files", ""}, 
-        {"2", "", "2", "2", "2", "2", "2", "2", "2", "2", "2", "3", "3", "3", "3", "1", "2", "2", "2", "2", "2", ""}};
+    public static String[][] eCommExpectedTitles = {
+        {"Orders | Manual Entry", "", "Orders | From Existing Bulk Order", "Orders | Shade Not Available", "Orders | Waiting For Shade Code", 
+            "Orders | Outstanding", "Orders | Drafts", "Orders | Upload Drafts", "Orders | Courier Tracking Update","Orders | Pending Approval List", "Orders | Denied Order List", "Missing Method in BulkOrdersController",
+        "SAP Interface Log", 
+        "Reports | Invoices", "Reports | Delivery Notes", "Reports | Summary of Purchase", "Reports | Outstanding Payments", "Reports | Customer Care", "Reports | Coats User","Terms and Conditions Report", "Reports | Order Approval History",
+        "Real Upload Failed Files", "Backend In Process Files", "Backend Failed Files", "FTP Failed Files", "Orders | Failed Contract Orders",""}, 
+        {"2", "", "2", "2", "2", 
+            "2", "2", "2", "4", "2", "2", "1",
+            "2", 
+            "3", "3", "3", "3", "1", "1", "2", "2", 
+            "2", "2", "2", "2", "2",
+            ""}};
     
     //Breadcrumb locators - the breadcrumb changes position/element type throughout the site
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
     public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
     public static By breadcrumbLocator3 = By.cssSelector("#list_page_breadcrumb > h2");
+    public static By breadcrumbLocator4 = By.cssSelector("#content > div > h1");
     
     //Masters tabs
     public static String[][] masters = {
-        {"BLANK","Countries","Sales Organisations","Plants","Plant Holidays","Hubs","Brands","Tickets","Lengths","Finishes","Basic Materials","Material Groups","Light Sources","Purpose Types","Rejection Reasons","Warehouse Instructions"},
+        {"BLANK","Countries","Sales Organisations","Plants","Plant Holidays","Hubs","Enterprise Structure","Brands","Tickets","Lengths","Finishes","Basic Materials","Material Groups","Hierarchy","Light Sources","Purpose Types","Rejection Reasons","Warehouse Instructions"},
         
-        {"BLANK","Shade Cards","Shade Card - Plants","Shades","BLANK","Sales Org. Materials","Quantity Factors","Length Offers","Charged Products","Supply Plants","Warehouse Stocks"},
+        {"BLANK","Shade Cards","Shade Card - Plants","Shades","BLANK","Sales Org. Materials","Quantity Factors","Length Offers","Charged Products","Forced Enrichment Products","Supply Plants","Dye Lot Multiples","Order Type","Warehouse Stocks","Allowed Quantities","Hub Stocks"},
         
-        {"Customers","Ship To Parties","Business Principals","Customer Materials","Customer Brands","Customer Tickets","Customer Lengths","Customer Finishes","Customer Shades","Multi Sold To Users","Cabinets"}
+        {"BLANK","Customers","Ship To Parties","Sub Account","Business Principals","Customer Materials","Customer Brands","Customer Tickets","Customer Lengths","Customer Finishes","Customer Shades","Approver List","Multi Sold To Users","Customer Business Principal","Customer Ship To Party","Cabinets","Marketing New Features","Marketing Running Texts"}
     };
     
     //Customer details to be used in manual entry tests
@@ -197,7 +203,7 @@ public class DataItems {
     //Accept Code value to be used when accepting "Awaiting feedback"
     public static String acceptCode = "AutoTestAccept";
     
-    public static String salesOrganisation = "ID50";
+    public static String salesOrganisation = "ID51";
     public static String hub = "IDH006";
     
     //Switch on/off printing documents
@@ -207,6 +213,9 @@ public class DataItems {
     public static String sapMessage = "Success";
     
     public static String lastUsedPO = "";
+    
+    //Data used in masters
+    public static String autoUserType = "AutoTestUser";
     
     //Wait times in seconds
     public static int shorterWait = 8;

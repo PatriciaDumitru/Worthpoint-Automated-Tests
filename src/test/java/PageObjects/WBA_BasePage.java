@@ -42,57 +42,79 @@ public class WBA_BasePage {
     
     //eComm Navigation bar tabs
     static By ordersTab = By.cssSelector("#topnav > li:nth-child(1)");
+        static By manualEntrySubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(1)");
+        static By uploadOrderSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
+        static By fromExistingSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3)");
+        static By shadeNotAvailSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(4)");
+        static By waitingForShadeSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(5)");
+        
     static By outstandingOrdersTab = By.cssSelector("#topnav > li:nth-child(2)");
+        static By outOrdersSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
+        static By outstOrderDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
+        static By outstUploadDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
+        static By courierTrackingUpdate = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
+        static By pendingApprovalSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
+        static By deniedOrderSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
+        static By uploadDraftErrorSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
+        
     static By sapInterfaceLogTab = By.cssSelector("#topnav > li:nth-child(3)");
+    
     static By reportsTab = By.cssSelector("#topnav > li:nth-child(4)");
+        static By invoicesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(1)");
+        static By deliveryNotesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(2)");
+        static By summaryOfSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(3)");
+        static By outPaySubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(4)");
+        static By myReportsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(5)");
+        static By coatsUserRepSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(6)");
+        static By termsConditionsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(7)");
+        static By onlineAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(8)");
+        
     static By dashboardTab = By.cssSelector("#topnav > li:nth-child(5)");
-    static By outstOrderDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
-    static By pendingApprovalSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
-    static By outstUploadDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
-    static By manualEntrySubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(1)");
-    static By uploadOrderSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
-    static By fromExistingSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3) > a");
-    static By shadeNotAvailSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(4)");
-    static By waitingForShadeSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(5)");
-    static By invoicesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(1)");
-    static By deliveryNotesSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(2)");
-    static By summaryOfSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(3)");
-    static By outPaySubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(4)");
-    static By myReportsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(5)");
-    static By backendIPSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(2)");
-    static By backendFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(3)");
-    static By ftpFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(4) > a"); 
+        static By realUploadFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(1)");
+        static By backendIPSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(2)");
+        static By backendFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(3)");
+        static By ftpFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(4)");
+        static By failedConOrdSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(5)");
+
+    //eComm Locators for customer user
     static By pacTab = By.cssSelector("#topnav > li:nth-child(3)");
-    static By outOrdersSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
     static By failedContractOrderSubtab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(5)");
     
     //CCE Navbar locators
     static By ordersHeader = By.cssSelector("#topnav > li:nth-child(2)");
+        static By orderSamplesSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
+        static By outstandingDraftSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
+        static By manualEnrichSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
+        static By orderStatusSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
+        static By dnReprintSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
+        static By feedbackSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
+        static By feedbackCompletedSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
+        static By feedbackAwaitingSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(8)");
+        
     static By hubHeader = By.cssSelector("#topnav > li:nth-child(3)");
+        static By hubSosSubtab = By.cssSelector("#topnav > li:nth-child(3) > div > div > ul > li:nth-child(1)");
+        static By receivedHubSubtab = By.cssSelector("#topnav > li:nth-child(3) > div > div > ul > li:nth-child(2)");
+        
     static By inboxHeader = By.cssSelector("#topnav > li:nth-child(4)");
+        static By inboxSubtab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(1)");
+        static By inboxSAPSubtab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(2)");
+        
     static By conProdHeader = By.cssSelector("#topnav > li:nth-child(5)");
-    static By refCabHeader = By.cssSelector("#topnav > li:nth-child(6)");
-    static By reportsHeader = By.cssSelector("#topnav > li:nth-child(7)");
-    static By adminHeader = By.cssSelector("#topnav > li:nth-child(8)");
-    static By mastersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3)");
-    static By orderSamplesSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
-    static By manualEnrichSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
-    static By outstandingDraftSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
-    static By orderStatusSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");   
-    static By dnReprintSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
-    static By feedbackSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
-    static By feedbackAwaitingSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(8)");
-    static By feedbackCompletedSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
-    static By hubSosSubtab = By.cssSelector("#topnav > li:nth-child(3) > div > div > ul > li:nth-child(1)");
-    static By receivedHubSubtab = By.cssSelector("#topnav > li:nth-child(3) > div > div > ul > li:nth-child(2)");
-    static By inboxSubtab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(1)");
-    static By inboxSAPSubtab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(2)");
-    static By fceTaskStatusSubtab = By.cssSelector("#topnav > li:nth-child(7) > div > div > ul > li:nth-child(1)");
-    static By orderCycleTimeSubtab = By.cssSelector("#topnav > li:nth-child(7) > div > div > ul > li:nth-child(2)");
-    static By totalOrdersSubtab = By.cssSelector("#topnav > li:nth-child(7) > div > div > ul > li:nth-child(3)");
-    static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
-    static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
     
+    static By refCabHeader = By.cssSelector("#topnav > li:nth-child(6)");
+    
+    static By reportsHeader = By.cssSelector("#topnav > li:nth-child(7)");
+        static By fceTaskStatusSubtab = By.cssSelector("#topnav > li:nth-child(7) > div > div > ul > li:nth-child(1)");
+        static By orderCycleTimeSubtab = By.cssSelector("#topnav > li:nth-child(7) > div > div > ul > li:nth-child(2)");
+        static By totalOrdersSubtab = By.cssSelector("#topnav > li:nth-child(7) > div > div > ul > li:nth-child(3)");
+        
+    static By adminHeader = By.cssSelector("#topnav > li:nth-child(8)");
+        static By allUserTypesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(1)");
+        static By coatsUsersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(2)");
+        static By mastersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3)");
+        static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
+        static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
+        static By archivesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(6)");
     
     //CCE Master options
     static By salesOrgMatOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(6)");
@@ -613,6 +635,26 @@ public class WBA_BasePage {
         return new CCE_TotalOrdersPage(driver);
     }
     
+    public Mst_AllUserTypesPage pressAllUserTypes() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(allUserTypesSubtab));
+        action.click(driver.findElement(allUserTypesSubtab)).build().perform();
+        
+        return new Mst_AllUserTypesPage(driver);
+    }
+    
+    public Mst_CoatsUsersPage pressCoatsUsers() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsUsersSubtab));
+        action.click(driver.findElement(coatsUsersSubtab)).build().perform();
+        
+        return new Mst_CoatsUsersPage(driver);
+    }
+    
     public CCE_LRMLogPage pressLRMLog() {
         
         WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
@@ -651,7 +693,7 @@ public class WBA_BasePage {
         
     }
     
-    public boolean checkFiltration(String locator1, String locator2, By noRecords, String item, int firstRow) {
+    public boolean checkFiltrationAndRecords(String locator1, String locator2, By noRecords, String item, int firstRow) {
         
         System.out.println("Checking for records...");
         
@@ -664,6 +706,25 @@ public class WBA_BasePage {
         }
         
 
+        for (int i = 0; i < 5; i++) {
+            By cellLocator = By.cssSelector(locator1 + "" + (i+firstRow) + "" + locator2);
+            String text ="";
+            try {
+                text = driver.findElement(cellLocator).getText();
+            } catch(Exception e) {
+                System.out.println("All records searched");
+                return true;
+            }
+            if (!(text.equals(item))) {
+                return false;
+            }
+        }
+        return true;
+        
+    }
+    
+    public boolean checkFiltration(String locator1, String locator2, String item, int firstRow) {
+        
         for (int i = 0; i < 5; i++) {
             By cellLocator = By.cssSelector(locator1 + "" + (i+firstRow) + "" + locator2);
             String text ="";
