@@ -485,7 +485,7 @@ public class Ecomm_UORT_Test extends DriverFactory {
     }
     
     @Test //Upload Order Page :: SUMST :: Sub-account
-    (groups = {"eComm","eComm_Orders","Upload_Orders","Solo"})
+    (groups = {"eComm","eComm_Orders","Upload_Orders"})
     public void UORT6() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();

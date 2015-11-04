@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 public class Ecomm_Dashboard_Test extends DriverFactory {
     
     @Test
-    (groups = {"eComm"})
+    (groups = {"eComm","Solo"})
     public void BIP1() throws IOException, Exception {
         //new driver instance
         WebDriver driver = getDriver();
