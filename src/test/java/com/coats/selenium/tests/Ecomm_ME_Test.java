@@ -32,16 +32,16 @@ import org.testng.annotations.Test;
 
 public class Ecomm_ME_Test extends DriverFactory {
     
-    @Test //Manual Entry Page :: Page checks, single line order using YMN and shade code from master data
+    @Test //Manual Entry Page :: SUMST :: Page checks, single line order using YMN and shade code from master data
     (groups = {"QuickTest","eComm","eComm_Orders"})
-    public void SUSST1() throws IOException, InterruptedException, Exception {
+    public void SUMST1() throws IOException, InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
 
         //new base test to handle set up
         Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("MANUAL ENTRY SUSST1: Single line, Your Material Number with master data shade code","G_OOC_ME_SUSST_1");
+        Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY SUMST1: Single line, Your Material Number with master data shade code","G_OOC_ME_SUMST_1");
 
         System.out.println("Navigating to Manual Entry...");
 
@@ -153,16 +153,16 @@ public class Ecomm_ME_Test extends DriverFactory {
     
     }
 
-    @Test //Manual Entry Page :: Multiple line order, YMN with master shade code
+    @Test //Manual Entry Page :: SUMST :: Multiple line order, YMN with master shade code
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST2() throws InterruptedException, Exception {
+    public void SUSMT2() throws InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
 
         //new base test to handle set up
         Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("MANUAL ENTRY SUSST2: Multiple lines, Your Material Number with master data shade code","G_OOC_ME_SUSST_2");
+        Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY SUMST2: Multiple lines, Your Material Number with master data shade code","G_OOC_ME_SUSST_2");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -236,16 +236,16 @@ public class Ecomm_ME_Test extends DriverFactory {
 
     } 
 
-    @Test //Manual Entry Page :: Single line order, YMN without master shade code
+    @Test //Manual Entry Page :: SUMST :: Single line order, YMN without master shade code
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST3() throws InterruptedException, Exception {
+    public void SUMST3() throws InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
 
         //new base test to handle set up
         Ecomm_Base susstTest3 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = susstTest3.SUSST_SetUp("MANUAL ENTRY SUSST3: Single line, Your Material Number without master data shade code","G_OOC_ME_SUSST_3");
+        Ecomm_MainPage eCommPage = susstTest3.setUp("MANUAL ENTRY SUMST3: Single line, Your Material Number without master data shade code","G_OOC_ME_SUMST_3");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -316,16 +316,16 @@ public class Ecomm_ME_Test extends DriverFactory {
         
     }
 
-    @Test //Manual Entry Page :: Multi-line order, YMN without master shade code
+    @Test //Manual Entry Page :: SUMST :: Multi-line order, YMN without master shade code
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST4() throws InterruptedException, Exception {
+    public void SUMST4() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = susstTest4.SUSST_SetUp("MANUAL ENTRY SUSST4: Multiple lines, Your Material Number without master data shade code","G_OOC_ME_SUSST_4");
+        Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY SUMST4: Multiple lines, Your Material Number without master data shade code","G_OOC_ME_SUMST_4");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -395,16 +395,16 @@ public class Ecomm_ME_Test extends DriverFactory {
         
     }
     
-    @Test //Manual Entry Page :: Single line order, article and shade code
+    @Test //Manual Entry Page :: SUMST :: Single line order, article and shade code
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST5() throws InterruptedException, Exception {
+    public void SUMST5() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest5 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest5.SUSST_SetUp("MANUAL ENTRY SUSST5: Single line, using Article and shade code","G_OOC_ME_SUSST_5");
+        Ecomm_MainPage eCommPage = susstTest5.setUp("MANUAL ENTRY SUMST5: Single line, using Article and shade code","G_OOC_ME_SUMST_5");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -472,16 +472,16 @@ public class Ecomm_ME_Test extends DriverFactory {
         
     }
 
-    @Test //Manual Entry Page :: Multi-line order, using Article and shade code
+    @Test //Manual Entry Page :: SUMST :: Multi-line order, using Article and shade code
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST6() throws InterruptedException, Exception {
+    public void SUMST6() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest6 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest6.SUSST_SetUp("MANUAL ENTRY SUSST6: Multiple lines, using Article and shade code","G_OOC_ME_SUSST_6");
+        Ecomm_MainPage eCommPage = susstTest6.setUp("MANUAL ENTRY SUMST6: Multiple lines, using Article and shade code","G_OOC_ME_SUMST_6");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -551,16 +551,16 @@ public class Ecomm_ME_Test extends DriverFactory {
         
     } 
 
-    @Test //Manual Entry Page :: Single line order, using brand/ticket/length/finish and shade code
+    @Test //Manual Entry Page :: SUMST :: Single line order, using brand/ticket/length/finish and shade code
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST7() throws InterruptedException, Exception {
+    public void SUMST7() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest7 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest7.SUSST_SetUp("MANUAL ENTRY SUSST7: Single line, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUSST_7");
+        Ecomm_MainPage eCommPage = susstTest7.setUp("MANUAL ENTRY SUMST7: Single line, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUMST_7");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -625,16 +625,16 @@ public class Ecomm_ME_Test extends DriverFactory {
 
     }
 
-    @Test //Manual Entry Page :: Multi-line order, using brand/ticket/length/finish and shade code
+    @Test //Manual Entry Page :: SUMST :: Multi-line order, using brand/ticket/length/finish and shade code
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST8() throws InterruptedException, Exception {
+    public void SUMST8() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST8: Multiple lines, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUSST_8");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST8: Multiple lines, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUMST_8");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -706,16 +706,16 @@ public class Ecomm_ME_Test extends DriverFactory {
 
     }
     
-    @Test //Manual Entry Page :: Validation tests, no requester at manual entry page
+    @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at manual entry page
     (groups = {"eComm","eComm_Orders","QuickTest"})
-    public void SUSST9() throws InterruptedException, IOException, Exception {
+    public void SUMST9() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST9: Check validation at Manual Entry Page (no requester)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST9: Check validation at Manual Entry Page (no requester)","G_OOC_ME_SUSST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -798,16 +798,16 @@ public class Ecomm_ME_Test extends DriverFactory {
          
     }
 
-    @Test //Manual Entry Page :: Validation tests, no ship to party name at manual entry page
+    @Test //Manual Entry Page :: SUMST :: Validation tests, no ship to party name at manual entry page
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST10() throws InterruptedException, IOException, Exception {
+    public void SUMST10() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST10: Check validation at Manual Entry Page (no ship to)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST10: Check validation at Manual Entry Page (no ship to)","G_OOC_ME_SUSST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -891,16 +891,16 @@ public class Ecomm_ME_Test extends DriverFactory {
 
     }
     
-    @Test //Manual Entry Page :: Validation tests, no buyer at manual entry page
+    @Test //Manual Entry Page :: SUMST :: Validation tests, no buyer at manual entry page
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST11() throws InterruptedException, IOException, Exception {
+    public void SUMST11() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST11: Check validation at Manual Entry Page (no buyer)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST11: Check validation at Manual Entry Page (no buyer)","G_OOC_ME_SUMST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -976,16 +976,16 @@ public class Ecomm_ME_Test extends DriverFactory {
         
     }
     
-    @Test //Manual Entry Page :: Validation tests, no requester at confirmation page
+    @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at confirmation page
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST12() throws InterruptedException, IOException, Exception {
+    public void SUMST12() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST12: Check validation at Confirmation Page (no requester)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST12: Check validation at Confirmation Page (no requester)","G_OOC_ME_SUSST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -1065,16 +1065,16 @@ public class Ecomm_ME_Test extends DriverFactory {
         
     }
     
-    @Test //Manual Entry Page :: Validation tests, no Ship To Party Name at confirmation page
+    @Test //Manual Entry Page :: SUMST :: Validation tests, no Ship To Party Name at confirmation page
     (groups = {"eComm","eComm_Orders","QuickTest"})
-    public void SUSST13() throws InterruptedException, IOException, Exception {
+    public void SUMST13() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST13: Check validation at Confirmation Page (no ship to)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST13: Check validation at Confirmation Page (no ship to)","G_OOC_ME_SUSST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -1155,16 +1155,16 @@ public class Ecomm_ME_Test extends DriverFactory {
 
     }
     
-    @Test //Manual Entry Page :: Validation tests, no Buyer at confirmation page
+    @Test //Manual Entry Page :: SUMST :: Validation tests, no Buyer at confirmation page
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST14() throws InterruptedException, IOException, Exception {
+    public void SUMST14() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST14: Check validation at Confirmation Page (no buyer)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST14: Check validation at Confirmation Page (no buyer)","G_OOC_ME_SUMST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -1245,9 +1245,9 @@ public class Ecomm_ME_Test extends DriverFactory {
     
     }
         
-    @Test //Manual Entry Page :: Create order and cancel from confirmation page
+    @Test //Manual Entry Page :: SUMST :: Create order and cancel from confirmation page
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST15() throws InterruptedException, IOException, Exception {
+    public void SUMST15() throws InterruptedException, IOException, Exception {
         
         //New driver
         WebDriver driver = getDriver();
@@ -1255,7 +1255,7 @@ public class Ecomm_ME_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST15: Draft creation/order simulation - check draft details and cancel","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST15: Draft creation/order simulation - check draft details and cancel","G_OOC_ME_SUSST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -1338,16 +1338,16 @@ public class Ecomm_ME_Test extends DriverFactory {
         
     }
     
-    @Test //Manual Entry Page :: Order Draft continuation and cancellation
+    @Test //Manual Entry Page :: SUMST :: Order Draft continuation and cancellation
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST16() throws InterruptedException, IOException, Exception {
+    public void SUMST16() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST16: Draft creation/order simulation - cancelling saved draft","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST16: Draft creation/order simulation - cancelling saved draft","G_OOC_ME_SUMST_Unknown");
         
         System.out.println("Navigating to Manual Entry Page...");
         
@@ -1421,16 +1421,16 @@ public class Ecomm_ME_Test extends DriverFactory {
         
     }
     
-    @Test //Manual Entry Page :: Order Draft continuation
+    @Test //Manual Entry Page :: SUMST :: Order Draft continuation
     (groups = {"eComm","eComm_Orders","QuickTest"})
-    public void SUSST17() throws InterruptedException, Exception {
+    public void SUMST17() throws InterruptedException, Exception {
          //New driver
         WebDriver driver = getDriver();
   
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST17: Draft creation/order simulation","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST17: Draft creation/order simulation","G_OOC_ME_SUMST_Unknown");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -1498,7 +1498,7 @@ public class Ecomm_ME_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST18: Sub-account availability and flat file inclusion","ME_SA_01");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUSST18: Sub-account availability and flat file inclusion","ME_SA_01");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -1607,7 +1607,7 @@ public class Ecomm_ME_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST19: MOQ Active using YMN and master shade","G_OOC_ME_SUSST_MOQ_1",DataItems.validCustUsername,DataItems.validCustPassword);
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUSST19: MOQ Active using YMN and master shade","G_OOC_ME_SUSST_MOQ_1",DataItems.validCustUsername,DataItems.validCustPassword);
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -1628,7 +1628,7 @@ public class Ecomm_ME_Test extends DriverFactory {
         
     }
     
-    @Test //Manual Entry Page :: Send for approval feature activated
+    @Test //Manual Entry Page :: SUMST :: Send for approval feature activated
     (groups = {"eComm","eComm_Orders"})
     public void SUSST20() throws Exception {
         //New driver
@@ -1637,7 +1637,7 @@ public class Ecomm_ME_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("MANUAL ENTRY SUSST19: MOQ Active using YMN and master shade","G_OOC_ME_SUSST_MOQ_1");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUSST19: MOQ Active using YMN and master shade","G_OOC_ME_SUSST_MOQ_1");
         
         System.out.println("Navigating to Manual Entry...");
         

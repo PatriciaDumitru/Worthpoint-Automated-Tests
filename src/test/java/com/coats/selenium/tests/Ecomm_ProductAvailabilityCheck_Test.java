@@ -25,7 +25,7 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Ecomm_Base base = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",DataItems.validCustUsername,DataItems.validCustPassword);
+        Ecomm_MainPage eCommPage = base.setUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",DataItems.validCustUsername,DataItems.validCustPassword);
     
         System.out.println("Navigating to Product Availability Check Page...");
         
@@ -93,7 +93,7 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Ecomm_Base base = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check PAC2: Page and field checks, make request with article","G_PAC_SUSST_2",DataItems.validCustUsername,DataItems.validCustPassword);
+        Ecomm_MainPage eCommPage = base.setUp("Product Availability Check PAC2: Page and field checks, make request with article","G_PAC_SUSST_2",DataItems.validCustUsername,DataItems.validCustPassword);
     
         System.out.println("Navigating to Product Availability Check Page...");
         
@@ -140,7 +140,7 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Ecomm_Base base = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = base.SUSST_SetUp("Product Availability Check PAC3: Page and field checks, make request with brand/ticket/etc","G_PAC_SUSST_3",DataItems.validCustUsername,DataItems.validCustPassword);
+        Ecomm_MainPage eCommPage = base.setUp("Product Availability Check PAC3: Page and field checks, make request with brand/ticket/etc","G_PAC_SUSST_3",DataItems.validCustUsername,DataItems.validCustPassword);
     
         System.out.println("Navigating to Product Availability Check Page...");
         

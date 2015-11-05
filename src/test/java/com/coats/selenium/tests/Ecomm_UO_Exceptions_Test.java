@@ -32,7 +32,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER Exceptions UORTex1: Invalid material number in spreadsheet", "GE_O_OC_URT_Ex1");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex1: Invalid material number in spreadsheet", "GE_O_OC_URT_Ex1");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -103,7 +103,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER Exceptions UORTex2: Invalid brand in spreadsheet", "GE_O_OC_URT_Ex3");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex2: Invalid brand in spreadsheet", "GE_O_OC_URT_Ex3");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -174,7 +174,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER Exceptions UORTex3: Invalid article in spreadsheet", "GE_O_OC_URT_Ex2");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex3: Invalid article in spreadsheet", "GE_O_OC_URT_Ex2");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -245,7 +245,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER Exceptions UORTex4: Invalid ticket in spreadsheet", "GE_O_OC_URT_Ex4");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex4: Invalid ticket in spreadsheet", "GE_O_OC_URT_Ex4");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -316,7 +316,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER Exceptions UORTex5: Invalid length in spreadsheet", "GE_O_OC_URT_Ex5");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex5: Invalid length in spreadsheet", "GE_O_OC_URT_Ex5");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -387,7 +387,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER Exceptions UORTex6: Invalid finish in spreadsheet", "GE_O_OC_URT_Ex6");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex6: Invalid finish in spreadsheet", "GE_O_OC_URT_Ex6");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -458,7 +458,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER Exceptions UORTex7: Invalid Shade code in spreadsheet", "GE_O_OC_URT_Ex7");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex7: Invalid Shade code in spreadsheet", "GE_O_OC_URT_Ex7");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -528,7 +528,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER Exceptions UORTex8: Invalid Ship to party in spreadsheet", "GE_O_OC_URT_Ex8");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex8: Invalid Ship to party in spreadsheet", "GE_O_OC_URT_Ex8");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -631,7 +631,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER Exceptions UOBEex1: Invalid YMN in spreadsheet", "GE_O_OC_UBE_Ex1");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UOBEex1: Invalid YMN in spreadsheet", "GE_O_OC_UBE_Ex1");
         
         System.out.println("Navigating to Upload Order...");
         

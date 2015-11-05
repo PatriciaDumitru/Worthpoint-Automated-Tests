@@ -163,6 +163,15 @@ public class DataItems {
     public static String conOrdPO = "40000992";
     public static String conOrdLineRef = "10";
     
+    //Line details for use with SUSST Account (joecontract@coats.com, Star Garments Ltd.)
+    public static String yourMatNumSUSST = "AutoTestMaterial";
+    public static String articleSUSST = "1505025";
+    public static String brandSUSST = "dual duty";
+    public static String ticketSUSST = "025";
+    public static String lengthSUSST = "5000";
+    public static String finishSUSST = "STANDARD";
+    public static String shadeSUSST = "C1711";
+
     //Switch on/off Contract Order Call-off
     public static boolean contractOrderCallOff = false;
     

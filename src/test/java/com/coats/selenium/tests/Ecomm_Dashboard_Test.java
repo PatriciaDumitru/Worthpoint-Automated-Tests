@@ -21,14 +21,14 @@ import org.testng.annotations.Test;
 public class Ecomm_Dashboard_Test extends DriverFactory {
     
     @Test
-    (groups = {"eComm","Solo"})
+    (groups = {"eComm"})
     public void BIP1() throws IOException, Exception {
         //new driver instance
         WebDriver driver = getDriver();
 		
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Backend In Process Page BIP1: Page and filter checks, reset", "G_D_BIPL");
+        Ecomm_MainPage eCommPage = baseTest.setUp("Backend In Process Page BIP1: Page and filter checks, reset", "G_D_BIPL");
 				
             Ecomm_BackendInProcessPage bipPage = eCommPage.clickBackendInProcess();
             bipPage.waitForLoad();
@@ -87,7 +87,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
 		
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Backend Failed Files Page BFF1: Page and filter checks, view, reset, download", "G_D_BFF_1");
+        Ecomm_MainPage eCommPage = baseTest.setUp("Backend Failed Files Page BFF1: Page and filter checks, view, reset, download", "G_D_BFF_1");
 				
         Ecomm_BackendFailedFilesPage bffPage = eCommPage.clickBackendFailedFiles();
         bffPage.waitForLoad();
@@ -164,7 +164,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
 		
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("FTP Failed Files Page FTPF1: Page and filter checks, view, reset, download", "G_D_FTPFF_1");
+        Ecomm_MainPage eCommPage = baseTest.setUp("FTP Failed Files Page FTPF1: Page and filter checks, view, reset, download", "G_D_FTPFF_1");
 				
         Ecomm_FTPFailedFilesPage ftpPage = eCommPage.clickFTPFailedFiles();
         ftpPage.waitForLoad();

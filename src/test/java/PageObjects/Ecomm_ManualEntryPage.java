@@ -514,6 +514,36 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         
     }
     
+    public String getTicket(int row) {
+        By ticketLocator = By.id("Ticket"+row);
+        
+        Select select = new Select(driver.findElement(ticketLocator));
+        
+        return select.getFirstSelectedOption().getText();
+    }
+    
+    public String getLength(int row) {
+        By lengthLocator = By.id("Length"+row);
+        
+        Select select = new Select(driver.findElement(lengthLocator));
+        
+        return select.getFirstSelectedOption().getText();
+    }
+    
+    public String getFinish(int row) {
+        By finishLocator = By.id("Finish"+row);
+        
+        Select select = new Select(driver.findElement(finishLocator));
+        
+        return select.getFirstSelectedOption().getText();
+    }
+    
+    public String getShadeCode(int row) {
+        By shadeCodeLocator = By.id("s2id_BulkOrderLine"+row+"ShadeId");
+        
+        return driver.findElement(shadeCodeLocator).getText();
+    }
+    
     public void checkFields() {
         //Wait for all elements to be clickable
         WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
@@ -526,6 +556,21 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Manual Entry Page: Customer Name field not displayed correctly", getCustNameField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", getShipToPartyField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Requestor field not displayed correctly", getRequestorField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", getBuyersField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", getPONumberField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());
+    }
+    
+    public void checkSUSSTFields() {
+        //Wait for all elements to be clickable
+        WebElement waitForShipTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
+        WebElement waitForBuyers = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyersField));
+        WebElement waitForPOField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(poNumberField));
+        
+        //Assert all elements are displayed
+        AssertJUnit.assertFalse("Manual Entry Page: Customer Name field displayed for SUSST account", getCustNameField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", getShipToPartyField().isDisplayed());
+        AssertJUnit.assertFalse("Manual Entry Page: Requestor field displayed for SUSST account", getRequestorField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", getBuyersField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", getPONumberField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());

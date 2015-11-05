@@ -232,6 +232,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     }
     
     public String getYourMatNum() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(getYourMatNumCell()));
         return getYourMatNumCell().getText();
     }
     

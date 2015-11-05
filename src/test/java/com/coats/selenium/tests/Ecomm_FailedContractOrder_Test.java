@@ -32,7 +32,7 @@ public class Ecomm_FailedContractOrder_Test extends DriverFactory {
 		
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.SUSST_SetUp("Failed Contract Order Page FCO1: Page and filter checks, search, reset, view, and edit", "Unknown",DataItems.validCustUsername,DataItems.validCustPassword);
+        Ecomm_MainPage eCommPage = baseTest.setUp("Failed Contract Order Page FCO1: Page and filter checks, search, reset, view, and edit", "Unknown",DataItems.validCustUsername,DataItems.validCustPassword);
     
         System.out.println("Navigating to Failed Contract Order Page...");
         

@@ -26,7 +26,7 @@ public class Ecomm_FEBO_Test extends DriverFactory {
     //new base test to handle set up
     Ecomm_Base susstTest8 = new Ecomm_Base(driver);
     //Set up returns an eComm main page
-    Ecomm_MainPage eCommPage = susstTest8.SUSST_SetUp("FROM EXISTING BULK ORDER FEBO1: Page checks and creates order using existing order","G_OOC_FWBL_1-5");
+    Ecomm_MainPage eCommPage = susstTest8.setUp("FROM EXISTING BULK ORDER FEBO1: Page checks and creates order using existing order","G_OOC_FWBL_1-5");
         
     
     System.out.println("Navigating to From Existing Bulk Order page...");

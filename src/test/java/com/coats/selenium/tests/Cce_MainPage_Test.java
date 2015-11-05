@@ -317,7 +317,7 @@ public class Cce_MainPage_Test extends DriverFactory {
     }
     
     @Test //CCE Main Page: Masters Headings link to correct pages
-    (groups = {"CCE","Solo"})
+    (groups = {"CCE"})
     public void CCE4() throws Exception {
         System.out.println("TEST: CCE Masters Link correctly");
         System.out.println("Scenario ID: WebPage 1 to 5.6.5");

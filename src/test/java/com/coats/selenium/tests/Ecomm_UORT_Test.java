@@ -43,7 +43,7 @@ public class Ecomm_UORT_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -157,7 +157,7 @@ public class Ecomm_UORT_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT2: File of <100 lines, realtime upload, validation check", "G_OOC_UORT_SUSST");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST UORT2: File of <100 lines, realtime upload, validation check", "G_OOC_UORT_SUSST");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -247,7 +247,7 @@ public class Ecomm_UORT_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT3: Draft simulation/draft creation test", "G_OOC_UORT_Unknown");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST UORT3: Draft simulation/draft creation test", "G_OOC_UORT_Unknown");
         
         System.out.println("Navigating to Outstanding Order Upload Page...");
         
@@ -324,7 +324,7 @@ public class Ecomm_UORT_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT4: Upload Draft continuation and cancellation", "G_OOC_UORT_Unknown");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST UORT4: Upload Draft continuation and cancellation", "G_OOC_UORT_Unknown");
         
         System.out.println("Navigating to upload order page...");
         
@@ -406,7 +406,7 @@ public class Ecomm_UORT_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT5: Upload Draft continuation", "G_OOC_UORT_Unknown");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST UORT5: Upload Draft continuation", "G_OOC_UORT_Unknown");
         
         System.out.println("Navigating to Upload Order Page...");
         
@@ -493,7 +493,7 @@ public class Ecomm_UORT_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.SUSST_SetUp("UPLOAD ORDER TEST UORT5: Upload Draft continuation", "G_OOC_UORT_Unknown");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST UORT5: Upload Draft continuation", "G_OOC_UORT_Unknown");
         
         System.out.println("Navigating to Upload Order Page...");
         

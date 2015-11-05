@@ -16,7 +16,7 @@ public class Ecomm_Base {
         driver = passedDriver;
     }
     
-    public Ecomm_MainPage SUSST_SetUp(String testTitle,String scenarioID) {
+    public Ecomm_MainPage setUp(String testTitle,String scenarioID) {
         System.out.println("TEST: "+testTitle);
         System.out.println("Scenario ID: "+scenarioID);
     
@@ -49,7 +49,7 @@ public class Ecomm_Base {
         return eCommPage;
     }
     
-    public Ecomm_MainPage SUSST_SetUp(String testTitle,String scenarioID,String username, String password) {
+    public Ecomm_MainPage setUp(String testTitle,String scenarioID,String username, String password) {
         System.out.println("TEST: "+testTitle);
         System.out.println("Scenario ID: "+scenarioID);
     
