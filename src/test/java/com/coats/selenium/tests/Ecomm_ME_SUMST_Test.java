@@ -30,7 +30,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-public class Ecomm_ME_Test extends DriverFactory {
+public class Ecomm_ME_SUMST_Test extends DriverFactory {
     
     @Test //Manual Entry Page :: SUMST :: Page checks, single line order using YMN and shade code from master data
     (groups = {"QuickTest","eComm","eComm_Orders"})
@@ -1598,8 +1598,8 @@ public class Ecomm_ME_Test extends DriverFactory {
         
     }
     
-    @Test //Manual Entry Page :: SUSST :: MOQ active, adjusted quantity rounds to nearest dye lot
-    (groups = {})
+    @Test //Manual Entry Page :: SUMST :: Send for approval feature activated
+    (groups = {"eComm","eComm_Orders"})
     public void SUSST19() throws Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1607,37 +1607,7 @@ public class Ecomm_ME_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUSST19: MOQ Active using YMN and master shade","G_OOC_ME_SUSST_MOQ_1",DataItems.validCustUsername,DataItems.validCustPassword);
-        
-        System.out.println("Navigating to Manual Entry...");
-        
-        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
-        manualEntryPage.waitForElement();
-        
-        System.out.println("Manual Entry page reached. Entering customer details...");
-        
-        manualEntryPage.setCustomerName(DataItems.conOrdDetails[0]);
-        manualEntryPage.setShipToParty(DataItems.conOrdDetails[1]);
-        manualEntryPage.setRequestor(DataItems.conOrdDetails[2]);
-        manualEntryPage.setBuyers(DataItems.conOrdDetails[3]);
-        manualEntryPage.setPONumber(DataItems.conOrdDetails[4]);
-
-        System.out.println("Customer details entered. Entering line details...");
-        
-        
-        
-    }
-    
-    @Test //Manual Entry Page :: SUMST :: Send for approval feature activated
-    (groups = {"eComm","eComm_Orders"})
-    public void SUSST20() throws Exception {
-        //New driver
-        WebDriver driver = getDriver();
-  
-        //new base test to handle set up
-        Ecomm_Base susstTest8 = new Ecomm_Base(driver);
-        //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUSST19: MOQ Active using YMN and master shade","G_OOC_ME_SUSST_MOQ_1");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUSST19: Send for approval feature","G_OOC_ME_SUSST_MOQ_1");
         
         System.out.println("Navigating to Manual Entry...");
         

@@ -50,6 +50,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     //Table cell locators
     static By yourMatNumCell = By.cssSelector("#remove_0 > td:nth-child(4)");
     static By orderedQtyCell = By.cssSelector("#remove_0 > td:nth-child(6)");
+    static By adjQtyCell = By.xpath("//*[contains(@style,'background-color:red')]");
     static By requiredDateCell = By.cssSelector("#remove_0 > td:nth-child(13)");
     static By coatsMaterialCell = By.cssSelector("#remove_0 > td:nth-child(5)");
       
@@ -204,6 +205,11 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return driver.findElement(orderedQtyCell);
     }
     
+    public WebElement getAdjustedQtyCell() {
+        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(adjQtyCell));
+        return cell;
+    }
+    
     public WebElement getRequiredDateCell() {
         return driver.findElement(requiredDateCell);
     }
@@ -239,6 +245,11 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public int getOrderedQty() {
         return Integer.valueOf(getOrderedQtyCell().getText());
+    }
+    
+    public int getAdjustedQty() {
+        String qty = getAdjustedQtyCell().getText();
+        return Integer.valueOf(qty);
     }
     
     public String getRequiredDate() {

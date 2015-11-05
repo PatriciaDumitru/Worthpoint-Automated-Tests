@@ -12,6 +12,7 @@ import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -446,6 +447,31 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return new Ecomm_OrderConfirmationPage(driver);
     }
     
+    public Ecomm_OrderConfirmationPage pressNextMOQ() {
+        //Wait for button to be clickable
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
+        //Click next
+        Actions clickNext = new Actions(driver);
+        clickNext.click(driver.findElement(nextButtonLocator)).build().perform();
+        //Submit the alert
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        try {
+            Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            if (!(alert2.getText().contains("order quantity has been rounded"))) {
+                System.out.println("Additional alert appeared: " + alert2.getText());
+                alert2.accept();
+            }
+        } catch (TimeoutException t) {
+            
+        }
+        
+        AssertJUnit.assertTrue("Manual Entry Page: Rounded quantity (MOQ) Alert did not appear",waitForQuantityAlert());
+        
+        return new Ecomm_OrderConfirmationPage(driver);
+    }
+    
     public Ecomm_OutstandingOrderDraftPage pressSaveAsDraft() {
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveDraftLocator));
         driver.findElement(saveDraftLocator).click();
@@ -515,6 +541,13 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return driver.findElement(ymnFieldLocator).getAttribute("value");
     }
     
+    public String getArticle (int row) {
+        By articleField = By.cssSelector("#s2id_BulkOrderLine"+row+"ArticleId > a > span.select2-chosen.select_image_add");
+        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
+        return article.getText();
+    }
+        
+    
     public String getBrand(int row) {
         By brandLocator = By.id("Brand"+row);
         
@@ -546,6 +579,34 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         Select select = new Select(driver.findElement(finishLocator));
         
         return select.getFirstSelectedOption().getText();
+    }
+    
+    public String getSetBrand(int row) {
+        //Field changes once article entered. This method is used to get the value from the field after article is input
+        By locator = By.id("token_brand_id_"+row);
+        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return field.getAttribute("value");
+    }
+    
+    public String getSetTicket(int row) {
+        //Field changes once article entered. This method is used to get the value from the field after article is input
+        By locator = By.id("token_ticket_id_"+row);
+        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return field.getAttribute("value");
+    }
+    
+    public String getSetLength(int row) {
+        //Field changes once article entered. This method is used to get the value from the field after article is input
+        By locator = By.id("token_length_id_"+row);
+        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return field.getAttribute("value");
+    }
+    
+    public String getSetFinish(int row) {
+        //Field changes once article entered. This method is used to get the value from the field after article is input
+        By locator = By.id("token_finish_id_"+row);
+        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return field.getAttribute("value");
     }
     
     public String getShadeCode(int row) {
@@ -601,6 +662,24 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             appears = false;
         }  
         return appears;   
+    }
+    
+    public boolean waitForQuantityAlert() {
+        try {
+            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            System.out.println("Alert appeared: " + alert.getText());
+            
+            if (alert.getText().contains("order quantity has been rounded")) {
+                alert.accept();
+                return true;
+            } else {
+                alert.accept();
+                return false;
+            }
+            
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
         
     public String getAddMaterialAlertText() {

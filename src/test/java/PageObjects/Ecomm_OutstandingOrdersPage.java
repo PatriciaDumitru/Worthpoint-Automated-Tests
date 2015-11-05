@@ -120,6 +120,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         int i = 0;
         while(!found && i < 8) {
             By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(6)");
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
             if (driver.findElement(locator).getText().equals(poNumber)) {
                 found = true;
             }
@@ -130,8 +131,31 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
             return i-1;
         } else {
             return -1;
+        }       
+    }
+    
+    
+    public int getRowOffset(String poNumber,int offset) {
+        //For some users, the outstanding orders page table have slightly offset locators. e.g. for testArun01 account
+
+        //wait for table to load
+        boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No."));
+        boolean found = false;
+        int i = 0;
+        while(!found && i < 8) {
+            By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child("+(6+offset)+")");
+            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            if (driver.findElement(locator).getText().equals(poNumber)) {
+                found = true;
+            }
+            i++;
         }
         
+        if (found) {
+            return i-1;
+        } else {
+            return -1;
+        }       
     }
     
     public Ecomm_OrderViewPage pressView(int orderRow) {
@@ -159,6 +183,16 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     public String getOrderNumber(int orderRow) {
         //Locator for order number cell in table
         By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(7)");
+        //Wait for cell
+        WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator).getText();
+    }
+    
+    public String getOrderNumberOffset(int orderRow,int offset) {
+        //For some user accounts, the outstanding orders table has different locators. Use the offset to get around this
+
+        //Locator for order number cell in table
+        By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child("+(7+offset)+")");
         //Wait for cell
         WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElement(locator).getText();

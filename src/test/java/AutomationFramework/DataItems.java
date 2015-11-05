@@ -41,6 +41,14 @@ public class DataItems {
     public static String validCustPassword = "password";
     public static String expectedCustUserName = "joe sykes";
     
+    public static String validTestUsername = "testarun1@coats.com";
+    public static String validTestPassword = "password";
+    public static String expectedTestUserName = "TEsty arun";
+    
+    public static String susstUsername = "lifeeasy@customer.com";
+    public static String susstPassword = "password";
+    public static String expectedSUSSTUserName = "Life Easy";
+    
     public static String invalidUsername = "jfdkjal@jfdalka.com";
     public static String invalidPassword = "invalidpassword";
     
@@ -101,6 +109,8 @@ public class DataItems {
     //Customer details to be used in subaccount tests
     public static String[] subCustDetails = {"Angler Test Indonesia","test","abc test","*OTHERS*"};
     public static String subAccount = "Andywisak";
+    
+    public static String[] testCustDetails = {"CCE HUB OFFICES","CCE HUB OFFICES","TEsty arun","*OTHERS*","AutoTestPO_"};
     
     //Requester used during Upload Order Tests
     public static String UORTrequestor = "approver 1 test";
@@ -180,6 +190,14 @@ public class DataItems {
     public static String finish2SUSST = "STANDARD";
     public static String shade2SUSST = "01212";
     
+    //Line details for MOQ tests
+    public static String testYourMatNum = "MOQTest";
+    public static String MOQArticle = "8754180";
+    public static String MOQBrand = "astra";
+    public static String MOQTicket = "180";
+    public static String MOQLength = "5000";
+    public static String MOQFinish = "STANDARD";
+
     //Switch on/off Contract Order Call-off
     public static boolean contractOrderCallOff = false;
     
