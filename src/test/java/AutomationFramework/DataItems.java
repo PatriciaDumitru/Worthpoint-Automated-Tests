@@ -15,10 +15,10 @@ public class DataItems {
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
     public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
     public static String idFilepath = "C:\\Selenium\\ID.txt";
-    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_75.xlsx";
-    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_76.xlsx";
-    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_73.xlsx";
-    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_73C.xlsx";
+    public static String co_uploadOrderFilepath = "C:\\Selenium\\CO_Upload_Order_Test_77.xlsx";
+    public static String co_uploadOrderFilepath2 = "C:\\Selenium\\CO_Upload_Order_Test_78.xlsx";
+    public static String uploadOrderFilepath = "C:\\Selenium\\Upload_order_test_74.xlsx";
+    public static String uploadOrderFilepath2 = "C:\\Selenium\\Upload_order_test_74C.xlsx";
     public static String uploadDraftFilepath = "C:\\Selenium\\Upload_Draft_test_35.xlsx";
     public static String uploadDraftFilepath2 = "C:\\Selenium\\Upload_Draft_test_36.xlsx";
     public static String uploadDraftFilepath3 = "C:\\Selenium\\Upload_Draft_test_37.xlsx";
@@ -76,12 +76,12 @@ public class DataItems {
     public static String eCommPageTitle = "Coats eComm";
     public static String[][] eCommExpectedTitles = {
         {"Orders | Manual Entry", "", "Orders | From Existing Bulk Order", "Orders | Shade Not Available", "Orders | Waiting For Shade Code", 
-            "Orders | Outstanding", "Orders | Drafts", "Orders | Upload Drafts", "Orders | Courier Tracking Update","Orders | Pending Approval List", "Orders | Denied Order List", "Missing Method in BulkOrdersController",
+            "Orders | Outstanding", "Orders | Drafts", "Orders | Upload Drafts", "Orders | Courier Tracking Update","Orders | Pending Approval List", "Orders | Denied Order List", "Orders | Drafts",
         "SAP Interface Log", 
         "Reports | Invoices", "Reports | Delivery Notes", "Reports | Summary of Purchase", "Reports | Outstanding Payments", "Reports | Customer Care", "Reports | Coats User","Terms and Conditions Report", "Reports | Order Approval History",
         "Real Upload Failed Files", "Backend In Process Files", "Backend Failed Files", "FTP Failed Files", "Orders | Failed Contract Orders",""}, 
         {"2", "", "2", "2", "2", 
-            "2", "2", "2", "4", "2", "2", "1",
+            "2", "2", "2", "4", "2", "2", "2",
             "2", 
             "3", "3", "3", "3", "1", "1", "2", "2", 
             "2", "2", "2", "2", "2",
@@ -110,7 +110,7 @@ public class DataItems {
     public static String[] subCustDetails = {"Angler Test Indonesia","test","abc test","*OTHERS*"};
     public static String subAccount = "Andywisak";
     
-    public static String[] testCustDetails = {"CCE HUB OFFICES","CCE HUB OFFICES","TEsty arun","*OTHERS*","AutoTestPO_"};
+    public static String[] testCustDetails = {"Life Easy Customer","Life Easy Customer","Life Easy","*OTHERS*","AutoTestPO_"};
     
     //Requester used during Upload Order Tests
     public static String UORTrequestor = "approver 1 test";

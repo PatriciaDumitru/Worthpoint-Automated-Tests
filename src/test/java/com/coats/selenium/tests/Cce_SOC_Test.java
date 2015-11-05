@@ -293,7 +293,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: Multi-line copied data
-    (groups = {"CCE","CCE_Orders","QuickTest"})
+    (groups = {"CCE","CCE_Orders","QuickTest","Solo"})
     public void SOC5() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -348,11 +348,11 @@ public class Cce_SOC_Test extends DriverFactory {
         addOrder.setBrand(DataItems.brand,1);
         addOrder.setTicket(DataItems.ticket,1);
         addOrder.setShadeCode(DataItems.shadeCode,1);
-        addOrder.setQuantity(1, 1);
         
         System.out.println("Order details added. Submitting...");
         
         CCE_OrderStatusPage outstOrder = addOrder.pressSubmit();
+        outstOrder.waitForElement();
         
         System.out.println("Details submitted. Verifying details...");
         

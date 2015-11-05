@@ -209,6 +209,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
                         case "1": breadcrumbLocator = DataItems.breadcrumbLocator; break;
                         case "2": breadcrumbLocator = DataItems.breadcrumbLocator2; break;
                         case "3": breadcrumbLocator = DataItems.breadcrumbLocator3; break;
+                        case "4": breadcrumbLocator = DataItems.breadcrumbLocator4; break;
                         default: break;
                     }
 
