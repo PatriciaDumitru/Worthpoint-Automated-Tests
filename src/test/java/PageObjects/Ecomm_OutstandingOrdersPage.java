@@ -119,7 +119,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         boolean found = false;
         int i = 0;
         while(!found && i < 8) {
-            By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(7)");
+            By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(6)");
             if (driver.findElement(locator).getText().equals(poNumber)) {
                 found = true;
             }
@@ -158,7 +158,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     
     public String getOrderNumber(int orderRow) {
         //Locator for order number cell in table
-        By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(8)");
+        By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(7)");
         //Wait for cell
         WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElement(locator).getText();

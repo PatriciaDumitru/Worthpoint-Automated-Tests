@@ -293,7 +293,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: Multi-line copied data
-    (groups = {"CCE","CCE_Orders","QuickTest","Solo"})
+    (groups = {"CCE","CCE_Orders","QuickTest"})
     public void SOC5() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -374,7 +374,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: Pend order 
-    (groups = {"CCE","CCE_Orders","QuickTest","Solo"})
+    (groups = {"CCE","CCE_Orders","QuickTest"})
     public void SOC6() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

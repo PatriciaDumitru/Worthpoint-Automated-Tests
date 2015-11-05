@@ -44,6 +44,10 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     static By poNumberField = By.id("BulkOrderPoNumber");//Text field to enter PO Number
     static By shipToAddressOutput = By.id("ship_to_party_address");//Text output area to display address
     
+    //Customer detail labels (used for SUSST)
+    static By custNameLabel = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > label");
+    static By requestorLabel = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > table > tbody > tr:nth-child(3) > td > label");
+    
     public Ecomm_ManualEntryPage(WebDriver passedDriver) {
         super(passedDriver);
     }
@@ -122,6 +126,12 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public Ecomm_ManualEntryPage setShipToParty(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver, shipToPartyField, item);
+        return this;
+    }
+    
+    public Ecomm_ManualEntryPage setShipToPartyWithWait(String item) throws InterruptedException {
+        boolean selectionPresent = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBePresent(shipToPartyField));
         CommonTask.setDropDownField(driver, shipToPartyField, item);
         return this;
     }
@@ -539,9 +549,11 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public String getShadeCode(int row) {
-        By shadeCodeLocator = By.id("s2id_BulkOrderLine"+row+"ShadeId");
+        By shadeCodeLocator = By.cssSelector("#s2id_BulkOrderLine"+row+"ShadeId > a > span.select2-chosen.select_image_add > span:nth-child(2)");
         
-        return driver.findElement(shadeCodeLocator).getText();
+        String[] parts = driver.findElement(shadeCodeLocator).getText().split(" ");
+
+        return parts[0];
     }
     
     public void checkFields() {
@@ -567,10 +579,12 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         WebElement waitForBuyers = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyersField));
         WebElement waitForPOField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(poNumberField));
         
+        //Wait for visibility of labels
+        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custNameLabel));
+        WebElement waitForRequestor = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(requestorLabel));
+        
         //Assert all elements are displayed
-        AssertJUnit.assertFalse("Manual Entry Page: Customer Name field displayed for SUSST account", getCustNameField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", getShipToPartyField().isDisplayed());
-        AssertJUnit.assertFalse("Manual Entry Page: Requestor field displayed for SUSST account", getRequestorField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", getBuyersField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", getPONumberField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());

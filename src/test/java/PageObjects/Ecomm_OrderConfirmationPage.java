@@ -51,6 +51,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By yourMatNumCell = By.cssSelector("#remove_0 > td:nth-child(4)");
     static By orderedQtyCell = By.cssSelector("#remove_0 > td:nth-child(6)");
     static By requiredDateCell = By.cssSelector("#remove_0 > td:nth-child(13)");
+    static By coatsMaterialCell = By.cssSelector("#remove_0 > td:nth-child(5)");
       
     //Button locators
     static By submitButtonLocator = By.id("submit1");
@@ -242,6 +243,11 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public String getRequiredDate() {
         return getRequiredDateCell().getText();
+    }
+    
+    public String getCoatsMaterial() {
+        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(coatsMaterialCell));
+        return cell.getText();
     }
     
     public WebElement getCancelButton() {

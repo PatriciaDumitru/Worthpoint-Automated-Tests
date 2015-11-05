@@ -150,7 +150,7 @@ public class DataItems {
     public static int thresholdQty=6;
     
     //Customer details to be used in Contract Order tests
-    public static String[] conOrdDetails = {"Star Garments Ltd.", "Star Garments", "joe sykes", "*OTHERS*", "CustomerPO_ "};
+    public static String[] conOrdDetails = {"Star Garments Ltd.", "Star Garments", "joe sykes", "*OTHERS*", "CustomerPO_"};
     
     //Line details for Contract Order tests    
     public static String conOrdArticle = "8754120";
@@ -172,6 +172,14 @@ public class DataItems {
     public static String finishSUSST = "STANDARD";
     public static String shadeSUSST = "C1711";
 
+    public static String yourMatNum2SUSST = "AutoTestMaterial2";
+    public static String article2SUSST = "1505025";
+    public static String brand2SUSST = "dual duty";
+    public static String ticket2SUSST = "025";
+    public static String length2SUSST = "5000";
+    public static String finish2SUSST = "STANDARD";
+    public static String shade2SUSST = "01212";
+    
     //Switch on/off Contract Order Call-off
     public static boolean contractOrderCallOff = false;
     
