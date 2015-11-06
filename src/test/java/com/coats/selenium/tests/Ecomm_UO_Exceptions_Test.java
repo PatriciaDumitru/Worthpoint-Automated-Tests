@@ -2,7 +2,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
-import PageObjects.CCE_BackendProcessPage;
+import PageObjects.Ecomm_BackendProcessPage;
 import PageObjects.Ecomm_ErrorPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_MappingAlert;
@@ -688,7 +688,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping set. Confirming mapping...");
         
-        CCE_BackendProcessPage backendAlertPage = mapPage.pressConfirmForBackend();
+        Ecomm_BackendProcessPage backendAlertPage = mapPage.pressConfirmForBackend();
         
         System.out.println("Mapping confirmed. Checking alert page appears...");
         

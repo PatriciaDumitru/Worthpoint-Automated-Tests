@@ -16,6 +16,8 @@ public class Ecomm_BackendInProcessPage extends WBA_BasePage {
     //Locators
     By custNameField = By.id("s2id_filterInProcessFileCustomerId");
     By fileNameField = By.id("filterInProcessFileFileName");
+    By fileNameCell = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(3)");
+    By statusCell = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(6)");
     By searchButton = By.cssSelector("#FilterShowlistForm > div.grid_12 > table > tbody > tr:nth-child(2) > td > div > table > tbody > tr > td > div > input");
     By resetButton = By.cssSelector("#FilterShowlistForm > div.grid_12 > table > tbody > tr:nth-child(2) > td > div > table > tbody > tr > td > a");
     By noRecordsField = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div");
@@ -30,6 +32,16 @@ public class Ecomm_BackendInProcessPage extends WBA_BasePage {
     
     public WebElement getFileNameField() {
         return driver.findElement(fileNameField);
+    }
+    
+    public WebElement getFileNameCell() {
+        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(fileNameCell));
+        return cell;
+    }
+    
+    public WebElement getStatusCell() {
+        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(statusCell));
+        return cell;
     }
     
     public WebElement getSearchButton() {
@@ -87,6 +99,10 @@ public class Ecomm_BackendInProcessPage extends WBA_BasePage {
         }
         
         return returnMe;
+    }
+    
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
     }
     
 }

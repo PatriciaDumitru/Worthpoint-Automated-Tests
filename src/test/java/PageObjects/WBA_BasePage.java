@@ -112,12 +112,14 @@ public class WBA_BasePage {
         static By allUserTypesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(1)");
         static By coatsUsersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(2)");
         static By mastersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3)");
+            static By salesOrgMatOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(6)");
+            static By customersOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(2)");
         static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
         static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
         static By archivesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(6)");
     
-    //CCE Master options
-    static By salesOrgMatOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(6)");
+    
+    
     
     public WBA_BasePage(WebDriver passedDriver) {
         driver = passedDriver;
@@ -753,7 +755,7 @@ public class WBA_BasePage {
         }       
     }
     
-    public Master_SalesOrgMaterialsPage selectSalesOrgMaterials() {
+    public Mst_SalesOrgMaterialsPage selectSalesOrgMaterials() {
         
         WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
         Actions action = new Actions(driver);
@@ -763,7 +765,21 @@ public class WBA_BasePage {
         WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgMatOption));
         action.click(driver.findElement(salesOrgMatOption)).build().perform();
         
-        return new Master_SalesOrgMaterialsPage(driver);
+        return new Mst_SalesOrgMaterialsPage(driver);
+        
+    }
+    
+    public Mst_CustomersPage selectCustomers() {
+        
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customersOption));
+        action.click(driver.findElement(customersOption)).build().perform();
+        
+        return new Mst_CustomersPage(driver);
         
     }
     

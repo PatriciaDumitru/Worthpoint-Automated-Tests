@@ -40,7 +40,7 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("Confirm Production CP1: Page checks, filter function, view button, confirm selection", "C_CCE_CP_1-2");
+        CCE_MainPage ccePage = base.setUp("Confirm Production CP1: Page checks, filter function, view button, confirm selection", "C_CCE_CP_1-2");
         
         System.out.println("Navigating to Confirm Production...");
         
@@ -172,7 +172,7 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("Confirm Production CP2: Reset and cancel", "C_CCE_CP_x");
+        CCE_MainPage ccePage = base.setUp("Confirm Production CP2: Reset and cancel", "C_CCE_CP_x");
         
         System.out.println("Navigating to Confirm Production...");
         
@@ -215,7 +215,7 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.SUMST_SetUp("Confirm Production CP3: Lab SOS status update", "G_CCE_SOC_16");
+        CCE_MainPage mainPage = base.setUp("Confirm Production CP3: Lab SOS status update", "G_CCE_SOC_16");
         
         System.out.println("Navigating to Order Samples Page...");
         

@@ -26,7 +26,7 @@ public class Cce_DNReprint_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("DN Reprint DR1: User can select all fields", "G_CCE_DR_1");
+        CCE_MainPage ccePage = base.setUp("DN Reprint DR1: User can select all fields", "G_CCE_DR_1");
         
         System.out.println("Navigating to DN Reprint...");
         
@@ -66,7 +66,7 @@ public class Cce_DNReprint_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("DN Reprint DR1: User can select all fields", "G_CCE_DR_2");
+        CCE_MainPage ccePage = base.setUp("DN Reprint DR1: User can select all fields", "G_CCE_DR_2");
         
         System.out.println("Navigating to DN Reprint...");
         

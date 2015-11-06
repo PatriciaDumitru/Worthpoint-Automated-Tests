@@ -1,6 +1,8 @@
 package com.coats.selenium.tests;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_ExportDownloadPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
@@ -9,6 +11,10 @@ import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_OutstandingOrderDraftPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_OutstandingUploadDraftPage;
+import PageObjects.Ecomm_PendingApprovalListPage;
+import PageObjects.Mst_CustomersPage;
+import PageObjects.Mst_EditCustomerPage;
+import PageObjects.WBA_LoginPage;
 import com.coats.selenium.DriverFactory;
 import java.io.File;
 import java.io.IOException;
@@ -329,6 +335,114 @@ public class Ecomm_OO_Test extends DriverFactory {
         FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\5Draft deleted.png"));
         
         System.out.println("Draft deleted.");
+        
+    }
+    
+    @Test //Pending Approval List Page :: Requester user, page and filter checks, print function
+    (groups = {"eComm"})
+    public void PA1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Pending Approval Page: Page and filter checks/print function for Requester","OA_WP_OO_PAL_RU_1 to 4"); 
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Masters...");
+        
+        Mst_CustomersPage custPage = mainPage.selectCustomers();
+        custPage.waitForElement();
+        
+        System.out.println("Customers Master reached. Finding 'Life Easy Customer' and turning approval workflow on...");
+        
+        custPage.setCustomerName(DataItems.custDetails[0]);
+        custPage.pressSearch();
+        int row = custPage.findCustomer(DataItems.custDetails[0]);
+        
+        Mst_EditCustomerPage editPage = custPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage.getCustomerName().equals(DataItems.custDetails[0]));
+        
+        editPage.setApprovalWorkflow();
+        editPage.pressSave();
+        
+        System.out.println("Approval Workflow turned on. Navigating to Manual Entry Page...");
+        
+        Ecomm_Base base2 = new Ecomm_Base(driver);
+        Ecomm_MainPage mainPage2 = base2.setUp("", "", DataItems.approverUsername, DataItems.approverPassword);
+        mainPage2.waitForLoad();
+        
+        Ecomm_ManualEntryPage mePage = mainPage2.clickManualEntry();
+        mePage.waitForElement();
+        
+        System.out.println("Manual Entry Page reached. Creating order...");
+        
+        mePage.setShipToParty(DataItems.custDetails[1]);
+        mePage.setCustomerName(CommonTask.generatePO("RequesterTest_"));
+        
+        mePage.setYourMaterialNumber(DataItems.yourMatNum, 0);
+        mePage.setQty(DataItems.quantity, 0);
+        mePage.setDate(0);
+        
+        Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
+        orderConf.waitForLoad();
+
+        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSendForApproval();
+        pendPage.waitForElement();
+        
+        System.out.println("Pending Approval List Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Pending Approval Page: Title not as expected",pendPage.getBreadcrumb().getText().equals("Orders | Pending Approval List"));
+        
+        System.out.println("Title checked");
+        
+        pendPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pendPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pendPage.setCustPO(DataItems.lastUsedPO);
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pendPage.pressSearch();
+        pendPage.waitForLoad();
+        
+        System.out.println("Records listed. Finding order...");
+        
+        int row2 = pendPage.getRow(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertFalse("Pending Approval List Page: Order (Customer PO: "+DataItems.lastUsedPO+") not displayed in list",row2==-1);
+        
+        String orderNo = pendPage.getOrderNo(row2);
+        
+        System.out.println("Order found.");
+        System.out.println("Order No.: " + orderNo);
+        
+        System.out.println("Viewing order...");
+        
+        Ecomm_OrderViewPage viewPage = pendPage.pressView(row2);
+        viewPage.waitForContent();
+        
+        System.out.println("Order view displayed. Closing view...");
+        
+        viewPage.closeView();
+        viewPage.waitForInvisibility();
+        
+        System.out.println("View closed. Printing record...");
+        
+        Ecomm_OrderViewPage printPage = pendPage.pressPrint(row2);
+        printPage.waitForContent();
+        
+        System.out.println("Print view displayed. Closing view...");
+        
+        printPage.closeView();
+        printPage.waitForInvisibility();
+        
+        System.out.println("Print view closed. ");
         
     }
     

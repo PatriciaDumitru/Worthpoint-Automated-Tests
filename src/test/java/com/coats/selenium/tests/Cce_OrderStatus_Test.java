@@ -28,7 +28,7 @@ public class Cce_OrderStatus_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("ORDER STATUS OS1: Export data", "G_CCE_OS_3");
+        CCE_MainPage ccePage = base.setUp("ORDER STATUS OS1: Export data", "G_CCE_OS_3");
         
         System.out.println("Navigating to Order Status...");
         

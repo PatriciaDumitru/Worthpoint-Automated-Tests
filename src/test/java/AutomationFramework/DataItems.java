@@ -31,6 +31,10 @@ public class DataItems {
     public static String uploadShadeExceptionFilepath = "C:\\Selenium\\Upload_Exception_Shde_2.xlsx";
     public static String uploadShipToExceptionFilepath = "C:\\Selenium\\Upload_Exception_ShipTo_10.xlsx";
     public static String uploadSubAcctFilepath = "C:\\Selenium\\Upload_order_SubAcct_8.xlsx";
+    public static String uploadMOQFilepath = "C:\\Selenium\\Upload_order_MOQ_5.xlsx";
+    public static String uploadMOQFilepath2 = "C:\\Selenium\\Upload_order_MOQ_7.xlsx";
+    public static String uploadSUSSTFilepath = "C:\\Selenium\\UploadSUSST_order_test_6.xlsx";
+    public static String uploadSUMSTFilepath = "C:\\Selenium\\UploadSUMST_order_test_1.xlsx";
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";
@@ -48,6 +52,10 @@ public class DataItems {
     public static String susstUsername = "lifeeasy@customer.com";
     public static String susstPassword = "password";
     public static String expectedSUSSTUserName = "Life Easy";
+    
+    public static String requesterUsername = "autolifeeasy@coats.com";
+    public static String requesterPassword = "password";
+    public static String expectedAutoUserName = "automated requester";
     
     public static String invalidUsername = "jfdkjal@jfdalka.com";
     public static String invalidPassword = "invalidpassword";
@@ -150,6 +158,8 @@ public class DataItems {
     public static String article3 = "8754090";
     public static String brand3 = "astra";
     public static String ticket3 = "090";
+    public static String length3 = "5000";
+    public static String finish3 = "STANDARD";
     public static String shadeCode3 = "C9455";
     public static int quantity3 = 1;
     

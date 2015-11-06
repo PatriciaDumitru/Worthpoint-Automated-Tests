@@ -259,6 +259,32 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         return new Ecomm_OrderConfirmationPage(driver);
     }
     
+    public Ecomm_OrderConfirmationPage pressConfirmMOQ() {
+        //wait for button to be clickable
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        //New action to click confirm
+        Actions clickConfirm = new Actions(driver);
+        clickConfirm.click(driver.findElement(confirmButtonLocator)).build().perform();
+        //Confirm alert
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+
+        Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert2.accept();
+        
+        try {
+            Alert alert3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            AssertJUnit.assertTrue("Order Confirmation Page: Alert for MOQ regarding rounded quantity not displayed as expected",alert3.getText().contains("order quantity has been rounded"));
+            System.out.println("Alert received, as expected");
+            System.out.println("Alert Message: " + alert3.getText());
+            alert3.accept();
+        } catch (TimeoutException e) {
+            
+        }
+        
+        return new Ecomm_OrderConfirmationPage(driver);
+    }
+    
     public Ecomm_ErrorPage pressConfirmExpectingError() {
         //wait for button to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
@@ -279,7 +305,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         return new Ecomm_ErrorPage(driver);
     }
     
-    public CCE_BackendProcessPage pressConfirmForBackend() {
+    public Ecomm_BackendProcessPage pressConfirmForBackend() {
         //wait for button to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
         //New action to click confirm
@@ -289,7 +315,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
-        return new CCE_BackendProcessPage(driver);
+        return new Ecomm_BackendProcessPage(driver);
     }
     
     public Ecomm_MappingPage setMapping(String[][] mapping) {
@@ -448,12 +474,10 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         //Check and set fields
         
         //Sales Organisation
-        AssertJUnit.assertTrue("Mapping page: Sales organisation field not displayed", this.getSalesOrgField().isDisplayed());
         AssertJUnit.assertTrue("Mapping page: Sales Organisation label incorrectly displayed",this.getSalesOrgLabel().getText().equals("Sales Organization"));
         inputKeys.click(this.getSalesOrgField()).build().perform();
         
         //Customer Name
-        AssertJUnit.assertTrue("Mapping page: Customer name field not displayed",this.getCustNameField().isDisplayed());
         AssertJUnit.assertTrue("Mapping page: Custome name label incorrectly displayed",this.getCustNameLabel().getText().equals(mapping[0][0]));
 
         //Article
@@ -544,10 +568,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         inputKeys.sendKeys(mapping[15][1]).build().perform();
         
         //Requestor name
-        AssertJUnit.assertTrue("Mapping page: Requestor field not displayed",this.getRequestorNameField().isDisplayed());
         AssertJUnit.assertTrue("Mapping page: Requestor label incorrectly displayed",this.getRequestorNameLabel().getText().equals(mapping[16][0]));
-        inputKeys.click(this.getRequestorNameField()).build().perform();
-        inputKeys.sendKeys(mapping[16][1]).build().perform();
         
         //Warehouse instruction
         AssertJUnit.assertTrue("Mapping page: Warehouse instruction field not displayed",this.getWarehouseInstField().isDisplayed());

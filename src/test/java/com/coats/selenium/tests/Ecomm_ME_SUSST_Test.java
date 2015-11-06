@@ -1076,7 +1076,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowOffset(DataItems.lastUsedPO,1);
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -1099,7 +1099,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("View closed.");
         
         //Output order number for test reference
-        String orderNumber = outOrders.getOrderNumberOffset(rowNumber,1);
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
     }
     
@@ -1191,7 +1191,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowOffset(DataItems.lastUsedPO,1);
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -1214,7 +1214,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("View closed.");
         
         //Output order number for test reference
-        String orderNumber = outOrders.getOrderNumberOffset(rowNumber,1);
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
     }
     
@@ -1307,7 +1307,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowOffset(DataItems.lastUsedPO,1);
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -1330,7 +1330,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("View closed.");
         
         //Output order number for test reference
-        String orderNumber = outOrders.getOrderNumberOffset(rowNumber,1);
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
     }
     
@@ -1378,10 +1378,10 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Product details entered. Ensuring auto-fill is correct...");
         
         AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getSetBrand(0).equals(DataItems.expBrand));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getSetTicket(0).equals(DataItems.expTicket));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getSetLength(0).equals(DataItems.expLength));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getSetFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
         AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
         
         System.out.println("Auto-fill correct. Pressing next...");
@@ -1423,7 +1423,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowOffset(DataItems.lastUsedPO,1);
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -1446,7 +1446,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("View closed.");
         
         //Output order number for test reference
-        String orderNumber = outOrders.getOrderNumberOffset(rowNumber,1);
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
     }
     
@@ -1495,10 +1495,10 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Product details entered. Ensuring auto-fill is correct...");
         
         AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getSetBrand(0).equals(DataItems.expBrand));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getSetTicket(0).equals(DataItems.expTicket));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getSetLength(0).equals(DataItems.expLength));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getSetFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
         AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
         
         System.out.println("Auto-fill correct. Pressing next...");
@@ -1540,7 +1540,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowOffset(DataItems.lastUsedPO,1);
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -1563,7 +1563,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("View closed.");
         
         //Output order number for test reference
-        String orderNumber = outOrders.getOrderNumberOffset(rowNumber,1);
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
     }
     
@@ -1611,10 +1611,10 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Product details entered. Ensuring auto-fill is correct...");
         
         AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getSetBrand(0).equals(DataItems.expBrand));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getSetTicket(0).equals(DataItems.expTicket));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getSetLength(0).equals(DataItems.expLength));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getSetFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
         AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
         
         System.out.println("Auto-fill correct. Pressing next...");
@@ -1656,7 +1656,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowOffset(DataItems.lastUsedPO,1);
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -1679,7 +1679,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("View closed.");
         
         //Output order number for test reference
-        String orderNumber = outOrders.getOrderNumberOffset(rowNumber,1);
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
     }
     
@@ -1728,10 +1728,10 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Product details entered. Ensuring auto-fill is correct...");
         
         AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getSetBrand(0).equals(DataItems.expBrand));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getSetTicket(0).equals(DataItems.expTicket));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getSetLength(0).equals(DataItems.expLength));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getSetFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
         AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
         
         System.out.println("Auto-fill correct. Pressing next...");
@@ -1773,7 +1773,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowOffset(DataItems.lastUsedPO,1);
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -1796,7 +1796,8 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("View closed.");
         
         //Output order number for test reference
-        String orderNumber = outOrders.getOrderNumberOffset(rowNumber,1);
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
     }
+
 }

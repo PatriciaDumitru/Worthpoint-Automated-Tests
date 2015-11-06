@@ -32,6 +32,11 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         super(driver);
     }
     
+    public WebElement getBreadcrumb() {
+        WebElement breadcrumb = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator2));
+        return breadcrumb;
+    }
+    
     public WebElement getCustNameField() {
         return driver.findElement(custNameField);
     }
@@ -100,6 +105,13 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         return this;
     }
     
+    public Ecomm_PendingApprovalListPage pressSearch() {
+        WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        btn.click();
+        
+        return new Ecomm_PendingApprovalListPage(driver);
+    }
+    
     public void checkFields() {
         //Wait for all elements to be clickable
         WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
@@ -156,6 +168,15 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(1) > a");
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
         driver.findElement(locator).click();
+        return new Ecomm_OrderViewPage(driver);
+    }
+    
+    public Ecomm_OrderViewPage pressPrint(int row) {
+        By printLocator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child("+row+") > tr > td:nth-child(2) > a > img");
+        WebElement print = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printLocator));
+        
+        print.click();
+        
         return new Ecomm_OrderViewPage(driver);
     }
     

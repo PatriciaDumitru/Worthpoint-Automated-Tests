@@ -28,7 +28,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.SUMST_SetUp("Outstanding Draft Page: Page and filter checks", "G_CCE_Unknown");
+        CCE_MainPage ccePage = base.setUp("Outstanding Draft Page: Page and filter checks", "G_CCE_Unknown");
         ccePage.waitForLoad();
         
         System.out.println("Navigating to Order Samples...");
@@ -131,7 +131,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.SUMST_SetUp("Outstanding Draft Page: Edit Draft", "G_CCE_Unknown");
+        CCE_MainPage ccePage = base.setUp("Outstanding Draft Page: Edit Draft", "G_CCE_Unknown");
         ccePage.waitForLoad();
         
         System.out.println("Navigating to Order Samples...");
@@ -221,7 +221,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.SUMST_SetUp("Outstanding Draft Page: Cancelling draft from order entry page", "G_CCE_Unknown");
+        CCE_MainPage ccePage = base.setUp("Outstanding Draft Page: Cancelling draft from order entry page", "G_CCE_Unknown");
         ccePage.waitForLoad();
         
         System.out.println("Navigating to Order Draft...");
@@ -256,7 +256,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.SUMST_SetUp("Outstanding Draft Page: Re-save draft", "G_CCE_Unknown");
+        CCE_MainPage ccePage = base.setUp("Outstanding Draft Page: Re-save draft", "G_CCE_Unknown");
         ccePage.waitForLoad();
         
         System.out.println("Navigating to Order Draft...");

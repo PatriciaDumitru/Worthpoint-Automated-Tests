@@ -33,7 +33,7 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
     By listOrdersButton = By.cssSelector("#FilterOutstandingForm > div.actions > ul > li:nth-child(1)");
     By resetButton = By.cssSelector("#FilterOutstandingForm > div.actions > ul > li:nth-child(2) > a");
     By filterForm = By.id("FilterOutstandingForm");
-    By exportButton = By.cssSelector("#content > div.actions > ul > li");
+    By exportButton = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.btn_sap_error > a");
     By flashMessage = By.id("flashMessage");
     By contentFrame = By.id("content");
     

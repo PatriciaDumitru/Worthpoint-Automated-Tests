@@ -1641,5 +1641,976 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Button correctly displayed.");
 
     }
+
+    @Test //Manual Entry Page :: SUMST :: Single-line, order using YMN with master shade (MOQ ACTIVE)
+    (groups = {"eComm","eComm_Orders"})
+    public void SUMST20() throws Exception {
+        //New chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to handle set up
+        Ecomm_Base base = new Ecomm_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUMST20: Single line, Your Material Number and master shade(MOQ ACTIVE)","G_OOC_ME_SUMST_MOQ_1");
+
+        System.out.println("Navigating to Manual Entry...");
+
+        //press manual entry
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+
+        System.out.println("Manual Entry Page reached. Entering customer details...");
+
+        //Input Customer Details    
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        int numberOfLines = 1;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {DataItems.yourMatNum,String.valueOf(1)},
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMN(details[i], i);
+        }
+        
+        String date = manualEntryPage.getDate(0);
+        
+        System.out.println("Product details entered. Ensuring auto-fill is correct...");
+        
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
+        
+        System.out.println("Auto-fill correct. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        orderConf.waitForElement();
+        
+        System.out.println("MOQ Alert appeared as expected.");
+
+        System.out.println("Order confirmation page reached. Checking details are maintained...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
+
+        String[] parts = orderConf.getCoatsMaterial().split("-");
+        System.out.println(parts[1]);
+        AssertJUnit.assertTrue("Order Confirmation Page: Shade Code (from Coats Mat Num) not maintained after manual entry page",parts[1].equals(DataItems.expShadeCode));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained after manual entry page",orderConf.getOrderedQty()==1);
+        AssertJUnit.assertTrue("Order Confirmation Page: Required Date not maintained after manual entry page",orderConf.getRequiredDate().equals(date));
+        
+        System.out.println("Details maintained. Check adjusted quantity appears...");
+        
+        int adjQty = orderConf.getAdjustedQty();
+        
+        System.out.println("Adjusted quantity retrieved. Checking value...");
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Adjusted Quantity less than or equal to the ordered quantity",adjQty>1);
+        
+        System.out.println("Value greater than ordered qty, as expected. Submitting order...");
+        
+        //Press Submit
+        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
+        outOrders.waitForElement();
+
+        System.out.println("Order submitted. Viewing order...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
+        //wait for overlay to load
+        orderView.waitForContent();
+        orderView.switchTo();
+        
+        System.out.println("Order view displayed. Verifying values...");
+
+        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(DataItems.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(DataItems.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified. Closing view...");
+        
+        //Exit view
+        orderView.exitView();
+        orderView.waitForInvisibility();
+        driver.switchTo().defaultContent();
+        
+        System.out.println("View closed.");
+        
+        //Output order number for test reference
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+    }
+    
+    @Test //Manual Entry Page :: SUMST :: Multi-line, order using YMN with master shade (MOQ ACTIVE)
+    (groups = {"eComm","eComm_Orders"})
+    public void SUMST21() throws Exception {
+        //New chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to handle set up
+        Ecomm_Base base = new Ecomm_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUMST21: Multi line, Your Material Number and master shade(MOQ ACTIVE)","G_OOC_ME_SUMST_MOQ_2");
+
+        System.out.println("Navigating to Manual Entry...");
+
+        //press manual entry
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+
+        System.out.println("Manual Entry Page reached. Entering customer details...");
+
+        //Input Customer Details    
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        int numberOfLines = 2;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {DataItems.yourMatNum,String.valueOf(1)},
+            {DataItems.yourMatNum2,String.valueOf(DataItems.quantity)}
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMN(details[i], i);
+        }
+        
+        String date = manualEntryPage.getDate(0);
+        
+        System.out.println("Product details entered. Ensuring auto-fill is correct...");
+        
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
+        
+        System.out.println("Auto-fill correct. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        orderConf.waitForElement();
+        
+        System.out.println("MOQ Alert appeared as expected.");
+
+        System.out.println("Order confirmation page reached. Checking details are maintained...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
+
+        String[] parts = orderConf.getCoatsMaterial().split("-");
+        System.out.println(parts[1]);
+        AssertJUnit.assertTrue("Order Confirmation Page: Shade Code (from Coats Mat Num) not maintained after manual entry page",parts[1].equals(DataItems.expShadeCode));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained after manual entry page",orderConf.getOrderedQty()==1);
+        AssertJUnit.assertTrue("Order Confirmation Page: Required Date not maintained after manual entry page",orderConf.getRequiredDate().equals(date));
+        
+        System.out.println("Details maintained. Check adjusted quantity appears...");
+        
+        int adjQty = orderConf.getAdjustedQty();
+        
+        System.out.println("Adjusted quantity retrieved. Checking value...");
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Adjusted Quantity less than or equal to the ordered quantity",adjQty>1);
+        
+        System.out.println("Value greater than ordered qty, as expected. Submitting order...");
+        
+        //Press Submit
+        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
+        outOrders.waitForElement();
+
+        System.out.println("Order submitted. Viewing order...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
+        //wait for overlay to load
+        orderView.waitForContent();
+        orderView.switchTo();
+        
+        System.out.println("Order view displayed. Verifying values...");
+
+        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(DataItems.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(DataItems.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified. Closing view...");
+        
+        //Exit view
+        orderView.exitView();
+        orderView.waitForInvisibility();
+        driver.switchTo().defaultContent();
+        
+        System.out.println("View closed.");
+        
+        //Output order number for test reference
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+    }
+    
+    @Test //Manual Entry Page :: SUMST :: Single-line, order using YMN without master shade (MOQ ACTIVE)
+    (groups = {"eComm","eComm_Orders"})
+    public void SUMST22() throws Exception {
+        //New chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to handle set up
+        Ecomm_Base base = new Ecomm_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUMST22: Single line, Your Material Number without master shade(MOQ ACTIVE)","G_OOC_ME_SUMST_MOQ_3");
+
+        System.out.println("Navigating to Manual Entry...");
+
+        //press manual entry
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+
+        System.out.println("Manual Entry Page reached. Entering customer details...");
+
+        //Input Customer Details    
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        int numberOfLines = 1;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {DataItems.yourMatNum2,DataItems.expShadeCode,String.valueOf(1)},
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMNShadeCode(details[i], i);
+        }
+        
+        String date = manualEntryPage.getDate(0);
+        
+        System.out.println("Product details entered. Ensuring auto-fill is correct...");
+        
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
+        
+        System.out.println("Auto-fill correct. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        orderConf.waitForElement();
+        
+        System.out.println("MOQ Alert appeared as expected.");
+
+        System.out.println("Order confirmation page reached. Checking details are maintained...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
+
+        String[] parts = orderConf.getCoatsMaterial().split("-");
+        System.out.println(parts[1]);
+        AssertJUnit.assertTrue("Order Confirmation Page: Shade Code (from Coats Mat Num) not maintained after manual entry page",parts[1].equals(DataItems.expShadeCode));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained after manual entry page",orderConf.getOrderedQty()==1);
+        AssertJUnit.assertTrue("Order Confirmation Page: Required Date not maintained after manual entry page",orderConf.getRequiredDate().equals(date));
+        
+        System.out.println("Details maintained. Check adjusted quantity appears...");
+        
+        int adjQty = orderConf.getAdjustedQty();
+        
+        System.out.println("Adjusted quantity retrieved. Checking value...");
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Adjusted Quantity less than or equal to the ordered quantity",adjQty>1);
+        
+        System.out.println("Value greater than ordered qty, as expected. Submitting order...");
+        
+        //Press Submit
+        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
+        outOrders.waitForElement();
+
+        System.out.println("Order submitted. Viewing order...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
+        //wait for overlay to load
+        orderView.waitForContent();
+        orderView.switchTo();
+        
+        System.out.println("Order view displayed. Verifying values...");
+
+        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(DataItems.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(DataItems.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified. Closing view...");
+        
+        //Exit view
+        orderView.exitView();
+        orderView.waitForInvisibility();
+        driver.switchTo().defaultContent();
+        
+        System.out.println("View closed.");
+        
+        //Output order number for test reference
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+    }
+    
+    @Test //Manual Entry Page :: SUMST :: Multi-line, order using YMN without master shade (MOQ ACTIVE)
+    (groups = {"eComm","eComm_Orders"})
+    public void SUMST23() throws Exception {
+        //New chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to handle set up
+        Ecomm_Base base = new Ecomm_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUMST23: Multi line, Your Material Number without master shade(MOQ ACTIVE)","G_OOC_ME_SUMST_MOQ_4");
+
+        System.out.println("Navigating to Manual Entry...");
+
+        //press manual entry
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+
+        System.out.println("Manual Entry Page reached. Entering customer details...");
+
+        //Input Customer Details    
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        int numberOfLines = 2;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {DataItems.yourMatNum2,DataItems.expShadeCode,String.valueOf(1)},
+            {DataItems.yourMatNum,DataItems.shadeCode,String.valueOf(DataItems.quantity)}
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMNShadeCode(details[i], i);
+        }
+        
+        String date = manualEntryPage.getDate(0);
+        
+        System.out.println("Product details entered. Ensuring auto-fill is correct...");
+        
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
+        
+        System.out.println("Auto-fill correct. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        orderConf.waitForElement();
+        
+        System.out.println("MOQ Alert appeared as expected.");
+
+        System.out.println("Order confirmation page reached. Checking details are maintained...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
+
+        String[] parts = orderConf.getCoatsMaterial().split("-");
+        System.out.println(parts[1]);
+        AssertJUnit.assertTrue("Order Confirmation Page: Shade Code (from Coats Mat Num) not maintained after manual entry page",parts[1].equals(DataItems.expShadeCode));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained after manual entry page",orderConf.getOrderedQty()==1);
+        AssertJUnit.assertTrue("Order Confirmation Page: Required Date not maintained after manual entry page",orderConf.getRequiredDate().equals(date));
+        
+        System.out.println("Details maintained. Check adjusted quantity appears...");
+        
+        int adjQty = orderConf.getAdjustedQty();
+        
+        System.out.println("Adjusted quantity retrieved. Checking value...");
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Adjusted Quantity less than or equal to the ordered quantity",adjQty>1);
+        
+        System.out.println("Value greater than ordered qty, as expected. Submitting order...");
+        
+        //Press Submit
+        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
+        outOrders.waitForElement();
+
+        System.out.println("Order submitted. Viewing order...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
+        //wait for overlay to load
+        orderView.waitForContent();
+        orderView.switchTo();
+        
+        System.out.println("Order view displayed. Verifying values...");
+
+        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(DataItems.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(DataItems.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified. Closing view...");
+        
+        //Exit view
+        orderView.exitView();
+        orderView.waitForInvisibility();
+        driver.switchTo().defaultContent();
+        
+        System.out.println("View closed.");
+        
+        //Output order number for test reference
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+    }
+    
+    @Test //Manual Entry Page :: SUMST :: Single-line, order using Article and shadecode (MOQ ACTIVE)
+    (groups = {"eComm","eComm_Orders"})
+    public void SUMST24() throws Exception {
+        //New chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to handle set up
+        Ecomm_Base base = new Ecomm_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUMST23: Single line, Article and shade(MOQ ACTIVE)","G_OOC_ME_SUMST_MOQ_5");
+
+        System.out.println("Navigating to Manual Entry...");
+
+        //press manual entry
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+
+        System.out.println("Manual Entry Page reached. Entering customer details...");
+
+        //Input Customer Details    
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        int numberOfLines = 1;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {DataItems.expArticle,DataItems.expShadeCode,String.valueOf(1)}
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsArticle(details[i], i);
+        }
+        
+        String date = manualEntryPage.getDate(0);
+        
+        System.out.println("Product details entered. Ensuring auto-fill is correct...");
+        
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
+        
+        System.out.println("Auto-fill correct. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        orderConf.waitForElement();
+        
+        System.out.println("MOQ Alert appeared as expected.");
+
+        System.out.println("Order confirmation page reached. Checking details are maintained...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
+
+        String[] parts = orderConf.getCoatsMaterial().split("-");
+        System.out.println(parts[1]);
+        AssertJUnit.assertTrue("Order Confirmation Page: Shade Code (from Coats Mat Num) not maintained after manual entry page",parts[1].equals(DataItems.expShadeCode));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained after manual entry page",orderConf.getOrderedQty()==1);
+        AssertJUnit.assertTrue("Order Confirmation Page: Required Date not maintained after manual entry page",orderConf.getRequiredDate().equals(date));
+        
+        System.out.println("Details maintained. Check adjusted quantity appears...");
+        
+        int adjQty = orderConf.getAdjustedQty();
+        
+        System.out.println("Adjusted quantity retrieved. Checking value...");
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Adjusted Quantity less than or equal to the ordered quantity",adjQty>1);
+        
+        System.out.println("Value greater than ordered qty, as expected. Submitting order...");
+        
+        //Press Submit
+        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
+        outOrders.waitForElement();
+
+        System.out.println("Order submitted. Viewing order...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
+        //wait for overlay to load
+        orderView.waitForContent();
+        orderView.switchTo();
+        
+        System.out.println("Order view displayed. Verifying values...");
+
+        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(DataItems.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(DataItems.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified. Closing view...");
+        
+        //Exit view
+        orderView.exitView();
+        orderView.waitForInvisibility();
+        driver.switchTo().defaultContent();
+        
+        System.out.println("View closed.");
+        
+        //Output order number for test reference
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+    }
+    
+    @Test //Manual Entry Page :: SUMST :: Multi-line, order using Article and shadecode (MOQ ACTIVE)
+    (groups = {"eComm","eComm_Orders"})
+    public void SUMST25() throws Exception {
+        //New chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to handle set up
+        Ecomm_Base base = new Ecomm_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUMST25: Multi line, Article and shade code(MOQ ACTIVE)","G_OOC_ME_SUMST_MOQ_6");
+
+        System.out.println("Navigating to Manual Entry...");
+
+        //press manual entry
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+
+        System.out.println("Manual Entry Page reached. Entering customer details...");
+
+        //Input Customer Details    
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        int numberOfLines = 2;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {DataItems.expArticle,DataItems.expShadeCode,String.valueOf(1)},
+            {DataItems.article3,DataItems.shadeCode,String.valueOf(DataItems.quantity)}
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsArticle(details[i], i);
+        }
+        
+        String date = manualEntryPage.getDate(0);
+        
+        System.out.println("Product details entered. Ensuring auto-fill is correct...");
+        
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getSetBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getSetTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getSetLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getSetFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
+        
+        System.out.println("Auto-fill correct. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        orderConf.waitForElement();
+        
+        System.out.println("MOQ Alert appeared as expected.");
+
+        System.out.println("Order confirmation page reached. Checking details are maintained...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
+
+        String[] parts = orderConf.getCoatsMaterial().split("-");
+        System.out.println(parts[1]);
+        AssertJUnit.assertTrue("Order Confirmation Page: Shade Code (from Coats Mat Num) not maintained after manual entry page",parts[1].equals(DataItems.expShadeCode));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained after manual entry page",orderConf.getOrderedQty()==1);
+        AssertJUnit.assertTrue("Order Confirmation Page: Required Date not maintained after manual entry page",orderConf.getRequiredDate().equals(date));
+        
+        System.out.println("Details maintained. Check adjusted quantity appears...");
+        
+        int adjQty = orderConf.getAdjustedQty();
+        
+        System.out.println("Adjusted quantity retrieved. Checking value...");
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Adjusted Quantity less than or equal to the ordered quantity",adjQty>1);
+        
+        System.out.println("Value greater than ordered qty, as expected. Submitting order...");
+        
+        //Press Submit
+        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
+        outOrders.waitForElement();
+
+        System.out.println("Order submitted. Viewing order...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
+        //wait for overlay to load
+        orderView.waitForContent();
+        orderView.switchTo();
+        
+        System.out.println("Order view displayed. Verifying values...");
+
+        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(DataItems.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(DataItems.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified. Closing view...");
+        
+        //Exit view
+        orderView.exitView();
+        orderView.waitForInvisibility();
+        driver.switchTo().defaultContent();
+        
+        System.out.println("View closed.");
+        
+        //Output order number for test reference
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+    }
+    
+    @Test //Manual Entry Page :: SUMST :: Single-line, order using Brand/Ticket/Length/Finish/Shade combination (MOQ ACTIVE)
+    (groups = {"eComm","eComm_Orders"})
+    public void SUMST26() throws Exception {
+        //New chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to handle set up
+        Ecomm_Base base = new Ecomm_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUMST26: Single line, Brand/Ticket/Length/Finish combination(MOQ ACTIVE)","G_OOC_ME_SUMST_MOQ_7");
+
+        System.out.println("Navigating to Manual Entry...");
+
+        //press manual entry
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+
+        System.out.println("Manual Entry Page reached. Entering customer details...");
+
+        //Input Customer Details    
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        int numberOfLines = 1;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {DataItems.expBrand,DataItems.expTicket,DataItems.expLength,DataItems.expFinish,DataItems.expShadeCode,String.valueOf(1)},
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsCombination(details[i], i);
+        }
+        
+        String date = manualEntryPage.getDate(0);
+        
+        System.out.println("Product details entered. Ensuring auto-fill is correct...");
+
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
+        
+        System.out.println("Auto-fill correct. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        orderConf.waitForElement();
+        
+        System.out.println("MOQ Alert appeared as expected.");
+
+        System.out.println("Order confirmation page reached. Checking details are maintained...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
+
+        String[] parts = orderConf.getCoatsMaterial().split("-");
+        System.out.println(parts[1]);
+        AssertJUnit.assertTrue("Order Confirmation Page: Shade Code (from Coats Mat Num) not maintained after manual entry page",parts[1].equals(DataItems.expShadeCode));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained after manual entry page",orderConf.getOrderedQty()==1);
+        AssertJUnit.assertTrue("Order Confirmation Page: Required Date not maintained after manual entry page",orderConf.getRequiredDate().equals(date));
+        
+        System.out.println("Details maintained. Check adjusted quantity appears...");
+        
+        int adjQty = orderConf.getAdjustedQty();
+        
+        System.out.println("Adjusted quantity retrieved. Checking value...");
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Adjusted Quantity less than or equal to the ordered quantity",adjQty>1);
+        
+        System.out.println("Value greater than ordered qty, as expected. Submitting order...");
+        
+        //Press Submit
+        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
+        outOrders.waitForElement();
+
+        System.out.println("Order submitted. Viewing order...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
+        //wait for overlay to load
+        orderView.waitForContent();
+        orderView.switchTo();
+        
+        System.out.println("Order view displayed. Verifying values...");
+
+        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(DataItems.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(DataItems.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified. Closing view...");
+        
+        //Exit view
+        orderView.exitView();
+        orderView.waitForInvisibility();
+        driver.switchTo().defaultContent();
+        
+        System.out.println("View closed.");
+        
+        //Output order number for test reference
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+    }
+    
+    @Test //Manual Entry Page :: SUMST :: Multi-line, order using Brand/Ticket/Length/Finish/Shade combination (MOQ ACTIVE)
+    (groups = {"eComm","eComm_Orders"})
+    public void SUMST27() throws Exception {
+        //New chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to handle set up
+        Ecomm_Base base = new Ecomm_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUMST27: Multi-line, Brand/Ticket/Length/Finish combination(MOQ ACTIVE)","G_OOC_ME_SUMST_MOQ_8");
+
+        System.out.println("Navigating to Manual Entry...");
+
+        //press manual entry
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+
+        System.out.println("Manual Entry Page reached. Entering customer details...");
+
+        //Input Customer Details    
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        int numberOfLines = 2;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {DataItems.expBrand,DataItems.expTicket,DataItems.expLength,DataItems.expFinish,DataItems.expShadeCode,String.valueOf(1)},
+            {DataItems.brand3,DataItems.ticket3,DataItems.length3,DataItems.finish3,DataItems.shadeCode,String.valueOf(DataItems.quantity)}
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsCombination(details[i], i);
+        }
+        
+        String date = manualEntryPage.getDate(0);
+        
+        System.out.println("Product details entered. Ensuring auto-fill is correct...");
+
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
+        
+        System.out.println("Auto-fill correct. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        orderConf.waitForElement();
+        
+        System.out.println("MOQ Alert appeared as expected.");
+
+        System.out.println("Order confirmation page reached. Checking details are maintained...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
+
+        String[] parts = orderConf.getCoatsMaterial().split("-");
+        System.out.println(parts[1]);
+        AssertJUnit.assertTrue("Order Confirmation Page: Shade Code (from Coats Mat Num) not maintained after manual entry page",parts[1].equals(DataItems.expShadeCode));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained after manual entry page",orderConf.getOrderedQty()==1);
+        AssertJUnit.assertTrue("Order Confirmation Page: Required Date not maintained after manual entry page",orderConf.getRequiredDate().equals(date));
+        
+        System.out.println("Details maintained. Check adjusted quantity appears...");
+        
+        int adjQty = orderConf.getAdjustedQty();
+        
+        System.out.println("Adjusted quantity retrieved. Checking value...");
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Adjusted Quantity less than or equal to the ordered quantity",adjQty>1);
+        
+        System.out.println("Value greater than ordered qty, as expected. Submitting order...");
+        
+        //Press Submit
+        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
+        outOrders.waitForElement();
+
+        System.out.println("Order submitted. Viewing order...");
+        
+        //Verify values in outstanding orders tab
+        //Get the row number of the order in the table and press view
+        int rowNumber = outOrders.getRow(DataItems.lastUsedPO);
+        Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
+        //wait for overlay to load
+        orderView.waitForContent();
+        orderView.switchTo();
+        
+        System.out.println("Order view displayed. Verifying values...");
+
+        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
+        Verify.verify(orderView.getBrandCell().getText().equals(DataItems.expBrand),"Order view: Brand does not match expected input");
+        Verify.verify(orderView.getTicketCell().getText().equals(DataItems.expTicket),"Order view: Ticket does not match expected input");
+        Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
+
+        System.out.println("Values verified. Closing view...");
+        
+        //Exit view
+        orderView.exitView();
+        orderView.waitForInvisibility();
+        driver.switchTo().defaultContent();
+        
+        System.out.println("View closed.");
+        
+        //Output order number for test reference
+        String orderNumber = outOrders.getOrderNumber(rowNumber);
+        System.out.println("Order Number: " + orderNumber);
+    }
+    
     
 }

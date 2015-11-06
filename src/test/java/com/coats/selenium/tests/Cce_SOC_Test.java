@@ -14,7 +14,7 @@ import PageObjects.CCE_OrderSamplesPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.CCE_OrderStatusPage;
 import PageObjects.CCE_SAPLogPage;
-import PageObjects.Master_SalesOrgMaterialsPage;
+import PageObjects.Mst_SalesOrgMaterialsPage;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
 import java.io.File;
@@ -44,7 +44,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC1: User can select all fields", "G_CCE_SOC_2");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC1: User can select all fields", "G_CCE_SOC_2");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -106,7 +106,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC2: Single line, within threshold", "G_CCE_SOC_1");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC2: Single line, within threshold", "G_CCE_SOC_1");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -172,7 +172,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC3: Multiple line, within threshold", "G_CCE_SOC_1 (multiple)");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC3: Multiple line, within threshold", "G_CCE_SOC_1 (multiple)");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -249,7 +249,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC4: Single line, above threshold", "G_CCE_SOC_6");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC4: Single line, above threshold", "G_CCE_SOC_6");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -302,7 +302,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC5: Multiple lines, copied data", "G_CCE_SOC_8");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC5: Multiple lines, copied data", "G_CCE_SOC_8");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -383,7 +383,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC6: Save as draft", "G_CCE_SOC_12");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC6: Save as draft", "G_CCE_SOC_12");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -438,11 +438,11 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC7: Sales Org Material Master hides MUM Type", "G_CCE_SOC_3");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC7: Sales Org Material Master hides MUM Type", "G_CCE_SOC_3");
         
         System.out.println("Navigaing to Sales Org Materials Master...");
         
-        Master_SalesOrgMaterialsPage somPage = ccePage.selectSalesOrgMaterials();
+        Mst_SalesOrgMaterialsPage somPage = ccePage.selectSalesOrgMaterials();
         somPage.waitForElement();
         
         System.out.println("Page reached. Setting article and sales org...");
@@ -505,7 +505,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC8: Direct Enrich: Available and working. Warehouse SOS test", "G_CCE_SOC_12");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC8: Direct Enrich: Available and working. Warehouse SOS test", "G_CCE_SOC_12");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -591,7 +591,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC9: Direct Enrich feature: Hub/Lab options test", "G_CCE_SOC_12");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC9: Direct Enrich feature: Hub/Lab options test", "G_CCE_SOC_12");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -727,7 +727,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC10: New Buyer function", "OP_NBB_01");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC10: New Buyer function", "OP_NBB_01");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -782,7 +782,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("SAMPLE ORDER SOC5: Single line, above LAB qty but within threshold", "G_CCE_SOC_5");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC5: Single line, above LAB qty but within threshold", "G_CCE_SOC_5");
         
         System.out.println("Navigating to Order Samples...");
         

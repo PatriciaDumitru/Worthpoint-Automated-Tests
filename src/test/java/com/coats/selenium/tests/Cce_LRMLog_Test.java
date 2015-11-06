@@ -30,7 +30,7 @@ public class Cce_LRMLog_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("LRM Log: Page and filter checks, view, resend, export", "C_CCE_LRM_1-5");
+        CCE_MainPage ccePage = base.setUp("LRM Log: Page and filter checks, view, resend, export", "C_CCE_LRM_1-5");
         
         System.out.println("Navigating to LRM Log Page...");
         

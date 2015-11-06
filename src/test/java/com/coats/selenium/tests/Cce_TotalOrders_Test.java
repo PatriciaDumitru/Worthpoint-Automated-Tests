@@ -30,7 +30,7 @@ public class Cce_TotalOrders_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("Total Orders: Page and filter checks, field selection, export, and reset", "C_CCE_TOR_1-4");
+        CCE_MainPage ccePage = base.setUp("Total Orders: Page and filter checks, field selection, export, and reset", "C_CCE_TOR_1-4");
         
         System.out.println("Navigating to Total Orders Page...");
         

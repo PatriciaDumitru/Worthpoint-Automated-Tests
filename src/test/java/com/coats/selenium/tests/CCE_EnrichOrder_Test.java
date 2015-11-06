@@ -24,7 +24,7 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.SUMST_SetUp("Enrich Orders EO1: Page and filter checks, Hub SOS selection", "G_CCE_EO_1");
+        CCE_MainPage mainPage = base.setUp("Enrich Orders EO1: Page and filter checks, Hub SOS selection", "G_CCE_EO_1");
         
         System.out.println("Navigating to Manual Enrich Page...");
         
@@ -122,7 +122,7 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.SUMST_SetUp("Enrich Orders EO2: Lab and WHS selection", "G_CCE_EO_1");
+        CCE_MainPage mainPage = base.setUp("Enrich Orders EO2: Lab and WHS selection", "G_CCE_EO_1");
         
         System.out.println("Navigating to Manual Enrich Page...");
         

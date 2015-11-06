@@ -24,7 +24,7 @@ public class Master_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.SUMST_SetUp("All User Types: Page and filter checks, create and delete type", "A_AUT_1-5");
+        CCE_MainPage ccePage = base.setUp("All User Types: Page and filter checks, create and delete type", "A_AUT_1-5");
         ccePage.waitForLoad();
         
         System.out.println("Navigating to All User Types page...");
@@ -141,7 +141,7 @@ public class Master_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.SUMST_SetUp("All User Types: Page and filter checks, create and delete type", "A_AUT_1-5");
+        CCE_MainPage ccePage = base.setUp("All User Types: Page and filter checks, create and delete type", "A_AUT_1-5");
         ccePage.waitForLoad();
         
         System.out.println("Navigating to Coats Users page...");

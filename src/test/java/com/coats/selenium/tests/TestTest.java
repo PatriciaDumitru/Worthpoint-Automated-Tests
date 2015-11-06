@@ -17,7 +17,7 @@ public class TestTest extends DriverFactory{
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.SUMST_SetUp("Enrich Orders EO1: Page and filter checks, Hub SOS selection", "G_CCE_EO_1");
+        CCE_MainPage mainPage = base.setUp("Enrich Orders EO1: Page and filter checks, Hub SOS selection", "G_CCE_EO_1");
         
         CCE_OutstandingDraftPage page = mainPage.pressOutstandingDraft();
         page.waitForElement();

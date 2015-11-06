@@ -12,12 +12,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 
-public class Master_SalesOrgMaterialsPage extends WBA_MasterDataPage {
+public class Mst_SalesOrgMaterialsPage extends WBA_MasterDataPage {
     
     By articleField = By.id("filterArticle");
     By salesOrgField = By.cssSelector("#s2id_filterSalesOrgId > a");
     
-    public Master_SalesOrgMaterialsPage(WebDriver driver) {
+    public Mst_SalesOrgMaterialsPage(WebDriver driver) {
         super(driver);
     }
     
@@ -29,24 +29,24 @@ public class Master_SalesOrgMaterialsPage extends WBA_MasterDataPage {
         return driver.findElement(salesOrgField);
     }
     
-    public Master_SalesOrgMaterialsPage setArticle(String item) {
+    public Mst_SalesOrgMaterialsPage setArticle(String item) {
         CommonTask.setInputField(driver, articleField, item);
         return this;
     }
     
-    public Master_SalesOrgMaterialsPage setSalesOrg(String item) {
+    public Mst_SalesOrgMaterialsPage setSalesOrg(String item) {
         CommonTask.setSearchField(driver, salesOrgField, item);
         return this;
     }
     
-    public Master_SalesOrgMaterialsPage pressSearch() {
+    public Mst_SalesOrgMaterialsPage pressSearch() {
         getSearchButton().click();
-        return new Master_SalesOrgMaterialsPage(driver);
+        return new Mst_SalesOrgMaterialsPage(driver);
     }
     
-    public Master_SalesOrgMaterialsPage pressReset() {
+    public Mst_SalesOrgMaterialsPage pressReset() {
         getResetButton().click();
-        return new Master_SalesOrgMaterialsPage(driver);
+        return new Mst_SalesOrgMaterialsPage(driver);
     }
     
     public String getHiddenTypes() {;

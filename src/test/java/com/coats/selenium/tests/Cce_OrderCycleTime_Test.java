@@ -29,7 +29,7 @@ public class Cce_OrderCycleTime_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.SUMST_SetUp("Order Cycle Time: Page and filter checks, print, export, and reset", "C_CCE_OCTR_1-5");
+        CCE_MainPage ccePage = base.setUp("Order Cycle Time: Page and filter checks, print, export, and reset", "C_CCE_OCTR_1-5");
         
         System.out.println("Navigating to Order Cycle Time...");
         
