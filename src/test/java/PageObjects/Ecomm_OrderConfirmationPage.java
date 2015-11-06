@@ -326,7 +326,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public Ecomm_UploadProcessPage pressSubmitExpectingFailure() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(submitButtonLocator));
+        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
         driver.findElement(submitButtonLocator).click();  
         
         Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());

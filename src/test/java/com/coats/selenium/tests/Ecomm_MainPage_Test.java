@@ -116,7 +116,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
     }
 
     //Ecomm Page:: Navbar link checks
-    @Test (groups = {"QuickTest","eComm","Solo"})
+    @Test (groups = {"QuickTest","eComm"})
     public void ECOMM2() throws IOException, Exception {
         //New driver instance
         WebDriver driver = getDriver();

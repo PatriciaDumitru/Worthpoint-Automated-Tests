@@ -1066,7 +1066,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUMST :: Validation tests, no Ship To Party Name at confirmation page
-    (groups = {"eComm","eComm_Orders","QuickTest"})
+    (groups = {"eComm","eComm_Orders","QuickTest","Solo"})
     public void SUMST13() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();

@@ -506,7 +506,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.presenceOfElementLocated(formLocator));
+        WebElement wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(saveDraftLocator));
     }
     
     public String getCustomerName() {
