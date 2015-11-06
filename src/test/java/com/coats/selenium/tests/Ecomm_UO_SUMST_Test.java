@@ -2,6 +2,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.FileFactory;
 import PageObjects.Ecomm_BackendInProcessPage;
 import PageObjects.Ecomm_BackendProcessPage;
 import PageObjects.Ecomm_MainPage;
@@ -73,7 +74,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Assertions successful. Sending file path...");
         
         //Send file path to field
-        uploadPage.setFilePath(DataItems.uploadOrderFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 1, "normal", "", true));
         //Select realtime upload
         uploadPage.pressRealtime();
         

@@ -3,6 +3,7 @@ package AutomationFramework;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -37,7 +38,7 @@ public class CommonTask {
     private static By lastButton = By.cssSelector("#content > div.flexi-grid > dl > dd > span.next + span");
     private static By adminHeader = By.cssSelector("#topnav > li:nth-child(8)");
     private static By mastersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3)");
-
+    
     public static void setSearchField(WebDriver driver,By fieldLocator, String item) {
         By searchLocator = By.cssSelector("#select2-drop > div > input");
         By resultLocator = By.cssSelector("#select2-drop > ul > li");
@@ -312,6 +313,7 @@ public class CommonTask {
     public static String generatePO(String type) throws FileNotFoundException, IOException {
         String PONumber = "null";
         try {
+
             //Access file to read
             FileReader fr = new FileReader(DataItems.idFilepath);
             BufferedReader br = new BufferedReader(fr);
@@ -337,6 +339,8 @@ public class CommonTask {
                 prefix = DataItems.conOrdDetails[4];
             } else if (type.equals("buyer")) {
                 prefix = "BuyerRequest";
+            } else if (type.equals("")) {
+                prefix = "";
             } else {
                 prefix = DataItems.custDetails[4];
             }
@@ -351,6 +355,25 @@ public class CommonTask {
         }
          
          return PONumber;
+    }
+    
+    public String getIDNumber() throws FileNotFoundException, IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("ID.txt").getFile());
+        
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        
+        String line = br.readLine();
+        int id = Integer.valueOf(line);
+        
+        br.close();
+        
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        bw.write(String.valueOf((id+1)));
+        
+        bw.close();
+
+        return String.valueOf(id);
     }
     
     public static boolean checkPagination(WebDriver driver) {
