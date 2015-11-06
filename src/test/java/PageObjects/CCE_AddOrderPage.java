@@ -301,8 +301,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public CCE_AddOrderPage setQuantity(int quantity, int lineNumber) {
         //Line numbers start from 0
         By quantityLocator = By.id("SampleOrderLine"+lineNumber+"OrderedQuantity");
-        driver.findElement(quantityLocator).click();
-        driver.findElement(quantityLocator).sendKeys(Integer.toString(quantity));
+        CommonTask.setInputField(driver, quantityLocator, String.valueOf(quantity));
+        
         return this;
     }
     

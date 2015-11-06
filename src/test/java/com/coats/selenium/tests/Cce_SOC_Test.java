@@ -348,6 +348,7 @@ public class Cce_SOC_Test extends DriverFactory {
         addOrder.setBrand(DataItems.brand,1);
         addOrder.setTicket(DataItems.ticket,1);
         addOrder.setShadeCode(DataItems.shadeCode,1);
+        addOrder.setQuantity(1, 1);
         
         System.out.println("Order details added. Submitting...");
         
