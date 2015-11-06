@@ -116,7 +116,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
     }
 
     //Ecomm Page:: Navbar link checks
-    @Test (groups = {"QuickTest","eComm"})
+    @Test (groups = {"QuickTest","eComm","Solo"})
     public void ECOMM2() throws IOException, Exception {
         //New driver instance
         WebDriver driver = getDriver();
@@ -129,7 +129,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
             {"Manual Entry","Upload Orders","From Existing Bulk Order","Shade Not Available","Waiting For Shade Code"},
             {"Outstanding Orders List","Outstanding Orders Draft List","Outstanding Upload Draft","Courier Tracking Update","Pending Approval List","Denied Order","Upload Draft With Errors"},
             {},
-            {"Invoices","Delivery Notes","Summary Of Purcchase","Outstanding Payments","My Reports","Coats User Reports","Privacy Policy And Term & Condition","Order Approval History"},
+            {"Invoices","Delivery Notes","Summary Of Purcchase","Outstanding Payments","My Reports","Coats User Report","Privacy Policy And Term & Condition","Order Approval History"},
             {"Real Upload Failed Files","Backend In Process Files","Backend Failed Files","FTP Failed Files","Failed Contract Order"},
             {}
         };
