@@ -2,6 +2,7 @@ package com.coats.selenium.tests.RCTests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.FileFactory;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_MappingAlert;
 import PageObjects.Ecomm_UploadOrderPage;
@@ -28,7 +29,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
   public By confirmButton = By.id("submit1");
   
   @Test //Upload Orders Page :: Realtime contract order upload, expecting "No matching reference" error
-  (groups ={"eComm","eComm_Orders","Upload_Order","QuickTest"})
+  (groups ={"eComm","eComm_Orders","Upload_Order"})
   public void CORT1() throws Exception {
     
     WebDriver driver = getDriver();
@@ -44,7 +45,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     System.out.println("Upload Order reached. Setting filepath and upload method...");
     
     WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(By.id("filename")));
-    driver.findElement(By.id("filename")).sendKeys(DataItems.co_uploadOrderFilepath);
+    driver.findElement(By.id("filename")).sendKeys(FileFactory.createFile("SUSST", 1, "CO", "", false));
     
     driver.findElement(By.id("bulkuploadprocess1")).click();
     
@@ -59,7 +60,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     System.out.println("Submitted. Select 'no' in alert...");
     
     Ecomm_MappingAlert mapAlert = new Ecomm_MappingAlert(driver);
-    mapAlert.pressNo();
+    mapAlert.pressYes();
     
     System.out.println("Mapping page reached. Setting mapping...");
     
@@ -152,7 +153,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
   }
 
   @Test //Upload Orders Page :: Realtime contract order upload, expecting validation success
-  (groups ={"eComm","eComm_Orders","Upload_Order","QuickTest"})
+  (groups ={"eComm","eComm_Orders","Upload_Order"})
   public void CORT2() throws IOException, Exception {
     
     WebDriver driver = getDriver();
@@ -164,12 +165,12 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     ecomm.clickUploadOrder();
     
     WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(By.id("filename")));
-    driver.findElement(By.id("filename")).sendKeys(DataItems.co_uploadOrderFilepath2);
+    driver.findElement(By.id("filename")).sendKeys(FileFactory.createFile("SUSST", 1, "CO", "", true));
     
     driver.findElement(By.cssSelector("input.btn-submit-upload")).click();
     
     Ecomm_MappingAlert mapAlert = new Ecomm_MappingAlert(driver);
-    mapAlert.pressNo();
+    mapAlert.pressYes();
     
     WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderLineCustomerMaterialNo")));
     

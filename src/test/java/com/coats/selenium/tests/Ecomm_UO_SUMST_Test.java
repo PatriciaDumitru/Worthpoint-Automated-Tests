@@ -47,7 +47,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUMST");
         
         System.out.println("Navigating to Upload Order...");
         
@@ -74,7 +74,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Assertions successful. Sending file path...");
         
         //Send file path to field
-        uploadPage.setFilePath(FileFactory.createFile("SUMST", 1, "normal", "", true));
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "", true));
         //Select realtime upload
         uploadPage.pressRealtime();
         
@@ -88,7 +88,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Upload pressed. Choosing new mapping...");
         
         //Press "no" to alert, continuing to mapping page
-        Ecomm_MappingPage mapPage = alert.pressNo();
+        Ecomm_MappingPage mapPage = alert.pressYes();
         
         System.out.println("Mapping page loaded. Setting mapping...");
         
@@ -172,7 +172,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Upload Order page loaded. Setting filepath and uploading...");
         
         //Send file path to field
-        uploadPage.setFilePath(DataItems.uploadOrderFilepath2);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "", true));
         //Select realtime upload
         uploadPage.pressRealtime();
         
@@ -262,7 +262,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Upload Order page loaded. Setting filepath and uploading...");
         
         //Send file path to field
-        uploadPage.setFilePath(DataItems.uploadDraftFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "", true));
         //Select realtime upload
         uploadPage.pressRealtime();
         
@@ -336,7 +336,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         uoPage.waitForElement();
         
         //Send file path to field
-        uoPage.setFilePath(DataItems.uploadDraftFilepath2);
+        uoPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "", true));
         //Select realtime upload
         uoPage.pressRealtime();
         
@@ -420,7 +420,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Upload Order page reached. Creating draft...");
         
         //Send file path to field
-        uoPage.setFilePath(DataItems.uploadDraftFilepath3);
+        uoPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "", true));
         //Select realtime upload
         uoPage.pressRealtime(); 
         
@@ -506,7 +506,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         
         System.out.println("Upload Order page reached. Setting filepath...");
         
-        uoPage.setFilePath(DataItems.uploadSubAcctFilepath);
+        uoPage.setFilePath(FileFactory.createFile("SUMST", 2, "SA", "", true));
         
         System.out.println("Filepath set. Uploading...");
         
@@ -516,7 +516,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         
         System.out.println("Uploaded. Setting mapping...");
         
-        mapPage.setSalesOrg("ID52");
+        mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.subCustDetails[0]);
         
         String[][] mapping = {  {"Customer Name","Customer Name"},
@@ -588,7 +588,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         
         System.out.println("Logged in. Navigating to Pending Approval List Page...");
 
-        Ecomm_PendingApprovalListPage pendPage2 = mainPage.clickPendingApprovalListPage();
+        Ecomm_PendingApprovalListPage pendPage2 = mainPage.clickPendingApprovalListPageApprover();
         pendPage2.waitForElement();
         
         System.out.println("Pending Approval page reached. Finding order...");
@@ -649,7 +649,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Assertions successful. Sending file path...");
         
         //Send file path to field
-        uploadPage.setFilePath(DataItems.uploadMOQFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST",2,"MOQ","",true));
         //Select realtime upload
         uploadPage.pressRealtime();
         
@@ -659,7 +659,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Upload pressed. Choosing new mapping...");
         
         //Press "no" to alert, continuing to mapping page
-        Ecomm_MappingPage mapPage = alert.pressNo();
+        Ecomm_MappingPage mapPage = alert.pressYes();
         
         System.out.println("Mapping page loaded. Setting mapping...");
         
@@ -747,7 +747,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Assertions successful. Sending file path...");
         
         //Send file path to field
-        uploadPage.setFilePath(DataItems.uploadSUMSTFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "", true));
         //Select backend upload
         uploadPage.pressBackend();
         
@@ -757,7 +757,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Upload pressed. Choosing new mapping...");
         
         //Press "no" to alert, continuing to mapping page
-        Ecomm_MappingPage mapPage = alert.pressNo();
+        Ecomm_MappingPage mapPage = alert.pressYes();
         
         System.out.println("Mapping page loaded. Setting mapping...");
         
@@ -806,7 +806,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         
         System.out.println("Page reached. Checking file is present...");
         
-        String[] parts = DataItems.uploadSUMSTFilepath.split("\\\\");
+        String[] parts = DataItems.lastUsedFilepath.split("\\\\");
         String filepath = parts[2];
         
         AssertJUnit.assertTrue("Backend In Process Page: Table does not display the file",bipPage.getFileNameCell().getText().equals(filepath));
@@ -851,7 +851,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Assertions successful. Sending file path...");
         
         //Send file path to field
-        uploadPage.setFilePath(DataItems.uploadMOQFilepath2);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "", true));
         //Select backend upload
         uploadPage.pressBackend();
         
@@ -861,7 +861,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Upload pressed. Choosing new mapping...");
         
         //Press "no" to alert, continuing to mapping page
-        Ecomm_MappingPage mapPage = alert.pressNo();
+        Ecomm_MappingPage mapPage = alert.pressYes();
         
         System.out.println("Mapping page loaded. Setting mapping...");
         
@@ -910,7 +910,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         
         System.out.println("Page reached. Checking file is present...");
         
-        String[] parts = DataItems.uploadMOQFilepath2.split("\\\\");
+        String[] parts = DataItems.lastUsedFilepath.split("\\\\");
         String filepath = parts[2];
         
         AssertJUnit.assertTrue("Backend In Process Page: Table does not display the file",bipPage.getFileNameCell().getText().equals(filepath));

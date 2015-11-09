@@ -2,6 +2,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.FileFactory;
 import PageObjects.Ecomm_BackendProcessPage;
 import PageObjects.Ecomm_BackendInProcessPage;
 import PageObjects.Ecomm_MainPage;
@@ -56,7 +57,7 @@ public class Ecomm_UO_SUSST_Test {
         System.out.println("Assertions successful. Sending file path...");
         
         //Send file path to field
-        uploadPage.setFilePath(DataItems.uploadMOQFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUSST", 2, "MOQ", "", true));
         //Select realtime upload
         uploadPage.pressRealtime();
         
@@ -66,7 +67,7 @@ public class Ecomm_UO_SUSST_Test {
         System.out.println("Upload pressed. Choosing new mapping...");
         
         //Press "no" to alert, continuing to mapping page
-        Ecomm_MappingPage mapPage = alert.pressNo();
+        Ecomm_MappingPage mapPage = alert.pressYes();
         
         System.out.println("Mapping page loaded. Setting mapping...");
         
@@ -108,6 +109,102 @@ public class Ecomm_UO_SUSST_Test {
         AssertJUnit.assertTrue("Order Confirmation Page: Adjusted quantity less than or equal to ordered quantity",orderConf.getAdjustedQty()>1);
         
         System.out.println("Adjusted Quantity correct. Submitting order...");               
+        
+        Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        outOrdersPage.waitForElement();
+        
+        System.out.println("Order submitted. Navigating to Outstanding Upload Order...");
+                
+        String orderNo = outOrdersPage.getOrderNumber(0);
+        System.out.println("Order number: "+orderNo);
+    }
+    
+    @Test //Upload Order Page :: SUSST :: Realtime Upload Order (<100 lines)
+    (groups = {"eComm","eComm_Orders","Upload_Order"})
+    public void RT2() throws Exception {
+        //new chrome driver
+        WebDriver driver = getDriver();
+        
+        //new base test to set up
+        Ecomm_Base uortTest1 = new Ecomm_Base(driver);
+        //Set up returns an eComm page
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER SUSST TEST: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST",DataItems.requesterUsername,DataItems.requesterPassword);
+        
+        System.out.println("Navigating to Upload Order...");
+        
+        //new upload order page
+        Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
+        uploadPage.waitForElement();
+        
+        System.out.println("Upload Order page loaded.");
+        
+        //make assertions for base page elements and upload page elements
+        uploadPage.assertBaseElements();
+        System.out.println("Asserting other elements...");
+        //Wait for page to load before asserting the other elements
+        WebElement waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(uploadPage.getUploadButton()));
+        AssertJUnit.assertTrue("Upload Order page: File name field not displayed",uploadPage.getFileNameOutputField().isDisplayed());
+        AssertJUnit.assertTrue("Upload Order page: Realtime upload radio button not displayed",uploadPage.getRealtimeRadio().isDisplayed());
+        AssertJUnit.assertTrue("Upload Order page: Backend upload radio button not displayed",uploadPage.getBackendRadio().isDisplayed());
+        AssertJUnit.assertTrue("Upload Order page: Upload button not displayed",uploadPage.getUploadButton().isDisplayed());    
+        
+        System.out.println("Assertions successful. Sending file path...");
+        
+        //Send file path to field
+        uploadPage.setFilePath(FileFactory.createFile("SUSST", 2, "Basic", "YMN", true));
+        //Select realtime upload
+        uploadPage.pressRealtime();
+        
+        //Press upload
+        Ecomm_MappingAlert alert = uploadPage.pressUpload();
+        
+        System.out.println("Upload pressed. Choosing new mapping...");
+        
+        //Press "yes" to alert, continuing to mapping page
+        Ecomm_MappingPage mapPage = alert.pressYes();
+        
+        System.out.println("Mapping page loaded. Setting mapping...");
+        
+        //Mapping details
+        //Element 0 of each array holds the field name. Element 1 of each array holds the corresponding header used in the file.
+        //If there is no corresponding header in the file, use "N/A" 
+        String[][] mapping = {  {"Customer Name","Customer Name"},
+                                {"Article","N/A"},
+                                {"Ticket","Ticket"},
+                                {"Finish","Finish"},
+                                {"Shade Code","Shade Code"},
+                                {"Required Date","Required Date"},
+                                {"Qty","Qty"},
+                                {"Style","N/A"},
+                                {"Style No./Production No.","N/A"},
+                                {"Sub Account","N/A"},
+                                {"Ship to Party Name","Ship to Party Name"},
+                                {"Your Material No.","N/A"},
+                                {"Brand","Brand"},
+                                {"Length","Length"},
+                                {"Buyers","N/A"},
+                                {"Customer PO No","Customer PO No"},
+                                {"Requestor Name","Requestor Name"},
+                                {"Warehouse Instruction","N/A"},
+                                {"Buyer Sales Order Number","N/A"},
+                                {"Other Information","N/A"},
+                                {"Customer Price","N/A"}
+                                };
+        
+        Ecomm_MappingPage mappedPage = mapPage.setMappingNotCustomer(mapping);
+        
+        System.out.println("Mapping set. Confirming map..."); 
+        
+        Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
+        orderConf.waitForElement();
+        
+        System.out.println("Map confirmed. Checking details (quantity) are input as expected...");
+
+        int qty = orderConf.getOrderedQty();
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained from upload file",String.valueOf(qty).equals(FileFactory.susstBasicData[0][11]));
+        
+        System.out.println("Input correct. Submitting...");
         
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
         outOrdersPage.waitForElement();
@@ -160,7 +257,7 @@ public class Ecomm_UO_SUSST_Test {
         System.out.println("Upload pressed. Choosing new mapping...");
         
         //Press "no" to alert, continuing to mapping page
-        Ecomm_MappingPage mapPage = alert.pressNo();
+        Ecomm_MappingPage mapPage = alert.pressYes();
         
         System.out.println("Mapping page loaded. Setting mapping...");
         

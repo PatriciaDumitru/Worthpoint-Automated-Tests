@@ -14,9 +14,9 @@ public class Ecomm_MappingAlert {
     WebDriver driver;
     
     //Locators
-    By noButton = By.name("No");
-    By yesButton = By.name("Yes");
-    By messageBoxTitle = By.className("msgBoxTitle");
+    By noButton = By.xpath("//input[following::input[@value='Yes']]");
+    By yesButton = By.xpath("//input[@value='Yes']");
+    By messageBoxTitle = By.xpath("//*[contains(concat(\" \", normalize-space(@class), \" \"), \" msgBoxTitle \")]");
     
     public Ecomm_MappingAlert(WebDriver passedDriver) {
         driver = passedDriver;
@@ -36,7 +36,7 @@ public class Ecomm_MappingAlert {
     
     public Ecomm_MappingPage pressYes() {
         //Wait for alert title to have loaded
-        boolean waitForTitle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(messageBoxTitle, "Mapping Fields"));
+        WebElement waitForTitle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(messageBoxTitle));
         //Wait for button to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yesButton));
         //New action to click yes
@@ -48,7 +48,7 @@ public class Ecomm_MappingAlert {
     
     public Ecomm_MappingPage pressNo() {
         //Wait for alert title to have loaded
-        boolean waitForTitle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(messageBoxTitle, "Mapping Fields"));
+        WebElement waitForTitle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(messageBoxTitle));
         //Wait for button to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(noButton));
         //New action to click no

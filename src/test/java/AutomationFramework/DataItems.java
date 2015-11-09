@@ -35,6 +35,7 @@ public class DataItems {
     public static String uploadMOQFilepath2 = "C:\\Selenium\\Upload_order_MOQ_7.xlsx";
     public static String uploadSUSSTFilepath = "C:\\Selenium\\UploadSUSST_order_test_6.xlsx";
     public static String uploadSUMSTFilepath = "C:\\Selenium\\UploadSUMST_order_test_1.xlsx";
+    public static String lastUsedFilepath = "";
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";

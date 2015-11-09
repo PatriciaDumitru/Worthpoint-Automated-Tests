@@ -3,42 +3,63 @@ package AutomationFramework;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class FileFactory {
     
     //The items to head each column in the file. Standard across all file types for simplicity
-    static String[] headData = {"Customer Name","Ship to Party Name","Customer PO Number","Required Date","Your Material Number","Article","Brand","Ticket",
-        "Length","Finish","Shade Code","Qty","Contract PO No","Line Reference","Sub Account"};
+    public static String[] headData = {"Customer Name","Ship to Party Name","Customer PO Number","Required Date","Your Material Number","Article","Brand","Ticket",
+        "Length","Finish","Shade Code","Qty","Contract PO No","Line Reference","Sub Account","Requestor Name"};
     
-    static String[][] susstMOQData = {{"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1711","1","","",""},
-        {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","090","5000","STANDARD","C1202","3","","",""}};
+    public static String[][] MOQData = {{"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1711","1","","","",""},
+        {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","090","5000","STANDARD","C1202","3","","","",""}};
     
-    static String[][] susstCOInvalidData = {{"Star Garments","Star Garments Ltd.","","","","8754120","astra","120","5000","STANDARD","1","random","random",""},
-        {"Star Garments","Star Garments Ltd.","","","","8754180","astra","180","5000","STANDARD","1","random","random",""}};
+    public static String[][] susstBasicData = {{"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","3","","","","abc test"},
+        {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}};
     
-    static String[][] susstCOValidData = {{"Star Garments","Star Garments Ltd.","TEST ZCQ ARUN 01","","","","","","","","","1","40000992","10",""}};
+    public static String[][] sumstBasicData = {{"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","3","","","","approver 1 test"},
+        {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
+    
+    public static String[][] susstCOInvalidData = {{"Star Garments","Star Garments Ltd.","","","","8754120","astra","120","5000","STANDARD","1","random","random","","approver 1 test"},
+        {"Star Garments","Star Garments Ltd.","","","","8754180","astra","180","5000","STANDARD","1","random","random","","approver 1 test"}};
+    
+    public static String[][] susstCOValidData = {{"Star Garments","Star Garments Ltd.","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","approver 1 test"},
+        {"Star Garments","Star Garments Ltd.","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","approver 1 test"}};
+    
+    public static String[][] sumstSubAcctValidData ={{"Angler Test Indonesia","test","","","","","astra","120","5000","STANDARD","C9700","3","","","andywisak","abc test"},
+        {"Angler Test Indonesia","test","","","","","gral","180","3000","STANDARD","C1711","3","","","andywisak","abc test"},
+        {"Angler Test Indonesia","test","","","","","astra","030","1000","STANDARD","C1202","3","","","andywisak","abc test"}};
+    
+    public static void main(String[] args) throws IOException {
+        createFile("SUSST",1,"CO","",true);
+    }
     
     public static String createFile(String soldTo,int lineCount,String type,String combination,boolean valid) throws IOException {
         
         //Create file name based on PO
         String uniqueId = CommonTask.generatePO("");
         String fileName = "UploadTestFile" + uniqueId;
-        String filePath = "C:\\Selenium\\" + fileName +".xls";
+        String filePath = "C:\\Selenium\\" + fileName +".xlsx";
+        
+        //New workbook and sheet
+        XSSFWorkbook wb = new XSSFWorkbook();
+        XSSFSheet sheet = wb.createSheet();
         
         try {
             
-            //New workbook and sheet
-            HSSFWorkbook wb = new HSSFWorkbook();
-            HSSFSheet sheet = wb.createSheet();
-            
             //New head row
-            HSSFRow headRow = sheet.createRow(0);
+            XSSFRow headRow = sheet.createRow(0);
             
             //Create a cell for each column and set value to head items
             for (int i = 0; i < headData.length; i++) {
@@ -46,24 +67,23 @@ public class FileFactory {
             }
            
             String data[][] = getAppropriateData(soldTo,lineCount,type,combination,valid,uniqueId);
-            
+
             //For the number of rows declared, create row and fill values accordingly
             for (int rowCount = 1; rowCount <= lineCount; rowCount++) {
                 
                 //Set date in data
                 data[rowCount-1][3] = getDate();
 
-                //Create a new row
-                HSSFRow row = sheet.createRow(rowCount);
+                //create new row
+                XSSFRow row = sheet.createRow(rowCount);
 
                 //For each field item, create a cell and give it the corresponding data value
                 for (int colCount = 0; colCount < data[0].length; colCount++) {
-                    row.createCell(colCount).setCellValue(new HSSFRichTextString(data[rowCount-1][colCount]));
+                    row.createCell(colCount).setCellValue(new XSSFRichTextString(data[rowCount-1][colCount]));
                 }
                 
             }
             
-            //Write data to file using FileOutputStream
             FileOutputStream fos = new FileOutputStream(filePath);
             wb.write(fos);
             fos.close();
@@ -73,12 +93,14 @@ public class FileFactory {
         } catch (Exception e) {
             System.out.println(e);
         }
+        System.out.println("Filepath used: "+filePath);
+        DataItems.lastUsedFilepath = filePath;
         return filePath;
     }
     
     public static String[][] getAppropriateData(String soldTo, int lineCount,String type, String combination, boolean valid,String id) throws IOException {
         
-        String data[][] = new String[2][15];
+        String data[][] = new String[2][16];
         String po = "";
         
         if (soldTo.equals("SUSST")) {
@@ -87,24 +109,21 @@ public class FileFactory {
                 
                 if (type.equals("MOQ")) {
                     po = "UO_SUSST_MOQ" + id;
-                    data = susstMOQData;
+                    data = MOQData.clone();
                 } else if (type.equals("CO")) {
                     po = "UO_SUSST_CO" + id;
-                    data = susstCOValidData;
+                    data = susstCOValidData.clone();
                 } else if (type.equals("Basic")) {
                     po = "UO_SUSST" + id;
-                    switch (combination) {
-                        case "YMN": break;
-                        case "YMNShade": break;
-                        case "Article": break;
-                        case "Combination": break;
-                    }
+                    data = susstBasicData.clone();
+                    System.out.println("Basic data selected");
+                    
                 }
                 
             } else if (!valid) {
                 
                 if (type.equals("CO")) {
-                    data = susstCOInvalidData;
+                    data = susstCOInvalidData.clone();
                     po = "UO_SUSST_CO" + id;
                 } else if (type.equals("Basic")) {
                     po = "UO_SUSST" + id;
@@ -113,6 +132,7 @@ public class FileFactory {
                         case "YMNShade": break;
                         case "Article": break;
                         case "Combination": break;
+                        default: break;
                     }
                 }
                 
@@ -124,14 +144,19 @@ public class FileFactory {
                 
                 if (type.equals("MOQ")) {
                     po = "UO_SUMST_MOQ" + id;
+                    data = MOQData.clone();
                 } else if (type.equals("Basic")) {
                     po = "UO_SUMST" + id;
+                    data = sumstBasicData.clone();
                     switch (combination) {
                         case "YMN": break;
                         case "YMNShade": break;
                         case "Article": break;
                         case "Combination": break;
                     }
+                } else if (type.equals("SA")) {
+                    po = "UO_SUMST_SubAcct";
+                    data = sumstSubAcctValidData.clone();
                 }
                 
             } else if (!valid) {
@@ -148,6 +173,7 @@ public class FileFactory {
         }
         data[0][2] = po;
         data[1][2] = po;
+        
         return data;
         
     }
