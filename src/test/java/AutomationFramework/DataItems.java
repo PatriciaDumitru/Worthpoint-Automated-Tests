@@ -64,6 +64,14 @@ public class DataItems {
     public static String approverUsername = "mail.kamleshpatidar@gmail.com";
     public static String approverPassword = "password";
     
+    public static String autoUsername = "automatedtest@coats.com";
+    public static String autoPassword = "password";
+    public static String expectedAutoUserName2 = "Automated Test";
+    public static String testUserType = "Test1";
+    public static String autoUserCountry = "Indonesia";
+    public static String autoUserSalesOrg = "ID51";
+    public static String autoUserHub = "IDH001";
+    
     //Login Page expected title (appears in browser tab)
     public static String loginPageTitle = "Coats";
     

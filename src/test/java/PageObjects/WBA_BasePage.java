@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -39,6 +40,7 @@ public class WBA_BasePage {
     static By footerLocator = By.id("footer");
     private Object ExepectedConditions;
     static By contentFrame = By.id("content");
+    public static By noRecords = By.className("norec");
     
     //eComm Navigation bar tabs
     static By ordersTab = By.cssSelector("#topnav > li:nth-child(1)");
@@ -757,6 +759,15 @@ public class WBA_BasePage {
         }
         return true;
         
+    }
+    
+    public boolean checkForRecords() {
+        try {
+            boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.invisibilityOfElementLocated(noRecords));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
     
     public boolean checkForFatalError() {

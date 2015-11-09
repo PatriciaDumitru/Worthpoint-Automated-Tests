@@ -3,9 +3,11 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
@@ -18,6 +20,7 @@ public class Mst_CoatsUsersPage extends WBA_BasePage {
     By statusField = By.id("s2id_filterStatusId");
     By salesOrgField = By.id("s2id_filterSalesOrg");
     By usernameField = By.id("filterUsername");
+    By usernameCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(2)");
     By lastUpdatedFromField = By.id("filterUpdatedFrom");
     By lastUpdatedToField = By.id("filterUpdatedTo");
     By hubNameField = By.id("s2id_filterHub");
@@ -27,6 +30,7 @@ public class Mst_CoatsUsersPage extends WBA_BasePage {
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
     By exportButton = By.id("export-menu");
     By newCoatsUserButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
+    public By noRecords = By.className("norec");
 
     public Mst_CoatsUsersPage(WebDriver driver) {
         super(driver);
@@ -55,6 +59,10 @@ public class Mst_CoatsUsersPage extends WBA_BasePage {
     
     public WebElement getUsernameField() {
         return driver.findElement(usernameField);
+    }
+    
+    public WebElement getUsernameCell() {
+        return driver.findElement(usernameCell);
     }
     
     public WebElement getLastUpdatedFromField() {
@@ -94,6 +102,7 @@ public class Mst_CoatsUsersPage extends WBA_BasePage {
     }
     
     public Mst_CoatsUsersPage setUsername(String item) {
+        driver.findElement(usernameField).clear();
         CommonTask.setInputField(driver,usernameField,item);
         return new Mst_CoatsUsersPage(driver);
     }
@@ -112,11 +121,56 @@ public class Mst_CoatsUsersPage extends WBA_BasePage {
         return new Mst_CoatsUsersPage(driver);
     }
     
+    public Mst_EditCoatsUserPage pressEdit(int row) {
+        By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(1)");
+        
+        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
+        field.click();
+        
+        return new Mst_EditCoatsUserPage(driver);
+    }
+    
+    public Mst_CoatsUsersPage pressDelete(String username) {
+        for (int i = 2; i < 8; i++) {
+            By usernameCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(2)");
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(usernameCell));
+            if (cell.getText().equals(username)) {
+                By deleteButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td.actions > a:nth-child(3)");
+                WebElement delete = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deleteButton));
+                delete.click();
+                Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+                alert.accept();
+                return new Mst_CoatsUsersPage(driver);
+            }
+        }
+        return new Mst_CoatsUsersPage(driver);
+    }
+    
     public Mst_AddCoatsUserPage pressAddCoatsUser() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newCoatsUserButton));
         driver.findElement(newCoatsUserButton).click();
         
         return new Mst_AddCoatsUserPage(driver);
+    }
+    
+    public CCE_OrderViewPage pressExport(String type) {
+        WebElement export = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        
+        Actions action = new Actions(driver);
+        action.moveToElement(export);
+        
+        By locator = By.linkText(type);
+        
+        driver.findElement(locator).click();
+        
+        return new CCE_OrderViewPage(driver);
+    }
+    
+    public Mst_ImportPage pressImport() {
+        WebElement button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(importButton));
+        button.click();
+        
+        return new Mst_ImportPage(driver);
     }
     
     public void checkFields() {

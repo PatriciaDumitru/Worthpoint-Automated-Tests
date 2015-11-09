@@ -84,6 +84,20 @@ public class CommonTask {
         boolean waitForSelection = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBe(fieldLocator,item));
     }
     
+    public static void setDropDownFieldAlt(WebDriver driver, By fieldLocator, String item) {
+        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        field.click();
+        
+        By searchField = By.className("select2-search-field");
+        driver.findElement(searchField).sendKeys(item);
+        
+        By resultLocator = By.className("select2-result-label");
+        boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator,item));
+        driver.findElement(resultLocator).click();
+        
+        boolean waitAgain = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
+    }
+    
     public static void clearDropDownField(WebDriver driver, By fieldLocator) {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         

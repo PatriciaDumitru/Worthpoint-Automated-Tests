@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -91,10 +92,54 @@ public class Mst_AddCoatsUserPage extends WBA_BasePage {
         return driver.findElement(cancelButton);
     }
     
-    public Mst_AddCoatsUserPage pressSave() {
+    public Mst_AddCoatsUserPage setFirstName(String item) {
+        CommonTask.setInputField(driver,firstNameField,item);
+        return new Mst_AddCoatsUserPage(driver);
+    }
+    
+    public Mst_AddCoatsUserPage setLastName(String item) {
+        CommonTask.setInputField(driver,surnameField,item);
+        return new Mst_AddCoatsUserPage(driver);
+    }
+    
+    public Mst_AddCoatsUserPage setUsername(String item) {
+        CommonTask.setInputField(driver,usernameField,item);
+        return new Mst_AddCoatsUserPage(driver);
+    }
+    
+    public Mst_AddCoatsUserPage setPassword(String item) {
+        CommonTask.setInputField(driver,passwordField,item);
+        return new Mst_AddCoatsUserPage(driver);
+    }
+    
+    public Mst_AddCoatsUserPage setUserType(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,userTypeField,item);
+        return new Mst_AddCoatsUserPage(driver);
+    }
+    
+    public Mst_AddCoatsUserPage setCountry(String item) throws InterruptedException {
+        CommonTask.setDropDownFieldAlt(driver,countryField,item);
+        return new Mst_AddCoatsUserPage(driver);
+    }
+    
+    public Mst_AddCoatsUserPage setSalesOrg(String item) throws InterruptedException {
+        CommonTask.setDropDownFieldAlt(driver,salesOrgField,item);
+        return new Mst_AddCoatsUserPage(driver);
+    }
+    
+    public Mst_AddCoatsUserPage setHub(String item) throws InterruptedException {
+        CommonTask.setDropDownFieldAlt(driver,hubField,item);
+        return new Mst_AddCoatsUserPage(driver);
+    }
+    
+    public Mst_CoatsUsersPage pressSave() {
         WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
         driver.findElement(saveButton).click();
-        return new Mst_AddCoatsUserPage(driver);
+        return new Mst_CoatsUsersPage(driver);
+    }
+    
+    public void waitForElement() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(timeZoneField));
     }
     
 }
