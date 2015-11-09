@@ -27,6 +27,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
   public By contentLocator = By.id("BulkOrderLineViewUplodErrorListForm");
   public By cancelButton = By.id("cancel1");
   public By confirmButton = By.id("submit1");
+  public By lineWithErrorsButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
   
   @Test //Upload Orders Page :: Realtime contract order upload, expecting "No matching reference" error
   (groups ={"eComm","eComm_Orders","Upload_Order"})
@@ -216,6 +217,24 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     //Take a screenshot
     File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\8Validation success - Confirmation page scrolled.png"));
+    
+    boolean success = false;
+    
+    try {
+        WebElement button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lineWithErrorsButton));
+        button.click();
+        
+        CommonTask.waitForOverlay(driver);
+        
+        System.out.println(CommonTask.getErrorDescription(driver));
+        
+        CommonTask.closeView(driver);
+    } catch (Exception e) {
+        System.out.println("No lines with errors");
+        success = true;
+    }
+    
+    AssertJUnit.assertTrue("Order Confirmation Page: Lines with errors button appears but test expected to pass",success);
     
     if (DataItems.contractOrderCallOff) {
         driver.findElement(confirmButton).click();

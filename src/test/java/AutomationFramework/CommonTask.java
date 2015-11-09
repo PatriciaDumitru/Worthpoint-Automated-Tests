@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -317,9 +318,19 @@ public class CommonTask {
         boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
     }
     
+    public static String getErrorDescription(WebDriver driver) {
+        //Returns error from overlay triggered by "Lines with errors" button on order confirmation page
+        By cellLocator = By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
+        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cellLocator));
+        return cell.getText();
+    }
+    
     public static void closeView(WebDriver driver) {
         Actions action = new Actions(driver);
         action.sendKeys(Keys.ESCAPE).build().perform();
+        
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
         
         waitForViewClose(driver);
     }

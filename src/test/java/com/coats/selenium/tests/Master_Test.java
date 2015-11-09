@@ -140,7 +140,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Coats Users Page :: Page and filter checks
-    (groups = {"Masters","CCE","Solo"})
+    (groups = {"Masters","CCE"})
     public void coatsUsers1() throws Exception {
         WebDriver driver = getDriver();
         

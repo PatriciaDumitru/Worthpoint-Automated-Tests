@@ -31,11 +31,11 @@ public class FileFactory {
     public static String[][] sumstBasicData = {{"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","3","","","","approver 1 test"},
         {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
     
-    public static String[][] susstCOInvalidData = {{"Star Garments","Star Garments Ltd.","","","","8754120","astra","120","5000","STANDARD","1","random","random","","approver 1 test"},
-        {"Star Garments","Star Garments Ltd.","","","","8754180","astra","180","5000","STANDARD","1","random","random","","approver 1 test"}};
+    public static String[][] susstCOInvalidData = {{"Star Garments Ltd.","Star Garments","","","","8754120","astra","120","5000","STANDARD","1","random","random","","joe sykes"},
+        {"Star Garments","Star Garments Ltd.","","","","8754180","astra","180","5000","STANDARD","1","random","random","","joe sykes"}};
     
-    public static String[][] susstCOValidData = {{"Star Garments","Star Garments Ltd.","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","approver 1 test"},
-        {"Star Garments","Star Garments Ltd.","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","approver 1 test"}};
+    public static String[][] susstCOValidData = {{"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","8754120","","","","","WHITE","1","40000992","10","","joe sykes"},
+        {"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","joe sykes"}};
     
     public static String[][] sumstSubAcctValidData ={{"Angler Test Indonesia","test","","","","","astra","120","5000","STANDARD","C9700","3","","","andywisak","abc test"},
         {"Angler Test Indonesia","test","","","","","gral","180","3000","STANDARD","C1711","3","","","andywisak","abc test"},
