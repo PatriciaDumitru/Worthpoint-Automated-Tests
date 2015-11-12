@@ -148,7 +148,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     WebDriver driver = getDriver();
       
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME2", "CO_ME_2", DataItems.validCustUsername, DataItems.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME2", "CO_+_ME_ME_01", DataItems.validCustUsername, DataItems.validCustPassword);
     
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     mePage.waitForElement();
@@ -281,7 +281,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     WebDriver driver = getDriver();  
     
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME4", "CO_ME_4", DataItems.validCustUsername, DataItems.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME4", "CO_+_ME_03", DataItems.validCustUsername, DataItems.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     
       System.out.println("Manual Entry Page reached. Entering Customer details...");
@@ -531,9 +531,62 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
   }
   
+  @Test //Manual Entry Page :: Contract Order using only Contract PO and Line Ref
+  (groups = {"eComm","eComm_Orders"})
+  public void COME9() throws Exception {
+    WebDriver driver = getDriver();
+      
+    Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME9", "CO_+_ME_08", DataItems.validCustUsername, DataItems.validCustPassword);
+    Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
+    
+    System.out.println("Manual Entry Page reached. Entering customer details...");
+    
+    WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("BulkOrderPoNumber")));
+    driver.findElement(By.id("BulkOrderPoNumber")).clear();
+    String po = CommonTask.generatePO("contract");
+    driver.findElement(poField).sendKeys(po);
+    System.out.println("PO used: "+po);
+    
+    System.out.println("Customer details entered. Entering line details...");
+    
+    mePage.setBuyers("*OTHERS*");
+    mePage.setDate(0);
+    driver.findElement(By.id("txtContract0")).clear();
+    driver.findElement(By.id("txtContract0")).sendKeys("40000992");
+    driver.findElement(By.id("txtContractLine0")).clear();
+    driver.findElement(By.id("txtContractLine0")).sendKeys("10");
+    
+    System.out.println("Line details entered. Pressing next...");
+    
+    Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
+    orderConf.waitForElement();
+    
+    System.out.println("Order confirmation page reached. Checking line details copied correctly...");
+    
+    orderConf.checkContractDetails();
+    
+      System.out.println("Details copied correctly");
+    
+    Actions action = new Actions(driver);
+    action.moveToElement(orderConf.getCancelButton()).build().perform();
+    
+    if (DataItems.contractOrderCallOff) {
+        System.out.println("Submitting order...");
+        driver.findElement(submitButton).click();
+        CommonTask.waitForPageLoad(driver);
+        System.out.println("Order submitted.");
+    } else {
+        System.out.println("Cancelling order...");
+        driver.findElement(cancelButton).click();
+        CommonTask.waitForPageLoad(driver);
+        System.out.println("Order cancelled as call-off is disabled");
+    }
+  }
+  
   @Test //Manual Entry Page :: Non-contract re-check
   (groups ={"eComm","eComm_Orders"})
-  public void COME9() throws Exception {
+  public void COMERC1() throws Exception {
       //This test is very similar to those in ME_SUMST but will check specifically for absence of contract order items while completing
       
       //New chrome driver
@@ -542,7 +595,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_Base susstTest3 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = susstTest3.setUp("MANUAL ENTRY COME9: Single line, Your Material Number without master data shade code (contract order re-check)","CO_ME_R_01");
+        Ecomm_MainPage eCommPage = susstTest3.setUp("MANUAL ENTRY COMERC1: Single line, Your Material Number without master data shade code (contract order re-check)","CO_ME_R_01");
         
         System.out.println("Navigating to Manual Entry...");
         
@@ -593,11 +646,13 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         
         Ecomm_ManualEntryPage mePage = orderConf.pressCancel();
         mePage.waitForElement(); 
+        
+        System.out.println("Cancelled.");
   }
   
   @Test //Manual Entry Page :: Non-contract re-check (MOQ Active)
   (groups = {"eComm","eComm_Orders"})
-  public void COME10() throws Exception {
+  public void COMERC2() throws Exception {
       //This test checks specifically for the absence of contract order fields
       //New chrome driver
         WebDriver driver = getDriver();
@@ -605,7 +660,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY COME10: Non-contract order re-check (MOQ ACTIVE)","CO_ME_R_02");
+        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY COMERC2: Non-contract order re-check (MOQ ACTIVE)","CO_ME_R_02");
 
         System.out.println("Navigating to Manual Entry...");
 
@@ -703,12 +758,12 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
   
   @Test //Manual Entry Page :: Non-contract re-check (Call-off disabled at customer level)
   (groups = {"eComm","eComm_Orders"})
-  public void COME11() throws Exception {
+  public void COMERC3() throws Exception {
       //Contract order call-off is disabled for Star Garments Ltd at the customer level in master data, and an order is placed, checking for absence of contract order fields
       WebDriver driver = getDriver();
       
       Cce_Base base = new Cce_Base(driver);
-      CCE_MainPage mainPage = base.setUp("Manual Entry Page COME11: Non-contract recheck, call-off disabled at customer level", "CO_ME_R_03");
+      CCE_MainPage mainPage = base.setUp("Manual Entry Page COMERC3: Non-contract recheck, call-off disabled at customer level", "CO_ME_R_03");
       mainPage.waitForLoad();
       
       System.out.println("Navigating to Customers master...");

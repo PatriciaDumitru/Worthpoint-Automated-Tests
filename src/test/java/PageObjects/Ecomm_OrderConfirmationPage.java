@@ -13,6 +13,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.AssertJUnit;
 
 
 public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
@@ -54,9 +55,10 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By requiredDateCell = By.cssSelector("#remove_0 > td:nth-child(13)");
     static By coatsMaterialCell = By.cssSelector("#remove_0 > td:nth-child(5)");
     static By contractPOCell = By.cssSelector("#order_table > table > thead > tr:nth-child(1) > th:nth-child(15) > label");
-    static By SAPContractNoCell = By.cssSelector("#order_table > table > thead > tr:nth-child(1) > th:nth-child(13) > label");
+    static By SAPContractNoCell = By.cssSelector("#remove_0 > td:nth-child(14)");
     static By lineRefCell = By.cssSelector("#order_table > table > thead > tr:nth-child(1) > th:nth-child(14) > label");
-      
+    static By uomCell = By.cssSelector("#remove_0 > td:nth-child(8)");  
+    
     //Button locators
     static By submitButtonLocator = By.id("submit1");
     static By cancelButtonLocator = By.id("cancel1");
@@ -523,6 +525,27 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             return false;
         }
         
+    }
+    
+    public boolean checkContractDetails() {
+        //When a contract order is made without material details, the details are copied from SAP. This method checks the details are as expected
+        
+        WebElement materialCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(coatsMaterialCell));
+        String[] materialParts = materialCell.getText().split("-");
+        
+        WebElement uomElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(uomCell));
+        String uom = uomElement.getText();
+        
+        WebElement sapNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(SAPContractNoCell));
+        String sapConNo = sapNo.getText();
+        System.out.println(sapConNo);
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats article does not appear in line details as expected",materialParts[0].equals(DataItems.conOrdArticle));
+        AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats shade does not appear in line details as expected",materialParts[1].equals(DataItems.conOrdShadeCode));
+        AssertJUnit.assertTrue("Order Confirmation Page: For contract order, UOM does not appear in line details as expected",uom.equals("Cone"));
+        AssertJUnit.assertTrue("Order Confirmation Page: For contract order, SAP Contract No. does not appear in line details as expected",sapConNo.equals(DataItems.conOrdPO));
+        
+        return true;
     }
             
     
