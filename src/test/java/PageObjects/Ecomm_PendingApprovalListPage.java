@@ -208,16 +208,15 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     public int getRow(String PONumber) {
         WebElement head = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custPOHead));
         AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",head.getText().contains("Customer PO No."));
-        int row = -1;
+        
         for (int i = 1; i <= 10; i++) {
-            By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");
+            By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(4)");
             WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
             if (cell.getText().equals(PONumber)) {
-                row = i;
-                break;
+                return i;
             }
         }       
-        return row;
+        return -1;
     }
     
     public int getRowNonApprover(String PONumber) {

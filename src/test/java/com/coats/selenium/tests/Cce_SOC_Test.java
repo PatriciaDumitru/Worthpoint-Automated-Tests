@@ -163,7 +163,7 @@ public class Cce_SOC_Test extends DriverFactory {
     } 
     
     @Test //Order Samples Page :: Multi-line order
-    (groups = {"CCE","CCE_Orders","Solo"})
+    (groups = {"CCE","CCE_Orders"})
     public void SOC3() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
