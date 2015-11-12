@@ -527,7 +527,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         
     }
     
-    public boolean checkContractDetails() {
+    public boolean checkContractMaterialDetails() {
         //When a contract order is made without material details, the details are copied from SAP. This method checks the details are as expected
         
         WebElement materialCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(coatsMaterialCell));
@@ -538,7 +538,6 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         
         WebElement sapNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(SAPContractNoCell));
         String sapConNo = sapNo.getText();
-        System.out.println(sapConNo);
         
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats article does not appear in line details as expected",materialParts[0].equals(DataItems.conOrdArticle));
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats shade does not appear in line details as expected",materialParts[1].equals(DataItems.conOrdShadeCode));

@@ -8,6 +8,7 @@ import PageObjects.CCE_MainPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Mst_AddCoatsUserPage;
+import PageObjects.Mst_AddSubAccountPage;
 import PageObjects.Mst_AddUserTypePage;
 import PageObjects.Mst_AllUserTypesPage;
 import PageObjects.Mst_CoatsUsersPage;
@@ -16,9 +17,11 @@ import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditCoatsUserPage;
 import PageObjects.Mst_EditCustomerPage;
 import PageObjects.Mst_EditSalesOrgPage;
+import PageObjects.Mst_EditSubAccountPage;
 import PageObjects.Mst_EditUserTypePage;
 import PageObjects.Mst_ImportPage;
 import PageObjects.Mst_SalesOrgPage;
+import PageObjects.Mst_SubAccountPage;
 import PageObjects.WBA_BasePage;
 import com.coats.selenium.DriverFactory;
 import org.openqa.selenium.Keys;
@@ -429,4 +432,195 @@ public class Master_Test extends DriverFactory {
         System.out.println("Saved.");
         
     }
+    
+    @Test //Sub Account :: Page and filter checks, add/edit/delete
+    (groups = {"Masters"})
+    public void subaccount1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Sub Account: Page displayed and functioning", "MD_SA_01");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Sub Account page...");
+        
+        Mst_SubAccountPage saPage = ccePage.selectSubAccount();
+        saPage.waitForElement();
+        
+        System.out.println("Sub Account page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Sub Account Page: Title not displayed as expected",saPage.getBreadcrumb().getText().equals("Sub Accounts"));
+        
+        System.out.println("Title checked");
+        
+        saPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        saPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        saPage.setSalesOrg("ID51");
+        
+        System.out.println("Criteria set. Listing orders...");
+        
+        saPage.pressSearch();
+        saPage.waitForElement();
+        
+        System.out.println("Orders listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        
+        AssertJUnit.assertTrue("Sub Account Page: Filter produced unexpected results",saPage.checkFiltration(loc1, loc2, "ID51", 2));
+        
+        System.out.println("Filtration functions as expected. Checking export function...");
+        
+        CCE_ExportDownloadPage exportPage = saPage.pressExport();
+        
+        System.out.println("Export in progress");
+        
+        exportPage.waitForDownloadCompletion();
+        
+        System.out.println("Download complete. Resetting filter...");
+        
+        saPage.pressReset();
+        saPage.waitForElement();
+        
+        System.out.println("Filter reset. Checking Sales Org Field is blank...");
+        
+        AssertJUnit.assertFalse("Sub Account Page: Filter not reset upon button click",saPage.getSalesOrg().equals("ID51"));
+        
+        System.out.println("Field reset, as expected. Creating new Sub-account...");
+        
+        Mst_AddSubAccountPage addPage = saPage.pressNewSubAccount();
+        addPage.waitForElement();
+        
+        System.out.println("Add Sub-Account page reached. Entering details...");
+        
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName("CCE HUB OFFICES");
+        addPage.setSubAccountNumber("AutoTest");
+        addPage.setSubAccountName("AutoTest SubAccount");
+        addPage.setComment("Auto-generated");
+        
+        System.out.println("Details entered. Saving...");
+        
+        Mst_SubAccountPage subPage2 = addPage.pressSave();
+        subPage2.waitForElement();
+        
+        System.out.println("Saved. Checking Sub-account was created...");
+        
+        subPage2.setSalesOrg("ID51");
+        subPage2.pressSearch();
+        subPage2.waitForElement();
+        
+        int row = subPage2.getRow("AutoTest SubAccount");
+        
+        AssertJUnit.assertFalse("Sub Account Page: Sub-account does not appear after creation",row==-1);
+        
+        System.out.println("Sub-account found. Editing sub-account...");
+        
+        Mst_EditSubAccountPage editPage = subPage2.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Sub Account Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Sub Accounts | Edit Sub Account"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing comment...");
+        
+        editPage.setComment("Auto-generated: edited");
+        
+        System.out.println("Edited. Saving...");
+        
+        Mst_SubAccountPage saPage2 = editPage.pressSave();
+        saPage2.waitForElement();
+        
+        System.out.println("Saved. Deleting sub-account...");
+        
+        saPage2.setSubAccountName("AutoTest SubAccount");
+        saPage2.pressSearch();
+        saPage2.waitForElement();
+        
+        saPage2.pressDelete(2, "AutoTest SubAccount");
+        
+        System.out.println("Delete pressed. Checking table to ensure deletion...");
+        
+        AssertJUnit.assertTrue("Sub Account Page: Item persists even after deletion",saPage2.getRow("AutoTest SubAccount")==-1);
+        
+        System.out.println("Item deleted.");
+
+    }
+    
+    @Test //Sub Account Related :: Switches appear in Sales Org and Customers master data
+    (groups = {"Masters","Solo"})
+    public void subAccount2() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Sub Account Related: Sales Org and Customers levels contain switch", "MD_SA_02 and 03");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Sales Org page...");
+        
+        Mst_SalesOrgPage soPage = ccePage.selectSalesOrg();
+        soPage.waitForElement();
+        
+        System.out.println("Page reached. Entering filter criteria...");
+        
+        soPage.setSalesOrg("ID51");
+
+        System.out.println("Criteria entered. Listing orders...");
+        
+        soPage.pressSearch();
+        soPage.waitForElement();
+        
+        System.out.println("Orders listed. Editing top item...");
+        
+        Mst_EditSalesOrgPage editPage = soPage.pressEdit(2);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking for Sub Account field...");
+        
+        AssertJUnit.assertTrue("Edit Sales Org Page: Sub Account label not displayed",editPage.getSubAccountLabel().getText().equals("Enabled Sub Account Option"));
+        AssertJUnit.assertTrue("Edit Sales Org Page: Sub Account field not displayed",editPage.getSubAccountField().isDisplayed());
+        String status = editPage.getSubAccountField().getAttribute("checked");
+        AssertJUnit.assertTrue("Edit Sales Org Page: Sub Account field not enabled as expected",status.equals("true"));
+        
+        System.out.println("Field displayed. Current status: " + status + ", as expected. Navigating to Customer master...");
+        
+        Mst_CustomersPage custPage = editPage.selectCustomers();
+        custPage.waitForLoad();
+        
+        System.out.println("Customer Master reached. Finding customer...");
+        
+        custPage.setCustomerName(DataItems.subCustDetails[0]);
+        custPage.pressSearch();
+        custPage.waitForElement();
+        
+        Mst_EditCustomerPage editPage2 = custPage.pressEdit(2);
+        editPage2.waitForElement();
+        
+        System.out.println("Customer found. Checking for Sub-account field...");
+        
+        AssertJUnit.assertTrue("Edit Customer Page: Sub Account label not displayed",editPage2.getSubAcctLabel().getText().equals("Enabled SubAccount Option"));
+        AssertJUnit.assertTrue("Edit Customer Page: Sub Account field not displayed",editPage2.getSubAcctField().isDisplayed());
+        String status2 = editPage2.getSubAcctField().getAttribute("checked");
+        AssertJUnit.assertTrue("Edit Customer Page: Sub Account field not enabled as expected",status2.equals("true"));
+        
+        System.out.println("Field displayed. Current status: " + status + ", as expected.");
+        
+        
+    }
+    
 }

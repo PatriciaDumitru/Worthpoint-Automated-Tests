@@ -531,13 +531,13 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
   }
   
-  @Test //Manual Entry Page :: Contract Order using only Contract PO and Line Ref
+  @Test //Manual Entry Page :: Contract Order using only Contract PO and Line Ref AND Contract Order using only Contract PO and material to call off entire line
   (groups = {"eComm","eComm_Orders"})
   public void COME9() throws Exception {
     WebDriver driver = getDriver();
       
     Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
-    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME9", "CO_+_ME_08", DataItems.validCustUsername, DataItems.validCustPassword);
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME9 (part 1)", "CO_+_ME_08", DataItems.validCustUsername, DataItems.validCustPassword);
     Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
     
     System.out.println("Manual Entry Page reached. Entering customer details...");
@@ -564,9 +564,13 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
     System.out.println("Order confirmation page reached. Checking line details copied correctly...");
     
-    orderConf.checkContractDetails();
+    orderConf.checkContractMaterialDetails();
     
-      System.out.println("Details copied correctly");
+    System.out.println("Details copied correctly. Obtaining remaining line quantity...");
+      
+    int qty = orderConf.getOrderedQty();
+    
+      System.out.println("Quantity receieved: " + qty);
     
     Actions action = new Actions(driver);
     action.moveToElement(orderConf.getCancelButton()).build().perform();
@@ -578,8 +582,166 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         System.out.println("Order submitted.");
     } else {
         System.out.println("Cancelling order...");
-        driver.findElement(cancelButton).click();
+        Ecomm_ManualEntryPage mePage4 = orderConf.pressCancel();
+        mePage4.waitForElement();
+        System.out.println("Order cancelled as call-off is disabled");
+    }
+    
+    WBA_LoginPage liPage = orderConf.pressLogout();
+    liPage.waitForElement();
+    
+    Ecomm_Base base2 = new Ecomm_Base(driver);
+    Ecomm_MainPage mainPage = base2.setUp("eComm Manual Entry Contract Order COME9 (part 2)", "CO_+_ME_09", DataItems.validCustUsername, DataItems.validCustPassword);
+    mainPage.waitForLoad();
+    
+      System.out.println("Navigating to Manual Entry...");
+      
+    Ecomm_ManualEntryPage mePage2 = mainPage.clickManualEntry();
+    mePage2.waitForElement();
+    
+      System.out.println("Manual Entry page reached. Entering Customer details...");
+      
+    mePage2.setShipToParty(DataItems.conOrdDetails[1]);
+    mePage2.setBuyers(DataItems.conOrdDetails[3]);
+    mePage2.setPONumber("CO_UniqueRef_");
+    
+      System.out.println("Details entered. Entering Contract PO No., Qty, and material...");
+      
+    mePage2.setArticle(DataItems.conOrdArticle, 0);
+    mePage2.setShadeCode(DataItems.conOrdShadeCode, 0);
+    mePage2.setQty(qty, 0);
+    mePage2.setDate(0);
+    mePage2.setContractPO(DataItems.conOrdPO, 0);
+    
+      System.out.println("Details set. Pressing next...");
+    
+    Ecomm_OrderConfirmationPage orderConf2 = mePage2.pressNext();
+    orderConf2.waitForElement();
+    
+      System.out.println("Confirmation Page reached. Checking details...");
+      
+      orderConf.checkContractMaterialDetails();
+      
+      System.out.println("Details as expected. Checking quantity...");
+      
+      AssertJUnit.assertTrue("Order Confirmation Page: Quantity in confirmation page not equal to remaining line quantity",orderConf.getOrderedQty() == qty);
+      
+      System.out.println("Quantity as expected");
+      
+      if (DataItems.contractOrderCallOff) {
+        System.out.println("Submitting order...");
+        driver.findElement(submitButton).click();
         CommonTask.waitForPageLoad(driver);
+        System.out.println("Order submitted.");
+    } else {
+        System.out.println("Cancelling order...");
+        Ecomm_ManualEntryPage mePage3 = orderConf2.pressCancel();
+        mePage3.waitForElement();
+        System.out.println("Order cancelled as call-off is disabled");
+    }
+  }
+  
+  @Test //Manual Entry Page :: Contract Order using Contract PO, material, qty<remaining, unique ref
+  (groups = {"eComm","eComm_Orders"})
+  public void COME10() throws Exception {
+    WebDriver driver = getDriver();
+      
+      Ecomm_Base base2 = new Ecomm_Base(driver);
+    Ecomm_MainPage mainPage = base2.setUp("eComm Manual Entry Contract Order COME10", "CO_+_ME_11", DataItems.validCustUsername, DataItems.validCustPassword);
+    mainPage.waitForLoad();
+    
+      System.out.println("Navigating to Manual Entry...");
+      
+    Ecomm_ManualEntryPage mePage2 = mainPage.clickManualEntry();
+    mePage2.waitForElement();
+    
+      System.out.println("Manual Entry page reached. Entering Customer details...");
+      
+    mePage2.setShipToParty(DataItems.conOrdDetails[1]);
+    mePage2.setBuyers(DataItems.conOrdDetails[3]);
+    mePage2.setPONumber("CO_UniqueRef_");
+    
+      System.out.println("Details entered. Entering Contract PO No., Qty, and material...");
+      
+    mePage2.setArticle(DataItems.conOrdArticle, 0);
+    mePage2.setShadeCode(DataItems.conOrdShadeCode, 0);
+    mePage2.setQty(1, 0);
+    mePage2.setDate(0);
+    mePage2.setContractPO(DataItems.conOrdPO, 0);
+    
+      System.out.println("Details set. Pressing next...");
+    
+    Ecomm_OrderConfirmationPage orderConf2 = mePage2.pressNext();
+    orderConf2.waitForElement();
+    
+      System.out.println("Confirmation Page reached. Checking details...");
+      
+      orderConf2.checkContractMaterialDetails();
+      
+      System.out.println("Details as expected");
+      
+      if (DataItems.contractOrderCallOff) {
+        System.out.println("Submitting order...");
+        driver.findElement(submitButton).click();
+        CommonTask.waitForPageLoad(driver);
+        System.out.println("Order submitted.");
+    } else {
+        System.out.println("Cancelling order...");
+        Ecomm_ManualEntryPage mePage3 = orderConf2.pressCancel();
+        mePage3.waitForElement();
+        System.out.println("Order cancelled as call-off is disabled");
+    }
+  }
+  
+  @Test //Manual Entry Page :: Contract Order using Contract PO, material
+  (groups = {"eComm","eComm_Orders"})
+  public void COME11() throws Exception {
+    WebDriver driver = getDriver();
+      
+      Ecomm_Base base2 = new Ecomm_Base(driver);
+    Ecomm_MainPage mainPage = base2.setUp("eComm Manual Entry Contract Order COME10", "CO_+_ME_13", DataItems.validCustUsername, DataItems.validCustPassword);
+    mainPage.waitForLoad();
+    
+      System.out.println("Navigating to Manual Entry...");
+      
+    Ecomm_ManualEntryPage mePage2 = mainPage.clickManualEntry();
+    mePage2.waitForElement();
+    
+      System.out.println("Manual Entry page reached. Entering Customer details...");
+      
+    mePage2.setShipToParty(DataItems.conOrdDetails[1]);
+    mePage2.setBuyers(DataItems.conOrdDetails[3]);
+    mePage2.setPONumber(DataItems.conOrdDetails[4]);
+    
+      System.out.println("Details entered. Entering Contract PO No. and material...");
+      
+    mePage2.setArticle(DataItems.conOrdArticle, 0);
+    mePage2.setShadeCode(DataItems.conOrdShadeCode, 0);
+    mePage2.setDate(0);
+    mePage2.setContractPO(DataItems.conOrdPO, 0);
+    
+      System.out.println("Details set. Pressing next...");
+    
+    Ecomm_OrderConfirmationPage orderConf2 = mePage2.pressNext();
+    orderConf2.waitForElement();
+    
+      System.out.println("Confirmation Page reached. Checking material details...");
+      
+      orderConf2.checkContractMaterialDetails();
+
+      int qty = orderConf2.getOrderedQty();
+      
+      System.out.println("Material details as expected. Quantity copied from SAP: " + qty);
+      
+      if (DataItems.contractOrderCallOff) {
+        System.out.println("Submitting order...");
+        driver.findElement(submitButton).click();
+        CommonTask.waitForPageLoad(driver);
+        System.out.println("Order submitted.");
+    } else {
+        System.out.println("Cancelling order...");
+        Ecomm_ManualEntryPage mePage3 = orderConf2.pressCancel();
+        mePage3.waitForElement();
         System.out.println("Order cancelled as call-off is disabled");
     }
   }

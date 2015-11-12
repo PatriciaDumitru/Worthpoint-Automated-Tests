@@ -15,6 +15,8 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     By nameField = By.id("SalesOrgSalesOrgName");
     By descriptionField = By.id("SalesOrgDescription");
     By contractOrderField = By.id("SalesOrgOffOrder");
+    By subAcctField = By.id("SalesOrgIsPayerEnabled");
+    By subAcctLabel = By.cssSelector("#SalesOrgEditForm > div.frm > table > tbody > tr:nth-child(5) > td:nth-child(1) > label");
     By saveButton = By.id("save");
     By cancelButton = By.cssSelector("#SalesOrgEditForm > div.actions > ul > li:nth-child(2) > a");
     
@@ -39,6 +41,16 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     
     public WebElement getContractOrderField() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(contractOrderField));
+        return element;
+    }
+    
+    public WebElement getSubAccountField() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAcctField));
+        return element;
+    }
+    
+    public WebElement getSubAccountLabel() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAcctLabel));
         return element;
     }
     

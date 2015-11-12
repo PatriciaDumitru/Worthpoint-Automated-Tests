@@ -16,6 +16,8 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     By customerNameField = By.id("CustomerCustomerName");
     By contractOrderField = By.id("CustomerOffOrder");
     By approvalWorkflowBox = By.id("CustomerApprovalWorkflow");
+    By subAcctField = By.id("CustomerPayerEnabled");
+    By subAcctLabel = By.cssSelector("#CustomerEditForm > div:nth-child(2) > table > tbody > tr:nth-child(34) > td:nth-child(1) > label");
     By saveButton = By.cssSelector("#CustomerEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     
     public Mst_EditCustomerPage(WebDriver driver) {
@@ -34,6 +36,16 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     public WebElement getContractOrderField() {
         WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractOrderField));
         return field;
+    }
+    
+    public WebElement getSubAcctField() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAcctField));
+        return element;
+    }
+    
+    public WebElement getSubAcctLabel() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAcctLabel));
+        return element;
     }
     
     public Mst_EditCustomerPage setApprovalWorkflow() {
