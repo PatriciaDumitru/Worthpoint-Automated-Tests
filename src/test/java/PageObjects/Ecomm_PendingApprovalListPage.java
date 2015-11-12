@@ -26,7 +26,10 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     By editButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2)");
     By printButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(3) > a");
     By resendButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(11)");
-    By custPOHead = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(3)");
+    By custPOHead = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(3) > label");
+    By approveButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div > input[type=\"submit\"]:nth-child(1)");
+    By denyButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div > input[type=\"submit\"]:nth-child(2)");
+    By recordCountField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > dl > dt > span.left");
     
     public Ecomm_PendingApprovalListPage(WebDriver driver) {
         super(driver);
@@ -46,7 +49,8 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     }
     
     public WebElement getCustPriceAvailField() {
-        return driver.findElement(custPriceAvailField);
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPriceAvailField));
+        return element;
     }
     
     public WebElement getCustPOField() {
@@ -105,6 +109,11 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         return this;
     }
     
+    public Ecomm_PendingApprovalListPage setCustPOInput(String item) {
+        CommonTask.setInputField(driver, custPOField, item);
+        return this;
+    }
+    
     public Ecomm_PendingApprovalListPage pressSearch() {
         WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         btn.click();
@@ -140,16 +149,85 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Pending Approval List Page: Print Button not displayed correctly",getPrintButton().isDisplayed());
     }
     
+    public void checkFieldsRequester() {
+        //Wait for all elements to be clickable        
+        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForCustPrice = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPriceAvailField));
+        WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
+        WebElement waitForCustDateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateFromField));
+        WebElement waitForCustDateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateToField));
+        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForView = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForEdit = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButton));
+        
+        //Assert all elements are displayed      
+        AssertJUnit.assertTrue("Pending Approval List Page: Order No field not displayed correctly",getOrderNoField().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Customer Price Availability field not displayed correctly",getCustPriceAvailField().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Customer PO field not displayed correctly",getCustPOField().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Create Date From Field not displayed correctly",getCreateDateFromField().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Create Date To Field not displayed correctly",getCreateDateToField().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Search Button not displayed correctly",getSearchButton().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Reset Button not displayed correctly",getResetButton().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: View Button not displayed correctly",getViewButton().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Edit Button not displayed correctly",getEditButton().isDisplayed());
+    }
+    
+    public void checkFieldsApprover() {
+        //Wait for all elements to be clickable
+        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement waitForCustPrice = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPriceAvailField));
+        WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
+        WebElement waitForCustDateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateFromField));
+        WebElement waitForCustDateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateToField));
+        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement waitForView = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement waitForEdit = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButton));
+        WebElement approveBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(approveButton));
+        WebElement denyBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(denyButton));
+        
+        //Assert all elements are displayed
+        AssertJUnit.assertTrue("Pending Approval List Page: Order No field not displayed correctly",getOrderNoField().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Customer Price Availability field not displayed correctly",getCustPriceAvailField().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Customer PO field not displayed correctly",getCustPOField().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Create Date From Field not displayed correctly",getCreateDateFromField().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Create Date To Field not displayed correctly",getCreateDateToField().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Search Button not displayed correctly",getSearchButton().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Reset Button not displayed correctly",getResetButton().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: View Button not displayed correctly",getViewButton().isDisplayed());
+        AssertJUnit.assertTrue("Pending Approval List Page: Edit Button not displayed correctly",getEditButton().isDisplayed());       
+        AssertJUnit.assertTrue("Pending Approval List Page: Approve Button not displayed correctly",approveBtn.isDisplayed());        
+        AssertJUnit.assertTrue("Pending Approval List Page: Deny Button not displayed correctly",denyBtn.isDisplayed());        
+    }
+    
     public void waitForElement() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPriceAvailField));
     }
     
     public int getRow(String PONumber) {
+        WebElement head = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custPOHead));
+        AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",head.getText().contains("Customer PO No."));
+        int row = -1;
+        for (int i = 1; i <= 10; i++) {
+            By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            if (cell.getText().equals(PONumber)) {
+                row = i;
+                break;
+            }
+        }       
+        return row;
+    }
+    
+    public int getRowNonApprover(String PONumber) {
+        
         AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",driver.findElement(custPOHead).getText().contains("Customer PO No."));
         int row = -1;
         for (int i = 1; i <= 10; i++) {
             By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");
-            if (driver.findElement(locator).getText().equals(PONumber)) {
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            if (cell.getText().equals(PONumber)) {
                 row = i;
                 break;
             }
@@ -158,10 +236,23 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     }
     
     public String getOrderNo(int row) {
-        By orderNoHeader = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(4)");
+        By orderNoHeader = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(4) > label");
         AssertJUnit.assertTrue("Pending approval list page: Order No. Column has moved",driver.findElement(orderNoHeader).getText().contains("Order No."));
         By orderNoCell = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(6)");
         return driver.findElement(orderNoCell).getText();
+    }
+    
+    public String getOrderNoSUMST(int row) {
+        By orderNoHeader = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(4) > label");
+        AssertJUnit.assertTrue("Pending approval list page: Order No. Column has moved",driver.findElement(orderNoHeader).getText().contains("Order No."));
+        By orderNoCell = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(5)");
+        return driver.findElement(orderNoCell).getText();
+    }
+    
+    public WebElement getCustPOCell(int row) {
+        By selector = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(4)");
+        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(selector));
+        return cell;
     }
     
     public Ecomm_OrderViewPage pressView(int row) {
@@ -172,7 +263,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     }
     
     public Ecomm_OrderViewPage pressPrint(int row) {
-        By printLocator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child("+row+") > tr > td:nth-child(2) > a > img");
+        By printLocator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(2) > a");
         WebElement print = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printLocator));
         
         print.click();
@@ -181,17 +272,77 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     }
     
     public Ecomm_PendingApprovalListPage pressApprove(int row) {
-        By approveButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(10) > a");
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(approveButton));
-        driver.findElement(approveButton).click();
+        
+        By selectButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(13)");
+        CommonTask.clickInputCheckBox(driver, selectButton);
+        
+        WebElement approveBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(approveButton));
+        approveBtn.click();
+        
+        WebElement flash = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.flashMessage));
+        AssertJUnit.assertTrue("Pending Approval Page: Confirmation message does not appear following order approval",flash.getText().contains("has been Approved"));
+        
+        System.out.println("Message received: " + flash.getText());
+        
         return new Ecomm_PendingApprovalListPage(driver);
+    }
+    
+    public Ecomm_PendingApprovalListPage pressApproveAll() {
+        By selectAll = By.id("select_all");
+        
+        CommonTask.clickInputCheckBox(driver, selectAll);
+        
+        WebElement approveBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(approveButton));
+        approveBtn.click();
+        
+        return new Ecomm_PendingApprovalListPage(driver);  
+    }
+    
+    public Ecomm_PendingApprovalListPage pressDeny(int row) {
+        By selectButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(13)");
+        CommonTask.clickInputCheckBox(driver, selectButton);
+        
+        By reasonField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(12) > div > input");
+        WebElement reason = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(reasonField));
+        CommonTask.setInputField(driver, reasonField, "AutoTest Denied");
+        
+        WebElement denyBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(denyButton));
+        denyBtn.click();
+        
+        WebElement flash = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.flashMessage));
+        AssertJUnit.assertTrue("Pending Approval Page: Confirmation message does not appear following order approval",flash.getText().contains("has been Denied"));
+        
+        System.out.println("Message received: " + flash.getText());
+        
+        return new Ecomm_PendingApprovalListPage(driver);
+    }
+    
+    public Ecomm_PendingApprovalListPage pressDenyAll() {
+        By selectAll = By.id("select_all");
+        
+        CommonTask.clickInputCheckBox(driver, selectAll);
+
+        int recordCount = getRecordCount(recordCountField);
+        
+        for (int i = 0; i < recordCount; i++) {
+            By reasonField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+(i+1)+") > td:nth-child(12) > div > input");
+            CommonTask.setInputField(driver,reasonField,"AutoTest Denied");
+        }
+        
+        WebElement denyBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(denyButton));
+        denyBtn.click();
+        
+        return new Ecomm_PendingApprovalListPage(driver);  
     }
     
     public boolean approveOrder(String orderNo) {
         for (int i = 1; i < 10; i++) {
             By orderNoCell = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");
             
-            if (driver.findElement(orderNoCell).getText().equals(orderNo)) {
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            
+            if (cell.getText().equals(orderNo)) {
+                System.out.println("order found");
                 Ecomm_PendingApprovalListPage pendPage = pressApprove(i);
                 pendPage.waitForElement();
                 
@@ -202,5 +353,24 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         return false;
         
     }
+    
+    public boolean denyOrder(String orderNo) {
+        for (int i = 1; i < 10; i++) {
+            By orderNoCell = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");
+            
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            
+            if (cell.getText().equals(orderNo)) {
+                Ecomm_PendingApprovalListPage pendPage = pressDeny(i);
+                pendPage.waitForElement();
+                
+                return true;
+            } 
+            
+        }
+        return false;
+    }
+    
+    
     
 }

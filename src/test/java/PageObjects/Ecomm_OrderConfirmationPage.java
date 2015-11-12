@@ -53,6 +53,9 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By adjQtyCell = By.xpath("//*[contains(@style,'background-color:red')]");
     static By requiredDateCell = By.cssSelector("#remove_0 > td:nth-child(13)");
     static By coatsMaterialCell = By.cssSelector("#remove_0 > td:nth-child(5)");
+    static By contractPOCell = By.cssSelector("#order_table > table > thead > tr:nth-child(1) > th:nth-child(15) > label");
+    static By SAPContractNoCell = By.cssSelector("#order_table > table > thead > tr:nth-child(1) > th:nth-child(13) > label");
+    static By lineRefCell = By.cssSelector("#order_table > table > thead > tr:nth-child(1) > th:nth-child(14) > label");
       
     //Button locators
     static By submitButtonLocator = By.id("submit1");
@@ -212,6 +215,38 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public WebElement getRequiredDateCell() {
         return driver.findElement(requiredDateCell);
+    }
+    
+    public boolean findContractPOCell() {
+        try {
+            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(contractPOCell));
+            return element.getText().contains("Contract PO");
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+    
+    public boolean findSAPContractNoCell() {
+        
+        try {
+            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(SAPContractNoCell));
+            return element.getText().contains("SAP Contract");
+        } catch (Exception e) {
+            return false;
+        }
+        
+        
+    }
+    
+    public boolean findLineRefCell() {
+        try {
+            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(lineRefCell));
+            return element.getText().contains("Line");
+        } catch (Exception e) {
+            return false;
+        }
+
     }
     
     public String getCustomerName() {
@@ -385,6 +420,14 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     public Ecomm_PendingApprovalListPage pressSendForApproval() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sendForApprovalButton));
         driver.findElement(sendForApprovalButton).click();
+        
+        try {
+            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            alert.accept();
+        } catch (TimeoutException t) {
+            
+        }
+        
         return new Ecomm_PendingApprovalListPage(driver);
     }
     

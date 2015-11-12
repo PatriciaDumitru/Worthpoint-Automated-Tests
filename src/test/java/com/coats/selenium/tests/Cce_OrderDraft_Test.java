@@ -241,9 +241,16 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         CCE_OutstandingDraftPage draftPage2 = entryPage.pressCancelToDrafts();
         draftPage2.waitForElement();
         
-        System.out.println("Order cancelled. Checking draft is removed...");
+        System.out.println("Order cancelled. Removing draft...");
         
-        AssertJUnit.assertFalse("Outstanding Draft Page: Draft persists although cancelled",draftPage2.findDraftByOrderNo(orderNo));
+        CCE_CancelDraftPage cancelPage = draftPage2.pressCancel(2);
+        cancelPage.switchTo();  
+        cancelPage.setReason("Wrong Entry by Customer");
+        
+        CCE_OutstandingDraftPage draftPage3 = cancelPage.pressSave();
+        draftPage3.waitForElement();
+
+        AssertJUnit.assertFalse("Outstanding Draft Page: Draft persists although cancelled",draftPage3.findDraftByOrderNo(orderNo));
         
         System.out.println("No draft found, as expected");
         

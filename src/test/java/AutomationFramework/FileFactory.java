@@ -31,10 +31,34 @@ public class FileFactory {
     public static String[][] sumstBasicData = {{"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","3","","","","approver 1 test"},
         {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
     
-    public static String[][] susstCOInvalidData = {{"Star Garments Ltd.","Star Garments","","","","8754120","astra","120","5000","STANDARD","1","random","random","","joe sykes"},
-        {"Star Garments","Star Garments Ltd.","","","","8754180","astra","180","5000","STANDARD","1","random","random","","joe sykes"}};
+    public static String[][] sumstYMNInvalidData = {{"Life Easy Customer","CCE HUB OFFICES","","","InvalidMaterialNum","","","","","","","3","","","","approver 1 test"},
+        {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
     
-    public static String[][] susstCOValidData = {{"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","8754120","","","","","WHITE","1","40000992","10","","joe sykes"},
+    public static String[][] sumstArtInvalidData = {{"Life Easy Customer","CCE HUB OFFICES","","","","0000000000","","","","","C1202","3","","","","approver 1 test"},
+        {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","","","","","C1202","3","","","","approver 1 test"}};
+    
+    public static String[][] sumstBrndInvalidData = {{"Life Easy Customer","CCE HUB OFFICES","","","","","invalid","120","5000","STANDARD","C1202","3","","","","approver 1 test"},
+        {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
+    
+    public static String[][] sumstTktInvalidData = {{"Life Easy Customer","CCE HUB OFFICES","","","","","astra","999","5000","STANDARD","C1202","3","","","","approver 1 test"},
+        {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
+    
+    public static String[][] sumstLgthInvalidData = {{"Life Easy Customer","CCE HUB OFFICES","","","","","astra","120","9.13892","STANDARD","C1202","3","","","","approver 1 test"},
+        {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
+    
+    public static String[][] sumstFnshInvalidData = {{"Life Easy Customer","CCE HUB OFFICES","","","","","astra","120","5000","invalid","C1202","3","","","","approver 1 test"},
+        {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","invalid","C1202","3","","","","approver 1 test"}};
+    
+    public static String[][] sumstShadeInvalidData = {{"Life Easy Customer","CCE HUB OFFICES","","","","","astra","120","5000","STANDARD","WR0NG","3","","","","approver 1 test"},
+        {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
+    
+    public static String[][] sumstShipInvalidData = {{"Life Easy Customer","invalid place","","","","","astra","120","5000","STANDARD","C1711","3","","","","approver 1 test"},
+        {"Life Easy Customer","invalidPlace","","","","","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
+    
+    public static String[][] susstCOInvalidData = {{"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","random","random","","joe sykes"},
+        {"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","random","random","","joe sykes"}};
+    
+    public static String[][] susstCOValidData = {{"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","joe sykes"},
         {"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","joe sykes"}};
     
     public static String[][] sumstSubAcctValidData ={{"Angler Test Indonesia","test","","","","","astra","120","5000","STANDARD","C9700","3","","","andywisak","abc test"},
@@ -48,7 +72,7 @@ public class FileFactory {
     public static String createFile(String soldTo,int lineCount,String type,String combination,boolean valid) throws IOException {
         
         //Create file name based on PO
-        String uniqueId = CommonTask.generatePO("");
+        String uniqueId = CommonTask.generatePO("file");
         String fileName = "UploadTestFile" + uniqueId;
         String filePath = "C:\\Selenium\\" + fileName +".xlsx";
         
@@ -111,7 +135,7 @@ public class FileFactory {
                     po = "UO_SUSST_MOQ" + id;
                     data = MOQData.clone();
                 } else if (type.equals("CO")) {
-                    po = "UO_SUSST_CO" + id;
+                    po = susstCOValidData[0][2];
                     data = susstCOValidData.clone();
                 } else if (type.equals("Basic")) {
                     po = "UO_SUSST" + id;
@@ -124,7 +148,7 @@ public class FileFactory {
                 
                 if (type.equals("CO")) {
                     data = susstCOInvalidData.clone();
-                    po = "UO_SUSST_CO" + id;
+                    po = susstCOInvalidData[0][2];
                 } else if (type.equals("Basic")) {
                     po = "UO_SUSST" + id;
                     switch (combination) {
@@ -162,10 +186,14 @@ public class FileFactory {
             } else if (!valid) {
                 po = "UO_SUMST" + id;
                 switch (combination) {
-                    case "YMN": break;
-                    case "YMNShade": break;
-                    case "Article": break;
-                    case "Combination": break;
+                    case "YMN": data = sumstYMNInvalidData; break;
+                    case "Article": data = sumstArtInvalidData; break;
+                    case "Brand": data = sumstBrndInvalidData; break;
+                    case "Ticket": data = sumstTktInvalidData; break;
+                    case "Length": data = sumstLgthInvalidData; break;
+                    case "Finish": data = sumstFnshInvalidData; break;
+                    case "Shade": data = sumstShadeInvalidData; break;
+                    case "Ship": data = sumstShipInvalidData; break;
                 }
                 
             }

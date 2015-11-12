@@ -39,11 +39,14 @@ public class DataItems {
     
     //Login details
     public static String validCoatsUsername = "joe.sykes@coats.com";
-    public static String validCoatsPassword = "password";
+    public static String validCoatsPassword = "password";           //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
     
+    public static String approverLEUsername = "approver@lifeeasy.com";
+    public static String approverLEPassword = "password";           //CUSTOMER, LIFE EASY CUSTOMER, SUSST, APPROVER
+    
     public static String validCustUsername = "joecontract@coats.com";
-    public static String validCustPassword = "password";
+    public static String validCustPassword = "password";            //CUSTOMER, STAR GARMENTS LTD, SUSST, N/A
     public static String expectedCustUserName = "joe sykes";
     
     public static String validTestUsername = "testarun1@coats.com";
@@ -57,15 +60,19 @@ public class DataItems {
     public static String requesterUsername = "autolifeeasy@coats.com";
     public static String requesterPassword = "password";
     public static String expectedAutoUserName = "automated requester";
+    public static String requesterShipTo = "Life Easy Customer";
     
     public static String invalidUsername = "jfdkjal@jfdalka.com";
     public static String invalidPassword = "invalidpassword";
     
     public static String approverUsername = "mail.kamleshpatidar@gmail.com";
-    public static String approverPassword = "password";
+    public static String approverPassword = "password";             //CUSTOMER, ANGLER TEST INDONESIA, SUSST, APPROVER
+    
+    public static String anglerRequesterUsername = "abc@abc.com";
+    public static String anglerRequesterPassword = "password";      //CUSTOMER, ANGLER TEST INDONESIA, SUSST, REQUESTER
     
     public static String autoUsername = "automatedtest@coats.com";
-    public static String autoPassword = "password";
+    public static String autoPassword = "password";                 //CUSTOMER, ANGLER TEST INDONESIA, SUSST, REQUESTER
     public static String expectedAutoUserName2 = "Automated Test";
     public static String testUserType = "Test1";
     public static String autoUserCountry = "Indonesia";
@@ -109,6 +116,9 @@ public class DataItems {
     public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
     public static By breadcrumbLocator3 = By.cssSelector("#list_page_breadcrumb > h2");
     public static By breadcrumbLocator4 = By.cssSelector("#content > div > h1");
+    
+    //Flashmessage locator which displays messages on various pages
+    public static By flashMessage = By.id("flashMessage");
     
     //Masters tabs
     public static String[][] masters = {
@@ -270,6 +280,7 @@ public class DataItems {
     
     //Data used in masters
     public static String autoUserType = "AutoTestUser";
+    public static String countryName = "AutoTest Land";
     
     //Wait times in seconds
     public static int shorterWait = 8;

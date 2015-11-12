@@ -5,8 +5,10 @@ import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_MappingAlert;
+import PageObjects.Ecomm_MappingPage;
 import PageObjects.Ecomm_UploadOrderPage;
 import com.coats.selenium.DriverFactory;
+import com.coats.selenium.tests.Ecomm_Base;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -80,6 +82,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     new Select(driver.findElement(By.id("BulkOrderLineOtherinfo"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineContract"))).selectByVisibleText("Contract PO No");
     new Select(driver.findElement(By.id("BulkOrderLineCustomerPrice"))).selectByVisibleText("N/A");
+    new Select(driver.findElement(By.id("BulkOrderLineLineReference"))).selectByVisibleText("Line Reference");
     
     System.out.println("Mapping set. Confirming...");
     
@@ -253,6 +256,37 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     }
     
     
+  }
+  
+  @Test //Upload Orders Mapping Page :: Field checks
+  (groups ={"eComm","eComm_Orders","Upload_Order"})
+  public void CORT3() throws Exception {
+      
+      WebDriver driver = getDriver();
+      
+      Ecomm_Base base = new Ecomm_Base(driver);
+      Ecomm_MainPage mainPage = base.setUp("Upload Order mapping page (contract order) CORT3", "CO_UP_HM_01 and 02", DataItems.validCustUsername,DataItems.validCustPassword);
+      mainPage.waitForLoad();
+      
+      System.out.println("Navigating to Upload Order...");
+      
+      Ecomm_UploadOrderPage uploadPage = mainPage.clickUploadOrder();
+      uploadPage.waitForElement();
+      
+      System.out.println("Page reached. Uploading file...");
+      
+      uploadPage.setFilePath(FileFactory.createFile("SUSST", 1, "CO", "", true));
+      
+      Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
+      Ecomm_MappingPage mapPage = mapAlert.pressYes();
+      mapPage.waitForElement();
+
+      System.out.println("Mapping page reached. Checking fields...");
+      
+      mapPage.checkFieldsContractOrder();
+      
+      System.out.println("Fields checked.");
+      
   }
 
 }

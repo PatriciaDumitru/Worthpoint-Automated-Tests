@@ -116,22 +116,37 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     public int getRow(String poNumber) {
         //wait for table to load
         boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No."));
-        boolean found = false;
-        int i = 0;
-        while(!found && i < 8) {
-            By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(7)");
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
-            if (driver.findElement(locator).getText().equals(poNumber)) {
-                found = true;
+        
+        for (int i = 0; i < 8; i++) {
+            By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(6)");
+            
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            
+            if (cell.getText().equals(poNumber)) {
+                return i;
             }
-            i++;
+            
         }
         
-        if (found) {
-            return i-1;
-        } else {
-            return -1;
-        }       
+        return -1;  
+    }
+    
+    public int getRowSUMST(String poNumber) {
+        //The outstanding order tables for SUMST and SUSST are different, and so require different locators
+        boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No."));
+        
+        for (int i = 0; i < 8; i++) {
+            By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(7)");
+            
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            
+            if (cell.getText().equals(poNumber)) {
+                return i;
+            }
+            
+        }
+        
+        return -1;  
     }
     
     public int getRowOffset(String poNumber,int offset) {
@@ -181,7 +196,17 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     
     public String getOrderNumber(int orderRow) {
         //Locator for order number cell in table
+        By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(7)");
+        //Wait for cell
+        WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator).getText();
+    }
+    
+    public String getOrderNumberSUMST(int orderRow) {
+        //The outstanding order tables are different for SUMST and SUSST customers, and so different locators are used
+        //Locator for order number cell in table
         By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(8)");
+        
         //Wait for cell
         WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElement(locator).getText();

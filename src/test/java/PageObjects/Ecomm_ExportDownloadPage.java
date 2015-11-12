@@ -33,6 +33,10 @@ public class Ecomm_ExportDownloadPage {
         Boolean waitForInvisibility = new WebDriverWait(driver,DataItems.downloadWait).ignoring(NoSuchElementException.class).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));      
     }
     
+    public void waitForContent() {
+        WebDriver f = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+    }
+    
     public void pressYes() {
         //For My Report exports, "Yes" will send the file to e-mail
         switchTo();

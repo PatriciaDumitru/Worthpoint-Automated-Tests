@@ -14,6 +14,7 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     
     //Locators
     By customerNameField = By.id("CustomerCustomerName");
+    By contractOrderField = By.id("CustomerOffOrder");
     By approvalWorkflowBox = By.id("CustomerApprovalWorkflow");
     By saveButton = By.cssSelector("#CustomerEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     
@@ -23,11 +24,16 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     
     public String getCustomerName() {
         WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
-        return field.getText();
+        return field.getAttribute("value");
     }
     
     public WebElement getApprovalWorkflowBox() {
         return driver.findElement(approvalWorkflowBox);
+    }
+    
+    public WebElement getContractOrderField() {
+        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractOrderField));
+        return field;
     }
     
     public Mst_EditCustomerPage setApprovalWorkflow() {
@@ -37,6 +43,16 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     
     public Mst_EditCustomerPage unsetApprovalWorkflow() {
         CommonTask.uncheckBox(driver, approvalWorkflowBox);
+        return new Mst_EditCustomerPage(driver);
+    }
+    
+    public Mst_EditCustomerPage setCallOffOrder() {
+        CommonTask.setCheckBox(driver,contractOrderField);
+        return new Mst_EditCustomerPage(driver);
+    }
+    
+    public Mst_EditCustomerPage unsetCallOffOrder() {
+        CommonTask.uncheckBox(driver, contractOrderField);
         return new Mst_EditCustomerPage(driver);
     }
     

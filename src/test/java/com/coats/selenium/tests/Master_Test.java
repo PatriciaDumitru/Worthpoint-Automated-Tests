@@ -3,6 +3,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import PageObjects.CCE_ExportDownloadPage;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.Ecomm_MainPage;
@@ -10,11 +11,19 @@ import PageObjects.Mst_AddCoatsUserPage;
 import PageObjects.Mst_AddUserTypePage;
 import PageObjects.Mst_AllUserTypesPage;
 import PageObjects.Mst_CoatsUsersPage;
+import PageObjects.Mst_CountriesPage;
+import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditCoatsUserPage;
+import PageObjects.Mst_EditCustomerPage;
+import PageObjects.Mst_EditSalesOrgPage;
 import PageObjects.Mst_EditUserTypePage;
 import PageObjects.Mst_ImportPage;
+import PageObjects.Mst_SalesOrgPage;
+import PageObjects.WBA_BasePage;
 import com.coats.selenium.DriverFactory;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -22,7 +31,7 @@ import org.testng.annotations.Test;
 public class Master_Test extends DriverFactory {
     
     @Test //All user types page :: Page and filter checks, create new user/edit/delete
-    (groups = {"Masters","CCE"})
+    (groups = {"Masters"})
     public void allUserTypes1() throws Exception {
         
         WebDriver driver = getDriver();
@@ -140,7 +149,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Coats Users Page :: Page and filter checks
-    (groups = {"Masters","CCE"})
+    (groups = {"Masters"})
     public void coatsUsers1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -238,9 +247,14 @@ public class Master_Test extends DriverFactory {
         addPage.setPassword(DataItems.autoPassword);
         addPage.setUserType(DataItems.testUserType);
         addPage.setCountry(DataItems.autoUserCountry);
-        addPage.setSalesOrg(DataItems.autoUserSalesOrg);
-        addPage.setHub(DataItems.autoUserHub);
+        System.out.println("country entered");
+        Actions tab = new Actions(driver);
         
+        addPage.setSalesOrg(DataItems.autoUserSalesOrg);
+        System.out.println("sales org entered");
+        
+        addPage.setHub(DataItems.autoUserHub);
+        System.out.println("hub entered");
         System.out.println("User details entered. Saving...");
         
         Mst_CoatsUsersPage coatsPage3 = addPage.pressSave();
@@ -249,19 +263,17 @@ public class Master_Test extends DriverFactory {
         System.out.println("Saved. Checking record appears...");
         
         coatsPage3.setUsername(DataItems.autoUsername);
+        
+        coatsPage3.pressSearch();
         coatsPage3.waitForElement();
         
         AssertJUnit.assertTrue("New Coats User does not appear after being saved",coatsPage3.checkForRecords());
         
         System.out.println("Record appears. Checking export function...");
         
-        CCE_OrderViewPage exportPage = coatsPage3.pressExport("xlsx");
-        exportPage.waitForContent();
+        CCE_ExportDownloadPage exportPage = coatsPage3.pressExport();
         
         System.out.println("Export View Page: View page appears. Closing view...");
-        
-        exportPage.closeView();
-        exportPage.waitForInvisibility();
         
         System.out.println("View closed. Checking import function...");
         
@@ -278,5 +290,143 @@ public class Master_Test extends DriverFactory {
         coatsPage4.waitForElement();
         
         System.out.println("Cancel function works");
+    }
+    
+    @Test //Countries Page :: Page and filter checks, add/edit/delete
+    (groups = {"Masters"})
+    public void countries1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Countries Page: Page and filter checks, add/edit/delete", "A_CM_C_1 to 8");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Countries page...");
+        
+        Mst_CountriesPage countryPage = ccePage.selectCountries();
+        countryPage.waitForElement();
+        
+        System.out.println("Countries Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Coats Users Page: Title not displayed as expected",countryPage.getBreadcrumb().getText().equals("Countries"));
+        
+        System.out.println("Title checked");
+        
+        countryPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        countryPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        countryPage.setCountryName(DataItems.countryName);
+        
+        System.out.println("Filter criteria entered. Listing orders...");
+    }
+    
+    @Test //Contract Order Related :: Flags active and available
+    (groups = {"Masters"})
+    public void contractOrder1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Contract Order Related: Flags avaiable and function", "CO_MD_01");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Sales Organisation page...");
+        
+        Mst_SalesOrgPage soPage = ccePage.selectSalesOrg();
+        soPage.waitForElement();
+        
+        System.out.println("Sales Org Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Sales Organisations Page: Title not displayed as expected",soPage.getBreadcrumb().getText().equals("Sales Organisations"));
+        
+        System.out.println("Title checked");
+        
+        soPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        soPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        soPage.setSalesOrg("LK53");
+        
+        System.out.println("Criteria set. Listing orders...");
+        
+        soPage.pressSearch();
+        soPage.waitForLoad();
+        
+        System.out.println("Orders listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        
+        AssertJUnit.assertTrue("Sales Organisations Page: Filtration not working as expected",soPage.checkFiltrationAndRecords(loc1,loc2,WBA_BasePage.noRecords,"LK53",2));
+        
+        System.out.println("Filtration checked. Editing...");
+        
+        Mst_EditSalesOrgPage editPage = soPage.pressEdit(2);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Sales Org Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Sales Organisations | Edit Sales Organisation"));
+    
+        System.out.println("Title checked. Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Checking name is as expected...");
+        
+        AssertJUnit.assertTrue("Edit Sales Organisation Page: Name in edit page does not match input to filter",editPage.getNameField().getAttribute("value").equals("LK53"));
+        
+        System.out.println("Name as expected. Checking contract order field is selected...");
+        
+        AssertJUnit.assertTrue("Edit Sales Organisation Page: Contract Order field not in expected state (is disabled)",editPage.getContractOrderField().getAttribute("checked").equals("true"));
+        
+        System.out.println("Field selected as expected. Saving...");
+        
+        Mst_SalesOrgPage soPage2 = editPage.pressSave();
+        soPage2.waitForElement();
+        
+        System.out.println("Saved. Navigating to Customer master data...");
+        
+        Mst_CustomersPage custPage = soPage2.selectCustomers();
+        custPage.waitForElement();
+        
+        System.out.println("Page reached. Entering filter criteria and finding customer...");
+        
+        custPage.setCustomerName(DataItems.conOrdDetails[0]);
+        
+        custPage.pressSearch();
+        custPage.waitForElement();
+        
+        System.out.println("Customers listed. Checking filtration...");
+        
+        String locator1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String locator2 = ") > td:nth-child(4)";
+        
+        AssertJUnit.assertTrue("Customers Page: Filtration not working as expected",custPage.checkFiltration(locator1, locator2, DataItems.conOrdDetails[0], 2));
+        
+        System.out.println("Filtration as expected. Editing...");
+        
+        Mst_EditCustomerPage editPage2 = custPage.pressEdit(2);
+        editPage2.waitForLoad();
+        
+        System.out.println("Edit page reached. Checking contract order field is activated...");
+        
+        AssertJUnit.assertTrue("Edit Customer Page: Contract Order field not enabled",editPage2.getContractOrderField().getAttribute("checked").equals("true"));
+        
+        System.out.println("Field activated, as expected. Saving...");
+        
+        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        custPage2.waitForElement();
+        
+        System.out.println("Saved.");
+        
     }
 }

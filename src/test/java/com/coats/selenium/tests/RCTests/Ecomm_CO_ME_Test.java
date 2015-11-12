@@ -2,12 +2,20 @@ package com.coats.selenium.tests.RCTests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
 import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
+import PageObjects.Mst_CustomersPage;
+import PageObjects.Mst_EditCustomerPage;
+import PageObjects.WBA_LoginPage;
 import com.coats.selenium.DriverFactory;
+import static com.coats.selenium.DriverFactory.getDriver;
+import com.coats.selenium.tests.Cce_Base;
+import com.coats.selenium.tests.Ecomm_Base;
+import com.google.common.base.Verify;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -506,6 +514,320 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     FileUtils.copyFile(scrFile14,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\21Error received.png"));
     
   } 
+  
+  @Test //Manual Entry Page :: Field checks
+  (groups = {"eComm","eComm_Orders"})
+  public void COME8() throws Exception {
+    WebDriver driver = getDriver();
+      
+    Ecomm_GeneratedBase base = new Ecomm_GeneratedBase(driver);   
+    Ecomm_MainPage eComm = base.setUp("eComm Manual Entry Contract Order COME8", "CO_MEUI_01 and 02", DataItems.validCustUsername, DataItems.validCustPassword);
+    Ecomm_ManualEntryPage mePage = eComm.clickManualEntry();
+    System.out.println("Manual Entry Page reached. Checking fields...");
+      
+    mePage.checkContractOrderFields();
+      
+    System.out.println("Fields checked.");
+    
+  }
+  
+  @Test //Manual Entry Page :: Non-contract re-check
+  (groups ={"eComm","eComm_Orders"})
+  public void COME9() throws Exception {
+      //This test is very similar to those in ME_SUMST but will check specifically for absence of contract order items while completing
+      
+      //New chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to handle set up
+        Ecomm_Base susstTest3 = new Ecomm_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = susstTest3.setUp("MANUAL ENTRY COME9: Single line, Your Material Number without master data shade code (contract order re-check)","CO_ME_R_01");
+        
+        System.out.println("Navigating to Manual Entry...");
+        
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        
+        System.out.println("Manual Entry page loaded. Entering customer details...");
+        
+        //Input Customer Details
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);    
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        //Number of order lines
+        int numberOfLines = 1;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {DataItems.yourMatNum,DataItems.shadeCode,String.valueOf(DataItems.quantity)},
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMNShadeCode(details[i], i);
+        }
+
+        System.out.println("Product details entered. Checking for absence of contract order fields...");
+        
+        AssertJUnit.assertFalse("Manual Entry Page: Contract PO field appears despite call-off disbaled",manualEntryPage.findContractPOField());
+        AssertJUnit.assertFalse("Manual Entry Page: Line reference field appears despite call-off disbaled",manualEntryPage.findLineRefField());
+
+        System.out.println("Fields absent, as expected. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        System.out.println("Order confirmation page reached. Checking for absence of Contract PO, SAP Contract No., and Line reference cells...");
+        
+        AssertJUnit.assertFalse("Order Confirmation Page: Contract PO cell appears despite call-off disabled",orderConf.findContractPOCell());
+        AssertJUnit.assertFalse("Order Confirmation Page: SAP Contract No cell appears despite call-off disabled",orderConf.findSAPContractNoCell());
+        AssertJUnit.assertFalse("Order Confirmation Page: Line Ref cell appears despite call-off disabled",orderConf.findLineRefCell());
+
+        System.out.println("Cells absent, as expected. Cancelling...");
+        
+        Ecomm_ManualEntryPage mePage = orderConf.pressCancel();
+        mePage.waitForElement(); 
+  }
+  
+  @Test //Manual Entry Page :: Non-contract re-check (MOQ Active)
+  (groups = {"eComm","eComm_Orders"})
+  public void COME10() throws Exception {
+      //This test checks specifically for the absence of contract order fields
+      //New chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to handle set up
+        Ecomm_Base base = new Ecomm_Base(driver);
+        //Set up returns a manual entry page to begin data entry
+        Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY COME10: Non-contract order re-check (MOQ ACTIVE)","CO_ME_R_02");
+
+        System.out.println("Navigating to Manual Entry...");
+
+        //press manual entry
+        Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+        manualEntryPage.waitForElement();
+
+        System.out.println("Manual Entry Page reached. Entering customer details...");
+
+        //Input Customer Details    
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        int numberOfLines = 1;
+
+        //Order details to be entered
+        String[][] details = {
+            //line 1 details
+            {DataItems.yourMatNum,String.valueOf(1)},
+        };
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMN(details[i], i);
+        }
+        
+        String date = manualEntryPage.getDate(0);
+        
+        System.out.println("Product details entered. Ensuring auto-fill is correct...");
+        
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
+        
+        System.out.println("Auto-fill correct. Checking for contract order fields...");
+        
+        AssertJUnit.assertFalse("Manual Entry page: Contract PO No. field displayed despite call-off disabled",manualEntryPage.findContractPOField());
+        AssertJUnit.assertFalse("Manual Entry page: Line reference field displayed despite call-off disabled",manualEntryPage.findLineRefField());
+        
+        System.out.println("Fields absent, as expected. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        orderConf.waitForElement();
+        
+        System.out.println("MOQ Alert appeared as expected.");
+
+        System.out.println("Order confirmation page reached. Checking details are maintained...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
+
+        String[] parts = orderConf.getCoatsMaterial().split("-");
+        System.out.println(parts[1]);
+        AssertJUnit.assertTrue("Order Confirmation Page: Shade Code (from Coats Mat Num) not maintained after manual entry page",parts[1].equals(DataItems.expShadeCode));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained after manual entry page",orderConf.getOrderedQty()==1);
+        AssertJUnit.assertTrue("Order Confirmation Page: Required Date not maintained after manual entry page",orderConf.getRequiredDate().equals(date));
+        
+        System.out.println("Details maintained. Check adjusted quantity appears...");
+        
+        int adjQty = orderConf.getAdjustedQty();
+        
+        System.out.println("Adjusted quantity retrieved. Checking value...");
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Adjusted Quantity less than or equal to the ordered quantity",adjQty>1);
+        
+        System.out.println("Value greater than ordered qty, as expected. Check for absence of Contract Order cells...");
+        
+        AssertJUnit.assertFalse("Order Confirmation Page (MOQ Active): Contract PO No. cell displayed despite call-off disabled",orderConf.findContractPOCell());
+        AssertJUnit.assertFalse("Order Confirmation Page (MOQ Active): SAP Contract No. cell displayed despite call-off disabled",orderConf.findSAPContractNoCell());
+        AssertJUnit.assertFalse("Order Confirmation Page (MOQ Active): Line refernce cell displayed despite call-off disabled",orderConf.findLineRefCell());
+        
+        System.out.println("Fields absent, as expected. Cancelling order...");
+        
+        //Press Submit
+        Ecomm_ManualEntryPage mePage = orderConf.pressCancel(); 
+        mePage.waitForElement();
+
+        System.out.println("Order cancelled.");
+
+  }
+  
+  @Test //Manual Entry Page :: Non-contract re-check (Call-off disabled at customer level)
+  (groups = {"eComm","eComm_Orders"})
+  public void COME11() throws Exception {
+      //Contract order call-off is disabled for Star Garments Ltd at the customer level in master data, and an order is placed, checking for absence of contract order fields
+      WebDriver driver = getDriver();
+      
+      Cce_Base base = new Cce_Base(driver);
+      CCE_MainPage mainPage = base.setUp("Manual Entry Page COME11: Non-contract recheck, call-off disabled at customer level", "CO_ME_R_03");
+      mainPage.waitForLoad();
+      
+      System.out.println("Navigating to Customers master...");
+      
+      Mst_CustomersPage custPage = mainPage.selectCustomers();
+      custPage.waitForElement();
+      
+      System.out.println("Page reached. Entering filter crtieria and listing records...");
+      
+      custPage.setCustomerName(DataItems.conOrdDetails[0]);
+      custPage.pressSearch();
+      custPage.waitForElement();
+      
+      System.out.println("Records listed. Editing first item...");
+      
+      Mst_EditCustomerPage editPage = custPage.pressEdit(2);
+      editPage.waitForElement();
+      
+      System.out.println("Edit paged reached. Checking page shows data for correct customer...");
+      
+      AssertJUnit.assertTrue("Edit Customer Page: Customer name not as expected",editPage.getCustomerName().equals(DataItems.conOrdDetails[0]));
+      
+      System.out.println("Data correct. Disabling contract order call-off...");
+      
+      editPage.unsetCallOffOrder();
+      editPage.waitForElement();
+      
+      System.out.println("Disabled. Saving...");
+      
+      editPage.pressSave();
+      editPage.waitForElement();
+      
+      System.out.println("Saved. Logging into Contract Order account...");
+      
+      WBA_LoginPage liPage = editPage.pressLogout();
+      liPage.waitForElement();
+      
+      Ecomm_Base base2 = new Ecomm_Base(driver);
+      Ecomm_MainPage mainPage2 = base2.setUp("", "", DataItems.validCustUsername, DataItems.validCustPassword);
+      mainPage2.waitForLoad();
+      
+      System.out.println("Navigating to Manual Entry...");
+      
+      Ecomm_ManualEntryPage manualEntryPage = mainPage2.clickManualEntry();
+        
+      System.out.println("Manual Entry page loaded. Entering customer details...");
+        
+        manualEntryPage.setShipToParty(DataItems.conOrdDetails[1]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        System.out.println("Customer details entered. Entering product details...");
+
+        manualEntryPage.setArticle(DataItems.article, 0);
+        manualEntryPage.setShadeCode(DataItems.shadeCode, 0);
+        manualEntryPage.setQty(3, 0);
+        manualEntryPage.setDate(0);
+
+        System.out.println("Product details entered. Checking for absence of contract order fields...");
+        
+        AssertJUnit.assertFalse("Manual Entry Page: Contract PO field appears despite call-off disbaled",manualEntryPage.findContractPOField());
+        AssertJUnit.assertFalse("Manual Entry Page: Line reference field appears despite call-off disbaled",manualEntryPage.findLineRefField());
+
+        System.out.println("Fields absent, as expected. Pressing next...");
+        
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        System.out.println("Order confirmation page reached. Checking for absence of Contract PO, SAP Contract No., and Line reference cells...");
+        
+        AssertJUnit.assertFalse("Order Confirmation Page: Contract PO cell appears despite call-off disabled",orderConf.findContractPOCell());
+        AssertJUnit.assertFalse("Order Confirmation Page: SAP Contract No cell appears despite call-off disabled",orderConf.findSAPContractNoCell());
+        AssertJUnit.assertFalse("Order Confirmation Page: Line Ref cell appears despite call-off disabled",orderConf.findLineRefCell());
+
+        System.out.println("Cells absent, as expected. Cancelling...");
+        
+        Ecomm_ManualEntryPage mePage = orderConf.pressCancel();
+        mePage.waitForElement(); 
+        
+        System.out.println("Cancelled. Enabling Contract Order call-off in customer level...");
+        
+        WBA_LoginPage liPage2 = mePage.pressLogout();
+        liPage2.waitForElement();
+        
+        System.out.println("Logged out. Logging into admin...");
+        
+        Cce_Base base3 = new Cce_Base(driver);
+        CCE_MainPage mainPage3 = base3.setUp("", "");
+        mainPage3.waitForLoad();
+        
+        Mst_CustomersPage custPage3 = mainPage3.selectCustomers();
+        custPage3.waitForElement();
+        
+        System.out.println("Customer master reached. Finding customer...");
+        
+        custPage.setCustomerName(DataItems.conOrdDetails[0]);
+      custPage.pressSearch();
+      custPage.waitForElement();
+
+      Mst_EditCustomerPage editPage2 = custPage.pressEdit(2);
+      editPage2.waitForElement();
+      
+      System.out.println("Edit paged reached. Checking page shows data for correct customer...");
+      
+      AssertJUnit.assertTrue("Edit Customer Page: Customer name not as expected",editPage2.getCustomerName().equals(DataItems.conOrdDetails[0]));
+      
+      System.out.println("Data correct. Enabling contract order call-off...");
+      
+      editPage2.setCallOffOrder();
+      editPage.waitForElement();
+      
+      System.out.println("Enabled. Saving...");
+      
+      editPage.pressSave();
+      editPage.waitForElement();
+      
+      System.out.println("Saved");
+        
+  }
   
 }
 

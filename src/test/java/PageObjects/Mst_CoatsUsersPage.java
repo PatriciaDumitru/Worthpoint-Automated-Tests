@@ -28,7 +28,7 @@ public class Mst_CoatsUsersPage extends WBA_BasePage {
     By searchButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
-    By exportButton = By.id("export-menu");
+    By exportButton = By.cssSelector("#export-menu > a");
     By newCoatsUserButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
     public By noRecords = By.className("norec");
 
@@ -153,17 +153,17 @@ public class Mst_CoatsUsersPage extends WBA_BasePage {
         return new Mst_AddCoatsUserPage(driver);
     }
     
-    public CCE_OrderViewPage pressExport(String type) {
+    public CCE_ExportDownloadPage pressExport() {
         WebElement export = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
         
         Actions action = new Actions(driver);
-        action.moveToElement(export);
+        action.moveToElement(export).build().perform();
         
-        By locator = By.linkText(type);
+        By locator = By.cssSelector("#export-menu > ul > li:nth-child(4) > a");
         
         driver.findElement(locator).click();
         
-        return new CCE_OrderViewPage(driver);
+        return new CCE_ExportDownloadPage(driver);
     }
     
     public Mst_ImportPage pressImport() {

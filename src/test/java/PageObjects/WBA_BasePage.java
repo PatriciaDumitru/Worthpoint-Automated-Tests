@@ -70,7 +70,7 @@ public class WBA_BasePage {
         static By myReportsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(5)");
         static By coatsUserRepSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(6)");
         static By termsConditionsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(7)");
-        static By onlineAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(8)");
+        static By orderAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(8)");
         
     static By dashboardTab = By.cssSelector("#topnav > li:nth-child(5)");
         static By realUploadFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(1)");
@@ -115,13 +115,17 @@ public class WBA_BasePage {
         static By allUserTypesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(1)");
         static By coatsUsersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(2)");
         static By mastersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3)");
+            static By salesOrgOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(3)");
+            static By countriesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(2)");
             static By salesOrgMatOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(6)");
             static By customersOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(2)");
         static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
         static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
         static By archivesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(6)");
     
-    
+    //Navigation headers specifically for requester/approver/alternative user types
+        static By deniedOrderSubtabRequester = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
+        static By deniedOrderSubtabApprover = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
     
     
     public WBA_BasePage(WebDriver passedDriver) {
@@ -191,6 +195,16 @@ public class WBA_BasePage {
         return driver.findElement(breadcrumbLocator3).getText();
     }
     
+    public static int getRecordCount(By locator) {
+        //Allows the number of records in a filtered table to be returned
+        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        String text = cell.getText();
+        String[] parts = text.split("of ");
+        char textCount = parts[1].charAt(0);
+        
+        return Integer.parseInt(String.valueOf(textCount));
+    }
+    
     public void assertBaseElements() {
         System.out.println("Asserting base elements...");
 
@@ -216,6 +230,24 @@ public class WBA_BasePage {
     public void waitForLoad() {
         WebElement waitForContent = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(contentFrame));
     }
+    
+    //Switch site (from CCE to Ecomm and vice versa)
+    
+    public Ecomm_MainPage clickEcomm() {
+        WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(accessTypeLocator));
+        btn.click();
+        
+        return new Ecomm_MainPage(driver);
+    }
+    
+    public CCE_MainPage clickCCE() {
+        WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(accessTypeLocator));
+        btn.click();
+        
+        return new CCE_MainPage(driver);
+    }
+    
+    //Ecomm Navigation methods
     
     public Ecomm_ManualEntryPage clickManualEntry() {
         //Wait for visibility of navigation bar
@@ -339,6 +371,34 @@ public class WBA_BasePage {
         
         return new Ecomm_PendingApprovalListPage(driver);
     }
+    
+    public Ecomm_DeniedOrderPage clickDeniedOrderRequester() {
+        //Works specifically for requester account (autolifeeasy@coats.com)
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        //wait for menu to drop down
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(deniedOrderSubtabRequester)));
+        action.click(driver.findElement(deniedOrderSubtabRequester)).build().perform();
+        
+        return new Ecomm_DeniedOrderPage(driver);
+    }
+    
+    public Ecomm_DeniedOrderPage clickDeniedOrderApprover() {
+        //Works specifically for requester account (autolifeeasy@coats.com)
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        //wait for menu to drop down
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(deniedOrderSubtabApprover)));
+        action.click(driver.findElement(deniedOrderSubtabApprover)).build().perform();
+        
+        return new Ecomm_DeniedOrderPage(driver);
+    }
 
     public Ecomm_SAPInterfaceLogPage clickSAPInterfaceLog() {
     	//Wait for tab
@@ -414,6 +474,18 @@ public class WBA_BasePage {
         driver.findElement(myReportsSubTab).click();
 		
         return new Ecomm_MyReportsPage(driver);
+    }
+    
+    public Ecomm_OrderApprovalHistoryPage clickOrderApprovalHistory() {
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
+        driver.findElement(reportsTab).click();
+		
+        //Wait for subtab
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(orderAppHistSubTab)));
+        driver.findElement(orderAppHistSubTab).click();
+		
+        return new Ecomm_OrderApprovalHistoryPage(driver);
     }
     
     public Ecomm_BackendInProcessPage clickBackendInProcess() {
@@ -744,18 +816,41 @@ public class WBA_BasePage {
     
     public boolean checkFiltration(String locator1, String locator2, String item, int firstRow) {
         
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             By cellLocator = By.cssSelector(locator1 + "" + (i+firstRow) + "" + locator2);
             String text ="";
             try {
+                WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cellLocator));
                 text = driver.findElement(cellLocator).getText();
+                if (!(text.contains(item))) {
+                    return false;
+                }
             } catch(Exception e) {
                 System.out.println("All records searched");
                 return true;
             }
-            if (!(text.equals(item))) {
-                return false;
+            
+        }
+        return true;
+        
+    }
+    
+    public boolean checkFiltration(String locator1, String locator2, String item, int firstRow,int multiplier) {
+        
+        for (int i = 0; i < 3; i++) {
+            By cellLocator = By.cssSelector(locator1 + "" + (i*multiplier+firstRow) + "" + locator2);
+            String text ="";
+            try {
+                WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cellLocator));
+                text = driver.findElement(cellLocator).getText();
+                if (!(text.contains(item))) {
+                    return false;
+                }
+            } catch(Exception e) {
+                System.out.println("All records searched");
+                return true;
             }
+            
         }
         return true;
         
@@ -779,6 +874,22 @@ public class WBA_BasePage {
             System.out.println("No error detected.");
             return false;
         }       
+    }
+    
+    //Masters Navigation methods
+    
+    public Mst_SalesOrgPage selectSalesOrg() {
+        
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgOption));
+        action.click(driver.findElement(salesOrgOption)).build().perform();
+        
+        return new Mst_SalesOrgPage(driver);
+        
     }
     
     public Mst_SalesOrgMaterialsPage selectSalesOrgMaterials() {
@@ -809,10 +920,32 @@ public class WBA_BasePage {
         
     }
     
-    public WBA_LoginPage pressLogout() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(logoutLabelLocator));
+    public Mst_CountriesPage selectCountries() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(countriesOption));
+        action.click(driver.findElement(countriesOption)).build().perform();
+        
+        return new Mst_CountriesPage(driver);
+    }
     
-        driver.findElement(logoutLabelLocator).click();
+    public WBA_LoginPage pressLogout() {
+        WebElement label = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(logoutLabelLocator));
+    
+        label.click();
+        
+        return new WBA_LoginPage(driver);
+    }
+    
+    public WBA_LoginPage pressLogoutAlt() {
+        By selector = By.linkText("Logout");
+        
+        WebElement link = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(selector));
+        
+        link.click();
         
         return new WBA_LoginPage(driver);
     }

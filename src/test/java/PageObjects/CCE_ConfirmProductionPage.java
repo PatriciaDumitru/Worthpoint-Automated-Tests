@@ -32,14 +32,14 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     By finalSOSField = By.id("s2id_filterSampleOrderLineSosId");
     By listOrdersButton = By.cssSelector("#FilterConfirmProductionForm > div.actions > ul > li:nth-child(1)");
     By resetButton = By.cssSelector("#FilterConfirmProductionForm > div.actions > ul > li:nth-child(2)");
-    By confirmButton = By.xpath("//*[@id=\"SampleOrderLineConfirmProductionForm\"]/table/tbody/tr[3]/td[9]/input[2]");
-    By MUMTypeField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(11) > select");
-    By qtyProdField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(13) > input");
-    By sendToField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(14) > select");
-    By dnButton = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(17) > a");
+    By confirmButton = By.xpath("//*[@id=\"SampleOrderLineConfirmProductionForm\"]/table/tbody/tr[3]/td[10]/input[2]");
+    By MUMTypeField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(12) > select");
+    By qtyProdField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(14) > input");
+    By sendToField = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(15) > select");
+    By dnButton = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(5) > a");
     By packageLabelButton = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child(3) > td:nth-child(16) > a");
-    By saveButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1)");
-    By cancelButton = By.cssSelector("#content > div.actions > ul > li:nth-child(2)");
+    By saveButton = By.id("save");
+    By cancelButton = By.cssSelector("#content > div.actions > ul > li:nth-child(2) > a");
     By flashMessage = By.id("flashMessage");
     
     public CCE_ConfirmProductionPage(WebDriver passedDriver) {
@@ -242,7 +242,9 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
         Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
-        String message = driver.findElement(flashMessage).getText();
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        
+        String message = element.getText();
         if (message.contains("has been updated")) {
             System.out.println("Save successful.");
         } else {

@@ -87,16 +87,15 @@ public class CommonTask {
     
     public static void setDropDownFieldAlt(WebDriver driver, By fieldLocator, String item) {
         WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+
         field.click();
         
-        By searchField = By.className("select2-search-field");
-        driver.findElement(searchField).sendKeys(item);
-        
-        By resultLocator = By.className("select2-result-label");
-        boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator,item));
-        driver.findElement(resultLocator).click();
-        
-        boolean waitAgain = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(fieldLocator, item));
+        By searchFieldLocator = By.xpath("//input[contains(@id,'s2id_autogen')]");
+        WebElement searchField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchFieldLocator));
+        searchField.sendKeys(item+Keys.ENTER);
+
+        By choiceLocator = By.className("select2-search-choice");
+        WebElement choice = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(choiceLocator));
     }
     
     public static void clearDropDownField(WebDriver driver, By fieldLocator) {
@@ -161,9 +160,13 @@ public class CommonTask {
     }
     
     public static void setCheckBox(WebDriver driver, By fieldLocator) {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
-        driver.findElement(fieldLocator).click();
-        Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(fieldLocator)));
+        
+        if (!driver.findElement(fieldLocator).isSelected()) {
+            WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+            driver.findElement(fieldLocator).click();
+            Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(fieldLocator)));
+        }
+        
     }
     
     public static void uncheckBox(WebDriver driver, By fieldLocator) {
@@ -175,6 +178,12 @@ public class CommonTask {
     public static void setCheckBoxNoWait(WebDriver driver, By fieldLocator) {
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
         driver.findElement(fieldLocator).click();
+    }
+    
+    public static void clickInputCheckBox(WebDriver driver, By fieldLocator) {
+        //Some check boxes are of a different type (appear as input fields), requiring different handling
+        WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        btn.click();
     }
     
     public static void setDateField(WebDriver driver, By fieldLocator) {
@@ -360,14 +369,13 @@ public class CommonTask {
             bw.write(String.valueOf(id));
             //Append the ID and type the PO number
             String prefix;
-            if (type.equals("contract")) {
-                prefix = DataItems.conOrdDetails[4];
-            } else if (type.equals("buyer")) {
-                prefix = "BuyerRequest";
-            } else if (type.equals("")) {
-                prefix = "";
-            } else {
-                prefix = DataItems.custDetails[4];
+            
+            switch (type) {
+                case "contract": prefix = DataItems.conOrdDetails[4]; break;
+                case "buyer": prefix = "BuyerRequest_"; break;
+                case "": prefix = DataItems.custDetails[4]; break;
+                case "file": prefix = ""; break;
+                default: prefix = type;
             }
             
             PONumber = prefix+idString;       
@@ -378,8 +386,8 @@ public class CommonTask {
         } catch (IOException e) {
             System.out.println("IO exception handling the ID file");
         }
-         
-         return PONumber;
+ 
+        return PONumber;
     }
     
     public String getIDNumber() throws FileNotFoundException, IOException {

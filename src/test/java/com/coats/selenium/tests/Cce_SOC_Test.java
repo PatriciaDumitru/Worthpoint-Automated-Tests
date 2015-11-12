@@ -783,7 +783,7 @@ public class Cce_SOC_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC5: Single line, above LAB qty but within threshold", "G_CCE_SOC_5");
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC11: Single line, above LAB qty but within threshold", "G_CCE_SOC_5");
         
         System.out.println("Navigating to Order Samples...");
         
@@ -810,11 +810,6 @@ public class Cce_SOC_Test extends DriverFactory {
         addOrder.setPurposeType(DataItems.bulkPurpose, 0);
         addOrder.setRequestType(DataItems.sewing, 0);
         addOrder.setQuantity(DataItems.thresholdQty, 0);
-        
-        //Alert appears warning of sample limit exceeded
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
-        System.out.println("Alert appeared: " + alert.getText());
-        alert.accept();
         
         System.out.println("Details added. Submitting order...");
         

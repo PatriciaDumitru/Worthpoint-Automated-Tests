@@ -2,6 +2,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.FileFactory;
 import PageObjects.Ecomm_BackendProcessPage;
 import PageObjects.Ecomm_ErrorPage;
 import PageObjects.Ecomm_MainPage;
@@ -42,7 +43,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Upload Order page loaded. Setting filepath...");
         
-        uploadPage.setFilePath(DataItems.uploadYMNExceptionFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "YMN", false));
         
         System.out.println("File path set. Uploading...");
         
@@ -52,35 +53,37 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID52");
+        mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
         
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","N/A"},
-                                {"Ticket","Ticket"},
-                                {"Finish","Finish"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","Your Material Number"},
-                                {"Brand","Brand"},
-                                {"Length","Length"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO Number"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
         
-        mapPage.setMapping(mapping);
+        mapPage.setMappingNew(mapping,false,false,true);
         
         System.out.println("Mapping set. Confirming...");
         
@@ -113,7 +116,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Upload Order page loaded. Setting filepath...");
         
-        uploadPage.setFilePath(DataItems.uploadBrandExceptionFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "Brand", false));
         
         System.out.println("File path set. Uploading...");
         
@@ -123,35 +126,37 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID52");
+        mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
         
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","N/A"},
-                                {"Ticket","Ticket"},
-                                {"Finish","Finish"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","Your Material Number"},
-                                {"Brand","Brand"},
-                                {"Length","Length"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO Number"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
         
-        mapPage.setMapping(mapping);
+        mapPage.setMappingNew(mapping,false,false,true);
         
         System.out.println("Mapping set. Confirming expecting error...");
         
@@ -184,7 +189,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Upload Order page loaded. Setting filepath...");
         
-        uploadPage.setFilePath(DataItems.uploadArticleExceptionFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "Article", false));
         
         System.out.println("File path set. Uploading...");
         
@@ -194,35 +199,37 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID52");
+        mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
         
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","Article"},
-                                {"Ticket","N/A"},
-                                {"Finish","N/A"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","Your Material Number"},
-                                {"Brand","N/A"},
-                                {"Length","N/A"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO Number"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
         
-        mapPage.setMapping(mapping);
+        mapPage.setMappingNew(mapping,false,false,true);
         
         System.out.println("Mapping set. Confirming expecting error...");
         
@@ -255,7 +262,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Upload Order page loaded. Setting filepath...");
         
-        uploadPage.setFilePath(DataItems.uploadTicketExceptionFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "Ticket", false));
         
         System.out.println("File path set. Uploading...");
         
@@ -265,35 +272,37 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID52");
+        mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
         
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","N/A"},
-                                {"Ticket","Ticket"},
-                                {"Finish","Finish"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","Your Material Number"},
-                                {"Brand","Brand"},
-                                {"Length","Length"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO Number"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
         
-        mapPage.setMapping(mapping);
+        mapPage.setMappingNew(mapping,false,false,true);
         
         System.out.println("Mapping set. Confirming expecting error...");
         
@@ -326,7 +335,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Upload Order page loaded. Setting filepath...");
         
-        uploadPage.setFilePath(DataItems.uploadLengthExceptionFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "Length", false));
         
         System.out.println("File path set. Uploading...");
         
@@ -336,35 +345,37 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID52");
+        mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
         
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","N/A"},
-                                {"Ticket","Ticket"},
-                                {"Finish","Finish"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","Your Material Number"},
-                                {"Brand","Brand"},
-                                {"Length","Length"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO Number"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
         
-        mapPage.setMapping(mapping);
+        mapPage.setMappingNew(mapping,false,false,true);
         
         System.out.println("Mapping set. Confirming expecting error...");
         
@@ -397,7 +408,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Upload Order page loaded. Setting filepath...");
         
-        uploadPage.setFilePath(DataItems.uploadFinishExceptionFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "Finish", false));
         
         System.out.println("File path set. Uploading...");
         
@@ -407,45 +418,48 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID52");
+        mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
         
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","N/A"},
-                                {"Ticket","Ticket"},
-                                {"Finish","Finish"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","Your Material Number"},
-                                {"Brand","Brand"},
-                                {"Length","Length"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO Number"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
         
-        mapPage.setMapping(mapping);
+        mapPage.setMappingNew(mapping,false,false,true);
         
         System.out.println("Mapping set. Confirming expecting error...");
         
-        Ecomm_ErrorPage errorPage = mapPage.pressConfirmExpectingError();
-        errorPage.waitForError();
+        Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        orderConf.waitForError();
         
-        AssertJUnit.assertTrue("Mapping page: Error page not displayed/unexpected error after mapping confirmed with erroneous file. Error: " + errorPage.getError(),
-                errorPage.ensureErrorPage("cannot be processed"));
+        System.out.println("Confirmation Page reached. Asserting errors appear...");
         
-        System.out.println("Error Page reached. Error displayed: " + errorPage.getError());
+        AssertJUnit.assertTrue("Order Confirmation Page: No errors found despite invalid material in spreadsheet",orderConf.viewErrors());
+        
+        System.out.println("Errors found.");
 
     }
     
@@ -468,7 +482,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Upload Order page loaded. Setting filepath...");
         
-        uploadPage.setFilePath(DataItems.uploadShadeExceptionFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "Shade", false));
         
         System.out.println("File path set. Uploading...");
         
@@ -478,35 +492,37 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID52");
+        mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
         
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","N/A"},
-                                {"Ticket","Ticket"},
-                                {"Finish","Finish"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","Your Material Number"},
-                                {"Brand","Brand"},
-                                {"Length","Length"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO Number"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
         
-        mapPage.setMapping(mapping);
+        mapPage.setMappingNew(mapping,false,false,true);
         
         System.out.println("Mapping set. Confirming expecting error...");
         
@@ -538,7 +554,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Upload Order page loaded. Setting filepath...");
         
-        uploadPage.setFilePath(DataItems.uploadShipToExceptionFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "Ship", false));
         
         System.out.println("File path set. Uploading...");
         
@@ -548,35 +564,37 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID52");
+        mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
         
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","N/A"},
-                                {"Ticket","Ticket"},
-                                {"Finish","Finish"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","Your Material Number"},
-                                {"Brand","Brand"},
-                                {"Length","Length"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO Number"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
         
-        mapPage.setMapping(mapping);
+        mapPage.setMappingNew(mapping,false,false,true);
         
         System.out.println("Mapping set. Confirming mapping...");
         
@@ -602,18 +620,17 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         System.out.println("Details entered. Retrieving PO Number...");
         
         String poNumber = orderConf.getUploadPONumber();
-        System.out.println(poNumber);
-        
+
         Ecomm_OutstandingOrdersPage ordersPage = orderConf.pressSubmit();
         ordersPage.waitForElement();
         
         System.out.println("Outstanding orders page reached. Checking order appears in table...");
         
-        int row = ordersPage.getRow(poNumber);
+        int row = ordersPage.getRowSUMST(poNumber);
         
         AssertJUnit.assertTrue("Outstanding Orders Page: Order not found despite confirmation",row!=-1);
         
-        String orderNo = ordersPage.getOrderNumber(row);
+        String orderNo = ordersPage.getOrderNumberSUMST(row);
         
         System.out.println("Order found.");
         System.out.println("Order No.: " + orderNo);
@@ -641,7 +658,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Upload Order page loaded. Setting filepath...");
         
-        uploadPage.setFilePath(DataItems.uploadYMNExceptionFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "YMN", false));
         
         System.out.println("Filepath set. Selecting backend upload...");
         
@@ -658,33 +675,37 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Entering details...");
         
-        mapPage.setSalesOrg("ID52");
+        mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.custDetails[0]);
-
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","N/A"},
-                                {"Ticket","Ticket"},
-                                {"Finish","Finish"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","Your Material Number"},
-                                {"Brand","Brand"},
-                                {"Length","Length"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO Number"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
         
-        mapPage.setMapping(mapping);
+        System.out.println("Details set. Setting mapping...");
+        
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
+        
+        mapPage.setMappingNew(mapping,false,false,true);
         
         System.out.println("Mapping set. Confirming mapping...");
         

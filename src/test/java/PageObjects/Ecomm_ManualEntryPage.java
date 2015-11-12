@@ -49,6 +49,10 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     static By custNameLabel = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > label");
     static By requestorLabel = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > table > tbody > tr:nth-child(3) > td > label");
     
+    //Line detail fields
+    static By contractPOField = By.id("txtContract0");
+    static By lineRefField = By.id("txtContractLine0");
+    
     public Ecomm_ManualEntryPage(WebDriver passedDriver) {
         super(passedDriver);
     }
@@ -96,6 +100,26 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public WebElement getProductTable() {
         //find and return element
         return driver.findElement(productDetailsTableLocator);
+    }
+    
+    public boolean findContractPOField() {
+        
+        try {
+            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractPOField));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+    
+    public boolean findLineRefField() {
+        try {
+            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lineRefField));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
     
     public WebElement getNextButton() {
@@ -152,37 +176,12 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return new Ecomm_ManualEntryPage(driver);
     }
     
-    public Ecomm_ManualEntryPage setPONumber(String item) throws InterruptedException {
+    public Ecomm_ManualEntryPage setPONumber(String item) throws InterruptedException, IOException {
         
-        try {
-            //Access file to read
-            FileReader fr = new FileReader(DataItems.idFilepath);
-            BufferedReader br = new BufferedReader(fr);
-            //Get current ID
-            String idString = br.readLine();
-            int id = Integer.valueOf(idString);
-            //Increment ID to be written back to file
-            id++;
-            br.close();
-            fr.close();
-            
-            //Access file to write
-            FileWriter fw = new FileWriter(DataItems.idFilepath);
-            BufferedWriter bw = new BufferedWriter(fw);
-            
-            //Write incremented id to file
-            bw.write(String.valueOf(id));
-            bw.close();
-            fw.close();
-            //Append the ID and type the PO number
-            String PONumber = item+idString;
-            CommonTask.setInputField(driver, poNumberField, PONumber);
-            DataItems.lastUsedPO = PONumber;
-            
-        } catch (IOException e) {
-            System.out.println("Customer PO Number method: IO exception handling the ID file");
-        }
-        
+        String poNumber = CommonTask.generatePO(item);
+        CommonTask.setInputField(driver, poNumberField, poNumber);
+        DataItems.lastUsedPO = poNumber;
+
         return this;
     }
     
@@ -547,7 +546,6 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return article.getText();
     }
         
-    
     public String getBrand(int row) {
         By brandLocator = By.id("Brand"+row);
         
@@ -649,6 +647,28 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", getBuyersField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", getPONumberField().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());
+    }
+    
+    public void checkContractOrderFields() {
+        //Wait for all elements to be clickable
+        WebElement waitForShipTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
+        WebElement waitForBuyers = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyersField));
+        WebElement waitForPOField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(poNumberField));
+        WebElement contractPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractPOField));
+        WebElement lineRef = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lineRefField));
+        
+        //Wait for visibility of labels
+        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custNameLabel));
+        WebElement waitForRequestor = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(requestorLabel));
+        
+        //Assert all elements are displayed
+        AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", getShipToPartyField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", getBuyersField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", getPONumberField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Contract PO Field not displayed",contractPO.isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Contract PO Field not displayed",lineRef.isDisplayed());
+        
     }
     
     public boolean waitForAddMaterialMessage() {

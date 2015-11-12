@@ -2,6 +2,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
@@ -11,6 +12,8 @@ import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_PendingApprovalListPage;
 import PageObjects.Ecomm_SAPInterfaceLogPage;
 import PageObjects.Ecomm_UploadProcessPage;
+import PageObjects.Mst_CustomersPage;
+import PageObjects.Mst_EditCustomerPage;
 import PageObjects.WBA_ContinuePage;
 import PageObjects.WBA_LoginPage;
 import PageObjects.WBA_SelectionPage;
@@ -684,7 +687,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrdersPage.getRow(DataItems.lastUsedPO);
+        int rowNumber = outOrdersPage.getRowSUMST(DataItems.lastUsedPO);
+        System.out.println(rowNumber);
         Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
@@ -701,7 +705,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         driver.switchTo().defaultContent();
 
         //Output order number for test reference
-        String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
+        String orderNumber = outOrdersPage.getOrderNumberSUMST(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
     }
@@ -1568,7 +1572,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         System.out.println("Logged in. Navigating to Pending Approval List Page...");
 
-        Ecomm_PendingApprovalListPage pendPage = mainPage.clickPendingApprovalListPage();
+        Ecomm_PendingApprovalListPage pendPage = mainPage.clickPendingApprovalListPageApprover();
         pendPage.waitForElement();
         
         System.out.println("Pending Approval page reached. Finding order...");
@@ -2174,10 +2178,10 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Product details entered. Ensuring auto-fill is correct...");
         
         AssertJUnit.assertTrue("Manual Entry Page: Auto-fill article not as expected in master data",manualEntryPage.getArticle(0).equals(DataItems.expArticle));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getBrand(0).equals(DataItems.expBrand));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getTicket(0).equals(DataItems.expTicket));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getLength(0).equals(DataItems.expLength));
-        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getFinish(0).equals(DataItems.expFinish));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getSetBrand(0).equals(DataItems.expBrand));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getSetTicket(0).equals(DataItems.expTicket));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getSetLength(0).equals(DataItems.expLength));
+        AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getSetFinish(0).equals(DataItems.expFinish));
         AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
         
         System.out.println("Auto-fill correct. Pressing next...");
@@ -2610,6 +2614,117 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Output order number for test reference
         String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
+    }
+    
+    @Test //Manual Entry Page :: SUMST :: Approver workflow enabled
+    (groups = {"eComm","eComm_Orders"})
+    public void SUMST28() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Manual Entry Page SUMST28: Approver workflow enabled", "OA_OAP_SUSS_ME_2");
+        
+        System.out.println("Navigating to Masters...");
+
+        Mst_CustomersPage custPage = mainPage.selectCustomers();
+        custPage.waitForElement();
+        
+        System.out.println("Customers Master reached. Finding 'Life Easy Customer' and turning approval workflow on...");
+        
+        custPage.setCustomerName(DataItems.custDetails[0]);
+        custPage.pressSearch();
+        int row = custPage.findCustomer(DataItems.custDetails[0]);
+        
+        Mst_EditCustomerPage editPage = custPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage.getCustomerName().equals(DataItems.custDetails[0]));
+        
+        editPage.setApprovalWorkflow();
+        editPage.pressSave();
+        
+        System.out.println("Approval workflow enabled. Creating order...");
+        
+        Ecomm_MainPage eMainPage = editPage.clickEcomm();
+        eMainPage.waitForLoad();
+        
+        Ecomm_ManualEntryPage mePage = eMainPage.clickManualEntry();
+        mePage.waitForElement();
+        
+        System.out.println("Manual Entry Page reached. Entering customer details...");
+        
+        mePage.setCustomerName(DataItems.subCustDetails[0]);
+        mePage.setShipToParty(DataItems.subCustDetails[1]);
+        mePage.setRequestor(DataItems.subCustDetails[2]);
+        mePage.setBuyers(DataItems.subCustDetails[3]);
+        mePage.setPONumber(DataItems.custDetails[4]);
+        
+        System.out.println("Customer details entered. Entering line details...");
+        
+        mePage.setArticle("8754120",0);
+        mePage.setShadeCode("C1202", 0);
+        mePage.setQty(3, 0);
+        mePage.setDate(0);
+        
+        System.out.println("Line details entered. Pressing next...");
+
+        Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
+        orderConf.waitForElement();
+        
+        System.out.println("Order Confirmation Page reached. Check 'Send for Approval' button is displayed...");
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Send for approval button not displayed despite Approval Workflow enabled",orderConf.getSendForApprovalButton().isDisplayed());
+        
+        System.out.println("Button displayed. Sending...");
+        
+        Ecomm_PendingApprovalListPage pendPage = orderConf.pressSendForApproval();
+        pendPage.waitForElement();
+        
+        System.out.println("Item sent for approval. Asserting Pending Approval Page appears...");
+        
+        AssertJUnit.assertTrue("Pending Approval Page: Not correctly linked after confirmation/title incorrect",pendPage.getBreadcrumb().getText().equals("Orders | Pending Approval List"));
+        
+        System.out.println("Pending Approval Page reached. Finding order...");
+        
+        int orderRow = pendPage.getRow(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertFalse("Pending Approval Page: Order (PO: "+DataItems.lastUsedPO+") not found after being sent for approval",orderRow == -1);
+        
+        System.out.println("Order found. Logging into approver account...");
+        
+        WBA_LoginPage liPage = pendPage.pressLogout();
+        
+        Ecomm_Base base2 = new Ecomm_Base(driver);
+        Ecomm_MainPage mainPage2 = base2.setUp("", "",DataItems.approverUsername,DataItems.approverPassword);
+        mainPage2.waitForLoad();
+        
+        Ecomm_PendingApprovalListPage pendPage2 = mainPage2.clickPendingApprovalListPageApprover();
+        pendPage2.waitForElement();
+        
+        System.out.println("Pending Approval List Page reached. Finding order...");
+        
+        int orderRow2 = pendPage2.getRow(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertFalse("Pending Approval List Page: Order (PO: "+DataItems.lastUsedPO+") not found in table for Approver account",orderRow2==-1);
+        
+        System.out.println("Order found. Approving...");
+        
+        String orderNo = pendPage2.getOrderNo(orderRow2);
+        pendPage2.approveOrder(orderNo);
+        pendPage2.waitForElement();
+        
+        System.out.println("Approved. Checking Outstanding Order Page for order...");
+        
+        Ecomm_OutstandingOrdersPage outOrds = pendPage2.clickOutstandingOrders();
+        outOrds.waitForElement();
+        
+        System.out.println("Outstanding Orders page reached. Searching for order...");
+        
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order does not appear after approval",outOrds.getRow(DataItems.lastUsedPO)==-1);
+        
+        System.out.println("Order found. Checking order status...");
+        
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order does not have expected In Progress status",outOrds.getOrderStatusField().getText().equals("In Progress"));
     }
     
     

@@ -4,6 +4,7 @@ package PageObjects;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -118,17 +119,46 @@ public class Mst_AddCoatsUserPage extends WBA_BasePage {
     }
     
     public Mst_AddCoatsUserPage setCountry(String item) throws InterruptedException {
-        CommonTask.setDropDownFieldAlt(driver,countryField,item);
+        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(countryField));
+
+        field.click();
+        
+        By searchFieldLocator = By.id("s2id_autogen1");
+        WebElement searchField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchFieldLocator));
+        searchField.sendKeys(item+Keys.ENTER);
+
+        By choiceLocator = By.cssSelector("#s2id_CoatsUserCountry > ul > li.select2-search-choice > div");
+        WebElement choice = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(choiceLocator));
+        
         return new Mst_AddCoatsUserPage(driver);
     }
     
     public Mst_AddCoatsUserPage setSalesOrg(String item) throws InterruptedException {
-        CommonTask.setDropDownFieldAlt(driver,salesOrgField,item);
+        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+
+        field.click();
+        
+        By searchFieldLocator = By.id("s2id_autogen2");
+        WebElement searchField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchFieldLocator));
+        searchField.sendKeys(item+Keys.ENTER);
+
+        By choiceLocator = By.cssSelector("#s2id_CoatsUserSalesOrg > ul > li.select2-search-choice > div");
+        WebElement choice = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(choiceLocator));
         return new Mst_AddCoatsUserPage(driver);
     }
     
     public Mst_AddCoatsUserPage setHub(String item) throws InterruptedException {
-        CommonTask.setDropDownFieldAlt(driver,hubField,item);
+        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
+
+        field.click();
+        
+        By searchFieldLocator = By.id("s2id_autogen3");
+        WebElement searchField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchFieldLocator));
+        searchField.sendKeys(item+Keys.ENTER);
+
+        By choiceLocator = By.cssSelector("#s2id_CoatsUserHub > ul > li.select2-search-choice > div");
+        WebElement choice = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(choiceLocator));
+        
         return new Mst_AddCoatsUserPage(driver);
     }
     

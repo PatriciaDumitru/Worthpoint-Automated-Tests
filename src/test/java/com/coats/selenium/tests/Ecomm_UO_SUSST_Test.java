@@ -71,33 +71,32 @@ public class Ecomm_UO_SUSST_Test {
         
         System.out.println("Mapping page loaded. Setting mapping...");
         
-        //Mapping details
-        //Element 0 of each array holds the field name. Element 1 of each array holds the corresponding header used in the file.
-        //If there is no corresponding header in the file, use "N/A" 
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","N/A"},
-                                {"Ticket","Ticket"},
-                                {"Finish","Finish"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","N/A"},
-                                {"Brand","Brand"},
-                                {"Length","Length"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO No"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
         
-        Ecomm_MappingPage mappedPage = mapPage.setMappingNotCustomer(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingNew(mapping,false,false,false);
         
         System.out.println("Mapping set. Confirming map..."); 
         
@@ -115,7 +114,7 @@ public class Ecomm_UO_SUSST_Test {
         
         System.out.println("Order submitted. Navigating to Outstanding Upload Order...");
                 
-        String orderNo = outOrdersPage.getOrderNumber(0);
+        String orderNo = outOrdersPage.getOrderNumberSUMST(0);
         System.out.println("Order number: "+orderNo);
     }
     
@@ -168,30 +167,32 @@ public class Ecomm_UO_SUSST_Test {
         //Mapping details
         //Element 0 of each array holds the field name. Element 1 of each array holds the corresponding header used in the file.
         //If there is no corresponding header in the file, use "N/A" 
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                                {"Article","N/A"},
-                                {"Ticket","Ticket"},
-                                {"Finish","Finish"},
-                                {"Shade Code","Shade Code"},
-                                {"Required Date","Required Date"},
-                                {"Qty","Qty"},
-                                {"Style","N/A"},
-                                {"Style No./Production No.","N/A"},
-                                {"Sub Account","N/A"},
-                                {"Ship to Party Name","Ship to Party Name"},
-                                {"Your Material No.","N/A"},
-                                {"Brand","Brand"},
-                                {"Length","Length"},
-                                {"Buyers","N/A"},
-                                {"Customer PO No","Customer PO No"},
-                                {"Requestor Name","Requestor Name"},
-                                {"Warehouse Instruction","N/A"},
-                                {"Buyer Sales Order Number","N/A"},
-                                {"Other Information","N/A"},
-                                {"Customer Price","N/A"}
-                                };
+        String[][] mapping = {
+            {"Article","Article"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Contract PO No.","N/A"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","Your Material Number"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO Number"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+        };
         
-        Ecomm_MappingPage mappedPage = mapPage.setMappingNotCustomer(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingNew(mapping,false,false,false);
         
         System.out.println("Mapping set. Confirming map..."); 
         
@@ -211,7 +212,7 @@ public class Ecomm_UO_SUSST_Test {
         
         System.out.println("Order submitted. Navigating to Outstanding Upload Order...");
                 
-        String orderNo = outOrdersPage.getOrderNumber(0);
+        String orderNo = outOrdersPage.getOrderNumberSUMST(0);
         System.out.println("Order number: "+orderNo);
     }
     

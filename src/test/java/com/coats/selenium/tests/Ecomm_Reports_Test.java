@@ -112,14 +112,20 @@ public class Ecomm_Reports_Test extends DriverFactory {
                 
                 invPage.setCustName(DataItems.custDetails[0]);
                 invPage.setShipToName(DataItems.custDetails[1]);
+                
+                invPage.pressSearch();
+                invPage.waitForElement();
 		
 		System.out.println("Exporting records...");
 		
-		Ecomm_ExportDownloadPage dlPage = invPage.pressExport();
-		dlPage.waitForDownloadCompletion();
-		
-		System.out.println("Records exported.");
-		
+                if (invPage.checkForRecords()) {
+                    Ecomm_ExportDownloadPage dlPage = invPage.pressExport();
+                    dlPage.waitForDownloadCompletion();
+                    System.out.println("Records exported.");
+                } else {
+                    System.out.println("No records found, export not tested");
+                }
+
 	}
         
         @Test //Invoices Page :: SUSST :: Page and filter checks, reset, view, print, and export
