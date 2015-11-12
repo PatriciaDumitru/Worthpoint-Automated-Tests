@@ -389,6 +389,7 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Navigating to Order Samples...");
         
         CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
+        orderSamples.waitForElement();
         
         System.out.println("Order samples loaded. Entering customer details...");
         
