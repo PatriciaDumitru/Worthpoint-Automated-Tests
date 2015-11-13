@@ -240,7 +240,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
 
     @Test //Order Samples Page :: Single line order, quantity above threshold
-    (groups = {"CCE","CCE_Orders","QuickTest"})
+    (groups = {"CCE","CCE_Orders","QuickTest","Solo"})
     public void SOC4() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

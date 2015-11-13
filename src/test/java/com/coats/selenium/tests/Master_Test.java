@@ -841,7 +841,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Shades master :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters","Solo"})
+    (groups = {"Masters"})
     public void shades1() throws Exception {
         
         WebDriver driver = getDriver();
