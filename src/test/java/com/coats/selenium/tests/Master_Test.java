@@ -623,4 +623,65 @@ public class Master_Test extends DriverFactory {
         
     }
     
+    @Test //Mail Notification Related :: Switch for mail notifications present in sales org and customer (requester level) master data
+    (groups = {"Masters","Solo"})
+    public void mailNotification1() throws Exception {
+        
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Mail Notification Related: Sales Org and Customers levels contain switch", "CCE_MN_Sorg");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Sales Org page...");
+        
+        Mst_SalesOrgPage soPage = ccePage.selectSalesOrg();
+        soPage.waitForElement();
+        
+        System.out.println("Page reached. Entering filter criteria...");
+        
+        soPage.setSalesOrg("ID51");
+
+        System.out.println("Criteria entered. Listing orders...");
+        
+        soPage.pressSearch();
+        soPage.waitForElement();
+        
+        System.out.println("Orders listed. Editing top item...");
+        
+        Mst_EditSalesOrgPage editPage = soPage.pressEdit(2);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking for Mail Notification field...");
+        
+        AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification label not displayed",editPage.getMailNotificationLabel().getText().equals("Enabled Sub Account Option"));
+        AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification field not displayed",editPage.getMailNotificationField().isDisplayed());
+        String status = editPage.getSubAccountField().getAttribute("checked");
+        AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification field not enabled as expected",status.equals("true"));
+        
+        System.out.println("Field displayed. Current status: " + status + ", as expected. Navigating to Customer master...");
+        
+        Mst_CustomersPage custPage = editPage.selectCustomers();
+        custPage.waitForLoad();
+        
+        System.out.println("Customer Master reached. Finding customer...");
+        
+        custPage.setCustomerName(DataItems.subCustDetails[0]);
+        custPage.pressSearch();
+        custPage.waitForElement();
+        
+        Mst_EditCustomerPage editPage2 = custPage.pressEdit(2);
+        editPage2.waitForElement();
+        
+        System.out.println("Customer found. Checking for Sub-account field...");
+        
+        AssertJUnit.assertTrue("Edit Customer Page: Sub Account label not displayed",editPage2.getSubAcctLabel().getText().equals("Enabled SubAccount Option"));
+        AssertJUnit.assertTrue("Edit Customer Page: Sub Account field not displayed",editPage2.getSubAcctField().isDisplayed());
+        String status2 = editPage2.getSubAcctField().getAttribute("checked");
+        AssertJUnit.assertTrue("Edit Customer Page: Sub Account field not enabled as expected",status2.equals("true"));
+        
+        System.out.println("Field displayed. Current status: " + status + ", as expected.");
+        
+    }
+    
 }
