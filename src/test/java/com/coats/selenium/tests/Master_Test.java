@@ -563,7 +563,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Sub Account Related :: Switches appear in Sales Org and Customers master data
-    (groups = {"Masters","Solo"})
+    (groups = {"Masters"})
     public void subAccount2() throws Exception {
         WebDriver driver = getDriver();
         
