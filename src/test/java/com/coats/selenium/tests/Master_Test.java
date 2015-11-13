@@ -5,9 +5,9 @@ import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import PageObjects.CCE_ExportDownloadPage;
 import PageObjects.CCE_MainPage;
-import PageObjects.CCE_OrderViewPage;
-import PageObjects.Ecomm_MainPage;
 import PageObjects.Mst_AddCoatsUserPage;
+import PageObjects.Mst_AddMultiUserPage;
+import PageObjects.Mst_AddShadePage;
 import PageObjects.Mst_AddSubAccountPage;
 import PageObjects.Mst_AddUserTypePage;
 import PageObjects.Mst_AllUserTypesPage;
@@ -16,15 +16,20 @@ import PageObjects.Mst_CountriesPage;
 import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditCoatsUserPage;
 import PageObjects.Mst_EditCustomerPage;
+import PageObjects.Mst_EditMultiUserPage;
 import PageObjects.Mst_EditSalesOrgPage;
+import PageObjects.Mst_EditShadePage;
 import PageObjects.Mst_EditSubAccountPage;
 import PageObjects.Mst_EditUserTypePage;
 import PageObjects.Mst_ImportPage;
+import PageObjects.Mst_ImportShadesPage;
+import PageObjects.Mst_MultiSoldToPage;
 import PageObjects.Mst_SalesOrgPage;
+import PageObjects.Mst_ShadesPage;
 import PageObjects.Mst_SubAccountPage;
 import PageObjects.WBA_BasePage;
 import com.coats.selenium.DriverFactory;
-import org.openqa.selenium.Keys;
+import static com.coats.selenium.DriverFactory.getDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.AssertJUnit;
@@ -624,13 +629,13 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Mail Notification Related :: Switch for mail notifications present in sales org and customer (requester level) master data
-    (groups = {"Masters","Solo"})
+    (groups = {"Masters"})
     public void mailNotification1() throws Exception {
         
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Mail Notification Related: Sales Org and Customers levels contain switch", "CCE_MN_Sorg");
+        CCE_MainPage ccePage = base.setUp("Mail Notification Related: Sales Org and Customers levels contain switch", "CCE_MN_Sorg and CCE_MN_CMD_rR");
         ccePage.waitForLoad();
         
         System.out.println("Navigating to Sales Org page...");
@@ -654,9 +659,9 @@ public class Master_Test extends DriverFactory {
         
         System.out.println("Edit page reached. Checking for Mail Notification field...");
         
-        AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification label not displayed",editPage.getMailNotificationLabel().getText().equals("Enabled Sub Account Option"));
+        AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification label not displayed",editPage.getMailNotificationLabel().getText().equals("CCE Ship Notice"));
         AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification field not displayed",editPage.getMailNotificationField().isDisplayed());
-        String status = editPage.getSubAccountField().getAttribute("checked");
+        String status = editPage.getMailNotificationField().getAttribute("checked");
         AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification field not enabled as expected",status.equals("true"));
         
         System.out.println("Field displayed. Current status: " + status + ", as expected. Navigating to Customer master...");
@@ -673,15 +678,309 @@ public class Master_Test extends DriverFactory {
         Mst_EditCustomerPage editPage2 = custPage.pressEdit(2);
         editPage2.waitForElement();
         
-        System.out.println("Customer found. Checking for Sub-account field...");
+        System.out.println("Customer found. Checking for Mail Notification fields...");
         
-        AssertJUnit.assertTrue("Edit Customer Page: Sub Account label not displayed",editPage2.getSubAcctLabel().getText().equals("Enabled SubAccount Option"));
-        AssertJUnit.assertTrue("Edit Customer Page: Sub Account field not displayed",editPage2.getSubAcctField().isDisplayed());
-        String status2 = editPage2.getSubAcctField().getAttribute("checked");
-        AssertJUnit.assertTrue("Edit Customer Page: Sub Account field not enabled as expected",status2.equals("true"));
+        AssertJUnit.assertTrue("Edit Customer Page: eComm ship notice label not displayed at requester level",editPage2.getEcommMailNotificationLabel().getText().equals("Ship Notice (eComm)"));
+        AssertJUnit.assertTrue("Edit Customer Page: eComm ship notice field not displayed at requester level",editPage2.getEcommMailNotificationField().isDisplayed());
+        AssertJUnit.assertFalse("Edit Customer Page: eComm Mail Notification field not enabled as expected (for first requester)",editPage2.getEcommMailNotificationField().isSelected());
         
-        System.out.println("Field displayed. Current status: " + status + ", as expected.");
+        AssertJUnit.assertTrue("Edit Customer Page: CCE ship notice label not displayed at requester level",editPage2.getCCEMailNotificationLabel().getText().equals("Ship Notice (CCE)"));
+        AssertJUnit.assertTrue("Edit Customer Page: CCE ship notice field not displayed at requester level",editPage2.getCCEMailNotificationField().isDisplayed());
+        AssertJUnit.assertFalse("Edit Customer Page: CCE Mail Notification field not disabled as expected (for first requester)",editPage2.getCCEMailNotificationField().isSelected());
+
+        System.out.println("Fields displayed. Status as expected.");
         
+    }
+    
+    @Test //MultiSoldToUser master :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void multiSoldToUsers1() throws Exception {
+        
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Multi Sold To Users: Page and filter checks, add/edit/delete/export", "A_CB_MSTU_1 to 8");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Multi Sold To Users page...");
+        
+        Mst_MultiSoldToPage multiPage = ccePage.selectMultiSoldTo();
+        multiPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Multi Sold To Users Page: Title not as expected",multiPage.getBreadcrumb().getText().equals("Multi Users"));
+        
+        System.out.println("Title as expected");
+        
+        multiPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        multiPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        multiPage.setSalesOrg("ID51");
+        multiPage.setCustomerName(DataItems.custDetails[0]);
+
+        System.out.println("Criteria entered. Listing records...");
+        
+        multiPage.pressSearch();
+        multiPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(5)";
+        
+        AssertJUnit.assertTrue("Mutli Sold To Page: Filtration does not work as expected",multiPage.checkFiltration(loc1, loc2, "ID51", 2));
+        
+        System.out.println("Filtration working as expected. Creating new Multi Sold To User...");
+        
+        Mst_AddMultiUserPage addPage = multiPage.pressNewUser();
+        addPage.waitForElement();
+        
+        System.out.println("Add multi sold to user page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Multi Sold To User Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Multi Users | Add Multi User"));
+        
+        System.out.println("Title checked");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setFirstName("Automated");
+        addPage.setLastName("MutliSold User");
+        addPage.setUserName("automated@multisold.com");
+        addPage.setPassword("password");
+        addPage.setEmail("joe.sykes@coats.com");
+        addPage.setUserType("Multi Sold To");
+        addPage.setCountry("Indonesia");
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName(DataItems.custDetails[0],"(106499)");
+        addPage.setShipToParty(DataItems.custDetails[1],"(106553)");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        multiPage.waitForElement();
+        
+        System.out.println("Multi Sold To Users Page reached. Checking user was created...");
+        
+        multiPage.setSalesOrg("ID51");
+        multiPage.setCustomerName(DataItems.custDetails[0]);
+        
+        multiPage.pressSearch();
+        multiPage.waitForElement();
+        
+        int row = multiPage.getRow("automated@multisold.com");
+        
+        AssertJUnit.assertFalse("Multi Sold To Page: User could not be found after creation",row==-1);
+        
+        System.out.println("User found. Editing user...");
+        
+        Mst_EditMultiUserPage editPage = multiPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit Multi User Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Multi User Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Multi Users | Edit Multi User"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing username...");
+        
+        editPage.setUserName("autoedited@multisold.com");
+        
+        System.out.println("Username edited. Saving...");
+        
+        editPage.pressSave();
+        multiPage.waitForElement();
+        
+        System.out.println("Saved. Checking record was updated...");
+        
+        multiPage.setSalesOrg("ID51");
+        multiPage.setCustomerName(DataItems.custDetails[0]);
+        multiPage.setUserName("autoedited@multisold.com");
+        
+        multiPage.pressSearch();
+        multiPage.waitForElement();
+        
+        int row2 = multiPage.getRow("autoedited@multisold.com");
+        AssertJUnit.assertFalse("Multi Sold To Users Page: Record not updated once edited",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        multiPage.pressDelete(row2);
+        multiPage.waitForElement();
+        
+        System.out.println("Record deleted. Checking record is removed...");
+        
+        multiPage.setSalesOrg("ID51");
+        multiPage.setCustomerName(DataItems.custDetails[0]);
+        
+        multiPage.pressSearch();
+        multiPage.waitForElement();
+        
+        int row3 = multiPage.getRow("autoedited@multisold.com");
+        AssertJUnit.assertTrue("Multi Sold To Users Page: Record not deleted",row3==-1);
+        
+        System.out.println("Record deleted");
+    }
+    
+    @Test //Shades master :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters","Solo"})
+    public void shades1() throws Exception {
+        
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Shades: Page and filter checks, add/edit/delete/export", "A_CB_MSTU_8");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Multi Sold To Users page...");
+        
+        Mst_ShadesPage shadesPage = ccePage.selectShades();
+        shadesPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Shades Page: Title not as expected",shadesPage.getBreadcrumb().getText().equals("Shades"));
+        
+        System.out.println("Title checked");
+        
+        shadesPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        shadesPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        shadesPage.setShadeCard("GCR");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        shadesPage.pressSearch();
+        shadesPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        
+        AssertJUnit.assertTrue("Shades Page: Filtration not functioning as expected",shadesPage.checkFiltration(loc1, loc2, "GCR", 2));
+        
+        System.out.println("Filter checked. Resetting filter...");
+        
+        shadesPage.pressReset();
+        shadesPage.waitForElement();
+        
+        System.out.println("Filter reset. Creating new shade...");
+        
+        Mst_AddShadePage addPage = shadesPage.pressNewShade();
+        addPage.waitForElement();
+        
+        System.out.println("Add shade page reached. Entering details...");
+        
+        addPage.setShadeCard("GCR");
+        addPage.setShadeName("AutoShade");
+        addPage.setShadeCode("AUT01");
+        addPage.setRedValue("135");
+        addPage.setGreenValue("135");
+        addPage.setBlueValue("135");
+        addPage.setStandardType("Auto");
+        addPage.setTypeCode("AUTO");
+        
+        System.out.println("Details entered. Saving...");
+
+        addPage.pressSave();
+        shadesPage.waitForElement();
+        
+        System.out.println("Saved. Checking shade has been created...");
+        
+        shadesPage.setShadeCode("AUT01");
+        shadesPage.pressSearch();
+        shadesPage.waitForElement();
+        
+        int row = shadesPage.getRow("AUT01");
+        AssertJUnit.assertFalse("Shades Page: Shade does not appear after being created",row==-1);
+        
+        System.out.println("Shade found. Editing shade...");
+        
+        Mst_EditShadePage editShade = shadesPage.pressEdit(row);
+        editShade.waitForElement();
+        
+        System.out.println("Edit page reached. Editing shade code...");
+        
+        editShade.setShadeCode("EDIT01");
+        
+        System.out.println("Edited. Saving...");
+        
+        editShade.pressSave();
+        shadesPage.waitForElement();
+        
+        System.out.println("Saved. Checking changes were applied...");
+        
+        shadesPage.setShadeName("AutoTest");
+        shadesPage.pressSearch();
+        shadesPage.waitForElement();
+        
+        int row2 = shadesPage.getRow("EDIT01");
+        
+        AssertJUnit.assertFalse("Shades Page: Edited shade code does not appear in table",row2==-1);
+        AssertJUnit.assertTrue("Shades Page: Edited change did not take place",shadesPage.getShadeCode(row2).equals("EDIT01"));
+        
+        System.out.println("Changes correctly applied. Deleting shade...");
+        
+        shadesPage.pressDelete(row2);
+        shadesPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking shade is removed...");
+        
+        shadesPage.setShadeCode("EDIT01");
+        shadesPage.pressSearch();
+        shadesPage.waitForElement();
+        
+        AssertJUnit.assertFalse("Shades Page: Deleted shade still appears in table",shadesPage.checkForRecords());
+      
+        System.out.println("Shade removed. Testing export feature...");
+        
+        shadesPage.setShadeCode("C1711");
+        shadesPage.pressSearch();
+        shadesPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = shadesPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function working. Checking import page...");
+
+        Mst_ImportShadesPage importPage = shadesPage.pressImport();
+        importPage.waitForElement();
+        
+        AssertJUnit.assertTrue("Import Shades Page: Title not as expected",importPage.getBreadcrumb().getText().equals("Shades | Import"));
+        
+        System.out.println("Title as expected");
+        
+        importPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        importPage.checkFields();
+        
+        System.out.println("Fields checked");
     }
     
 }

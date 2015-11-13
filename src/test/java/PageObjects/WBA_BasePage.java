@@ -116,7 +116,9 @@ public class WBA_BasePage {
         static By coatsUsersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(2)");
         static By mastersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3)");
             static By salesOrgOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(3)");
+            static By shadesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(4)");
             static By countriesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(2)");
+            static By multiSoldToOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(13)");
             static By subAccountOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(4)");
             static By salesOrgMatOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(6)");
             static By customersOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(2)");
@@ -201,7 +203,8 @@ public class WBA_BasePage {
         WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
         String text = cell.getText();
         String[] parts = text.split("of ");
-        char textCount = parts[1].charAt(0);
+        String[] textParts = parts[1].split("\\|");
+        String textCount = textParts[0];
         
         return Integer.parseInt(String.valueOf(textCount));
     }
@@ -921,6 +924,18 @@ public class WBA_BasePage {
         
     }
     
+    public Mst_ShadesPage selectShades() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadesOption));
+        action.click(driver.findElement(shadesOption)).build().perform();
+        
+        return new Mst_ShadesPage(driver);
+    }
+    
     public Mst_CountriesPage selectCountries() {
         WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
         Actions action = new Actions(driver);
@@ -943,6 +958,18 @@ public class WBA_BasePage {
         action.click(driver.findElement(subAccountOption)).build().perform();
         
         return new Mst_SubAccountPage(driver);
+    }
+    
+    public Mst_MultiSoldToPage selectMultiSoldTo() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(multiSoldToOption));
+        action.click(driver.findElement(multiSoldToOption)).build().perform();
+        
+        return new Mst_MultiSoldToPage(driver);
     }
     
     public WBA_LoginPage pressLogout() {

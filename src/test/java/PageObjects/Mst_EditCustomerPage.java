@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,10 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     //Locators
     By customerNameField = By.id("CustomerCustomerName");
     By contractOrderField = By.id("CustomerOffOrder");
+    By eCommShipNoticeField = By.id("Requester0ShipNoticeMail");
+    By eCommShipNoticeLabel = By.cssSelector("#test > tbody > tr:nth-child(1) > th:nth-child(12)");
+    By cceShipNoticeField = By.id("Requester0ShipNoticeMailCce");
+    By cceShipNoticeLabel = By.cssSelector("#test > tbody > tr:nth-child(1) > th:nth-child(13)");
     By approvalWorkflowBox = By.id("CustomerApprovalWorkflow");
     By subAcctField = By.id("CustomerPayerEnabled");
     By subAcctLabel = By.cssSelector("#CustomerEditForm > div:nth-child(2) > table > tbody > tr:nth-child(34) > td:nth-child(1) > label");
@@ -45,6 +50,26 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     
     public WebElement getSubAcctLabel() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAcctLabel));
+        return element;
+    }
+    
+    public WebElement getEcommMailNotificationField() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(eCommShipNoticeField));
+        return element;
+    }
+    
+    public WebElement getEcommMailNotificationLabel() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(eCommShipNoticeLabel));
+        return element;
+    }
+    
+    public WebElement getCCEMailNotificationField() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cceShipNoticeField));
+        return element;
+    }
+    
+    public WebElement getCCEMailNotificationLabel() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cceShipNoticeLabel));
         return element;
     }
     
