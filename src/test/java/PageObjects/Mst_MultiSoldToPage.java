@@ -68,7 +68,6 @@ public class Mst_MultiSoldToPage extends WBA_BasePage {
         By countLocator = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
         
         int recordCount = this.getRecordCount(countLocator);
-        System.out.println(recordCount);
         
         for (int i = 2; i < (recordCount+2); i++) {
             By usernameField = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(2)");

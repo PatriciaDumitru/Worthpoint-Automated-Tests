@@ -10,6 +10,7 @@ import PageObjects.Ecomm_MainPage;
 import PageObjects.Mst_AddApproverListPage;
 import PageObjects.Mst_AddCoatsUserPage;
 import PageObjects.Mst_AddCustBusPrincPage;
+import PageObjects.Mst_AddCustShadePage;
 import PageObjects.Mst_AddMultiUserPage;
 import PageObjects.Mst_AddShadePage;
 import PageObjects.Mst_AddSubAccountPage;
@@ -19,10 +20,12 @@ import PageObjects.Mst_ApproverListPage;
 import PageObjects.Mst_CoatsUsersPage;
 import PageObjects.Mst_CountriesPage;
 import PageObjects.Mst_CustBusinessPrincipalPage;
+import PageObjects.Mst_CustomerShadesPage;
 import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditApproverListPage;
 import PageObjects.Mst_EditCoatsUserPage;
 import PageObjects.Mst_EditCustBusPrincPage;
+import PageObjects.Mst_EditCustShadePage;
 import PageObjects.Mst_EditCustomerPage;
 import PageObjects.Mst_EditMultiUserPage;
 import PageObjects.Mst_EditSalesOrgPage;
@@ -1014,7 +1017,16 @@ public class Master_Test extends DriverFactory {
         CCE_ExportDownloadPage dlPage = custPage.pressExport();
         dlPage.waitForDownloadCompletion();
         
-        System.out.println("Export function checked");
+        System.out.println("Export function checked. Checking import feature...");
+        
+        Mst_ImportPage impPage = custPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Import Customer Business Principal Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Customer Business Principal | Import"));
+        
+        System.out.println("Title as expected");
     }
     
      @Test //MultiSoldToUser master :: Page and filter checks, add/edit/delete/export features
@@ -1166,7 +1178,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Shades master :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters","Solo"})
+    (groups = {"Masters"})
     public void shades1() throws Exception {
         
         WebDriver driver = getDriver();
@@ -1308,5 +1320,142 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked");
     }
     
+    @Test //Customer Shades :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters","Solo"})
+    public void customerShades1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Customer Shades: Page and filter checks, add/edit/delete/export", "A_CB_CS_1 to 8");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Customer Shades page...");
+        
+        Mst_CustomerShadesPage shadesPage = ccePage.selectCustomerShades();
+        shadesPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Shades Page: Title not as expected",shadesPage.getBreadcrumb().getText().equals("Customer Shades"));
+        
+        System.out.println("Title checked");
+        
+        shadesPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        shadesPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        shadesPage.setCustomerName(DataItems.custDetails[0]);
+        
+        System.out.println("Criteria set. Listing orders...");
+        
+        shadesPage.pressSearch();
+        shadesPage.waitForElement();
+        
+        System.out.println("Orders listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(3)";
+        By countField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Customer Shades Page: Filtration not working as expected",shadesPage.checkFiltration(loc1,loc2, DataItems.custDetails[0], countField, 2));
+        
+        System.out.println("Filtration as expected. Creating new customer shade...");
+        
+        Mst_AddCustShadePage addPage = shadesPage.pressNewCustomerShade();
+        addPage.waitForElement();
+        
+        System.out.println("Add Shade page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Customer Shade Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Customer Shades | Add Customer Shade"));
     
+        System.out.println("Title checked");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering customer details...");
+        
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName(DataItems.custDetails[0]);
+        addPage.setCustomerShade("AutomatedShade");
+        addPage.setCoatsShade("C1711");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        shadesPage.waitForElement();
+        
+        System.out.println("Saved. Checking record was created...");
+        
+        shadesPage.setCustomerName(DataItems.custDetails[0]);
+        shadesPage.pressSearch();
+        shadesPage.waitForElement();
+        
+        int row = shadesPage.getRow("AutomatedShade");
+        
+        AssertJUnit.assertFalse("Customer Shades Page: Customer shade not found after saving",row==-1);
+        
+        System.out.println("Record created. Editing record...");
+        
+        Mst_EditCustShadePage editPage = shadesPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Editing Customer Shade name...");
+        
+        editPage.setCustomerShadeName("Automated Edited");
+        
+        System.out.println("Shade name edited. Saving...");
+        
+        editPage.pressSave();
+        shadesPage.waitForElement();
+        
+        System.out.println("Saved. Checking details updated...");
+        
+        shadesPage.setCustomerName(DataItems.custDetails[0]);
+        shadesPage.pressSearch();
+        shadesPage.waitForElement();
+        
+        int row2 = shadesPage.getRow("Automated Edited");
+        
+        AssertJUnit.assertFalse("Customer Shades Page: Shade record not updated after save pressed",row2==-1);
+        
+        System.out.println("Details updated as expected. Deleting record...");
+        
+        shadesPage.pressDelete(row2);
+        shadesPage.waitForElement();
+        
+        System.out.println("Record deleted. Checking record was removed...");
+        
+        shadesPage.setCustomerName(DataItems.custDetails[0]);
+        shadesPage.pressSearch();
+        shadesPage.waitForElement();
+        
+        int row3 = shadesPage.getRow("Automated Edited");
+        
+        AssertJUnit.assertTrue("Customer Shades Page: Shade record not removed after delete pressed",row3==-1);
+        
+        System.out.println("Record removed. Checking export function...");
+        
+        CCE_ExportDownloadPage dlPage = shadesPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export completed. Checking import function...");
+        
+        Mst_ImportPage importPage = shadesPage.pressImport();
+        importPage.waitForElement();
+        
+        System.out.println("Import page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Import Customer Shades Page: Title not as expected",importPage.getBreadcrumb().getText().equals("Customer Shades | Import"));
+        
+        System.out.println("Title as expected");
+        
+    }
 }

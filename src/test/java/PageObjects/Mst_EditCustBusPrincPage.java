@@ -22,7 +22,7 @@ public class Mst_EditCustBusPrincPage extends WBA_BasePage {
     By custNameField = By.id("s2id_CustomerBusinessPrincipalCustomerId");
     By principalNameField = By.id("CustomerBusinessPrincipalCustomerBusinessPrincipalName");
     By coatsPrincipalNameField = By.id("CustomerBusinessPrincipalBusinessPrincipalId");
-    By saveButton = By.cssSelector("#CustomerBusinessPrincipalAddForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
+    By saveButton = By.cssSelector("#CustomerBusinessPrincipalEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By cancelButton = By.cssSelector("#CustomerBusinessPrincipalAddForm > div.actions > ul > li:nth-child(2) > a");
     
     public WebElement getBreadcrumb() {
@@ -41,6 +41,7 @@ public class Mst_EditCustBusPrincPage extends WBA_BasePage {
     
     public Mst_AddCustBusPrincPage setCustomerBusPrinc(String item) throws InterruptedException {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(principalNameField));
+        element.clear();
         
         CommonTask.setInputField(driver, principalNameField, item);
         return new Mst_AddCustBusPrincPage(driver);

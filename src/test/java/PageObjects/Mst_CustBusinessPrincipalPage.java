@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -93,6 +94,9 @@ public class Mst_CustBusinessPrincipalPage extends WBA_BasePage {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
         element.click();
         
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
         return new Mst_CustBusinessPrincipalPage(driver);
     }
     
@@ -102,11 +106,17 @@ public class Mst_CustBusinessPrincipalPage extends WBA_BasePage {
         Actions action = new Actions(driver);
         action.moveToElement(element).build().perform();
         
-        By xlsx = By.linkText(".XLSX");
+        By xlsx = By.linkText("XLSX");
         WebElement xlsxBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(xlsx));
         xlsxBtn.click();
         
         return new CCE_ExportDownloadPage(driver);
+    }
+    
+    public Mst_ImportPage pressImport() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(importButton));
+        element.click();
+        return new Mst_ImportPage(driver);
     }
     
     public void checkFields() {
