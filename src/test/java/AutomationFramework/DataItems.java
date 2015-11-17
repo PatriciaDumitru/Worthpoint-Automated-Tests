@@ -120,6 +120,9 @@ public class DataItems {
     //Flashmessage locator which displays messages on various pages
     public static By flashMessage = By.id("flashMessage");
     
+    //No records found text field locator
+    public static By noRecords = By.className("norec");
+    
     //Masters tabs
     public static String[][] masters = {
         {"BLANK","Countries","Sales Organisations","Plants","Plant Holidays","Hubs","Enterprise Structure","Brands","Tickets","Lengths","Finishes","Basic Materials","Material Groups","Hierarchy","Light Sources","Purpose Types","Rejection Reasons","Warehouse Instructions"},

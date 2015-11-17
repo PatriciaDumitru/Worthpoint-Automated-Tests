@@ -7,14 +7,20 @@ import PageObjects.CCE_ExportDownloadPage;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.Ecomm_MainPage;
+import PageObjects.Mst_AddApproverListPage;
 import PageObjects.Mst_AddCoatsUserPage;
+import PageObjects.Mst_AddCustBusPrincPage;
 import PageObjects.Mst_AddSubAccountPage;
 import PageObjects.Mst_AddUserTypePage;
 import PageObjects.Mst_AllUserTypesPage;
+import PageObjects.Mst_ApproverListPage;
 import PageObjects.Mst_CoatsUsersPage;
 import PageObjects.Mst_CountriesPage;
+import PageObjects.Mst_CustBusinessPrincipalPage;
 import PageObjects.Mst_CustomersPage;
+import PageObjects.Mst_EditApproverListPage;
 import PageObjects.Mst_EditCoatsUserPage;
+import PageObjects.Mst_EditCustBusPrincPage;
 import PageObjects.Mst_EditCustomerPage;
 import PageObjects.Mst_EditSalesOrgPage;
 import PageObjects.Mst_EditSubAccountPage;
@@ -24,6 +30,7 @@ import PageObjects.Mst_SalesOrgPage;
 import PageObjects.Mst_SubAccountPage;
 import PageObjects.WBA_BasePage;
 import com.coats.selenium.DriverFactory;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -624,7 +631,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Mail Notification Related :: Switch for mail notifications present in sales org and customer (requester level) master data
-    (groups = {"Masters","Solo"})
+    (groups = {"Masters"})
     public void mailNotification1() throws Exception {
         
         WebDriver driver = getDriver();
@@ -654,7 +661,7 @@ public class Master_Test extends DriverFactory {
         
         System.out.println("Edit page reached. Checking for Mail Notification field...");
         
-        AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification label not displayed",editPage.getMailNotificationLabel().getText().equals("Enabled Sub Account Option"));
+        AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification label text not as expected",editPage.getMailNotificationLabel().getText().equals("CCE Ship Notice"));
         AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification field not displayed",editPage.getMailNotificationField().isDisplayed());
         String status = editPage.getSubAccountField().getAttribute("checked");
         AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification field not enabled as expected",status.equals("true"));
@@ -682,6 +689,325 @@ public class Master_Test extends DriverFactory {
         
         System.out.println("Field displayed. Current status: " + status + ", as expected.");
         
+    }
+    
+    @Test //Approver List (Online Approval Related) :: Page and filter checks, add/edit/delete
+    (groups = {"Masters"})
+    public void approverList1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Approver List (Online Approval Related): Page and filter checks, add/edit/delete", "OA_MD_MA_1 to 10");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Customer...");
+        
+        Mst_CustomersPage custPage = ccePage.selectCustomers();
+        custPage.waitForElement();
+        
+        System.out.println("Page reached. Editing top item...");
+        
+        Mst_EditCustomerPage editPage = custPage.pressEdit(2);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Asserting approval workflow flag appears...");
+        
+        AssertJUnit.assertTrue("Edit Customer Page: Approval workflow checkbox not displayed",editPage.getApprovalWorkflowBox().isDisplayed());
+        
+        System.out.println("Flag appears. Navigating to Approver List...");
+        
+        Mst_ApproverListPage appList = editPage.selectApproverList();
+        appList.waitForElement();
+        
+        System.out.println("Approver List Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Approver List Page: Title not as expected",appList.getBreadcrumb().getText().equals("Approver List"));
+        
+        System.out.println("Title as expected");
+        
+        appList.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        appList.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        appList.setSalesOrg("ID51");
+        appList.setCustomerName(DataItems.custDetails[0]);
+        appList.pressSearch();
+        appList.waitForElement();
+        
+        System.out.println("Filter criteria entered. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(3)";
+        
+        By countField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Filtration not as expected",appList.checkFiltration(loc1, loc2,DataItems.custDetails[0],countField, 2));
+        
+        System.out.println("Filtration checked. Creating new approver list...");
+        
+        Mst_AddApproverListPage addPage = appList.pressAddApproverList();
+        addPage.waitForElement();
+        
+        System.out.println("Add list page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Approver List Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Approver List | Add Approver List"));
+    
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName(DataItems.custDetails[0]);
+        addPage.setRequester("Auto Approver");
+        addPage.setValueStart("0.01");
+        addPage.setValueUntil("100.00");
+        addPage.enableEmailNotif();
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        appList.waitForElement();
+        
+        System.out.println("Saved. Checking record is created...");
+        
+        appList.setSalesOrg("ID51");
+        appList.setCustomerName(DataItems.custDetails[0]);
+        appList.pressSearch();
+        appList.waitForElement();
+        
+        int row = appList.getRow("approver@lifeeasy.com");
+        System.out.println(row);
+        AssertJUnit.assertFalse("Approver List Page: Approver list not found after being created",row==-1);
+        
+        System.out.println("Record created. Editing item...");
+        
+        Mst_EditApproverListPage editPage2 = appList.pressEdit(row);
+        editPage2.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Approver List Page: Title not as expected",editPage2.getBreadcrumb().getText().equals("Approver List | Edit Approver List"));
+        
+        System.out.println("Title checked");
+        
+        editPage2.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage2.checkFields();
+        
+        System.out.println("Fields checked. Editing until value...");
+        
+        AssertJUnit.assertTrue("Edit Approver List Page: Requester not as expected, record not edited",editPage2.getRequester().equals("Auto Approver"));
+        
+        editPage2.setValueUntil("10.00");
+        
+        System.out.println("Value edited. Saving...");
+        
+        editPage2.pressSave();
+        appList.waitForElement();
+        
+        System.out.println("Saved. Checking changes were applied...");
+        
+        appList.setSalesOrg("ID51");
+        appList.setCustomerName(DataItems.custDetails[0]);
+        appList.pressSearch();
+        appList.waitForElement();
+        
+        int row2 = appList.getRow("approver@lifeeasy.com");
+        String value = appList.getValueUntil(row2);
+        
+        AssertJUnit.assertTrue("Approver List Page: Record not updated after edit saved. Value until: " + value,value.equals("10.00"));
+        
+        System.out.println("Changes correctly applied. Deleting record...");
+        
+        appList.pressDelete(row2);
+        
+        System.out.println("Delete pressed. Checking record is removed...");
+        
+        appList.setSalesOrg("ID51");
+        appList.setCustomerName(DataItems.custDetails[0]);
+        appList.pressSearch();
+        appList.waitForElement();
+        
+        int row3 = appList.getRow("approver@lifeeasy.com");
+        AssertJUnit.assertTrue("Approver List Page: Record persists after deletion",row3 == -1);
+        
+        System.out.println("Record removed. Testing export feature...");
+        
+        appList.setCustomerName(DataItems.custDetails[0]);
+        appList.pressSearch();
+        appList.waitForLoad();
+        CCE_ExportDownloadPage dlPage = appList.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export download completed");
+    }
+    
+    @Test //Approver User Type :: User type can be found and used in masters
+    (groups = {"Masters"})
+    public void approverUserType1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Approver User Type: Customer user type can be set to 'Approver'", "OA_MD_UT_2");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Customer...");
+        
+        Mst_CustomersPage custPage = ccePage.selectCustomers();
+        custPage.waitForElement();
+        
+        System.out.println("Page reached. Entering filter criteria and editing...");
+        
+        custPage.setCustomerName(DataItems.custDetails[0]);
+        custPage.pressSearch();
+        custPage.waitForElement();
+        
+        Mst_EditCustomerPage editPage = custPage.pressEdit(2);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Asserting Requester User Type can be set to Approver...");
+        
+        AssertJUnit.assertTrue("Edit Customer Page: Approver User Type is not available to be set",editPage.findUserType("Approver"));
+        
+        System.out.println("Approver type found");
+    }
+    
+    @Test //Cusotmer Business Principal :: Page and filter checks, add/edit/delete functions
+    (groups = {"Masters","Solo"})
+    public void businessPrinc1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Customer Business Principal: Page and filter checks, add/edit/delete functions", "A_CB_CBP_1 to 8");
+        ccePage.waitForLoad();
+        
+        System.out.println("Navigating to Customer Business Principals...");
+        
+        Mst_CustBusinessPrincipalPage custPage = ccePage.selectCustBusinessPrincipal();
+        custPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Business Principal Page: Title not as expected",custPage.getBreadcrumb().getText().equals("Customer Business Principal"));
+        
+        System.out.println("Title checked");
+        
+        custPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        custPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        custPage.setSalesOrg("ID51");
+        custPage.setCustomerName(DataItems.custDetails[0]);
+        custPage.pressSearch();
+        custPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(3)";
+        By countField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Customer Business Principal Page: Filtration not working as expected",custPage.checkFiltration(loc1,loc2,DataItems.custDetails[0],countField,2));
+        
+        System.out.println("Filtration as expected. Creating new Customer Business Principal...");
+        
+        Mst_AddCustBusPrincPage addPage = custPage.pressNew();
+        addPage.waitForElement();
+        
+        System.out.println("Add page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Add Customer Business Principal Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Customer Business Principal | Add Customer Business Principal"));
+        
+        System.out.println("Title checked");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName(DataItems.custDetails[0]);
+        addPage.setCustomerBusPrinc("Automated Principal");
+        addPage.setCoatsBusPrinc(DataItems.custDetails[3]);
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        custPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears in table...");
+
+        int row = custPage.getRow("Automated Principal");
+        
+        AssertJUnit.assertFalse("Customer Business Principal Page: New item does not appear in table after saving",row == -1);
+        
+        System.out.println("Item found. Editing item...");
+        
+        Mst_EditCustBusPrincPage editPage = custPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Editing Principal Name...");
+        
+        editPage.setCustomerBusPrinc("Automated Edited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        custPage.waitForElement();
+        
+        System.out.println("Saved. Checking record was updated...");
+        
+        custPage.setCustomerName(DataItems.custDetails[0]);
+        custPage.pressSearch();
+        custPage.waitForElement();
+        
+        int row2 = custPage.getRow("Automated Edited");
+        
+        AssertJUnit.assertFalse("Customer Business Principal Page: Change was not made to record after saving",row2 == -1);
+        
+        System.out.println("Record updated as expected. Deleting record...");
+        
+        custPage.pressDelete(row2);
+        custPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking delete occurred...");
+        
+        custPage.setCustomerName(DataItems.custDetails[0]);
+        custPage.pressSearch();
+        custPage.waitForElement();
+        
+        int row3 = custPage.getRow("Automated Edited");
+        
+        AssertJUnit.assertTrue("Customer Business Principal Page: Record was not removed from table after deletion",row3==-1);
+        
+        System.out.println("Record deleted. Checking export function...");
+        
+        custPage.setCustomerName(DataItems.custDetails[0]);
+        custPage.pressSearch();
+        custPage.waitForElement();
+        CCE_ExportDownloadPage dlPage = custPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function checked");
     }
     
 }

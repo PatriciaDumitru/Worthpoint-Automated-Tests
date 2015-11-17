@@ -3,10 +3,12 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 
@@ -18,6 +20,7 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     By approvalWorkflowBox = By.id("CustomerApprovalWorkflow");
     By subAcctField = By.id("CustomerPayerEnabled");
     By subAcctLabel = By.cssSelector("#CustomerEditForm > div:nth-child(2) > table > tbody > tr:nth-child(34) > td:nth-child(1) > label");
+    By userTypeField = By.id("Requester0UserTypeId");
     By saveButton = By.cssSelector("#CustomerEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     
     public Mst_EditCustomerPage(WebDriver driver) {
@@ -66,6 +69,22 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     public Mst_EditCustomerPage unsetCallOffOrder() {
         CommonTask.uncheckBox(driver, contractOrderField);
         return new Mst_EditCustomerPage(driver);
+    }
+    
+    public boolean findUserType(String type) {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(userTypeField));
+        element.click();
+        
+        Select select = new Select(element);
+        List<WebElement> elements = select.getOptions();
+        
+        for (WebElement e : elements) {
+            if (e.getText().equals(type)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     public Mst_CustomersPage pressSave() {
