@@ -892,7 +892,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Cusotmer Business Principal :: Page and filter checks, add/edit/delete functions
-    (groups = {"Masters","Solo"})
+    (groups = {"Masters"})
     public void businessPrinc1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -1166,7 +1166,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Shades master :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters"})
+    (groups = {"Masters","Solo"})
     public void shades1() throws Exception {
         
         WebDriver driver = getDriver();
