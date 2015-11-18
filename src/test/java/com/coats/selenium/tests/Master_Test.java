@@ -8,29 +8,41 @@ import PageObjects.CCE_MainPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Mst_AddApproverListPage;
+import PageObjects.Mst_AddBusinessPrincipalPage;
 import PageObjects.Mst_AddCoatsUserPage;
+import PageObjects.Mst_AddCustBrandPage;
 import PageObjects.Mst_AddCustBusPrincPage;
 import PageObjects.Mst_AddCustFinishPage;
 import PageObjects.Mst_AddCustLengthPage;
+import PageObjects.Mst_AddCustMaterialPage;
 import PageObjects.Mst_AddCustShadePage;
+import PageObjects.Mst_AddCustTicketPage;
 import PageObjects.Mst_AddMultiUserPage;
 import PageObjects.Mst_AddShadePage;
 import PageObjects.Mst_AddSubAccountPage;
 import PageObjects.Mst_AddUserTypePage;
 import PageObjects.Mst_AllUserTypesPage;
 import PageObjects.Mst_ApproverListPage;
+import PageObjects.Mst_BusinessPrincipalsPage;
 import PageObjects.Mst_CoatsUsersPage;
 import PageObjects.Mst_CountriesPage;
+import PageObjects.Mst_CustBrandsPage;
 import PageObjects.Mst_CustBusinessPrincipalPage;
 import PageObjects.Mst_CustFinishesPage;
 import PageObjects.Mst_CustLengthsPage;
+import PageObjects.Mst_CustMaterialsPage;
+import PageObjects.Mst_CustTicketsPage;
 import PageObjects.Mst_CustomerShadesPage;
 import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditApproverListPage;
+import PageObjects.Mst_EditBusinessPrincipalPage;
 import PageObjects.Mst_EditCoatsUserPage;
+import PageObjects.Mst_EditCustBrandPage;
 import PageObjects.Mst_EditCustBusPrincPage;
 import PageObjects.Mst_EditCustFinishPage;
+import PageObjects.Mst_EditCustMaterialPage;
 import PageObjects.Mst_EditCustShadePage;
+import PageObjects.Mst_EditCustTicketPage;
 import PageObjects.Mst_EditCustomerPage;
 import PageObjects.Mst_EditMultiUserPage;
 import PageObjects.Mst_EditSalesOrgPage;
@@ -1763,4 +1775,612 @@ public class Master_Test extends DriverFactory {
     
         System.out.println("Title as expected");
     }
+    
+    @Test //Customer Tickets :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void customerTickets1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Customer Tickets: Page and filter checks, add/edit/delete/export features", "A_CB_Ctkt_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Customer Tickets Page...");
+        
+        Mst_CustTicketsPage tktPage = mainPage.selectCustomerTickets();
+        tktPage.waitForElement();
+        
+        System.out.println("Tickets page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Tickets Page: Title not as expected",tktPage.getBreadcrumb().getText().equals("Customer Tickets"));
+        
+        System.out.println("Title checked");
+        
+        tktPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        tktPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        tktPage.setSalesOrg("ID51");
+        tktPage.setCustomerName(DataItems.custDetails[0]);
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        tktPage.pressSearch();
+        tktPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(3)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Customer Tickets Page: Filtration not working as expected",tktPage.checkFiltration(loc1,loc2,DataItems.custDetails[0],recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Customer Ticket...");
+        
+        Mst_AddCustTicketPage addPage = tktPage.pressNewCustTicket();
+        addPage.waitForElement();
+        
+        System.out.println("Add Customer Ticket Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Customer Ticket Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Customer Tickets | Add Customer Ticket"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName(DataItems.custDetails[0]);
+        addPage.setCoatsTicket("031");
+        addPage.setCustomerTicket("AutoTkt");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        tktPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        int row = tktPage.getRow("AutoTkt");
+        
+        AssertJUnit.assertFalse("Customer Ticket Page: Customer Ticket not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditCustTicketPage editPage = tktPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Customer Ticket Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Customer Tickets | Edit Customer Ticket"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing customer ticket name...");
+        
+        editPage.setCustomerTicket("AutoEdited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        tktPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        tktPage.setSalesOrg("ID51");
+        tktPage.setCustomerName(DataItems.custDetails[0]);
+        tktPage.pressSearch();
+        tktPage.waitForElement();
+        
+        int row2 = tktPage.getRow("AutoEdited");
+        AssertJUnit.assertFalse("Customer Tickets Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        tktPage.pressDelete(row2);
+        tktPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        tktPage.setSalesOrg("ID51");
+        tktPage.setCustomerName(DataItems.custDetails[0]);
+        tktPage.pressSearch();
+        tktPage.waitForElement();
+        
+        int row3 = tktPage.getRow("AutoEdited");
+        AssertJUnit.assertTrue("Customer Tickets Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        tktPage.setCustomerName(DataItems.custDetails[0]);
+        tktPage.pressSearch();
+        tktPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = tktPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = tktPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Tickets Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Customer Tickets | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Customer Brands :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void customerBrands1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Customer Brands: Page and filter checks, add/edit/delete/export features", "A_CB_CB_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Customer Brands Page...");
+        
+        Mst_CustBrandsPage brndPage = mainPage.selectCustomerBrands();
+        brndPage.waitForElement();
+        
+        System.out.println("Brands page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Brands Page: Title not as expected",brndPage.getBreadcrumb().getText().equals("Customer Brands"));
+        
+        System.out.println("Title checked");
+        
+        brndPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        brndPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        brndPage.setSalesOrg("ID51");
+        brndPage.setCustomerName(DataItems.custDetails[0]);
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        brndPage.pressSearch();
+        brndPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(3)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Customer Brands Page: Filtration not working as expected",brndPage.checkFiltration(loc1,loc2,DataItems.custDetails[0],recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Customer Ticket...");
+        
+        Mst_AddCustBrandPage addPage = brndPage.pressNewCustBrand();
+        addPage.waitForElement();
+        
+        System.out.println("Add Customer Brand Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Customer Brand Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Customer Brands | Add Customer Brand"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName(DataItems.custDetails[0]);
+        addPage.setCoatsBrand("nymo");
+        addPage.setCustomerBrand("AutoBrand");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        brndPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        int row = brndPage.getRow("AutoBrand");
+        
+        AssertJUnit.assertFalse("Customer Ticket Page: Customer Brand not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditCustBrandPage editPage = brndPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Customer Brand Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Customer Brands | Edit Customer Brand"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing customer brand name...");
+        
+        editPage.setCustomerBrand("AutoEdited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        brndPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        brndPage.setSalesOrg("ID51");
+        brndPage.setCustomerName(DataItems.custDetails[0]);
+        brndPage.pressSearch();
+        brndPage.waitForElement();
+        
+        int row2 = brndPage.getRow("AutoEdited");
+        AssertJUnit.assertFalse("Customer Brands Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        brndPage.pressDelete(row2);
+        brndPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        brndPage.setSalesOrg("ID51");
+        brndPage.setCustomerName(DataItems.custDetails[0]);
+        brndPage.pressSearch();
+        brndPage.waitForElement();
+        
+        int row3 = brndPage.getRow("AutoEdited");
+        AssertJUnit.assertTrue("Customer Brands Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        brndPage.setCustomerName(DataItems.custDetails[0]);
+        brndPage.pressSearch();
+        brndPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = brndPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = brndPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Brands Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Customer Brands | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Customer Materials :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void customerMaterials() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Customer Materials: Page and filter checks, add/edit/delete/export features", "A_CB_CM_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Customer Materials Page...");
+        
+        Mst_CustMaterialsPage matPage = mainPage.selectCustomerMaterials();
+        matPage.waitForElement();
+        
+        System.out.println("Materials page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Materials Page: Title not as expected",matPage.getBreadcrumb().getText().equals("Customer Materials"));
+        
+        System.out.println("Title checked");
+        
+        matPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        matPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        matPage.setSalesOrg("ID51");
+        matPage.setCustomerName(DataItems.custDetails[0]);
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        matPage.pressSearch();
+        matPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Customer Materials Page: Filtration not working as expected",matPage.checkFiltration(loc1,loc2,DataItems.custDetails[0],recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Customer Materials...");
+        
+        Mst_AddCustMaterialPage addPage = matPage.pressNewCustMaterial();
+        addPage.waitForElement();
+        
+        System.out.println("Add Customer Material Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Customer Material Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Customer Materials | Add Customer Material"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName(DataItems.custDetails[0]);
+        addPage.setCustomerMaterialNo("AutoMaterial");
+        addPage.setArticle("8754090");
+        addPage.setShadeCode("C9700");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        matPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        matPage.setCustomerMaterialNo("AutoMaterial");
+        matPage.pressSearch();
+        matPage.waitForElement();
+        
+        int row = matPage.getRow("AutoMaterial");
+        
+        AssertJUnit.assertFalse("Customer Materials Page: Customer Material not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditCustMaterialPage editPage = matPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Customer Material Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Customer Materials | Edit Customer Material"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing customer material name...");
+        
+        editPage.setCustomerMaterialNo("AutoEdited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        matPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        matPage.setCustomerMaterialNo("AutoEdited");
+        matPage.pressSearch();
+        matPage.waitForElement();
+        
+        int row2 = matPage.getRow("AutoEdited");
+        AssertJUnit.assertFalse("Customer Materials Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        matPage.pressDelete(row2);
+        matPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        matPage.setCustomerMaterialNo("Auto");
+        matPage.pressSearch();
+        matPage.waitForElement();
+        
+        int row3 = matPage.getRow("AutoEdited");
+        AssertJUnit.assertTrue("Customer Materials Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        matPage.setCustomerName(DataItems.custDetails[0]);
+        matPage.pressSearch();
+        matPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = matPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = matPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Materials Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Customer Materials | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Business Principals :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters","Solo"})
+    public void businessPrincipals1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Business Principals: Page and filter checks, add/edit/delete/export features", "A_CB_BP_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Business Principals Page...");
+        
+        Mst_BusinessPrincipalsPage bpPage = mainPage.selectBusinessPrincipals();
+        bpPage.waitForElement();
+        
+        System.out.println("Business Principals page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Business Principals Page: Title not as expected",bpPage.getBreadcrumb().getText().equals("Business Principals"));
+        
+        System.out.println("Title checked");
+        
+        bpPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        bpPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        bpPage.setPrincipalName("*OTHERS*");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        bpPage.pressSearch();
+        bpPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(3)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Business Principals Page: Filtration not working as expected",bpPage.checkFiltration(loc1,loc2,"*OTHERS*",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Business Principals...");
+        
+        Mst_AddBusinessPrincipalPage addPage = bpPage.pressNewBusinessPrincipal();
+        addPage.waitForElement();
+        
+        System.out.println("Add Business Principal Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Business Principal Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Business Principals | Add Business Principal"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setPrincipalName("AutomatedTest");
+        addPage.setPrincipalNo("100");
+        addPage.setLightSource1("CWF");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        bpPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        bpPage.setPrincipalName("AutomatedTest");
+        bpPage.pressSearch();
+        bpPage.waitForElement();
+        
+        int row = bpPage.getRow("AutomatedTest");
+        
+        AssertJUnit.assertFalse("Business Principals Page: Business Principal not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditBusinessPrincipalPage editPage = bpPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Business Principal Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Business Principals | Add Business Principal"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing customer material name...");
+        
+        editPage.setPrincipalName("AutoEdited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        bpPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        bpPage.setPrincipalName("AutoEdited");
+        bpPage.pressSearch();
+        bpPage.waitForElement();
+        
+        int row2 = bpPage.getRow("AutoEdited");
+        AssertJUnit.assertFalse("Business Principals Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        bpPage.pressDelete(row2);
+        bpPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        bpPage.setPrincipalName("Auto");
+        bpPage.pressSearch();
+        bpPage.waitForElement();
+        
+        int row3 = bpPage.getRow("AutoEdited");
+        AssertJUnit.assertTrue("Business Principals Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        bpPage.setPrincipalName("*OTHERS*");
+        bpPage.pressSearch();
+        bpPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = bpPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = bpPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Materials Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Business Principals | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
 }

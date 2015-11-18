@@ -126,6 +126,10 @@ public class WBA_BasePage {
             static By custBusPrincOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(14)");
             static By custFinishesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(10)");
             static By custLengthsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(9)");
+            static By custTicketsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(8)");
+            static By custBrandsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(7)");
+            static By custMaterialsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(6)");
+            static By businessPrincipalsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(5)");
         static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
         static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
         static By archivesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(6)");
@@ -846,7 +850,10 @@ public class WBA_BasePage {
     public boolean checkFiltration(String locator1, String locator2, String item, By countField, int firstRow) {
         
         int count = this.getRecordCount(countField);
-        for (int i = firstRow; i < (count + firstRow); i++) {
+        
+        int tableCount = (count >= 10) ? 10 : count;
+        
+        for (int i = firstRow; i < (tableCount + firstRow); i++) {
             By locator = By.cssSelector(locator1 + "" +  i + "" + locator2);
             WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
             if (!element.getText().trim().equals(item)) {
@@ -1047,6 +1054,54 @@ public class WBA_BasePage {
         action.click(driver.findElement(custLengthsOption)).build().perform();
         
         return new Mst_CustLengthsPage(driver);
+    }
+    
+    public Mst_CustTicketsPage selectCustomerTickets() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custTicketsOption));
+        action.click(driver.findElement(custTicketsOption)).build().perform();
+        
+        return new Mst_CustTicketsPage(driver);
+    }
+    
+    public Mst_CustBrandsPage selectCustomerBrands() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custBrandsOption));
+        action.click(driver.findElement(custBrandsOption)).build().perform();
+        
+        return new Mst_CustBrandsPage(driver);
+    }
+    
+    public Mst_CustMaterialsPage selectCustomerMaterials() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custMaterialsOption));
+        action.click(driver.findElement(custMaterialsOption)).build().perform();
+        
+        return new Mst_CustMaterialsPage(driver);
+    }
+    
+    public Mst_BusinessPrincipalsPage selectBusinessPrincipals() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(businessPrincipalsOption));
+        action.click(driver.findElement(businessPrincipalsOption)).build().perform();
+        
+        return new Mst_BusinessPrincipalsPage(driver);
     }
     
     public WBA_LoginPage pressLogout() {
