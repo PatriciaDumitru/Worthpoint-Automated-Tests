@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import static PageObjects.WBA_BasePage.driver;
+import java.sql.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,19 +12,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 
-public class Mst_EditCustFinishPage extends WBA_BasePage {
+public class Mst_AddCustFinishPage extends WBA_BasePage {
+    
+    public Mst_AddCustFinishPage(WebDriver driver) {
+        super(driver);
+    }
     
     //Locators
     By salesOrgField = By.id("CustomerFinishSalesOrgId");
     By custNameField = By.id("s2id_CustomerFinishCustomerId");
     By custFinishField = By.id("CustomerFinishCustomerFinishName");
     By coatsFinishField = By.id("CustomerFinishFinishId");
-    By saveButton = By.cssSelector("#CustomerFinishEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
-    By cancelButton = By.cssSelector("#CustomerFinishEditForm > div.actions > ul > li:nth-child(2) > a");
-    
-    public Mst_EditCustFinishPage(WebDriver driver) {
-        super(driver);
-    }
+    By saveButton = By.cssSelector("#CustomerFinishAddForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
+    By cancelButton = By.cssSelector("#CustomerFinishAddForm > div.actions > ul > li:nth-child(2) > a");
     
     public WebElement getBreadcrumb() {
         return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
@@ -39,9 +41,6 @@ public class Mst_EditCustFinishPage extends WBA_BasePage {
     }
     
     public Mst_EditCustFinishPage setCustomerFinish(String item) throws InterruptedException {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custFinishField));
-        element.clear();
-        
         CommonTask.setInputField(driver, custFinishField, item);
         return new Mst_EditCustFinishPage(driver);
     }

@@ -31,7 +31,7 @@ import org.testng.annotations.Test;
 public class Cce_ConfirmProduction_Test extends DriverFactory {
     
     @Test //Confirm Production Page :: Page and filer checks, view and confirm
-    (groups = {"CCE","Solo"})
+    (groups = {"CCE"})
     public void CP1() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

@@ -23,6 +23,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -293,7 +294,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: Multi-line copied data
-    (groups = {"CCE","CCE_Orders","QuickTest","Solo"})
+    (groups = {"CCE","CCE_Orders","QuickTest"})
     public void SOC5() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -811,6 +812,14 @@ public class Cce_SOC_Test extends DriverFactory {
         addOrder.setPurposeType(DataItems.bulkPurpose, 0);
         addOrder.setRequestType(DataItems.sewing, 0);
         addOrder.setQuantity(DataItems.thresholdQty, 0);
+        
+        try {
+            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            AssertJUnit.assertTrue("Order Samples Page: Free quantity exceeded. Unexpected alert appeared: " + alert.getText(),alert.getText().contains("exceed the limit for free sample"));
+            alert.accept();
+        } catch (TimeoutException t) {
+            System.out.println("No alert appeared");
+        }
         
         System.out.println("Details added. Submitting order...");
         
