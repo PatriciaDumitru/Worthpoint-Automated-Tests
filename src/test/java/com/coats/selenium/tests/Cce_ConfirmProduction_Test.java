@@ -31,7 +31,7 @@ import org.testng.annotations.Test;
 public class Cce_ConfirmProduction_Test extends DriverFactory {
     
     @Test //Confirm Production Page :: Page and filer checks, view and confirm
-    (groups = {"CCE"})
+    (groups = {"CCE","Solo"})
     public void CP1() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -106,10 +106,6 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         
         viewPage.closeView();
         viewPage.waitForInvisibility();
-        
-        //Take a screenshot
-        File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\6DN View.png"));
         
         try {
             Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());

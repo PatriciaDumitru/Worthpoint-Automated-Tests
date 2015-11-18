@@ -20,6 +20,7 @@ import PageObjects.Mst_ApproverListPage;
 import PageObjects.Mst_CoatsUsersPage;
 import PageObjects.Mst_CountriesPage;
 import PageObjects.Mst_CustBusinessPrincipalPage;
+import PageObjects.Mst_CustFinishesPage;
 import PageObjects.Mst_CustomerShadesPage;
 import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditApproverListPage;
@@ -1457,5 +1458,37 @@ public class Master_Test extends DriverFactory {
         
         System.out.println("Title as expected");
         
+    }
+    
+    @Test //Customer Finishes :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void customerFinishes1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Customer Finishes: Page and filter checks, add/edit/delete/export features", "A_CB_CF_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Customer Finishes Page...");
+        
+        Mst_CustFinishesPage finPage = mainPage.selectCustomerFinishes();
+        finPage.waitForElement();
+        
+        System.out.println("Finish page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Finishes Page: Title not as expected",finPage.getBreadcrumb().getText().equals("Customer Finishes"));
+        
+        System.out.println("Title checked");
+        
+        finPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        finPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        finPage.setSalesOrg("ID51");
+        finPage.setCustomerName(DataItems.custDetails[0]);
     }
 }
