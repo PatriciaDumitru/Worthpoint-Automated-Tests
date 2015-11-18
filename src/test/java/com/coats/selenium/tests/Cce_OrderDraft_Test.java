@@ -104,15 +104,6 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         System.out.println("Reason set. Saving...");
         
         cancelPage.pressSave();
-        
-        /*
-        System.out.println("Response saved. Closing view...");
-        
-        cancelPage.closeView();
-        cancelPage.waitForInvisibility();
-        
-        System.out.println("View closed");
-        */
 
         System.out.println("Saved. Checking draft was removed...");
         
@@ -234,7 +225,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         String orderNo = draftPage.getOrderNo(2);
         
         CCE_AddOrderPage entryPage = draftPage.pressEdit(2);
-        entryPage.waitForLoad();
+        entryPage.waitForElement();
         
         System.out.println("Entry page reached. Cancelling draft...");
         

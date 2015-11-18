@@ -56,7 +56,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By submitOrderButton = By.id("submit");
     static By pendOrderButton = By.id("pending");
     static By cancelButton = By.cssSelector("#SampleOrderAddForm > div:nth-child(5) > div.actions > ul > li:nth-child(3) > a");
-
+    static By cancelToDraftsButton = By.cssSelector("#SampleOrderEditForm > div:nth-child(4) > div.actions > ul > li:nth-child(3) > a"); //cancel button has different locator when reached from draft
+    
     //Fields which appear upon click "Yes" to Direct Enrich
     static By enrichCommentsField = By.id("SampleOrderLine0FceComments");
     static By enrichCompletedYesButton = By.id("SampleOrderLine0IsOrderCompleted1");
@@ -376,9 +377,11 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     
     public CCE_OutstandingDraftPage pressCancelToDrafts() {
         
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelToDraftsButton));
         
-        element.click();
+        Actions action = new Actions(driver);
+        action.moveToElement(element).build().perform();
+        action.click().build().perform();
         
         return new CCE_OutstandingDraftPage(driver);
     }

@@ -11,6 +11,7 @@ import PageObjects.Mst_AddApproverListPage;
 import PageObjects.Mst_AddCoatsUserPage;
 import PageObjects.Mst_AddCustBusPrincPage;
 import PageObjects.Mst_AddCustFinishPage;
+import PageObjects.Mst_AddCustLengthPage;
 import PageObjects.Mst_AddCustShadePage;
 import PageObjects.Mst_AddMultiUserPage;
 import PageObjects.Mst_AddShadePage;
@@ -22,6 +23,7 @@ import PageObjects.Mst_CoatsUsersPage;
 import PageObjects.Mst_CountriesPage;
 import PageObjects.Mst_CustBusinessPrincipalPage;
 import PageObjects.Mst_CustFinishesPage;
+import PageObjects.Mst_CustLengthsPage;
 import PageObjects.Mst_CustomerShadesPage;
 import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditApproverListPage;
@@ -1607,6 +1609,157 @@ public class Master_Test extends DriverFactory {
         System.out.println("Page reached. Checking title...");
         
         AssertJUnit.assertTrue("Customer Finishes Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Customer Finishes | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Customer Lengths :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void customerLengths1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Customer Lengths: Page and filter checks, add/edit/delete/export features", "A_CB_CL_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Customer Lengths Page...");
+        
+        Mst_CustLengthsPage lenPage = mainPage.selectCustomerLengths();
+        lenPage.waitForElement();
+        
+        System.out.println("Lengths page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Lengths Page: Title not as expected",lenPage.getBreadcrumb().getText().equals("Customer Lengths"));
+        
+        System.out.println("Title checked");
+        
+        lenPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        lenPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        lenPage.setSalesOrg("ID51");
+        lenPage.setCustomerName(DataItems.custDetails[0]);
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        lenPage.pressSearch();
+        lenPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(3)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Customer Lengths Page: Filtration not working as expected",lenPage.checkFiltration(loc1,loc2,DataItems.custDetails[0],recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Customer Finish...");
+        
+        Mst_AddCustLengthPage addPage = lenPage.pressNewCustomerLength();
+        addPage.waitForElement();
+        
+        System.out.println("Add Customer Length Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Customer Length Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Customer Lengths | Add Customer Length"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName(DataItems.custDetails[0]);
+        addPage.setCoatsLength("625");
+        addPage.setCustomerLength("AutoLength");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        lenPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        int row = lenPage.getRow("AutoLength");
+        
+        AssertJUnit.assertFalse("Customer Length Page: Customer Length not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditCustLengthPage editPage = lenPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Customer Length Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Customer Lengths | Edit Customer Length"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing customer length name...");
+        
+        editPage.setCustomerLength("AutoEdited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        lenPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        lenPage.setSalesOrg("ID51");
+        lenPage.setCustomerName(DataItems.custDetails[0]);
+        lenPage.pressSearch();
+        lenPage.waitForElement();
+        
+        int row2 = lenPage.getRow("AutoEdited");
+        AssertJUnit.assertFalse("Customer Lengths Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        lenPage.pressDelete(row2);
+        lenPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        lenPage.setSalesOrg("ID51");
+        lenPage.setCustomerName(DataItems.custDetails[0]);
+        lenPage.pressSearch();
+        lenPage.waitForElement();
+        
+        int row3 = lenPage.getRow("AutoEdited");
+        AssertJUnit.assertTrue("Customer Lengths Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        lenPage.setCustomerName(DataItems.custDetails[0]);
+        lenPage.pressSearch();
+        lenPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = lenPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = lenPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Customer Lengths Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Customer Lengths | Import"));
     
         System.out.println("Title as expected");
     }

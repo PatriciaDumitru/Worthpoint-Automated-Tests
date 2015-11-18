@@ -90,7 +90,7 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     }
     
     public CCE_AddOrderPage pressEdit(int row) {
-        By editButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(row+2)+") > td:nth-child(12) > a:nth-child(1)");
+        By editButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(12) > a:nth-child(1) > span");
         
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButton));
         
@@ -100,7 +100,7 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     }
     
     public CCE_CancelDraftPage pressCancel(int row) {
-        By cancelButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(row+2)+") > td:nth-child(12) > a.thickbox");
+        By cancelButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(12) > a.thickbox > span");
 
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cancelButton));
         WebElement wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
@@ -145,7 +145,7 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     public boolean findDraftByOrderNo(String orderNo) {
         boolean found = false;
         
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+2)+") > td:nth-child(3)");
             WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
             String cellOrderNo = driver.findElement(orderNoCell).getText();
