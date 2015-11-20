@@ -133,6 +133,9 @@ public class WBA_BasePage {
             static By plantsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(4) > a");
             static By hubsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(6)");
             static By plantHolidaysOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(5) > a");
+            static By enterpriseStructureOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(7)");
+            static By brandsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(8)");
+            static By ticketsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(9)");
         static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
         static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
         static By archivesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(6)");
@@ -1141,6 +1144,42 @@ public class WBA_BasePage {
         action.click(driver.findElement(plantHolidaysOption)).build().perform();
         
         return new Mst_PlantHolidaysPage(driver);
+    }
+    
+    public Mst_EnterpriseStructurePage selectEnterpriseStructure() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enterpriseStructureOption));
+        action.click(driver.findElement(enterpriseStructureOption)).build().perform();
+        
+        return new Mst_EnterpriseStructurePage(driver);
+    }
+    
+    public Mst_BrandsPage selectBrands() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandsOption));
+        action.click(driver.findElement(brandsOption)).build().perform();
+        
+        return new Mst_BrandsPage(driver);
+    }
+    
+    public Mst_TicketsPage selectTickets() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketsOption));
+        action.click(driver.findElement(ticketsOption)).build().perform();
+        
+        return new Mst_TicketsPage(driver);
     }
     
     public WBA_LoginPage pressLogout() {

@@ -27,6 +27,9 @@ public class Mst_EditHubPage extends WBA_BasePage {
     }
     
     public Mst_EditHubPage setHubName(String item) {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubNameField));
+        element.clear();
+        
         CommonTask.setInputField(driver, hubNameField, item);
         return new Mst_EditHubPage(driver);
     }
