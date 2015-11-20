@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -81,6 +82,14 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         btn.click();
         
         return new Mst_SalesOrgPage(driver);
+    }
+    
+    public Mst_EditSalesOrgPage setSalesOrg(String item) {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(nameField));
+        element.clear();
+        
+        CommonTask.setInputField(driver, nameField, item);
+        return new Mst_EditSalesOrgPage(driver);
     }
     
     public void checkFields() {

@@ -363,8 +363,8 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public Ecomm_UploadProcessPage pressSubmitExpectingFailure() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
-        driver.findElement(submitButtonLocator).click();  
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
+        element.click();  
         
         Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert2.accept();
@@ -503,15 +503,24 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         boolean errors;
         
         try {
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(linesWithErrorButton));
+            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(linesWithErrorButton));
             errors = true;
-            driver.findElement(linesWithErrorButton).click();
-            WebDriver wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
-            WebElement wait3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(errorLine));
-            System.out.println(driver.findElement(errorLine).getText());
         } catch (TimeoutException e) {
             errors = false;
         }
+        
+        if (errors) {
+            WebElement element = driver.findElement(linesWithErrorButton);
+            
+            Actions action = new Actions(driver);
+            action.moveToElement(element).build().perform();
+            action.click().build().perform();
+            
+            WebDriver wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+            WebElement wait3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(errorLine));
+            System.out.println(driver.findElement(errorLine).getText());
+        }
+        
         return errors;
     }
     

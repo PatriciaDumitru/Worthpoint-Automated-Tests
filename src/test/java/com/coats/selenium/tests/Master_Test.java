@@ -5,11 +5,10 @@ import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import PageObjects.CCE_ExportDownloadPage;
 import PageObjects.CCE_MainPage;
-import PageObjects.CCE_OrderViewPage;
-import PageObjects.Ecomm_MainPage;
 import PageObjects.Mst_AddApproverListPage;
 import PageObjects.Mst_AddBusinessPrincipalPage;
 import PageObjects.Mst_AddCoatsUserPage;
+import PageObjects.Mst_AddCountryPage;
 import PageObjects.Mst_AddCustBrandPage;
 import PageObjects.Mst_AddCustBusPrincPage;
 import PageObjects.Mst_AddCustFinishPage;
@@ -17,7 +16,11 @@ import PageObjects.Mst_AddCustLengthPage;
 import PageObjects.Mst_AddCustMaterialPage;
 import PageObjects.Mst_AddCustShadePage;
 import PageObjects.Mst_AddCustTicketPage;
+import PageObjects.Mst_AddHubPage;
 import PageObjects.Mst_AddMultiUserPage;
+import PageObjects.Mst_AddPlantHolidayPage;
+import PageObjects.Mst_AddPlantPage;
+import PageObjects.Mst_AddSalesOrgPage;
 import PageObjects.Mst_AddShadePage;
 import PageObjects.Mst_AddSubAccountPage;
 import PageObjects.Mst_AddUserTypePage;
@@ -37,6 +40,7 @@ import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditApproverListPage;
 import PageObjects.Mst_EditBusinessPrincipalPage;
 import PageObjects.Mst_EditCoatsUserPage;
+import PageObjects.Mst_EditCountryPage;
 import PageObjects.Mst_EditCustBrandPage;
 import PageObjects.Mst_EditCustBusPrincPage;
 import PageObjects.Mst_EditCustFinishPage;
@@ -44,21 +48,26 @@ import PageObjects.Mst_EditCustMaterialPage;
 import PageObjects.Mst_EditCustShadePage;
 import PageObjects.Mst_EditCustTicketPage;
 import PageObjects.Mst_EditCustomerPage;
+import PageObjects.Mst_EditHubPage;
 import PageObjects.Mst_EditMultiUserPage;
+import PageObjects.Mst_EditPlantHolidayPage;
+import PageObjects.Mst_EditPlantPage;
 import PageObjects.Mst_EditSalesOrgPage;
 import PageObjects.Mst_EditShadePage;
 import PageObjects.Mst_EditSubAccountPage;
 import PageObjects.Mst_EditUserTypePage;
+import PageObjects.Mst_HubsPage;
 import PageObjects.Mst_ImportPage;
 import PageObjects.Mst_ImportShadesPage;
 import PageObjects.Mst_MultiSoldToPage;
+import PageObjects.Mst_PlantHolidaysPage;
+import PageObjects.Mst_PlantsPage;
 import PageObjects.Mst_SalesOrgPage;
 import PageObjects.Mst_ShadesPage;
 import PageObjects.Mst_SubAccountPage;
 import PageObjects.WBA_BasePage;
 import com.coats.selenium.DriverFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.AssertJUnit;
@@ -327,39 +336,6 @@ public class Master_Test extends DriverFactory {
         coatsPage4.waitForElement();
         
         System.out.println("Cancel function works");
-    }
-    
-    @Test //Countries Page :: Page and filter checks, add/edit/delete
-    (groups = {"Masters"})
-    public void countries1() throws Exception {
-        WebDriver driver = getDriver();
-        
-        Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Countries Page: Page and filter checks, add/edit/delete", "A_CM_C_1 to 8");
-        ccePage.waitForLoad();
-        
-        System.out.println("Navigating to Countries page...");
-        
-        Mst_CountriesPage countryPage = ccePage.selectCountries();
-        countryPage.waitForElement();
-        
-        System.out.println("Countries Page reached. Checking title...");
-        
-        AssertJUnit.assertTrue("Coats Users Page: Title not displayed as expected",countryPage.getBreadcrumb().getText().equals("Countries"));
-        
-        System.out.println("Title checked");
-        
-        countryPage.assertBaseElements();
-        
-        System.out.println("Checking fields...");
-        
-        countryPage.checkFields();
-        
-        System.out.println("Fields checked. Entering filter criteria...");
-        
-        countryPage.setCountryName(DataItems.countryName);
-        
-        System.out.println("Filter criteria entered. Listing orders...");
     }
     
     @Test //Contract Order Related :: Flags active and available
@@ -2233,7 +2209,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Business Principals :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters","Solo"})
+    (groups = {"Masters"})
     public void businessPrincipals1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -2379,6 +2355,772 @@ public class Master_Test extends DriverFactory {
         System.out.println("Page reached. Checking title...");
         
         AssertJUnit.assertTrue("Customer Materials Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Business Principals | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Countries :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void countries1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Countries: Page and filter checks, add/edit/delete/export features", "A_CM_C_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Countries Page...");
+        
+        Mst_CountriesPage cPage = mainPage.selectCountries();
+        cPage.waitForElement();
+        
+        System.out.println("Countries page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Countries Page: Title not as expected",cPage.getBreadcrumb().getText().equals("Countries"));
+        
+        System.out.println("Title checked");
+        
+        cPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        cPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        cPage.setCountryName("Indonesia");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        cPage.pressSearch();
+        cPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Countries Page: Filtration not working as expected",cPage.checkFiltration(loc1,loc2,"Indonesia",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Countries...");
+        
+        Mst_AddCountryPage addPage = cPage.pressNewCountry();
+        addPage.waitForElement();
+        
+        System.out.println("Add Country Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Country Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Countries | Add Country"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setCountryName("Holy See (Vatican City State)");
+
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        cPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        cPage.setCountryCode("VA");
+        cPage.pressSearch();
+        cPage.waitForElement();
+        
+        int row = cPage.getRow("VA");
+        
+        AssertJUnit.assertFalse("Countries Page: Country not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditCountryPage editPage = cPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Country Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Countries | Edit Country"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing customer material name...");
+        
+        editPage.setLanguage("Italian");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        cPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        cPage.setCountryCode("VA");
+        cPage.pressSearch();
+        cPage.waitForElement();
+        
+        int row2 = cPage.getRowLanguage("Italian");
+        AssertJUnit.assertFalse("Countries Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        cPage.pressDelete(row2);
+        cPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        cPage.setCountryCode("VA");
+        cPage.pressSearch();
+        cPage.waitForElement();
+        
+        int row3 = cPage.getRow("VA");
+        AssertJUnit.assertTrue("Countries Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        cPage.pressReset();
+        cPage.waitForElement();
+        cPage.setCountryName("Indonesia");
+        cPage.pressSearch();
+        cPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = cPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = cPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Countries Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Countries | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Sales Organisations :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void salesOrg1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Sales Organisations: Page and filter checks, add/edit/delete/export features", "A_CM_Sorg_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Sales Organisations Page...");
+        
+        Mst_SalesOrgPage soPage = mainPage.selectSalesOrg();
+        soPage.waitForElement();
+        
+        System.out.println("Sales Organisations page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected",soPage.getBreadcrumb().getText().equals("Sales Organisations"));
+        
+        System.out.println("Title checked");
+        
+        soPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        soPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        soPage.setSalesOrg("ID51");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        soPage.pressSearch();
+        soPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Sales Organisations Page: Filtration not working as expected",soPage.checkFiltration(loc1,loc2,"ID51",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Sales Organisations...");
+        
+        Mst_AddSalesOrgPage addPage = soPage.pressNewSalesOrg();
+        addPage.waitForElement();
+        
+        System.out.println("Add Sales Organisation Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Sales Organisation Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Sales Organisations | Add Sales Organisation"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setSalesOrg("ID99");
+        addPage.setDescription("Automated tests: generated by test script");
+        addPage.setSAPInstance("SAP603");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        soPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        soPage.setSalesOrg("ID99");
+        soPage.pressSearch();
+        soPage.waitForElement();
+        
+        int row = soPage.getRow("ID99");
+        
+        AssertJUnit.assertFalse("Sales Organisations Page: Sales Organisation not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditSalesOrgPage editPage = soPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Sales Organisation Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Sales Organisations | Edit Sales Organisation"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Sales Organisation...");
+        
+        editPage.setSalesOrg("ID100");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        soPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        soPage.setSalesOrg("ID100");
+        soPage.pressSearch();
+        soPage.waitForElement();
+        
+        int row2 = soPage.getRow("ID100");
+        AssertJUnit.assertFalse("Sales Organisations Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        soPage.pressDelete(row2);
+        soPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        soPage.setSalesOrg("ID100");
+        soPage.pressSearch();
+        soPage.waitForElement();
+        
+        int row3 = soPage.getRow("ID100");
+        AssertJUnit.assertTrue("Sales Organisations Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        soPage.pressReset();
+        soPage.waitForElement();
+        soPage.setSalesOrg("ID");
+        soPage.pressSearch();
+        soPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = soPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = soPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Sales Organisations Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Sales Organisations | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Plants :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void plants1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Plants: Page and filter checks, add/edit/delete/export features", "A_CM_P_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Plants Page...");
+        
+        Mst_PlantsPage pPage = mainPage.selectPlants();
+        pPage.waitForElement();
+        
+        System.out.println("Plants page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Plants Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Plants"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setPlantName("ID10");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Plants Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"ID10",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Plant...");
+        
+        Mst_AddPlantPage addPage = pPage.pressNewPlant();
+        addPage.waitForElement();
+        
+        System.out.println("Add Plant Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Plant Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Plants | Add Plant"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setPlantName("TEST");
+        addPage.setPlantDesc("Automated Test: generated by script");
+        addPage.setLeadTime1("48");
+        addPage.setLeadTime2("48");
+        addPage.setLeadTime3("48");
+        addPage.setLeadTime4("48");
+
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setPlantName("TEST");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("TEST");
+        
+        AssertJUnit.assertFalse("Plants Page: Plant not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditPlantPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Plant Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Plants | Edit Plant"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Sales Organisation...");
+        
+        editPage.setPlantName("TESTEdited");
+        editPage.addDay("Saturday");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setPlantName("TESTEdited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("TESTEdited");
+        AssertJUnit.assertFalse("Plants Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setPlantName("TESTEdited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("TESTEdited");
+        AssertJUnit.assertTrue("Plants Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setPlantName("ID");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Plants Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Plants | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Plants :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void plantsHolidays1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Plant Holidays: Page and filter checks, add/edit/delete/export features", "A_CM_PH_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Plant Holidays Page...");
+        
+        Mst_PlantHolidaysPage pPage = mainPage.selectPlantHolidays();
+        pPage.waitForElement();
+        
+        System.out.println("Plant Holidays page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Plant Holidays Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Plant Holidays"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setPlantName("ID10");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Plant Holidays Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"ID10",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Plant...");
+        
+        Mst_AddPlantHolidayPage addPage = pPage.pressNewPlantHoliday();
+        addPage.waitForElement();
+        
+        System.out.println("Add Plant Holiday Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Plant Holiday Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Plant Holidays | Add Plant Holiday"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setPlantName("ID10");
+        addPage.setHolidayDescription("Automated Test Holiday");
+        addPage.setDateFrom("2015-12-25");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setLastUpdatedFrom("2015-11-19");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("Automated Test Holiday");
+        
+        AssertJUnit.assertFalse("Plant Holidays Page: Plant Holiday not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditPlantHolidayPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Plant Holiday Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Plant Holidays | Edit Plant Holiday"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Plant Holiday...");
+        
+        editPage.setHolidayDescription("Edited description");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setLastUpdatedFrom("2015-11-18");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("Edited description");
+        AssertJUnit.assertFalse("Plant Holidays Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setLastUpdatedFrom("2015-11-18");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("Edited description");
+        AssertJUnit.assertTrue("Plant Holidays Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setLastUpdatedFrom("2015-11-18");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Plant Holidays Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Plant Holidays | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Hubs :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters","Solo"})
+    public void hubs1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Hubs: Page and filter checks, add/edit/delete/export features", "A_CM_Hub_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Hubs Page...");
+        
+        Mst_HubsPage pPage = mainPage.selectHubs();
+        pPage.waitForElement();
+        
+        System.out.println("Hubs page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Hubs Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Hubs"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setHubName("IDH001");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Hubs Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"IDH001",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Hub...");
+        
+        Mst_AddHubPage addPage = pPage.pressNewHub();
+        addPage.waitForElement();
+        
+        System.out.println("Add Hub Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Hub Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Hubs | Add Hub"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setHubName("Automated Test");
+        addPage.setHubDescription("Generated by script");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+
+        pPage.setHubName("Automated Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("Automated Test");
+        
+        AssertJUnit.assertFalse("Hubs Page: Hub not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditHubPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Hub Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Hubss | Edit Hub"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Hub name...");
+        
+        editPage.setHubName("EditedHub");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setHubName("EditedHub");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("EditedHub");
+        AssertJUnit.assertFalse("Edited Hub Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setHubName("EditedHub");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("EditedHub");
+        AssertJUnit.assertTrue("Hubs Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setHubName("EditedHub");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Hubs Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Hubs | Import"));
     
         System.out.println("Title as expected");
     }

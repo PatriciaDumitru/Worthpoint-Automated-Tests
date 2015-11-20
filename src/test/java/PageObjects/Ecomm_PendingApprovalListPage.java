@@ -236,8 +236,9 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     
     public String getOrderNo(int row) {
         By orderNoHeader = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(4) > label");
-        AssertJUnit.assertTrue("Pending approval list page: Order No. Column has moved",driver.findElement(orderNoHeader).getText().contains("Order No."));
-        By orderNoCell = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(6)");
+        WebElement header = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoHeader));
+        AssertJUnit.assertTrue("Pending approval list page: Order No. Column has moved, update locators",header.getText().contains("Order No."));
+        By orderNoCell = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(5)");
         return driver.findElement(orderNoCell).getText();
     }
     
@@ -323,8 +324,11 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
 
         int recordCount = getRecordCount(recordCountField);
         
-        for (int i = 0; i < recordCount; i++) {
-            By reasonField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+(i+1)+") > td:nth-child(12) > div > input");
+        int tableCount = (recordCount>=10) ? 10 : recordCount;
+        
+        for (int i = 1; i <= tableCount; i++) {
+            
+            By reasonField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(12) > div > input");
             CommonTask.setInputField(driver,reasonField,"AutoTest Denied");
         }
         

@@ -686,21 +686,22 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         editPage.setApprovalWorkflow();
         editPage.pressSave();
+        custPage.waitForElement();
         
-        System.out.println("Approval Workflow enabled. Creating orders...");
-        
-        Ecomm_MainPage mainPage2 = editPage.clickEcomm();
+        System.out.println("Approval Workflow enabled. Logging in to requester account...");
+
+        Ecomm_MainPage mainPage2 = custPage.clickEcomm();
         mainPage2.waitForLoad();
         
         Ecomm_ManualEntryPage mePage = mainPage2.clickManualEntry();
         mePage.waitForElement();
         
         System.out.println("Manual Entry Page reached. Creating order...");
-        
+
         mePage.setCustomerName(DataItems.subCustDetails[0]);
         mePage.setShipToParty(DataItems.subCustDetails[1]);
-        mePage.setRequestor(DataItems.subCustDetails[2]);
         mePage.setPONumber("DeniedOrderTest_");
+        mePage.setRequestor(DataItems.subCustDetails[2]);
         mePage.setBuyers(DataItems.subCustDetails[3]);
         mePage.setArticle(DataItems.article,0);
         mePage.setShadeCode(DataItems.shadeCode,0);
@@ -717,12 +718,12 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         Ecomm_ManualEntryPage mePage2 = pendPage.clickManualEntry();
         mePage2.waitForElement();
-        
+
         mePage2.setCustomerName(DataItems.subCustDetails[0]);
         mePage2.setShipToParty(DataItems.subCustDetails[1]);
-        mePage2.setRequestor(DataItems.subCustDetails[2]);
         mePage2.setPONumber("DeniedOrderTest_");
         mePage2.setBuyers(DataItems.subCustDetails[3]);
+        mePage2.setRequestor(DataItems.subCustDetails[2]);
         mePage2.setArticle(DataItems.article,0);
         mePage2.setShadeCode(DataItems.expShadeCode,0);
         mePage2.setQty(DataItems.quantity, 0);
@@ -736,8 +737,8 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Orders created. Logging in to approver account to deny orders...");
         
-        WBA_LoginPage liPage2 = pendPage2.pressLogout();
-        liPage2.waitForElement();
+        WBA_LoginPage liPage3 = pendPage2.pressLogout();
+        liPage3.waitForElement();
         
         Ecomm_Base base3 = new Ecomm_Base(driver);
         Ecomm_MainPage mainPage3 = base3.setUp("", "", DataItems.approverUsername, DataItems.approverPassword);
@@ -800,8 +801,8 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Orders appear. Logging into requester account to edit and delete denied orders...");
         
-        WBA_LoginPage liPage3 = doPage2.pressLogout();
-        liPage3.waitForElement();
+        WBA_LoginPage liPage4 = doPage2.pressLogout();
+        liPage4.waitForElement();
         
         Ecomm_Base base4 = new Ecomm_Base(driver);
         Ecomm_MainPage mainPage4 = base4.setUp("", "", DataItems.anglerRequesterUsername, DataItems.anglerRequesterPassword);
@@ -841,27 +842,30 @@ public class Ecomm_OO_Test extends DriverFactory {
         Ecomm_ManualEntryPage mePage4 = doPage3.pressEdit(1);
         mePage4.waitForElement();
         
-        System.out.println("Manual Entry Page reached.");
+        System.out.println("Manual Entry Page reached. Logging out to check deleted item appears in Approval History...");
         
-        System.out.println("Logging out to check deleted item appears in Approval History...");
+        Ecomm_OutstandingOrdersPage outOrds = mePage4.clickOutstandingOrders();
+        outOrds.waitForElement();
         
-        mePage4.pressLogoutAlt();
-        
-        Ecomm_Base base5 = new Ecomm_Base(driver);
-        Ecomm_MainPage mainPage5 = base5.setUp("","");
+        WBA_LoginPage liPage6 = outOrds.pressLogout();
+        liPage6.waitForElement();
+
+        Ecomm_MainPage mainPage5 = base3.setUp("","");
         mainPage5.waitForLoad();
         
         Ecomm_OrderApprovalHistoryPage appHist = mainPage5.clickOrderApprovalHistory();
         appHist.waitForElement();
         
-        System.out.println("Order Approval History page reached. Checking item appears...");
+        System.out.println("Order Approval History page reached. Checking item does not appear...");
         
-        AssertJUnit.assertFalse("Order Approval History Page: Deleted declined order does not appear in table",appHist.findOrder(orderNo3)==-1);
+        int row3 = appHist.findOrder(orderNo3);
         
-        System.out.println("Item appears. Disabling approval workflow...");
+        AssertJUnit.assertTrue("Order Approval History Page: Deleted declined order appears in table",row3==-1);
+        
+        System.out.println("Item removed. Disabling approval workflow...");
         
         WBA_LoginPage liPage5 = pendPage2.pressLogout();
-        liPage2.waitForElement();
+        liPage5.waitForElement();
         
         Cce_Base base6 = new Cce_Base(driver);
         CCE_MainPage cceMainPage = base6.setUp("", "");
@@ -874,9 +878,9 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         custPage.setCustomerName(DataItems.custDetails[0]);
         custPage.pressSearch();
-        int row3 = custPage.findCustomer(DataItems.custDetails[0]);
+        int row4 = custPage.findCustomer(DataItems.custDetails[0]);
         
-        Mst_EditCustomerPage editPage2 = custPage.pressEdit(row3);
+        Mst_EditCustomerPage editPage2 = custPage.pressEdit(row4);
         editPage2.waitForElement();
         
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage2.getCustomerName().equals(DataItems.custDetails[0]));

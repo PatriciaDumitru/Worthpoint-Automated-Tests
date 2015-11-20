@@ -170,9 +170,9 @@ public class CommonTask {
     }
     
     public static void uncheckBox(WebDriver driver, By fieldLocator) {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
-        driver.findElement(fieldLocator).click();
-        Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsUnchecked(driver.findElement(fieldLocator)));
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fieldLocator));
+        element.click();
+        Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsUnchecked(element));
     }
     
     public static void setCheckBoxNoWait(WebDriver driver, By fieldLocator) {
@@ -231,6 +231,18 @@ public class CommonTask {
         return new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver f) {
                 if (element.getAttribute("checked").equals("true")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
+    
+    public static ExpectedCondition<Boolean> boxIsNotChecked(final WebElement element) {
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver f) {
+                if (element.getAttribute("checked").equals("false")) {
                     return true;
                 } else {
                     return false;

@@ -951,12 +951,11 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
       System.out.println("Data correct. Disabling contract order call-off...");
       
       editPage.unsetCallOffOrder();
-      editPage.waitForElement();
       
       System.out.println("Disabled. Saving...");
       
       editPage.pressSave();
-      editPage.waitForElement();
+      custPage.waitForElement();
       
       System.out.println("Saved. Logging into Contract Order account...");
       
@@ -1040,7 +1039,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
       System.out.println("Enabled. Saving...");
       
       editPage.pressSave();
-      editPage.waitForElement();
+      custPage.waitForElement();
       
       System.out.println("Saved");
         

@@ -19,7 +19,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     By createdDateFromField = By.id("filterBulkOrderCreatedFrom");
     By createdDateToField = By.id("filterBulkOrderCreatedTo");
     By custPOField = By.id("filterBulkOrderPoNumber");
-    By orderStatusField = By.cssSelector("#s2id_filterBulkOrderStatusId > ul > li > input");
+    By orderStatusField = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_0 > td:nth-child(13)");
     By searchButton = By.cssSelector("#freetext > table > tbody > tr > td.searchreset_buttons > div > input");
     By resetButton = By.cssSelector("#freetext > table > tbody > tr > td.searchreset_buttons > div > input");
     By exportButton = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.btn_sap_error > a");
@@ -119,7 +119,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         
         for (int i = 0; i < 8; i++) {
             By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(6)");
-            
+
             WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
             
             if (cell.getText().equals(poNumber)) {
@@ -220,6 +220,13 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         //Wait for cell
         WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElement(locator).getText();
+    }
+    
+    public String getOrderStatus(int row) {
+        //For approver account (mail.kamleshpatidar@gmail.com)
+        By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+row+" > td:nth-child(13)");
+        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return cell.getText();
     }
     
     public void checkFields() {

@@ -1495,7 +1495,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     
     @Test //Manual Entry Page :: SUMST :: Sub-account test. Field appears and data included in Flat File
     (groups ={"eComm","eComm_Orders"})
-    public void SUSST18() throws Exception {
+    public void SUMST18() throws Exception {
         //New driver
         WebDriver driver = getDriver();
   
@@ -1604,7 +1604,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     
     @Test //Manual Entry Page :: SUMST :: Send for approval feature activated
     (groups = {"eComm","eComm_Orders"})
-    public void SUSST19() throws Exception {
+    public void SUMST19() throws Exception {
         //New driver
         WebDriver driver = getDriver();
   
@@ -2711,24 +2711,61 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Order found. Approving...");
         
         String orderNo = pendPage2.getOrderNo(orderRow2);
+        System.out.println(orderNo);
         pendPage2.approveOrder(orderNo);
         pendPage2.waitForElement();
         
-        System.out.println("Approved. Checking Outstanding Order Page for order...");
+        System.out.println("Approved. Checking Outstanding Order Page for order (logging into abc test account)...");
+        
+        WBA_LoginPage liPage2 = pendPage2.pressLogout();
+        liPage2.waitForElement();
+        
+        Ecomm_Base base3 = new Ecomm_Base(driver);
+        Ecomm_MainPage mainPage3 = base3.setUp("", "",DataItems.anglerRequesterUsername,DataItems.anglerRequesterPassword);
+        mainPage2.waitForLoad();
         
         Ecomm_OutstandingOrdersPage outOrds = pendPage2.clickOutstandingOrders();
         outOrds.waitForElement();
         
         System.out.println("Outstanding Orders page reached. Searching for order...");
         
-        AssertJUnit.assertTrue("Outstanding Orders Page: Order does not appear after approval",outOrds.getRow(DataItems.lastUsedPO)==-1);
+        int row3 = outOrds.getRowSUMST(DataItems.lastUsedPO);
+        
+        AssertJUnit.assertFalse("Outstanding Orders Page: Order does not appear after approval",row3==-1);
         
         System.out.println("Order found. Checking order status...");
         
-        String status = outOrds.getOrderStatusField().getText();
+        String status = outOrds.getOrderStatus(row3);
         System.out.println("Order Status: " + status);
         
-        AssertJUnit.assertTrue("Outstanding Orders Page: Order (Order No.: "+orderNo+") does not have expected In Progress status",status.equals("In Progress"));
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order (Order No.: "+orderNo+") does not have expected In Progress/Open status",status.equals("In Progress") | status.equals("Open"));
+        
+        WBA_LoginPage liPage3 = outOrds.pressLogout();
+        liPage3.waitForElement();
+        
+        System.out.println("Disabling approval workflow...");
+
+        Cce_Base base4 = new Cce_Base(driver);
+        CCE_MainPage mainPage4 = base4.setUp("", "");
+
+        Mst_CustomersPage custPage2 = mainPage4.selectCustomers();
+        custPage2.waitForElement();
+
+        custPage2.setCustomerName(DataItems.custDetails[0]);
+        custPage2.pressSearch();
+        int row2 = custPage2.findCustomer(DataItems.custDetails[0]);
+        
+        Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
+        editPage2.waitForElement();
+        
+        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage2.getCustomerName().equals(DataItems.custDetails[0]));
+        
+        editPage2.unsetApprovalWorkflow();
+        editPage2.pressSave();
+        custPage2.waitForElement();
+        
+        System.out.println("Approval workflow disabled");
+        
     }
     
     

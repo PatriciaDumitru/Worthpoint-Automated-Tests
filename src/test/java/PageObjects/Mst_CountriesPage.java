@@ -4,6 +4,7 @@ package PageObjects;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import static PageObjects.Ecomm_ManualEntryPage.customerNameField;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -80,6 +81,11 @@ public class Mst_CountriesPage extends WBA_BasePage {
         return new Mst_CountriesPage(driver);
     }
     
+    public Mst_CountriesPage setCountryCode(String item) {
+        CommonTask.setInputField(driver,countryCodeField,item);
+        return new Mst_CountriesPage(driver);
+    }
+    
     public Mst_CountriesPage pressSearch() {
         WebElement button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         button.click();
@@ -101,16 +107,86 @@ public class Mst_CountriesPage extends WBA_BasePage {
         return new Mst_ImportPage(driver);
     }
     
-    public CCE_OrderViewPage pressExport(String type) {
+    public Mst_AddCountryPage pressNewCountry() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newCountryButton));
+        element.click();
+        
+        return new Mst_AddCountryPage(driver);
+    }
+    
+    public CCE_ExportDownloadPage pressExport() {
         WebElement button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
         Actions action = new Actions(driver);
-        action.moveToElement(button);
+        action.moveToElement(button).build().perform();
         
-        By typeLocator = By.partialLinkText(type);
+        By typeLocator = By.partialLinkText("XLSX");
+        WebElement type = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(typeLocator));
+        type.click();
         
-        driver.findElement(typeLocator).click();
+        return new CCE_ExportDownloadPage(driver);
+    }
+    
+    public Mst_EditCountryPage pressEdit(int row) {
+        By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(1) > span");
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
         
-        return new CCE_OrderViewPage(driver);
+        element.click();
+        
+        return new Mst_EditCountryPage(driver);
+    }
+    
+    public Mst_EditCountryPage pressDelete(int row) {
+        By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(3) > span");
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
+        
+        element.click();
+        
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        return new Mst_EditCountryPage(driver);
+    }
+    
+    public int getRow(String code) {
+        By countryCodeHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(3) > a");
+        WebElement header = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(countryCodeHeader));
+        AssertJUnit.assertTrue("Countries Page: Country Code column has moved, update locators",header.getText().equals("Country Code"));
+        
+        if (!checkForRecords()) {
+            return -1;
+        }
+        
+        By recordsField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        int count = this.getRecordCount(recordsField);
+        
+        for (int i = 2; i < (count + 2); i++) {
+            By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(3)");
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
+            if (cell.getText().trim().equals(code)) {
+                return i;
+            }
+        }
+        
+        return -1;  
+    }
+    
+    public int getRowLanguage(String lan) {
+        By langHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(4)");
+        WebElement header = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(langHeader));
+        AssertJUnit.assertTrue("Countries Page: Country Code column has moved, update locators",header.getText().equals("Language"));
+        
+        By recordsField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        int count = this.getRecordCount(recordsField);
+        
+        for (int i = 2; i < (count + 2); i++) {
+            By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(4)");
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
+            if (cell.getText().trim().equals(lan)) {
+                return i;
+            }
+        }
+        
+        return -1;  
     }
     
     public void waitForElement() {
