@@ -65,8 +65,11 @@ public class FileFactory {
         {"Angler Test Indonesia","test","","","","","gral","180","3000","STANDARD","C1711","3","","","andywisak","abc test"},
         {"Angler Test Indonesia","test","","","","","astra","030","1000","STANDARD","C1202","3","","","andywisak","abc test"}};
     
+    public static String[][] susstBackendData = {{"Life Easy Customer","Life Easy Customer","","","","","astra","120","5000","STANDARD","C9700","1","","","","Life Easy"},
+        {"Life Easy Customer","Life Easy Customer","","","","","gral","180","3000","STANDARD","H0972","1","","","","Life Easy"}};
+    
     public static void main(String[] args) throws IOException {
-        createFile("SUSST",1,"CO","",true);
+        createFile("SUSST",102,"BE","false",true);
     }
     
     public static String createFile(String soldTo,int lineCount,String type,String combination,boolean valid) throws IOException {
@@ -139,9 +142,10 @@ public class FileFactory {
                     data = susstCOValidData.clone();
                 } else if (type.equals("Basic")) {
                     po = "UO_SUSST" + id;
-                    data = susstBasicData.clone();
-                    System.out.println("Basic data selected");
-                    
+                    data = susstBasicData.clone();                   
+                } else if (type.equals("BE")) {
+                    //getBackendData will handle files with large line counts. "samePO" determines whether each line will have the same PO or not
+                    return getBackendData(soldTo,lineCount,combination,valid,id);
                 }
                 
             } else if (!valid) {
@@ -206,6 +210,46 @@ public class FileFactory {
         
     }
     
+    public static String[][] getBackendData(String soldTo, int lineCount, String samePO, boolean valid, String id) throws IOException {
+        //This method will get the data requird for a backend file, catering for Customer PO requirements (same or different with each record)
+        
+        //New array to hold data. 16 fields are present hence the array size
+        String[][] data = new String[lineCount][16];
+        
+        if (valid) {
+            //Every two lines, duplicate the data from susstBackendData with either a unique or uniform PO
+            for (int line = 0; line < lineCount; line=line+2) {
+                //Copy data into pair of lines
+                data[line] = susstBackendData[0];
+                data[line+1] = susstBackendData[1];
+            
+                if (samePO.equals("true")) {
+                    //Use a uniform PO
+                    System.out.println("Same PO to be used");
+                    data[line][2] = "BackendUpload" + id;
+                    data[line+1][2] = "BackendUpload" + id;
+                } else {
+                    //Generate a new ID number every two lines
+                    String po = CommonTask.generatePO("file");
+                    //Use A and B to make every PO unique
+                    data[line][2] = "BackendUpload" + po + "A";
+                    System.out.println("Line " + line + ": " + data[line][2]);
+                    data[line+1][2] = "BackendUpload" + po + "B";
+                    System.out.println("Line " + line + ": " + data[line+1][2]);
+                }         
+            }
+        } else {
+            //Fill array with invalid items
+        }  
+        
+        System.out.println(data[0][2]);
+        System.out.println(data[1][2]);
+        System.out.println(data[4][2]);
+        System.out.println(data[5][2]);
+        System.out.println(data[20][2]);
+        return data;
+    }
+    
     public static String getDate() {
         
         //Get current time, add 3 days, and return formatted string value
@@ -213,6 +257,7 @@ public class FileFactory {
         cal.add(Calendar.DATE, 3);
         
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
         return df.format(cal.getTime());
         
     }

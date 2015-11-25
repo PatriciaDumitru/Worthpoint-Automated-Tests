@@ -294,7 +294,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: Multi-line copied data
-    (groups = {"CCE","CCE_Orders","QuickTest"})
+    (groups = {"CCE","CCE_Orders","QuickTest","Solo"})
     public void SOC5() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -428,6 +428,8 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Order Status: "+ orderStatus.getOrderStage(orderNo));
         
         System.out.println("Order No.: "+orderNo);
+        
+        //Delete order draft
 
     } 
     

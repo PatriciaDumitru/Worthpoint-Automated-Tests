@@ -248,7 +248,7 @@ public class Ecomm_UO_SUSST_Test {
         System.out.println("Assertions successful. Sending file path...");
         
         //Send file path to field
-        uploadPage.setFilePath(DataItems.uploadSUSSTFilepath);
+        uploadPage.setFilePath(FileFactory.createFile("SUSST",102,"BE","",true));
         //Select backend upload
         uploadPage.pressBackend();
         
@@ -307,7 +307,7 @@ public class Ecomm_UO_SUSST_Test {
         
         System.out.println("Page reached. Checking file is present...");
         
-        String[] parts = DataItems.uploadSUSSTFilepath.split("\\\\");
+        String[] parts = DataItems.lastUsedFilepath.split("\\\\");
         String filepath = parts[2];
         
         AssertJUnit.assertTrue("Backend In Process Page: Table does not display the file",bipPage.getFileNameCell().getText().equals(filepath));
