@@ -23,6 +23,7 @@ import PageObjects.Mst_AddEnterpriseStructurePage;
 import PageObjects.Mst_AddFinishPage;
 import PageObjects.Mst_AddHierarchyPage;
 import PageObjects.Mst_AddHubPage;
+import PageObjects.Mst_AddLengthOfferPage;
 import PageObjects.Mst_AddLengthPage;
 import PageObjects.Mst_AddLightSourcePage;
 import PageObjects.Mst_AddMaterialGroupPage;
@@ -33,10 +34,12 @@ import PageObjects.Mst_AddPurposeTypePage;
 import PageObjects.Mst_AddQuantityFactorPage;
 import PageObjects.Mst_AddRejectionReasonPage;
 import PageObjects.Mst_AddSalesOrgPage;
+import PageObjects.Mst_AddShadeCardPage;
 import PageObjects.Mst_AddShadePage;
 import PageObjects.Mst_AddSubAccountPage;
 import PageObjects.Mst_AddTicketPage;
 import PageObjects.Mst_AddUserTypePage;
+import PageObjects.Mst_AddWarehouseInstructionPage;
 import PageObjects.Mst_AllUserTypesPage;
 import PageObjects.Mst_ApproverListPage;
 import PageObjects.Mst_BasicMaterialsPage;
@@ -69,6 +72,7 @@ import PageObjects.Mst_EditEnterpriseStructurePage;
 import PageObjects.Mst_EditFinishPage;
 import PageObjects.Mst_EditHierarchyPage;
 import PageObjects.Mst_EditHubPage;
+import PageObjects.Mst_EditLengthOfferPage;
 import PageObjects.Mst_EditLengthPage;
 import PageObjects.Mst_EditLightSourcePage;
 import PageObjects.Mst_EditMaterialGroupPage;
@@ -79,16 +83,19 @@ import PageObjects.Mst_EditPurposeTypePage;
 import PageObjects.Mst_EditQuantityFactorPage;
 import PageObjects.Mst_EditRejectionReasonPage;
 import PageObjects.Mst_EditSalesOrgPage;
+import PageObjects.Mst_EditShadeCardPage;
 import PageObjects.Mst_EditShadePage;
 import PageObjects.Mst_EditSubAccountPage;
 import PageObjects.Mst_EditTicketPage;
 import PageObjects.Mst_EditUserTypePage;
+import PageObjects.Mst_EditWarehouseInstructionPage;
 import PageObjects.Mst_EnterpriseStructurePage;
 import PageObjects.Mst_FinishesPage;
 import PageObjects.Mst_HierarchyPage;
 import PageObjects.Mst_HubsPage;
 import PageObjects.Mst_ImportPage;
 import PageObjects.Mst_ImportShadesPage;
+import PageObjects.Mst_LengthOffersPage;
 import PageObjects.Mst_LengthsPage;
 import PageObjects.Mst_LightSourcesPage;
 import PageObjects.Mst_MaterialGroupsPage;
@@ -98,9 +105,11 @@ import PageObjects.Mst_PlantsPage;
 import PageObjects.Mst_QuantityFactorsPage;
 import PageObjects.Mst_RejectionReasonsPage;
 import PageObjects.Mst_SalesOrgPage;
+import PageObjects.Mst_ShadeCardsPage;
 import PageObjects.Mst_ShadesPage;
 import PageObjects.Mst_SubAccountPage;
 import PageObjects.Mst_TicketsPage;
+import PageObjects.Mst_WarehouseInstructionsPage;
 import PageObjects.WBA_BasePage;
 import com.coats.selenium.DriverFactory;
 import static com.coats.selenium.DriverFactory.getDriver;
@@ -4767,7 +4776,7 @@ public class Master_Test extends DriverFactory {
         
         editPage.checkFields();
         
-        System.out.println("Fields checked. Editing Purpose Type...");
+        System.out.println("Fields checked. Editing Rejection Reason...");
         
         editPage.setRejectionCode("Edited");
         
@@ -4783,7 +4792,7 @@ public class Master_Test extends DriverFactory {
         pPage.waitForElement();
         
         int row2 = pPage.getRow("Edited");
-        AssertJUnit.assertFalse("Purpose Types Page: Edited changes are not applied in table",row2==-1);
+        AssertJUnit.assertFalse("Rejection Reasons Page: Edited changes are not applied in table",row2==-1);
         
         System.out.println("Record updated. Deleting record...");
         
@@ -4982,4 +4991,469 @@ public class Master_Test extends DriverFactory {
     
         System.out.println("Title as expected");
     }
+    
+    @Test //Length Offers :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void lengthOffers1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Length Offers: Page and filter checks, add/edit/delete/export features", "A_CM_LO_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Length Offers Page...");
+        
+        Mst_LengthOffersPage pPage = mainPage.selectLengthOffers();
+        pPage.waitForElement();
+        
+        System.out.println("Length Offers page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Length Offers Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Length Offers"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setPlantName("ID10");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"ID10",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Length Offer...");
+        
+        Mst_AddLengthOfferPage addPage = pPage.pressNewLengthOffer();
+        addPage.waitForElement();
+        
+        System.out.println("Add Length Offers Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Length Offers Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Length Offers | Add Length Offer"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setPlant("ID10");
+        addPage.setBrand("Test");
+        addPage.setTicket("000");
+        addPage.setUOM("Grams");
+        addPage.setMeasurementStandard("Metric");
+        addPage.setCop("100");
+        addPage.setCone("5000");
+        addPage.setVicone("5000");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setPlantName("ID10");
+        pPage.setBrand("Test");
+        pPage.setTicket("000");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("Test","000","100");
+        
+        AssertJUnit.assertFalse("Length Offers Page: Length Offer not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditLengthOfferPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Length Offer Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Length Offers | Edit Length Offer"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Length Offer...");
+        
+        editPage.setCop("200");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setPlantName("ID10");
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("Test","000","200");
+        AssertJUnit.assertFalse("Length Offers Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setPlantName("ID10");
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("Test","000","200");
+        AssertJUnit.assertTrue("Length Offers Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setPlantName("ID10");
+        pPage.setBrand("astra");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Length Offers Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Length Offers | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Warehouse Instructions: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void warehouseInstructions1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Warehouse Instructions: Page and filter checks, add/edit/delete/export features", "A_CM_WI_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Warehouse Instructions Page...");
+        
+        Mst_WarehouseInstructionsPage pPage = mainPage.selectWarehouseInstructions();
+        pPage.waitForElement();
+        
+        System.out.println("Warehouse Instructions page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Warehouse Instructions Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Warehouse Instructions"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setSalesOrg("ID51");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"ID51",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Length Offer...");
+        
+        Mst_AddWarehouseInstructionPage addPage = pPage.pressNewWarehouseInstruction();
+        addPage.waitForElement();
+        
+        System.out.println("Add Warehouse Instructions Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Warehouse Instructions Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Warehouse Instructions | Add Warehouse Instruction"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setSalesOrg("ID51");
+        addPage.setWarehouseInstruction("AutoTest");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setSalesOrg("ID51");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("AutoTest");
+        
+        AssertJUnit.assertFalse("Warehouse Instructions Page: Warehouse Instruction not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditWarehouseInstructionPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Warehouse Instruction Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Warehouse Instructions | Edit Warehouse Instruction"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Warehouse Instructions...");
+        
+        editPage.setWarehouseInstruction("Edited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setSalesOrg("ID51");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("Edited");
+        AssertJUnit.assertFalse("Warehouse Instructions Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setSalesOrg("ID51");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("Edited");
+        AssertJUnit.assertTrue("Warehouse Instructions Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setSalesOrg("ID");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Warehouse Instructions Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("WarehouseInstructions | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Shade Cards: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters","Solo"})
+    public void shadeCards1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Shade Cards Page: Page and filter checks, add/edit/delete/export features", "A_SR_SC_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Shade Cards Page...");
+        
+        Mst_ShadeCardsPage pPage = mainPage.selectShadeCards();
+        pPage.waitForElement();
+        
+        System.out.println("Shade Cards page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Shade Cards Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Shade Cards"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setShadeCard("Classic");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"Classic",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Shade Card...");
+        
+        Mst_AddShadeCardPage addPage = pPage.pressNewShadeCard();
+        addPage.waitForElement();
+        
+        System.out.println("Add Shade Cards Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Shade Cards Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Shade Cards | Add Shade Card"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setShadeCardName("AutoTest");
+        addPage.setShadeCardCode("AUT0");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setShadeCard("AutoTest");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("AutoTest");
+        
+        AssertJUnit.assertFalse("Shade Cards Page: Shade Card not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditShadeCardPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Shade Card Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Shade Cards | Edit Shade Card"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Shade Cards...");
+        
+        editPage.setShadeCardName("Edited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setShadeCard("Edited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("Edited");
+        AssertJUnit.assertFalse("Shade Cards Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setShadeCard("Edited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("Edited");
+        AssertJUnit.assertTrue("Shade Cards Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Shade Cards Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Shade Cards | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
 }
