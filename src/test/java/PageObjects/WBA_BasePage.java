@@ -143,6 +143,7 @@ public class WBA_BasePage {
             static By lightSourcesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(15)");
             static By purposeTypesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(16)");
             static By rejectionReasonsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(17)");
+            static By quantityFactorsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(7)");
         static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
         static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
         static By archivesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(6)");
@@ -1283,6 +1284,18 @@ public class WBA_BasePage {
         action.click(driver.findElement(rejectionReasonsOption)).build().perform();
         
         return new Mst_RejectionReasonsPage(driver);
+    }
+    
+    public Mst_QuantityFactorsPage selectQuantityFactors() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityFactorsOption));
+        action.click(driver.findElement(quantityFactorsOption)).build().perform();
+        
+        return new Mst_QuantityFactorsPage(driver);
     }
     
     public WBA_LoginPage pressLogout() {

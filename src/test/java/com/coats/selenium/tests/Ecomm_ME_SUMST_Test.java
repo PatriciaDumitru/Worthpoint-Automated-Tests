@@ -399,7 +399,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUMST :: Single line order, article and shade code
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders","Solo"})
     public void SUMST5() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();

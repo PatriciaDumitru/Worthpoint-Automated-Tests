@@ -317,18 +317,6 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return driver.findElement(sendForApprovalButton);
     }
     
-    public Ecomm_OrderEditPage pressEditLine(int lineNumber) {
-        //Create locator for edit button in correct line. Line numbers start from 0
-        By editBtnLocator = By.cssSelector("#remove_"+lineNumber+" > td:nth-child(1) > a");
-        //New action to press button
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editBtnLocator));
-        Actions clickEdit = new Actions(driver);
-        clickEdit.click(driver.findElement(editBtnLocator)).build().perform();
-        //Wait for overlay to load
-        WebElement waitForOverlay = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(driver.findElement(editOverlayLocator)));
-        return new Ecomm_OrderEditPage(driver);
-    }
-    
     public Ecomm_OutstandingOrdersPage pressSubmit() {
         //Wait for element to be clickable
         WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));

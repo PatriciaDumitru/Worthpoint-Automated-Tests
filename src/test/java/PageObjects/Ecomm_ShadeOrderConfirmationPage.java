@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
+//To reach page, go to Shade Not Available, and click edit for a record. Shade Not Available Confirmation Page should appear
 public class Ecomm_ShadeOrderConfirmationPage extends WBA_BasePage {
     
     //Locators

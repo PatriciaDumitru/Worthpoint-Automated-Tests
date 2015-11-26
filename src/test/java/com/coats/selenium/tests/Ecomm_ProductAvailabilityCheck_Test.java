@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
     
     @Test //Product Availability Check Page :: Page and field checks, make check using YMN
-    (groups = {"eComm","Solo"})
+    (groups = {"eComm"})
     public void PAC1() throws IOException, InterruptedException, Exception {
         
         WebDriver driver = getDriver();

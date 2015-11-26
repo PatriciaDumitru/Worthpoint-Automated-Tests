@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+//Error page which appears after confirming mapping. Usually appears for Duplicate File Name error
 public class Ecomm_UploadProcessPage extends WBA_BasePage{
     
     static By flashMessageLocator = By.id("flashMessage");

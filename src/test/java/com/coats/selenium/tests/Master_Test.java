@@ -30,6 +30,7 @@ import PageObjects.Mst_AddMultiUserPage;
 import PageObjects.Mst_AddPlantHolidayPage;
 import PageObjects.Mst_AddPlantPage;
 import PageObjects.Mst_AddPurposeTypePage;
+import PageObjects.Mst_AddQuantityFactorPage;
 import PageObjects.Mst_AddRejectionReasonPage;
 import PageObjects.Mst_AddSalesOrgPage;
 import PageObjects.Mst_AddShadePage;
@@ -75,6 +76,7 @@ import PageObjects.Mst_EditMultiUserPage;
 import PageObjects.Mst_EditPlantHolidayPage;
 import PageObjects.Mst_EditPlantPage;
 import PageObjects.Mst_EditPurposeTypePage;
+import PageObjects.Mst_EditQuantityFactorPage;
 import PageObjects.Mst_EditRejectionReasonPage;
 import PageObjects.Mst_EditSalesOrgPage;
 import PageObjects.Mst_EditShadePage;
@@ -93,6 +95,7 @@ import PageObjects.Mst_MaterialGroupsPage;
 import PageObjects.Mst_MultiSoldToPage;
 import PageObjects.Mst_PlantHolidaysPage;
 import PageObjects.Mst_PlantsPage;
+import PageObjects.Mst_QuantityFactorsPage;
 import PageObjects.Mst_RejectionReasonsPage;
 import PageObjects.Mst_SalesOrgPage;
 import PageObjects.Mst_ShadesPage;
@@ -4812,6 +4815,170 @@ public class Master_Test extends DriverFactory {
         System.out.println("Page reached. Checking title...");
         
         AssertJUnit.assertTrue("Rejection Reasons Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Rejection Reasons | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Quantity Factors :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void quantityFactors1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Quantity Factors: Page and filter checks, add/edit/delete/export features", "A_CM_QF_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Quantity Factors Page...");
+        
+        Mst_QuantityFactorsPage pPage = mainPage.selectQuantityFactors();
+        pPage.waitForElement();
+        
+        System.out.println("Quantity Factors page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Quantity Factors Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Quantity Factors"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setSalesOrg("ID51");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Quantity Factors Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"ID51",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Quantity Factors...");
+        
+        Mst_AddQuantityFactorPage addPage = pPage.pressNewQuantityFactor();
+        addPage.waitForElement();
+        
+        System.out.println("Add Quantity Factor Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Quantity Factor Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Quantity Factors | Add Quantity Factor"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setSalesOrg("ID51");
+        addPage.setPlantName("ID10");
+        addPage.setBrand("Test");
+        addPage.setMUMType("Cone");
+        addPage.setTicket("000");
+        addPage.setLabQty("5");
+        addPage.setCCEQty("5");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setSalesOrg("ID51");
+        pPage.setPlantName("ID10");
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("ID51","ID10","Test","000");
+        
+        AssertJUnit.assertFalse("Rejection Reasons Page: Rejection Reason not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditQuantityFactorPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Quantity Factor Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Quantity Factors | Edit Quantity Factor"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing CCE Quantity...");
+        
+        editPage.setCCEQty("8");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setSalesOrg("ID51");
+        pPage.setPlantName("ID10");
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("ID51","ID10","Test","000");
+        AssertJUnit.assertFalse("Quantity Factors Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setSalesOrg("ID51");
+        pPage.setPlantName("ID10");
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("ID51","ID10","Test","000");
+        AssertJUnit.assertTrue("Quantity Factors Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setSalesOrg("ID51");
+        pPage.setBrand("astra");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Quantity Factors Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Quantity Factors | Import"));
     
         System.out.println("Title as expected");
     }
