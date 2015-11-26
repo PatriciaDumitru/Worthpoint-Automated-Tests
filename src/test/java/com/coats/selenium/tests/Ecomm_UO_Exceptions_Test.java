@@ -389,8 +389,9 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
 
     }
     
-    @Test //Upload Order Realtime :: SUMST :: Invalid finish in spreadsheet exception
-    (groups = {"eComm","eComm_Orders","Upload_Order"})
+    @Test //Upload Order Realtime :: SUMST :: Invalid finish in spreadsheet exception. Disabled as logic is incorrect. 
+            //Invalid Finish will trigger the default "STANDARD" to be used, and so no errors will appear. Needs to be updated/removed
+    (groups = {"eComm","eComm_Orders","Upload_Order"},enabled=false) 
     public void UORTex6() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();

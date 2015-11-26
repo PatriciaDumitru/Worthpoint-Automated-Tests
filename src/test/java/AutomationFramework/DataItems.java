@@ -11,13 +11,13 @@ public class DataItems {
     public static String targetURL = "http://qawcs.coatscolourexpress.com/";
 
     //Filepaths
-    public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe";
-    public static String screenshotsFilepath = "C:\\Selenium\\Screenshots";
-    public static String xmlFilepath = "C:\\Selenium\\createTest.xml";
-    public static String idFilepath = "C:\\Selenium\\ID.txt";
-    public static String lastUsedFilepath = "";
+    public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
+    public static String screenshotsFilepath = "C:\\Selenium\\Screenshots"; //Filepath to which all screenshots (taken on instruction from within program, NOT by surefire) are saved
+    public static String xmlFilepath = "C:\\Selenium\\createTest.xml"; //Used in CustomFactory feature, not used
+    public static String idFilepath = "C:\\Selenium\\ID.txt"; //Filepath for ID file which is used in generating unique identifiers (PO's, filepaths)
+    public static String lastUsedFilepath = ""; //Holds last used filepath when generating files using FileFactory
     
-    //Login details
+    //Login Credentials
     public static String validCoatsUsername = "joe.sykes@coats.com";
     public static String validCoatsPassword = "password";           //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
@@ -30,20 +30,20 @@ public class DataItems {
     public static String expectedCustUserName = "joe sykes";
     
     public static String validTestUsername = "testarun1@coats.com";
-    public static String validTestPassword = "password";
+    public static String validTestPassword = "password";            //Misc test account with CREDIT BLOCK
     public static String expectedTestUserName = "TEsty arun";
     
     public static String susstUsername = "lifeeasy@customer.com";
-    public static String susstPassword = "password";
+    public static String susstPassword = "password";                //CUSTOMER, LIFE EASY CUSTOMER,SUSST
     public static String expectedSUSSTUserName = "Life Easy";
     
     public static String requesterUsername = "autolifeeasy@coats.com";
-    public static String requesterPassword = "password";
+    public static String requesterPassword = "password";            //CUSTOMER, LIFE EASY CUSTOMER, SUSST, REQUESTER
     public static String expectedAutoUserName = "automated requester";
-    public static String requesterShipTo = "Life Easy Customer";
+    public static String requesterShipTo = "Life Easy Customer";    //Ship To Party used alongside this account
     
     public static String invalidUsername = "jfdkjal@jfdalka.com";
-    public static String invalidPassword = "invalidpassword";
+    public static String invalidPassword = "invalidpassword";       //INVALID CREDENTIALS
     
     public static String approverUsername = "mail.kamleshpatidar@gmail.com";
     public static String approverPassword = "password";             //CUSTOMER, ANGLER TEST INDONESIA, SUSST, APPROVER
@@ -54,27 +54,29 @@ public class DataItems {
     public static String autoUsername = "automatedtest@coats.com";
     public static String autoPassword = "password";                 //CUSTOMER, ANGLER TEST INDONESIA, SUSST, REQUESTER
     public static String expectedAutoUserName2 = "Automated Test";
-    public static String testUserType = "Test1";
-    public static String autoUserCountry = "Indonesia";
-    public static String autoUserSalesOrg = "ID51";
+    public static String testUserType = "Test1"; //Used in testing All User Types page, when adding a user type
+    public static String autoUserCountry = "Indonesia"; //For user above, user country/sales org/hub to be used in Coats Users Page test
+    public static String autoUserSalesOrg = "ID51"; 
     public static String autoUserHub = "IDH001";
     
     //Login Page expected title (appears in browser tab)
-    public static String loginPageTitle = "Coats";
+    public static String loginPageTitle = "Coats"; //Title which appears in browser tab when login page is reached
     
     //CCE Expected titles (breadcrumb text) - empty literals where page has no breadcrumb text        
-    public static String ccePageTitle = "Coats Colour Express";
+    public static String ccePageTitle = "Coats Colour Express"; //Expected CCE Main Page title
     public static String[] cceExpectedTitles = {"FCE | Task List", "FCE | Task List - Completed", 
         "FCE | Request", "Orders | Prompt", "Orders | Outstanding Draft", "Orders | Enrich Order", 
         "Orders | Order Status", "Orders | Delivery Notes", "Orders | Feedback", "Orders | Feedback Completed", 
         "Orders | Feedback Awaiting", "Orders | Hub SOS", "Orders | Received Hub", "Orders | Inbox", 
         "Orders | Inbox - SAP", "Orders | Confirm Production", "Refill Cabinet", "Reports | FCE Task Status", 
         "Reports | Order Cycle Time", "Reports | Total Orders", "User Types", "Coats Users", "", "Lrm Log", 
-        "SAP Log", ""};
+        "SAP Log", ""}; //Expected Page titles for every CCE page, held in the 'breadcrumb' element (top left of page, under logo).
+    //For pages without breadcrumb text, use a blank literal so the program does not wait for a title
     
     public static String[][] cceFilterPages = {{"Task List","Task - Completed List"},
         {"Order Draft","Manual Enrich","Order Status","DN Reprint","Feedback Completed","Feedback Awaiting"},
         {"Hub SOS","Received Hub"},{"Inbox","Inbox SAP"},{"Confirm Production"},{},{},{"ALL User Types","Coats Users","LRM Log","SAP Log"},{}};
+    //A list of all pages (by their navigation bar link text) which have a filter, used in checking pagination (NOT USED)
     
     //eComm Expected titles - the second array indicates which breadcrumb locator is used on each page, as the breadcrumb is not uniform across all pages
     public static String eCommPageTitle = "Coats eComm";
@@ -90,20 +92,22 @@ public class DataItems {
             "3", "3", "3", "3", "1", "1", "2", "2", 
             "2", "2", "2", "2", "2",
             ""}};
+    //Expected page titles for eComm pages, held in the breadcrumb element (top left of page, under logo). Some pages use different breadcrumb locators
+    //The breadcrumb locator to be used is held in the second array dimension
     
-    //Breadcrumb locators - the breadcrumb changes position/element type throughout the site
+    //Breadcrumb locators - the breadcrumb changes position/element type throughout the site. These correspond to the numbers in eCommExpectedTitles[x][2]
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
     public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
     public static By breadcrumbLocator3 = By.cssSelector("#list_page_breadcrumb > h2");
     public static By breadcrumbLocator4 = By.cssSelector("#content > div > h1");
     
-    //Flashmessage locator which displays messages on various pages
+    //This flashMessage element often holds a message/error from WBA when a page loads
     public static By flashMessage = By.id("flashMessage");
     
-    //No records found text field locator
+    //When a filter has no records to display, this element is visible. Use to check if records are displayed
     public static By noRecords = By.className("norec");
     
-    //Masters tabs
+    //A list of all Masters by their link text
     public static String[][] masters = {
         {"BLANK","Countries","Sales Organisations","Plants","Plant Holidays","Hubs","Enterprise Structure","Brands","Tickets","Lengths","Finishes","Basic Materials","Material Groups","Hierarchy","Light Sources","Purpose Types","Rejection Reasons","Warehouse Instructions"},
         
@@ -114,12 +118,13 @@ public class DataItems {
     
     //Customer details to be used in manual entry tests
     public static String[] custDetails = {"Life Easy Customer", "CCE HUB OFFICES", "approver 1 test", "*OTHERS*", "AutoTestPO_"};
-    public static String custCode = "106499";
+    public static String custCode = "106499"; //Customer code for Life Easy Customer
     
     //Customer details to be used in subaccount tests
     public static String[] subCustDetails = {"Angler Test Indonesia","test","abc test","*OTHERS*"};
-    public static String subAccount = "Andywisak";
+    public static String subAccount = "Andywisak"; //Sub Account name to be used with Angler Test Indonesia customer
     
+    //Alternative customer details used with requesterUsername account
     public static String[] testCustDetails = {"Life Easy Customer","Life Easy Customer","Life Easy","*OTHERS*","AutoTestPO_"};
     
     //Requester used during Upload Order Tests

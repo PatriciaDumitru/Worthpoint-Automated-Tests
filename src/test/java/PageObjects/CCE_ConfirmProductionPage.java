@@ -144,16 +144,19 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     }
     
     public CCE_ConfirmProductionPage setOrderNo(String item) {
+        //Place value in Order No Field
         CommonTask.setSearchField(driver, orderNoField, item);
         return this;
     }
     
     public CCE_ConfirmProductionPage setFceName(String item) {
+        //Place value in FCE Name Field
         CommonTask.setChoiceField(driver, fceNameField, item);
         return this;
     }
     
     public CCE_ConfirmProductionPage setRequestType(String item) {
+        //Place value in Request Type Field
         CommonTask.setSearchField(driver, requestTypeField, item);
         return this;
     }
@@ -194,11 +197,13 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     }
     
     public CCE_ConfirmProductionPage setQtyProd(String item) {
-        //Wait for clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyProdField));
-        driver.findElement(qtyProdField).click();
-        driver.findElement(qtyProdField).sendKeys(Keys.DELETE);
-        driver.findElement(qtyProdField).sendKeys(item);
+        //Wait for element
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyProdField));
+        element.click();
+        //clear field
+        element.sendKeys(Keys.DELETE);
+        //set value
+        element.sendKeys(item);
         return this;
     }
     
@@ -209,39 +214,47 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     
     public CCE_ConfirmProductionPage pressListOrders() {
         //Wait for element
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        driver.findElement(listOrdersButton).submit();
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        element.submit();
         return this;
     }
     
     public CCE_ConfirmProductionPage pressReset() {
         //Wait for element
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        element.click();
         return this;
     }
     
     public CCE_ConfirmProductionPage pressConfirm() {
         //Wait for element
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButton));
-        driver.findElement(confirmButton).click();
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButton));
+        //Check box
+        element.click();
+        //Wait for box to be checked
         boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(confirmButton)));
         return this;
     }
     
     public CCE_OrderViewPage pressDnPrint() {
-        //Wait for dn print button and press
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dnButton));
-        driver.findElement(dnButton).click();
+        //Print button appears once confirm box has been checked for a record
+        
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dnButton));
+        
+        //Click icon to open overlay
+        element.click();
+        
         return new CCE_OrderViewPage(driver);
     }
     
     public CCE_ConfirmProductionPage pressSave() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        driver.findElement(saveButton).click();
+        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        save.click();
+        
         Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         
+        //Wait for confirmation message and ensure the message is as expected
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
         
         String message = element.getText();
@@ -255,8 +268,9 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     }
     
     public CCE_ConfirmProductionPage pressCancel() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
-        driver.findElement(cancelButton).click();
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        element.click();
+        
         try {
             Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
             alert.accept(); 
@@ -268,13 +282,20 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     }
     
     public boolean findOrder(String orderNo) {
+        //Find an order in the table by its Order No. 
+        
+        //i starts at 3, as the first row has row number 3. i stops at 8 as an arbitrary value, before the last record. Extension: use getRecordCount() to replace "8"
         for (int i = 3; i < 8; i++) {
             By orderNoCell = By.cssSelector("#SampleOrderLineConfirmProductionForm > table > tbody > tr:nth-child("+i+") > td:nth-child(4)");
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
-            if (driver.findElement(orderNoCell).getText().equals(orderNo)) {
+            
+            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            
+            if (element.getText().equals(orderNo)) {
+                //return true if the Order No matches
                 return true;
             }
         }
+        //Return false if no match has been found
         return false;
     }
     

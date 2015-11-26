@@ -19,13 +19,13 @@ import org.testng.annotations.Test;
 public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
     
     @Test //Product Availability Check Page :: Page and field checks, make check using YMN
-    (groups = {"eComm"})
+    (groups = {"eComm","Solo"})
     public void PAC1() throws IOException, InterruptedException, Exception {
         
         WebDriver driver = getDriver();
         
         Ecomm_Base base = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = base.setUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",DataItems.validCustUsername,DataItems.validCustPassword);
+        Ecomm_MainPage eCommPage = base.setUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",DataItems.susstUsername,DataItems.susstPassword);
     
         System.out.println("Navigating to Product Availability Check Page...");
         
@@ -51,8 +51,6 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         System.out.println("Fields checked. Entering details...");
         
         pacPage.setYourMatNum(DataItems.yourMatNum);
-        pacPage.setBrand(DataItems.expBrand);
-        pacPage.setShadeCode(DataItems.expShadeCode);
         pacPage.setQty("1");
         
         //Take a screenshot
@@ -68,6 +66,7 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         String information = viewPage.getInformation();
         
         System.out.println("Information: " + information);
+        System.out.println("Available Quantity: " + viewPage.getAvailableQty());
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -119,6 +118,7 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         String information = viewPage.getInformation();
         
         System.out.println("Information: " + information);
+        System.out.println("Available Quantity: " + viewPage.getAvailableQty());
         
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -163,6 +163,7 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         String information = viewPage.getInformation();
         
         System.out.println("Information: " + information);
+        System.out.println("Available Quantity: " + viewPage.getAvailableQty());
         
         System.out.println("View displayed. Closing view...");
         

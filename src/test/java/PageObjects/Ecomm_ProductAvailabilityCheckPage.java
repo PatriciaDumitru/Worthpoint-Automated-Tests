@@ -15,6 +15,7 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
 
     //Locators
     By yourMatNumField = By.id("material_no");
+    By yourMatNumLabel = By.cssSelector("#sample_order_search_stock_check > table > tbody > tr:nth-child(1) > td:nth-child(1) > label");
     By articleField = By.id("s2id_ArticleId");
     By brandField = By.id("BrandId");
     By ticketField = By.id("TicketId");
@@ -66,6 +67,11 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
     
     public Ecomm_ProductAvailabilityCheckPage setYourMatNum(String item) {
         CommonTask.setInputField(driver,yourMatNumField,item);
+        
+        //Click focus away from field to trigger autofill
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(yourMatNumLabel));
+        element.click();
+        
         return this;
     }
     

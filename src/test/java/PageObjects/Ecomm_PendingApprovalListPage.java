@@ -202,7 +202,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPriceAvailField));
+        WebElement wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.elementToBeClickable(custPOField));
     }
     
     public int getRow(String PONumber) {

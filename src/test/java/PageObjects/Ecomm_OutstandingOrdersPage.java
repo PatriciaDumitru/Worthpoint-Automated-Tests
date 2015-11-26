@@ -19,7 +19,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     By createdDateFromField = By.id("filterBulkOrderCreatedFrom");
     By createdDateToField = By.id("filterBulkOrderCreatedTo");
     By custPOField = By.id("filterBulkOrderPoNumber");
-    By orderStatusField = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_0 > td:nth-child(13)");
+    By orderStatusField = By.id("s2id_autogen7");
     By searchButton = By.cssSelector("#freetext > table > tbody > tr > td.searchreset_buttons > div > input");
     By resetButton = By.cssSelector("#freetext > table > tbody > tr > td.searchreset_buttons > div > input");
     By exportButton = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.btn_sap_error > a");

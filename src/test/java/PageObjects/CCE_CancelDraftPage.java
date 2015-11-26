@@ -62,32 +62,24 @@ public class CCE_CancelDraftPage extends WBA_BasePage{
     }
     
     public void switchTo() {
+        //Switch focus to the Cancel Draft overlay    
         WebDriver wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
     }
     
     public CCE_CancelDraftPage setReason(String reason) throws InterruptedException {
+        //Set the cancellation reason in the cancel draft overlay
         CommonTask.setDropDownField(driver,cancelReasonField,reason);
         return new CCE_CancelDraftPage(driver);
     }
     
     public CCE_OutstandingDraftPage pressSave() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        driver.findElement(saveButton).click();
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        element.click();
+        
+        //Wait for overlay to disappear
         boolean waitForUpdate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.invisibilityOfElementLocated(cancelReasonField));
         
         return new CCE_OutstandingDraftPage(driver);
-    }
-    
-    public void closeView() {
-        
-        WebDriver d = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("TB_window")));
-        
-        Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(closeButton)).build().perform();
-        action.click().build().perform();
-
-        Alert alert = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.alertIsPresent());
-        alert.accept();
     }
     
 }

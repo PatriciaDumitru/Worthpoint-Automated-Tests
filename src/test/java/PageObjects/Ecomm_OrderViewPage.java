@@ -27,6 +27,7 @@ public class Ecomm_OrderViewPage {
     static By productInfoText = By.cssSelector("#content > div > table > tbody > tr > td > h1");
     static By contentLocator = By.cssSelector("body > div.grid_12");
     static By ftDataTable = By.className("frm");
+    static By availableQtyCell = By.cssSelector("#thickbox > tbody > tr:nth-child(2) > td:nth-child(1)"); //Available qty cell on product availability check page
     
     public Ecomm_OrderViewPage(WebDriver passedDriver) {
         driver = passedDriver;
@@ -65,6 +66,16 @@ public class Ecomm_OrderViewPage {
         switchTo();
         WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(COError));
         return driver.findElement(COError).getText();
+    }
+    
+    public String getAvailableQty() {
+        try {
+            WebElement qtyCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(availableQtyCell));
+            return qtyCell.getText();
+        } catch (Exception e) {
+            return "Stock Unavailable";
+        }
+        
     }
     
     public void switchTo() {
@@ -128,6 +139,5 @@ public class Ecomm_OrderViewPage {
         
         return new Ecomm_OutstandingOrdersPage(driver);
     }
-    
-    
+
 }

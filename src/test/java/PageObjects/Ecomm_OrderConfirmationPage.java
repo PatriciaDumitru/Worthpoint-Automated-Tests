@@ -555,6 +555,14 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         
         return true;
     }
+    
+    public void checkFields() {
+        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
+        WebElement createDateHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(creationDateHeadingLocator));
+        
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name field not displayed",custName.isDisplayed());
+        AssertJUnit.assertTrue("Order Confirmation Page: Creation Date Table heading not displayed", createDateHeader.isDisplayed());
+    }
             
     
 }

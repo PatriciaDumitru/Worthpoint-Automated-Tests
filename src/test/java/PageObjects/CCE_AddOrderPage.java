@@ -376,6 +376,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     }
     
     public CCE_OutstandingDraftPage pressCancelToDrafts() {
+        //Press the cancel button, expecting re-direction to oustanding drafts page
         
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelToDraftsButton));
         
@@ -419,19 +420,17 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         return this;
     }
 
-    public void inputDetails(String shipTo, String buyer, String article, String shadeCode, String MUM, String request, String purpose, int quantity) throws InterruptedException {
-
+    public void inputDetails(String shipTo, String buyer, String article, String shadeCode, String MUM, String request, String purpose, int quantity) throws InterruptedException {        
+        
         setShipToParty(shipTo);
-        //setBusinessPrincipal(buyer);
+        //setBusinessPrincipal(buyer); //This method may not be required - it is generally easier to set each line individually
         setArticle(article,0);
         setShadeCode(shadeCode,0);
         setMUMType(MUM,0);
         setRequestType(request,0);
         setPurposeType(purpose,0);
         setQuantity(quantity,0);
-        
-        //Business principal not set - as when account was changed to Global Admin, the value shown in the drop down field had (10000001) appended. Possible extension to figure out why 
-        
+
     }
     
     public void inputAdditionalLines (String article, String shadeCode,String MUM, String request, String purpose, int quantity, int lineNumber) throws InterruptedException {
@@ -446,6 +445,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     }
     
     public CCE_AddOrderPage waitForCopy() {
+        //Wait for copied data to update in fields
+        
         Boolean waitForDetails = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElementLocated(purposeField, "Select")));
         return this;
     }
@@ -517,6 +518,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     }
     
     public void checkEnrichFields() {
+        //Check the fields related to the Direct Enrich feature appear (click "Yes" to direct enrich to open this)
+
         //Wait for all elements to be clickable
         WebElement waitForComments = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichCommentsField));
         WebElement waitForCompYes = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichCompletedYesButton));
@@ -539,6 +542,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     }
     
     public boolean checkHidden(String type) {
+        //Some MUM types will be hidden for specific materials based on the Sales Org Materials Master Data. This will check that the required type is hidden
+        
         By locator;
         
         switch (type) {

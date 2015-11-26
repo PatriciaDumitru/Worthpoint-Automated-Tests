@@ -1,6 +1,7 @@
 
 package com.coats.selenium.tests;
 
+import PageObjects.Mst_PurposeTypesPage;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import PageObjects.CCE_ExportDownloadPage;
@@ -28,6 +29,8 @@ import PageObjects.Mst_AddMaterialGroupPage;
 import PageObjects.Mst_AddMultiUserPage;
 import PageObjects.Mst_AddPlantHolidayPage;
 import PageObjects.Mst_AddPlantPage;
+import PageObjects.Mst_AddPurposeTypePage;
+import PageObjects.Mst_AddRejectionReasonPage;
 import PageObjects.Mst_AddSalesOrgPage;
 import PageObjects.Mst_AddShadePage;
 import PageObjects.Mst_AddSubAccountPage;
@@ -71,6 +74,8 @@ import PageObjects.Mst_EditMaterialGroupPage;
 import PageObjects.Mst_EditMultiUserPage;
 import PageObjects.Mst_EditPlantHolidayPage;
 import PageObjects.Mst_EditPlantPage;
+import PageObjects.Mst_EditPurposeTypePage;
+import PageObjects.Mst_EditRejectionReasonPage;
 import PageObjects.Mst_EditSalesOrgPage;
 import PageObjects.Mst_EditShadePage;
 import PageObjects.Mst_EditSubAccountPage;
@@ -88,6 +93,7 @@ import PageObjects.Mst_MaterialGroupsPage;
 import PageObjects.Mst_MultiSoldToPage;
 import PageObjects.Mst_PlantHolidaysPage;
 import PageObjects.Mst_PlantsPage;
+import PageObjects.Mst_RejectionReasonsPage;
 import PageObjects.Mst_SalesOrgPage;
 import PageObjects.Mst_ShadesPage;
 import PageObjects.Mst_SubAccountPage;
@@ -4509,6 +4515,303 @@ public class Master_Test extends DriverFactory {
         System.out.println("Page reached. Checking title...");
         
         AssertJUnit.assertTrue("Light Sources Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Light Sources | Import"));
+    
+        System.out.println("Title as expected");
+    }
+
+    @Test //Purpose Types :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void purposeTypes1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Purpose Types: Page and filter checks, add/edit/delete/export features", "A_CM_PT_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Purpose Types Page...");
+        
+        Mst_PurposeTypesPage pPage = mainPage.selectPurposeTypes();
+        pPage.waitForElement();
+        
+        System.out.println("Purpose Types page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Purpose Types Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Purpose Types"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setPurposeType("Shade Development");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Purpose Types Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"Shade Development",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Purpose Types...");
+        
+        Mst_AddPurposeTypePage addPage = pPage.pressNewPurposeType();
+        addPage.waitForElement();
+        
+        System.out.println("Add Purpose Type Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Purpose Type Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Purpose Types | Add Purpose Type"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setPurposeType("AutoTest");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setPurposeType("AutoTest");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("AutoTest");
+        
+        AssertJUnit.assertFalse("Purpose Types Page: Purpose Type not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditPurposeTypePage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Purpose Type Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Purpose Types | Edit Purpose Type"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Purpose Type...");
+        
+        editPage.setPurposeType("Edited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setPurposeType("Edited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("Edited");
+        AssertJUnit.assertFalse("Purpose Types Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setPurposeType("Edited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("Edited");
+        AssertJUnit.assertTrue("Purpose Types Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Purpose Types Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Purpose Types | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Rejection Reasons :: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void rejectionReasons1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Rejection Reasons: Page and filter checks, add/edit/delete/export features", "A_CM_RR_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Rejection Reasons Page...");
+        
+        Mst_RejectionReasonsPage pPage = mainPage.selectRejectionReasons();
+        pPage.waitForElement();
+        
+        System.out.println("Rejection Reasons page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Rejection Reasons Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Rejection Reasons"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setRejectionCode("2016");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"2016",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Purpose Types...");
+        
+        Mst_AddRejectionReasonPage addPage = pPage.pressNewRejectionReason();
+        addPage.waitForElement();
+        
+        System.out.println("Add Rejection Reason Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Rejection Reason Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Rejection Reasons | Add Rejection Reason"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+        
+        addPage.setRejectionReason("AutoTest");
+        addPage.setRejectionCode("AUT0");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setRejectionCode("AUT0");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("AUT0");
+        
+        AssertJUnit.assertFalse("Rejection Reasons Page: Rejection Reason not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditRejectionReasonPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Rejection Reason Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Rejection Reasons | Edit Rejection Reason"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Purpose Type...");
+        
+        editPage.setRejectionCode("Edited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setRejectionCode("Edited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("Edited");
+        AssertJUnit.assertFalse("Purpose Types Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setRejectionCode("Edited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("Edited");
+        AssertJUnit.assertTrue("Rejection Reasons Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Rejection Reasons Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Rejection Reasons | Import"));
     
         System.out.println("Title as expected");
     }

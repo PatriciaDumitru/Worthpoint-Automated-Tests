@@ -915,7 +915,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         manualEntryPage.setCustomerName(DataItems.custDetails[0]);
         manualEntryPage.setShipToParty(DataItems.custDetails[1]);
         manualEntryPage.setRequestor(DataItems.custDetails[2]);
-        CommonTask.resetSearchField(driver, "s2id_BuyerId");
+        //CommonTask.resetSearchField(driver, "s2id_BuyerId");
         manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         //Take a screenshot
@@ -1494,7 +1494,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }   
     
     @Test //Manual Entry Page :: SUMST :: Sub-account test. Field appears and data included in Flat File
-    (groups ={"eComm","eComm_Orders"})
+    (groups ={"eComm","eComm_Orders"}) //Konwn issue: order does not appear in pending approval page as it takes a while to be processed. Fix: wait and reload page, then check for order again
     public void SUMST18() throws Exception {
         //New driver
         WebDriver driver = getDriver();
