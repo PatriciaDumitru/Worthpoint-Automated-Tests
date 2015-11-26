@@ -1,21 +1,29 @@
 WBA-Automated-test-Scripts
 ==========================
-Steps to run Automated scripts.
+### Getting Started
 
+1. Clone this project onto your local machine
+2. Create the following file at location "C:\\Selenium\\ID.txt" with text "3000". This will be used to uniquely identify     orders
+3. Ensure maven is installed and has been added to the PATH variable
+4. Open a command prompt window and change directory to the project folder: "cd [project folder path]"
+5. Run the tests using one of the following commands:
+          Command                               Scope
+          mvn clean verify                      Solo group only (used for development to isolate a small number of tests)
+          mvn clean -P QuickTest verify         QuickTest group only (covers basic functionality across CCE and eComm)
+          mvn clean -P CCE verify               CCE group only
+          mvn clean -P CCE_Orders verify        CCE_Orders group only
+          mvn clean -P eComm verify             eComm group only
+          mvn clean -P eComm_Orders verify      eComm_Orders group only
+          mvn clean -P Upload_Order verify      Upload_Order group only (all tests which involve uploading orders)
+          mvn clean -P General verify           General group only (login and forgot password features)
 
-1. Open a terminal window/command prompt
-2. Clone this project.
-3. CD into project directory
-4. mvn clean verify
-
-All dependencies should now be downloaded and the example google cheese test will have run successfully (Assuming you have Firefox installed in the default location)
+Maven will download all dependencies, including the driver .exe files (chromedriver, firefoxdriver, iedriver etc.), and run the tests. Omit the "clean" phrase if you wish to prevent the deletion of the target folder.
 
 ### What should I know?
 
-- To run any unit tests that test your Selenium framework you just need to ensure that all unit test file names end, or start with "test" and they will be run by step 4.
-- The maven surefire plugin has been used to create a profile with the id "selenium-tests" that configures surefire to pick up any java files that ends with the text "Test".  This means that as long as all of your selenium test file names end with Test.java they will get picked up and run when you perform step 4.
+See the Automated Scripts document or code comments for more details.
 
-### Anything else?
+### More parameters
 
 Yes you can specify which browser to use by using one of the following switches:
 
@@ -54,9 +62,10 @@ If you need to force a binary overwrite you can do:
 
 - -Doverwrite.binaries=true
 
-### It's not working!!!
+### Troubleshoot
 
-You have probably got outdated driver binaries, by default they are not overwritten if they already exist to speed things up.  You have two options:
-
-- mvn clean verify -Doverwrite.binaries=true
-- Delete the selenium_standalone_binaries folder in your resources directory
+- Command "mvn" is not recognised by cmd :: Ensure Maven has been added to the PATH variable for the entire system
+- Maven builds but no tests are run :: Ensure at least one test is present in the selected group
+- Tests run but fail all the time :: Try running the test with chrome (default). The tests are liable to fail in other browsers
+- Lots of tests fail at "clearCookies" method :: An unexpected alert may be present in one of the tests, causing a stream of failures
+- Driver binaries are outdated :: Run "mvn clean verify -Doverwrite.binaries=true" and delete the selenium_standalone_binaries folder in your resources directory
