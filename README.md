@@ -12,11 +12,12 @@ WBA-Automated-test-Scripts
 
 5. Run the tests using one of the following commands:
 
-==========================
-"mvn clean verify": This command will run the Solo group by default
-==========================
-"mvn clean -P [group-name] verify": This command will run the group specified
-==========================
+###"mvn clean verify"
+This command will run the Solo group by default
+
+###"mvn clean -P [group-name] verify"
+This command will run the group specified
+
 
 Maven will now download all dependencies, including the driver .exe files (chromedriver, firefoxdriver, iedriver etc.), and run the tests. Omit the "clean" phrase if you wish to prevent the deletion of the target folder.
 
