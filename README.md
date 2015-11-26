@@ -3,21 +3,18 @@ WBA-Automated-test-Scripts
 ### Getting Started
 
 1. Clone this project onto your local machine
-2. Create the following file at location "C:\\Selenium\\ID.txt" with text "3000". This will be used to uniquely identify     orders
-3. Ensure maven is installed and has been added to the PATH variable
-4. Open a command prompt window and change directory to the project folder: "cd [project folder path]"
-5. Run the tests using one of the following commands:
-          Command                               Scope
-          mvn clean verify                      Solo group only (used for development to isolate a small number of tests)
-          mvn clean -P QuickTest verify         QuickTest group only (covers basic functionality across CCE and eComm)
-          mvn clean -P CCE verify               CCE group only
-          mvn clean -P CCE_Orders verify        CCE_Orders group only
-          mvn clean -P eComm verify             eComm group only
-          mvn clean -P eComm_Orders verify      eComm_Orders group only
-          mvn clean -P Upload_Order verify      Upload_Order group only (all tests which involve uploading orders)
-          mvn clean -P General verify           General group only (login and forgot password features)
 
-Maven will download all dependencies, including the driver .exe files (chromedriver, firefoxdriver, iedriver etc.), and run the tests. Omit the "clean" phrase if you wish to prevent the deletion of the target folder.
+2. Create the following file at location "C:\\Selenium\\ID.txt" with text "3000". This will be used to uniquely identify     orders
+
+3. Ensure maven is installed and has been added to the PATH variable
+
+4. Open a command prompt window and change directory to the project folder: "cd [project folder path]"
+
+5. Run the tests using one of the following commands:
+          "mvn clean verify": This command will run the Solo group by default
+          "mvn clean -P [group-name] verify": This command will run the group specified
+
+Maven will now download all dependencies, including the driver .exe files (chromedriver, firefoxdriver, iedriver etc.), and run the tests. Omit the "clean" phrase if you wish to prevent the deletion of the target folder.
 
 ### What should I know?
 
