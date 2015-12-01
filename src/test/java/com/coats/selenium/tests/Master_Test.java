@@ -20,8 +20,10 @@ import PageObjects.Mst_AddCustLengthPage;
 import PageObjects.Mst_AddCustMaterialPage;
 import PageObjects.Mst_AddCustShadePage;
 import PageObjects.Mst_AddCustTicketPage;
+import PageObjects.Mst_AddDLMPage;
 import PageObjects.Mst_AddEnterpriseStructurePage;
 import PageObjects.Mst_AddFinishPage;
+import PageObjects.Mst_AddForcedEnrichmentPage;
 import PageObjects.Mst_AddHierarchyPage;
 import PageObjects.Mst_AddHubPage;
 import PageObjects.Mst_AddLengthOfferPage;
@@ -29,6 +31,7 @@ import PageObjects.Mst_AddLengthPage;
 import PageObjects.Mst_AddLightSourcePage;
 import PageObjects.Mst_AddMaterialGroupPage;
 import PageObjects.Mst_AddMultiUserPage;
+import PageObjects.Mst_AddOrderTypePage;
 import PageObjects.Mst_AddPlantHolidayPage;
 import PageObjects.Mst_AddPlantPage;
 import PageObjects.Mst_AddPurposeTypePage;
@@ -40,6 +43,7 @@ import PageObjects.Mst_AddShadeCardPage;
 import PageObjects.Mst_AddShadeCardPlantPage;
 import PageObjects.Mst_AddShadePage;
 import PageObjects.Mst_AddSubAccountPage;
+import PageObjects.Mst_AddSupplyPlantPage;
 import PageObjects.Mst_AddTicketPage;
 import PageObjects.Mst_AddUserTypePage;
 import PageObjects.Mst_AddWarehouseInstructionPage;
@@ -59,6 +63,7 @@ import PageObjects.Mst_CustMaterialsPage;
 import PageObjects.Mst_CustTicketsPage;
 import PageObjects.Mst_CustomerShadesPage;
 import PageObjects.Mst_CustomersPage;
+import PageObjects.Mst_DyeLotMultiplesPage;
 import PageObjects.Mst_EditApproverListPage;
 import PageObjects.Mst_EditBasicMaterialPage;
 import PageObjects.Mst_EditBrandPage;
@@ -73,8 +78,10 @@ import PageObjects.Mst_EditCustMaterialPage;
 import PageObjects.Mst_EditCustShadePage;
 import PageObjects.Mst_EditCustTicketPage;
 import PageObjects.Mst_EditCustomerPage;
+import PageObjects.Mst_EditDLMPage;
 import PageObjects.Mst_EditEnterpriseStructurePage;
 import PageObjects.Mst_EditFinishPage;
+import PageObjects.Mst_EditForcedEnrichmentPage;
 import PageObjects.Mst_EditHierarchyPage;
 import PageObjects.Mst_EditHubPage;
 import PageObjects.Mst_EditLengthOfferPage;
@@ -82,6 +89,7 @@ import PageObjects.Mst_EditLengthPage;
 import PageObjects.Mst_EditLightSourcePage;
 import PageObjects.Mst_EditMaterialGroupPage;
 import PageObjects.Mst_EditMultiUserPage;
+import PageObjects.Mst_EditOrderTypePage;
 import PageObjects.Mst_EditPlantHolidayPage;
 import PageObjects.Mst_EditPlantPage;
 import PageObjects.Mst_EditPurposeTypePage;
@@ -93,11 +101,13 @@ import PageObjects.Mst_EditShadeCardPage;
 import PageObjects.Mst_EditShadeCardPlantPage;
 import PageObjects.Mst_EditShadePage;
 import PageObjects.Mst_EditSubAccountPage;
+import PageObjects.Mst_EditSupplyPlantPage;
 import PageObjects.Mst_EditTicketPage;
 import PageObjects.Mst_EditUserTypePage;
 import PageObjects.Mst_EditWarehouseInstructionPage;
 import PageObjects.Mst_EnterpriseStructurePage;
 import PageObjects.Mst_FinishesPage;
+import PageObjects.Mst_ForcedEnrichmentPage;
 import PageObjects.Mst_HierarchyPage;
 import PageObjects.Mst_HubsPage;
 import PageObjects.Mst_ImportPage;
@@ -107,6 +117,7 @@ import PageObjects.Mst_LengthsPage;
 import PageObjects.Mst_LightSourcesPage;
 import PageObjects.Mst_MaterialGroupsPage;
 import PageObjects.Mst_MultiSoldToPage;
+import PageObjects.Mst_OrderTypePage;
 import PageObjects.Mst_PlantHolidaysPage;
 import PageObjects.Mst_PlantsPage;
 import PageObjects.Mst_QuantityFactorsPage;
@@ -117,6 +128,7 @@ import PageObjects.Mst_ShadeCardPlantsPage;
 import PageObjects.Mst_ShadeCardsPage;
 import PageObjects.Mst_ShadesPage;
 import PageObjects.Mst_SubAccountPage;
+import PageObjects.Mst_SupplyPlantsPage;
 import PageObjects.Mst_TicketsPage;
 import PageObjects.Mst_WarehouseInstructionsPage;
 import PageObjects.WBA_BasePage;
@@ -5782,7 +5794,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Charged Products: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters","Solo"})
+    (groups = {"Masters"})
     public void chargedProducts1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -5939,6 +5951,628 @@ public class Master_Test extends DriverFactory {
         System.out.println("Page reached. Checking title...");
         
         AssertJUnit.assertTrue("Charged Products Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Charged Products | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Forced Enrichment Products: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void forcedEnrichment1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Forced Enrichment Products Page: Page and filter checks, add/edit/delete/export features", "A_PR_FEP_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Forced Enrichment Products Page...");
+        
+        Mst_ForcedEnrichmentPage pPage = mainPage.selectForcedEnrichment();
+        pPage.waitForElement();
+        
+        System.out.println("Charged Products page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Forced Enrichment Products Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Forced Enrichment Products"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setSalesOrg("ID51");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Forced Enrichment Products Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"ID51",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Forced Enrichment Product...");
+        
+        Mst_AddForcedEnrichmentPage addPage = pPage.pressNewProduct();
+        addPage.waitForElement();
+        
+        System.out.println("Add Forced Enrichment Product Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Forced Enrichment Product Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Forced Enrichment Products | Add Forced Enrichment Product"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName("Life Easy Customer");
+        addPage.setBrand("Test");
+        addPage.setTicket("000");
+        addPage.setMUMType("Vicone");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setSalesOrg("ID51");
+        pPage.setCustomerName("Life Easy Customer");
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("Life Easy Customer","Test","000");
+        
+        AssertJUnit.assertFalse("Forced Enrichment Products Page: Forced Enrichment Product not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditForcedEnrichmentPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Forced Enrichment Products Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Forced Enrichment Products | Edit Forced Enrichment Product"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Charged Product...");
+        
+        editPage.setTicket("002");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setSalesOrg("ID51");
+        pPage.setCustomerName("Life Easy Customer");
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("Life Easy Customer","Test","002");
+        AssertJUnit.assertFalse("Forced Enrichment Products Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setCustomerName("Life Easy Customer");
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("Life Easy Customer","Test","002");
+        AssertJUnit.assertTrue("Forced Enrichment Products Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setSalesOrg("ID51");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Forced Enrichment Products Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Forced Enrichment Products | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Supply Plants: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void supplyPlants1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Supply Plants Page: Page and filter checks, add/edit/delete/export features", "A_PR_SP_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Supply Plant Page...");
+        
+        Mst_SupplyPlantsPage pPage = mainPage.selectSupplyPlants();
+        pPage.waitForElement();
+        
+        System.out.println("Supply Plants page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Supply Plants Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Supply Plants"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setBrand("astra");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(4)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Forced Enrichment Products Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"astra",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Supply Plant...");
+        
+        Mst_AddSupplyPlantPage addPage = pPage.pressNewSupplyPlant();
+        addPage.waitForElement();
+        
+        System.out.println("Add Supply Plant Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Supply Plant Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Supply Plants | Add Supply Plant"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+
+        addPage.setDeliveryPlant("ABCMut");
+        addPage.setBrand("Test");
+        addPage.setTicket("000");
+        addPage.setMUMType("Vicone");
+        addPage.setSupplyPlant("TEST");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("ABCMut","Test","000","TEST");
+        
+        AssertJUnit.assertFalse("Supply Plants Page: Supply Plant not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditSupplyPlantPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Supply Plant Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Supply Plants | Edit Supply Plant"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Supply Plant...");
+        
+        editPage.setTicket("002");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("ABCMut","Test","002","TEST");
+        AssertJUnit.assertFalse("Supply Plants Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("ABCMut","Test","002","TEST");
+        AssertJUnit.assertTrue("Supply Plants Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setSupplyPlant("CN33");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Supply Plants Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Supply Plants | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Dye Lot Multiples: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters"})
+    public void dyeLotMultiples1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Dye Lot Multiples Page: Page and filter checks, add/edit/delete/export features", "A_PR_DLM_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Dye Lot Multiples Page...");
+        
+        Mst_DyeLotMultiplesPage pPage = mainPage.selectDyeLotMultiples();
+        pPage.waitForElement();
+        
+        System.out.println("Dye Lot Multiples page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Dye Lot Multiples Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Dye Lot Multiples"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setBrand("astra");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(4)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Dye Lot Multiples Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"astra",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Dye Lot Multiple...");
+        
+        Mst_AddDLMPage addPage = pPage.pressNewDLM();
+        addPage.waitForElement();
+        
+        System.out.println("Add Dye Lot Multiple Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Dye Lot Multiple Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Dye Lot Multiples | Add Dye Lot Multiple"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+
+        addPage.setSalesOrg("ID51");
+        addPage.setBrand("Test");
+        addPage.setTicket("000");
+        addPage.setLength("5000");
+        addPage.setFinish("STANDARD");
+        addPage.setLevel("3");
+        addPage.setRangeStart("0");
+        addPage.setRangeEnd("9");
+        addPage.setStepValue("3");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("ID51","Test","000","3");
+        
+        AssertJUnit.assertFalse("Dye Lot Multiples Page: Dye Lot Multiple not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditDLMPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Dye Lot Multiple Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Dye Lot Multiples | Edit Dye Lot Multiple"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Dye Lot Multiple...");
+        
+        editPage.setLevel("5");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("ID51","Test","000","5");
+        AssertJUnit.assertFalse("Dye Lot Multiples Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setBrand("Test");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("ID51","Test","000","5");
+        AssertJUnit.assertTrue("Dye Lot Multiples Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setSalesOrg("ID51");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Dye Lot Multiples Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Dye Lot Multiples | Import"));
+    
+        System.out.println("Title as expected");
+    }
+    
+    @Test //Order Type: Page and filter checks, add/edit/delete/export features
+    (groups = {"Masters","Solo"})
+    public void orderTypes1() throws Exception {
+        WebDriver driver = getDriver();
+        
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Order Types Page: Page and filter checks, add/edit/delete/export features", "A_PR_OT_1 to 8");
+        mainPage.waitForLoad();
+        
+        System.out.println("Navigating to Order Types Page...");
+        
+        Mst_OrderTypePage pPage = mainPage.selectOrderType();
+        pPage.waitForElement();
+        
+        System.out.println("Order Type page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Order Type Page: Title not as expected",pPage.getBreadcrumb().getText().equals("Order Type"));
+        
+        System.out.println("Title checked");
+        
+        pPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        pPage.checkFields();
+        
+        System.out.println("Fields checked. Entering filter criteria...");
+        
+        pPage.setOrderType("Y");
+        
+        System.out.println("Filter criteria entered. Listing records...");
+        
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        System.out.println("Records listed. Checking filtration...");
+        
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        
+        AssertJUnit.assertTrue("Order Types Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"Y",recordField,2));
+        
+        System.out.println("Filtration as expected. Creating new Order Type...");
+        
+        Mst_AddOrderTypePage addPage = pPage.pressNewOrderType();
+        addPage.waitForElement();
+        
+        System.out.println("Add Order Type Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Add Order Type Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Order Type | Add Order Type"));
+        
+        System.out.println("Title as expected");
+        
+        addPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        addPage.checkFields();
+        
+        System.out.println("Fields checked. Entering details...");
+
+        addPage.setOrderType("TEST");
+        
+        System.out.println("Details entered. Saving...");
+        
+        addPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record appears...");
+        
+        pPage.setOrderType("TEST");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row = pPage.getRow("TEST");
+        
+        AssertJUnit.assertFalse("Order Type Page: Order Type not present in table after creation",row==-1);
+        
+        System.out.println("Record found. Editing record...");
+        
+        Mst_EditOrderTypePage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+        
+        System.out.println("Edit page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Edit Order Type Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Order Type | Edit Order Type"));
+        
+        System.out.println("Title checked");
+        
+        editPage.assertBaseElements();
+        
+        System.out.println("Checking fields...");
+        
+        editPage.checkFields();
+        
+        System.out.println("Fields checked. Editing Order Type...");
+        
+        editPage.setOrderType("Edited");
+        
+        System.out.println("Edited. Saving...");
+        
+        editPage.pressSave();
+        pPage.waitForElement();
+        
+        System.out.println("Saved. Checking record is updated...");
+        
+        pPage.setOrderType("Edited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row2 = pPage.getRow("Edited");
+        AssertJUnit.assertFalse("Order Type Page: Edited changes are not applied in table",row2==-1);
+        
+        System.out.println("Record updated. Deleting record...");
+        
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+        
+        System.out.println("Delete pressed. Checking item is removed...");
+        
+        pPage.setOrderType("Edited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        
+        int row3 = pPage.getRow("Edited");
+        AssertJUnit.assertTrue("Order Types Page: Item not removed after deletion",row3==-1);
+        
+        System.out.println("Item removed. Checking export function...");
+        
+        pPage.pressReset();
+        pPage.waitForElement();
+        
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+        
+        System.out.println("Export function works. Checking import page...");
+        
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+        
+        System.out.println("Page reached. Checking title...");
+        
+        AssertJUnit.assertTrue("Order Types Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("TypeOrders | Import"));
     
         System.out.println("Title as expected");
     }

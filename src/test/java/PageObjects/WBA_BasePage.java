@@ -149,6 +149,10 @@ public class WBA_BasePage {
             static By shadeCardsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(2)");
             static By shadeCardPlantsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(3)");
             static By chargedProductsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(9)");
+            static By forcedEnrichmentOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(10)");
+            static By supplyPlantsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(11)");
+            static By dyeLotMultiplesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(12)");
+            static By orderTypeOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(13)");
         static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
         static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
         static By archivesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(6)");
@@ -867,6 +871,10 @@ public class WBA_BasePage {
     }
     
     public boolean checkFiltration(String locator1, String locator2, String item, By countField, int firstRow) {
+        //Method will check that the filter applied works properly. Locator 1 and 2 make up the locator, and are split to allow the row number to be inseted
+        //Item is the expected item to be contained by the cell referenced with locator 1 and 2
+        //countField is the element in the bottom left which holds record count information
+        //firstRow is the table's starting row value. Usually 2
         
         int count = this.getRecordCount(countField);
         
@@ -875,7 +883,7 @@ public class WBA_BasePage {
         for (int i = firstRow; i < (tableCount + firstRow); i++) {
             By locator = By.cssSelector(locator1 + "" +  i + "" + locator2);
             WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
-            if (!element.getText().trim().equals(item)) {
+            if (!element.getText().trim().contains(item)) {
                 return false;
             }
         }
@@ -1363,6 +1371,61 @@ public class WBA_BasePage {
         
         return new Mst_ChargedProductsPage(driver);
         
+    }
+    
+    public Mst_ForcedEnrichmentPage selectForcedEnrichment() {
+        
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(forcedEnrichmentOption));
+        action.click(driver.findElement(forcedEnrichmentOption)).build().perform();
+        
+        return new Mst_ForcedEnrichmentPage(driver);
+        
+    }
+    
+    public Mst_SupplyPlantsPage selectSupplyPlants() {
+        
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(supplyPlantsOption));
+        action.click(driver.findElement(supplyPlantsOption)).build().perform();
+        
+        return new Mst_SupplyPlantsPage(driver);
+        
+    }
+    
+    public Mst_DyeLotMultiplesPage selectDyeLotMultiples() {
+        
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dyeLotMultiplesOption));
+        action.click(driver.findElement(dyeLotMultiplesOption)).build().perform();
+        
+        return new Mst_DyeLotMultiplesPage(driver);
+        
+    }
+    
+    public Mst_OrderTypePage selectOrderType() {
+        
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderTypeOption));
+        action.click(driver.findElement(orderTypeOption)).build().perform();
+        
+        return new Mst_OrderTypePage(driver);
     }
     
     public WBA_LoginPage pressLogout() {
