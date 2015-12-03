@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,8 +30,7 @@ public class CCE_InboxSAPPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement waitForBreadcrumb = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
-        return driver.findElement(breadcrumb);
+        return Wait.visible(driver,breadcrumb);
     }
     
     public WebElement getOrderNoField() {
@@ -87,37 +87,38 @@ public class CCE_InboxSAPPage extends WBA_BasePage {
     }
     
     public CCE_InboxSAPPage pressListOrders() {
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        driver.findElement(listOrdersButton).submit();
+        WebElement button = Wait.clickable(driver,listOrdersButton);
+        button.submit();
         return this;
     }
     
     public CCE_InboxSAPPage pressReset() {
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        Wait.clickable(driver,resetButton).click();
         return this;
     }
     
     public void checkFields() {
         //Wait for all to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement waitForHub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderFromField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderToField));
-        WebElement waitForRequester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForSalesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement waitForListOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement custCode = Wait.clickable(driver,custCodeField);
+        WebElement hub = Wait.clickable(driver,hubField);
+        WebElement orderFrom = Wait.clickable(driver,orderFromField);
+        WebElement orderTo = Wait.clickable(driver,orderToField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement listOrders = Wait.clickable(driver,listOrdersButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
         
         //Assert all fields are displayed
-        AssertJUnit.assertTrue("Inbox SAP page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox SAP page: Customer Code Field not displayed correctly",getCustCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox SAP page: Hub Field not displayed correctly",getHubField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox SAP page: Order Date From field not displayed correctly",getOrderDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox SAP page: Order Date To field not displayed correctly",getOrderDateToField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox SAP page: Requester field not displayed correctly",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox SAP page: Sales Organisation field not displayed correctly",getSalesOrgField().isDisplayed());
+        AssertJUnit.assertTrue("Inbox SAP page: Order No Field not displayed correctly",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Inbox SAP page: Customer Code Field not displayed correctly",custCode.isDisplayed());
+        AssertJUnit.assertTrue("Inbox SAP page: Hub Field not displayed correctly",hub.isDisplayed());
+        AssertJUnit.assertTrue("Inbox SAP page: Order Date From field not displayed correctly",orderFrom.isDisplayed());
+        AssertJUnit.assertTrue("Inbox SAP page: Order Date To field not displayed correctly",orderTo.isDisplayed());
+        AssertJUnit.assertTrue("Inbox SAP page: Requester field not displayed correctly",requester.isDisplayed());
+        AssertJUnit.assertTrue("Inbox SAP page: Sales Organisation field not displayed correctly",salesOrg.isDisplayed());
+        AssertJUnit.assertTrue("Inbox SAP page: List Orders field not displayed correctly",listOrders.isDisplayed());
+        AssertJUnit.assertTrue("Inbox SAP page: Reset field not displayed correctly",reset.isDisplayed());
         
     }
 }

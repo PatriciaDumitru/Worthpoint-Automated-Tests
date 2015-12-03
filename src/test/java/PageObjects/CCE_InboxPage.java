@@ -2,6 +2,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -54,81 +56,13 @@ public class CCE_InboxPage extends WBA_BasePage {
         return driver.findElement(breadcrumb);
     }
     
-    public WebElement getOrderNoField() {
-        return driver.findElement(orderNoField);
-    }
-    
-    public WebElement getFceNameField() {
-        return driver.findElement(fceNameField);
-    }
-    
-    public WebElement getTicketField() {
-        return driver.findElement(ticketField);
-    }
-    
-    public WebElement getCustNameField() {
-        return driver.findElement(custNameField);
-    }
-    
-    public WebElement getShipToCodeField() {
-        return driver.findElement(shipToCodeField);
-    }
-    
-    public WebElement getOrderFromField() {
-        return driver.findElement(orderFromField);
-    }
-    
-    public WebElement getOrderToField() {
-        return driver.findElement(orderToField);
-    }
-    
-    public WebElement getOrderTypeField() {
-        return driver.findElement(orderTypeField);
-    }
-    
-    public WebElement getArticleField() {
-        return driver.findElement(articleField);
-    }
-    
-    public WebElement getMumField() {
-        return driver.findElement(mumField);
-    }
-    
-    public WebElement getCustCodeField() {
-        return driver.findElement(custCodeField);
-    }
-    
-    public WebElement getBrandField() {
-        return driver.findElement(brandField);
-    }
-    
-    public WebElement getHubField() {
-        return driver.findElement(hubField);
-    }
-    
-    public WebElement getShadeCodeField() {
-        return driver.findElement(shadeCodeField);
-    }
-    
-    public WebElement getShipToNameField() {
-        return driver.findElement(shipToNameField);
-    }
-    
-    public WebElement getSAPStatusField() {
-        return driver.findElement(sapStatusField);
-    }
-    
-    public WebElement getRequesterNameField() {
-        return driver.findElement(requesterField);
-    }
-    
     public String getFlashMessage() {
         return driver.findElement(flashMessage).getText();
     }
     
     public String getOrderStatus() {
-        WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderStatusCell));
-        return driver.findElement(orderStatusCell).getText();
+        WebElement cell = Wait.clickable(driver,orderStatusCell);
+        return cell.getText();
     }
     
     public CCE_InboxPage setOrderNo(String item) {
@@ -148,8 +82,10 @@ public class CCE_InboxPage extends WBA_BasePage {
     
     public CCE_InboxPage setCustName(String item) {
         CommonTask.setChoiceFieldAlt(driver, custNameField, item);
+        
         By customerNameChoice = By.cssSelector("#s2id_filterSampleOrderCustomerIdName > ul > li.select2-search-choice");
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(customerNameChoice));
+        WebElement field = Wait.visible(driver,customerNameChoice);
+        
         return this;
     }
     
@@ -198,25 +134,25 @@ public class CCE_InboxPage extends WBA_BasePage {
     }
     
     public CCE_InboxPage pressListOrders() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        driver.findElement(orderNoField).submit();
+        WebElement listOrders = Wait.clickable(driver,orderNoField);
+        listOrders.submit();
         
         return this;
     }
     
     public CCE_InboxPage pressReset() {
         //Wait for clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         
         return this;
     }
     
     public void pressPrint() {
         //Wait for clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement print = Wait.clickable(driver,printButton);
         if (DataItems.printingEnabled) {
-            driver.findElement(printButton).click();
+            print.click();
             System.out.println("Print enabled, print pressed.");
         } else {
             System.out.println("Printing is not enabled, print was not pressed");
@@ -225,13 +161,13 @@ public class CCE_InboxPage extends WBA_BasePage {
     }
     
     public void switchTo() {
-        WebDriver waitForFrame = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(viewFrame));
+        WebDriver frame = Wait.frame(driver,viewFrame);
     }
     
     public CCE_OrderViewPage pressView() {
         //wait for element to be present
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        driver.findElement(viewButton).click();
+        WebElement view = Wait.clickable(driver,viewButton);
+        view.click();
         
         switchTo();
         
@@ -242,36 +178,32 @@ public class CCE_InboxPage extends WBA_BasePage {
         switchTo();
         driver.findElement(viewFrame).sendKeys(Keys.ESCAPE);
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new CCE_InboxPage(driver);
     }
     
     public CCE_InboxPage pressLRM() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sendLRM));
-        driver.findElement(sendLRM).click();
-        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(sendLRM)));
+        CommonTask.setCheckBox(driver,sendLRM);
         return this;
     }
     
     public CCE_InboxPage pressSAP() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sendSAP));
-        driver.findElement(sendSAP).click();
-        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(sendSAP)));
+        CommonTask.setCheckBox(driver,sendSAP);
         return this;
     }
     
     public CCE_InboxPage pressSave() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));       
-        driver.findElement(saveButton).click();
+        WebElement save = Wait.clickable(driver,saveButton);       
+        save.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         System.out.println("Save pressed. Alert received. Accepting alert...");
         
-        WebElement waitForMessage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        WebElement messageField = Wait.visible(driver,flashMessage);
         System.out.println("Alert accepted. Message appeared: ");
         
         String message = getFlashMessage();
@@ -286,56 +218,54 @@ public class CCE_InboxPage extends WBA_BasePage {
     }
     
     public CCE_InboxPage pressCancel() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));       
-        driver.findElement(cancelButton).click();
+        WebElement cancel = Wait.clickable(driver,cancelButton);       
+        cancel.click();
+        
         return this;
     }
     
     public void checkFields() {
         //Wait for all to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForFceName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForShipToCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToCodeField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderFromField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderToField));
-        WebElement waitForOrderType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderTypeField));
-        WebElement waitForArticle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement waitForMum = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumField));
-        WebElement waitForCustCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForHub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement waitForShadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForRequester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForShipToName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToNameField));
-        WebElement waitForSapStatus = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sapStatusField));
-        WebElement waitForListButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        WebElement waitForResetButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForViewButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForSave = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
-        WebElement waitForPrin = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement fceName = Wait.clickable(driver,fceNameField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement shipToCode = Wait.clickable(driver,shipToCodeField);
+        WebElement orderFrom = Wait.clickable(driver,orderFromField);
+        WebElement orderTo = Wait.clickable(driver,orderToField);
+        WebElement orderType = Wait.clickable(driver,orderTypeField);
+        WebElement article = Wait.clickable(driver,articleField);
+        WebElement mum = Wait.clickable(driver,mumField);
+        WebElement custCode = Wait.clickable(driver,custCodeField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement hub = Wait.clickable(driver,hubField);
+        WebElement shadeCode = Wait.clickable(driver,shadeCodeField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement shipToName = Wait.clickable(driver,shipToNameField);
+        WebElement sapStatus = Wait.clickable(driver,sapStatusField);
+        WebElement listButton = Wait.clickable(driver,listOrdersButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement view = Wait.clickable(driver,viewButton);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
+        WebElement print = Wait.clickable(driver,printButton);
+                
         //Check all fields are displayed
-        AssertJUnit.assertTrue("Inbox page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: FCE Name Field not displayed correctly",getFceNameField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: Ticket Field not displayed correctly",getTicketField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: Customer name Field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: Ship To Code Field not displayed correctly",getShipToCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: OrderDate From Field not displayed correctly",getOrderFromField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: OrderDate To Field not displayed correctly",getOrderToField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: OrderDate To Field not displayed correctly",getOrderToField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: Order Type Field not displayed correctly",getOrderTypeField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: MUM Type Field not displayed correctly",getMumField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: Article Field not displayed correctly",getArticleField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: Customer Code Field not displayed correctly",getCustCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: Brand Field not displayed correctly",getBrandField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: Shade Code field not displayed correctly",getShadeCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: Requester field not displayed correctly",getRequesterNameField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: Ship To Name field not displayed correctly",getShipToNameField().isDisplayed());
-        AssertJUnit.assertTrue("Inbox page: SAP Status field not displayed correctly",getSAPStatusField().isDisplayed());              
-        
+        AssertJUnit.assertTrue("Inbox page: Order No Field not displayed correctly",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: FCE Name Field not displayed correctly",fceName.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: Ticket Field not displayed correctly",ticket.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: Customer name Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: Ship To Code Field not displayed correctly",shipToCode.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: OrderDate From Field not displayed correctly",orderFrom.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: OrderDate To Field not displayed correctly",orderTo.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: Order Type Field not displayed correctly",orderType.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: Article Field not displayed correctly",article.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: Customer Code Field not displayed correctly",custCode.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: Brand Field not displayed correctly",brand.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: Shade Code field not displayed correctly",shadeCode.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: Requester field not displayed correctly",requester.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: Ship To Name field not displayed correctly",shipToName.isDisplayed());
+        AssertJUnit.assertTrue("Inbox page: SAP Status field not displayed correctly",sapStatus.isDisplayed());              
     }
     
 }

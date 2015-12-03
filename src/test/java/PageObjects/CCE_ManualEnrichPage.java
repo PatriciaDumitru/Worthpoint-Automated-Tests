@@ -7,6 +7,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -98,23 +100,23 @@ public class CCE_ManualEnrichPage extends WBA_BasePage {
     }
     
     public CCE_ManualEnrichPage pressSearch() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton);
+        WebElement search = Wait.clickable(driver,searchButton);
+        search.click();
         return new CCE_ManualEnrichPage(driver);
     }
     
     public CCE_ManualEnrichPage pressReset() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return new CCE_ManualEnrichPage(driver);
     }
     
     public CCE_OrderViewPage pressView(int row) {
         By viewButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(2) > a");
         
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement view = Wait.clickable(driver,viewButton);
         
-        driver.findElement(viewButton).click();
+        view.click();
         
         return new CCE_OrderViewPage(driver);
     }
@@ -122,9 +124,9 @@ public class CCE_ManualEnrichPage extends WBA_BasePage {
     public CCE_EnrichOrderPage pressEnrich(int row) {
         By enrichButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(3) > a");
         
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichButton));
+        WebElement enrich = Wait.clickable(driver,enrichButton);
         
-        driver.findElement(enrichButton).click();
+        enrich.click();
         
         return new CCE_EnrichOrderPage(driver);
     }
@@ -148,9 +150,9 @@ public class CCE_ManualEnrichPage extends WBA_BasePage {
     public boolean findOrder(String orderNo) {
         for (int i = 2; i < 8; i++) {
             By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(6)");
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            WebElement cell = Wait.clickable(driver,orderNoCell);
             
-            if (driver.findElement(orderNoCell).getText().equals(orderNo)) {
+            if (cell.getText().equals(orderNo)) {
                 return true;
             }
         }
@@ -160,35 +162,35 @@ public class CCE_ManualEnrichPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement orderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement scenario = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(scenarioField));
-        WebElement requestType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requestTypeField));
-        WebElement hub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement requester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement fceName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement createdFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createdDateFromField));
-        WebElement createdTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createdDateToField));
-        WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement scenario = Wait.clickable(driver,scenarioField);
+        WebElement requestType = Wait.clickable(driver,requestTypeField);
+        WebElement hub = Wait.clickable(driver,hubField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement fceName = Wait.clickable(driver,fceNameField);
+        WebElement createdFrom = Wait.clickable(driver,createdDateFromField);
+        WebElement createdTo = Wait.clickable(driver,createdDateToField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Manual Enrich Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Enrich Page: Customer Name Field not displayed correctly",getCustomerNameField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Enrich Page: Scenario Field not displayed correctly",getScenarioField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Enrich Page: Request Type Field not displayed correctly",getRequestTypeField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Enrich Page: Hub Field not displayed correctly",getHubField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Enrich Page: Requester Field not displayed correctly",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Enrich Page: FCE Name Field not displayed correctly",getFCENameField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Enrich Page: Created Date From Field not displayed correctly",getCreatedDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Enrich Page: Created Date To Field not displayed correctly",getCreatedDateToField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Enrich Page: Search Button not displayed correctly",getSearchButton().isDisplayed());
-        AssertJUnit.assertTrue("Manual Enrich Page: Reset Button not displayed correctly",getResetButton().isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: Order No Field not displayed correctly",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: Customer Name Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: Scenario Field not displayed correctly",scenario.isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: Request Type Field not displayed correctly",requestType.isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: Hub Field not displayed correctly",hub.isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: Requester Field not displayed correctly",requester.isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: FCE Name Field not displayed correctly",fceName.isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: Created Date From Field not displayed correctly",createdFrom.isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: Created Date To Field not displayed correctly",createdTo.isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: Search Button not displayed correctly",search.isDisplayed());
+        AssertJUnit.assertTrue("Manual Enrich Page: Reset Button not displayed correctly",reset.isDisplayed());
     }
     
     public boolean checkForRecords() {
         try {
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(noRecords));
+            WebElement wait = Wait.visible(driver,noRecords);
             return false;
         } catch(TimeoutException e) {
             return true;
@@ -196,7 +198,7 @@ public class CCE_ManualEnrichPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(scenarioField));
+        WebElement wait = Wait.clickable(driver,scenarioField);
     }
     
 }

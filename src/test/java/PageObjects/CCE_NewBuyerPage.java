@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,13 +28,8 @@ public class CCE_NewBuyerPage extends WBA_BasePage {
     }
     
     public WebElement getTitleField() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(titleLocator));
-        return driver.findElement(titleLocator);
-    }
-    
-    public WebElement getCustomerNameField() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        return driver.findElement(custNameField);
+        WebElement title = Wait.visible(driver,titleLocator);
+        return title;
     }
     
     public WebElement getBuyerNameField() {
@@ -53,22 +50,22 @@ public class CCE_NewBuyerPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement buyerName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyerNameField));
-        WebElement buyerDesc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyerDescField));
-        WebElement submit = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement buyerName = Wait.clickable(driver,buyerNameField);
+        WebElement buyerDesc = Wait.clickable(driver,buyerDescField);
+        WebElement submit = Wait.clickable(driver,submitButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("New Buyer Page: Customer name field not displayed correctly",getCustomerNameField().isDisplayed());
-        AssertJUnit.assertTrue("New Buyer Page: Buyer name field not displayed correctly",getBuyerNameField().isDisplayed());
-        AssertJUnit.assertTrue("New Buyer Page: Buyer description field not displayed correctly",getBuyerDescField().isDisplayed());
-        AssertJUnit.assertTrue("New Buyer Page: Submit button not displayed correctly",getSubmitButton().isDisplayed());
-        AssertJUnit.assertTrue("New Buyer Page: Cancel button not displayed correctly",getCancelButton().isDisplayed());
+        AssertJUnit.assertTrue("New Buyer Page: Customer name field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("New Buyer Page: Buyer name field not displayed correctly",buyerName.isDisplayed());
+        AssertJUnit.assertTrue("New Buyer Page: Buyer description field not displayed correctly",buyerDesc.isDisplayed());
+        AssertJUnit.assertTrue("New Buyer Page: Submit button not displayed correctly",submit.isDisplayed());
+        AssertJUnit.assertTrue("New Buyer Page: Cancel button not displayed correctly",cancel.isDisplayed());
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyerNameField));
+        WebElement wait = Wait.clickable(driver,buyerNameField);
     }
     
     public CCE_NewBuyerPage setCustomerName(String item) {
@@ -77,10 +74,10 @@ public class CCE_NewBuyerPage extends WBA_BasePage {
         By searchLocator = By.cssSelector("#select2-drop > div > input");
         By resultLocator = By.cssSelector("#select2-drop > ul > li");
         
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyerNameField));
+        WebElement buyerName = Wait.clickable(driver,buyerNameField);
         
         Actions action = new Actions(driver);
-        action.click(driver.findElement(custNameField)).build().perform();
+        action.click(buyerName).build().perform();
         
         WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(searchLocator));
         action.sendKeys(driver.findElement(searchLocator),item).build().perform();
@@ -103,14 +100,14 @@ public class CCE_NewBuyerPage extends WBA_BasePage {
     }
     
     public CCE_AddOrderPage pressSubmit() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButton));
-        driver.findElement(submitButton).click();
+        WebElement submit = Wait.clickable(driver,submitButton);
+        submit.click();
         return new CCE_AddOrderPage(driver);
     }
     
     public CCE_AddOrderPage pressCancel() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
-        driver.findElement(cancelButton).click();
+        WebElement cancel = Wait.clickable(driver,cancelButton);
+        cancel.click();
         return new CCE_AddOrderPage(driver);
     }
     
