@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -16,8 +17,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CCE_ExportDownloadPage {
     
     WebDriver driver;
-    
-    //Locators
     By frameLocator = By.id("TB_iframeContent");
     
     public CCE_ExportDownloadPage(WebDriver passedDriver) {
@@ -25,16 +24,11 @@ public class CCE_ExportDownloadPage {
     }
     
     public CCE_ExportDownloadPage switchTo() {
-        WebDriver waitForFrame = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver frame = Wait.frame(driver, frameLocator);
         return this;
     }
     
-    public void waitForElement() {
-        
-    }
-    
     public void waitForDownloadCompletion() {
-        //switchTo();
         Boolean waitForInvisibility = new WebDriverWait(driver,DataItems.downloadWait).ignoring(NoSuchElementException.class).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));      
     }
     
@@ -42,13 +36,8 @@ public class CCE_ExportDownloadPage {
         Actions action = new Actions(driver);
         action.sendKeys(Keys.ESCAPE);
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
-
-    }
-    
-    public void waitForInvisibility() {
-        
     }
     
 }

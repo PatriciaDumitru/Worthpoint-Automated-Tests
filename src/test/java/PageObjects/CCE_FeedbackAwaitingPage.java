@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -38,34 +39,6 @@ public class CCE_FeedbackAwaitingPage extends WBA_BasePage{
         return driver.findElement(breadcrumb).getText();
     }
     
-    public WebElement getOrderNoField() {
-        return driver.findElement(orderNoField);
-    }
-    
-    public WebElement getCustNameField() {
-        return driver.findElement(custNameField);
-    }
-    
-    public WebElement getRequesterField() {
-        return driver.findElement(requesterField);
-    }
-    
-    public WebElement getShadeCodeField() {
-        return driver.findElement(shadeCodeField);
-    }
-    
-    public WebElement getScenarioField() {
-        return driver.findElement(scenarioField);
-    }
-    
-    public WebElement getListOrdersButton() {
-        return driver.findElement(listOrdersButton);
-    }
-    
-    public WebElement getResetButton() {
-        return driver.findElement(resetButton);
-    }
-    
     public CCE_FeedbackAwaitingPage setOrderNo(String orderNo) {
         CommonTask.setSearchField(driver, orderNoField, orderNo);
         return this;
@@ -83,7 +56,7 @@ public class CCE_FeedbackAwaitingPage extends WBA_BasePage{
     
     public CCE_FeedbackAwaitingPage pressListOrders() {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement listOrders = Wait.clickable(driver,listOrdersButton);
         
         driver.findElement(formLocator).submit();
         
@@ -92,42 +65,42 @@ public class CCE_FeedbackAwaitingPage extends WBA_BasePage{
     
     public CCE_FeedbackAwaitingPage pressReset() {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return this;
     }
     
     public CCE_FeedbackPage pressLoad() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(loadButton));
+        WebElement load = Wait.clickable(driver,loadButton);
         
-        driver.findElement(loadButton).click();
+        load.click();
         
         return new CCE_FeedbackPage(driver);
     }
     
     public CCE_FeedbackAwaitingPage pressAccept(String acceptCode) {
         //Wait for accept field to be clickable and enter accept code
-        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(acceptField));
-        driver.findElement(acceptField).sendKeys(acceptCode);
+        WebElement accept = Wait.clickable(driver,acceptField);
+        accept.sendKeys(acceptCode);
         
-        WebElement waitForClickable  = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(acceptButton));
-        driver.findElement(acceptButton).click();
+        WebElement acceptBtn  = Wait.clickable(driver, acceptButton);
+        acceptBtn.click();
         
         return this;
     }
     
     public CCE_FeedbackAwaitingPage pressSave() {
         //Wait for save button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement save = Wait.clickable(driver,saveButton);
         
-        driver.findElement(saveButton).click();
+        save.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
-        WebElement waitForMessage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        WebElement messageElement = Wait.visible(driver,flashMessage);
         
-        String message = driver.findElement(flashMessage).getText();
+        String message = messageElement.getText();
         
         if (message.contains("Order has been updated")) {
             System.out.println("Save successful. Message receieved: "+message);
@@ -141,26 +114,27 @@ public class CCE_FeedbackAwaitingPage extends WBA_BasePage{
     public void checkFields() {
         
         //Wait for all to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForRequester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForShadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(scenarioField));
-        WebElement waitForListOrder = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement shadeCode = Wait.clickable(driver,scenarioField);
+        WebElement listOrder = Wait.clickable(driver,listOrdersButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement scenario = Wait.clickable(driver,scenarioField);
     
         //Assert all are displayed
-        AssertJUnit.assertTrue("Feedback Awaiting Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Awaiting Page: Customer name field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Awaiting Page: Requester field not displayed correctly",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Awaiting Page: Shade code field not displayed correctly",getShadeCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Awaiting Page: Scenario field not displayed correctly",getScenarioField().isDisplayed());     
-        AssertJUnit.assertTrue("Feedback Awaiting Page: List orders button not displayed correctly",getListOrdersButton().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Awaiting Page: Reset button not displayed correctly",getResetButton().isDisplayed());
+        AssertJUnit.assertTrue("Feedback Awaiting Page: Order No Field not displayed correctly",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Awaiting Page: Customer name field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Awaiting Page: Requester field not displayed correctly",requester.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Awaiting Page: Shade code field not displayed correctly",shadeCode.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Awaiting Page: Scenario field not displayed correctly",scenario.isDisplayed());     
+        AssertJUnit.assertTrue("Feedback Awaiting Page: List orders button not displayed correctly",listOrder.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Awaiting Page: Reset button not displayed correctly",reset.isDisplayed());
             
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement wait = Wait.clickable(driver,orderNoField);
     }
     
     public String findOrderAwaitingFeedback(String customerName) {

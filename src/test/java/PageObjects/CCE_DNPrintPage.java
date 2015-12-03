@@ -2,6 +2,8 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -25,16 +27,14 @@ public class CCE_DNPrintPage {
     }
     
     public void switchTo() {
-        WebDriver switchToFrame = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver switchToFrame = Wait.frame(driver,frameLocator);
     }
     
     public CCE_DNReprintPage pressPrint() {
-        //Switch to frame
-
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
+        WebElement print = Wait.clickable(driver,printButton);
         
-        driver.findElement(printButton).click();
+        print.click();
         
         return new CCE_DNReprintPage(driver);
     }
@@ -44,7 +44,7 @@ public class CCE_DNPrintPage {
         Actions action = new Actions(driver);
         action.sendKeys(Keys.ESCAPE).build().perform();
 
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new CCE_DNReprintPage(driver);

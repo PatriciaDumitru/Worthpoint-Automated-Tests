@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
@@ -16,8 +17,8 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     
     //Locators
     By breadcrumb = By.cssSelector("#content > h2");
-    By salesOrg = By.id("s2id_filterSampleOrderSalesOrgId");
-    By hub = By.id("s2id_filterSampleOrderHubId");
+    By salesOrgField = By.id("s2id_filterSampleOrderSalesOrgId");
+    By hubField = By.id("s2id_filterSampleOrderHubId");
     By orderNoField = By.id("s2id_filterSampleOrderLineOrderId");
     By custNameField = By.id("s2id_filterSampleOrderCustomerId");
     By requesterField = By.id("s2id_filterSampleOrderRequesterId");
@@ -43,17 +44,17 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     }
     
     public String getTitle() {
-        WebElement waitForTitle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
+        WebElement breadcrumbField = Wait.visible(driver,breadcrumb);
         
-        return driver.findElement(breadcrumb).getText();
+        return breadcrumbField.getText();
     }
     
     public WebElement getSalesOrgField() {
-        return driver.findElement(salesOrg);
+        return driver.findElement(salesOrgField);
     }
     
     public WebElement getHubField() {
-        return driver.findElement(hub);
+        return driver.findElement(hubField);
     }
     
     public WebElement getOrderNoField() {
@@ -109,13 +110,13 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     }
     
     public CCE_FeedbackCompletedPage setSalesOrg(String item) {
-        CommonTask.setSearchField(driver, salesOrg, item);
+        CommonTask.setSearchField(driver, salesOrgField, item);
         
         return this;
     }
     
     public CCE_FeedbackCompletedPage setHub(String item) {
-        CommonTask.setSearchField(driver, hub, item);
+        CommonTask.setSearchField(driver, hubField, item);
         
         return this;
     }
@@ -182,7 +183,7 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     
     public CCE_FeedbackCompletedPage pressListOrders() {
         //Wait for element
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement button = Wait.clickable(driver,listOrdersButton);
         
         driver.findElement(filterForm).submit();
         
@@ -191,126 +192,61 @@ public class CCE_FeedbackCompletedPage extends WBA_BasePage {
     
     public CCE_FeedbackCompletedPage pressReset() {
         //Wait for element
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement reset = Wait.clickable(driver,resetButton);
         
-        driver.findElement(resetButton).click();
+        reset.click();
         
         return this;  
     }
     
     public CCE_FeedbackCompletedPage exportAs(String type) {
-        switch(type){
-            case "csv": pressCsv(); break;
-            case "txt": pressTxt(); break;
-            case "xlsx": pressXlsx(); break;
-            case "xls": pressXls(); break;
-        }
+        
+        WebElement export = Wait.clickable(driver,exportMenu);
+        
+        Actions action = new Actions(driver);
+        action.moveToElement(export).build().perform();
+        
+        By xlsx = By.partialLinkText("XLSX");
+        WebElement xlsxBtn = Wait.clickable(driver, xlsx);
+        xlsxBtn.click();
         
         return this;
     }
     
-    public void pressCsv() {
-        //Wait for export menu
-        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportMenu));
-        
-        //Click menu and select csv
-        Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(exportMenu)).build().perform();
-        
-        //Wait for subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(csvButton));
-        
-        //Click tab
-        driver.findElement(csvButton).click();
-       
-        
-    }
-    
-    public void pressTxt() {
-        //Wait for export menu
-        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportMenu));
-        
-        //Click menu and select txt
-        Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(exportMenu)).build().perform();
-        
-        //Wait for subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(txtButton));
-        
-        //Click tab
-        driver.findElement(txtButton).click();
-       
-        
-    }
-    
-    public void pressXls() {
-        //Wait for export menu
-        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportMenu));
-        
-        //Click menu and select xls
-        Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(exportMenu)).build().perform();
-        
-        //Wait for subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(xlsButton));
-        
-        //Click tab
-        driver.findElement(xlsButton).click();
-       
-        
-    }
-    
-    public void pressXlsx() {
-        //Wait for export menu
-        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportMenu));
-        
-        //Click menu and select xlsx
-        Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(exportMenu)).build().perform();
-        
-        //Wait for subtab
-        WebElement waitForSubtab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(xlsxButton));
-        
-        //Click tab
-        driver.findElement(xlsxButton).click();
-       
-        
-    }
-    
     public void checkFields() {
         //Wait for all to be clickable
-        WebElement waitForSalesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrg));
-        WebElement waitForHub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hub));
-        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForRequester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForShadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForOrderDateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-        WebElement waitForOrderDateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-        WebElement waitForStatus = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(statusField));
-        WebElement waitForRematch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(rematchField));
-        WebElement waitForFbFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fbDateFromField));
-        WebElement waitForFbTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fbDateToField));
-        WebElement waitForListOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportMenu));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement hub = Wait.clickable(driver,hubField);
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement shadeCode = Wait.clickable(driver,shadeCodeField);
+        WebElement dateFrom = Wait.clickable(driver,orderDateFromField);
+        WebElement dateTo = Wait.clickable(driver,orderDateToField);
+        WebElement status = Wait.clickable(driver,statusField);
+        WebElement rematch = Wait.clickable(driver,rematchField);
+        WebElement fbFrom = Wait.clickable(driver,fbDateFromField);
+        WebElement fbTo = Wait.clickable(driver,fbDateToField);
+        WebElement listOrders = Wait.clickable(driver,listOrdersButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement export = Wait.clickable(driver,exportMenu);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Feedback Completed Page: Sales Organisation Field not displayed correctly",getSalesOrgField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Hub Field not displayed correctly",getHubField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Customer Name Field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Requester Field not displayed correctly",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Shade Code Field not displayed correctly",getShadeCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Order Date From Field not displayed correctly",getOrderFromField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Order Date To Field not displayed correctly",getOrderToField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Status Field not displayed correctly",getStatusField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Rematch Field not displayed correctly",getRematchField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Feedback Date From Field not displayed correctly",getFbFromField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Feedback Date To Field not displayed correctly",getFbToField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: List Orders Button not displayed correctly",getListOrdersButton().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Reset Button not displayed correctly",getResetButton().isDisplayed());
-        AssertJUnit.assertTrue("Feedback Completed Page: Export Menu not displayed correctly",getExportMenu().isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Sales Organisation Field not displayed correctly",salesOrg.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Hub Field not displayed correctly",hub.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Order No Field not displayed correctly",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Customer Name Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Requester Field not displayed correctly",requester.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Shade Code Field not displayed correctly",shadeCode.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Order Date From Field not displayed correctly",dateFrom.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Order Date To Field not displayed correctly",dateTo.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Status Field not displayed correctly",status.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Rematch Field not displayed correctly",rematch.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Feedback Date From Field not displayed correctly",fbFrom.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Feedback Date To Field not displayed correctly",fbTo.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: List Orders Button not displayed correctly",listOrders.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Reset Button not displayed correctly",reset.isDisplayed());
+        AssertJUnit.assertTrue("Feedback Completed Page: Export Menu not displayed correctly",export.isDisplayed());
                
     }
     

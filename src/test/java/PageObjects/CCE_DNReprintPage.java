@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import com.google.common.base.Verify;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,18 +12,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 
 public class CCE_DNReprintPage extends WBA_BasePage {
     
     //Locators
     By breadcrumbLocator = By.cssSelector("#content > h2");
-    By orderNumberLocator = By.id("s2id_filterSampleOrderLineOrderId");
-    By shipToPartyNameLocator = By.id("s2id_autogen3");
-    By shipToPartyCodeLocator = By.id("s2id_autogen2");
-    By requesterNameLocator = By.id("s2id_autogen4");
-    By orderDateFromLocator = By.id("filterSampleOrderCreatedFrom");
-    By orderDateToLocator = By.id("filterSampleOrderCreatedTo");
+    By orderNumberField = By.id("s2id_filterSampleOrderLineOrderId");
+    By shipToPartyNameField = By.id("s2id_autogen3");
+    By shipToPartyCodeField = By.id("s2id_autogen2");
+    By requesterNameField = By.id("s2id_autogen4");
+    By orderDateFromField = By.id("filterSampleOrderCreatedFrom");
+    By orderDateToField = By.id("filterSampleOrderCreatedTo");
     By listOrdersButton = By.cssSelector("#FilterDeliveryNotesForm > div.actions > ul > li:nth-child(1)");
     By resetButton = By.cssSelector("#FilterDeliveryNotesForm > div.actions > ul > li:nth-child(2) > a");
     By confirmButton = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td[13]/input[@value='1']");
@@ -37,96 +40,98 @@ public class CCE_DNReprintPage extends WBA_BasePage {
     }
     
     public WebElement getOrderNumberField() {
-        return driver.findElement(orderNumberLocator);
+        return driver.findElement(orderNumberField);
     }
     
     public WebElement getShipToPartyNameField() {
-        return driver.findElement(shipToPartyNameLocator);
+        return driver.findElement(shipToPartyNameField);
     }
     
     public WebElement getShipToPartyCodeField() {
-        return driver.findElement(shipToPartyCodeLocator);
+        return driver.findElement(shipToPartyCodeField);
     }
     
     public WebElement getRequesterNameField() {
-        return driver.findElement(requesterNameLocator);
+        return driver.findElement(requesterNameField);
     }
     
     public CCE_DNReprintPage setOrderNumber(String orderNumber) {
-        CommonTask.setSearchField(driver, orderNumberLocator, orderNumber);
+        CommonTask.setSearchField(driver, orderNumberField, orderNumber);
         return this;
     }
     
     public CCE_DNReprintPage setShipToPartyName(String shipToName) {
-        CommonTask.setChoiceField(driver,shipToPartyNameLocator,shipToName);
+        CommonTask.setChoiceField(driver,shipToPartyNameField,shipToName);
         return this;
     }
     
     public CCE_DNReprintPage setShipToPartyCode(String shipToCode) {
-        CommonTask.setChoiceField(driver,shipToPartyCodeLocator,shipToCode);
+        CommonTask.setChoiceField(driver,shipToPartyCodeField,shipToCode);
         return this;
     }
     
     public CCE_DNReprintPage setRequesterName(String requester) {
-        CommonTask.setChoiceField(driver,requesterNameLocator,requester);
+        CommonTask.setChoiceField(driver,requesterNameField,requester);
         return this;
     }
     
     public void pressList() {       
+        //Submit form to list results
         driver.findElement(formLocator).submit();
         
-        //Wait for confirm box to be clickable
-        WebElement waitForBox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButton));
-        
+        //Wait for confirm box to appear before continuing
+        WebElement box = Wait.clickable(driver,confirmButton);  
     }
     
     public void pressReset() {
         //Wait for button to be clickable
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement button = Wait.clickable(driver,resetButton);
         
-        driver.findElement(resetButton).click();
+        button.click();
     }
     
     public void checkFields() {
         
         //Wait for all fields to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNumberLocator));
-        WebElement waitForShipToCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyCodeLocator));
-        WebElement waitForShipToName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyNameLocator));
-        WebElement waitForRequester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterNameLocator));
-        WebElement waitForListOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));       
+        WebElement orderNo = Wait.clickable(driver,orderNumberField);
+        WebElement shipToPartyCode = Wait.clickable(driver,shipToPartyCodeField); 
+        WebElement shipToPartyName = Wait.clickable(driver,shipToPartyNameField);
+        WebElement requester = Wait.clickable(driver,requesterNameField);
+        WebElement listOrders = Wait.clickable(driver,listOrdersButton);
+        WebElement reset = Wait.clickable(driver,resetButton); 
+        WebElement dateFrom = Wait.clickable(driver,orderDateFromField);
+        WebElement dateTo = Wait.clickable(driver,orderDateToField);
         
-        //Verify elements are displayed
-        Verify.verify(driver.findElement(orderNumberLocator).isDisplayed(),"DN Reprint page: Order number field not displayed");
-        Verify.verify(driver.findElement(shipToPartyCodeLocator).isDisplayed(),"DN Reprint page: Ship To Party Code field not displayed");
-        Verify.verify(driver.findElement(shipToPartyNameLocator).isDisplayed(),"DN Reprint page: Ship To Party Name field not displayed");
-        Verify.verify(driver.findElement(requesterNameLocator).isDisplayed(),"DN Reprint page: Requester Name field not displayed");
-        Verify.verify(driver.findElement(orderDateFromLocator).isDisplayed(),"DN Reprint page: Order Date From field not displayed");
-        Verify.verify(driver.findElement(orderDateToLocator).isDisplayed(),"DN Reprint page: Order Date To field not displayed");
-        Verify.verify(driver.findElement(listOrdersButton).isDisplayed(),"DN Reprint page: List Orders Button not displayed");
-        Verify.verify(driver.findElement(resetButton).isDisplayed(),"DN Reprint page: Reset Button not displayed");
+        //Assert elements are displayed
+        Assert.assertTrue(orderNo.isDisplayed(),"DN Reprint page: Order number field not displayed");
+        Assert.assertTrue(shipToPartyCode.isDisplayed(),"DN Reprint page: Ship To Party Code field not displayed");
+        Assert.assertTrue(shipToPartyName.isDisplayed(),"DN Reprint page: Ship To Party Name field not displayed");
+        Assert.assertTrue(requester.isDisplayed(),"DN Reprint page: Requester Name field not displayed");
+        Assert.assertTrue(dateFrom.isDisplayed(),"DN Reprint page: Order Date From field not displayed");
+        Assert.assertTrue(dateTo.isDisplayed(),"DN Reprint page: Order Date To field not displayed");
+        Assert.assertTrue(listOrders.isDisplayed(),"DN Reprint page: List Orders Button not displayed");
+        Assert.assertTrue(reset.isDisplayed(),"DN Reprint page: Reset Button not displayed");
                
     }
     
     public void pressConfirm() {
         //Wait for checkbox
-        WebElement waitForVisible = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(confirmButton));
+        WebElement confirm = Wait.visible(driver,confirmButton);
         
-        driver.findElement(confirmButton).click();
+        confirm.click();
         
         //Wait for print icon to appear
-        WebElement waitForIcon = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(printIcon));
+        WebElement icon = Wait.visible(driver, printIcon);
         
         //Wait for box to be checked
-        Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(confirmButton)));
+        Boolean checked = Wait.checked(driver, confirmButton);
     }
     
     public CCE_DNPrintPage pressPrint() {
         //Wait for icon
-        WebElement waitForIcon = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printIcon));
+        WebElement icon = Wait.clickable(driver,printIcon);
         
-        driver.findElement(printIcon).click();
+        icon.click();
         
         return new CCE_DNPrintPage(driver);
     }

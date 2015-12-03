@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -33,55 +34,19 @@ public class CCE_FeedbackPage extends WBA_BasePage{
     By tooBright = By.id("SampleOrderLineRejectionCodeId6");
     By metamerism = By.id("SampleOrderLineRejectionCodeId3");
     
-    
-    
     public CCE_FeedbackPage(WebDriver passedDriver) {
         super(passedDriver);
     }
     
     public WebElement getBreadcrumb() {
-        //Wait for element to be present
-        WebElement waitForBreadcrumb = new WebDriverWait(driver,10).until(ExpectedConditions.presenceOfElementLocated(breadcrumbLocator));
-        return driver.findElement(breadcrumb);
-    }
-    
-    public WebElement getOrderNoField() {
-        return driver.findElement(orderNoField);
-    }
-    
-    public WebElement getOrderLineField() {
-        return driver.findElement(orderLineField);
-    }
-    
-    public WebElement getCustNameField() {
-        return driver.findElement(custNameField);
-    }
-    
-    public WebElement getYesButton() {
-        return driver.findElement(acceptedYesButton);
-    }
-    
-    public WebElement getNoButton() {
-        return driver.findElement(acceptedNoButton);
-    }
-    
-    public WebElement getRequesterField() {
-        return driver.findElement(requesterField);
-    }
-    
-    public WebElement getSaveButton() {
-        return driver.findElement(saveButton);
-    }
-    
-    public WebElement getCancelButton() {
-        return driver.findElement(cancelButton);
+        return Wait.visible(driver, breadcrumb);
     }
     
     public CCE_FeedbackPage setOrderNo(String orderNo) {
         CommonTask.setSearchField(driver, orderNoField, orderNo);
         
         //Wait for customer name to appear
-        boolean waitForName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElement(custNameField, DataItems.sampCustName));
+        boolean waitForName = Wait.textPresent(driver,custNameField,DataItems.sampCustName);
         
         return this;
     }
@@ -96,33 +61,27 @@ public class CCE_FeedbackPage extends WBA_BasePage{
     }
     
     public CCE_FeedbackPage pressYesSatisfied() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(acceptedYesButton));
-        driver.findElement(acceptedYesButton).click();
-        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(acceptedYesButton)));
+        WebElement acceptedYes = Wait.clickable(driver,acceptedYesButton);
+        acceptedYes.click();
+        boolean checked = Wait.checked(driver,acceptedYesButton);
         return this;
     }
     
     public CCE_FeedbackPage pressNoSatisfied() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(acceptedNoButton));
-        driver.findElement(acceptedNoButton).click();
-        WebElement waitForClickable2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(acceptedYesButton));
-        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(acceptedNoButton)));
+        WebElement button = Wait.clickable(driver,acceptedNoButton);
+        button.click();
+        WebElement button2 = Wait.clickable(driver,acceptedYesButton);
+        boolean checked = Wait.checked(driver,acceptedNoButton);
         return this;
     }
     
     public CCE_FeedbackPage pressYesRematch() {
-        //Wait for button
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(rematchYesButton));
-        driver.findElement(rematchYesButton).click();
-        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(rematchYesButton)));
+        CommonTask.setCheckBox(driver, rematchYesButton);
         return this;
     }
     
     public CCE_FeedbackPage pressNoRematch() {
-        //Wait for button
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(rematchNoButton));
-        driver.findElement(rematchNoButton).click();
-        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(rematchNoButton)));
+        CommonTask.setCheckBox(driver, rematchNoButton);
         return this;
     }
     
@@ -140,15 +99,18 @@ public class CCE_FeedbackPage extends WBA_BasePage{
     
     public CCE_FeedbackPage pressSave() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement save = Wait.clickable(driver,saveButton);
+        
         //Click save
-        driver.findElement(saveButton).click();
+        save.click();
+        
         //Handle alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();    
+        
         //Wait for message to be present and output
-        WebElement waitForVisible = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(confirmMessage));
-        String message = driver.findElement(confirmMessage).getText();
+        WebElement confMessage = Wait.visible(driver,confirmMessage);
+        String message = confMessage.getText();
         if (message.contains("cannot be updated")) {
             System.out.println("***Feedback save failed. Error message: " + message + "***");
         } else {
@@ -160,31 +122,32 @@ public class CCE_FeedbackPage extends WBA_BasePage{
     
     public CCE_OrderSamplesPage pressCancel() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement cancel = Wait.clickable(driver,cancelButton);
+        
         //Click cancel
-        driver.findElement(cancelButton).click();
+        cancel.click();
          
         return new CCE_OrderSamplesPage(driver);
     }
     
     public void checkFields() {
         //Wait for elements to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForOrderLine = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderLineField));
-        WebElement waitForYes = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(acceptedYesButton));
-        WebElement waitForNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(acceptedNoButton));
-        WebElement waitForRequestor = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForSave = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement waitForCancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement orderLine = Wait.clickable(driver,orderLineField);
+        WebElement acceptYes = Wait.clickable(driver,acceptedYesButton);
+        WebElement acceptNo = Wait.clickable(driver,acceptedNoButton);
+        WebElement requestor = Wait.clickable(driver,requesterField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
     
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Feedback page: Order No field not displayed",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback page: Order line field not displayed",getOrderLineField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback page: 'Yes' button not displayed",getYesButton().isDisplayed());
-        AssertJUnit.assertTrue("Feedback page: 'No' button not displayed",getNoButton().isDisplayed());
-        AssertJUnit.assertTrue("Feedback page: Requester field not displayed",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Feedback page: Save button not displayed",getSaveButton().isDisplayed());
-        AssertJUnit.assertTrue("Feedback page: Cancel button not displayed",getCancelButton().isDisplayed());     
+        AssertJUnit.assertTrue("Feedback page: Order No field not displayed",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Feedback page: Order line field not displayed",orderLine.isDisplayed());
+        AssertJUnit.assertTrue("Feedback page: 'Yes' button not displayed",acceptYes.isDisplayed());
+        AssertJUnit.assertTrue("Feedback page: 'No' button not displayed",acceptNo.isDisplayed());
+        AssertJUnit.assertTrue("Feedback page: Requester field not displayed",requestor.isDisplayed());
+        AssertJUnit.assertTrue("Feedback page: Save button not displayed",save.isDisplayed());
+        AssertJUnit.assertTrue("Feedback page: Cancel button not displayed",cancel.isDisplayed());     
     
     }
     

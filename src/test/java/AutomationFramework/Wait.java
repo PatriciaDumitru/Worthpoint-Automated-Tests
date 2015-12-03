@@ -27,6 +27,10 @@ public class Wait {
         return new WebDriverWait(driver,seconds).until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
     
+    public static boolean invisible(WebDriver driver, By locator) {
+        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+    
     public static Alert alert(WebDriver driver) {
         return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
     }

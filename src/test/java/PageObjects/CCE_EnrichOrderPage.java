@@ -7,6 +7,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import java.io.IOException;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -22,19 +24,19 @@ import org.testng.AssertJUnit;
  */
 public class CCE_EnrichOrderPage extends WBA_BasePage {
     
-    By businessPrincipalLocator = By.id("SampleOrderBusinessPrincipalId");
-    By articleLocator = By.id("s2id_SampleOrderLine0ArticleId");
-    By brandLocator = By.id("temp0BrandName");
-    By ticketLocator = By.id("temp0TicketName");
-    By shadeCodeLocator = By.id("s2id_SampleOrderLine0ShadeId");
+    By businessPrincipalField = By.id("SampleOrderBusinessPrincipalId");
+    By articleField = By.id("s2id_SampleOrderLine0ArticleId");
+    By brandField = By.id("temp0BrandName");
+    By ticketField = By.id("temp0TicketName");
+    By shadeCodeField = By.id("s2id_SampleOrderLine0ShadeId");
     By copButton = By.id("SampleOrderLine0MumTypeId10");
     By coneButton = By.id("SampleOrderLine0MumTypeId20");
     By viconeButton = By.id("SampleOrderLine0MumTypeId30");
     By colMatButton = By.id("SampleOrderLine0RequestTypeId1");
     By sewingButton = By.id("SampleOrderLine0RequestTypeId2");
-    By purposeTypeLocator = By.id("SampleOrderLine0PurposeTypeId");
-    By customerRefLocator = By.id("SampleOrderLine0CustomerReference");
-    By quantityLocator = By.id("SampleOrderLine0OrderedQuantity");
+    By purposeTypeField = By.id("SampleOrderLine0PurposeTypeId");
+    By customerRefField = By.id("SampleOrderLine0CustomerReference");
+    By quantityField = By.id("SampleOrderLine0OrderedQuantity");
     By hubButton = By.id("SampleOrderLine0SosId30");
     By labButton = By.id("SampleOrderLine0SosId50");
     By whsButton = By.id("SampleOrderLine0SosId40");
@@ -51,19 +53,19 @@ public class CCE_EnrichOrderPage extends WBA_BasePage {
     }
     
     public WebElement getArticleField() {
-        return driver.findElement(articleLocator);
+        return driver.findElement(articleField);
     }
     
     public WebElement getBrandField() {
-        return driver.findElement(brandLocator);
+        return driver.findElement(brandField);
     }
     
     public WebElement getTicketField() {
-        return driver.findElement(ticketLocator);
+        return driver.findElement(ticketField);
     }
     
     public WebElement getShadeCodeField() {
-        return driver.findElement(shadeCodeLocator);
+        return driver.findElement(shadeCodeField);
     }
     
     public WebElement getCopButton() {
@@ -87,11 +89,11 @@ public class CCE_EnrichOrderPage extends WBA_BasePage {
     }
     
     public WebElement getPurposeTypeField() {
-        return driver.findElement(purposeTypeLocator);
+        return driver.findElement(purposeTypeField);
     }
     
     public WebElement getCustomerRefField() {
-        return driver.findElement(customerRefLocator);
+        return driver.findElement(customerRefField);
     }
     
     public WebElement getHubButton() {
@@ -119,87 +121,87 @@ public class CCE_EnrichOrderPage extends WBA_BasePage {
     }
     
     public WebElement getQuantityField() {
-        return driver.findElement(quantityLocator);
+        return driver.findElement(quantityField);
     }
     
     public CCE_EnrichOrderPage setCustomerRef() throws IOException {
         String PO = CommonTask.generatePO("noncontract");
         DataItems.lastUsedPO = PO;
-        CommonTask.setInputField(driver, customerRefLocator, PO);
+        CommonTask.setInputField(driver, customerRefField, PO);
         return new CCE_EnrichOrderPage(driver);
     }
     
     public CCE_EnrichOrderPage pressHub() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubButton));
-        driver.findElement(hubButton).click();
+        WebElement hub = Wait.clickable(driver,hubButton);
+        hub.click();
         return new CCE_EnrichOrderPage(driver);
     }
     
     public CCE_EnrichOrderPage pressLab() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(labButton));
-        driver.findElement(labButton).click();
+        WebElement lab = Wait.clickable(driver,labButton);
+        lab.click();
         return new CCE_EnrichOrderPage(driver);
     }
     
     public CCE_EnrichOrderPage pressWHS() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(whsButton));
-        driver.findElement(whsButton).click();
+        WebElement whs = Wait.clickable(driver,whsButton);
+        whs.click();
         return new CCE_EnrichOrderPage(driver);
     }
     
     public CCE_EnrichOrderPage pressVicone() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viconeButton));
-        driver.findElement(viconeButton);
+        WebElement vicone = Wait.clickable(driver,viconeButton);
+        vicone.click();
         return new CCE_EnrichOrderPage(driver);
     }
     
     public CCE_ManualEnrichPage pressEnrich() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichButton));
-        driver.findElement(enrichButton).click();
+        WebElement enrich = Wait.clickable(driver,enrichButton);
+        enrich.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new CCE_ManualEnrichPage(driver);
     }
     
     public CCE_ManualEnrichPage pressEnrichAll() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichAllButton));
-        driver.findElement(enrichAllButton).click();
+        WebElement enrichAll = Wait.clickable(driver,enrichAllButton);
+        enrichAll.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new CCE_ManualEnrichPage(driver);
     }
     
     public CCE_EnrichOrderPage pressCancel() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
-        driver.findElement(cancelButton).click();
+        WebElement cancel = Wait.clickable(driver,cancelButton);
+        cancel.click();
         
         return new CCE_EnrichOrderPage(driver);
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleLocator));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandLocator));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketLocator));
-        WebElement shadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeLocator));
-        WebElement cop = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(copButton));
-        WebElement cone = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coneButton));
-        WebElement vicone = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viconeButton));
-        WebElement colourMatching = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(colMatButton));
-        WebElement sewing = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sewingButton));
-        WebElement purpType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(purposeTypeLocator));
-        WebElement customerRef = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerRefLocator));
-        WebElement quantity = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityLocator));
-        WebElement hub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubButton));
-        WebElement lab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(labButton));
-        WebElement whs = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(whsButton));
-        WebElement enrich = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichButton));
-        WebElement enrichAll = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichAllButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement article = Wait.clickable(driver,articleField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement shadeCode = Wait.clickable(driver,shadeCodeField);
+        WebElement cop = Wait.clickable(driver,copButton);
+        WebElement cone = Wait.clickable(driver,coneButton);
+        WebElement vicone = Wait.clickable(driver,viconeButton);
+        WebElement colourMatching = Wait.clickable(driver,colMatButton);
+        WebElement sewing = Wait.clickable(driver,sewingButton);
+        WebElement purpType = Wait.clickable(driver,purposeTypeField);
+        WebElement customerRef = Wait.clickable(driver,customerRefField);
+        WebElement quantity = Wait.clickable(driver,quantityField);
+        WebElement hub = Wait.clickable(driver,hubButton);
+        WebElement lab = Wait.clickable(driver,labButton);
+        WebElement whs = Wait.clickable(driver,whsButton);
+        WebElement enrich = Wait.clickable(driver,enrichButton);
+        WebElement enrichAll = Wait.clickable(driver,enrichAllButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
     
         //Assert all elements are displayd
         AssertJUnit.assertTrue("Enrich Order Page: Article field not displayed correctly",getArticleField().isDisplayed());
@@ -219,6 +221,6 @@ public class CCE_EnrichOrderPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(businessPrincipalLocator));
+        WebElement wait = Wait.clickable(driver,businessPrincipalField);
     }
 }

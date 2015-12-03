@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -33,8 +34,7 @@ public class CCE_FCETaskStatusPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement waitForBreadcrumb = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
-        return driver.findElement(breadcrumb);
+        return Wait.visible(driver, breadcrumb);
     }
     
     public WebElement getSalesOrgField() {
@@ -112,51 +112,50 @@ public class CCE_FCETaskStatusPage extends WBA_BasePage {
     }
     
     public CCE_OrderViewPage pressPrint() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        driver.findElement(printButton).click();
+        WebElement print = Wait.clickable(driver,printButton);
+        print.click();
         return new CCE_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
-        driver.findElement(exportToExcelButton).click();
+        WebElement export = Wait.clickable(driver,exportToExcelButton);
+        export.click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public CCE_FCETaskStatusPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         
         return new CCE_FCETaskStatusPage(driver);
     }
     
     public void checkFields() {
         //Wait for all fields to be clickable
-        WebElement waitForSalesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-        WebElement waitForHub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement waitForTaskType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(taskTypeField));
-        WebElement waitForFCE = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForTaskStatus = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(taskStatusField));
-        WebElement waitForPrint = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement orderFrom = Wait.clickable(driver,orderDateFromField);
+        WebElement orderTo = Wait.clickable(driver,orderDateToField);
+        WebElement hub = Wait.clickable(driver,hubField);
+        WebElement taskType = Wait.clickable(driver,taskTypeField);
+        WebElement fce = Wait.clickable(driver,fceNameField);
+        WebElement taskStatus = Wait.clickable(driver,taskStatusField);
+        WebElement print = Wait.clickable(driver,printButton);
+        WebElement export = Wait.clickable(driver,exportToExcelButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("FCE Task Status Page: Sales Org Field not displayed correctly",getSalesOrgField().isDisplayed());
-        AssertJUnit.assertTrue("FCE Task Status Page: Customer name Field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("FCE Task Status Page: Order Date From Field not displayed correctly",getOrderDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("FCE Task Status Page: Order Date To Field not displayed correctly",getOrderDateToField().isDisplayed());
-        AssertJUnit.assertTrue("FCE Task Status Page: Hub Field not displayed correctly",getHubField().isDisplayed());
-        AssertJUnit.assertTrue("FCE Task Status Page: Task Type Field not displayed correctly",getTaskTypeField().isDisplayed());
-        AssertJUnit.assertTrue("FCE Task Status Page: FCE Name Field not displayed correctly",getFceNameField().isDisplayed());
-        AssertJUnit.assertTrue("FCE Task Status Page: Task Status Field not displayed correctly",getTaskStatusField().isDisplayed());
-        AssertJUnit.assertTrue("FCE Task Status Page: Print button not displayed correctly",getPrintButton().isDisplayed());
-        AssertJUnit.assertTrue("FCE Task Status Page: Export button not displayed correctly",getExportButton().isDisplayed());
-        AssertJUnit.assertTrue("FCE Task Status Page: Reset button not displayed correctly",getResetButton().isDisplayed());
-    
+        AssertJUnit.assertTrue("FCE Task Status Page: Sales Org Field not displayed correctly",salesOrg.isDisplayed());
+        AssertJUnit.assertTrue("FCE Task Status Page: Customer name Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("FCE Task Status Page: Order Date From Field not displayed correctly",orderFrom.isDisplayed());
+        AssertJUnit.assertTrue("FCE Task Status Page: Order Date To Field not displayed correctly",orderTo.isDisplayed());
+        AssertJUnit.assertTrue("FCE Task Status Page: Hub Field not displayed correctly",hub.isDisplayed());
+        AssertJUnit.assertTrue("FCE Task Status Page: Task Type Field not displayed correctly",taskType.isDisplayed());
+        AssertJUnit.assertTrue("FCE Task Status Page: FCE Name Field not displayed correctly",fce.isDisplayed());
+        AssertJUnit.assertTrue("FCE Task Status Page: Task Status Field not displayed correctly",taskStatus.isDisplayed());
+        AssertJUnit.assertTrue("FCE Task Status Page: Print button not displayed correctly",print.isDisplayed());
+        AssertJUnit.assertTrue("FCE Task Status Page: Export button not displayed correctly",export.isDisplayed());
+        AssertJUnit.assertTrue("FCE Task Status Page: Reset button not displayed correctly",reset.isDisplayed());
     }
     
 }

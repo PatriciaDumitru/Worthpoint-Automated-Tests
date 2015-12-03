@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -43,27 +45,27 @@ public class CCE_CancelDraftPage extends WBA_BasePage{
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForCancelReason = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelReasonField));
-        WebElement waitForSubmit = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement waitForCancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement cancelReason = Wait.clickable(driver,cancelReasonField);
+        WebElement submit = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
     
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Cancel Draft Page: Cancellation Reason field not displayed",getCancelReasonField().isDisplayed());
-        AssertJUnit.assertTrue("Cancel Draft Page: Submit button not displayed",getSubmitButton().isDisplayed());
-        AssertJUnit.assertTrue("Cancel Draft Page: Cancel button not displayed",getCancelButton().isDisplayed());
+        AssertJUnit.assertTrue("Cancel Draft Page: Cancellation Reason field not displayed",cancelReason.isDisplayed());
+        AssertJUnit.assertTrue("Cancel Draft Page: Submit button not displayed",submit.isDisplayed());
+        AssertJUnit.assertTrue("Cancel Draft Page: Cancel button not displayed",cancel.isDisplayed());
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelReasonField));
+        WebElement cancelReason = Wait.clickable(driver,cancelReasonField);
     }
     
     public void waitForInvisibility() {
-        boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.invisibilityOfElementLocated(formLocator));
+        boolean wait = Wait.invisible(driver,formLocator);
     }
     
     public void switchTo() {
         //Switch focus to the Cancel Draft overlay    
-        WebDriver wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver frame = Wait.frame(driver, frameLocator);
     }
     
     public CCE_CancelDraftPage setReason(String reason) throws InterruptedException {
@@ -73,11 +75,12 @@ public class CCE_CancelDraftPage extends WBA_BasePage{
     }
     
     public CCE_OutstandingDraftPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        //Click save
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         //Wait for overlay to disappear
-        boolean waitForUpdate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.invisibilityOfElementLocated(cancelReasonField));
+        boolean waitForUpdate = Wait.invisible(driver,cancelReasonField);
         
         return new CCE_OutstandingDraftPage(driver);
     }
