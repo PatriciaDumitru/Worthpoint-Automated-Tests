@@ -9,6 +9,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+//This class is used after "Upload" is pressed in eComm > Upload Order, and displays the question "Do you want to go with Existing Mapping?" 
+
 public class Ecomm_MappingAlert {
     
     WebDriver driver;

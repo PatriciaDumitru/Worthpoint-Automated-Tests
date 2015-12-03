@@ -51,9 +51,6 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //press manual entry
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
         manualEntryPage.waitForElement();
-
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\1Manual Entry Page.png"));
         
         System.out.println("Manual Entry loaded.");
 
@@ -78,9 +75,6 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         manualEntryPage.setRequestor(DataItems.custDetails[2]);
         manualEntryPage.setBuyers(DataItems.custDetails[3]);
         manualEntryPage.setPONumber(DataItems.custDetails[4]);
-        
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\2Customer details entered.png"));
 
         System.out.println("Customer details entered. Entering product details...");
 
@@ -98,33 +92,24 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         for (int i = 0; i < numberOfLines; i++) {
             manualEntryPage = manualEntryPage.setOrderDetailsYMN(details[i], i);
         }
-
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\3Product details entered.png"));
         
         System.out.println("Product details entered. Pressing next...");
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
         orderConf.waitForElement();
-        
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\4Next pressed.png"));
 
         System.out.println("Order confirmation page reached. Submitting order...");
         
         //Press Submit
         Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
         outOrders.waitForElement();
-        
-        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\5Order submitted.png"));
 
         System.out.println("Order submitted. Viewing order...");
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrders.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -139,9 +124,6 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
 
         System.out.println("Values verified. Closing view...");
-        
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\6View Order.png"));
         
         //Exit view
         orderView.exitView();
@@ -215,7 +197,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrdersPage.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrdersPage.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
@@ -295,7 +277,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrdersPage.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrdersPage.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
@@ -374,7 +356,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrdersPage.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrdersPage.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
@@ -452,7 +434,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrdersPage.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrdersPage.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
@@ -531,7 +513,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrdersPage.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrdersPage.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
@@ -606,7 +588,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrdersPage.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrdersPage.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
         orderView.switchTo();
@@ -687,7 +669,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrdersPage.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrdersPage.getRowAlt(DataItems.lastUsedPO);
         System.out.println(rowNumber);
         Ecomm_OrderViewPage orderView = outOrdersPage.pressView(rowNumber);
         orderView.waitForContent();
@@ -775,7 +757,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         System.out.println("Outstanding Orders Page reached. Searching for record...");
         
-        int row = outOrder.getRowSUMST(DataItems.lastUsedPO);
+        int row = outOrder.getRowAlt(DataItems.lastUsedPO);
         
         AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)"
                 + "\n Table Row: " + row
@@ -870,7 +852,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         System.out.println("Outstanding orders page reached. Searching for record...");
 
-        int row = outPage.getRowSUMST(DataItems.lastUsedPO);
+        int row = outPage.getRowAlt(DataItems.lastUsedPO);
         
         AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)",row==-1);
         
@@ -959,7 +941,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         System.out.println("Outstanding orders page reached. Searching for record...");
 
-        int row = outPage.getRowSUMST(DataItems.lastUsedPO);
+        int row = outPage.getRowAlt(DataItems.lastUsedPO);
         
         AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)",row==-1);
         
@@ -1048,7 +1030,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         System.out.println("Outstanding orders page reached. Searching for record...");
 
-        int row = outPage.getRowSUMST(DataItems.lastUsedPO);
+        int row = outPage.getRowAlt(DataItems.lastUsedPO);
         
         AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)",row==-1);
         
@@ -1138,7 +1120,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         System.out.println("Outstanding orders page reached. Searching for record...");
 
-        int row = outPage.getRowSUMST(DataItems.lastUsedPO);
+        int row = outPage.getRowAlt(DataItems.lastUsedPO);
         
         AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)",row==-1);
         
@@ -1228,7 +1210,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         System.out.println("Outstanding orders page reached. Searching for record...");
 
-        int row = outPage.getRowSUMST(DataItems.lastUsedPO);
+        int row = outPage.getRowAlt(DataItems.lastUsedPO);
         
         AssertJUnit.assertTrue("Outstanding Orders Page: Order created despite missing mandatory field(s)",row==-1);
         
@@ -1740,7 +1722,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrders.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -1862,7 +1844,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrders.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -1983,7 +1965,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrders.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -2105,7 +2087,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrders.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -2226,7 +2208,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrders.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -2348,7 +2330,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrders.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -2468,7 +2450,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrders.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -2589,7 +2571,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view
-        int rowNumber = outOrders.getRowSUMST(DataItems.lastUsedPO);
+        int rowNumber = outOrders.getRowAlt(DataItems.lastUsedPO);
         Ecomm_OrderViewPage orderView = outOrders.pressView(rowNumber);       
         //wait for overlay to load
         orderView.waitForContent();
@@ -2729,7 +2711,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         System.out.println("Outstanding Orders page reached. Searching for order...");
         
-        int row3 = outOrds.getRowSUMST(DataItems.lastUsedPO);
+        int row3 = outOrds.getRowAlt(DataItems.lastUsedPO);
         
         AssertJUnit.assertFalse("Outstanding Orders Page: Order does not appear after approval",row3==-1);
         

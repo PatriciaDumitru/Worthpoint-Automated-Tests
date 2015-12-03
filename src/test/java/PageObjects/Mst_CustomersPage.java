@@ -3,9 +3,11 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
@@ -22,6 +24,10 @@ public class Mst_CustomersPage extends WBA_BasePage {
     
     public Mst_CustomersPage(WebDriver driver) {
         super(driver);
+    }
+    
+    public WebElement getBreadcrumb() {
+        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
     }
     
     public WebElement getCustomerNameField() {
@@ -54,9 +60,17 @@ public class Mst_CustomersPage extends WBA_BasePage {
     }
     
     public Mst_CustomersPage setCustomerName(String item) {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
+        element.clear();
+        
         CommonTask.setInputField(driver,customerNameField,item);
         return new Mst_CustomersPage(driver);
     } 
+    
+    public Mst_CustomersPage setSalesOrg(String item) {
+        CommonTask.setSearchField(driver, salesOrgField, item);
+        return new Mst_CustomersPage(driver);
+    }
     
     public int findCustomer(String item) {
         for (int i = 2; i < 10; i++) {
@@ -98,6 +112,63 @@ public class Mst_CustomersPage extends WBA_BasePage {
         btn.click();
         
         return new Mst_EditCustomerPage(driver);
+    }
+    
+    public int getRow(String customerName) {
+        if (!checkForRecords()) {
+            return -1;
+        }
+        
+        By headerLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(4) > a");
+        WebElement header = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(headerLocator));
+        AssertJUnit.assertTrue("Customers Page: Customer name column has moved, update locators",header.getText().equals("Customer Name"));
+        
+        By recordsField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        int count = getRecordCount(recordsField);
+        int tableCount = (count > 10) ? 10 : count;
+        
+        for (int i = 2; i < (tableCount+2); i++) {
+            By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(4)");
+            WebElement cell = driver.findElement(locator);
+            if (cell.getText().trim().equals(customerName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    public Mst_CustomersPage pressDelete(int row) {
+        By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(3) > span");
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
+        
+        element.click();
+        
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        
+        return new Mst_CustomersPage(driver);
+    }
+    
+    public CCE_ExportDownloadPage pressExport() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        
+        Actions action = new Actions(driver);
+        
+        action.moveToElement(element).build().perform();
+        
+        By xlsx = By.partialLinkText("XLSX");
+        WebElement xlsxBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(xlsx));
+        
+        xlsxBtn.click();
+        
+        return new CCE_ExportDownloadPage(driver);
+    }
+    
+    public Mst_ImportPage pressImport() {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(importButton));
+        element.click();
+        
+        return new Mst_ImportPage(driver);
     }
     
     public void waitForElement() {

@@ -34,6 +34,8 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+//This class covers the Outstanding Orders section
+
 public class Ecomm_OO_Test extends DriverFactory {
 
     @Test //Outstanding Orders Page :: Page and filter checks
@@ -558,7 +560,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         Ecomm_OutstandingOrdersPage outOrders = pendPage3.clickOutstandingOrders();
         outOrders.waitForElement();
         
-        AssertJUnit.assertFalse("Outstanding Orders Page: Order (PO: "+custPO+") not found after approval submitted",outOrders.getRowSUMST(custPO)==-1);
+        AssertJUnit.assertFalse("Outstanding Orders Page: Order (PO: "+custPO+") not found after approval submitted",outOrders.getRowAlt(custPO)==-1);
         
         System.out.println("Order appears correctly. Disabling approver workflow...");
         

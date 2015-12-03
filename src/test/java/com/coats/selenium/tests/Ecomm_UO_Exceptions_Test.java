@@ -43,16 +43,19 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Upload Order page loaded. Setting filepath...");
         
+        //Create a file with 2 rows of invalid values to test the Your Material Number format
         uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "YMN", false));
         
         System.out.println("File path set. Uploading...");
         
+        //Select existing mapping
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
         mapPage.waitForElement();
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
+        //Set sales organisation and customer name. This is only required because a SUMST account is used
         mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
@@ -390,7 +393,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
     }
     
     @Test //Upload Order Realtime :: SUMST :: Invalid finish in spreadsheet exception. Disabled as logic is incorrect. 
-            //Invalid Finish will trigger the default "STANDARD" to be used, and so no errors will appear. Needs to be updated/removed
+            //Invalid Finish will trigger the default "STANDARD" to be used, and so no errors will appear. This method needs to be updated/removed
     (groups = {"eComm","eComm_Orders","Upload_Order"},enabled=false) 
     public void UORTex6() throws Exception {
         //new chrome driver
@@ -627,7 +630,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Outstanding orders page reached. Checking order appears in table...");
         
-        int row = ordersPage.getRowSUMST(poNumber);
+        int row = ordersPage.getRowAlt(poNumber);
         
         AssertJUnit.assertTrue("Outstanding Orders Page: Order not found despite confirmation",row!=-1);
         

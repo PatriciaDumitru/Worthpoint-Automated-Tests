@@ -848,4 +848,70 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Current SOS: " + currentSOS);
     }
     
+    @Test //Order Samples Page :: SUMST :: Maximum copy count test (copy 11 times)
+    (groups = {"CCE","CCE_Orders","QuickTest"})
+    public void SOC12() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+        
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+        
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC12: Maximum copy count test", "Unknown");
+        
+        System.out.println("Navigating to Order Samples...");
+        
+        CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
+        
+        System.out.println("Order samples loaded. Entering customer details...");
+        
+        orderSamples.setCustName(DataItems.custDetails[0]);
+        orderSamples.setRequestor(DataItems.custDetails[2]);
+        
+        System.out.println("Customer details entered. Submitting...");
+        
+        CCE_AddOrderPage addPage = orderSamples.pressSubmit();
+        addPage.waitForElement();
+        
+        System.out.println("Submitted. Entering customer details...");
+        
+        addPage.setShipToParty(DataItems.custDetails[1]);
+        
+        System.out.println("Customer details entered. Entering material details...");
+        
+        addPage.setArticle("8754120",0);
+        addPage.setShadeCode("C1711", 0);
+        addPage.setMUMType("Cone",0);
+        addPage.setRequestType(DataItems.sewing, 0);
+        addPage.setPurposeType(DataItems.protoPurpose,0);
+        addPage.setQuantity(1, 0);
+        addPage.setCustomerRef(0);
+        addPage.pressNewLineAlt(1);
+        
+        System.out.println("First line complete. Adding new line details...");
+        
+        for (int i = 1; i < 12; i++) {
+
+            addPage.waitForElement(i);
+            addPage.pressCopyAlt(i);
+            addPage.waitForCopy(i);
+            
+            addPage.setArticle("8754120",i);
+            addPage.setQuantity(1, i);
+            addPage.setCustomerRef(i);
+            addPage.setPurposeType(DataItems.protoPurpose,i);
+            addPage.pressNewLineAlt(i+1);
+            
+        }
+        
+        System.out.println("Line details added. Submitting...");
+        
+        CCE_OrderStatusPage statusPage = addPage.pressSubmit();
+        statusPage.waitForElement();
+        
+        System.out.println("Submitted.");
+
+    }
+    
 }

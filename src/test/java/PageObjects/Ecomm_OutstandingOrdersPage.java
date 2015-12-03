@@ -131,8 +131,8 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         return -1;  
     }
     
-    public int getRowSUMST(String poNumber) {
-        //The outstanding order tables for SUMST and SUSST are different, and so require different locators
+    public int getRowAlt(String poNumber) {
+        //The outstanding order tables vary so require alternative methods to getRow
         boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No."));
         
         for (int i = 0; i < 8; i++) {

@@ -47,4 +47,8 @@ public class Mst_ImportPage extends WBA_BasePage {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(uploadButton));
     }
     
+    public void waitForButton() {
+        WebElement button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(filenameField));
+    }
+    
 }

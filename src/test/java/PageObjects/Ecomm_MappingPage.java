@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+//This page appears after the mapping alert has been submitted, and allows the user to map the uploaded file
+
 public class Ecomm_MappingPage extends WBA_BasePage {
     
     //Locators

@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import java.io.IOException;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
@@ -71,8 +72,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     } 
     
     public String getCustomerName() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(customerNameField));
-        return driver.findElement(customerNameField).getText();
+        WebElement field = Wait.visible(driver,customerNameField);
+        return field.getText();
     }
     
     public String getRequesterName() {
@@ -80,45 +81,13 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     }
     
     public String getShipToParty() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(shipToField));
-        return driver.findElement(shipToField).getAttribute("text");
+        WebElement field = Wait.visible(driver, shipToPartyField);
+        return field.getAttribute("text");
     }
     
     public String getArticle() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(articleField2));
-        return driver.findElement(articleField2).getText();
-    }
-    
-    public WebElement getShipToField() {
-        return driver.findElement(shipToPartyField);
-    }
-    
-    public WebElement getBusPrincipalField() {
-        return driver.findElement(busPrincipalField);
-    }
-    
-    public WebElement getLightSource1Field() {
-        return driver.findElement(lightSource1Field);
-    }
-    
-    public WebElement getLightSource2Field() {
-        return driver.findElement(lightSource2Field);
-    }
-    
-    public WebElement getLightSource3Field() {
-        return driver.findElement(lightSource3Field);
-    }
-    
-    public WebElement getNewBuyerLink() {
-        return driver.findElement(newBuyerLink);
-    }
-    
-    public WebElement getArticleField() {
-        return driver.findElement(articleField);
-    }
-    
-    public WebElement getBrandField() {
-        return driver.findElement(brandField);
+        WebElement field = Wait.visible(driver, articleField2);
+        return field.getText();
     }
     
     public WebElement getTicketField() {
@@ -127,26 +96,6 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     
     public WebElement getShadeCodeField() {
         return driver.findElement(shadeCodeField);
-    }
-    
-    public WebElement getCopButton() {
-        return driver.findElement(copButton);
-    }
-    
-    public WebElement getConeButton() {
-        return driver.findElement(coneButton);
-    }
-    
-    public WebElement getViconeButton() {
-        return driver.findElement(viconeButton);
-    }
-    
-    public WebElement getColMatButton() {
-        return driver.findElement(colMatButton);
-    }
-    
-    public WebElement getSewingButton() {
-        return driver.findElement(sewingButton);
     }
     
     public WebElement getDirEnYesButton() {
@@ -161,48 +110,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         return driver.findElement(purposeField);
     }
     
-    public WebElement getRequirementsField() {
-        return driver.findElement(requirementsField);
-    }
-    
-    public WebElement getCustRefField() {
-        return driver.findElement(custRefField);
-    }
-    
-    public WebElement getFabRefField() {
-        return driver.findElement(fabRefField);
-    }
-    
     public WebElement getQuantityField() {
         return driver.findElement(quantityField);
-    }
-    
-    public WebElement getNewLineButton() {
-        return driver.findElement(newLineButton);
-    }
-    
-    public WebElement getSubmitOrderButton() {
-        return driver.findElement(submitOrderButton);
-    }
-    
-    public WebElement getPendOrderButton() {
-        return driver.findElement(pendOrderButton);
-    }
-    
-    public WebElement getCancelButton() {
-        return driver.findElement(cancelButton);
-    }
-    
-    public WebElement getEnrichCommentsField() {
-        return driver.findElement(enrichCommentsField);
-    }
-    
-    public WebElement getEnrichCompletedYesButton() {
-        return driver.findElement(enrichCompletedYesButton);
-    }
-    
-     public WebElement getEnrichCompletedNoButton() {
-        return driver.findElement(enrichCompletedNoButton);
     }
      
     public WebElement getEnrichHubButton() {
@@ -293,6 +202,10 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public CCE_AddOrderPage setCustomerRef(int lineNumber) throws IOException {
         //Line numbers start from 0
         By refLocator = By.id("SampleOrderLine"+lineNumber+"CustomerReference");
+        
+        WebElement element = Wait.clickable(driver,refLocator);
+        element.clear();
+        
         String PO = CommonTask.generatePO("noncontract");
         DataItems.lastUsedPO = PO;
         CommonTask.setInputField(driver, refLocator,PO);
@@ -313,27 +226,29 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     
     public CCE_OrderStatusPage pressSubmit() {
         //Wait for button to be clickable and click
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitOrderButton));
+        WebElement submitOrderBtn = Wait.clickable(driver, submitOrderButton);
         
-        driver.findElement(submitOrderButton).click();
+        submitOrderBtn.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new CCE_OrderStatusPage(driver);
     }
     
     public CCE_AddOrderPage pressSubmitExceeded() {
+        //Press submit expecting alert - as the sample quantity limit has been exceeded
+
         //Wait for button to be clickable and click
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitOrderButton));
+        WebElement button = Wait.clickable(driver, submitOrderButton);
         
-        driver.findElement(submitOrderButton).click();
+        button.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         try {
-            Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert2 = Wait.alert(driver);
             System.out.println("Alert appeared: " + alert2.getText());
             alert2.accept();        
         } catch(Exception e) {
@@ -346,10 +261,10 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public CCE_OrderStatusPage pressPendOrder() {
         
         //Wait for button to be clickable
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(pendOrderButton));
-        driver.findElement(pendOrderButton).click();
+        WebElement button = Wait.clickable(driver,pendOrderButton);
+        button.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         
         alert.accept();
         
@@ -359,26 +274,26 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     
     public CCE_OrderSamplesPage pressCancel() {
         
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cancelButton));
+        WebElement cancel = Wait.visible(driver,cancelButton);
         
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(cancelButton)).build().perform();
+        action.moveToElement(cancel).build().perform();
         
-        action.click(driver.findElement(cancelButton)).build().perform();
+        action.click(cancel).build().perform();
         
         return new CCE_OrderSamplesPage(driver);
     }
     
     public CCE_NewBuyerPage pressNewBuyer() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(newBuyerLink));
-        driver.findElement(newBuyerLink).click();
+        WebElement newBuyer = Wait.visible(driver,newBuyerLink);
+        newBuyer.click();
         return new CCE_NewBuyerPage(driver);
     }
     
     public CCE_OutstandingDraftPage pressCancelToDrafts() {
         //Press the cancel button, expecting re-direction to oustanding drafts page
         
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelToDraftsButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         
         Actions action = new Actions(driver);
         action.moveToElement(element).build().perform();
@@ -389,33 +304,76 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     
     public CCE_AddOrderPage pressNewLine(int lineNumber) {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newLineButton));
-        driver.findElement(newLineButton).click();
+        WebElement newLine = Wait.clickable(driver,newLineButton);
+        newLine.click();
         
         //Wait for new line form to load
-        WebElement waitForLoaded = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityFieldLine2));
+        WebElement qty = Wait.clickable(driver,quantityFieldLine2);
         
         return this;
     }
     
+    public CCE_AddOrderPage pressNewLineAlt(int lineNumber) {
+        //Alternative method to press new line which can be used when interating over line creation.
+        
+        By newLineButton = By.id("add_tab");
+        WebElement element = Wait.clickable(driver,newLineButton);
+        element.click();
+        
+        By qtyField = By.id("SampleOrderLine"+lineNumber+"OrderedQuantity");
+        WebElement wait = Wait.clickable(driver,qtyField);
+        return this;
+    }
+    
     public CCE_AddOrderPage pressCopy(int lineNumber) {
+        //Clicking copy can sometimes be unstable for unknown reasons
         
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(quantityFieldLine2));
-        WebElement waitMore = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityFieldLine2));
+        //Wait for the quantity field to be available
+        WebElement wait = Wait.visible(driver,quantityFieldLine2);
+        WebElement waitMore = Wait.clickable(driver,quantityFieldLine2);
         
+        //Wait for the copy button to be available
         By copyDataButton = By.id("copy_line_item_"+lineNumber);       
-                WebElement waitForButton2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(copyDataButton));
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(copyDataButton));
+        WebElement waitForButton2 = Wait.visible(driver,copyDataButton);
+        WebElement copyButton = Wait.clickable(driver,copyDataButton);
         
+        //Move to the copy data button and click
         Actions moveAndClick = new Actions(driver);
-        moveAndClick.moveToElement(driver.findElement(copyDataButton)).build().perform();
+        moveAndClick.moveToElement(copyButton).build().perform();
         moveAndClick.click().build().perform();
         
+        //Wait for the purpose type in the next line to be updated
         By purposeTypeField = By.id("SampleOrderLine"+lineNumber+"PurposeTypeId");
+        boolean waitAgain = Wait.selectionPresent(driver, purposeTypeField);
         
-        boolean waitAgain = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBePresent(purposeTypeField));
+        //Wait for the copy box to be checked
+        boolean waitForChecked = Wait.checked(driver,copyDataButton);
         
-        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(copyDataButton)));
+        return this;
+    }
+    
+    public CCE_AddOrderPage pressCopyAlt(int lineNumber) {
+        //Alternative Copy method used when many copy iterations are performed
+        
+        //Wait for quantity field to be available
+        By qtyField = By.id("SampleOrderLine"+lineNumber+"OrderedQuantity");
+        WebElement qty = Wait.visible(driver,qtyField);
+        
+        //Wait for copy button to be available
+        By copyButton = By.id("copy_line_item_"+lineNumber);
+        WebElement copy = Wait.clickable(driver,copyButton);
+        
+        //Move over the copy button and click
+        Actions action = new Actions(driver);
+        action.moveToElement(copy).build().perform();
+        action.click().build().perform();
+        
+        //Wait for the purpose type field to be updated
+        By purposeTypeField = By.id("SampleOrderLine"+lineNumber+"PurposeTypeId");
+        WebElement purposeType = Wait.clickable(driver,purposeTypeField);
+        
+        //Wait for the copy button to be checked
+        boolean checked = Wait.checked(driver,copyButton);
         
         return this;
     }
@@ -446,8 +404,13 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     
     public CCE_AddOrderPage waitForCopy() {
         //Wait for copied data to update in fields
-        
         Boolean waitForDetails = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElementLocated(purposeField, "Select")));
+        return this;
+    }
+    
+    public CCE_AddOrderPage waitForCopy(int row) {
+        By purposeField = By.id("SampleOrderLine"+row+"PurposeTypeId");
+        boolean wait = Wait.selectionToBe(driver, purposeField, DataItems.protoPurpose);
         return this;
     }
     
@@ -455,60 +418,60 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         
         try {
             //Wait for all fields to be clickable
-            WebElement waitForShipTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
-            WebElement waitForBusPrinc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(busPrincipalField));
-            WebElement waitForLightSrc1 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lightSource1Field));
-            WebElement waitForLightSrc2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lightSource2Field));
-            WebElement waitForLightSrc3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lightSource3Field));
-            WebElement waitForNewBuyerLink = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newBuyerLink));
-            WebElement waitForArticle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-            WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-            WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-            WebElement waitForShadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-            WebElement waitForCop = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(copButton));
-            WebElement waitForCone = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coneButton));
-            WebElement waitForVicone = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viconeButton));
-            WebElement waitForColMat = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(colMatButton));
-            WebElement waitForSewing = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sewingButton));
-            WebElement waitForDirEnYes = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dirEnYesButton));
-            WebElement waitForDirEnNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dirEnNoButton));
-            WebElement waitForPurpose = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(purposeField));
-            WebElement waitForRequirements = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requirementsField));
-            WebElement waitForCustRef = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custRefField));
-            WebElement waitForFabRef = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fabRefField));
-            WebElement waitForQuantity = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityField));
-            WebElement waitForNewLine = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newLineButton));
-            WebElement waitForSubmit = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitOrderButton));
-            WebElement waitForPend = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(pendOrderButton));
-            WebElement waitForCancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));  
+            WebElement shipTo = Wait.clickable(driver,shipToField);
+            WebElement busPrinc = Wait.clickable(driver,busPrincipalField);
+            WebElement lightSrc1 = Wait.clickable(driver,lightSource1Field);
+            WebElement lightSrc2 = Wait.clickable(driver,lightSource2Field);
+            WebElement lightSrc3 = Wait.clickable(driver,lightSource3Field);
+            WebElement newBuyer = Wait.visible(driver,newBuyerLink);
+            WebElement article = Wait.clickable(driver,articleField);
+            WebElement brand = Wait.clickable(driver,brandField);
+            WebElement ticket = Wait.clickable(driver,ticketField);
+            WebElement shadeCode = Wait.clickable(driver,shadeCodeField);
+            WebElement cop = Wait.clickable(driver,copButton);
+            WebElement cone = Wait.clickable(driver,coneButton);
+            WebElement vicone = Wait.clickable(driver,viconeButton);
+            WebElement colMat = Wait.clickable(driver,colMatButton);
+            WebElement sewing = Wait.clickable(driver,sewingButton);
+            WebElement dirEnYes = Wait.clickable(driver,dirEnYesButton);
+            WebElement dirEnNo = Wait.clickable(driver,dirEnNoButton);
+            WebElement purpose = Wait.clickable(driver,purposeField);
+            WebElement requirements = Wait.clickable(driver,requirementsField);
+            WebElement custRef = Wait.clickable(driver,custRefField);
+            WebElement fabRef = Wait.clickable(driver,fabRefField);
+            WebElement quantity = Wait.clickable(driver,quantityField);
+            WebElement newLine = Wait.clickable(driver,newLineButton);
+            WebElement submit = Wait.clickable(driver,submitOrderButton);
+            WebElement pend = Wait.clickable(driver,pendOrderButton);
+            WebElement cancel = Wait.clickable(driver,cancelButton);  
             
             //Assert they are all displayed
-            AssertJUnit.assertTrue("Add Order page: Ship To Party field not displayed", getShipToField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Business Principal field not displayed", getBusPrincipalField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Lightsource 1 field not displayed", getLightSource1Field().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Lightsource 2 field not displayed", getLightSource2Field().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Lightsource 3 field not displayed", getLightSource3Field().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: New Buyer Link not displayed", getNewBuyerLink().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Article field not displayed", getArticleField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Brand field not displayed", getBrandField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Ticket field not displayed", getTicketField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Shade code field not displayed", getShadeCodeField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Cop button not displayed", getCopButton().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Cone button not displayed", getConeButton().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Vicone button not displayed", getViconeButton().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Colour Match button not displayed", getColMatButton().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Sewing button not displayed", getSewingButton().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Direct Enrich (Yes) button not displayed", getDirEnYesButton().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Direct Enrich (No) button not displayed", getDirEnNoButton().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Purpose field not displayed", getPurposeField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Requirements field not displayed", getRequirementsField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Customer Reference field not displayed", getCustRefField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Fabric Reference field not displayed", getFabRefField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Quantity field not displayed", getQuantityField().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: New line button not displayed", getNewLineButton().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Submit Order button not displayed", getSubmitOrderButton().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Pend Order button not displayed", getPendOrderButton().isDisplayed());
-            AssertJUnit.assertTrue("Add Order page: Cancel button not displayed", getCancelButton().isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Ship To Party field not displayed", shipTo.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Business Principal field not displayed", busPrinc.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Lightsource 1 field not displayed", lightSrc1.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Lightsource 2 field not displayed", lightSrc2.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Lightsource 3 field not displayed", lightSrc3.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: New Buyer Link not displayed", newBuyer.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Article field not displayed", article.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Brand field not displayed", brand.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Ticket field not displayed", ticket.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Shade code field not displayed", shadeCode.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Cop button not displayed", cop.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Cone button not displayed", cone.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Vicone button not displayed", vicone.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Colour Match button not displayed", colMat.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Sewing button not displayed", sewing.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Direct Enrich (Yes) button not displayed", dirEnYes.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Direct Enrich (No) button not displayed", dirEnNo.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Purpose field not displayed", purpose.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Requirements field not displayed", requirements.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Customer Reference field not displayed", custRef.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Fabric Reference field not displayed", fabRef.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Quantity field not displayed", quantity.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: New line button not displayed", newLine.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Submit Order button not displayed", submit.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Pend Order button not displayed", pend.isDisplayed());
+            AssertJUnit.assertTrue("Add Order page: Cancel button not displayed", cancel.isDisplayed());
                   
             return true;
         } catch (Exception e) {
@@ -521,24 +484,29 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         //Check the fields related to the Direct Enrich feature appear (click "Yes" to direct enrich to open this)
 
         //Wait for all elements to be clickable
-        WebElement waitForComments = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichCommentsField));
-        WebElement waitForCompYes = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichCompletedYesButton));
-        WebElement waitForCompNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichCompletedNoButton));
-        WebElement waitForHub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichHubButton));
-        WebElement waitForLab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichLabButton));
-        WebElement waitForWHS = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(enrichWHSButton));
+        WebElement comments = Wait.clickable(driver, enrichCommentsField);
+        WebElement enrichCompYes = Wait.clickable(driver,enrichCompletedYesButton);
+        WebElement enrichCompNo = Wait.clickable(driver,enrichCompletedNoButton);
+        WebElement hub = Wait.clickable(driver,enrichHubButton);
+        WebElement lab = Wait.clickable(driver,enrichLabButton);
+        WebElement whs = Wait.clickable(driver,enrichWHSButton);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: FCE Comments box not displayed",getEnrichCommentsField().isDisplayed());
-        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Order Completed=Yes Button not displayed",getEnrichCompletedYesButton().isDisplayed());
-        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Order Completed=No Button not displayed",getEnrichCompletedNoButton().isDisplayed());
-        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Hub SOS Button not displayed",getEnrichHubButton().isDisplayed());
-        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Lab SOS Button not displayed",getEnrichLabButton().isDisplayed());
-        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: WHS SOS Button not displayed",getEnrichWHSButton().isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: FCE Comments box not displayed",comments.isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Order Completed=Yes Button not displayed",enrichCompYes.isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Order Completed=No Button not displayed",enrichCompNo.isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Hub SOS Button not displayed",hub.isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: Lab SOS Button not displayed",lab.isDisplayed());
+        AssertJUnit.assertTrue("Add Order Page: Direct Enrich feature: WHS SOS Button not displayed",whs.isDisplayed());
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
+        WebElement wait = Wait.clickable(driver,articleField);
+    }
+    
+    public void waitForElement(int row) {
+        By articleField = By.id("SampleOrderLine"+row+"ArticleId");
+        WebElement wait = Wait.clickable(driver,articleField);
     }
     
     public boolean checkHidden(String type) {
@@ -554,7 +522,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         }
         
         try {
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            WebElement wait = Wait.visible(driver,locator);
             return false;
         } catch (TimeoutException e) {
             return true;

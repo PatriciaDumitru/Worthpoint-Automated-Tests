@@ -37,6 +37,10 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
         return field.getAttribute("value");
     }
     
+    public WebElement getBreadcrumb() {
+        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+    }
+    
     public WebElement getApprovalWorkflowBox() {
         return driver.findElement(approvalWorkflowBox);
     }
@@ -117,6 +121,14 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
         btn.click();
         
         return new Mst_CustomersPage(driver);
+    }
+    
+    public Mst_EditCustomerPage setCustomerName(String item) {
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
+        element.clear();
+        
+        CommonTask.setInputField(driver, customerNameField, item);
+        return new Mst_EditCustomerPage(driver);
     }
     
     public void waitForElement() {

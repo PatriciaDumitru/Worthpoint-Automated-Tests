@@ -15,7 +15,7 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 
-public class CCE_EnrichOrder_Test extends DriverFactory {
+public class Cce_EnrichOrder_Test extends DriverFactory {
     
     @Test //Manual Enrich Page :: SUMST :: Page and filter checks, Hub SOS selection
     (groups={"CCE","CCE_Orders"})

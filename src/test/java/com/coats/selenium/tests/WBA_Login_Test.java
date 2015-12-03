@@ -144,6 +144,87 @@ public class WBA_Login_Test extends DriverFactory {
         AssertJUnit.assertTrue(eCommPage.getNavBar().isDisplayed());       
          
     }
+    
+    @Test //Login Page :: Login using valid Customer user details, navigate to and from CCE and eComm
+    (groups = {"QuickTest","General"})
+    public void L2_1() throws InterruptedException, Exception {
+        System.out.println("TEST: LOGIN PAGE/CONTINUE PAGE/SELECTION PAGE: Check elements are displayed for customer");
+        System.out.println("WBA_Login_Test > L2_1");
+        
+        //new driver to perform test
+        WebDriver driver = getDriver();
+        //navigate to QA site
+        driver.get("https://qawcs.coatscolourexpress.com");
+        //maximise the window
+        driver.manage().window().maximize();
+        
+        System.out.println("Logging in...");
+        
+        //new login page
+        WBA_LoginPage liPage = new WBA_LoginPage(driver);
+        
+        //login with valid coats details
+        WBA_ContinuePage contPage = liPage.loginAs(DataItems.susstUsername,DataItems.susstPassword);
+        
+        System.out.println("Logged in. Asserting continue page elements are displayed...");
+        
+        //Wait for page to load
+        WebElement waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(WBA_ContinuePage.getMainImage()));
+        
+        //Assert that all Continue Page elements load correctly
+        AssertJUnit.assertTrue(contPage.getWelcomeImage().isDisplayed());
+        AssertJUnit.assertTrue(contPage.getMainImage().isDisplayed());
+        AssertJUnit.assertTrue(contPage.getContinueImage().isDisplayed());
+        
+        System.out.println("Assertions successful. Continuing to selection page...");
+        
+        //Press continue to arrive at WBA selection page
+        WBA_SelectionPage selectionPage = contPage.pressContinue();
+        selectionPage.waitForElement();
+        
+        System.out.println("Selection page reached. Asserting elements are displayed...");
+        
+        //Scroll down and take another screenshot
+        Actions action = new Actions(driver);
+        action.sendKeys(Keys.PAGE_DOWN).build().perform();
+        
+        //Assert that all WBA selection page elements load correctly
+        AssertJUnit.assertTrue(selectionPage.getMainImage().isDisplayed());
+        AssertJUnit.assertTrue(selectionPage.getCceCircle().isDisplayed());
+        AssertJUnit.assertTrue(selectionPage.getEcommCircle().isDisplayed());
+        
+        System.out.println("Assertions successful. Selecting CCE...");
+
+        //Press CCE
+        CCE_MainPage ccePage = selectionPage.pressCce();
+        boolean waitForLoad2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.titleIs(DataItems.ccePageTitle));
+        
+        System.out.println("CCE main page reached. Asserting elements are displayed...");
+        
+        //Briefly assert that CCE Page elements load correctly, proving the CCE link has worked
+        AssertJUnit.assertTrue(ccePage.getCoatsLogo().isDisplayed());
+        AssertJUnit.assertTrue(ccePage.getNavBar().isDisplayed());
+        AssertJUnit.assertTrue(ccePage.getMainImage().isDisplayed());
+        
+        System.out.println("Assertions successful. Navigating back to selection page...");
+        
+        //Go back to selection page
+        driver.navigate().back();
+        
+        System.out.println("Selection page reached. Selecting eComm...");
+        //Press eComm
+        Ecomm_MainPage eCommPage = selectionPage.pressEcomm();
+        
+        //Wait for page to load
+        boolean waitForLoad3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.titleIs(DataItems.eCommPageTitle));
+        
+        System.out.println("eComm reached. Asserting elements are displayed...");
+        
+        //Briefly assert that eComm Page elements load correctly, proving the eComm link has worked
+        eCommPage.assertBaseElements();
+        AssertJUnit.assertTrue(eCommPage.getMainImage().isDisplayed());
+        AssertJUnit.assertTrue(eCommPage.getNavBar().isDisplayed());       
+    }
      
     @Test //Login Page :: Login using invlaid username
     (groups = {"QuickTest","General"})
