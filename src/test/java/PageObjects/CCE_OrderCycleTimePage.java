@@ -4,6 +4,7 @@ package PageObjects;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -143,22 +144,22 @@ public class CCE_OrderCycleTimePage extends WBA_BasePage {
         WebElement orderFrom = Wait.clickable(driver,orderDateFromField);
         WebElement orderTo = Wait.clickable(driver,orderDateToField);
         WebElement hub = Wait.clickable(driver,hubField);
-        WebElement fce = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement shipTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToNameField));
-        WebElement print = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        WebElement export = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportToExcelButton));
-        WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement fce = Wait.clickable(driver,fceNameField);
+        WebElement shipTo = Wait.clickable(driver,shipToNameField);
+        WebElement print = Wait.clickable(driver,printButton);
+        WebElement export = Wait.clickable(driver,exportToExcelButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
         
         //Assert all elements displayed
-        AssertJUnit.assertTrue("Order Cycle Time Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Order Cycle Time Page: Customer name Field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Order Cycle Time Page: Order Date From Field not displayed correctly",getOrderDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("Order Cycle Time Page: Order Date To Field not displayed correctly",getOrderDateToField().isDisplayed());
-        AssertJUnit.assertTrue("Order Cycle Time Page: Hub Field not displayed correctly",getHubField().isDisplayed());
-        AssertJUnit.assertTrue("Order Cycle Time Page: FCE Name Field not displayed correctly",getFceNameField().isDisplayed());
-        AssertJUnit.assertTrue("Order Cycle Time Page: Print button not displayed correctly",getPrintButton().isDisplayed());
-        AssertJUnit.assertTrue("Order Cycle Time Page: Export button not displayed correctly",getExportButton().isDisplayed());
-        AssertJUnit.assertTrue("Order Cycle Time Page: Reset button not displayed correctly",getResetButton().isDisplayed());        
+        AssertJUnit.assertTrue("Order Cycle Time Page: Order No Field not displayed correctly",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Order Cycle Time Page: Customer name Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Order Cycle Time Page: Order Date From Field not displayed correctly",orderFrom.isDisplayed());
+        AssertJUnit.assertTrue("Order Cycle Time Page: Order Date To Field not displayed correctly",orderTo.isDisplayed());
+        AssertJUnit.assertTrue("Order Cycle Time Page: Hub Field not displayed correctly",hub.isDisplayed());
+        AssertJUnit.assertTrue("Order Cycle Time Page: FCE Name Field not displayed correctly",fce.isDisplayed());
+        AssertJUnit.assertTrue("Order Cycle Time Page: Print button not displayed correctly",shipTo.isDisplayed());
+        AssertJUnit.assertTrue("Order Cycle Time Page: Export button not displayed correctly",export.isDisplayed());
+        AssertJUnit.assertTrue("Order Cycle Time Page: Reset button not displayed correctly",reset.isDisplayed());        
         
     }
     
