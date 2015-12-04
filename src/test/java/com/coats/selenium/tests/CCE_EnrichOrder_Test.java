@@ -10,6 +10,7 @@ import PageObjects.CCE_ManualEnrichPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.CCE_SAPLogPage;
 import com.coats.selenium.DriverFactory;
+import static com.coats.selenium.DriverFactory.getDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
