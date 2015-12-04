@@ -849,7 +849,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: SUMST :: Maximum copy count test (copy 11 times)
-    (groups = {"CCE","CCE_Orders","QuickTest"})
+    (groups = {"CCE","CCE_Orders","QuickTest","Solo"})
     public void SOC12() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

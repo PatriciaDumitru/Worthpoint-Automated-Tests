@@ -311,7 +311,7 @@ public class CommonTask {
         if (dayOfMonth < 25) {
             //Calculate day of month three days in future
             String date = String.valueOf((int)dayOfMonth+3);
-            
+
             //Find label with corect date and click it
             By dateLocator = By.xpath("//a[contains(text(),'"+date+"')]");
             clickDatePicked.click(driver.findElement(dateLocator)).build().perform();
