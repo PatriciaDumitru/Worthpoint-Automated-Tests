@@ -78,7 +78,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
             {"Brand","Brand"},
             {"Length","Length"},
             {"Buyers","N/A"},
-            {"Customer PO No","Customer PO Number"},
+            {"Customer PO No","Customer PO No"},
             {"Requestor Name","Requestor Name"},
             {"Warehouse Instruction","N/A"},
             {"Buyer Sales Order Number","N/A"},
@@ -95,7 +95,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Order confirmation reached. Asserting errors appear...");
         
-        AssertJUnit.assertTrue("Order Confirmation Page: No errors found despite invalid material in spreadsheet",orderConf.viewErrors());
+        AssertJUnit.assertTrue("Order Confirmation Page: No errors found despite invalid material in spreadsheet",orderConf.viewErrorsNew());
         
         System.out.println("Errors found.");
     }
@@ -174,7 +174,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
     }
     
     @Test //Upload Order Realtime :: SUMST :: Invalid article in spreadsheet exception
-    (groups = {"eComm","eComm_Orders","Upload_Order"})
+    (groups = {"eComm","eComm_Orders","Upload_Order","Solo"})
     public void UORTex3() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -224,7 +224,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
             {"Brand","Brand"},
             {"Length","Length"},
             {"Buyers","N/A"},
-            {"Customer PO No","Customer PO Number"},
+            {"Customer PO No","Customer PO No"},
             {"Requestor Name","Requestor Name"},
             {"Warehouse Instruction","N/A"},
             {"Buyer Sales Order Number","N/A"},
@@ -240,7 +240,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         errorPage.waitForError();
         
         AssertJUnit.assertTrue("Mapping page: Error page not displayed/unexpected error after mapping confirmed with erroneous file. Error: " + errorPage.getError(),
-                errorPage.ensureErrorPage("cannot be processed"));
+                errorPage.ensureErrorPage("incomplete material"));
         
         System.out.println("Error Page reached. Error displayed: " + errorPage.getError());
 
@@ -297,7 +297,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
             {"Brand","Brand"},
             {"Length","Length"},
             {"Buyers","N/A"},
-            {"Customer PO No","Customer PO Number"},
+            {"Customer PO No","Customer PO No"},
             {"Requestor Name","Requestor Name"},
             {"Warehouse Instruction","N/A"},
             {"Buyer Sales Order Number","N/A"},
@@ -518,7 +518,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
             {"Brand","Brand"},
             {"Length","Length"},
             {"Buyers","N/A"},
-            {"Customer PO No","Customer PO Number"},
+            {"Customer PO No","Customer PO No"},
             {"Requestor Name","Requestor Name"},
             {"Warehouse Instruction","N/A"},
             {"Buyer Sales Order Number","N/A"},
@@ -534,7 +534,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         errorPage.waitForError();
         
         AssertJUnit.assertTrue("Mapping page: Error page not displayed/unexpected error after mapping confirmed with erroneous file. Error: " + errorPage.getError(),
-                errorPage.ensureErrorPage("cannot be processed"));
+                errorPage.ensureOrderSplit());
         
         System.out.println("Error Page reached. Error displayed: " + errorPage.getError());
     }
@@ -590,7 +590,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
             {"Brand","Brand"},
             {"Length","Length"},
             {"Buyers","N/A"},
-            {"Customer PO No","Customer PO Number"},
+            {"Customer PO No","Customer PO No"},
             {"Requestor Name","Requestor Name"},
             {"Warehouse Instruction","N/A"},
             {"Buyer Sales Order Number","N/A"},
@@ -701,7 +701,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
             {"Brand","Brand"},
             {"Length","Length"},
             {"Buyers","N/A"},
-            {"Customer PO No","Customer PO Number"},
+            {"Customer PO No","Customer PO No"},
             {"Requestor Name","Requestor Name"},
             {"Warehouse Instruction","N/A"},
             {"Buyer Sales Order Number","N/A"},

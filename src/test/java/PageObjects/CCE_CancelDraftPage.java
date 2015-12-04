@@ -85,4 +85,15 @@ public class CCE_CancelDraftPage extends WBA_BasePage{
         return new CCE_OutstandingDraftPage(driver);
     }
     
+    public void closeView() {
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(closeButton)).build().perform();
+        
+        action.click().build().perform();
+        
+        Alert alert = Wait.alert(driver);
+        alert.accept();
+       
+    }
+    
 }

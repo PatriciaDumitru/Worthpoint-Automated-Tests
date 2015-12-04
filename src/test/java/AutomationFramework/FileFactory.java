@@ -19,8 +19,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class FileFactory {
     
     //The items to head each column in the file. Standard across all file types for simplicity. Items can be left blank if they are not required
-    public static String[] headData = {"Customer Name","Ship to Party Name","Customer PO Number","Required Date","Your Material Number","Article","Brand","Ticket",
-        "Length","Finish","Shade Code","Qty","Contract PO No","Line Reference","Sub Account","Requestor Name"};
+    public static String[] headData = {"Customer Name","Ship to Party Name","Customer PO No","Required Date","Your Material Number","Article","Brand","Ticket",
+        "Length","Finish","Shade Code","Qty","Contract PO No.","Line Reference","Sub Account","Requestor Name"};
     
     //Data used for testing MOQ (Minimum Order Quantity, a.k.a MDQ) function. MOQ must be active for the customer used (can be changed in Mastesr > Customer)
     public static String[][] MOQData = {{"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1711","1","","","",""},

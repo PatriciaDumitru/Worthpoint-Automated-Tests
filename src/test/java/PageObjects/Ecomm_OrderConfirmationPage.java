@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -67,6 +68,8 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By sendForApprovalButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(7) > div:nth-child(2) > input");
     
     static By linesWithErrorButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
+    static By lineWithErrorButton2 = By.linkText("Line with Error");
+
     static By errorLine = By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr:nth-child(1) > td:nth-child(6)");
     
     //Edit order overlay locator
@@ -491,7 +494,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         boolean errors;
         
         try {
-            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(linesWithErrorButton));
+           WebElement element = Wait.clickable(driver,linesWithErrorButton);
             errors = true;
         } catch (TimeoutException e) {
             errors = false;
@@ -499,6 +502,31 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         
         if (errors) {
             WebElement element = driver.findElement(linesWithErrorButton);
+            
+            Actions action = new Actions(driver);
+            action.moveToElement(element).build().perform();
+            action.click().build().perform();
+            
+            WebDriver wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+            WebElement wait3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(errorLine));
+            System.out.println(driver.findElement(errorLine).getText());
+        }
+        
+        return errors;
+    }
+    
+    public boolean viewErrorsNew() {
+        boolean errors;
+        
+        try {
+            WebElement element = Wait.visible(driver, lineWithErrorButton2);
+            errors = true;
+        } catch (TimeoutException e) {
+            errors = false;
+        }
+        
+        if (errors) {
+            WebElement element = driver.findElement(lineWithErrorButton2);
             
             Actions action = new Actions(driver);
             action.moveToElement(element).build().perform();

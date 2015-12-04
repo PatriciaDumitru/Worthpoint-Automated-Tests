@@ -293,7 +293,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public CCE_OutstandingDraftPage pressCancelToDrafts() {
         //Press the cancel button, expecting re-direction to oustanding drafts page
         
-        WebElement element = Wait.clickable(driver,cancelButton);
+        WebElement element = Wait.clickable(driver,cancelToDraftsButton);
         
         Actions action = new Actions(driver);
         action.moveToElement(element).build().perform();

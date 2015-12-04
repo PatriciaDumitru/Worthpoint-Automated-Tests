@@ -229,9 +229,9 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
         WebElement custName = Wait.clickable(driver,custNameField);
         WebElement finalSOS = Wait.clickable(driver,finalSOSField);
         WebElement confirm = Wait.clickable(driver,confirmButton);
-        WebElement mumType = Wait.clickable(driver,MUMTypeField);
-        WebElement qtyProd = Wait.clickable(driver,qtyProdField);
-        WebElement sendTo = Wait.clickable(driver,sendToField);
+        WebElement mumType = Wait.visible(driver,MUMTypeField);
+        WebElement qtyProd = Wait.visible(driver,qtyProdField);
+        WebElement sendTo = Wait.visible(driver,sendToField);
         WebElement save = Wait.clickable(driver,saveButton);
         
         //Assert all elements are displayed correctly

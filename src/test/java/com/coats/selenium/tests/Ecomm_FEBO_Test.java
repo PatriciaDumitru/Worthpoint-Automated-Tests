@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 public class Ecomm_FEBO_Test extends DriverFactory {
     
     @Test //From Existing Bulk Order Page :: Page checks, create order 
-    (groups = {})
+    (groups = {}) //Could not find a way to allow program to interact with fields. No idea why
     public void FEBO1() throws IOException, Exception {
     //New driver
     WebDriver driver = getDriver();

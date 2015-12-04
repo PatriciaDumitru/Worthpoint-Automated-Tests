@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 public class Cce_OrderDraft_Test extends DriverFactory {
     
     @Test //Outstanding Draft Page :: Page and filter checks, create and cancel (from outstanding draft table) draft
-    (groups = {"CCE"})
+    (groups = {"CCE"}) //CURRENTLY UNSTABLE: failing at line 107 to close the overlay. After that is fixed, should be fine
     public void OD1() throws Exception {
         
         WebDriver driver = getDriver();
@@ -104,13 +104,12 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         System.out.println("Reason set. Saving...");
         
         cancelPage.pressSave();
+        cancelPage.closeView();
+        draftPage.waitForElement();
 
         System.out.println("Saved. Checking draft was removed...");
         
-        CCE_OutstandingDraftPage draftPage2 = cancelPage.pressOutstandingDraft();
-        draftPage2.waitForLoad();
-        
-        AssertJUnit.assertFalse("Outstanding Draft Page: Draft persists in table although cancelled",draftPage2.findDraftByOrderNo(orderNo));
+        AssertJUnit.assertFalse("Outstanding Draft Page: Draft persists in table although cancelled",draftPage.findDraftByOrderNo(orderNo));
         
         System.out.println("Draft removed.");
     }
@@ -162,7 +161,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         
         System.out.println("Outstanding Drafts page reached. Editing top item...");
         
-        CCE_AddOrderPage entryPage = draftPage.pressEdit(0);
+        CCE_AddOrderPage entryPage = draftPage.pressEdit(2);
         entryPage.waitForLoad();
         
         System.out.println("Order entry page reached. Verifying values are the consistent (excludes MUM Type, Request Type, Shade code)...");

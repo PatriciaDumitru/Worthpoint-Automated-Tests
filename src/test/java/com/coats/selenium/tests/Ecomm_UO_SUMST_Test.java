@@ -243,7 +243,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Upload draft creation and cancellation
-    (groups = {"eComm","eComm_Orders","Upload_Order"})
+    (groups = {"eComm","eComm_Orders","Upload_Order",})
     public void UORT3() throws AWTException, InterruptedException, IOException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();

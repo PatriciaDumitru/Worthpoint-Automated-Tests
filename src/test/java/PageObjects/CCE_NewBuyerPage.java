@@ -17,11 +17,12 @@ public class CCE_NewBuyerPage extends WBA_BasePage {
     
     //Locators
     By titleLocator = By.cssSelector("#SampleOrderBuyerAddForm > div.frm > div.title");
-    By custNameField = By.cssSelector("#s2id_customer_id > a");
+    By custNameField = By.id("s2id_customer_id");
     By buyerNameField = By.cssSelector("#SampleOrderBuyerAddForm > div.frm > div:nth-child(2) > table.order-details > tbody > tr:nth-child(3) > td > input");
     By buyerDescField = By.cssSelector("#SampleOrderBuyerAddForm > div.frm > div:nth-child(2) > table.order-details > tbody > tr:nth-child(4) > td > input");
     By submitButton = By.cssSelector("#SampleOrderBuyerAddForm > div.frm > div:nth-child(2) > div > ul > li:nth-child(1) > input[type=\"submit\"]");
     By cancelButton = By.cssSelector("#SampleOrderBuyerAddForm > div.frm > div:nth-child(2) > div > ul > li:nth-child(2)");
+    By formLocator = By.id("SampleOrderBuyerAddForm");
     
     public CCE_NewBuyerPage(WebDriver driver) {
         super(driver);
@@ -69,22 +70,26 @@ public class CCE_NewBuyerPage extends WBA_BasePage {
     }
     
     public CCE_NewBuyerPage setCustomerName(String item) {
-        //CANNOT BE PERFORMED USING CommonTask.setSearchField AS PRESSING ENTER SUBIMTS FORM EARLY
+        //CANNOT BE PERFORMED USING CommonTask.setSearchField AS PRESSING ENTER SUBMITS FORM EARLY
         
         By searchLocator = By.cssSelector("#select2-drop > div > input");
-        By resultLocator = By.cssSelector("#select2-drop > ul > li");
+        By resultLocator = By.cssSelector("#select2-drop > ul > li.select2-results-dept-0.select2-result.select2-result-selectable.select2-highlighted");
         
-        WebElement buyerName = Wait.clickable(driver,buyerNameField);
+        //Click form to set focus
+        driver.findElement(formLocator).click();
         
-        Actions action = new Actions(driver);
-        action.click(buyerName).build().perform();
+        WebElement custName = Wait.clickable(driver,custNameField);
         
-        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(searchLocator));
-        action.sendKeys(driver.findElement(searchLocator),item).build().perform();
-        //Wait for search result to load
+        custName.click();
+        
+        WebElement search = Wait.clickable(driver,searchLocator);
+        search.click();
+        search.sendKeys(item);
+        
         Boolean waitForResult = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator, item));
         
-        action.click(driver.findElement(resultLocator)).build().perform();
+        WebElement result = driver.findElement(resultLocator);
+        result.click();
         
         return new CCE_NewBuyerPage(driver);
     }

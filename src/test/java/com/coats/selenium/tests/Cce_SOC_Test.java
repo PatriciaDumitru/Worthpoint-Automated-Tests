@@ -322,10 +322,15 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Prompt submitted. Adding line 0 order details...");
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
-                DataItems.expShadeCode,DataItems.coneMUM,DataItems.sewing,DataItems.salesSamp,1);
+        addOrder.setShipToParty(DataItems.custDetails[1]);
+        addOrder.setArticle(DataItems.expArticle,0);
+        addOrder.setShadeCode(DataItems.expShadeCode,0);
+        addOrder.setMUMType(DataItems.coneMUM, 0);
+        addOrder.setRequestType(DataItems.sewing, 0);
+        addOrder.setPurposeType(DataItems.salesSamp, 0);
+        addOrder.setQuantity(1, 0);
         
-         //Take a screenshot
+        //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\12Line1 details added.png"));
         
@@ -849,7 +854,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: SUMST :: Maximum copy count test (copy 11 times)
-    (groups = {"CCE","CCE_Orders","QuickTest","Solo"})
+    (groups = {"CCE","CCE_Orders","QuickTest"})
     public void SOC12() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

@@ -1,6 +1,7 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import com.google.common.base.Verify;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -68,7 +69,7 @@ public class CCE_OrderViewPage {
         Actions pressEscape = new Actions(driver);
         pressEscape.sendKeys(Keys.ESCAPE).build().perform();
         //Handle alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new CCE_OrderStatusPage(driver);

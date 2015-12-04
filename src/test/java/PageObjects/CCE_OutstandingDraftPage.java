@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -100,7 +101,7 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     }
     
     public CCE_CancelDraftPage pressCancel(int row) {
-        By cancelButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(2) > a > span");
+        By cancelButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(12) > a.thickbox > span");
 
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cancelButton));
         WebElement wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
@@ -113,8 +114,12 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     public int findDraft(String creationDate) throws ParseException {
         int row = -1;
         
-        for (int i = 1; i < 10; i++) {
-            By dateCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+2)+") > td:nth-child(4)");
+        for (int i = 2; i < 10; i++) {
+            By dateHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(4)");
+            WebElement header = Wait.visible(driver,dateHeader);
+            AssertJUnit.assertTrue("Outstanding Draft Page: Date column has moved, update locators",header.getText().trim().equals("Date"));
+            
+            By dateCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(4)");
             
             WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(dateCell));
             
@@ -145,8 +150,14 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     public boolean findDraftByOrderNo(String orderNo) {
         boolean found = false;
         
-        for (int i = 0; i < 6; i++) {
-            By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+2)+") > td:nth-child(3)");
+        
+        
+        for (int i = 2; i < 8; i++) {
+            By orderNoHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(3)");
+            WebElement header = Wait.visible(driver,orderNoHeader);
+            AssertJUnit.assertTrue("Oustanding Draft Page: Order No column has moved, update locators",header.getText().trim().equals(orderNo));
+            
+            By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(3)");
             WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
             String cellOrderNo = driver.findElement(orderNoCell).getText();
             
