@@ -891,7 +891,7 @@ public class Cce_SOC_Test extends DriverFactory {
         
         System.out.println("First line complete. Adding new line details...");
         
-        for (int i = 1; i < 12; i++) {
+        for (int i = 1; i < 11; i++) {
 
             addPage.waitForElement(i);
             addPage.pressCopyAlt(i);
@@ -904,6 +904,15 @@ public class Cce_SOC_Test extends DriverFactory {
             addPage.pressNewLineAlt(i+1);
             
         }
+        
+        addPage.waitForElement(11);
+        addPage.pressCopyAlt(11);
+        addPage.waitForCopy(11);
+        
+        addPage.setArticle("8754120", 11);
+        addPage.setQuantity(1,11);
+        addPage.setCustomerRef(11);
+        addPage.setPurposeType(DataItems.protoPurpose,11);
         
         System.out.println("Line details added. Submitting...");
         
