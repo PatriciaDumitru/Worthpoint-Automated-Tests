@@ -2,6 +2,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -250,15 +252,15 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     
     public Ecomm_OrderConfirmationPage pressConfirm() {
         //wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        WebElement confirm = Wait.clickable(driver,confirmButtonLocator);
         //New action to click confirm
         Actions clickConfirm = new Actions(driver);
-        clickConfirm.click(driver.findElement(confirmButtonLocator)).build().perform();
+        clickConfirm.click(confirm).build().perform();
         //Confirm alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
-        Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert2 = Wait.alert(driver);
         alert2.accept();
         
         return new Ecomm_OrderConfirmationPage(driver);
@@ -266,19 +268,19 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     
     public Ecomm_OrderConfirmationPage pressConfirmMOQ() {
         //wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        WebElement confirm = Wait.clickable(driver,confirmButtonLocator);
         //New action to click confirm
         Actions clickConfirm = new Actions(driver);
-        clickConfirm.click(driver.findElement(confirmButtonLocator)).build().perform();
+        clickConfirm.click(confirm).build().perform();
         //Confirm alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
 
-        Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert2 = Wait.alert(driver);
         alert2.accept();
         
         try {
-            Alert alert3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert3 = Wait.alert(driver);
             AssertJUnit.assertTrue("Order Confirmation Page: Alert for MOQ regarding rounded quantity not displayed as expected",alert3.getText().contains("order quantity has been rounded"));
             System.out.println("Alert received, as expected");
             System.out.println("Alert Message: " + alert3.getText());
@@ -292,16 +294,16 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     
     public Ecomm_ErrorPage pressConfirmExpectingError() {
         //wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        WebElement confirm = Wait.clickable(driver,confirmButtonLocator);
         //New action to click confirm
         Actions clickConfirm = new Actions(driver);
-        clickConfirm.click(driver.findElement(confirmButtonLocator)).build().perform();
+        clickConfirm.click(confirm).build().perform();
         //Confirm alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         try {
-            Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert2 = Wait.alert(driver);
             alert2.accept();
         } catch (TimeoutException e) {
             
@@ -312,12 +314,12 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     
     public Ecomm_BackendProcessPage pressConfirmForBackend() {
         //wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        WebElement confirm = Wait.clickable(driver,confirmButtonLocator);
         //New action to click confirm
         Actions clickConfirm = new Actions(driver);
-        clickConfirm.click(driver.findElement(confirmButtonLocator)).build().perform();
+        clickConfirm.click(confirm).build().perform();
         //Confirm alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new Ecomm_BackendProcessPage(driver);
@@ -325,7 +327,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     
     public Ecomm_MappingPage setMapping(String[][] mapping) {
         //Wait for page to load
-        WebElement waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        WebElement confirm = Wait.clickable(driver,confirmButtonLocator);
         
         Actions inputKeys = new Actions(driver);
         
@@ -343,8 +345,8 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         inputKeys.click(this.getCustNameField()).build().perform();
         inputKeys.sendKeys(DataItems.custDetails[0]).build().perform();
         //Wait for result to appear and press enter
-        WebElement waitForResult = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custNameResultLocator));
-        boolean waitForText = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(custNameResultLocator, DataItems.custDetails[0]));
+        WebElement result = Wait.visible(driver,custNameResultLocator);
+        boolean waitForText = Wait.textPresent(driver,custNameResultLocator, DataItems.custDetails[0]);
         inputKeys.sendKeys(Keys.ENTER);
         
         //Article
@@ -865,15 +867,15 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     
     public void checkFieldsContractOrder() {
         //Wait for all elements to be clickable
-        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleFieldLocator));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketFieldLocator));
-        WebElement shadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeFieldLocator));
-        WebElement qty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityFieldLocator));
-        WebElement contractPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractPONoLocator));
-        WebElement lineRef = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractPONoLocator));
-        WebElement shipTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyFieldLocator));
-        WebElement length = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthFieldLocator));
-        WebElement confirm = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(confirmButtonLocator));
+        WebElement article = Wait.clickable(driver,articleFieldLocator);
+        WebElement ticket = Wait.clickable(driver,ticketFieldLocator);
+        WebElement shadeCode = Wait.clickable(driver,shadeCodeFieldLocator);
+        WebElement qty = Wait.clickable(driver,quantityFieldLocator);
+        WebElement contractPO = Wait.clickable(driver,contractPONoLocator);
+        WebElement lineRef = Wait.clickable(driver,contractPONoLocator);
+        WebElement shipTo = Wait.clickable(driver,shipToPartyFieldLocator);
+        WebElement length = Wait.clickable(driver,lengthFieldLocator);
+        WebElement confirm = Wait.clickable(driver,confirmButtonLocator);
 
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Mapping Page (contract order): Article field not displayed",article.isDisplayed());
@@ -889,7 +891,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+        WebElement wait = Wait.visible(driver,frameLocator);
     }
     
 }

@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,7 +28,7 @@ public class Mst_AddAllowedQuantityPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddAllowedQuantityPage setCustomerName(String item) {
@@ -60,19 +62,19 @@ public class Mst_AddAllowedQuantityPage extends WBA_BasePage {
     }
     
     public Mst_AllowedQuantitiesPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_AllowedQuantitiesPage(driver);
     }
     
     public void checkFields() {
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement mumType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
-        WebElement shade = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeField));
-        WebElement qty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyField));
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
+        WebElement shade = Wait.clickable(driver,shadeField);
+        WebElement qty = Wait.clickable(driver,qtyField);
     
         AssertJUnit.assertTrue("Add Allowed Quantity Page: Customer name field not displayed",custName.isDisplayed());
         AssertJUnit.assertTrue("Add Allowed Quantity Page: Brand field not displayed",brand.isDisplayed());
@@ -83,7 +85,7 @@ public class Mst_AddAllowedQuantityPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement qty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyField));
+        WebElement qty = Wait.clickable(driver,qtyField);
     }
     
 }

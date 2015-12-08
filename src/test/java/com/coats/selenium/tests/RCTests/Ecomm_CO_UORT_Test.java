@@ -32,7 +32,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
   public By lineWithErrorsButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
   
   @Test //Upload Orders Page :: Realtime contract order upload, expecting "No matching reference" error
-  (groups ={"eComm","eComm_Orders","Upload_Order","QuickTest","Solo"})
+  (groups ={"eComm","eComm_Orders","Upload_Order","QuickTest"})
   public void CORT1() throws Exception {
     
     WebDriver driver = getDriver();

@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,46 +30,6 @@ public class Ecomm_ShadeNotAvailablePage extends WBA_BasePage {
         super(driver);
     }
     
-    public WebElement getSalesOrgField() {
-        return driver.findElement(salesOrgField);
-    }
-    
-    public WebElement getCustNameField() {
-        return driver.findElement(custNameField);
-    }
-    
-    public WebElement getCreateDateFromField() {
-        return driver.findElement(createDateFromField);
-    }
-    
-    public WebElement getCreateDateToField() {
-        return driver.findElement(createDateToField);
-    }
-    
-    public WebElement getCustPOField() {
-        return driver.findElement(custPOField);
-    }
-    
-    public WebElement getOrderNoField() {
-        return driver.findElement(orderNoField);
-    }
-    
-    public WebElement getSearchButton() {
-        return driver.findElement(searchButton);
-    }
-    
-    public WebElement getResetButton() {
-        return driver.findElement(resetButton);
-    }
-    
-    public WebElement getEditButton() {
-        return driver.findElement(editButton);
-    }
-    
-    public WebElement getViewButton() {
-        return driver.findElement(viewButton);
-    }
-    
     public Ecomm_ShadeNotAvailablePage setSalesOrg(String item) {
         CommonTask.setSearchField(driver, salesOrgField, item);
         return this;
@@ -90,51 +52,51 @@ public class Ecomm_ShadeNotAvailablePage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForSalesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForCreateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateFromField));
-        WebElement waitForCreateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateToField));
-        WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForSearchBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForResetBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForEditBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButton));
-        WebElement waitForViewBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement createFrom = Wait.clickable(driver,createDateFromField);
+        WebElement createTo = Wait.clickable(driver,createDateToField);
+        WebElement custPO = Wait.clickable(driver,custPOField);
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement searchBtn = Wait.clickable(driver,searchButton);
+        WebElement resetBtn = Wait.clickable(driver,resetButton);
+        WebElement editBtn = Wait.clickable(driver,editButton);
+        WebElement viewBtn = Wait.clickable(driver,viewButton);
     
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Shade Not Available Page: Sales Org Field not displayed correctly",getSalesOrgField().isDisplayed());
-        AssertJUnit.assertTrue("Shade Not Available Page: Customer Name Field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Shade Not Available Page: Creation Date From Field not displayed correctly",getCreateDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("Shade Not Available Page: Creation Date To Field not displayed correctly",getCreateDateToField().isDisplayed());
-        AssertJUnit.assertTrue("Shade Not Available Page: Customer PO Field not displayed correctly",getCustPOField().isDisplayed());
-        AssertJUnit.assertTrue("Shade Not Available Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Shade Not Available Page: Search button not displayed correctly",getSearchButton().isDisplayed());
-        AssertJUnit.assertTrue("Shade Not Available Page: Reset button not displayed correctly",getResetButton().isDisplayed());
-        AssertJUnit.assertTrue("Shade Not Available Page: Edit button not displayed correctly",getEditButton().isDisplayed());
-        AssertJUnit.assertTrue("Shade Not Available Page: View button not displayed correctly",getViewButton().isDisplayed());
+        AssertJUnit.assertTrue("Shade Not Available Page: Sales Org Field not displayed correctly",salesOrg.isDisplayed());
+        AssertJUnit.assertTrue("Shade Not Available Page: Customer Name Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Shade Not Available Page: Creation Date From Field not displayed correctly",createFrom.isDisplayed());
+        AssertJUnit.assertTrue("Shade Not Available Page: Creation Date To Field not displayed correctly",createTo.isDisplayed());
+        AssertJUnit.assertTrue("Shade Not Available Page: Customer PO Field not displayed correctly",custPO.isDisplayed());
+        AssertJUnit.assertTrue("Shade Not Available Page: Order No Field not displayed correctly",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Shade Not Available Page: Search button not displayed correctly",searchBtn.isDisplayed());
+        AssertJUnit.assertTrue("Shade Not Available Page: Reset button not displayed correctly",resetBtn.isDisplayed());
+        AssertJUnit.assertTrue("Shade Not Available Page: Edit button not displayed correctly",editBtn.isDisplayed());
+        AssertJUnit.assertTrue("Shade Not Available Page: View button not displayed correctly",viewBtn.isDisplayed());
     }
     
     public Ecomm_ShadeNotAvailablePage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton).click();
+        WebElement search = Wait.clickable(driver,searchButton);
+        search.click();
         return this;
     }
     
     public Ecomm_ShadeNotAvailablePage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return this;
     }
     
     public Ecomm_ShadeOrderConfirmationPage pressEdit() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButton));
-        driver.findElement(editButton).click();
+        WebElement edit = Wait.clickable(driver,editButton);
+        edit.click();
         return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
     
     public Ecomm_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        driver.findElement(viewButton).click();
+        WebElement view = Wait.clickable(driver,viewButton);
+        view.click();
         return new Ecomm_OrderViewPage(driver);
     }
     

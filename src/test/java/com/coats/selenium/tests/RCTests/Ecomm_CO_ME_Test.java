@@ -30,6 +30,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
   private String baseUrl;
   private final boolean acceptNextAlert = true;
   private final StringBuffer verificationErrors = new StringBuffer();
+  private final By shipToPartyField = By.id("ship_to_party_id");
   private final By poField = By.id("BulkOrderPoNumber");
   private final By dateField = By.id("required_date_0");
   private final By buyersField = By.id("s2id_BuyerId");
@@ -44,7 +45,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
   private final By flashMessage = By.id("flashMessage");
   
   @Test //Manual Entry Page :: Contract order expecting "No matching contract reference" error
-  (groups = {"eComm","eComm_Orders"})
+  (groups = {"eComm","eComm_Orders","Solo"})
   public void COME1() throws Exception {
     
     WebDriver driver = getDriver();
@@ -61,6 +62,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\1Manual Entry Page.png"));
     
+    CommonTask.setDropDownField(driver, shipToPartyField, "Star Garments");
     CommonTask.setSearchField(driver, buyersField, DataItems.custDetails[3]);
     
     driver.findElement(poField).clear();
@@ -401,7 +403,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
   } 
 
   @Test //Manual Entry Page :: Contract Order using only Contract PO expecting error
-  (groups = {"eComm","eComm_Orders"})
+  (groups = {"eComm","eComm_Orders","Solo"})
   public void COME6() throws Exception {
     
     WebDriver driver = getDriver();
@@ -417,6 +419,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
     System.out.println("PO used: "+po);
+    CommonTask.setDropDownField(driver, shipToPartyField, "Star Garments");
     
       System.out.println("Customer details entered. Entering line details...");
     
@@ -532,7 +535,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
   }
   
   @Test //Manual Entry Page :: Contract Order using only Contract PO and Line Ref AND Contract Order using only Contract PO and material to call off entire line
-  (groups = {"eComm","eComm_Orders"})
+  (groups = {"eComm","eComm_Orders","Solo"})
   public void COME9() throws Exception {
     WebDriver driver = getDriver();
       
@@ -547,6 +550,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     String po = CommonTask.generatePO("contract");
     driver.findElement(poField).sendKeys(po);
     System.out.println("PO used: "+po);
+    CommonTask.setDropDownField(driver, shipToPartyField, "Star Garments");
     
     System.out.println("Customer details entered. Entering line details...");
     

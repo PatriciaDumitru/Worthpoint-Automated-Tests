@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import static PageObjects.Ecomm_ManualEntryPage.customerNameField;
 import org.openqa.selenium.Alert;
@@ -34,30 +35,30 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
     public Ecomm_OutstandingUploadDraftPage setCustomerName(String custName) {
         
         //Wait for customer name field to be clickable
-        WebElement waitToClick = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameFieldLocator));
+        WebElement field = Wait.clickable(driver,custNameFieldLocator);
         
         //click field and type customer name
         Actions typeCustomerName = new Actions(driver);
-        typeCustomerName.click(driver.findElement(custNameFieldLocator)).build().perform();
-        WebElement waitForSearchField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(custNameSearchLocator));
-        driver.findElement(custNameSearchLocator).sendKeys(custName);
+        typeCustomerName.click(field).build().perform();
+        WebElement search = Wait.presence(driver,custNameSearchLocator);
+        search.sendKeys(custName);
         
         //Wait for search result to load
-        Boolean waitForResult = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(custNameResultLocator, custName));
+        Boolean waitForResult = Wait.textPresent(driver,custNameResultLocator, custName);
         
         //Press enter
-        typeCustomerName.sendKeys(driver.findElement(custNameSearchLocator), Keys.ENTER).build().perform();
+        typeCustomerName.sendKeys(search, Keys.ENTER).build().perform();
  
         return this;
     }
     
     public Ecomm_OutstandingUploadDraftPage pressSearch() {
         //Wait for button to be clickable
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButtonLocator));
+        WebElement btn = Wait.clickable(driver,searchButtonLocator);
         
         //Click button
         Actions clickSearch = new Actions(driver);
-        clickSearch.click(driver.findElement(searchButtonLocator)).build().perform();
+        clickSearch.click(btn).build().perform();
         
         return this;
     }
@@ -65,15 +66,15 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
     public Ecomm_OrderConfirmationPage pressEdit() {
         
         //Wait for button to be clickable
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButtonLocator));
+        WebElement btn = Wait.clickable(driver,editButtonLocator);
         
         //Click button
         Actions clickSearch = new Actions(driver);
-        clickSearch.click(driver.findElement(editButtonLocator)).build().perform();
+        clickSearch.click(btn).build().perform();
         
         //Handle alert
         try {
-            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert = Wait.alert(driver);
             System.out.println("Alert appeared: "+alert.getText());
             alert.accept();
         } catch (Exception e) {
@@ -83,10 +84,10 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
     }
     
     public Ecomm_OrderConfirmationPage pressEdit(By editButton) {
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButton));
-        driver.findElement(editButton).click();
+        WebElement btn = Wait.clickable(driver,editButton);
+        btn.click();
         try {
-            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert = Wait.alert(driver);
             System.out.println("Alert appeared: " + alert.getText());
             alert.accept();
         } catch (Exception e) {
@@ -100,18 +101,18 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
     public Ecomm_OrderConfirmationPage pressDelete() {
         
         //Wait for button to be clickable
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deleteButtonLocator));
+        WebElement delete = Wait.clickable(driver,deleteButtonLocator);
         
         //Click button
-        Actions clickSearch = new Actions(driver);
-        clickSearch.click(driver.findElement(deleteButtonLocator)).build().perform();
+        Actions clickDelete = new Actions(driver);
+        clickDelete.click(delete).build().perform();
         
         //Handle alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         //Wait for message
-        WebElement waitForMessage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(messageLocator));
+        WebElement message = Wait.visible(driver,messageLocator);
         
         return new Ecomm_OrderConfirmationPage(driver);
         
@@ -127,7 +128,7 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
             Ecomm_OrderConfirmationPage orderConf = pressEdit(editButton);
             
             try {
-                Alert alert = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.alertIsPresent());
+                Alert alert = Wait.alert(driver);
                 alert.accept();
             } catch (Exception e) {
                 
@@ -155,7 +156,7 @@ public class Ecomm_OutstandingUploadDraftPage extends WBA_BasePage{
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(formLocator));
+        WebElement wait = Wait.visible(driver,formLocator);
     }
     
     

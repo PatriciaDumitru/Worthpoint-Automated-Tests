@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,12 +31,11 @@ public class Ecomm_OrderApprovalHistoryPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement breadcrumb = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator2));
-        return breadcrumb;
+        return Wait.visible(driver,DataItems.breadcrumbLocator2);
     }
         
     public WebElement getCustomerNameField() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custNameField));
+        WebElement field = Wait.clickable(driver,custNameField);
         return field;
     }
     
@@ -94,19 +95,19 @@ public class Ecomm_OrderApprovalHistoryPage extends WBA_BasePage {
     }
     
     public Ecomm_OrderApprovalHistoryPage pressSearch() {
-        WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement search = Wait.clickable(driver,searchButton);
         search.click();
         return new Ecomm_OrderApprovalHistoryPage(driver);
     }
     
     public Ecomm_OrderApprovalHistoryPage pressReset() {
-        WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement reset = Wait.clickable(driver,resetButton);
         reset.click();
         return new Ecomm_OrderApprovalHistoryPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement exportBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement exportBtn = Wait.clickable(driver,exportButton);
         exportBtn.click();
         
         return new Ecomm_ExportDownloadPage(driver);
@@ -114,15 +115,15 @@ public class Ecomm_OrderApprovalHistoryPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for element to be clickable
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement orderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement requester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement approver = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(approverField));
-        WebElement status = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(statusField));
-        WebElement custPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement export = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement approver = Wait.clickable(driver,approverField);
+        WebElement status = Wait.clickable(driver,statusField);
+        WebElement custPO = Wait.clickable(driver,custPOField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement export = Wait.clickable(driver,exportButton);
         
         //Assert all elements are displayed correctly
         AssertJUnit.assertTrue("Order Approval History Page: Customer name field not displayed correctly",custName.isDisplayed());
@@ -137,7 +138,7 @@ public class Ecomm_OrderApprovalHistoryPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(approverField));
+        WebElement field = Wait.clickable(driver,approverField);
     }
     
     public int findOrder(String orderNo) {
@@ -147,7 +148,7 @@ public class Ecomm_OrderApprovalHistoryPage extends WBA_BasePage {
         
         for (int i = 1; i < 9; i++) {
             By selector = By.cssSelector("#content > div.flexi-grid > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(4)");
-            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(selector));
+            WebElement cell = Wait.visible(driver,selector);
             
             if (cell.getText().equals(orderNo)) {
                 return i;

@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,7 +29,7 @@ public class Mst_AddApproverListPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        WebElement element = Wait.visible(driver,DataItems.breadcrumbLocator);
         return element;
     }
     
@@ -62,23 +64,23 @@ public class Mst_AddApproverListPage extends WBA_BasePage {
     }
     
     public Mst_ApproverListPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         return new Mst_ApproverListPage(driver);
     }
     
     public Mst_ApproverListPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         return new Mst_ApproverListPage(driver);
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
-        WebElement requester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement valueStart = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(valueStartField));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,customerNameField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement valueStart = Wait.clickable(driver,valueStartField);
         WebElement valueUntil = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(valueUntilField));
         WebElement emailNotif = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(emailNotificationField));
         WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));

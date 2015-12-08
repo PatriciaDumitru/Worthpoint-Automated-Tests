@@ -545,6 +545,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Print view closed. Approving order...");
         
+        System.out.println("Order Number searched: " + orderNo);
         AssertJUnit.assertTrue("Pending Approval List Page: Approver user: Order not approved as it was not found in table",pendPage2.approveOrder(orderNo));
     
         System.out.println("Order approved. Approving all orders...");

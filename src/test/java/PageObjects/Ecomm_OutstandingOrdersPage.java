@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,32 +43,12 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         return driver.findElement(custCodeField);
     }
         
-    public WebElement getCreatedDateFromField() {
-        return driver.findElement(createdDateFromField);
-    }
-        
-    public WebElement getCreatedDateToField() {
-        return driver.findElement(createdDateToField);
-    }
-        
     public WebElement getCustomerPOField() {
         return driver.findElement(custPOField);
     }
         
     public WebElement getOrderStatusField() {
         return driver.findElement(orderStatusField);
-    }
-        
-    public WebElement getSearchButton() {
-        return driver.findElement(searchButton);
-    }
-        
-    public WebElement getResetButton() {
-        return driver.findElement(resetButton);
-    }
-    
-    public WebElement getExportButton() {
-        return driver.findElement(exportButton);
     }
     
     public Ecomm_OutstandingOrdersPage setCustomerName(String item) {
@@ -85,26 +67,26 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     }
     
     public Ecomm_OutstandingOrdersPage pressSearch() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton).click();
+        WebElement search = Wait.clickable(driver,searchButton);
+        search.click();
         return this;
     }
     
     public Ecomm_OutstandingOrdersPage pressReset() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return this;
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
-        driver.findElement(exportButton).click();
+        WebElement export = Wait.clickable(driver,exportButton);
+        export.click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public boolean checkForRecords() {
         try {
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(noRecords));
+            WebElement wait = Wait.visible(driver,noRecords);
             System.out.println("No records displayed");
             return false;
         } catch (Exception e) {
@@ -120,7 +102,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         for (int i = 0; i < 8; i++) {
             By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(6)");
 
-            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            WebElement cell = Wait.visible(driver,locator);
             
             if (cell.getText().equals(poNumber)) {
                 return i;
@@ -138,7 +120,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         for (int i = 0; i < 8; i++) {
             By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(7)");
             
-            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            WebElement cell = Wait.visible(driver,locator);
             
             if (cell.getText().equals(poNumber)) {
                 return i;
@@ -158,7 +140,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         int i = 0;
         while(!found && i < 8) {
             By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child("+(6+offset)+")");
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            WebElement wait = Wait.visible(driver,locator);
             if (driver.findElement(locator).getText().equals(poNumber)) {
                 found = true;
             }
@@ -176,10 +158,10 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         //create locator for view button in correct row
         By viewButtonLocator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(2) > a");
         //wait for page to load and button to become clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButtonLocator));
+        WebElement view = Wait.clickable(driver,viewButtonLocator);
         //click view button
         Actions clickView = new Actions(driver);
-        clickView.click(driver.findElement(viewButtonLocator)).build().perform();
+        clickView.click(view).build().perform();
         return new Ecomm_OrderViewPage(driver);
     }
     
@@ -187,10 +169,10 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         //create locator for view button in correct row
         By printButtonLocator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(3) > a");
         //wait for page to load and button to become clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButtonLocator));
+        WebElement print = Wait.clickable(driver,printButtonLocator);
         //click view button
-        Actions clickView = new Actions(driver);
-        clickView.click(driver.findElement(printButtonLocator)).build().perform();
+        Actions clickPrint = new Actions(driver);
+        clickPrint.click(print).build().perform();
         return new Ecomm_OrderViewPage(driver);
     }
     
@@ -198,8 +180,8 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         //Locator for order number cell in table
         By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(7)");
         //Wait for cell
-        WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
-        return driver.findElement(locator).getText();
+        WebElement cell = Wait.clickable(driver,locator);
+        return cell.getText();
     }
     
     public String getOrderNumberSUMST(int orderRow) {
@@ -208,8 +190,8 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child(8)");
         
         //Wait for cell
-        WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
-        return driver.findElement(locator).getText();
+        WebElement cell = Wait.clickable(driver,locator);
+        return cell.getText();
     }
     
     public String getOrderNumberOffset(int orderRow,int offset) {
@@ -218,41 +200,41 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         //Locator for order number cell in table
         By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+orderRow+" > td:nth-child("+(7+offset)+")");
         //Wait for cell
-        WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
-        return driver.findElement(locator).getText();
+        WebElement cell = Wait.visible(driver,locator);
+        return cell.getText();
     }
     
     public String getOrderStatus(int row) {
         //For approver account (mail.kamleshpatidar@gmail.com)
         By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+row+" > td:nth-child(13)");
-        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement cell = Wait.visible(driver,locator);
         return cell.getText();
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForCustCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement waitForCreatedFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createdDateFromField));
-        WebElement waitForCreatedTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createdDateToField));
-        WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement waitForOrderStatus = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderStatusField));
-        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement custCode = Wait.clickable(driver,custCodeField);
+        WebElement createdFrom = Wait.clickable(driver,createdDateFromField);
+        WebElement createdTo = Wait.clickable(driver,createdDateToField);
+        WebElement custPO = Wait.clickable(driver,custPOField);
+        WebElement orderStatus = Wait.clickable(driver,orderStatusField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Outstanding Orders Page: Customer Name Field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Outstanding Orders Page: Customer Code Field not displayed correctly",getCustCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Outstanding Orders Page: Created Date From Field not displayed correctly",getCreatedDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("Outstanding Orders Page: Created Date To Field not displayed correctly",getCreatedDateToField().isDisplayed());
-        AssertJUnit.assertTrue("Outstanding Orders Page: Customer PO No. Field not displayed correctly",getCustomerPOField().isDisplayed());
-        AssertJUnit.assertTrue("Outstanding Orders Page: Order Status Field not displayed correctly",getOrderStatusField().isDisplayed());
-        AssertJUnit.assertTrue("Outstanding Orders Page: Search Button not displayed correctly",getSearchButton().isDisplayed());
-        AssertJUnit.assertTrue("Outstanding Orders Page: Reset Button not displayed correctly",getResetButton().isDisplayed());
+        AssertJUnit.assertTrue("Outstanding Orders Page: Customer Name Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Outstanding Orders Page: Customer Code Field not displayed correctly",custCode.isDisplayed());
+        AssertJUnit.assertTrue("Outstanding Orders Page: Created Date From Field not displayed correctly",createdFrom.isDisplayed());
+        AssertJUnit.assertTrue("Outstanding Orders Page: Created Date To Field not displayed correctly",createdTo.isDisplayed());
+        AssertJUnit.assertTrue("Outstanding Orders Page: Customer PO No. Field not displayed correctly",custPO.isDisplayed());
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order Status Field not displayed correctly",orderStatus.isDisplayed());
+        AssertJUnit.assertTrue("Outstanding Orders Page: Search Button not displayed correctly",search.isDisplayed());
+        AssertJUnit.assertTrue("Outstanding Orders Page: Reset Button not displayed correctly",reset.isDisplayed());
     }
     
     public void waitForElement() {
-        WebElement waitForForm = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(formLocator));
+        WebElement waitForForm = Wait.visible(driver,formLocator);
     }
     
 }

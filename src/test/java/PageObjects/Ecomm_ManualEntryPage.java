@@ -69,34 +69,9 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         return driver.findElement(breadcrumbLocator2);
     }
     
-    public WebElement getCustNameField() {
-        return driver.findElement(customerNameField);
-    }
-    
-    public WebElement getShipToPartyField() {
-        return driver.findElement(shipToPartyField);
-    }
-    
-    public WebElement getRequestorField() {
-        return driver.findElement(requestorField);
-    }
-     
-    public WebElement getBuyersField() {
-        return driver.findElement(buyersField);
-    }
-    
     public WebElement getSubAccountField() {
         WebElement wait = Wait.clickable(driver,subAccountField);
         return driver.findElement(subAccountField);
-    }
-     
-    public WebElement getPONumberField() {
-        return driver.findElement(poNumberField);
-    }
-    
-    public WebElement getCustomerTable() {
-        //find and return element
-        return driver.findElement(customerDetailsTableLocator);
     }
     
     public WebElement getProductTable() {
@@ -498,7 +473,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public WebElement waitForError() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
+        return Wait.visible(driver,flashMessageLocator);
     }
     
     public boolean waitForTitle() {
@@ -507,7 +482,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(saveDraftLocator));
+        WebElement wait = Wait.clickable(driver,saveDraftLocator);
     }
     
     public String getCustomerName() {
@@ -515,22 +490,22 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public String getShipToName() {
-        Boolean waitForSelection = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBePresent(shipToPartyField));
+        Boolean waitForSelection = Wait.selectionPresent(driver,shipToPartyField);
         
         Select select = new Select(driver.findElement(shipToPartyField));
         return select.getFirstSelectedOption().getText();
     }
     
     public String getRequestorName() {
-        Boolean waitForSelection = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBePresent(requestorField));
+        Boolean waitForSelection = Wait.selectionPresent(driver,requestorField);
         
         Select select = new Select(driver.findElement(requestorField));
         return select.getFirstSelectedOption().getText();
     }
     
     public String getBuyer() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyersField));
-        return driver.findElement(buyersField).getText();
+        WebElement field = Wait.clickable(driver,buyersField);
+        return field.getText();
     }
     
     public String getCustPONo() {
@@ -544,7 +519,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     public String getArticle (int row) {
         By articleField = By.cssSelector("#s2id_BulkOrderLine"+row+"ArticleId > a > span.select2-chosen.select_image_add");
-        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
+        WebElement article = Wait.clickable(driver,articleField);
         return article.getText();
     }
         
@@ -584,28 +559,28 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public String getSetBrand(int row) {
         //Field changes once article entered. This method is used to get the value from the field after article is input
         By locator = By.id("token_brand_id_"+row);
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement field = Wait.visible(driver,locator);
         return field.getAttribute("value");
     }
     
     public String getSetTicket(int row) {
         //Field changes once article entered. This method is used to get the value from the field after article is input
         By locator = By.id("token_ticket_id_"+row);
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement field = Wait.visible(driver,locator);
         return field.getAttribute("value");
     }
     
     public String getSetLength(int row) {
         //Field changes once article entered. This method is used to get the value from the field after article is input
         By locator = By.id("token_length_id_"+row);
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement field = Wait.visible(driver,locator);
         return field.getAttribute("value");
     }
     
     public String getSetFinish(int row) {
         //Field changes once article entered. This method is used to get the value from the field after article is input
         By locator = By.id("token_finish_id_"+row);
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement field = Wait.visible(driver,locator);
         return field.getAttribute("value");
     }
     
@@ -619,58 +594,57 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
-        WebElement waitForShipTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
-        WebElement waitForRequestor = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requestorField));
-        WebElement waitForBuyers = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyersField));
-        WebElement waitForPOField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(poNumberField));
+        WebElement custName = Wait.clickable(driver,customerNameField);
+        WebElement shipTo = Wait.clickable(driver,shipToPartyField);
+        WebElement requestor = Wait.clickable(driver,requestorField);
+        WebElement buyers = Wait.clickable(driver,buyersField);
+        WebElement po = Wait.clickable(driver,poNumberField);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Manual Entry Page: Customer Name field not displayed correctly", getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", getShipToPartyField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Requestor field not displayed correctly", getRequestorField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", getBuyersField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", getPONumberField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Customer Name field not displayed correctly", custName.isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", shipTo.isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Requestor field not displayed correctly", requestor.isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", buyers.isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", po.isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());
     }
     
     public void checkSUSSTFields() {
         //Wait for all elements to be clickable
-        WebElement waitForShipTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
-        WebElement waitForBuyers = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyersField));
-        WebElement waitForPOField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(poNumberField));
+        WebElement shipTo = Wait.clickable(driver,shipToPartyField);
+        WebElement buyers = Wait.clickable(driver,buyersField);
+        WebElement po = Wait.clickable(driver,poNumberField);
         
         //Wait for visibility of labels
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custNameLabel));
-        WebElement waitForRequestor = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(requestorLabel));
+        WebElement custName = Wait.visible(driver,custNameLabel);
+        WebElement requestor = Wait.visible(driver,requestorLabel);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", getShipToPartyField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", getBuyersField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", getPONumberField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", shipTo.isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", buyers.isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", po.isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());
     }
     
     public void checkContractOrderFields() {
         //Wait for all elements to be clickable
-        WebElement waitForShipTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
-        WebElement waitForBuyers = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(buyersField));
-        WebElement waitForPOField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(poNumberField));
-        WebElement contractPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractPOField));
-        WebElement lineRef = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lineRefField));
+        WebElement shipTo = Wait.clickable(driver,shipToPartyField);
+        WebElement buyers = Wait.clickable(driver,buyersField);
+        WebElement po = Wait.clickable(driver,poNumberField);
+        WebElement contractPO = Wait.clickable(driver,contractPOField);
+        WebElement lineRef = Wait.clickable(driver,lineRefField);
         
         //Wait for visibility of labels
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custNameLabel));
-        WebElement waitForRequestor = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(requestorLabel));
+        WebElement custName = Wait.visible(driver,custNameLabel);
+        WebElement requestor = Wait.visible(driver,requestorLabel);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", getShipToPartyField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", getBuyersField().isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", getPONumberField().isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Ship To Party field not displayed correctly", shipTo.isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", buyers.isDisplayed());
+        AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", po.isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Contract PO Field not displayed",contractPO.isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Contract PO Field not displayed",lineRef.isDisplayed());
-        
+        AssertJUnit.assertTrue("Manual Entry Page: Contract PO Field not displayed",lineRef.isDisplayed());        
     }
     
     public boolean waitForAddMaterialMessage() {
@@ -678,7 +652,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         boolean appears;
         
         try {
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(addMaterial));
+            WebElement wait = Wait.visible(driver,addMaterial);
             appears = true;
         } catch (Exception e) {
             appears = false;
@@ -688,7 +662,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     public boolean waitForQuantityAlert() {
         try {
-            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert = Wait.alert(driver);
             System.out.println("Alert appeared: " + alert.getText());
             
             if (alert.getText().contains("order quantity has been rounded")) {
@@ -705,8 +679,8 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
         
     public String getAddMaterialAlertText() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(addMaterialText));
-        return driver.findElement(addMaterialText).getText();
+        WebElement alert = Wait.visible(driver,addMaterialText);
+        return alert.getText();
     }
     
 }

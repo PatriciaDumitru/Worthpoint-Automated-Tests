@@ -1,8 +1,11 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import java.awt.AWTException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -21,11 +24,6 @@ public class Ecomm_UploadOrderPage extends WBA_BasePage {
     
     public Ecomm_UploadOrderPage(WebDriver driver) {
         super(driver);
-    }
-    
-    public WebElement getFileNameField() {
-        //find and return element
-        return driver.findElement(fileNameFieldLocator);
     }
     
     public WebElement getFileNameOutputField() {
@@ -50,47 +48,49 @@ public class Ecomm_UploadOrderPage extends WBA_BasePage {
     
     public Ecomm_UploadOrderPage setFilePath(String filePath) throws AWTException {
         //Wait for element to be available
-        WebElement waitForVisible = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(fileNameOutputLocator));
-        //new action to click field
-        Actions clickField = new Actions(driver);
-        //clickField.click(driver.findElement(fileNameFieldLocator)).build().perform();
-        driver.findElement(fileNameFieldLocator).sendKeys(filePath);      
+        WebElement field = Wait.visible(driver,fileNameOutputLocator);
+        //Type filepath
+        driver.findElement(fileNameFieldLocator).sendKeys(filePath);
+
+        //Click away to allow update
+        By textLocator = By.cssSelector("#txtbox > p");
+        driver.findElement(textLocator).click();
         
         return this;
     }
     
     public Ecomm_UploadOrderPage pressRealtime() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(realtimeRadioLocator));
+        WebElement btn = Wait.clickable(driver,realtimeRadioLocator);
         //New action to click button
         Actions clickRealtime = new Actions(driver);
-        clickRealtime.click(driver.findElement(realtimeRadioLocator));
+        clickRealtime.click(btn).build().perform();
         
         return this;
     }
     
     public Ecomm_UploadOrderPage pressBackend() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(backendRadioLocator));
+        WebElement btn = Wait.clickable(driver,backendRadioLocator);
         //New action to click button
         Actions clickRealtime = new Actions(driver);
-        clickRealtime.click(driver.findElement(backendRadioLocator)).build().perform();
+        clickRealtime.click(btn).build().perform();
         
         return this;
     }
     
     public Ecomm_MappingAlert pressUpload() {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(uploadButtonLocator));
+        WebElement upload = Wait.clickable(driver,uploadButtonLocator);
         //Click button
         Actions clickUpload = new Actions(driver);
-        clickUpload.click(driver.findElement(uploadButtonLocator)).build().perform();
+        clickUpload.click(upload).build().perform();
         
         return new Ecomm_MappingAlert(driver);
     }
     
     public void waitForElement() {
-        WebElement waitForUploadBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(uploadButtonLocator));
+        WebElement waitForUploadBtn = Wait.clickable(driver,uploadButtonLocator);
     }
     
 }

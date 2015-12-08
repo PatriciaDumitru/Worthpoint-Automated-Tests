@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
@@ -36,62 +37,6 @@ public class Ecomm_SummaryOfPurchasePage extends WBA_BasePage {
         super(passedDriver);
     }
     
-    public WebElement getCustNameField() {
-        return driver.findElement(custNameField);
-    }
-    
-    public WebElement getCustPOField() {
-        return driver.findElement(custPOField);
-    }
-    
-    public WebElement getMatNumField() {
-        return driver.findElement(matNumField);
-    }
-    
-    public WebElement getBrandField() {
-        return driver.findElement(brandField);
-    }
-    
-    public WebElement getLengthField() {
-        return driver.findElement(lengthField);
-    }
-    
-    public WebElement getPurchaseFromField() {
-        return driver.findElement(purchaseDateFromField);
-    }
-    
-    public WebElement getPurchaseToField() {
-        return driver.findElement(purchaseDateToField);
-    }
-    
-    public WebElement getYourMatNumField() {
-        return driver.findElement(yourMatNumField);
-    }
-    
-    public WebElement getTicketField() {
-        return driver.findElement(ticketField);
-    }
-    
-    public WebElement getRequesterField() {
-        return driver.findElement(requesterField);
-    }
-    
-    public WebElement getSearchButton() {
-        return driver.findElement(searchButton);
-    }
-    
-    public WebElement getResetButton() {
-        return driver.findElement(resetButton);
-    }
-    
-    public WebElement getViewButton() {
-        return driver.findElement(viewButton);
-    }
-    
-    public WebElement getExportButton() {
-        return driver.findElement(exportButton);
-    }
-    
     public Ecomm_SummaryOfPurchasePage setCustName(String item) {
         CommonTask.setSearchField(driver,custNameField,item);
         return this;
@@ -108,91 +53,91 @@ public class Ecomm_SummaryOfPurchasePage extends WBA_BasePage {
     }
     
     public Ecomm_SummaryOfPurchasePage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton).click();
+        WebElement search = Wait.clickable(driver,searchButton);
+        search.click();
         return this;
     }
     
     public Ecomm_SummaryOfPurchasePage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return this;
     }
     
     public Ecomm_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        driver.findElement(viewButton).click();
+        WebElement view = Wait.clickable(driver,viewButton);
+        view.click();
         return new Ecomm_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton).click();
+        WebElement export = Wait.clickable(driver,exportButton);
+        export.click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public void checkFields_SUMST() {
         //Wait for all elements to be clickable
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForLength = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement waitForMatNum = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(matNumField));
-        WebElement waitForPurFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(purchaseDateFromField));
-        WebElement waitForPurTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(purchaseDateToField));
-        WebElement waitForRequester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForYourMat = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-        WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForView = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement custPO = Wait.clickable(driver,custPOField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement length = Wait.clickable(driver,lengthField);
+        WebElement matNum = Wait.clickable(driver,matNumField);
+        WebElement purFrom = Wait.clickable(driver,purchaseDateFromField);
+        WebElement purTo = Wait.clickable(driver,purchaseDateToField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement yourMat = Wait.clickable(driver,yourMatNumField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement view = Wait.clickable(driver,viewButton);
+        WebElement export = Wait.clickable(driver,exportButton);
     
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Summary of Purchase Page: Customer Name field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Customer PO field not displayed correctly",getCustPOField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Brand field not displayed correctly",getBrandField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Length field not displayed correctly",getLengthField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Material Number field not displayed correctly",getMatNumField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Purchase Date From field not displayed correctly",getPurchaseFromField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Purchase Date To field not displayed correctly",getPurchaseToField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Requester field not displayed correctly",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Your Material Number field not displayed correctly",getYourMatNumField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Ticket field not displayed correctly",getTicketField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Search button not displayed correctly",getSearchButton().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Reset button not displayed correctly",getResetButton().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: View button not displayed correctly",getViewButton().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Export button not displayed correctly",getExportButton().isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Customer Name field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Customer PO field not displayed correctly",custPO.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Brand field not displayed correctly",brand.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Length field not displayed correctly",length.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Material Number field not displayed correctly",matNum.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Purchase Date From field not displayed correctly",purFrom.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Purchase Date To field not displayed correctly",purTo.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Requester field not displayed correctly",requester.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Your Material Number field not displayed correctly",yourMat.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Ticket field not displayed correctly",ticket.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Search button not displayed correctly",search.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Reset button not displayed correctly",reset.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: View button not displayed correctly",view.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Export button not displayed correctly",export.isDisplayed());
     }
     
     public void checkFields_SUSST() {
         //Wait for all elements to be clickable
-        WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForLength = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement waitForMatNum = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(matNumField));
-        WebElement waitForPurFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(purchaseDateFromField));
-        WebElement waitForPurTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(purchaseDateToField));
-        WebElement waitForYourMat = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-        WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForView = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement custPO = Wait.clickable(driver,custPOField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement length = Wait.clickable(driver,lengthField);
+        WebElement matNum = Wait.clickable(driver,matNumField);
+        WebElement purFrom = Wait.clickable(driver,purchaseDateFromField);
+        WebElement purTo = Wait.clickable(driver,purchaseDateToField);
+        WebElement yourMat = Wait.clickable(driver,yourMatNumField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement view = Wait.clickable(driver,viewButton);
+        WebElement export = Wait.clickable(driver,exportButton);
     
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Summary of Purchase Page: Customer PO field not displayed correctly",getCustPOField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Brand field not displayed correctly",getBrandField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Length field not displayed correctly",getLengthField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Material Number field not displayed correctly",getMatNumField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Purchase Date From field not displayed correctly",getPurchaseFromField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Purchase Date To field not displayed correctly",getPurchaseToField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Your Material Number field not displayed correctly",getYourMatNumField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Ticket field not displayed correctly",getTicketField().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Search button not displayed correctly",getSearchButton().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Reset button not displayed correctly",getResetButton().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: View button not displayed correctly",getViewButton().isDisplayed());
-        AssertJUnit.assertTrue("Summary of Purchase Page: Export button not displayed correctly",getExportButton().isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Customer PO field not displayed correctly",custPO.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Brand field not displayed correctly",brand.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Length field not displayed correctly",length.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Material Number field not displayed correctly",matNum.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Purchase Date From field not displayed correctly",purFrom.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Purchase Date To field not displayed correctly",purTo.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Your Material Number field not displayed correctly",yourMat.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Ticket field not displayed correctly",ticket.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Search button not displayed correctly",search.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Reset button not displayed correctly",reset.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: View button not displayed correctly",view.isDisplayed());
+        AssertJUnit.assertTrue("Summary of Purchase Page: Export button not displayed correctly",export.isDisplayed());
     }
     
 }

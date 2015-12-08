@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -27,26 +29,26 @@ public class Ecomm_SaveReportPage {
     
     public Ecomm_SaveReportPage setTitle(String item) {
         switchTo();
-        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(titleField));
-        driver.findElement(titleField).sendKeys(item);
+        WebElement field = Wait.clickable(driver,titleField);
+        field.sendKeys(item);
         return this;
     }
     
     public void switchTo() {
-        WebDriver wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver wait = Wait.frame(driver,frameLocator);
     }
     
     public void waitForContent() {
-        WebElement wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+        WebElement wait = Wait.visible(driver,frameLocator);
     }
     
     public void waitForInvisibility() {
-        Boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+        Boolean wait = Wait.invisible(driver,frameLocator);
     }
     
     public void pressSave() {
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        driver.findElement(saveButton).click();
+        WebElement save = Wait.clickable(driver,saveButton);
+        save.click();
         waitForInvisibility();
     }
     
@@ -55,7 +57,7 @@ public class Ecomm_SaveReportPage {
     	Actions pressEsc = new Actions(driver);
     	pressEsc.sendKeys(Keys.ESCAPE).build().perform();
     	//Accept alert
-    	Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+    	Alert alert = Wait.alert(driver);
     	alert.accept();
     	
     	this.waitForInvisibility();

@@ -1,6 +1,8 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -64,13 +66,13 @@ public class Ecomm_OrderViewPage {
     
     public String getCOError() {
         switchTo();
-        WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(COError));
-        return driver.findElement(COError).getText();
+        WebElement cell = Wait.visible(driver,COError);
+        return cell.getText();
     }
     
     public String getAvailableQty() {
         try {
-            WebElement qtyCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(availableQtyCell));
+            WebElement qtyCell = Wait.visible(driver,availableQtyCell);
             return qtyCell.getText();
         } catch (Exception e) {
             return "Stock Unavailable";
@@ -79,14 +81,15 @@ public class Ecomm_OrderViewPage {
     }
     
     public void switchTo() {
-    	WebDriver waitForFrame = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+    	//This method is used to set focus to the overlay which appears. Elements on the view overlay cannot be accessed until the focus is switched to the frame
+        WebDriver wait = Wait.frame(driver,frameLocator);
     }
     
     public void pressPrint() {
     	switchTo();
-    	WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
+    	WebElement print = Wait.clickable(driver,printButton);
     	if (DataItems.printingEnabled) {
-        	driver.findElement(printButton).click();
+        	print.click();
         	System.out.println("Item sent to printer");
     	} else {
     		System.out.println("Printing is disabled, item was not sent to printer");
@@ -97,24 +100,24 @@ public class Ecomm_OrderViewPage {
     }
     
     public void waitForContent() {
-    	WebElement wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+    	WebElement wait = Wait.visible(driver,frameLocator);
     }
     
     public void waitForFTData() {
-        WebElement waitForVisible = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(ftDataTable));
+        WebElement wait = Wait.visible(driver,ftDataTable);
     }
     
     public void waitForErrorTable() {
         switchTo();
-        WebElement waitForTable = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.presenceOfElementLocated(contentLocator));
+        WebElement wait = Wait.presence(driver,contentLocator);
     }
     
     public void waitForProductInfo() {
-        Boolean waitForTitle = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.textToBePresentInElementLocated(productInfoLocator,"Product Information"));
+        Boolean waitForTitle = Wait.textPresent(driver,productInfoLocator,"Product Information");
     }
     
     public void waitForInvisibility() {
-    	Boolean wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+    	Boolean wait = Wait.invisible(driver,frameLocator);
     }
     
     public void closeView() {
@@ -122,7 +125,7 @@ public class Ecomm_OrderViewPage {
     	Actions pressEsc = new Actions(driver);
     	pressEsc.sendKeys(Keys.ESCAPE).build().perform();
     	//Accept alert
-    	Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+    	Alert alert = Wait.alert(driver);
     	alert.accept();
     	
     	this.waitForInvisibility();
@@ -134,7 +137,7 @@ public class Ecomm_OrderViewPage {
         Actions pressEsc = new Actions(driver);
         pressEsc.sendKeys(Keys.ESCAPE).build().perform();
         //Accept alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new Ecomm_OutstandingOrdersPage(driver);

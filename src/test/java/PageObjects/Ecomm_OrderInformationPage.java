@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -38,66 +40,14 @@ public class Ecomm_OrderInformationPage {
         driver = passedDriver;
     }
     
-    public WebElement getYourMatNumField() {
-        return driver.findElement(yourMatNumField);
-    }
-    
-    public WebElement getArticleField() {
-        return driver.findElement(articleField);
-    }
-    
-    public WebElement getBrandField() {
-        return driver.findElement(brandField);
-    }
-    
-    public WebElement getTicketField() {
-        return driver.findElement(ticketField);
-    }
-    
-    public WebElement getLengthField() {
-        return driver.findElement(lengthField);
-    }
-    
-    public WebElement getStyleNoField() {
-        return driver.findElement(styleNoField);
-    }
-    
-    public WebElement getShadeCodeField() {
-        return driver.findElement(shadeCodeField);
-    }
-    
-    public WebElement getRequiredDateField() {
-        return driver.findElement(requiredDateField);
-    }
-    
-    public WebElement getOrderedQtyField() {
-        return driver.findElement(orderedQtyField);
-    }
-    
-    public WebElement getFinishField() {
-        return driver.findElement(finishField);
-    }
-    
-    public WebElement getOtherInfoField() {
-        return driver.findElement(otherInfoField);
-    }
-    
-    public WebElement getSubmitButton() {
-        return driver.findElement(submitButton);
-    }
-    
-    public WebElement getCancelButton() {
-        return driver.findElement(cancelButton);
-    }
-    
     public Ecomm_ShadeOrderConfirmationPage pressSubmit() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButton));
-        driver.findElement(submitButton).submit();
-        Alert alert = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.alertIsPresent());
+        WebElement submit = Wait.clickable(driver,submitButton);
+        submit.submit();
+        Alert alert = Wait.alert(driver,DataItems.longWait);
         alert.accept();
         
         try {
-            Alert alert2 = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert2 = Wait.alert(driver);
             System.out.println("Alert appeared: " + alert2.getText());
             alert2.accept();
         } catch (Exception e) {
@@ -108,8 +58,8 @@ public class Ecomm_OrderInformationPage {
     }
     
     public Ecomm_ShadeOrderConfirmationPage pressCancel() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
-        driver.findElement(cancelButton).click();
+        WebElement cancel = Wait.clickable(driver,cancelButton);
+        cancel.click();
         return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
     
@@ -125,46 +75,46 @@ public class Ecomm_OrderInformationPage {
     
     public void checkFields() {
         //Wait for all fields to be clickable
-        WebElement waitForYMN = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-        WebElement waitForArticle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForLength = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement waitForStyleNo= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(styleNoField));
-        WebElement waitForshadeCode= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForRequiredDate= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requiredDateField));
-        WebElement waitForOrderedQty= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderedQtyField));
-        WebElement waitForFinish= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishField));
-        WebElement waitForOtherInfo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(otherInfoField));
-        WebElement waitForSubmit = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButton));
-        WebElement waitForCancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement ymn = Wait.clickable(driver,yourMatNumField);
+        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
+        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
+        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
+        WebElement length = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
+        WebElement styleNo= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(styleNoField));
+        WebElement shadeCode= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
+        WebElement requiredDate= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requiredDateField));
+        WebElement orderedQty= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderedQtyField));
+        WebElement finish= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishField));
+        WebElement otherInfo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(otherInfoField));
+        WebElement submit = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButton));
+        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Order Information Page (overlay): Your Material Number Field not displayed correctly",getYourMatNumField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Article Field not displayed correctly",getArticleField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Brand Field not displayed correctly",getBrandField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Ticket Field not displayed correctly",getTicketField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Length Field not displayed correctly",getLengthField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Style No Field not displayed correctly",getStyleNoField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Shade Code Field not displayed correctly",getShadeCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Required Date Field not displayed correctly",getRequiredDateField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Ordered Qty Field not displayed correctly",getOrderedQtyField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Finish Field not displayed correctly",getFinishField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Other Information Field not displayed correctly",getOtherInfoField().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Submit button not displayed correctly",getSubmitButton().isDisplayed());
-        AssertJUnit.assertTrue("Order Information Page (overlay): Submit button not displayed correctly",getCancelButton().isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Your Material Number Field not displayed correctly",ymn.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Article Field not displayed correctly",article.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Brand Field not displayed correctly",brand.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Ticket Field not displayed correctly",ticket.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Length Field not displayed correctly",length.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Style No Field not displayed correctly",styleNo.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Shade Code Field not displayed correctly",shadeCode.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Required Date Field not displayed correctly",requiredDate.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Ordered Qty Field not displayed correctly",orderedQty.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Finish Field not displayed correctly",finish.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Other Information Field not displayed correctly",otherInfo.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Submit button not displayed correctly",submit.isDisplayed());
+        AssertJUnit.assertTrue("Order Information Page (overlay): Submit button not displayed correctly",cancel.isDisplayed());
     }
     
     public void switchTo() {
-        WebDriver wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver wait = Wait.frame(driver,frameLocator);
     }
     
     public void waitForContent() {
-        WebElement waitForVisibility = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(frameLocator));
+        WebElement waitForVisibility = Wait.visible(driver,frameLocator);
     }
     
     public void waitForInvisibility() {
-        boolean wait = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+        boolean wait = Wait.invisible(driver,frameLocator);
     }
     
     public void exitView() {

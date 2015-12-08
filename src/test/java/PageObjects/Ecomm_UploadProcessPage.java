@@ -2,6 +2,8 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,7 +25,7 @@ public class Ecomm_UploadProcessPage extends WBA_BasePage{
     }
     
     public WebElement waitForError() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
+        WebElement wait = Wait.visible(driver,flashMessageLocator);
         return wait;
     }
     

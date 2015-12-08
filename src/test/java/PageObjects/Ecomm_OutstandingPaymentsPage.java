@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -91,122 +93,123 @@ public class Ecomm_OutstandingPaymentsPage extends WBA_BasePage {
     }
     
     public Ecomm_OutstandingPaymentsPage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton).click();
+        WebElement search = Wait.clickable(driver,searchButton);
+        search.click();
         return new Ecomm_OutstandingPaymentsPage(driver);
     }
     
     public Ecomm_OutstandingPaymentsPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return new Ecomm_OutstandingPaymentsPage(driver);
     }
     
     public Ecomm_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        driver.findElement(viewButton).click();
+        WebElement view = Wait.clickable(driver,viewButton);
+        view.click();
         return new Ecomm_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
-        driver.findElement(exportButton).click();
+        WebElement export = Wait.clickable(driver,exportButton);
+        export.click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public Ecomm_OutstandingPaymentsPage pressOverdue30() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by30Button));
-        driver.findElement(by30Button).click();
+        WebElement btn = Wait.clickable(driver,by30Button);
+        btn.click();
         return this;
     }
     
     public Ecomm_OutstandingPaymentsPage pressOverdue30SUSST() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by30ButtonSUSST));
-        driver.findElement(by30ButtonSUSST).click();
+        //Locator is different for SUSST users, hence this method was created
+        WebElement btn = Wait.clickable(driver,by30ButtonSUSST);
+        btn.click();
         return this;
     }
     
     public Ecomm_OutstandingPaymentsPage pressOverdue60() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by60Button));
-        driver.findElement(by60Button).click();
+        WebElement btn = Wait.clickable(driver,by60Button);
+        btn.click();
         return this;
     }
     
     public Ecomm_OutstandingPaymentsPage pressOverdue60SUSST() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by60ButtonSUSST));
-        driver.findElement(by60ButtonSUSST).click();
+        WebElement btn = Wait.clickable(driver,by60ButtonSUSST);
+        btn.click();
         return this;
     }
     
     public Ecomm_OutstandingPaymentsPage pressOverdue90() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by90Button));
-        driver.findElement(by90Button).click();
-        boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(by90Box)));
+        WebElement btn = Wait.clickable(driver,by90Button);
+        btn.click();
+        boolean waitForChecked = Wait.checked(driver,by90Box);
         return this;
     }
     
     public Ecomm_OutstandingPaymentsPage pressOverdue90SUSST() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by90ButtonSUSST));
-        driver.findElement(by90ButtonSUSST).click();
+        WebElement btn = Wait.clickable(driver,by90ButtonSUSST);
+        btn.click();
 
         return this;
     }
     
     public Ecomm_OutstandingPaymentsPage pressAll() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(allButton));
-        driver.findElement(allButton).click();
+        WebElement all = Wait.clickable(driver,allButton);
+        all.click();
         return this;
     }
     
     public void checkFields_SUMST() {
         //Wait for all elements to be clickable
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitFor30Button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by30Button));
-        WebElement waitFor60Button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by60Button));
-        WebElement waitFor90Button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by90Button));
-        WebElement waitForAllButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(allButton));
-        WebElement waitForSearchButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForResetButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForViewButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        WebElement waitForExportButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement button30 = Wait.clickable(driver,by30Button);
+        WebElement button60 = Wait.clickable(driver,by60Button);
+        WebElement button90 = Wait.clickable(driver,by90Button);
+        WebElement all = Wait.clickable(driver,allButton);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement view = Wait.clickable(driver,viewButton);
+        WebElement export = Wait.clickable(driver,exportButton);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Outstanding Payments Page: Customer Name Field not displayed correctly",getCustNameField().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 30 button not displayed correctly",get30Button().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 60 button not displayed correctly",get60Button().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 90 button not displayed correctly",get90Button().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: All button not displayed correctly",getAllButton().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Search button not displayed correctly",getSearchButton().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Reset button not displayed correctly",getResetButton().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: View button not displayed correctly",getViewButton().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Export button not displayed correctly",getExportButton().isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Customer Name Field not displayed correctly",custName.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 30 button not displayed correctly",button30.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 60 button not displayed correctly",button60.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 90 button not displayed correctly",button90.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: All button not displayed correctly",all.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Search button not displayed correctly",search.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Reset button not displayed correctly",reset.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: View button not displayed correctly",view.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Export button not displayed correctly",export.isDisplayed());       
     }
     
     public void checkFields_SUSST() {
         //Wait for all elements to be clickable
-        WebElement waitFor30Button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by30ButtonSUSST));
-        WebElement waitFor60Button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by60ButtonSUSST));
-        WebElement waitFor90Button = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(by90ButtonSUSST));
-        WebElement waitForAllButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(allButtonSUSST));
-        WebElement waitForSearchButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForResetButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForViewButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        WebElement waitForExportButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement button30 = Wait.clickable(driver,by30ButtonSUSST);
+        WebElement button60 = Wait.clickable(driver,by60ButtonSUSST);
+        WebElement button90 = Wait.clickable(driver,by90ButtonSUSST);
+        WebElement all = Wait.clickable(driver,allButtonSUSST);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement view = Wait.clickable(driver,viewButton);
+        WebElement export = Wait.clickable(driver,exportButton);
         
         //Assert all elements are displayed       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 30 button not displayed correctly",get30ButtonSUSST().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 60 button not displayed correctly",get60ButtonSUSST().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 90 button not displayed correctly",get90ButtonSUSST().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: All button not displayed correctly",getAllButtonSUSST().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Search button not displayed correctly",getSearchButton().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Reset button not displayed correctly",getResetButton().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: View button not displayed correctly",getViewButton().isDisplayed());       
-        AssertJUnit.assertTrue("Outstanding Payments Page: Export button not displayed correctly",getExportButton().isDisplayed());
+        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 30 button not displayed correctly",button30.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 60 button not displayed correctly",button60.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Overdue by 90 button not displayed correctly",button90.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: All button not displayed correctly",all.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Search button not displayed correctly",search.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Reset button not displayed correctly",reset.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: View button not displayed correctly",view.isDisplayed());       
+        AssertJUnit.assertTrue("Outstanding Payments Page: Export button not displayed correctly",export.isDisplayed());
     }
     
     public boolean recordsPresent() {
         try {
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(noRecords));
+            WebElement wait = Wait.visible(driver,noRecords);
             return false;
         } catch (Exception e) {
             return true;

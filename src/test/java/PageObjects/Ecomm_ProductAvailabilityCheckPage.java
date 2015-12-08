@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -69,7 +71,7 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
         CommonTask.setInputField(driver,yourMatNumField,item);
         
         //Click focus away from field to trigger autofill
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(yourMatNumLabel));
+        WebElement element = Wait.visible(driver,yourMatNumLabel);
         element.click();
         
         return this;
@@ -111,34 +113,34 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
     }
     
     public Ecomm_OrderViewPage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton).click();
+        WebElement search = Wait.clickable(driver,searchButton);
+        search.click();
         
         return new Ecomm_OrderViewPage(driver);
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForYourMatNum = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-        WebElement waitForArticle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForLength = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement waitForFinish = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishField));
-        WebElement waitForShadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForQty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityField));
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement yourMatNum = Wait.clickable(driver,yourMatNumField);
+        WebElement article = Wait.clickable(driver,articleField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement length = Wait.clickable(driver,lengthField);
+        WebElement finish = Wait.clickable(driver,finishField);
+        WebElement shadeCode = Wait.clickable(driver,shadeCodeField);
+        WebElement qty = Wait.clickable(driver,quantityField);
+        WebElement search = Wait.clickable(driver,searchButton);
     
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Product Availability Check Page: Your Material Number field not displayed correctly",getYourMatNumField().isDisplayed());
-        AssertJUnit.assertTrue("Product Availability Check Page: Article field not displayed correctly",getArticleField().isDisplayed());
-        AssertJUnit.assertTrue("Product Availability Check Page: Brand field not displayed correctly",getBrandField().isDisplayed());
-        AssertJUnit.assertTrue("Product Availability Check Page: Ticket field not displayed correctly",getTicketField().isDisplayed());
-        AssertJUnit.assertTrue("Product Availability Check Page: Length field not displayed correctly",getLengthField().isDisplayed());
-        AssertJUnit.assertTrue("Product Availability Check Page: Finish field not displayed correctly",getFinishField().isDisplayed());
-        AssertJUnit.assertTrue("Product Availability Check Page: Shade Code field not displayed correctly",getShadeCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Product Availability Check Page: Quantity field not displayed correctly",getQuantityField().isDisplayed());
-        AssertJUnit.assertTrue("Product Availability Check Page: Search button not displayed correctly",getSearchButton().isDisplayed());
+        AssertJUnit.assertTrue("Product Availability Check Page: Your Material Number field not displayed correctly",yourMatNum.isDisplayed());
+        AssertJUnit.assertTrue("Product Availability Check Page: Article field not displayed correctly",article.isDisplayed());
+        AssertJUnit.assertTrue("Product Availability Check Page: Brand field not displayed correctly",brand.isDisplayed());
+        AssertJUnit.assertTrue("Product Availability Check Page: Ticket field not displayed correctly",ticket.isDisplayed());
+        AssertJUnit.assertTrue("Product Availability Check Page: Length field not displayed correctly",length.isDisplayed());
+        AssertJUnit.assertTrue("Product Availability Check Page: Finish field not displayed correctly",finish.isDisplayed());
+        AssertJUnit.assertTrue("Product Availability Check Page: Shade Code field not displayed correctly",shadeCode.isDisplayed());
+        AssertJUnit.assertTrue("Product Availability Check Page: Quantity field not displayed correctly",qty.isDisplayed());
+        AssertJUnit.assertTrue("Product Availability Check Page: Search button not displayed correctly",search.isDisplayed());
     }
     
 }
