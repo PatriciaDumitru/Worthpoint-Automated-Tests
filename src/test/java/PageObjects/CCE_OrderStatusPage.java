@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -40,67 +41,7 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
     public CCE_OrderStatusPage(WebDriver passedDriver) {
         super(passedDriver);
     }
-    
-    public WebElement getOrderNoField() {
-        return driver.findElement(orderNoField);
-    }
-    
-    public WebElement getCustNameField() {
-        return driver.findElement(custNameField);
-    }
-    
-    public WebElement getOrderStageField() {
-        return driver.findElement(orderStageField);
-    }
-    
-    public WebElement getRequestTypeField() {
-        return driver.findElement(requestTypeField);
-    }
-    
-    public WebElement getBusPrincipalField() {
-        return driver.findElement(busPrincipalField);
-    }
-    
-    public WebElement getHubField() {
-        return driver.findElement(hubField);
-    }
-    
-    public WebElement getRequesterField() {
-        return driver.findElement(requesterField);
-    }
-    
-    public WebElement getScenarioField() {
-        return driver.findElement(scenarioField);
-    }
-    
-    public WebElement getOrderFromField() {
-        return driver.findElement(orderDateFromField);
-    }
-    
-    public WebElement getOrderToField() {
-        return driver.findElement(orderDateToField);
-    }
-    
-    public WebElement getFceNameField() {
-        return driver.findElement(fceNameField);
-    }
-    
-    public WebElement getFabRefField() {
-        return driver.findElement(fabRefField);
-    }
-    
-    public WebElement getShadeCodeField() {
-        return driver.findElement(shadeCodeField);
-    }
-    
-    public WebElement getCurrentSosField() {
-        return driver.findElement(currentSosField);
-    }
-    
-    public WebElement getCustRefField() {
-        return driver.findElement(custRefField);
-    }
-    
+
     public CCE_OrderStatusPage setOrderNo(String item) {
         CommonTask.setSearchField(driver, orderNoField, item);
         
@@ -127,37 +68,37 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForOrderStage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderStageField));
-        WebElement waitForRequestType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requestTypeField));
-        WebElement waitForBusPrin = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(busPrincipalField));
-        WebElement waitForHub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement waitForRequestor = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForScenario = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(scenarioField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-        WebElement waitForFce = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForFabRef = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fabRefField));
-        WebElement waitForShadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForCurrentSOS = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(currentSosField));
-        WebElement waitForCustRef = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custRefField));
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement orderStage = Wait.clickable(driver,orderStageField);
+        WebElement requestType = Wait.clickable(driver,requestTypeField);
+        WebElement busPrinc = Wait.clickable(driver,busPrincipalField);
+        WebElement hub = Wait.clickable(driver,hubField);
+        WebElement requestor = Wait.clickable(driver,requesterField);
+        WebElement scenario = Wait.clickable(driver,scenarioField);
+        WebElement orderFrom = Wait.clickable(driver,orderDateFromField);
+        WebElement orderTo = Wait.clickable(driver,orderDateToField);
+        WebElement fce = Wait.clickable(driver,fceNameField);
+        WebElement fabRef = Wait.clickable(driver,fabRefField);
+        WebElement shadeCode = Wait.clickable(driver,shadeCodeField);
+        WebElement currentSOS = Wait.clickable(driver,currentSosField);
+        WebElement custRef = Wait.clickable(driver,custRefField);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Order Status Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Order No Field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Order Stage Field not displayed correctly",getOrderStageField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Request Type Field not displayed correctly",getRequestTypeField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Business Principal Field not displayed correctly",getBusPrincipalField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Hub Field not displayed correctly",getHubField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Requester Field not displayed correctly",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Scenario Field not displayed correctly",getScenarioField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Order From Date Field not displayed correctly",getOrderFromField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Order To Date Field not displayed correctly",getOrderToField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: FCE Name Field not displayed correctly",getFceNameField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Fabric Reference Field not displayed correctly",getFabRefField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Shade Code Field not displayed correctly",getShadeCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Order Status: Current SOS Field not displayed correctly",getCurrentSosField().isDisplayed());    
+        AssertJUnit.assertTrue("Order Status Page: Order No Field not displayed correctly",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Order No Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Order Stage Field not displayed correctly",orderStage.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Request Type Field not displayed correctly",requestType.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Business Principal Field not displayed correctly",busPrinc.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Hub Field not displayed correctly",hub.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Requester Field not displayed correctly",requestor.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Scenario Field not displayed correctly",scenario.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Order From Date Field not displayed correctly",orderFrom.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Order To Date Field not displayed correctly",orderTo.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: FCE Name Field not displayed correctly",fce.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Fabric Reference Field not displayed correctly",fabRef.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Shade Code Field not displayed correctly",shadeCode.isDisplayed());
+        AssertJUnit.assertTrue("Order Status: Current SOS Field not displayed correctly",currentSOS.isDisplayed());    
         
         //Check pagination
         CommonTask.checkPagination(driver);
@@ -165,24 +106,25 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
     
     public CCE_OrderStatusPage pressListOrders() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement listOrders = Wait.clickable(driver,listOrdersButton);
         
+        //Submit form
         driver.findElement(filterForm).submit();
         
         return this;
     }
     
     public CCE_OrderStatusPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton); 
+        reset.click();
         return this;
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement export = Wait.clickable(driver,exportButton);
         
         Actions action = new Actions(driver);
-        action.click(driver.findElement(exportButton)).build().perform();
+        action.click(export).build().perform();
         
         return new Ecomm_ExportDownloadPage(driver);
     }
@@ -192,20 +134,20 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
         //Form locator
         By viewButtonLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+lineNumber+") > td:nth-child(16) > a");
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButtonLocator));
+        WebElement viewBtn = Wait.clickable(driver,viewButtonLocator);
         //Click button
-        driver.findElement(viewButtonLocator).click();
+        viewBtn.click();
         
         return new CCE_OrderViewPage(driver);
     }
     
     public CCE_OrderStatusPage waitForMessage() {
-        WebElement waitForVisibility = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        WebElement wait = Wait.clickable(driver,flashMessage);
         return this;
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement wait = Wait.clickable(driver,exportButton);
     }
     
     public String getOrderStage(String orderNo) {
@@ -214,9 +156,9 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
         
         while (!found && i<8) {
             By orderNoLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+1)+") > td:nth-child(5)");
-            WebElement waitForCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(orderNoLocator));
+            WebElement cell = Wait.presence(driver,orderNoLocator);
             
-            if (driver.findElement(orderNoLocator).getText().equals(orderNo)) {
+            if (cell.getText().equals(orderNo)) {
                 found = true;
             } else {
                 i++;
@@ -257,9 +199,9 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
         for (int i = 2; i < 8; i++) {
             By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(5)");
             
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            WebElement cell = Wait.visible(driver,orderNoCell);
             
-            if (driver.findElement(orderNoCell).getText().equals(orderNo)) {
+            if (cell.getText().equals(orderNo)) {
                 By currentSOSCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(10)");
                 return driver.findElement(currentSOSCell).getText();
             }

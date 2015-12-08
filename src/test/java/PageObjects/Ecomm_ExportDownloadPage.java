@@ -2,6 +2,8 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -24,30 +26,29 @@ public class Ecomm_ExportDownloadPage {
     }
     
     public Ecomm_ExportDownloadPage switchTo() {
-        WebDriver waitForFrame = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver waitForFrame = Wait.frame(driver,frameLocator);
         return this;
     }
     
     public void waitForDownloadCompletion() {
-        //switchTo();
         Boolean waitForInvisibility = new WebDriverWait(driver,DataItems.downloadWait).ignoring(NoSuchElementException.class).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));      
     }
     
     public void waitForContent() {
-        WebDriver f = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
+        WebDriver f = Wait.frame(driver,frameLocator);
     }
     
     public void pressYes() {
         //For My Report exports, "Yes" will send the file to e-mail
         switchTo();
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yesButton));
-        driver.findElement(yesButton).click();
+        WebElement btn = Wait.clickable(driver,yesButton);
+        btn.click();
     }
     
     public void pressNo() {
         //For My Report exports, "Yes" will send the file to e-mail
         switchTo();
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(noButton));
-        driver.findElement(noButton).click();
+        WebElement btn = Wait.clickable(driver,noButton);
+        btn.click();
     }
 }

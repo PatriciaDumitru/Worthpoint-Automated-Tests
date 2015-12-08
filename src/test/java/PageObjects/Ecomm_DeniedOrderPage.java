@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -25,28 +27,7 @@ public class Ecomm_DeniedOrderPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement breadcrumb = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(driver.findElement(DataItems.breadcrumbLocator2)));
-        return breadcrumb;
-    }
-    
-    public WebElement getOrderNoField() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        return field;
-    }
-    
-    public WebElement getCustomerPOField() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
-        return field;
-    }
-    
-    public WebElement getSearchButton() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        return field;
-    }
-    
-    public WebElement getResetButton() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        return field;
+        return Wait.visible(driver,DataItems.breadcrumbLocator2);
     }
     
     public Ecomm_DeniedOrderPage setOrderNo(String item) {
@@ -60,14 +41,14 @@ public class Ecomm_DeniedOrderPage extends WBA_BasePage {
     }
     
     public Ecomm_DeniedOrderPage pressSearch() {
-        WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement btn = Wait.clickable(driver,searchButton);
         btn.click();
         
         return new Ecomm_DeniedOrderPage(driver);
     }
     
     public Ecomm_DeniedOrderPage pressReset() {
-        WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement btn = Wait.clickable(driver,resetButton);
         btn.click();
         
         return new Ecomm_DeniedOrderPage(driver);
@@ -75,7 +56,7 @@ public class Ecomm_DeniedOrderPage extends WBA_BasePage {
     
     public Ecomm_OrderViewPage pressView(int row) {
         By selector = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(3) > a");
-        WebElement viewBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(selector));
+        WebElement viewBtn = Wait.clickable(driver,selector);
         viewBtn.click();
         
         return new Ecomm_OrderViewPage(driver);
@@ -83,11 +64,11 @@ public class Ecomm_DeniedOrderPage extends WBA_BasePage {
     
     public Ecomm_OutstandingOrderDraftPage pressCancel(int row) {
         By selector = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(2) > a > span");
-        WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(selector));
+        WebElement btn = Wait.clickable(driver,selector);
         btn.click();
         
         try {
-            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert = Wait.alert(driver);
             alert.accept();
         } catch (TimeoutException e) {
             
@@ -98,10 +79,10 @@ public class Ecomm_DeniedOrderPage extends WBA_BasePage {
     
     public Ecomm_ManualEntryPage pressEdit(int row) {
         By selector = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(1) > a > span");
-        WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(selector));
+        WebElement btn = Wait.clickable(driver,selector);
         btn.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new Ecomm_ManualEntryPage(driver);
@@ -111,7 +92,7 @@ public class Ecomm_DeniedOrderPage extends WBA_BasePage {
         for (int i = 1; i < 10; i++) {
             By selector = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");
             
-            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(selector));
+            WebElement cell = Wait.visible(driver,selector);
             
             if (cell.getText().contains(orderNo)) {
                 return i;
@@ -122,16 +103,16 @@ public class Ecomm_DeniedOrderPage extends WBA_BasePage {
     
     public String getOrderNo(int row) {
         By selector = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(7)");
-        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(selector));
+        WebElement cell = Wait.clickable(driver,selector);
         return cell.getText();
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement orderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement custPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement custPO = Wait.clickable(driver,custPOField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Denied Order Page: Order No. field not displayed as expected",orderNo.isDisplayed());
@@ -141,7 +122,7 @@ public class Ecomm_DeniedOrderPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
+        WebElement wait = Wait.clickable(driver,custPOField);
     }
     
 }

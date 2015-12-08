@@ -32,7 +32,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
   public By lineWithErrorsButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
   
   @Test //Upload Orders Page :: Realtime contract order upload, expecting "No matching reference" error
-  (groups ={"eComm","eComm_Orders","Upload_Order","QuickTest"})
+  (groups ={"eComm","eComm_Orders","Upload_Order","QuickTest","Solo"})
   public void CORT1() throws Exception {
     
     WebDriver driver = getDriver();
@@ -72,7 +72,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     new Select(driver.findElement(By.id("BulkOrderLineCustomerMaterialNo"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineArticleId"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderBuyerId"))).selectByVisibleText("Requestor Name");
-    new Select(driver.findElement(By.id("BulkOrderPoNumber"))).selectByVisibleText("Customer PO Number");
+    new Select(driver.findElement(By.id("BulkOrderPoNumber"))).selectByVisibleText("Customer PO No");
     new Select(driver.findElement(By.id("BulkOrderLineRequiredDate"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineFinishId"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderWarehouseInstruction"))).selectByVisibleText("N/A");
@@ -80,7 +80,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     new Select(driver.findElement(By.id("BulkOrderBuyerSalesOrderno"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineProdStyleNo"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineOtherinfo"))).selectByVisibleText("N/A");
-    new Select(driver.findElement(By.id("BulkOrderLineContract"))).selectByVisibleText("Contract PO No");
+    new Select(driver.findElement(By.id("BulkOrderLineContract"))).selectByVisibleText("Contract PO No.");
     new Select(driver.findElement(By.id("BulkOrderLineCustomerPrice"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineLineReference"))).selectByVisibleText("Line Reference");
     

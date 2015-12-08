@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -65,56 +67,11 @@ public class CCE_TotalOrdersPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement wait = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
-        return driver.findElement(breadcrumb);
-    }
-    
-    public WebElement getMUMTypeBox() {
-        return driver.findElement(mumTypeBox);
-    }
-    
-    public WebElement getArticleBox() {
-        return driver.findElement(articleBox);
-    }
-    
-    public WebElement getBrandBox() {
-        return driver.findElement(brandBox);
+        return Wait.visible(driver,breadcrumb);   
     }
     
     public WebElement getTicketBox() {
         return driver.findElement(ticketBox);
-    }
-    
-    public WebElement getCustRefBox() {
-        return driver.findElement(custRefBox);
-    }
-    
-    public WebElement getQtyProdBox() {
-        return driver.findElement(qtyProducedBox);
-    }
-    
-    public WebElement getQtyOrdBox() {
-        return driver.findElement(qtyOrderedBox);
-    }
-    
-    public WebElement getShadeCodeBox() {
-        return driver.findElement(shadeCodeBox);
-    }
-    
-    public WebElement getCustNameBox() {
-        return driver.findElement(custNameBox);
-    }
-    
-    public WebElement getRequesterFirstBox() {
-        return driver.findElement(requesterFirstBox);
-    }
-    
-    public WebElement getRequesterSecondBox() {
-        return driver.findElement(requesterSecondBox);
-    }
-    
-    public WebElement getBusPrincBox() {
-        return driver.findElement(busPrincBox);
     }
     
     public WebElement getOrderNoField() {
@@ -226,74 +183,74 @@ public class CCE_TotalOrdersPage extends WBA_BasePage {
     }
     
     public CCE_TotalOrdersPage tickMUMType() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeBox));
-        driver.findElement(mumTypeBox).click();
+        WebElement mum = Wait.clickable(driver,mumTypeBox);
+        mum.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickArticle() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleBox));
-        driver.findElement(articleBox).click();
+        WebElement article = Wait.clickable(driver,articleBox);
+        article.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickBrand() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandBox));
-        driver.findElement(brandBox).click();
+        WebElement item = Wait.clickable(driver,brandBox);
+        item.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickTicket() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketBox));
-        driver.findElement(ticketBox).click();
+        WebElement item = Wait.clickable(driver,ticketBox);
+        item.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickCustRef() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custRefBox));
-        driver.findElement(custRefBox).click();
+        WebElement item = Wait.clickable(driver,custRefBox);
+        item.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickQtyProd() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyProducedBox));
-        driver.findElement(qtyProducedBox).click();
+        WebElement item = Wait.clickable(driver,qtyProducedBox);
+        item.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickQtyOrd() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyOrderedBox));
-        driver.findElement(qtyOrderedBox).click();
+        WebElement item = Wait.clickable(driver,qtyOrderedBox);
+        item.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickShadeCode() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeBox));
-        driver.findElement(shadeCodeBox).click();
+        WebElement item = Wait.clickable(driver,shadeCodeBox);
+        item.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickCustName() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameBox));
-        driver.findElement(custNameBox).click();
+        WebElement item = Wait.clickable(driver,custNameBox);
+        item.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickRequesterFirst() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterFirstBox));
-        driver.findElement(requesterFirstBox).click();
+        WebElement item = Wait.clickable(driver,requesterFirstBox);
+        item.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickRequesterSecond() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterSecondBox));
-        driver.findElement(requesterSecondBox).click();
+        WebElement item = Wait.clickable(driver,requesterSecondBox);
+        item.click();
         return this;
     }
     
     public CCE_TotalOrdersPage tickBusPrinc() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(busPrincBox));
-        driver.findElement(busPrincBox).click();
+        WebElement item = Wait.clickable(driver,busPrincBox);
+        item.click();
         return this;
     }
     
@@ -323,107 +280,105 @@ public class CCE_TotalOrdersPage extends WBA_BasePage {
     }
     
     public CCE_OrderViewPage pressPrint() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        driver.findElement(printButton).click();
+        WebElement print = Wait.clickable(driver,printButton);
+        print.click();
         return new CCE_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
-        driver.findElement(exportButton).click();
+        WebElement export = Wait.clickable(driver,exportButton);
+        export.click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public CCE_TotalOrdersPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return new CCE_TotalOrdersPage(driver);
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForMUMbox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeBox));
-        WebElement waitForArticlebox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleBox));
-        WebElement waitForBrandbox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandBox));
-        WebElement waitForTicketbox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketBox));
-        WebElement waitForCustRefbox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custRefBox));
-        WebElement waitForQtyProdbox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyProducedBox));
-        WebElement waitForQtyOrdbox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyOrderedBox));
-        WebElement waitForShadeCodebox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeBox));
-        WebElement waitForCustNamebox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameBox));
-        WebElement waitForReqFirstbox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterFirstBox));
-        WebElement waitForReqSecondbox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterSecondBox));
-        WebElement waitForBusPrincbox = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(busPrincBox));
-        WebElement waitForOrderNoField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForPlantNameField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
-        WebElement waitForCustCodeField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement waitForRequesterField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForOrderTypeField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderTypeField));
-        WebElement waitForRequestTypeField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requestTypeField));
-        WebElement waitForBrandField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForTicketField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForCceSolutionField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cceSolutionField));
-        WebElement waitForDeliveredFromField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveredFromField));
-        WebElement waitForDeliveredToField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveredToField));
-        WebElement waitForCountryField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(countryField));
-        WebElement waitForBusPrincField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(busPrincField));
-        WebElement waitForShipToNameField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToNameField));
-        WebElement waitForHubField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement waitForMUMTypeField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
-        WebElement waitForOrderStageField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderStageField));
-        WebElement waitForCreatedFromField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createdFromField));
-        WebElement waitForCreatedToField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createdToField));
-        WebElement waitForSalesOrgField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement waitForCustNameField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForShipToCodeField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToCodeField));
-        WebElement waitForFCENameField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForScenarioField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(scenarioField));
-        WebElement waitForArticleField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement waitForOutstOfField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(outstOfField));
-        WebElement waitForFabRefField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fabRefField));
+        WebElement mum = Wait.clickable(driver,mumTypeBox);
+        WebElement article = Wait.clickable(driver,articleBox);
+        WebElement brand = Wait.clickable(driver,brandBox);
+        WebElement ticket = Wait.clickable(driver,ticketBox);
+        WebElement custRef = Wait.clickable(driver,custRefBox);
+        WebElement qtyProd = Wait.clickable(driver,qtyProducedBox);
+        WebElement qtyOrd = Wait.clickable(driver,qtyOrderedBox);
+        WebElement shadeCode = Wait.clickable(driver,shadeCodeBox);
+        WebElement custName = Wait.clickable(driver,custNameBox);
+        WebElement reqFirst = Wait.clickable(driver,requesterFirstBox);
+        WebElement reqSecond = Wait.clickable(driver,requesterSecondBox);
+        WebElement busPrinc = Wait.clickable(driver,busPrincBox);
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement plantName = Wait.clickable(driver,plantNameField);
+        WebElement custCode = Wait.clickable(driver,custCodeField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement orderType = Wait.clickable(driver,orderTypeField);
+        WebElement requestType = Wait.clickable(driver,requestTypeField);
+        WebElement brandFld = Wait.clickable(driver,brandField);
+        WebElement ticketFld = Wait.clickable(driver,ticketField);
+        WebElement cceSolution = Wait.clickable(driver,cceSolutionField);
+        WebElement delFrom = Wait.clickable(driver,deliveredFromField);
+        WebElement delTo = Wait.clickable(driver,deliveredToField);
+        WebElement country = Wait.clickable(driver,countryField);
+        WebElement busPrincFld = Wait.clickable(driver,busPrincField);
+        WebElement shipToName = Wait.clickable(driver,shipToNameField);
+        WebElement hub = Wait.clickable(driver,hubField);
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
+        WebElement orderStage = Wait.clickable(driver,orderStageField);
+        WebElement createdFrom = Wait.clickable(driver,createdFromField);
+        WebElement createdTo = Wait.clickable(driver,createdToField);
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custNameFld = Wait.clickable(driver,custNameField);
+        WebElement shipToCode = Wait.clickable(driver,shipToCodeField);
+        WebElement fce = Wait.clickable(driver,fceNameField);
+        WebElement scenario = Wait.clickable(driver,scenarioField);
+        WebElement articleFld = Wait.clickable(driver,articleField);
+        WebElement outstOf = Wait.clickable(driver,outstOfField);
+        WebElement fabRef = Wait.clickable(driver,fabRefField);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Total Orders Page: MUM Type checkbox not displayed",getMUMTypeBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Article checkbox not displayed",getArticleBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Brand checkbox not displayed",getBrandBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Ticket checkbox not displayed",getTicketBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Customer Reference checkbox not displayed",getCustRefBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Quantity Produced checkbox not displayed",getQtyProdBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Quantity Ordered checkbox not displayed",getQtyOrdBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Shade Code checkbox not displayed",getShadeCodeBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Customer name checkbox not displayed",getCustNameBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Requester first name checkbox not displayed",getRequesterFirstBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Requester second name checkbox not displayed",getRequesterSecondBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Business Principal checkbox not displayed",getBusPrincBox().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Order No field not displayed",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Plant name field not displayed",getPlantNameField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Customer Code field not displayed",getCustCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Requester field not displayed",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Requester field not displayed",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Order Type field not displayed",getOrderTypeField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Requeset Type field not displayed",getRequestTypeField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Brand field not displayed",getBrandField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Ticket field not displayed",getTicketField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: CCE Solution field not displayed",getCceSolutionField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Delivered From Date field not displayed",getDeliveredFromField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Delivered To Date field not displayed",getDeliveredToField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Country field not displayed",getCountryField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Business Principal field not displayed",getBusPrincField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Ship To Party Name field not displayed",getShipToNameField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Hub field not displayed",getHubField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: MUM Type field not displayed",getMUMTypeField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Order Stage field not displayed",getOrderStageField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Created From Date field not displayed",getCreatedFromField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Created To Date field not displayed",getCreatedToField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Sales Organisation field not displayed",getSalesOrgField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Customer Name field not displayed",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Ship To Party Code field not displayed",getShipToCodeField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: FCE Name field not displayed",getFceNameField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Scenario field not displayed",getScenarioField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Article field not displayed",getArticleField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Order Outstanding Of field not displayed",getOutstOfField().isDisplayed());
-        AssertJUnit.assertTrue("Total Orders Page: Fabric Reference field not displayed",getFabRefField().isDisplayed());
-        
+        AssertJUnit.assertTrue("Total Orders Page: MUM Type checkbox not displayed",mum.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Article checkbox not displayed",article.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Brand checkbox not displayed",brand.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Ticket checkbox not displayed",ticket.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Customer Reference checkbox not displayed",custRef.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Quantity Produced checkbox not displayed",qtyProd.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Quantity Ordered checkbox not displayed",qtyOrd.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Shade Code checkbox not displayed",shadeCode.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Customer name checkbox not displayed",custName.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Requester first name checkbox not displayed",reqFirst.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Requester second name checkbox not displayed",reqSecond.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Business Principal checkbox not displayed",busPrinc.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Order No field not displayed",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Plant name field not displayed",plantName.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Customer Code field not displayed",custCode.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Requester field not displayed",requester.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Order Type field not displayed",orderType.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Request Type field not displayed",requestType.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Brand field not displayed",brandFld.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Ticket field not displayed",ticketFld.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: CCE Solution field not displayed",cceSolution.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Delivered From Date field not displayed",delFrom.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Delivered To Date field not displayed",delTo.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Country field not displayed",country.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Business Principal field not displayed",busPrincFld.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Ship To Party Name field not displayed",shipToName.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Hub field not displayed",hub.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: MUM Type field not displayed",mumType.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Order Stage field not displayed",orderStage.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Created From Date field not displayed",createdFrom.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Created To Date field not displayed",createdTo.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Sales Organisation field not displayed",salesOrg.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Customer Name field not displayed",custNameFld.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Ship To Party Code field not displayed",shipToCode.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: FCE Name field not displayed",fce.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Scenario field not displayed",scenario.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Article field not displayed",articleFld.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Order Outstanding Of field not displayed",outstOf.isDisplayed());
+        AssertJUnit.assertTrue("Total Orders Page: Fabric Reference field not displayed",fabRef.isDisplayed());  
     }
     
 }

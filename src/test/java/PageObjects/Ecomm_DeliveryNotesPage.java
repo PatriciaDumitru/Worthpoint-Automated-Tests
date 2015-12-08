@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -123,105 +125,105 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
     }
     
     public Ecomm_DeliveryNotesPage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton).click();
+        WebElement search = Wait.clickable(driver,searchButton);
+        search.click();
         return this;
     }
     
     public Ecomm_DeliveryNotesPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return this;
     }
     
     public Ecomm_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        driver.findElement(viewButton).click();
+        WebElement view = Wait.clickable(driver,viewButton);
+        view.click();
         return new Ecomm_OrderViewPage(driver);
     }
     
     public Ecomm_OrderViewPage pressPrint() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        driver.findElement(printButton).click();
+        WebElement print = Wait.clickable(driver,printButton);
+        print.click();
         return new Ecomm_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
-        driver.findElement(exportButton).click();
+        WebElement export = Wait.clickable(driver,exportButton);
+        export.click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public void checkFields_SUMST() {
         //Wait for all items to be clickable
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForDelFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(delDateFromField));
-        WebElement waitForDelTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(delDateToField));
-        WebElement waitForMatNum = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(matNumField));
-        WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForLength = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement waitForRequester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForDelNotes = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(delNotesField));
-        WebElement waitForYourMat = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-        WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForView = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        WebElement waitForPrint = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement delFrom = Wait.clickable(driver,delDateFromField);
+        WebElement delTo = Wait.clickable(driver,delDateToField);
+        WebElement matNum = Wait.clickable(driver,matNumField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement length = Wait.clickable(driver,lengthField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement delNotes = Wait.clickable(driver,delNotesField);
+        WebElement yourMatNum = Wait.clickable(driver,yourMatNumField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement custPO = Wait.clickable(driver,custPOField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement view = Wait.clickable(driver,viewButton);
+        WebElement print = Wait.clickable(driver,printButton);
+        WebElement export = Wait.clickable(driver,exportButton);
     
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Delivery Notes Page: Customer Name Field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date From Field not displayed correctly",getDelDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date To Field not displayed correctly",getDelDateToField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Material Number Field not displayed correctly",getMatNumField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Brand Field not displayed correctly",getBrandField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Length Field not displayed correctly",getLengthField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Requester Field not displayed correctly",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Notes Field not displayed correctly",getDelNotesField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Your Material Number Field not displayed correctly",getYourMatNumField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Ticket Field not displayed correctly",getTicketField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Customer PO Field not displayed correctly",getCustPOField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Search Button not displayed correctly",getSearchButton().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Reset Button not displayed correctly",getResetButton().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: View Button not displayed correctly",getViewButton().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Print Button not displayed correctly",getPrintButton().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Export Button not displayed correctly",getExportButton().isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Customer Name Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date From Field not displayed correctly",delFrom.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date To Field not displayed correctly",delTo.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Material Number Field not displayed correctly",matNum.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Brand Field not displayed correctly",brand.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Length Field not displayed correctly",length.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Requester Field not displayed correctly",requester.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Notes Field not displayed correctly",delNotes.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Your Material Number Field not displayed correctly",yourMatNum.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Ticket Field not displayed correctly",ticket.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Customer PO Field not displayed correctly",custPO.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Search Button not displayed correctly",search.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Reset Button not displayed correctly",reset.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: View Button not displayed correctly",view.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Print Button not displayed correctly",print.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Export Button not displayed correctly",export.isDisplayed());
     
     }
     
     public void checkFields_SUSST() {
         //Wait for all items to be clickable
-        WebElement waitForDelFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(delDateFromField));
-        WebElement waitForDelTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(delDateToField));
-        WebElement waitForMatNum = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(matNumField));
-        WebElement waitForBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement waitForLength = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement waitForDelNotes = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(delNotesField));
-        WebElement waitForYourMat = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
-        WebElement waitForTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement waitForCustPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
-        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForView = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        WebElement waitForPrint = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton));
-        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement delFrom = Wait.clickable(driver,delDateFromField);
+        WebElement delTo = Wait.clickable(driver,delDateToField);
+        WebElement matNum = Wait.clickable(driver,matNumField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement length = Wait.clickable(driver,lengthField);
+        WebElement delNotes = Wait.clickable(driver,delNotesField);
+        WebElement yourMat = Wait.clickable(driver,yourMatNumField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement custPO = Wait.clickable(driver,custPOField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement view = Wait.clickable(driver,viewButton);
+        WebElement print = Wait.clickable(driver,printButton);
+        WebElement export = Wait.clickable(driver,exportButton);
     
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date From Field not displayed correctly",getDelDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date To Field not displayed correctly",getDelDateToField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Material Number Field not displayed correctly",getMatNumField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Brand Field not displayed correctly",getBrandField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Length Field not displayed correctly",getLengthField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Notes Field not displayed correctly",getDelNotesField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Your Material Number Field not displayed correctly",getYourMatNumField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Ticket Field not displayed correctly",getTicketField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Customer PO Field not displayed correctly",getCustPOField().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Search Button not displayed correctly",getSearchButton().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Reset Button not displayed correctly",getResetButton().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: View Button not displayed correctly",getViewButton().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Print Button not displayed correctly",getPrintButton().isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Export Button not displayed correctly",getExportButton().isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date From Field not displayed correctly",delFrom.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date To Field not displayed correctly",delTo.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Material Number Field not displayed correctly",matNum.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Brand Field not displayed correctly",brand.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Length Field not displayed correctly",length.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Delivery Notes Field not displayed correctly",delNotes.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Your Material Number Field not displayed correctly",yourMat.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Ticket Field not displayed correctly",ticket.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Customer PO Field not displayed correctly",custPO.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Search Button not displayed correctly",search.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Reset Button not displayed correctly",reset.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: View Button not displayed correctly",view.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Print Button not displayed correctly",print.isDisplayed());
+        AssertJUnit.assertTrue("Delivery Notes Page: Export Button not displayed correctly",export.isDisplayed());
     }
 }

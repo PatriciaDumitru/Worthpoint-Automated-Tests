@@ -125,7 +125,10 @@ public class CCE_EnrichOrderPage extends WBA_BasePage {
     }
     
     public CCE_EnrichOrderPage setCustomerRef() throws IOException {
-        String PO = CommonTask.generatePO("noncontract");
+        WebElement field = Wait.clickable(driver,customerRefField);
+        field.clear();
+        
+        String PO = CommonTask.generatePO("enrich");
         DataItems.lastUsedPO = PO;
         CommonTask.setInputField(driver, customerRefField, PO);
         return new CCE_EnrichOrderPage(driver);

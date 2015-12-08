@@ -2,6 +2,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
@@ -42,9 +43,9 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     }
     
     public String getTitle() {
-        WebElement waitForVis = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
+        WebElement title = Wait.visible(driver,breadcrumb);
         
-        return driver.findElement(breadcrumb).getText();
+        return title.getText();
     }
     
     public WebElement getHubField() {
@@ -128,7 +129,7 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     
     public CCE_ReceivedHubPage pressListOrders() {
         //Wait for button
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
+        WebElement listOrders = Wait.clickable(driver,listOrdersButton);
         
         //submit form
         driver.findElement(filterForm).submit();
@@ -138,24 +139,24 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     
     public CCE_ReceivedHubPage pressReset() {
         //Wait for reset button
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement reset = Wait.clickable(driver,resetButton);
         
-        driver.findElement(resetButton).click();
+        reset.click();
         
         return this;
     }
     
     public CCE_ReceivedHubPage pressSave() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement save = Wait.clickable(driver,saveButton);
         
-        driver.findElement(saveButton).click();
+        save.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        WebElement msg = Wait.visible(driver,flashMessage);
         
-        String message = driver.findElement(flashMessage).getText();
+        String message = msg.getText();
         
         if (message.contains("Order has been")) {
             System.out.println("Save successful. Message received: "+message);
@@ -168,49 +169,49 @@ public class CCE_ReceivedHubPage extends WBA_BasePage {
     }
     
     public CCE_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement view = Wait.clickable(driver,viewButton);
         
-        driver.findElement(viewButton).click();
+        view.click();
         
         return new CCE_OrderViewPage(driver);
     }
     
     public CCE_ReceivedHubPage pressSendToCust() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sendToCustButton));
+        WebElement sendToCust = Wait.clickable(driver,sendToCustButton);
         
-        driver.findElement(sendToCustButton).click();
+        sendToCust.click();
         
-        Boolean waitForSelected = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(sendToCustButton)));
+        Boolean wait = Wait.checked(driver,sendToCustButton);
         
         return this;
     }
     
     public void checkFields() {
         //Wait for all to be clickable
-        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForOrderFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-        WebElement waitForOrderTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-        WebElement waitForRequester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement waitForFce = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceNameField));
-        WebElement waitForHub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hub));
-        WebElement waitForListOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement orderFrom = Wait.clickable(driver,orderDateFromField);
+        WebElement orderTo = Wait.clickable(driver,orderDateToField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement fce = Wait.clickable(driver,fceNameField);
+        WebElement hubField = Wait.clickable(driver,hub);
+        WebElement listOrders = Wait.clickable(driver,listOrdersButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Hub SOS Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Hub SOS Page: Hub Field not displayed correctly",getHubField().isDisplayed());
-        AssertJUnit.assertTrue("Hub SOS Page: Customer Name Field not displayed correctly",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Hub SOS Page: Order Date From Field not displayed correctly",getOrderDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("Hub SOS Page: Order Date To Field not displayed correctly",getOrderDateToField().isDisplayed());
-        AssertJUnit.assertTrue("Hub SOS Page: FCE Field not displayed correctly",getFceNameField().isDisplayed());
-        AssertJUnit.assertTrue("Hub SOS Page: Requester Field not displayed correctly",getRequesterField().isDisplayed());
+        AssertJUnit.assertTrue("Hub SOS Page: Order No Field not displayed correctly",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Hub SOS Page: Hub Field not displayed correctly",hubField.isDisplayed());
+        AssertJUnit.assertTrue("Hub SOS Page: Customer Name Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Hub SOS Page: Order Date From Field not displayed correctly",orderFrom.isDisplayed());
+        AssertJUnit.assertTrue("Hub SOS Page: Order Date To Field not displayed correctly",orderTo.isDisplayed());
+        AssertJUnit.assertTrue("Hub SOS Page: FCE Field not displayed correctly",fce.isDisplayed());
+        AssertJUnit.assertTrue("Hub SOS Page: Requester Field not displayed correctly",requester.isDisplayed());
                
     }
     
     public boolean checkForRecords() {
         try {
-            WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(noRecordsField));
+            WebElement wait = Wait.visible(driver,noRecordsField);
             return true;
         } catch (TimeoutException e) {
             return false;

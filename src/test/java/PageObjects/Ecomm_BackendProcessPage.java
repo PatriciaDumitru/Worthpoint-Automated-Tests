@@ -2,6 +2,8 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,11 +24,11 @@ public class Ecomm_BackendProcessPage extends WBA_BasePage{
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        WebElement wait = Wait.visible(driver,flashMessage);
     }
     
     public String getMessage() {
-        WebElement message = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+        WebElement message = Wait.visible(driver,flashMessage);
         return message.getText();
     }
     

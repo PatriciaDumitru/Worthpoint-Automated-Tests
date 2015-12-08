@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,7 +37,7 @@ public class Ecomm_BackendInProcessPage extends WBA_BasePage {
     }
     
     public WebElement getFileNameCell() {
-        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(fileNameCell));
+        WebElement cell = Wait.visible(driver,fileNameCell);
         return cell;
     }
     
@@ -63,36 +65,36 @@ public class Ecomm_BackendInProcessPage extends WBA_BasePage {
     }
     
     public Ecomm_BackendInProcessPage pressSearch() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton).click();
+        WebElement search = Wait.clickable(driver,searchButton);
+        search.click();
         return this;
     }
     
     public Ecomm_BackendInProcessPage pressReset() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(searchButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return this;
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForFileName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fileNameField));
-        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement fileName = Wait.clickable(driver,fileNameField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
 
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Backend In Process Files Page: Customer name field not displayed",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("Backend In Process Files Page: File name field not displayed",getFileNameField().isDisplayed());
-        AssertJUnit.assertTrue("Backend In Process Files Page: Search button not displayed",getSearchButton().isDisplayed());
-        AssertJUnit.assertTrue("Backend In Process Files Page: Reset button not displayed",getResetButton().isDisplayed());
+        AssertJUnit.assertTrue("Backend In Process Files Page: Customer name field not displayed",custName.isDisplayed());
+        AssertJUnit.assertTrue("Backend In Process Files Page: File name field not displayed",fileName.isDisplayed());
+        AssertJUnit.assertTrue("Backend In Process Files Page: Search button not displayed",search.isDisplayed());
+        AssertJUnit.assertTrue("Backend In Process Files Page: Reset button not displayed",reset.isDisplayed());
     }
     
     public boolean checkForRecords() {
         boolean returnMe = true;
         
         try {
-            WebElement waitForElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(noRecordsField));
+            WebElement element = Wait.presence(driver,noRecordsField);
             returnMe = false;
         } catch (Exception e) {
             returnMe = true;
@@ -102,7 +104,7 @@ public class Ecomm_BackendInProcessPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement wait = Wait.clickable(driver,searchButton);
     }
     
 }

@@ -2,6 +2,7 @@ package PageObjects;
 
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import com.google.common.base.Verify;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -33,35 +34,35 @@ public class CCE_OrderViewPage {
     }
     
     public CCE_OrderViewPage switchTo() {
-        WebDriver waitForFrame = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
-        //driver.switchTo().frame(driver.findElement(frameLocator));
+        WebDriver frame = Wait.frame(driver,frameLocator);
+        
         return this;
     }
     
     public String getCustName() {
-        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(custNameLocator));
-        return driver.findElement(custNameLocator).getText();
+        WebElement custName = Wait.presence(driver,custNameLocator);
+        return custName.getText();
     }
     
     public String getRequestorName() {
-        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(requestorNameLocator));
-        return driver.findElement(requestorNameLocator).getText();
+        WebElement field = Wait.presence(driver,requestorNameLocator);
+        return field.getText();
     }
     
     public String getOrderNumber() {
-        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(orderNumLocator));
-        return driver.findElement(orderNumLocator).getText();
+        WebElement field = Wait.presence(driver,orderNumLocator);
+        return field.getText();
     }
     
     public String getShadeCode(int lineNumber) {
         By shadeCodeLocator = By.cssSelector("#popup_content > div:nth-child(3) > table > tbody > tr:nth-child("+lineNumber+") > td:nth-child(6)");
-        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(shadeCodeLocator));
-        return driver.findElement(shadeCodeLocator).getText();
+        WebElement field = Wait.presence(driver,shadeCodeLocator);
+        return field.getText();
     }
     
     public String getCustomerRef() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custRefLocator));
-        return driver.findElement(custRefLocator).getText();
+        WebElement field = Wait.visible(driver,custRefLocator);
+        return field.getText();
     }
     
     public CCE_OrderStatusPage closeView() {
@@ -118,24 +119,24 @@ public class CCE_OrderViewPage {
     
     public void waitForLoad() {
         switchTo();
-        WebElement waitForColumnHeaders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custNameHeader));
-        WebElement waitForPrintButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(printButton));
+        WebElement waitForColumnHeaders = Wait.visible(driver,custNameHeader);
+        WebElement waitForPrintButton = Wait.visible(driver,printButton);
     }
     
     public void waitForContent() {
         //switchTo();
-        WebElement waitForPopup = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(popupContent));
+        WebElement waitForPopup = Wait.visible(driver,popupContent);
     }
     
     public void waitForContentPresence() {
-        WebElement waitForPopup = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.presenceOfElementLocated(popupContent));
+        WebElement waitForPopup = Wait.presence(driver,popupContent);
     }
     
     public void waitForContentAlt2() {
-        WebElement waitForContent = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(contentFrame));
+        WebElement waitForContent = Wait.visible(driver,contentFrame);
     }
     
     public void waitForInvisibility() {
-        boolean waitForInvisiblility = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));
+        boolean waitForInvisiblility = Wait.invisible(driver,frameLocator);
     }
 }

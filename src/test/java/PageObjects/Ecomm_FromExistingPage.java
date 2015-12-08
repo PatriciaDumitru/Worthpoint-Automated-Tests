@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -42,61 +44,6 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
         super(passedDriver);
     }
     
-    public WebElement getCustPoField() {
-        //Find and return element
-        return driver.findElement(custPOFieldLocator);
-    }
-    
-    public WebElement getOrderNoField() {
-        //Find and return element
-        return driver.findElement(orderNoFieldLocator);
-    }
-    
-    public WebElement getYmnField() {
-        //Find and return element
-        return driver.findElement(ymnFieldLocator);
-    }
-    
-    public WebElement getArticleField() {
-        //Find and return element
-        return driver.findElement(articleFieldLocator);
-    }
-    
-    public WebElement getShadeCodeField() {
-        //Find and return element
-        return driver.findElement(shadeCodeLocator);
-    }
-    
-    public WebElement getBrandField() {
-        //Find and return element
-        return driver.findElement(brandFieldLocator);
-    }
-    
-    public WebElement getTicketField() {
-        //Find and return element
-        return driver.findElement(custPOFieldLocator);
-    }
-    
-    public WebElement getFinishField() {
-        //Find and return element
-        return driver.findElement(finishFieldLocator);
-    }
-    
-    public WebElement getLengthField() {
-        //Find and return element
-        return driver.findElement(lengthFieldLocator);
-    }
-    
-    public WebElement getDateFromField() {
-        //Find and return element
-        return driver.findElement(dateFromFieldLocator);
-    }
-    
-    public WebElement getDateToField() {
-        //Find and return element
-        return driver.findElement(dateToFieldLocator);
-    }
-    
     public WebElement getLoadButton() {
         //Find and return element
         return driver.findElement(loadButtonLocator);
@@ -114,10 +61,10 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     
     public Ecomm_FromExistingPage setYmn(String ymn) {
         //Wait for element to be available and enter ymn
-        WebElement waitForElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ymnFieldLocator));
+        WebElement ymnField = Wait.clickable(driver,ymnFieldLocator);
         //Click and type ymn
         Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(ymnFieldLocator)).build().perform();
+        clickAndType.click(ymnField).build().perform();
         clickAndType.sendKeys(ymn).build().perform();
         
         return this;
@@ -125,15 +72,15 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     
     public Ecomm_FromExistingPage setArticle(String article) {
         //Wait for element to be available and enter article
-        WebElement waitForElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleFieldLocator));
+        WebElement articleField = Wait.clickable(driver,articleFieldLocator);
         //Click and type article
         Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(articleFieldLocator)).build().perform();
+        clickAndType.click(articleField).build().perform();
         //Wait for search to appear
-        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(articleSearchLocator));
-        clickAndType.sendKeys(driver.findElement(articleSearchLocator),article).build().perform();
+        WebElement search = Wait.visible(driver,articleSearchLocator);
+        clickAndType.sendKeys(search,article).build().perform();
         //Wait for result to appear, then press enter
-        WebElement waitForResult = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(articleResultLocator));
+        WebElement result = Wait.visible(driver,articleResultLocator);
         clickAndType.sendKeys(Keys.ENTER);
         
         return this;
@@ -141,15 +88,15 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     
     public Ecomm_FromExistingPage setShadeCode(String shadeCode) {
         //Wait for element to be available and enter shade code
-        WebElement waitForElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeLocator));
+        WebElement shadeField = Wait.clickable(driver,shadeCodeLocator);
         //Click and type shade code
         Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(shadeCodeLocator)).build().perform();
+        clickAndType.click(shadeField).build().perform();
         //Wait for search to appear
-        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(shadeCodeSearchLocator));
-        clickAndType.sendKeys(driver.findElement(shadeCodeSearchLocator),shadeCode).build().perform();
+        WebElement search = Wait.visible(driver,shadeCodeSearchLocator);
+        clickAndType.sendKeys(search,shadeCode).build().perform();
         //Wait for result to appear, then press enter
-        WebElement waitForResult = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(shadeCodeResultLocator));
+        WebElement waitForResult = Wait.visible(driver,shadeCodeResultLocator);
         clickAndType.sendKeys(Keys.ENTER);
         
         return this;
@@ -157,9 +104,10 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     
     public Ecomm_FromExistingPage setBrand(String brand) {
         //Wait for element to be available and enter brand
-        WebElement waitForElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandFieldLocator));
+        WebElement element = Wait.clickable(driver,brandFieldLocator);
         
-        Select select = new Select(driver.findElement(brandFieldLocator));
+        Select select = new Select(element);
+        element.click();
         select.selectByVisibleText(brand);
         
         return this;
@@ -167,10 +115,10 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     
     public Ecomm_FromExistingPage setTicket(String ticket) {
         //Wait for element to be available and enter ticket
-        WebElement waitForElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketFieldLocator));
+        WebElement ticketField = Wait.clickable(driver,ticketFieldLocator);
         //Click and type ticket
         Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(ticketFieldLocator)).build().perform();
+        clickAndType.click(ticketField).build().perform();
         clickAndType.sendKeys(ticket).build().perform();
         
         return this;
@@ -178,10 +126,10 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     
     public Ecomm_FromExistingPage setFinish(String finish) {
         //Wait for element to be available and enter finish
-        WebElement waitForElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishFieldLocator));
+        WebElement element = Wait.clickable(driver,finishFieldLocator);
         //Click and type finish
         Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(finishFieldLocator)).build().perform();
+        clickAndType.click(element).build().perform();
         clickAndType.sendKeys(finish).build().perform();
         
         return this;
@@ -189,20 +137,12 @@ public class Ecomm_FromExistingPage extends WBA_BasePage {
     
     public Ecomm_FromExistingPage setLength(String length) {
         //Wait for element to be available and enter length
-        WebElement waitForElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthFieldLocator));
+        WebElement element = Wait.clickable(driver,lengthFieldLocator);
         //Click and type length
         Actions clickAndType = new Actions(driver);
-        clickAndType.click(driver.findElement(lengthFieldLocator)).build().perform();
+        clickAndType.click(element).build().perform();
         clickAndType.sendKeys(length).build().perform();
         
-        return this;
-    }
-    
-    public Ecomm_FromExistingPage setDateFrom(String dateFrom) {
-        return this;
-    }
-    
-    public Ecomm_FromExistingPage setDateTo(String dateTo) {
         return this;
     }
     

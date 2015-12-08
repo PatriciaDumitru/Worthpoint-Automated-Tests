@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -39,8 +40,7 @@ public class CCE_SAPLogPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement waitForBreadcrumb = new WebDriverWait(driver,8).until(ExpectedConditions.visibilityOfElementLocated(breadcrumb));
-        return driver.findElement(breadcrumb);
+        return Wait.visible(driver,breadcrumb);
     }
     
     public WebElement getSalesOrgField() {
@@ -156,71 +156,71 @@ public class CCE_SAPLogPage extends WBA_BasePage {
     }
     
     public CCE_SAPLogPage pressSearch() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton).click();
+        WebElement search = Wait.clickable(driver,searchButton);
+        search.click();
         return this;
     }
     
     public CCE_SAPLogPage pressReset() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return this;
     }
     
     public CCE_OrderViewPage pressView() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
-        driver.findElement(viewButton).click();
+        WebElement view = Wait.clickable(driver,viewButton);
+        view.click();
         return new CCE_OrderViewPage(driver);
     }
     
     public Ecomm_ExportDownloadPage pressExport() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
-        driver.findElement(exportButton).click();
+        WebElement export = Wait.clickable(driver,exportButton);
+        export.click();
         return new Ecomm_ExportDownloadPage(driver);
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement waitForSalesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement waitForCustCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement waitForArticle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement waitForOrderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement waitForBusprinc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(busPrincField));
-        WebElement waitForOrderDateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
-        WebElement waitForOrderDateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateToField));
-        WebElement waitForCustName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement waitForShadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement waitForMUM = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
-        WebElement waitForSapStatus = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sapStatusField));
-        WebElement waitForSapSO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sapSOField));
-        WebElement waitForOrderLine = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderLineField));
-        WebElement waitForShipToCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToCodeField));
-        WebElement waitForSearch = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement waitForReset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        WebElement waitForExport = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custCode = Wait.clickable(driver,custCodeField);
+        WebElement article = Wait.clickable(driver,articleField);
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement busPrinc = Wait.clickable(driver,busPrincField);
+        WebElement orderFrom = Wait.clickable(driver,orderDateFromField);
+        WebElement orderTo = Wait.clickable(driver,orderDateToField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement shadeCode = Wait.clickable(driver,shadeCodeField);
+        WebElement mum = Wait.clickable(driver,mumTypeField);
+        WebElement sapStatus = Wait.clickable(driver,sapStatusField);
+        WebElement sapSO = Wait.clickable(driver,sapSOField);
+        WebElement orderLine = Wait.clickable(driver,orderLineField);
+        WebElement shipToCode = Wait.clickable(driver,shipToCodeField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement export = Wait.clickable(driver,exportButton);
     
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("SAP Log Page: Sales Organisation Field not displayed",getSalesOrgField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Customer Code Field not displayed",getCustCodeField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Article Field not displayed",getArticleField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Order No Field not displayed",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Business Principal Field not displayed",getBusPrincField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Order Date From Field not displayed",getOrderDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Order Date To Field not displayed",getOrderDateToField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Customer Name Field not displayed",getCustNameField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Shade Code Field not displayed",getShadeCodeField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: MUM Type Field not displayed",getMUMTypeField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: SAP Status Field not displayed",getSapStatusField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: SAP SO# Field not displayed",getSapSOField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Order Line Field not displayed",getOrderLineField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Ship To Party Code Field not displayed",getShipToCodeField().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Search button not displayed",getSearchButton().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Reset button not displayed",getResetButton().isDisplayed());
-        AssertJUnit.assertTrue("SAP Log Page: Export button not displayed",getExportButton().isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Sales Organisation Field not displayed",salesOrg.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Customer Code Field not displayed",custCode.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Article Field not displayed",article.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Order No Field not displayed",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Business Principal Field not displayed",busPrinc.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Order Date From Field not displayed",orderFrom.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Order Date To Field not displayed",orderTo.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Customer Name Field not displayed",custName.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Shade Code Field not displayed",shadeCode.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: MUM Type Field not displayed",mum.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: SAP Status Field not displayed",sapStatus.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: SAP SO# Field not displayed",sapStatus.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Order Line Field not displayed",orderLine.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Ship To Party Code Field not displayed",shipToCode.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Search button not displayed",search.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Reset button not displayed",reset.isDisplayed());
+        AssertJUnit.assertTrue("SAP Log Page: Export button not displayed",export.isDisplayed());
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement wait = Wait.clickable(driver,searchButton);
     }
     
     public String getOrderStatus(int row) {
@@ -232,8 +232,8 @@ public class CCE_SAPLogPage extends WBA_BasePage {
     public String findOrder(String orderNo) {
         for (int i = 2; i < 8; i++) {
             By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(3)");
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
-            String cellValue = driver.findElement(orderNoCell).getText();
+            WebElement cell = Wait.visible(driver,orderNoCell);
+            String cellValue = cell.getText();
             if (cellValue.equals(orderNo)) {
                 return getOrderStatus(i);
             }

@@ -2,6 +2,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -84,7 +86,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public WebElement getSubAccountField() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAccountField));
+        WebElement wait = Wait.clickable(driver,subAccountField);
         return driver.findElement(subAccountField);
     }
      
@@ -105,7 +107,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public boolean findContractPOField() {
         
         try {
-            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractPOField));
+            WebElement element = Wait.clickable(driver,contractPOField);
             return true;
         } catch (Exception e) {
             return false;
@@ -115,7 +117,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     public boolean findLineRefField() {
         try {
-            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lineRefField));
+            WebElement element = Wait.clickable(driver,lineRefField);
             return true;
         } catch (Exception e) {
             return false;
@@ -156,7 +158,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public Ecomm_ManualEntryPage setShipToPartyWithWait(String item) throws InterruptedException {
-        boolean selectionPresent = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBePresent(shipToPartyField));
+        boolean selectionPresent = Wait.selectionPresent(driver,shipToPartyField);
         CommonTask.setDropDownField(driver, shipToPartyField, item);
         return this;
     }
@@ -212,14 +214,14 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setBrand(String brand, int lineNumber) {
         //Produce locator for field
         By brandLocator = By.id("Brand"+lineNumber);
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandLocator));
+        WebElement field = Wait.clickable(driver,brandLocator);
         
         Select select = new Select(field);
         field.click();
         select.selectByVisibleText(brand);
         
         //Wait for field to update
-        boolean waitForUpdate = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBe(brandLocator, brand));
+        boolean waitForUpdate = Wait.selectionToBe(driver, brandLocator, brand);
         
         return this;
     }
@@ -227,14 +229,14 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setTicket(String ticket,int lineNumber) {
         //Produce locator for field
         By ticketLocator = By.id("Ticket"+lineNumber);
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketLocator));
+        WebElement field = Wait.clickable(driver,ticketLocator);
         
         Select select = new Select(field);
         field.click();
         select.selectByVisibleText(ticket);
         
         //Wait for field to update
-        boolean waitForUpdate = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBe(ticketLocator, ticket));
+        boolean waitForUpdate = Wait.selectionToBe(driver,ticketLocator,ticket);
         
         return this;
     }
@@ -242,14 +244,14 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setLength(String length, int lineNumber) {
         //Produce locator for field
         By lengthLocator = By.id("Length"+lineNumber);
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthLocator));
+        WebElement field = Wait.clickable(driver,lengthLocator);
         
         Select select = new Select(field);
         field.click();
         select.selectByVisibleText(length);
         
         //Wait for field to update
-        boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBe(lengthLocator, length));
+        boolean wait = Wait.selectionToBe(driver,lengthLocator,length);
         
         return this;
     }
@@ -257,14 +259,14 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setFinish(String finish, int lineNumber) {
         //Produce locator for field
         By finishLocator = By.id("Finish"+lineNumber);
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishLocator));
+        WebElement field = Wait.clickable(driver,finishLocator);
         
         Select select = new Select(field);
         field.click();
         select.selectByVisibleText(finish);
         
         //Wait for field to update
-        boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBe(finishLocator, finish));
+        boolean wait = Wait.selectionToBe(driver,finishLocator, finish);
         
         return this;
     }
@@ -360,9 +362,9 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         //produce locator for field. Line numbers start from 0
         By dateFieldLocator = By.id("required_date_"+lineNumber);
         
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dateFieldLocator));
+        WebElement dateField = Wait.clickable(driver,dateFieldLocator);
         Actions action = new Actions(driver);
-        action.sendKeys(driver.findElement(dateFieldLocator),date).build().perform();
+        action.sendKeys(dateField,date).build().perform();
         
         return this;
     }
@@ -370,7 +372,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     //set order details using Your Material Number and shade code from master data
     public Ecomm_ManualEntryPage setOrderDetailsYMN(String[] details,int lineNumber) {
         //Wait for field to be available
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("materialno_"+lineNumber)));
+        WebElement waitForClickable = Wait.clickable(driver,By.id("materialno_"+lineNumber));
         setYourMaterialNumber(details[0],lineNumber);
         setQty(Integer.valueOf(details[1]),lineNumber);
         setDate(lineNumber);
@@ -381,7 +383,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     //Set order details using Your Material Number and separate shade code (not in master data)
     public Ecomm_ManualEntryPage setOrderDetailsYMNShadeCode(String[] details, int lineNumber) {
         //Wait for field to be available
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(By.id("materialno_"+lineNumber)));
+        WebElement waitForClickable = Wait.clickable(driver,By.id("materialno_"+lineNumber));
         setYourMaterialNumber(details[0],lineNumber);
         setShadeCode(details[1],lineNumber);
         setQty(Integer.valueOf(details[2]),lineNumber);
@@ -419,18 +421,18 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     public Ecomm_OrderConfirmationPage pressNext() {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
+        WebElement next = Wait.clickable(driver,nextButtonLocator);
         //Click next
         Actions clickNext = new Actions(driver);
-        clickNext.click(driver.findElement(nextButtonLocator)).build().perform();
+        clickNext.click(next).build().perform();
         //Submit the alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         //Sometimes additional alerts appear. Catch these, output their text, and accept by default
         boolean alertPresence;
         try {
-            Alert secondAlert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert secondAlert = Wait.alert(driver);
             driver.switchTo().alert();
             String alertText = secondAlert.getText();
             alertPresence = true;
@@ -448,16 +450,16 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     public Ecomm_OrderConfirmationPage pressNextMOQ() {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
+        WebElement next = Wait.clickable(driver,nextButtonLocator);
         //Click next
         Actions clickNext = new Actions(driver);
-        clickNext.click(driver.findElement(nextButtonLocator)).build().perform();
+        clickNext.click(next).build().perform();
         //Submit the alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         try {
-            Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert2 = Wait.alert(driver);
             if (!(alert2.getText().contains("order quantity has been rounded"))) {
                 System.out.println("Additional alert appeared: " + alert2.getText());
                 alert2.accept();
@@ -472,10 +474,10 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
     
     public Ecomm_OutstandingOrderDraftPage pressSaveAsDraft() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveDraftLocator));
-        driver.findElement(saveDraftLocator).click();
+        WebElement saveDraft = Wait.clickable(driver,saveDraftLocator);
+        saveDraft.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new Ecomm_OutstandingOrderDraftPage(driver);
@@ -483,12 +485,12 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     
     public Ecomm_ManualEntryPage pressNextExpectingFailure() {
         //Wait for button to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(nextButtonLocator));
+        WebElement nextBtn = Wait.clickable(driver,nextButtonLocator);
         //Click next
         Actions clickNext = new Actions(driver);
-        clickNext.click(driver.findElement(nextButtonLocator)).build().perform();
+        clickNext.click(nextBtn).build().perform();
         //Submit the alert
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new Ecomm_ManualEntryPage(driver);

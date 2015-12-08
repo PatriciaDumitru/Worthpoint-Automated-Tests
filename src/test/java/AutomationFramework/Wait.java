@@ -19,6 +19,10 @@ public class Wait {
         return new WebDriverWait(driver,seconds).until(ExpectedConditions.elementToBeClickable(locator));
     }
     
+    public static WebElement presence(WebDriver driver, By locator) {
+        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+    
     public static WebElement visible(WebDriver driver, By locator) {
         return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
     }

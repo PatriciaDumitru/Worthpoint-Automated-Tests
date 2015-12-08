@@ -21,7 +21,7 @@ public class Ecomm_ErrorPage extends WBA_BasePage {
     }
     
     public void waitForError() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(errorBar));
+        WebElement wait = Wait.clickable(driver,errorBar);
     }
     
     public boolean ensureErrorPage(String error) {

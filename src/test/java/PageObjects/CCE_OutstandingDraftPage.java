@@ -31,60 +31,24 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
         super(passedDriver);
     }
     
-    public WebElement getOrderNoField() {
-        return driver.findElement(orderNoField);
-    }
-    
-    public WebElement getHubField() {
-        return driver.findElement(hubField);
-    }
-    
-    public WebElement getDateFromField() {
-        return driver.findElement(dateFromField);
-    }
-    
-    public WebElement getDateToField() {
-        return driver.findElement(dateToField);
-    }
-    
-    public WebElement getCustomerNameField() {
-        return driver.findElement(custNameField);
-    }
-    
-    public WebElement getSalesOrgField() {
-        return driver.findElement(salesOrgField);
-    }
-    
-    public WebElement getRequesterField() {
-        return driver.findElement(requesterField);
-    }
-     
-    public WebElement getListOrdersButton() {
-        return driver.findElement(listOrdersButton);
-    }
-    
-    public WebElement getResetButton() {
-        return driver.findElement(resetButton);
-    }
-    
     public CCE_OutstandingDraftPage pressListOrders() {
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        driver.findElement(listOrdersButton).click();
+        WebElement button = Wait.clickable(driver,listOrdersButton);
+        button.click();
         return new CCE_OutstandingDraftPage(driver);
     }
     
     public CCE_OutstandingDraftPage pressReset() {
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement button = Wait.clickable(driver,resetButton);
+        button.click();
         return new CCE_OutstandingDraftPage(driver);
     }
     
     public CCE_OrderViewPage pressView(int row) {
         By viewButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(row+2)+") > td:nth-child(13) > a");
         
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(viewButton));
+        WebElement view = Wait.clickable(driver,viewButton);
         
-        driver.findElement(viewButton).click();
+        view.click();
         
         return new CCE_OrderViewPage(driver);
         
@@ -93,9 +57,9 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     public CCE_AddOrderPage pressEdit(int row) {
         By editButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(12) > a:nth-child(1) > span");
         
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButton));
+        WebElement edit = Wait.clickable(driver,editButton);
         
-        driver.findElement(editButton).click();
+        edit.click();
         
         return new CCE_AddOrderPage(driver);
     }
@@ -103,10 +67,10 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     public CCE_CancelDraftPage pressCancel(int row) {
         By cancelButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(12) > a.thickbox > span");
 
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cancelButton));
-        WebElement wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement cancel = Wait.visible(driver,cancelButton);
+        WebElement wait2 = Wait.clickable(driver,cancelButton);
         
-        driver.findElement(cancelButton).click();
+        cancel.click();
         
         return new CCE_CancelDraftPage(driver);
     }
@@ -121,11 +85,10 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
             
             By dateCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(4)");
             
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(dateCell));
-            
+            WebElement dateField = Wait.visible(driver,dateCell);
             
             //The creation date can differ by 1 minute between the drafts page and the creation page, producing false negatives
-            String dateInCell = driver.findElement(dateCell).getText();
+            String dateInCell = dateField.getText();
             
             //Get the date and hour of each time to check they match
             String cellDayHour = dateInCell.substring(0, 13);
@@ -158,8 +121,8 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
             AssertJUnit.assertTrue("Oustanding Draft Page: Order No column has moved, update locators",header.getText().trim().equals(orderNo));
             
             By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(3)");
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
-            String cellOrderNo = driver.findElement(orderNoCell).getText();
+            WebElement orderNoField = Wait.visible(driver,orderNoCell);
+            String cellOrderNo = orderNoField.getText();
             
             if (cellOrderNo.equals(orderNo)) {
                 System.out.println("Draft found");
@@ -176,31 +139,31 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     }
     
     public void checkFields() {
-        WebElement orderNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
-        WebElement hub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement dateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dateFromField));
-        WebElement dateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dateToField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement requester = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterField));
-        WebElement listOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(listOrdersButton));
-        WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement orderNo = Wait.clickable(driver,orderNoField);
+        WebElement hub = Wait.clickable(driver,hubField);
+        WebElement dateFrom = Wait.clickable(driver,dateFromField);
+        WebElement dateTo = Wait.clickable(driver,dateToField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement requester = Wait.clickable(driver,requesterField);
+        WebElement listOrders = Wait.clickable(driver,listOrdersButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
         
-        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Order No Field not displayed correctly",getOrderNoField().isDisplayed());
-        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Hub Field not displayed correctly",getHubField().isDisplayed());
-        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Created Date From Field not displayed correctly",getDateFromField().isDisplayed());
-        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Created Date To Field not displayed correctly",getDateToField().isDisplayed());
-        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Customer Name Field not displayed correctly",getCustomerNameField().isDisplayed());
-        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Sales Organisation Field not displayed correctly",getSalesOrgField().isDisplayed());
-        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Requester Field not displayed correctly",getRequesterField().isDisplayed());
-        AssertJUnit.assertTrue("Oustanding Order Drafts Page: List Orders Button not displayed correctly",getListOrdersButton().isDisplayed());
-        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Reset Button not displayed correctly",getResetButton().isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Order No Field not displayed correctly",orderNo.isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Hub Field not displayed correctly",hub.isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Created Date From Field not displayed correctly",dateFrom.isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Created Date To Field not displayed correctly",dateTo.isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Customer Name Field not displayed correctly",custName.isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Sales Organisation Field not displayed correctly",salesOrg.isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Requester Field not displayed correctly",requester.isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: List Orders Button not displayed correctly",listOrders.isDisplayed());
+        AssertJUnit.assertTrue("Oustanding Order Drafts Page: Reset Button not displayed correctly",reset.isDisplayed());
         
         CommonTask.checkPagination(driver);
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderNoField));
+        WebElement wait = Wait.clickable(driver,orderNoField);
     }
     
 }

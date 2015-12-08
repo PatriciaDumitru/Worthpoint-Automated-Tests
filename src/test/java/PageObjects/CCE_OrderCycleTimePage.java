@@ -9,6 +9,7 @@ import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -25,7 +26,7 @@ public class CCE_OrderCycleTimePage extends WBA_BasePage {
     By hubField = By.cssSelector("#s2id_filterSampleOrderHubId > ul > li > input");
     By fceNameField = By.cssSelector("#s2id_filterSampleOrderFceId > ul > li > input");
     By shipToNameField = By.cssSelector("#s2id_filterSampleOrderShipToPartyId > ul > li > input");
-    By printButton = By.cssSelector("#FilterCycleTimeReportForm > div.actions > ul > li:nth-child(1)");
+    By printButton = By.cssSelector("#FilterCycleTimeReportForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By exportToExcelButton = By.cssSelector("#FilterCycleTimeReportForm > div.actions > ul > li:nth-child(2)");
     By resetButton = By.cssSelector("#FilterCycleTimeReportForm > div.actions > ul > li:nth-child(3)");
     By printFrame = By.id("TB_iframeContent");
@@ -118,8 +119,14 @@ public class CCE_OrderCycleTimePage extends WBA_BasePage {
     }
     
     public CCE_OrderViewPage pressPrint() {
-        WebElement print = Wait.clickable(driver,printButton);
+        WebElement print = Wait.visible(driver,printButton);
+        
+        //Click another field to set focus
+        driver.findElement(orderLineField).click();
+        
+        //Click print
         print.click();
+        
         return new CCE_OrderViewPage(driver);
     }
     

@@ -2,11 +2,14 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import PageObjects.CCE_AddOrderPage;
 import PageObjects.CCE_EnrichOrderPage;
 import PageObjects.CCE_HubSosPage;
 import PageObjects.CCE_LRMLogPage;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_ManualEnrichPage;
+import PageObjects.CCE_OrderSamplesPage;
+import PageObjects.CCE_OrderStatusPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.CCE_SAPLogPage;
 import com.coats.selenium.DriverFactory;
@@ -117,13 +120,43 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
     }
     
     @Test //Manual Enrich Page :: SUMST :: Lab and WHS SOS selection
-    (groups={"CCE","CCE_Orders"})
+    (groups={"CCE","CCE_Orders"}) //This test will fail if the order which is selected has multiple lines.
+    //for example, if the test is run after SOC12 (multiple copied data test), the order selected will have many lines and the test will fail
     public void EO2() throws Exception {
         
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
         CCE_MainPage mainPage = base.setUp("Enrich Orders EO2: Lab and WHS selection", "G_CCE_EO_1");
+        
+        System.out.println("Navigating to Order Samples Page...");
+        
+        //Create an order so that it is ensured that only a single line is present when enriching (otherwise test will fail)
+        CCE_OrderSamplesPage orderPage = mainPage.pressOrderSamples();
+        orderPage.waitForElement();
+        
+        orderPage.setCustName(DataItems.custDetails[0]);
+        orderPage.setRequestor(DataItems.custDetails[2]);
+        
+        System.out.println("Customer details entered. Entering product details...");
+        
+        CCE_AddOrderPage addPage = orderPage.pressSubmit();
+        addPage.waitForElement();
+        
+        addPage.setShipToParty(DataItems.custDetails[1]);
+        addPage.setArticle("8754120",0);
+        addPage.setShadeCode("C1202",0);
+        addPage.setMUMType("Cone",0);
+        addPage.setRequestType(DataItems.sewing, 0);
+        addPage.setPurposeType(DataItems.protoPurpose,0);
+        addPage.setQuantity(1,0);
+        
+        System.out.println("Product details entered. Submitting order...");
+        
+        CCE_OrderStatusPage statusPage = addPage.pressSubmit();
+        statusPage.waitForElement();
+        
+        System.out.println("Order submitted.");
         
         System.out.println("Navigating to Manual Enrich Page...");
         

@@ -174,7 +174,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
     }
     
     @Test //Upload Order Realtime :: SUMST :: Invalid article in spreadsheet exception
-    (groups = {"eComm","eComm_Orders","Upload_Order","Solo"})
+    (groups = {"eComm","eComm_Orders","Upload_Order"})
     public void UORTex3() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
