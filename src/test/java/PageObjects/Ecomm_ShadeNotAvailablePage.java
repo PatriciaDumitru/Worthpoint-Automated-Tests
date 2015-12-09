@@ -88,16 +88,39 @@ public class Ecomm_ShadeNotAvailablePage extends WBA_BasePage {
         return this;
     }
     
-    public Ecomm_ShadeOrderConfirmationPage pressEdit() {
-        WebElement edit = Wait.clickable(driver,editButton);
+    public Ecomm_ShadeOrderConfirmationPage pressEdit(int row) {
+        By editBtn = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(1) > a > span");
+        WebElement edit = Wait.clickable(driver,editBtn);
         edit.click();
         return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
     
-    public Ecomm_OrderViewPage pressView() {
-        WebElement view = Wait.clickable(driver,viewButton);
+    public Ecomm_OrderViewPage pressView(int row) {
+        By viewBtn = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(2) > a > span");
+        WebElement view = Wait.clickable(driver,viewBtn);
         view.click();
         return new Ecomm_OrderViewPage(driver);
+    }
+    
+    public int getSingleLineRecord() {
+        
+        By orderLinesHeader = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(6) > label");
+        WebElement header = Wait.visible(driver, orderLinesHeader);
+        AssertJUnit.assertTrue("Shade Not Available Page: Order Lines column has moved, update locators",header.getText().trim().equals("No. of Order Lines"));
+        
+        By recordsField = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > dl > dt > span.left");
+        int count = getRecordCount(recordsField);
+        int tableCount = (count>10) ? 10 : count;
+        
+        for (int i = 1; i <= tableCount; i++) {
+            By locator = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(7)");
+            WebElement cell = Wait.visible(driver, locator);
+            
+            if (cell.getText().equals("1")) {
+                return i;
+            }
+        }
+        return -1;
     }
     
     

@@ -81,10 +81,10 @@ public class Mst_AddApproverListPage extends WBA_BasePage {
         WebElement custName = Wait.clickable(driver,customerNameField);
         WebElement requester = Wait.clickable(driver,requesterField);
         WebElement valueStart = Wait.clickable(driver,valueStartField);
-        WebElement valueUntil = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(valueUntilField));
-        WebElement emailNotif = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(emailNotificationField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement valueUntil = Wait.clickable(driver,valueUntilField);
+        WebElement emailNotif = Wait.clickable(driver,emailNotificationField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Approver List Page: Sales Org field not displayed",salesOrg.isDisplayed());
@@ -94,11 +94,11 @@ public class Mst_AddApproverListPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Add Approver List Page: Value Until field not displayed",valueUntil.isDisplayed());
         AssertJUnit.assertTrue("Add Approver List Page: E-mail notification field not displayed",emailNotif.isDisplayed());
         AssertJUnit.assertTrue("Add Approver List Page: Save button not displayed",save.isDisplayed());
-        AssertJUnit.assertTrue("Add Approver List Page: Cancel button not displayed",save.isDisplayed());        
+        AssertJUnit.assertTrue("Add Approver List Page: Cancel button not displayed",cancel.isDisplayed());        
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(valueStartField));
+        WebElement wait = Wait.clickable(driver,valueStartField);
     }
     
 }

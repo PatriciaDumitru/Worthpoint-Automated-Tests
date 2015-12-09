@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -56,11 +58,11 @@ public class Mst_AddBasicMaterialPage extends WBA_BasePage {
     }
     
     public void checkFields() {
-        WebElement brandName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandNameField));
-        WebElement materialGroup = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(materialGroupField));
-        WebElement productHierarchy = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(productHierarchyField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement brandName = Wait.clickable(driver,brandNameField);
+        WebElement materialGroup = Wait.clickable(driver,materialGroupField);
+        WebElement productHierarchy = Wait.clickable(driver,productHierarchyField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Basic Materials Page: Brand name field not displayed",brandName.isDisplayed());
         AssertJUnit.assertTrue("Add Basic Materials Page: Material Group field not displayed",materialGroup.isDisplayed());
@@ -70,7 +72,7 @@ public class Mst_AddBasicMaterialPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement brandName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandNameField));
+        WebElement brandName = Wait.clickable(driver,brandNameField);
     }
     
 }

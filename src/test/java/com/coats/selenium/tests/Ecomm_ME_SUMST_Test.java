@@ -878,7 +878,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUMST :: Validation tests, no buyer at manual entry page
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders",})
     public void SUMST11() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1538,7 +1538,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         int row = appPage.getRow(DataItems.lastUsedPO);
         AssertJUnit.assertFalse("Pending Approval List Page: Order does not appear after Send for Approval pressed",row==-1);
         
-        String orderNo = appPage.getOrderNo(row);
+        String orderNo = appPage.getOrderNoSUMST(row);
         
         System.out.println("Order appears. Order No.: " + orderNo);
         
@@ -2599,7 +2599,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUMST :: Approver workflow enabled
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders"}) //CHANGES MASTER DATA
     public void SUMST28() throws Exception {
         WebDriver driver = getDriver();
         
@@ -2668,7 +2668,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         System.out.println("Pending Approval Page reached. Finding order...");
         
-        int orderRow = pendPage.getRowNonApprover(DataItems.lastUsedPO);
+        int orderRow = pendPage.getRow(DataItems.lastUsedPO);
         
         AssertJUnit.assertFalse("Pending Approval Page: Order (PO: "+DataItems.lastUsedPO+") not found after being sent for approval",orderRow == -1);
         

@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -122,13 +123,23 @@ public class Mst_SubAccountPage extends WBA_BasePage {
     
     public int getRow(String name) {
         
-        int records = getRecordCount(recordCountLabel);
+        if (!checkForRecords()) {
+            return -1;
+        }
         
-        for (int i = 0; i < records; i++) {
-            By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+2)+") > td:nth-child(5)");
+        //Click cell near record count field to provide focus
+        By cellLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(1)");
+        WebElement cell = Wait.visible(driver,cellLocator);
+        cell.click();
+        
+        int records = getRecordCount(recordCountLabel);
+        int tableCount = (records > 10) ? 10 : records;
+        
+        for (int i = 2; i < (tableCount+2); i++) {
+            By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(5)");
             WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
             if (element.getText().equals(name)) {
-                return (i+2);
+                return i;
             }
         }
         return -1;

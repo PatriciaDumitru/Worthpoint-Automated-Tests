@@ -26,6 +26,7 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     By requesterField = By.id("s2id_filterSampleOrderRequesterId");
     By listOrdersButton = By.cssSelector("#FilterDraftsForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterDraftsForm > div.actions > ul > li:nth-child(2) > a");
+    By flashMessage = By.id("flashMessage");
     
     public CCE_OutstandingDraftPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -44,7 +45,7 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
     }
     
     public CCE_OrderViewPage pressView(int row) {
-        By viewButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(row+2)+") > td:nth-child(13) > a");
+        By viewButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+2+") > td:nth-child(13) > a");
         
         WebElement view = Wait.clickable(driver,viewButton);
         
@@ -75,62 +76,25 @@ public class CCE_OutstandingDraftPage extends WBA_BasePage {
         return new CCE_CancelDraftPage(driver);
     }
     
-    public int findDraft(String creationDate) throws ParseException {
-        int row = -1;
+    public int findDraft(String orderNo) throws ParseException {
         
-        for (int i = 2; i < 10; i++) {
-            By dateHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(4)");
-            WebElement header = Wait.visible(driver,dateHeader);
-            AssertJUnit.assertTrue("Outstanding Draft Page: Date column has moved, update locators",header.getText().trim().equals("Date"));
-            
-            By dateCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(4)");
-            
-            WebElement dateField = Wait.visible(driver,dateCell);
-            
-            //The creation date can differ by 1 minute between the drafts page and the creation page, producing false negatives
-            String dateInCell = dateField.getText();
-            
-            //Get the date and hour of each time to check they match
-            String cellDayHour = dateInCell.substring(0, 13);
-            String actualDayHour = creationDate.substring(0,13);
-            
-            //Get the minutes of each time to check they within 1 minute of each other
-            int cellMins = Integer.valueOf(dateInCell.substring(14));
-            int actualMins = Integer.valueOf(creationDate.substring(14));
-            
-            //If test is run at 59minutes past, a false negative can occur. Extension would be to use Date classes
-            int difference = cellMins-actualMins;
-            
-            if (cellDayHour.equals(actualDayHour) && (difference <= 1 && difference >= -1)) {
-                System.out.println("Draft found");
-                row=i;
-                break;
+        By orderNoHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(3)");
+        WebElement header = Wait.visible(driver,orderNoHeader);
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order No. column has moved, update locators",header.getText().trim().equals("Order No."));
+        
+        By recordsField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        int count = getRecordCount(recordsField);
+        int tableCount = (count > 10) ? 10 : count;
+        
+        for (int i = 2; i < (tableCount+2); i++) {
+            By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(3)");
+            WebElement cell = Wait.visible(driver,locator);
+           
+            if (cell.getText().equals(orderNo)) {
+                return i;
             }
         }
-        return row;
-    }
-    
-    public boolean findDraftByOrderNo(String orderNo) {
-        boolean found = false;
-        
-        
-        
-        for (int i = 2; i < 8; i++) {
-            By orderNoHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(3)");
-            WebElement header = Wait.visible(driver,orderNoHeader);
-            AssertJUnit.assertTrue("Oustanding Draft Page: Order No column has moved, update locators",header.getText().trim().equals(orderNo));
-            
-            By orderNoCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(3)");
-            WebElement orderNoField = Wait.visible(driver,orderNoCell);
-            String cellOrderNo = orderNoField.getText();
-            
-            if (cellOrderNo.equals(orderNo)) {
-                System.out.println("Draft found");
-                System.out.println("Order No: " + orderNo);
-                return true;
-            }
-        }   
-        return false;
+        return -1;
     }
     
     public String getOrderNo(int row) {

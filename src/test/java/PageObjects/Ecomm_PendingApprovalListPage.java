@@ -122,6 +122,13 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         return new Ecomm_PendingApprovalListPage(driver);
     }
     
+    public Ecomm_PendingApprovalListPage pressReset() {
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
+        
+        return new Ecomm_PendingApprovalListPage(driver);
+    }
+    
     public void checkFields() {
         //Wait for all elements to be clickable
         WebElement custName = Wait.clickable(driver,custNameField);
@@ -203,7 +210,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = Wait.clickable(driver,custPOField,30);
+        WebElement wait = Wait.clickable(driver,custPOField,50);
     }
     
     public int getRow(String PONumber) {
@@ -211,7 +218,8 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",head.getText().contains("Customer PO No."));
         
         for (int i = 1; i <= 10; i++) {
-            By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(4)");
+            By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");     
+            
             WebElement cell = Wait.visible(driver,locator);
             if (cell.getText().equals(PONumber)) {
                 return i;
@@ -220,19 +228,21 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         return -1;
     }
     
-    public int getRowNonApprover(String PONumber) {
+    public int getRowAlt(String PONumber) {
+        //Alternative method. Use for approver account (mail.kamleshpatidar@gmail.com), as locators differ between accoutns
+        By headLocator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(3) > label");
+        WebElement head = Wait.visible(driver,headLocator);
+        AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",head.getText().contains("Customer PO No."));
         
-        AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",driver.findElement(custPOHead).getText().contains("Customer PO No."));
-        int row = -1;
         for (int i = 1; i <= 10; i++) {
-            By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");
+            By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(4)");     
+            
             WebElement cell = Wait.visible(driver,locator);
             if (cell.getText().equals(PONumber)) {
-                row = i;
-                break;
+                return i;
             }
         }       
-        return row;
+        return -1;
     }
     
     public String getOrderNo(int row) {
@@ -246,7 +256,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     public String getOrderNoSUMST(int row) {
         By orderNoHeader = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(4) > label");
         AssertJUnit.assertTrue("Pending approval list page: Order No. Column has moved",driver.findElement(orderNoHeader).getText().contains("Order No."));
-        By orderNoCell = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(5)");
+        By orderNoCell = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(6)");
         return driver.findElement(orderNoCell).getText();
     }
     
@@ -340,16 +350,25 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     }
     
     public boolean approveOrder(String orderNo) {
-        for (int i = 1; i < 10; i++) {
+        
+        By orderNoHeader = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(4) > label");
+        WebElement header = Wait.visible(driver, orderNoHeader);
+        AssertJUnit.assertTrue("Pending Approval List Page: Order No. column has moved, update locators",header.getText().trim().equals("eComm Order No."));
+        
+        By recordsField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > dl > dt > span.left");
+        int count = getRecordCount(recordsField);
+        int tableCount = (count > 10) ? 10 : count;
+        
+        for (int i = 1; i < tableCount; i++) {
             By orderNoCell = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");
             
             //Click form to set focus, allowing elements to be accessed
             driver.findElement(formLocator).click();
             
-            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoCell));
+            WebElement cell = Wait.visible(driver,orderNoCell);
             
             if (cell.getText().trim().equals(orderNo)) {
-                System.out.println("order found");
+                System.out.println("Order found");
                 Ecomm_PendingApprovalListPage pendPage = pressApprove(i);
                 pendPage.waitForElement();
                 
@@ -359,7 +378,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         }
         return false;
         
-    }
+    }   
     
     public boolean denyOrder(String orderNo) {
         for (int i = 1; i < 10; i++) {

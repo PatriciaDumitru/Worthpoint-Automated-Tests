@@ -63,7 +63,7 @@ public class Ecomm_BackendFailedFilesPage extends WBA_BasePage {
         try {
             WebElement error = Wait.visible(driver,errorTitle);
             if (error.getText().contains("Not Found")) {
-                System.out.println("***Error downloading file: File not found. Check manually that first line file can be downloaded***");
+                System.out.println("***Error downloading file: File/Page not found. Check manually that first line file can be downloaded***");
             } else {
                 System.out.println("***Error downloading file. Check manually that first line file can be downloaded***");
             }

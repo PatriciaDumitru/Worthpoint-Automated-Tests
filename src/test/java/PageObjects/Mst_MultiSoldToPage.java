@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -65,20 +66,18 @@ public class Mst_MultiSoldToPage extends WBA_BasePage {
         WebElement header = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(usernameHeader));
         AssertJUnit.assertTrue("Multi Sold To Users Page: Username field has moved. Update locators",header.getText().equals("User Name"));
         
-        By countLocator = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        By countLocator = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left"); 
+        int recordCount = getRecordCount(countLocator);
+        int tableCount = (recordCount>10) ? 10 : recordCount;
         
-        int recordCount = this.getRecordCount(countLocator);
-        
-        for (int i = 2; i < (recordCount+2); i++) {
+        for (int i = 2; i < (tableCount+2); i++) {
             By usernameField = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(2)");
-            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(usernameField));
+            WebElement cell = Wait.visible(driver,usernameField);
             if (cell.getText().equals(username)) {
                 return i;
             }
-        }
-        
-        return -1;
-        
+        }    
+        return -1;      
     }
     
     public Mst_EditMultiUserPage pressEdit(int row) {

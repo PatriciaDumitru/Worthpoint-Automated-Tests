@@ -157,7 +157,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
   }
 
   @Test //Upload Orders Page :: Realtime contract order upload, expecting validation success
-  (groups ={"eComm","eComm_Orders","Upload_Order"})
+  (groups ={"eComm","eComm_Orders","Upload_Order","Solo"})
   public void CORT2() throws IOException, Exception {
     
     WebDriver driver = getDriver();

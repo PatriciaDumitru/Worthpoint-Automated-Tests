@@ -196,6 +196,11 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         //Line numbers start from 0
         By purpLocator = By.id("SampleOrderLine"+lineNumber+"PurposeTypeId");
         CommonTask.setDropDownField(driver, purpLocator, purpType);
+        
+        //Click purpose type field to close select box
+        WebElement field = driver.findElement(purpLocator);
+        field.click();
+        
         return this;
     }
     

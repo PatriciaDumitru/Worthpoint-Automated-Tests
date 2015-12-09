@@ -45,7 +45,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
   private final By flashMessage = By.id("flashMessage");
   
   @Test //Manual Entry Page :: Contract order expecting "No matching contract reference" error
-  (groups = {"eComm","eComm_Orders","Solo"})
+  (groups = {"eComm","eComm_Orders"})
   public void COME1() throws Exception {
     
     WebDriver driver = getDriver();
@@ -403,7 +403,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
   } 
 
   @Test //Manual Entry Page :: Contract Order using only Contract PO expecting error
-  (groups = {"eComm","eComm_Orders","Solo"})
+  (groups = {"eComm","eComm_Orders"})
   public void COME6() throws Exception {
     
     WebDriver driver = getDriver();
@@ -535,7 +535,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
   }
   
   @Test //Manual Entry Page :: Contract Order using only Contract PO and Line Ref AND Contract Order using only Contract PO and material to call off entire line
-  (groups = {"eComm","eComm_Orders","Solo"})
+  (groups = {"eComm","eComm_Orders"})
   public void COME9() throws Exception {
     WebDriver driver = getDriver();
       

@@ -80,9 +80,11 @@ public class Ecomm_Shade_Test extends DriverFactory {
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\4Filter reset.png"));
         
-        System.out.println("Filter reset. Viewing top record...");
+        System.out.println("Filter reset. Finding order with single order line...");
         
-        Ecomm_OrderViewPage viewPage = snaPage.pressView();
+        int row = snaPage.getSingleLineRecord();
+        
+        Ecomm_OrderViewPage viewPage = snaPage.pressView(row);
         viewPage.waitForContent();
         
         //Take a screenshot
@@ -94,9 +96,9 @@ public class Ecomm_Shade_Test extends DriverFactory {
         viewPage.closeView();
         viewPage.waitForInvisibility();
         
-        System.out.println("View closed. Editing top item...");
+        System.out.println("View closed. Editing item...");
         
-        Ecomm_ShadeOrderConfirmationPage snaConf = snaPage.pressEdit();
+        Ecomm_ShadeOrderConfirmationPage snaConf = snaPage.pressEdit(row);
         
         try {
             Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());

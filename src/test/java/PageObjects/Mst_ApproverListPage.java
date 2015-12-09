@@ -91,7 +91,7 @@ public class Mst_ApproverListPage extends WBA_BasePage {
         Actions action = new Actions(driver);
         action.moveToElement(exportBtn).build().perform();
         
-        By xlsx = By.linkText(".XLSX");
+        By xlsx = By.partialLinkText("XLSX");
         WebElement xlsxBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(xlsx));
         
         xlsxBtn.click();

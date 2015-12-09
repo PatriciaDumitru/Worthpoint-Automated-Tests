@@ -2,6 +2,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import PageObjects.CCE_AddOrderPage;
 import PageObjects.CCE_CancelDraftPage;
 import PageObjects.CCE_MainPage;
@@ -12,6 +13,8 @@ import PageObjects.CCE_OutstandingDraftPage;
 import com.coats.selenium.DriverFactory;
 import static com.coats.selenium.DriverFactory.getDriver;
 import com.google.common.base.Verify;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -55,43 +58,26 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         orderPage.setPurposeType(DataItems.salesSamp, 0);
         orderPage.setQuantity(1,0);
         
-        String creationDate = orderPage.getCreationDate();
-        System.out.println(creationDate);
-        
         System.out.println("Product details entered. Pending order...");
         
         CCE_OrderStatusPage pendPage = orderPage.pressPendOrder();
         pendPage.waitForLoad();
+        
+        String orderNo = pendPage.getOrderNoAlert(); 
+        System.out.println("Order No.: " + orderNo);
         
         System.out.println("Order pended. Navigating to Outstanding Drafts...");
         
         CCE_OutstandingDraftPage draftPage = pendPage.pressOutstandingDraft();
         draftPage.waitForLoad();
         
-        System.out.println("Outstanding Drafts Page reached. Locating draft...");
+        System.out.println("Outstanding Drafts Page reached. Retrieving order number and locating draft...");
         
-        int row = draftPage.findDraft(creationDate);
-        String orderNo = null;
+        int row = draftPage.findDraft(orderNo);
+
+        AssertJUnit.assertFalse("Outstanding Draft Page: Draft not found after creation",row==-1);
         
-        if (row == -1) {
-            System.out.println("***No draft found on draft page***");
-        } else {
-            System.out.println("Viewing draft...");
-            
-            CCE_OrderViewPage viewPage = draftPage.pressView(row);
-            viewPage.switchTo();
-            viewPage.waitForContent();
-            
-            System.out.println("View displayed. Closing view...");
-            orderNo = viewPage.getOrderNumber();
-            
-            viewPage.closeView();
-            viewPage.waitForInvisibility();
-            
-            System.out.println("View closed.");
-        }
-        
-        System.out.println("Cancelling draft...");
+        System.out.println("Draft found. Cancelling draft...");
         
         CCE_CancelDraftPage cancelPage = draftPage.pressCancel(row);
         cancelPage.switchTo();
@@ -104,12 +90,14 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         System.out.println("Reason set. Saving...");
         
         cancelPage.pressSave();
-        cancelPage.closeView();
+        cancelPage.waitForInvisibility();
         draftPage.waitForElement();
-
+        
         System.out.println("Saved. Checking draft was removed...");
         
-        AssertJUnit.assertFalse("Outstanding Draft Page: Draft persists in table although cancelled",draftPage.findDraftByOrderNo(orderNo));
+        int row2 = draftPage.findDraft(orderNo);
+        
+        AssertJUnit.assertTrue("Outstanding Draft Page: Draft persists in table although cancelled",row2 == -1);
         
         System.out.println("Draft removed.");
     }
@@ -191,7 +179,6 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         String orderNo = viewPage.getOrderNumber();
         System.out.println("Order No: " + orderNo);
         
-        viewPage.closeView();
         viewPage.waitForInvisibility();
         driver.switchTo().defaultContent();
         
@@ -240,7 +227,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         CCE_OutstandingDraftPage draftPage3 = cancelPage.pressSave();
         draftPage3.waitForElement();
 
-        AssertJUnit.assertFalse("Outstanding Draft Page: Draft persists although cancelled",draftPage3.findDraftByOrderNo(orderNo));
+        AssertJUnit.assertTrue("Outstanding Draft Page: Draft persists although cancelled",draftPage3.findDraft(orderNo) == -1);
         
         System.out.println("No draft found, as expected");
         
@@ -274,6 +261,21 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         statusPage.waitForLoad();
         
         System.out.println("Order draft saved. Checking draft appears in table...");
+        
+        for (int i = 0; i < 3; i++) {
+            //Wait for 10 seconds to allow the system to udpate
+            Thread.sleep(10000);
+        
+            //Set filter to order no. as draft may not appear on first page when re-saved
+            statusPage.setOrderNo(orderNo);
+            statusPage.listOrders();
+            statusPage.waitForElement();
+        
+            if (statusPage.checkForRecords()) {
+                break;
+            }
+
+        }
         
         String orderStage = statusPage.getOrderStage(orderNo);
         

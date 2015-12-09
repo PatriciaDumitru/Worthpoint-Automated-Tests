@@ -275,7 +275,7 @@ public class Ecomm_OO_Test extends DriverFactory {
     }
     
     @Test //Pending Approval List Page :: Requester user :: Page and filter checks, print function
-    (groups = {"eComm"})
+    (groups = {"eComm"}) //CHANGES MASTER DATA
     public void PA1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -354,7 +354,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Records listed. Finding order...");
         
-        int row2 = pendPage.getRow(DataItems.lastUsedPO);
+        int row2 = pendPage.getRowAlt(DataItems.lastUsedPO);
         
         AssertJUnit.assertFalse("Pending Approval List Page: Order (Customer PO: "+DataItems.lastUsedPO+") not displayed in list",row2==-1);
         
@@ -415,7 +415,7 @@ public class Ecomm_OO_Test extends DriverFactory {
     }
     
     @Test //Pending Approval List Page :: Approver User :: Page and filter checks, approver/deny function
-    (groups = {"eComm"})
+    (groups = {"eComm"}) //CHANGES MASTER DATA
     public void PA2() throws Exception {
         WebDriver driver = getDriver();
         
@@ -514,7 +514,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Records listed. Finding order...");
         
-        int row2 = pendPage2.getRow(DataItems.lastUsedPO);
+        int row2 = pendPage2.getRowAlt(DataItems.lastUsedPO);
         
         AssertJUnit.assertFalse("Pending Approval List Page: Order (Customer PO: "+DataItems.lastUsedPO+") not displayed in list",row2==-1);
         
@@ -542,6 +542,9 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         printPage.closeView();
         printPage.waitForInvisibility();
+        
+        pendPage2.pressReset();
+        pendPage2.waitForElement();
         
         System.out.println("Print view closed. Approving order...");
         
@@ -595,7 +598,7 @@ public class Ecomm_OO_Test extends DriverFactory {
     }
     
     @Test //Denied Order Page :: Requester User :: Page and filter checks, edit and delete
-    (groups = {"eComm"}) 
+    (groups = {"eComm"}) //CHANGES MASTER DATA
     public void DO1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -876,7 +879,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         System.out.println("Orders listed. Exporting...");
         
         Ecomm_ExportDownloadPage dlPage = appHist.pressExport();
-        dlPage.waitForContent();
+        dlPage.waitForDownloadCompletion();
         
         System.out.println("Download page open. ");
         

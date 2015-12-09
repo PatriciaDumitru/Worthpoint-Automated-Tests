@@ -3,6 +3,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import PageObjects.CCE_AddOrderPage;
 import PageObjects.CCE_EnrichOrderPage;
 import PageObjects.CCE_HubSosPage;
@@ -408,9 +409,13 @@ public class Cce_SOC_Test extends DriverFactory {
         
         System.out.println("Prompt submitted. Adding order details...");
         
-        //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
-                DataItems.expShadeCode,DataItems.coneMUM,DataItems.sewing,DataItems.salesSamp,2);
+        addOrder.setShipToParty(DataItems.custDetails[1]);
+        addOrder.setArticle(DataItems.expArticle, 0);
+        addOrder.setShadeCode(DataItems.expShadeCode, 0);
+        addOrder.setMUMType(DataItems.coneMUM, 0);
+        addOrder.setRequestType(DataItems.sewing, 0);
+        addOrder.setPurposeType(DataItems.salesSamp, 0);
+        addOrder.setQuantity(2,0);
         
         System.out.println("Order details added. Pressing pend order...");
         
@@ -907,6 +912,21 @@ public class Cce_SOC_Test extends DriverFactory {
             addPage.setCustomerRef(i);
             addPage.setPurposeType(DataItems.protoPurpose,i);
             addPage.pressNewLineAlt(i+1);
+            
+            //If an alert appears after new-line is pressed, re-enter details to ensure no mandatory fields were missed
+            try {
+                Alert alert = Wait.alert(driver,3);
+                alert.accept();
+                
+                addPage.setArticle("8754120",i);
+                addPage.setQuantity(1, i);
+                addPage.setCustomerRef(i);
+                addPage.setPurposeType(DataItems.protoPurpose,i);
+                addPage.pressNewLineAlt(i+1);
+                
+            } catch (Exception e) {
+                
+            }
             
         }
         

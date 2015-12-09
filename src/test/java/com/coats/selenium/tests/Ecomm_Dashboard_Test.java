@@ -91,10 +91,6 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
 				
         Ecomm_BackendFailedFilesPage bffPage = eCommPage.clickBackendFailedFiles();
         bffPage.waitForLoad();
-            
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\1Backend Failed Files Page.png"));
 		
         System.out.println("Backend Failed Files page reached.");
 		
@@ -118,27 +114,15 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
             
         bffPage.setCustName(DataItems.custDetails[0]);
         
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\2Filter criteria entered.png"));
-        
         System.out.println("Filter criteria entered. Lisitng files...");
         
         bffPage.pressSearch();
         bffPage.waitForLoad();
         
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\3Files listed.png"));
-        
         System.out.println("Files listed. Viewing top item...");
         
         Ecomm_OrderViewPage viewPage = bffPage.pressView();
         viewPage.waitForErrorTable();
-        
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Backend Failed Files\\4View displayed.png"));
         
         System.out.println("View displayed. Closing view...");
         
