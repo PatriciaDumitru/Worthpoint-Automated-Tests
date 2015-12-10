@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,7 +27,7 @@ public class Mst_AddSalesOrgPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        WebElement element = Wait.visible(driver,DataItems.breadcrumbLocator);
         return element;
     }
     
@@ -45,14 +47,14 @@ public class Mst_AddSalesOrgPage extends WBA_BasePage {
     }
     
     public Mst_SalesOrgPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_SalesOrgPage(driver);
     } 
     
     public Mst_SalesOrgPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_SalesOrgPage(driver);
@@ -60,12 +62,12 @@ public class Mst_AddSalesOrgPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement name = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(nameField));
-        WebElement desc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(descField));
-        WebElement sapInstance = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sapInstanceField));
-        WebElement co = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractOrderField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement name = Wait.clickable(driver,nameField);
+        WebElement desc = Wait.clickable(driver,descField);
+        WebElement sapInstance = Wait.clickable(driver,sapInstanceField);
+        WebElement co = Wait.clickable(driver,contractOrderField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Sales Org Page: Name field not displayed",name.isDisplayed());
@@ -77,7 +79,7 @@ public class Mst_AddSalesOrgPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement sapInstance = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sapInstanceField));
+        WebElement sapInstance = Wait.clickable(driver,sapInstanceField);
     }
 
 }

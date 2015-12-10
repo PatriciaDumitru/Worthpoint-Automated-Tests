@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +24,7 @@ public class Mst_AddTicketPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.clickable(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddTicketPage setTicketName(String item) {
@@ -31,23 +33,23 @@ public class Mst_AddTicketPage extends WBA_BasePage {
     }
     
     public Mst_TicketsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_TicketsPage(driver);
     }
     
     public Mst_TicketsPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_TicketsPage(driver);
     }
     
     public void checkFields() {
-        WebElement ticketName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketNameField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement ticketName = Wait.clickable(driver,ticketNameField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Ticket Page: Ticket name field not displayed",ticketName.isDisplayed());
         AssertJUnit.assertTrue("Add Ticket Page: Save button not displayed",save.isDisplayed());
@@ -55,7 +57,7 @@ public class Mst_AddTicketPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement ticketName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketNameField));
+        WebElement ticketName = Wait.clickable(driver,ticketNameField);
     }
     
     

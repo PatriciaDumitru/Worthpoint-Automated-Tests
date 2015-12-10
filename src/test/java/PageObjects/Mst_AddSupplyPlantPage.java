@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,7 +28,7 @@ public class Mst_AddSupplyPlantPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(DataItems.breadcrumbLocator));
+        return Wait.clickable(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddSupplyPlantPage setDeliveryPlant(String item) throws InterruptedException {
@@ -56,21 +57,21 @@ public class Mst_AddSupplyPlantPage extends WBA_BasePage {
     }
     
     public Mst_SupplyPlantsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_SupplyPlantsPage(driver);
     }
     
     public void checkFields() {
-        WebElement delPlant = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveryPlantField));
-        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement mumType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
-        WebElement supplyPlant = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(supplyPlantField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement delPlant = Wait.clickable(driver,deliveryPlantField);
+        WebElement article = Wait.clickable(driver,articleField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
+        WebElement supplyPlant = Wait.clickable(driver,supplyPlantField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Supply Plant Page: Delivery Plant field not displayed",delPlant.isDisplayed());
         AssertJUnit.assertTrue("Add Supply Plant Page: Article field not displayed",article.isDisplayed());
@@ -83,7 +84,7 @@ public class Mst_AddSupplyPlantPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement delPlant = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveryPlantField));
+        WebElement delPlant = Wait.clickable(driver,deliveryPlantField);
     }
     
     

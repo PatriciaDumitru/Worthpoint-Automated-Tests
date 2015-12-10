@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +24,7 @@ public class Mst_AddHubPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddHubPage setHubName(String item) {
@@ -36,24 +38,24 @@ public class Mst_AddHubPage extends WBA_BasePage {
     }
     
     public Mst_HubsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_HubsPage(driver);
     }
     
     public Mst_HubsPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_HubsPage(driver);
     }
     
     public void checkFields() {
-        WebElement hubName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubNameField));
-        WebElement hubDesc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubDescField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement hubName = Wait.clickable(driver,hubNameField);
+        WebElement hubDesc = Wait.clickable(driver,hubDescField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Hub Page: Hub name field not displayed",hubName.isDisplayed());
         AssertJUnit.assertTrue("Add Hub Page: Hub description field not displayed",hubDesc.isDisplayed());
@@ -62,7 +64,7 @@ public class Mst_AddHubPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement hubDesc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubDescField));
+        WebElement hubDesc = Wait.clickable(driver,hubDescField);
     }
     
 }

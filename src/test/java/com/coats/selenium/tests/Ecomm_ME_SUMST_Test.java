@@ -2686,7 +2686,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         System.out.println("Pending Approval List Page reached. Finding order...");
         
-        int orderRow2 = pendPage2.getRow(DataItems.lastUsedPO);
+        int orderRow2 = pendPage2.getRowAlt(DataItems.lastUsedPO);
         
         AssertJUnit.assertFalse("Pending Approval List Page: Order (PO: "+DataItems.lastUsedPO+") not found in table for Approver account",orderRow2==-1);
         

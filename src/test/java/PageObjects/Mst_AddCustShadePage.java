@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,7 +27,7 @@ public class Mst_AddCustShadePage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddCustShadePage setSalesOrg(String item) throws InterruptedException {
@@ -49,14 +51,14 @@ public class Mst_AddCustShadePage extends WBA_BasePage {
     }
     
     public Mst_AddCustShadePage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_AddCustShadePage(driver);
     }
     
     public Mst_AddCustShadePage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_AddCustShadePage(driver);
@@ -64,12 +66,12 @@ public class Mst_AddCustShadePage extends WBA_BasePage {
      
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement custShade = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custShadeField));
-        WebElement coatsShade = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsShadeField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement custShade = Wait.clickable(driver,custShadeField);
+        WebElement coatsShade = Wait.clickable(driver,coatsShadeField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Customer Shade: Sales Organisation field not displayed",salesOrg.isDisplayed());
@@ -81,7 +83,7 @@ public class Mst_AddCustShadePage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsShadeField));
+        WebElement element = Wait.clickable(driver,coatsShadeField);
     }
     
 }

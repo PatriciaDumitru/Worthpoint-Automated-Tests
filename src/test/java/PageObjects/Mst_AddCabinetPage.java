@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +26,7 @@ public class Mst_AddCabinetPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddCabinetPage setSalesOrg(String item) throws InterruptedException {
@@ -33,7 +35,7 @@ public class Mst_AddCabinetPage extends WBA_BasePage {
     }
     
     public Mst_AddCabinetPage setCabinetCode(String item) throws InterruptedException {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cabinetCodeField));
+        WebElement element = Wait.clickable(driver,cabinetCodeField);
         element.clear();
         
         CommonTask.setInputField(driver, cabinetCodeField, item);
@@ -76,26 +78,26 @@ public class Mst_AddCabinetPage extends WBA_BasePage {
     }
     
     public Mst_AddCabinetPage pressAddThread() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(addThreadButton));
+        WebElement element = Wait.clickable(driver,addThreadButton);
         element.click();
         
         return new Mst_AddCabinetPage(driver);
     }
     
     public Mst_CabinetsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_CabinetsPage(driver);
     }
 
     public void checkFields() {
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement cabinetCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cabinetCodeField));
-        WebElement shipToParty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
-        WebElement addThread = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(addThreadButton));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement cabinetCode = Wait.clickable(driver,cabinetCodeField);
+        WebElement shipToParty = Wait.clickable(driver,shipToPartyField);
+        WebElement addThread = Wait.clickable(driver,addThreadButton);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Cabinet Page: Sales Org field not displayed",salesOrg.isDisplayed());
         AssertJUnit.assertTrue("Add Cabinet Page: Cabinet Code field not displayed",cabinetCode.isDisplayed());
@@ -106,7 +108,7 @@ public class Mst_AddCabinetPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement cabinetCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cabinetCodeField));
+        WebElement cabinetCode = Wait.clickable(driver,cabinetCodeField);
     }
     
 }

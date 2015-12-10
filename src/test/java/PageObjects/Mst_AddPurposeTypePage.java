@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +23,7 @@ public class Mst_AddPurposeTypePage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddPurposeTypePage setPurposeType(String item) {
@@ -30,16 +32,16 @@ public class Mst_AddPurposeTypePage extends WBA_BasePage {
     }
     
     public Mst_PurposeTypesPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_PurposeTypesPage(driver);
     }
     
     public void checkFields() {
-        WebElement purposeType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(purposeTypeField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement purposeType = Wait.clickable(driver,purposeTypeField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Purpose Type: Purpose Type field not displayed",purposeType.isDisplayed());
         AssertJUnit.assertTrue("Add Purpose Type: Save button not displayed",save.isDisplayed());
@@ -47,7 +49,7 @@ public class Mst_AddPurposeTypePage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement purposeType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(purposeTypeField));
+        WebElement purposeType = Wait.clickable(driver,purposeTypeField);
     }
     
 }

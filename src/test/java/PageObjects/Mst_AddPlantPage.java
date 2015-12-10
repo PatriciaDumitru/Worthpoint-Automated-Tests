@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,11 +29,11 @@ public class Mst_AddPlantPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_EditPlantPage setPlantName(String item) {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
+        WebElement element = Wait.clickable(driver,plantNameField);
         element.clear();
         
         CommonTask.setInputField(driver, plantNameField, item);
@@ -65,21 +66,21 @@ public class Mst_AddPlantPage extends WBA_BasePage {
     }
     
     public Mst_PlantsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_PlantsPage(driver);
     }
 
     public void checkFields() {
-        WebElement plantName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
-        WebElement plantDesc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantDescField));
-        WebElement platinum = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(leadTimeP1Field));
-        WebElement gold = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(leadTimeP2Field));
-        WebElement silver = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(leadTimeP3Field));
-        WebElement bronze = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(leadTimeP4Field));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
+        WebElement plantName = Wait.clickable(driver,plantNameField);
+        WebElement plantDesc = Wait.clickable(driver,plantDescField);
+        WebElement platinum = Wait.clickable(driver,leadTimeP1Field);
+        WebElement gold = Wait.clickable(driver,leadTimeP2Field);
+        WebElement silver = Wait.clickable(driver,leadTimeP3Field);
+        WebElement bronze = Wait.clickable(driver,leadTimeP4Field);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement reset = Wait.clickable(driver,resetButton);
         
         AssertJUnit.assertTrue("Edit Plant Page: Plant Name Field not displayed",plantName.isDisplayed());
         AssertJUnit.assertTrue("Edit Plant Page: Plant Description Field not displayed",plantDesc.isDisplayed());
@@ -92,7 +93,7 @@ public class Mst_AddPlantPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement plantDesc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantDescField));
+        WebElement plantDesc = Wait.clickable(driver,plantDescField);
     }
     
 }

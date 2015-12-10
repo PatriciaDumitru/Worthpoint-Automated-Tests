@@ -34,7 +34,7 @@ public class Ecomm_UO_SUSST_Test {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER SUSST TEST: File of <100 lines, realtime upload, MOQ active", "G_OOC_UORT_SUSST_MOQ",DataItems.susstUsername,DataItems.susstPassword);
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER SUSST TEST RT1: File of <100 lines, realtime upload, MOQ active", "G_OOC_UORT_SUSST_MOQ",DataItems.susstUsername,DataItems.susstPassword);
         
         System.out.println("Navigating to Upload Order...");
         
@@ -127,7 +127,7 @@ public class Ecomm_UO_SUSST_Test {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER SUSST TEST: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST",DataItems.requesterUsername,DataItems.requesterPassword);
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER SUSST TEST RT2: File of <100 lines, realtime upload", "G_OOC_UORT_SUSST",DataItems.requesterUsername,DataItems.requesterPassword);
         
         System.out.println("Navigating to Upload Order...");
         
@@ -225,7 +225,7 @@ public class Ecomm_UO_SUSST_Test {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER SUSST TEST: File of <100 lines, backend upload", "G_OOC_UOBE_SUSST",DataItems.susstUsername,DataItems.susstPassword);
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER SUSST TEST BE1: File of <100 lines, backend upload", "G_OOC_UOBE_SUSST",DataItems.susstUsername,DataItems.susstPassword);
         
         System.out.println("Navigating to Upload Order...");
         

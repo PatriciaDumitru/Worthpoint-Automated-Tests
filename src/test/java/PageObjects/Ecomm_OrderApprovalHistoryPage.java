@@ -33,54 +33,14 @@ public class Ecomm_OrderApprovalHistoryPage extends WBA_BasePage {
     public WebElement getBreadcrumb() {
         return Wait.visible(driver,DataItems.breadcrumbLocator2);
     }
-        
-    public WebElement getCustomerNameField() {
-        WebElement field = Wait.clickable(driver,custNameField);
-        return field;
-    }
-    
-    public WebElement getOrderNoField() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoField));
-        return field;
-    }
-    
-    public WebElement getRequesterField() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(requesterField));
-        return field;
-    }
-    
-    public WebElement getApproverField() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(approverField));
-        return field;
-    }
-    
-    public WebElement getStatusField() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(statusField));
-        return field;
-    }
     
     public WebElement getCustomerPOField() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(custPOField));
-        return field;
-    }
-    
-    public WebElement getSearchButton() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(searchButton));
-        return field;
-    }
-    
-    public WebElement getResetButton() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(resetButton));
-        return field;
-    }
-    
-    public WebElement getExportButton() {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(exportButton));
+        WebElement field = Wait.visible(driver,custPOField);
         return field;
     }
     
     public WebElement getOrderNoHead() {
-        WebElement head = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderNoHead));
+        WebElement head = Wait.visible(driver,orderNoHead);
         return head;
     }
     

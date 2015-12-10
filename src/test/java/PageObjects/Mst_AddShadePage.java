@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +31,7 @@ public class Mst_AddShadePage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        WebElement element = Wait.visible(driver,DataItems.breadcrumbLocator);
         return element;
     }
     
@@ -75,14 +76,14 @@ public class Mst_AddShadePage extends WBA_BasePage {
     }
     
     public Mst_ShadesPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_ShadesPage(driver);
     }
     
     public Mst_ShadesPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_ShadesPage(driver);
@@ -90,16 +91,16 @@ public class Mst_AddShadePage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement shadeCard = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCardField));
-        WebElement shadeName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeNameField));
-        WebElement shadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement redValue = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(redValueField));
-        WebElement greenValue = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(greenValueField));
-        WebElement blueValue = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(blueValueField));
-        WebElement standardType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(standardTypeField));
-        WebElement typeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(typeCodeField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement shadeCard = Wait.clickable(driver,shadeCardField);
+        WebElement shadeName = Wait.clickable(driver,shadeNameField);
+        WebElement shadeCode = Wait.clickable(driver,shadeCodeField);
+        WebElement redValue = Wait.clickable(driver,redValueField);
+        WebElement greenValue = Wait.clickable(driver,greenValueField);
+        WebElement blueValue = Wait.clickable(driver,blueValueField);
+        WebElement standardType = Wait.clickable(driver,standardTypeField);
+        WebElement typeCode = Wait.clickable(driver,typeCodeField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Shade Page: Shade Card field not displayed",shadeCard.isDisplayed());
@@ -116,7 +117,7 @@ public class Mst_AddShadePage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(typeCodeField));
+        WebElement wait = Wait.clickable(driver,typeCodeField);
     }
     
 }

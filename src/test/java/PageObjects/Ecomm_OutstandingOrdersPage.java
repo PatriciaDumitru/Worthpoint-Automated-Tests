@@ -97,7 +97,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     
     public int getRow(String poNumber) {
         //wait for table to load
-        boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No."));
+        boolean waitForLoad = Wait.textPresent(driver,By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No.");
         
         for (int i = 0; i < 8; i++) {
             By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(6)");
@@ -115,7 +115,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     
     public int getRowAlt(String poNumber) {
         //The outstanding order tables vary so require alternative methods to getRow
-        boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No."));
+        boolean waitForLoad = Wait.textPresent(driver,By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No.");
         
         for (int i = 0; i < 8; i++) {
             By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+i+" > td:nth-child(7)");
@@ -135,7 +135,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         //For some users, the outstanding orders page table have slightly offset locators. e.g. for testArun01 account
 
         //wait for table to load
-        boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No."));
+        boolean waitForLoad = Wait.textPresent(driver,By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No.");
         boolean found = false;
         int i = 0;
         while(!found && i < 8) {

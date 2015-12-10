@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -33,64 +35,7 @@ public class Mst_AddCoatsUserPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(breadcrumbLocator));
-        return driver.findElement(DataItems.breadcrumbLocator);
-    }
-    
-    public WebElement getFirstNameField() {
-        return driver.findElement(firstNameField);
-    }
-    
-    public WebElement getLastNameField() {
-        return driver.findElement(surnameField);
-    }
-    
-    public WebElement getUsernameField() {
-        return driver.findElement(usernameField);
-    }
-    
-    public WebElement getPasswordField() {
-        return driver.findElement(passwordField);
-    }
-    
-    public WebElement getUserTypeField() {
-        return driver.findElement(userTypeField);
-    }
-    
-    public WebElement getCountryField() {
-        return driver.findElement(countryField);
-    }
-    
-    public WebElement getSalesOrgField() {
-        return driver.findElement(salesOrgField);
-    }
-    
-    public WebElement getHubField() {
-        return driver.findElement(hubField);
-    }
-    
-    public WebElement getTimeZoneField() {
-        return driver.findElement(timeZoneField);
-    }
-    
-    public WebElement getLanguageField() {
-        return driver.findElement(languageField);
-    }
-    
-    public WebElement getDateFormatField() {
-        return driver.findElement(dateFormatField);
-    }
-    
-    public WebElement getTimeFormatField() {
-        return driver.findElement(timeFormatField);
-    }
-    
-    public WebElement getSaveButton() {
-        return driver.findElement(saveButton);
-    }
-    
-    public WebElement getCancelButton() {
-        return driver.findElement(cancelButton);
+        return Wait.visible(driver,breadcrumbLocator);
     }
     
     public Mst_AddCoatsUserPage setFirstName(String item) {
@@ -119,57 +64,57 @@ public class Mst_AddCoatsUserPage extends WBA_BasePage {
     }
     
     public Mst_AddCoatsUserPage setCountry(String item) throws InterruptedException {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(countryField));
+        WebElement field = Wait.clickable(driver,countryField);
 
         field.click();
         
         By searchFieldLocator = By.id("s2id_autogen1");
-        WebElement searchField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchFieldLocator));
+        WebElement searchField = Wait.clickable(driver,searchFieldLocator);
         searchField.sendKeys(item+Keys.ENTER);
 
         By choiceLocator = By.cssSelector("#s2id_CoatsUserCountry > ul > li.select2-search-choice > div");
-        WebElement choice = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(choiceLocator));
+        WebElement choice = Wait.visible(driver,choiceLocator);
         
         return new Mst_AddCoatsUserPage(driver);
     }
     
     public Mst_AddCoatsUserPage setSalesOrg(String item) throws InterruptedException {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+        WebElement field = Wait.clickable(driver,salesOrgField);
 
         field.click();
         
         By searchFieldLocator = By.id("s2id_autogen2");
-        WebElement searchField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchFieldLocator));
+        WebElement searchField = Wait.clickable(driver,searchFieldLocator);
         searchField.sendKeys(item+Keys.ENTER);
 
         By choiceLocator = By.cssSelector("#s2id_CoatsUserSalesOrg > ul > li.select2-search-choice > div");
-        WebElement choice = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(choiceLocator));
+        WebElement choice = Wait.visible(driver,choiceLocator);
         return new Mst_AddCoatsUserPage(driver);
     }
     
     public Mst_AddCoatsUserPage setHub(String item) throws InterruptedException {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
+        WebElement field = Wait.clickable(driver,hubField);
 
         field.click();
         
         By searchFieldLocator = By.id("s2id_autogen3");
-        WebElement searchField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchFieldLocator));
+        WebElement searchField = Wait.clickable(driver,searchFieldLocator);
         searchField.sendKeys(item+Keys.ENTER);
 
         By choiceLocator = By.cssSelector("#s2id_CoatsUserHub > ul > li.select2-search-choice > div");
-        WebElement choice = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(choiceLocator));
+        WebElement choice = Wait.visible(driver,choiceLocator);
         
         return new Mst_AddCoatsUserPage(driver);
     }
     
     public Mst_CoatsUsersPage pressSave() {
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        driver.findElement(saveButton).click();
+        WebElement save = Wait.clickable(driver,saveButton);
+        save.click();
         return new Mst_CoatsUsersPage(driver);
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(timeZoneField));
+        WebElement wait = Wait.clickable(driver,timeZoneField);
     }
     
 }

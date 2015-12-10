@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -35,37 +37,9 @@ public class Mst_AllUserTypesPage extends WBA_BasePage {
         return driver.findElement(DataItems.breadcrumbLocator);
     }
     
-    public WebElement getUserTypeField() {
-        return driver.findElement(userTypeField);
-    }
-    
-    public WebElement getRequesterTypeField() {
-        return driver.findElement(requesterTypeField);
-    }
-    
-    public WebElement getStatusField() {
-        return driver.findElement(statusField);
-    }
-    
-    public WebElement getLastUpdatedFromField() {
-        return driver.findElement(lastUpdatedFromField);
-    }
-    
-    public WebElement getLastUpdatedToField() {
-        return driver.findElement(lastUpdatedToField);
-    }
-    
-    public WebElement getSearchButton() {
-        return driver.findElement(searchButton);
-    }
-    
-    public WebElement getResetButton() {
-        return driver.findElement(resetButton);
-    }
-    
     public String getMessage() {
         try {
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessage));
+            WebElement wait = Wait.visible(driver,flashMessage);
             return wait.getText();
         } catch (TimeoutException e) {
             return "not found";
@@ -89,21 +63,21 @@ public class Mst_AllUserTypesPage extends WBA_BasePage {
     }
    
     public Mst_AllUserTypesPage pressSearch() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        driver.findElement(searchButton).click();
+        WebElement search = Wait.clickable(driver,searchButton);
+        search.click();
         return new Mst_AllUserTypesPage(driver);
     }
     
     public Mst_AllUserTypesPage pressReset() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
-        driver.findElement(resetButton).click();
+        WebElement reset = Wait.clickable(driver,resetButton);
+        reset.click();
         return new Mst_AllUserTypesPage(driver);
     }
     
     public Mst_EditUserTypePage pressEdit(int row) {
         By editButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(1)");
         
-        WebElement editBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(editButton));
+        WebElement editBtn = Wait.clickable(driver,editButton);
         editBtn.click();
         
         return new Mst_EditUserTypePage(driver);
@@ -113,11 +87,11 @@ public class Mst_AllUserTypesPage extends WBA_BasePage {
         By userTypeCell = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(2)");
         By deleteButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td.actions > a:nth-child(3) > span");
         
-        WebElement userType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(userTypeCell));
+        WebElement userType = Wait.visible(driver,userTypeCell);
         
         if (userType.getText().equals(item)) {
             driver.findElement(deleteButton).click();
-            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert = Wait.alert(driver);
             alert.accept();
             return true;
         }
@@ -125,7 +99,7 @@ public class Mst_AllUserTypesPage extends WBA_BasePage {
     }
     
     public Mst_AddUserTypePage pressNewUserType() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newUserButton));
+        WebElement wait = Wait.clickable(driver,newUserButton);
         driver.findElement(newUserButton).click();
         return new Mst_AddUserTypePage(driver);
     }
@@ -146,7 +120,7 @@ public class Mst_AllUserTypesPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(userTypeField));
+        WebElement wait = Wait.clickable(driver,userTypeField);
     }
     
     public void checkFields() {
@@ -160,18 +134,18 @@ public class Mst_AllUserTypesPage extends WBA_BasePage {
         WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
     
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("All User Types Page: User Type field not displayed correctly",getUserTypeField().isDisplayed());
-        AssertJUnit.assertTrue("All User Types Page: Requester Type field not displayed correctly",getRequesterTypeField().isDisplayed());
-        AssertJUnit.assertTrue("All User Types Page: Status field not displayed correctly",getStatusField().isDisplayed());
-        AssertJUnit.assertTrue("All User Types Page: Last Updated From field not displayed correctly",getLastUpdatedFromField().isDisplayed());
-        AssertJUnit.assertTrue("All User Types Page: Last Updated To field not displayed correctly",getLastUpdatedToField().isDisplayed());
-        AssertJUnit.assertTrue("All User Types Page: Search button not displayed correctly",getSearchButton().isDisplayed());
-        AssertJUnit.assertTrue("All User Types Page: Reset button not displayed correctly",getResetButton().isDisplayed());
+        AssertJUnit.assertTrue("All User Types Page: User Type field not displayed correctly",userType.isDisplayed());
+        AssertJUnit.assertTrue("All User Types Page: Requester Type field not displayed correctly",requesterType.isDisplayed());
+        AssertJUnit.assertTrue("All User Types Page: Status field not displayed correctly",status.isDisplayed());
+        AssertJUnit.assertTrue("All User Types Page: Last Updated From field not displayed correctly",updatedFrom.isDisplayed());
+        AssertJUnit.assertTrue("All User Types Page: Last Updated To field not displayed correctly",updatedTo.isDisplayed());
+        AssertJUnit.assertTrue("All User Types Page: Search button not displayed correctly",search.isDisplayed());
+        AssertJUnit.assertTrue("All User Types Page: Reset button not displayed correctly",reset.isDisplayed());
     }
     
     public boolean recordsAppear() {
         try {
-            WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(noRecords));
+            WebElement wait = Wait.visible(driver,noRecords);
             return false;
         } catch (TimeoutException t) {
             return true;

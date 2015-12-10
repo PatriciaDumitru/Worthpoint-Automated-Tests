@@ -451,6 +451,11 @@ public class Ecomm_Reports_Test extends DriverFactory {
             
             System.out.println("View closed. Exporting records...");
 
+            spPage.setCustName(DataItems.custDetails[0]);
+            spPage.setRequester(tempRequester);
+            spPage.pressSearch();
+            spPage.waitForLoad();
+            
             Ecomm_ExportDownloadPage dlPage = spPage.pressExport();
             dlPage.waitForDownloadCompletion();
             
@@ -879,7 +884,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 		
             System.out.println("Checking title...");
             
-            AssertJUnit.assertTrue("My Reports (Customer care) Page: Title not displayed as expected",mrPage.getBreadcrumbText().equals("Reports | Customer Care"));
+            AssertJUnit.assertTrue("My Reports (Customer care) Page: Title not displayed as expected",mrPage.getBreadcrumb().getText().equals("Reports | Customer Care"));
             
             System.out.println("Title checked. Checking fields...");
 		
@@ -908,7 +913,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
             
             Ecomm_OrderViewPage viewPage = mrPage.pressPrint_SUSST();
             viewPage.waitForContent();
-            viewPage.switchTo();
             
             System.out.println("Report printed. Closing...");
             

@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,7 +29,7 @@ public class Mst_AddMarketRunningTextPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddMarketRunningTextPage setTitle(String item) {
@@ -61,22 +63,22 @@ public class Mst_AddMarketRunningTextPage extends WBA_BasePage {
     }
     
     public Mst_MarketRunningTextPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_MarketRunningTextPage(driver);
     }
     
     public void checkFields() {
-        WebElement title = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(titleField));
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement setToAll = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(setToAllButton));
-        WebElement runningText = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(runningTextField));
-        WebElement availFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(availFromField));
-        WebElement availTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(availToField));
-        WebElement accessType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(accessTypeField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement title = Wait.clickable(driver,titleField);
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement setToAll = Wait.clickable(driver,setToAllButton);
+        WebElement runningText = Wait.clickable(driver,runningTextField);
+        WebElement availFrom = Wait.clickable(driver,availFromField);
+        WebElement availTo = Wait.clickable(driver,availToField);
+        WebElement accessType = Wait.clickable(driver,accessTypeField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Market Running Text Page: Title field not displayed",title.isDisplayed());
         AssertJUnit.assertTrue("Add Market Running Text Page: Sales Org field not displayed",salesOrg.isDisplayed());
@@ -89,7 +91,7 @@ public class Mst_AddMarketRunningTextPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(titleField));
+        WebElement element = Wait.clickable(driver,titleField);
     }
     
 }

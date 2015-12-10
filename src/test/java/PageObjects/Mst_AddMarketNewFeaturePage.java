@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,7 +30,7 @@ public class Mst_AddMarketNewFeaturePage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.clickable(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddMarketNewFeaturePage setFeatureTitle(String item) {
@@ -42,7 +44,7 @@ public class Mst_AddMarketNewFeaturePage extends WBA_BasePage {
     }
     
     public Mst_AddMarketNewFeaturePage pressSetToAll() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(setToAllButton));
+        WebElement element = Wait.clickable(driver,setToAllButton);
         element.click();
         
         return new Mst_AddMarketNewFeaturePage(driver);
@@ -52,10 +54,10 @@ public class Mst_AddMarketNewFeaturePage extends WBA_BasePage {
         //Set a feature description. Rich text editor requires some adjusted handling
         
         //Switch to the rich text editor frame so that the elements within can be referenced
-        WebDriver d = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(featureDescriptionFrame));
+        WebDriver d = Wait.frame(driver,featureDescriptionFrame);
 
         //Get the body element within the editor frame
-        WebElement body = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(featureDescriptionField));
+        WebElement body = Wait.presence(driver,featureDescriptionField);
         
         //Use actions to type the text
         Actions action = new Actions(driver);
@@ -82,20 +84,20 @@ public class Mst_AddMarketNewFeaturePage extends WBA_BasePage {
     }
     
     public Mst_MarketNewFeaturesPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_MarketNewFeaturesPage(driver);
     }
     
     public void checkFields() {
-        WebElement featureTitle = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(featureTitleField));
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement setToAll = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(setToAllButton));
-        WebElement accessType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(accessTypeField));
-        WebElement availDate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(availDateField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement featureTitle = Wait.clickable(driver,featureTitleField);
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement setToAll = Wait.clickable(driver,setToAllButton);
+        WebElement accessType = Wait.clickable(driver,accessTypeField);
+        WebElement availDate = Wait.clickable(driver,availDateField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Market New Feature Page: Feature Title field not displayed",featureTitle.isDisplayed());
         AssertJUnit.assertTrue("Add Market New Feature Page: Sales Org field not displayed",salesOrg.isDisplayed());
@@ -107,7 +109,7 @@ public class Mst_AddMarketNewFeaturePage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(setToAllButton));
+        WebElement element = Wait.clickable(driver,setToAllButton);
     }
     
 }

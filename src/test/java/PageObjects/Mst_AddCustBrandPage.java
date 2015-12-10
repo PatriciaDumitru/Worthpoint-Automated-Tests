@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,7 +27,7 @@ public class Mst_AddCustBrandPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddCustBrandPage setSalesOrg(String item) throws InterruptedException {
@@ -49,7 +51,7 @@ public class Mst_AddCustBrandPage extends WBA_BasePage {
     }
     
     public Mst_CustBrandsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_CustBrandsPage(driver);
@@ -57,12 +59,12 @@ public class Mst_AddCustBrandPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement custBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custBrandField));
-        WebElement coatsBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsBrandField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement custBrand = Wait.clickable(driver,custBrandField);
+        WebElement coatsBrand = Wait.clickable(driver,coatsBrandField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Customer Brand Page: Sales Org Field not displayed",salesOrg.isDisplayed());
@@ -74,7 +76,7 @@ public class Mst_AddCustBrandPage extends WBA_BasePage {
     }
     
     public void waitForElement(){
-        WebElement coatsBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsBrandField));
+        WebElement coatsBrand = Wait.clickable(driver,coatsBrandField);
     }
     
 }

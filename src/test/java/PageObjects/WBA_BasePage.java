@@ -1,6 +1,7 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.CCE_MainPage.ordersHeader;
 import static PageObjects.Ecomm_MainPage.ordersTab;
 import java.text.DateFormat;

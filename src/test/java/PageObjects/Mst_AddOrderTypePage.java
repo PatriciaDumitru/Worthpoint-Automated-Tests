@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +23,7 @@ public class Mst_AddOrderTypePage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
         
     }
     
@@ -31,23 +33,23 @@ public class Mst_AddOrderTypePage extends WBA_BasePage {
     }
     
     public Mst_OrderTypePage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_OrderTypePage(driver);
     }
     
     public Mst_OrderTypePage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_OrderTypePage(driver);
     }
     
     public void checkFields() {
-        WebElement orderType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderTypeField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement orderType = Wait.clickable(driver,orderTypeField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Order Type Page: Order Type field not displayed",orderType.isDisplayed());
         AssertJUnit.assertTrue("Add Order Type Page: Save button not displayed",save.isDisplayed());
@@ -55,7 +57,7 @@ public class Mst_AddOrderTypePage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement orderType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderTypeField));
+        WebElement orderType = Wait.clickable(driver,orderTypeField);
     }
     
 }

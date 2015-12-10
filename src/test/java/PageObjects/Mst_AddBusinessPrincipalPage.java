@@ -26,7 +26,7 @@ public class Mst_AddBusinessPrincipalPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddBusinessPrincipalPage setPrincipalNo(String item) {
@@ -63,8 +63,8 @@ public class Mst_AddBusinessPrincipalPage extends WBA_BasePage {
         WebElement princNo = Wait.clickable(driver,principalNoField);
         WebElement princName = Wait.clickable(driver,principalNameField);
         WebElement lightSource1 = Wait.clickable(driver,lightSource1Field);
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Business Principal Page: Principal No Field not displayed",princNo.isDisplayed());
@@ -75,7 +75,7 @@ public class Mst_AddBusinessPrincipalPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement lightSource1 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lightSource1Field));
+        WebElement lightSource1 = Wait.clickable(driver,lightSource1Field);
     }
     
 }

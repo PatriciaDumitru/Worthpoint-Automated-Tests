@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ public class Mst_AddShadeCardPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(DataItems.breadcrumbLocator));
+        return Wait.clickable(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddShadeCardPage setShadeCardName(String item) {
@@ -37,17 +38,17 @@ public class Mst_AddShadeCardPage extends WBA_BasePage {
     }
     
     public Mst_ShadeCardsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_ShadeCardsPage(driver);
     }
     
     public void checkFields() {
-        WebElement shadeCardName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCardNameField));
-        WebElement shadeCardCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCardCodeField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement shadeCardName = Wait.clickable(driver,shadeCardNameField);
+        WebElement shadeCardCode = Wait.clickable(driver,shadeCardCodeField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Shade Card Page: Shade Card Name field not displayed",shadeCardName.isDisplayed());
         AssertJUnit.assertTrue("Add Shade Card Page: Shade Card Code field not displayed",shadeCardCode.isDisplayed());
@@ -56,7 +57,7 @@ public class Mst_AddShadeCardPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement shadeCardCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCardCodeField));
+        WebElement shadeCardCode = Wait.clickable(driver,shadeCardCodeField);
     }
     
 }

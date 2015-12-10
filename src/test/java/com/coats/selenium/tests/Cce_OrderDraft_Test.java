@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
 public class Cce_OrderDraft_Test extends DriverFactory {
     
     @Test //Outstanding Draft Page :: Page and filter checks, create and cancel (from outstanding draft table) draft
-    (groups = {"CCE"}) //CURRENTLY UNSTABLE: failing at line 107 to close the overlay. After fatal error fix is moved to QA, should be fine
+    (groups = {"CCE"})
     public void OD1() throws Exception {
         
         WebDriver driver = getDriver();
@@ -192,7 +192,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
     }
     
     @Test //Outstanding Draft Page :: Cancelling draft (from order entry page)
-    (groups = {"CCE"}) //CURRENTLY UNSTABLE: failing at line 240 due to fatal error bug. When fixed, should be fine. 
+    (groups = {"CCE"})
     public void OD3() throws Exception {
         
         WebDriver driver = getDriver();

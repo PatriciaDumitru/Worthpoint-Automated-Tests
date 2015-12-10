@@ -570,7 +570,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         
         AssertJUnit.assertTrue("Pending Approval Page: Upload Order (Customer PO: "+poNumber+") not displayed in Pending Approval after confirmation",row!=-1);
         
-        String orderNo = pendPage.getOrderNo(row);
+        String orderNo = pendPage.getOrderNoSUMST(row);
         
         System.out.println("Order found.");
         System.out.println("Order No.: " + orderNo);

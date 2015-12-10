@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,7 +27,7 @@ public class Mst_AddCustBusPrincPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.clickable(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddCustBusPrincPage setSalesOrg(String item) throws InterruptedException {
@@ -49,25 +51,25 @@ public class Mst_AddCustBusPrincPage extends WBA_BasePage {
     }
     
     public Mst_CustBusinessPrincipalPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         return new Mst_CustBusinessPrincipalPage(driver);
     }
     
     public Mst_CustBusinessPrincipalPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         return new Mst_CustBusinessPrincipalPage(driver);
     }
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement principalName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(principalNameField));
-        WebElement coatsPrincipal = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsPrincipalNameField));
-        WebElement saveBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement principalName = Wait.clickable(driver,principalNameField);
+        WebElement coatsPrincipal = Wait.clickable(driver,coatsPrincipalNameField);
+        WebElement saveBtn = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Customer Business Principal Page: Sales Org Field not displayed",salesOrg.isDisplayed());
@@ -79,7 +81,7 @@ public class Mst_AddCustBusPrincPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement coatsPrincipal = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsPrincipalNameField));
+        WebElement coatsPrincipal = Wait.clickable(driver,coatsPrincipalNameField);
     }
     
 }

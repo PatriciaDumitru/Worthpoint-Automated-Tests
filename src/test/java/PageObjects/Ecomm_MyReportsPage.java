@@ -30,9 +30,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     By createDateToField = By.id("filterBulkOrderCreatedTo");
     By custCodeField = By.id("filterCustomerCustomerCode");
     By saveMyReportButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1) > input");
-    By printButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(2)");
+    By printButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By exportButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3)");
-    By resetButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(4) > a");
+    By resetButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3) > a");
     By printButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1)");
     By exportButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(2)");
     By resetButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3)");
@@ -40,6 +40,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     
     public Ecomm_MyReportsPage(WebDriver driver) {
         super(driver);
+    }
+
+    public WebElement getBreadcrumb() {
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public WebElement getSelectAllButton() {
@@ -234,22 +238,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     public void checkFields_SUMST() {
         //Wait for all elements to be clickable 
         WebElement orderNo = Wait.clickable(driver,orderNoField);
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement custCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement dateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateFromField));
-        WebElement dateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createDateToField));
-        WebElement selectAll = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(selectAllButton));
-        WebElement createdDate = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(createdDateButton));
-        WebElement PONumber = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(poNumberButton));
-        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleButton));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandButton));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketButton));
-        WebElement shadecode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeButton));
-        WebElement invoiceNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(invoiceNoButton));
-        WebElement delNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveryNoButton));
-        WebElement print = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(printButton_SUMST));
-        WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton_SUMST));
-        WebElement export = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton_SUMST));
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement custCode = Wait.clickable(driver,custCodeField);
+        WebElement dateFrom = Wait.clickable(driver,createDateFromField);
+        WebElement dateTo = Wait.clickable(driver,createDateToField);
+        WebElement selectAll = Wait.clickable(driver,selectAllButton);
+        WebElement createdDate = Wait.clickable(driver,createdDateButton);
+        WebElement PONumber = Wait.clickable(driver,poNumberButton);
+        WebElement article = Wait.clickable(driver,articleButton);
+        WebElement brand = Wait.clickable(driver,brandButton);
+        WebElement ticket = Wait.clickable(driver,ticketButton);
+        WebElement shadecode = Wait.clickable(driver,shadeCodeButton);
+        WebElement invoiceNo = Wait.clickable(driver,invoiceNoButton);
+        WebElement delNo = Wait.clickable(driver,deliveryNoButton);
+        WebElement print = Wait.clickable(driver,printButton_SUMST);
+        WebElement reset = Wait.clickable(driver,resetButton_SUMST);
+        WebElement export = Wait.clickable(driver,exportButton_SUMST);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("My Reports Page: Order No Field not displayed",orderNo.isDisplayed());

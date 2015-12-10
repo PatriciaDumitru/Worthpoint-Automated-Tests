@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,7 +34,7 @@ public class Mst_AddShipToPartyPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddShipToPartyPage setFCE(String item) {
@@ -96,27 +98,27 @@ public class Mst_AddShipToPartyPage extends WBA_BasePage {
     }
     
     public Mst_ShipToPartiesPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_ShipToPartiesPage(driver);
     }
     
     public void checkFields() {
-        WebElement fce = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(fceField));
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement partyNumber = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(partyNumberField));
-        WebElement partyName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(partyNameField));
-        WebElement address = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(addressField));
-        WebElement street = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(streetField));
-        WebElement city = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cityField));
-        WebElement state = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(stateField));
-        WebElement zipCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(zipCodeField));
-        WebElement countryCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(countryCodeField));
-        WebElement hubName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubNameField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement fce = Wait.clickable(driver,fceField);
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement partyNumber = Wait.clickable(driver,partyNumberField);
+        WebElement partyName = Wait.clickable(driver,partyNameField);
+        WebElement address = Wait.clickable(driver,addressField);
+        WebElement street = Wait.clickable(driver,streetField);
+        WebElement city = Wait.clickable(driver,cityField);
+        WebElement state = Wait.clickable(driver,stateField);
+        WebElement zipCode = Wait.clickable(driver,zipCodeField);
+        WebElement countryCode = Wait.clickable(driver,countryCodeField);
+        WebElement hubName = Wait.clickable(driver,hubNameField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Ship To Party Page: FCE field not displayed",fce.isDisplayed());
         AssertJUnit.assertTrue("Add Ship To Party Page: Sales Org field not displayed",salesOrg.isDisplayed());
@@ -135,7 +137,7 @@ public class Mst_AddShipToPartyPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement partyNumber = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(partyNumberField));
+        WebElement partyNumber = Wait.clickable(driver,partyNumberField);
     }
     
 }

@@ -23,11 +23,11 @@ public class Mst_AddBrandPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_EditBrandPage setBrandName(String item) {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandNameField));
+        WebElement element = Wait.clickable(driver,brandNameField);
         element.clear();
         
         CommonTask.setInputField(driver,brandNameField,item);
@@ -35,13 +35,13 @@ public class Mst_AddBrandPage extends WBA_BasePage {
     }
     
     public Mst_BrandsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         return new Mst_BrandsPage(driver);
     }
     
     public Mst_BrandsPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         return new Mst_BrandsPage(driver);
     }

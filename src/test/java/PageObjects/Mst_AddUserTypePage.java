@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,38 +36,6 @@ public class Mst_AddUserTypePage extends WBA_BasePage {
         return driver.findElement(DataItems.breadcrumbLocator);
     }
     
-    public WebElement getUserTypeField() {
-        return driver.findElement(userTypeField);
-    }
-    
-    public WebElement getRequesterTypeField() {
-        return driver.findElement(requesterTypeField);
-    }
-    
-    public WebElement getLevelField() {
-        return driver.findElement(levelField);
-    }
-    
-    public WebElement getDescriptionField() {
-        return driver.findElement(descriptionField);
-    }
-    
-    public WebElement getStatusActiveBtn() {
-        return driver.findElement(statusActiveBtn);
-    }
-    
-    public WebElement getStatusInactiveBtn() {
-        return driver.findElement(statusInactiveBtn);
-    }
-    
-    public WebElement getSaveButton() {
-        return driver.findElement(saveButton);
-    }
-    
-    public WebElement getCancelButton() {
-        return driver.findElement(cancelButton);
-    }
-    
     public Mst_AddUserTypePage setUserType(String item) {
         CommonTask.setInputField(driver,userTypeField,item);
         
@@ -91,41 +61,41 @@ public class Mst_AddUserTypePage extends WBA_BasePage {
     }
     
     public Mst_AllUserTypesPage pressSave() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement wait = Wait.clickable(driver,saveButton);
         driver.findElement(saveButton).click();
         
         return new Mst_AllUserTypesPage(driver);
     }
     
     public Mst_AllUserTypesPage pressCancel() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement wait = Wait.clickable(driver,cancelButton);
         driver.findElement(cancelButton).click();
         
         return new Mst_AllUserTypesPage(driver);
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement wait = Wait.clickable(driver,cancelButton);
     }
     
     public void checkFields() {
         //Wait for elements to be clickable
-        WebElement userType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(userTypeField));
-        WebElement requesterType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requesterTypeField));
-        WebElement level = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(levelField));
-        WebElement description = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(descriptionField));
-        WebElement statusActive = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(statusActiveBtn));
-        WebElement statusInactive = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(statusInactiveBtn));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement userType = Wait.clickable(driver,userTypeField);
+        WebElement requesterType = Wait.clickable(driver,requesterTypeField);
+        WebElement level = Wait.clickable(driver,levelField);
+        WebElement description = Wait.clickable(driver,descriptionField);
+        WebElement statusActive = Wait.clickable(driver,statusActiveBtn);
+        WebElement statusInactive = Wait.clickable(driver,statusInactiveBtn);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
-        AssertJUnit.assertTrue("Add User Type Page: User Type field not displayed as expected",getUserTypeField().isDisplayed());
-        AssertJUnit.assertTrue("Add User Type Page: Requester Type field not displayed as expected",getRequesterTypeField().isDisplayed());
-        AssertJUnit.assertTrue("Add User Type Page: Level field not displayed as expected",getLevelField().isDisplayed());
-        AssertJUnit.assertTrue("Add User Type Page: Description field not displayed as expected",getDescriptionField().isDisplayed());
-        AssertJUnit.assertTrue("Add User Type Page: Status:Active button not displayed as expected",getStatusActiveBtn().isDisplayed());
-        AssertJUnit.assertTrue("Add User Type Page: Status:Inactive button not displayed as expected",getStatusInactiveBtn().isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: User Type field not displayed as expected",userType.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Requester Type field not displayed as expected",requesterType.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Level field not displayed as expected",level.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Description field not displayed as expected",description.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Status:Active button not displayed as expected",statusActive.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Status:Inactive button not displayed as expected",statusInactive.isDisplayed());
     }
     
 }

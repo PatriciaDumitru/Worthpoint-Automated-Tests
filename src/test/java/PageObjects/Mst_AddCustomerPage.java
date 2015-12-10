@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +31,7 @@ public class Mst_AddCustomerPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddCustomerPage setCustomerName(String item) {
@@ -54,19 +56,19 @@ public class Mst_AddCustomerPage extends WBA_BasePage {
     
     public Mst_AddCustomerPage setPrincipalName(String item) {
         
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(busPrincField));
+        WebElement field = Wait.clickable(driver,busPrincField);
         field.click();
         
         By searchField = By.id("s2id_autogen1");
-        WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchField));
+        WebElement search = Wait.clickable(driver,searchField);
         search.sendKeys(item);
         
         By resultField = By.cssSelector("#select2-drop > ul > li.select2-results-dept-0.select2-result.select2-result-selectable.select2-highlighted > div > span");
-        boolean result = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(resultField,item));
+        boolean result = Wait.textPresent(driver,resultField,item);
         search.sendKeys(Keys.ENTER);
         
         By choiceField = By.cssSelector("#s2id_CustomerBusinessPrincipal > ul > li.select2-search-choice > div");
-        Boolean choice = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElement(driver.findElement(choiceField), item));
+        Boolean choice = Wait.textPresent(driver,choiceField, item);
         
         return new Mst_AddCustomerPage(driver);
     }
@@ -124,22 +126,22 @@ public class Mst_AddCustomerPage extends WBA_BasePage {
     }
     
     public Mst_CustomersPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_CustomersPage(driver);
     }
     
     public void checkFields() {
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custCodeField));
-        WebElement options = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(optionsField));
-        WebElement busPrinc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(busPrincField));
-        WebElement cceSolution = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cceSolutionField));
-        WebElement priority = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(priorityField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement custName = Wait.clickable(driver,customerNameField);
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custCode = Wait.clickable(driver,custCodeField);
+        WebElement options = Wait.clickable(driver,optionsField);
+        WebElement busPrinc = Wait.clickable(driver,busPrincField);
+        WebElement cceSolution = Wait.clickable(driver,cceSolutionField);
+        WebElement priority = Wait.clickable(driver,priorityField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Customer Page: Customer Name field not displayed",custName.isDisplayed());
         AssertJUnit.assertTrue("Add Customer Page: Sales Org field not displayed",salesOrg.isDisplayed());
@@ -153,7 +155,7 @@ public class Mst_AddCustomerPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement busPrinc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(busPrincField));
+        WebElement busPrinc = Wait.clickable(driver,busPrincField);
     }
     
 }

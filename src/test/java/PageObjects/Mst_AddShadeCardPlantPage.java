@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +25,7 @@ public class Mst_AddShadeCardPlantPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddShadeCardPlantPage setShadeCardCode(String item) throws InterruptedException {
@@ -43,18 +44,18 @@ public class Mst_AddShadeCardPlantPage extends WBA_BasePage {
     }
     
     public Mst_ShadeCardPlantsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_ShadeCardPlantsPage(driver);
     }
     
     public void checkFields() {
-        WebElement shadeCardCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCardCodeField));
-        WebElement shadeCardName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement save= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement shadeCardCode = Wait.clickable(driver,shadeCardCodeField);
+        WebElement shadeCardName = Wait.clickable(driver,plantNameField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement save= Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Shade Card Plant Page: Shade Card Code field not displayed",shadeCardCode.isDisplayed());
         AssertJUnit.assertTrue("Add Shade Card Plant Page: Shade Card Name field not displayed",shadeCardName.isDisplayed());
@@ -64,7 +65,7 @@ public class Mst_AddShadeCardPlantPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
+        WebElement element = Wait.clickable(driver,plantNameField);
     }
     
 }

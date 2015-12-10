@@ -84,39 +84,9 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         super(passedDriver);
     }
     
-    public WebElement getOrderConfHeading() {
-        //find and return element
-        return driver.findElement(orderConfHeadingLocator);
-    }
-    
-    public WebElement getCustInfoHeading() {
-        //find and return element
-        return driver.findElement(custInfoHeadingLocator);
-    }
-    
-    public WebElement getCustNameHeading() {
-        //find and return element
-        return driver.findElement(custNameHeadingLocator);
-    }
-    
     public WebElement getCustNameField() {
         //find and return element
         return driver.findElement(custNameField);
-    }
-    
-    public WebElement getCreationDateHeading() {
-        //find and return element
-        return driver.findElement(creationDateHeadingLocator);
-    }
-    
-    public WebElement getCreationDateField() {
-        //find and return element
-        return driver.findElement(creationDateField);
-    }
-    
-    public WebElement getCustPoNumHeading() {
-        //find and return element
-        return driver.findElement(customerPoNoHeadingLocator);
     }
     
     public WebElement getUploadCustPOField() {
@@ -125,8 +95,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public WebElement getCustPoField() {
         //find and return element
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(customerPOField));
-        return driver.findElement(customerPOField);
+        return Wait.visible(driver,customerPOField);
     }
     
     public WebElement getCustUploadPOField() {
@@ -148,11 +117,6 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return driver.findElement(shipToPartyHeadingLocator);
     }
     
-    public WebElement getShipToPartyField() {
-        //find and return element
-        return driver.findElement(shipToPartyField);
-    }
-    
     public WebElement getBuyersHeading() {
         //find and return element
         return driver.findElement(buyersHeadingLocator);
@@ -171,36 +135,6 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     public WebElement getSubAccountField() {
         //find and return element
         return driver.findElement(subAccountField);
-    }
-    
-    public WebElement getNetValueHeading() {
-        //find and return element
-        return driver.findElement(netValueHeadingLocator);
-    }
-    
-    public WebElement getNetValueField() {
-        //find and return element
-        return driver.findElement(netValueField);
-    }
-    
-    public WebElement getCurrencyHeading() {
-        //find and return element
-        return driver.findElement(currencyHeadingLocator);
-    }
-    
-    public WebElement getCurrencyField() {
-        //find and return element
-        return driver.findElement(currencyField);
-    }
-    
-    public WebElement getShipToAddressHeading() {
-        //find and return element
-        return driver.findElement(shipToAddressHeadingLocator);
-    }
-    
-    public WebElement getShipToAddressField() {
-        //find and return element
-        return driver.findElement(shipToAddressField);
     }
     
     public WebElement getYourMatNumCell() {
@@ -224,7 +158,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public boolean findContractPOCell() {
         try {
-            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(contractPOCell));
+            WebElement element = Wait.visible(driver,contractPOCell);
             return element.getText().contains("Contract PO");
         } catch (Exception e) {
             return false;
@@ -235,7 +169,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     public boolean findSAPContractNoCell() {
         
         try {
-            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(SAPContractNoCell));
+            WebElement element = Wait.visible(driver,SAPContractNoCell);
             return element.getText().contains("SAP Contract");
         } catch (Exception e) {
             return false;
@@ -246,7 +180,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public boolean findLineRefCell() {
         try {
-            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(lineRefCell));
+            WebElement element = Wait.visible(driver,lineRefCell);
             return element.getText().contains("Line");
         } catch (Exception e) {
             return false;
@@ -322,12 +256,12 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public Ecomm_OutstandingOrdersPage pressSubmit() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
-        driver.findElement(submitButtonLocator).click();  
+        WebElement submit = Wait.clickable(driver,submitButtonLocator);
+        submit.click();  
         
         try {
             //wait for alert and confirm
-            Alert alert = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert = Wait.alert(driver);
             alert.accept();
         } catch (Exception e) {
             
@@ -336,7 +270,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         //Sometimes unexpected alerts appear. Catch these and accept by default
         boolean alertPresence;
         try {
-            Alert alert2 = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert2 = Wait.alert(driver);
             driver.switchTo().alert();
             String alertText = alert2.getText();
             alertPresence = true;
@@ -354,15 +288,15 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public Ecomm_UploadProcessPage pressSubmitExpectingFailure() {
         //Wait for element to be clickable
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
+        WebElement element = Wait.clickable(driver,submitButtonLocator);
         element.click();  
         
-        Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert2 = Wait.alert(driver);
         alert2.accept();
         
         try {
             //wait for alert and confirm
-            Alert alert = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert = Wait.alert(driver,DataItems.longWait);
             alert.accept();
         } catch (Exception e) {
             
@@ -374,14 +308,14 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public Ecomm_OrderConfirmationPage pressSubmitExpectingReturn() {
         //Wait for element to be clickable
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(submitButtonLocator));
-        driver.findElement(submitButtonLocator).click();  
+        WebElement submit = Wait.visible(driver,submitButtonLocator);
+        submit.click();  
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         try {
-            Alert alert2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert2 = Wait.alert(driver);
             alert2.accept();
         } catch (TimeoutException t) {
             
@@ -391,31 +325,31 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     }
     
     public Ecomm_OutstandingOrderDraftPage pressSaveDraft() {
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveDraftButtonLocator));
-        driver.findElement(saveDraftButtonLocator).click();
+        WebElement button = Wait.clickable(driver,saveDraftButtonLocator);
+        button.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new Ecomm_OutstandingOrderDraftPage(driver);
     }
     
     public Ecomm_OutstandingUploadDraftPage pressSaveUploadDraft() {
-        WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveDraftButtonLocator));
-        driver.findElement(saveDraftButtonLocator).click();
+        WebElement save = Wait.clickable(driver,saveDraftButtonLocator);
+        save.click();
         
-        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        Alert alert = Wait.alert(driver);
         alert.accept();
         
         return new Ecomm_OutstandingUploadDraftPage(driver);
     }
     
     public Ecomm_PendingApprovalListPage pressSendForApproval() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sendForApprovalButton));
-        driver.findElement(sendForApprovalButton).click();
+        WebElement button = Wait.clickable(driver,sendForApprovalButton);
+        button.click();
         
         try {
-            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            Alert alert = Wait.alert(driver);
             alert.accept();
         } catch (TimeoutException t) {
             
@@ -425,30 +359,30 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     }
     
     public WebElement waitForError() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
+        return Wait.visible(driver,flashMessageLocator);
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(orderConfHeadingLocator));
+        WebElement wait = Wait.visible(driver,orderConfHeadingLocator);
     }
     
     public Ecomm_ManualEntryPage pressCancel() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
-        driver.findElement(cancelButtonLocator).click();
+        WebElement button = Wait.clickable(driver,cancelButtonLocator);
+        button.click();
         
         return new Ecomm_ManualEntryPage(driver);
     }
     
     public Ecomm_UploadOrderPage pressCancelUpload() {
-        WebElement waitForClickable = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
-        driver.findElement(cancelButtonLocator).click();
+        WebElement cancel = Wait.clickable(driver,cancelButtonLocator);
+        cancel.click();
         
         return new Ecomm_UploadOrderPage(driver);
     }
     
     public Ecomm_OrderConfirmationPage setRequestor(String requester) throws InterruptedException {
         //Wait for field to be clickable
-        WebElement waitForField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requestorField));
+        WebElement waitForField = Wait.clickable(driver,requestorField);
         
         if (requester.equals("Select")) {
             CommonTask.clearDropDownField(driver, requestorField);
@@ -460,7 +394,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     }
     
     public Ecomm_OrderConfirmationPage setShipToParty(String shipToParty) throws InterruptedException {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
+        WebElement wait = Wait.clickable(driver,shipToPartyField);
         
         if (shipToParty.equals("Select")) {
             CommonTask.clearDropDownField(driver, shipToPartyField);
@@ -472,15 +406,15 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     }
     
     public Ecomm_OutstandingOrderDraftPage pressCancelToDrafts() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButtonLocator));
-        driver.findElement(cancelButtonLocator).click();
+        WebElement cancel = Wait.clickable(driver,cancelButtonLocator);
+        cancel.click();
         return new Ecomm_OutstandingOrderDraftPage(driver);
     }
     
     public boolean checkSendForApproval() {
         By approvalButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(7) > div:nth-child(2) > input");
         
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(approvalButton));
+        WebElement wait = Wait.clickable(driver,approvalButton);
         
         if (driver.findElement(approvalButton).getAttribute("value").equals("Send for Approval")) {
             return true;
@@ -507,34 +441,9 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             action.moveToElement(element).build().perform();
             action.click().build().perform();
             
-            WebDriver wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
-            WebElement wait3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(errorLine));
-            System.out.println(driver.findElement(errorLine).getText());
-        }
-        
-        return errors;
-    }
-    
-    public boolean viewErrorsNew() {
-        boolean errors;
-        
-        try {
-            WebElement element = Wait.visible(driver, lineWithErrorButton2);
-            errors = true;
-        } catch (TimeoutException e) {
-            errors = false;
-        }
-        
-        if (errors) {
-            WebElement element = driver.findElement(lineWithErrorButton2);
-            
-            Actions action = new Actions(driver);
-            action.moveToElement(element).build().perform();
-            action.click().build().perform();
-            
-            WebDriver wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
-            WebElement wait3 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(errorLine));
-            System.out.println(driver.findElement(errorLine).getText());
+            WebDriver wait2 = Wait.frame(driver,frameLocator);
+            WebElement error = Wait.clickable(driver,errorLine);
+            System.out.println(error.getText());
         }
         
         return errors;
@@ -542,7 +451,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     
     public boolean errorAppears() {
         try {
-            WebElement flashMessage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMessageLocator));
+            WebElement flashMessage = Wait.visible(driver,flashMessageLocator);
             System.out.println("Error: " + flashMessage.getText());
             return true;
         } catch (TimeoutException t) {
@@ -555,13 +464,13 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     public boolean checkContractMaterialDetails() {
         //When a contract order is made without material details, the details are copied from SAP. This method checks the details are as expected
         
-        WebElement materialCell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(coatsMaterialCell));
+        WebElement materialCell = Wait.visible(driver,coatsMaterialCell);
         String[] materialParts = materialCell.getText().split("-");
         
-        WebElement uomElement = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(uomCell));
+        WebElement uomElement = Wait.visible(driver,uomCell);
         String uom = uomElement.getText();
         
-        WebElement sapNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(SAPContractNoCell));
+        WebElement sapNo = Wait.visible(driver,SAPContractNoCell);
         String sapConNo = sapNo.getText();
         
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats article does not appear in line details as expected",materialParts[0].equals(DataItems.conOrdArticle));
@@ -571,14 +480,5 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         
         return true;
     }
-    
-    public void checkFields() {
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement createDateHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(creationDateHeadingLocator));
-        
-        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name field not displayed",custName.isDisplayed());
-        AssertJUnit.assertTrue("Order Confirmation Page: Creation Date Table heading not displayed", createDateHeader.isDisplayed());
-    }
-            
-    
+
 }

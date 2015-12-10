@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,19 +28,19 @@ public class Mst_AddSubAccountPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(breadcrumbLocator));
+        WebElement element = Wait.visible(driver,breadcrumbLocator);
         return element;
     }
     
     public Mst_SubAccountPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_SubAccountPage(driver);
     }
     
     public Mst_SubAccountPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_SubAccountPage(driver);
@@ -71,13 +73,13 @@ public class Mst_AddSubAccountPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
-        WebElement subNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAccountNoField));
-        WebElement subName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAccountNameField));
-        WebElement comment = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(commentField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,customerNameField);
+        WebElement subNo = Wait.clickable(driver,subAccountNoField);
+        WebElement subName = Wait.clickable(driver,subAccountNameField);
+        WebElement comment = Wait.clickable(driver,commentField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Sub Account Page: Sales Organisation field not displayed",salesOrg.isDisplayed());
@@ -90,7 +92,7 @@ public class Mst_AddSubAccountPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(commentField));
+        WebElement wait = Wait.clickable(driver,commentField);
     }
     
 }

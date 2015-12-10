@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,23 +51,23 @@ public class Mst_AddEnterpriseStructurePage extends WBA_BasePage {
     }
     
     public Mst_EnterpriseStructurePage pressSave() throws InterruptedException {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_EnterpriseStructurePage(driver);
     }
     
     public void waitForElement() {
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
     }
     
     public void checkFields() {
-        WebElement region = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(regionField));
-        WebElement countryCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(countryCodeField));
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement hub = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement region = Wait.clickable(driver,regionField);
+        WebElement countryCode = Wait.clickable(driver,countryCodeField);
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement hub = Wait.clickable(driver,hubField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Enterprise Structure Page: Region field not displayed",region.isDisplayed());
         AssertJUnit.assertTrue("Add Enterprise Structure Page: Country Code field not displayed",countryCode.isDisplayed());

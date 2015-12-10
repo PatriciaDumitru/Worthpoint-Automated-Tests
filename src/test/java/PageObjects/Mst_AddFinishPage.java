@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +23,7 @@ public class Mst_AddFinishPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddFinishPage setFinishName(String item) {
@@ -30,23 +32,23 @@ public class Mst_AddFinishPage extends WBA_BasePage {
     }
     
     public Mst_FinishesPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_FinishesPage(driver);
     }
     
     public Mst_FinishesPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_FinishesPage(driver);
     }
     
     public void checkFields() {
-        WebElement finishName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishNameField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement finishName = Wait.clickable(driver,finishNameField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Finish Page: Finish Name field not displayed",finishName.isDisplayed());
         AssertJUnit.assertTrue("Add Finish Page: Save button not displayed",save.isDisplayed());
@@ -54,7 +56,7 @@ public class Mst_AddFinishPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement finishName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishNameField));
+        WebElement finishName = Wait.clickable(driver,finishNameField);
     }
     
 }

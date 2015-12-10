@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,8 +33,7 @@ public class Mst_AddMultiUserPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
-        return element;
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddMultiUserPage setFirstName(String item) {
@@ -78,16 +78,16 @@ public class Mst_AddMultiUserPage extends WBA_BasePage {
     
     public Mst_AddMultiUserPage setCustomerName(String item, String append) throws InterruptedException {
         
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
+        WebElement field = Wait.clickable(driver,customerNameField);
         field.click();
         
         By searchField = By.id("s2id_autogen1");
-        WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchField));
+        WebElement search = Wait.clickable(driver,searchField);
         
         search.sendKeys(item);
         
         By resultLocator = By.cssSelector("#select2-drop > ul > li > div > span");
-        boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator,item));
+        boolean result = Wait.textPresent(driver,resultLocator,item);
         
         driver.findElement(resultLocator).click();
         
@@ -95,30 +95,30 @@ public class Mst_AddMultiUserPage extends WBA_BasePage {
     }
     
     public Mst_AddMultiUserPage setShipToParty(String item,String append) throws InterruptedException {
-        WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
+        WebElement field = Wait.clickable(driver,customerNameField);
         field.click();
         
         By searchField = By.id("s2id_autogen2");
-        WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchField));
+        WebElement search = Wait.clickable(driver,searchField);
         
         search.sendKeys(item);
         
         By resultLocator = By.cssSelector("#select2-drop > ul > li > div > span");
-        boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(resultLocator,item));
+        boolean wait = Wait.textPresent(driver,resultLocator,item);
         
         driver.findElement(resultLocator).click();
         return new Mst_AddMultiUserPage(driver);
     }
     
     public Mst_MultiSoldToPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_MultiSoldToPage(driver);
     }
     
     public Mst_MultiSoldToPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_MultiSoldToPage(driver);
@@ -126,18 +126,18 @@ public class Mst_AddMultiUserPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement firstName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(firstNameField));
-        WebElement lastName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lastNameField));
-        WebElement userName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(userNameField));
-        WebElement password = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(passwordField));
-        WebElement email = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(emailField));
-        WebElement userType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(userTypeField));
-        WebElement country = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(countryField));
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement customerName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
-        WebElement shipToParty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyField));
-        WebElement saveBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancelBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement firstName = Wait.clickable(driver,firstNameField);
+        WebElement lastName = Wait.clickable(driver,lastNameField);
+        WebElement userName = Wait.clickable(driver,userNameField);
+        WebElement password = Wait.clickable(driver,passwordField);
+        WebElement email = Wait.clickable(driver,emailField);
+        WebElement userType = Wait.clickable(driver,userTypeField);
+        WebElement country = Wait.clickable(driver,countryField);
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement customerName = Wait.clickable(driver,customerNameField);
+        WebElement shipToParty = Wait.clickable(driver,shipToPartyField);
+        WebElement saveBtn = Wait.clickable(driver,saveButton);
+        WebElement cancelBtn = Wait.clickable(driver,cancelButton);
     
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Multi User Page: First name field not displayed",firstName.isDisplayed());
@@ -156,7 +156,7 @@ public class Mst_AddMultiUserPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(userNameField));
+        WebElement element = Wait.clickable(driver,userNameField);
     }
     
 }

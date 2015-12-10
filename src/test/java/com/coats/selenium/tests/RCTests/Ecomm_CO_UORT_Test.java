@@ -157,7 +157,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
   }
 
   @Test //Upload Orders Page :: Realtime contract order upload, expecting validation success
-  (groups ={"eComm","eComm_Orders","Upload_Order","Solo"})
+  (groups ={"eComm","eComm_Orders","Upload_Order"}) //This test can fail due to the "Combination of records already exists" error. Test manually if this occurs
   public void CORT2() throws IOException, Exception {
     
     WebDriver driver = getDriver();

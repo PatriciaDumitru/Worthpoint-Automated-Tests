@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,13 +26,13 @@ public class Mst_AddCountryPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddCountryPage setCountryName(String item) {
         CommonTask.setSearchField(driver,countryNameField,item);
         
-        boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.textToBePresentInput(countryCodeField, "VA"));
+        boolean wait = Wait.textPresent(driver,countryCodeField, "VA");
         
         return new Mst_AddCountryPage(driver);
     }
@@ -41,25 +43,25 @@ public class Mst_AddCountryPage extends WBA_BasePage {
     }
     
     public Mst_CountriesPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_CountriesPage(driver);
     }
     
     public Mst_CountriesPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_CountriesPage(driver);
     }
     
     public void checkFields() {
-        WebElement countryName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(countryNameField));
-        WebElement countryCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(countryCodeField));
-        WebElement language = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(languageField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement countryName = Wait.clickable(driver,countryNameField);
+        WebElement countryCode = Wait.clickable(driver,countryCodeField);
+        WebElement language = Wait.clickable(driver,languageField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Country Page: Country Name field not displayed",countryName.isDisplayed());
         AssertJUnit.assertTrue("Add Country Page: Country Code field not displayed",countryCode.isDisplayed());
@@ -69,7 +71,7 @@ public class Mst_AddCountryPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement language = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(languageField));
+        WebElement language = Wait.clickable(driver,languageField);
     }
     
 }

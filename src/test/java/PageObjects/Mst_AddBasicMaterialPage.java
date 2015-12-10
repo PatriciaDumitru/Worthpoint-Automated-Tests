@@ -25,7 +25,7 @@ public class Mst_AddBasicMaterialPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddBasicMaterialPage setBrandName(String item) throws InterruptedException {
@@ -44,14 +44,14 @@ public class Mst_AddBasicMaterialPage extends WBA_BasePage {
     }
     
     public Mst_BasicMaterialsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_BasicMaterialsPage(driver);
     }
     
     public Mst_BasicMaterialsPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_BasicMaterialsPage(driver);

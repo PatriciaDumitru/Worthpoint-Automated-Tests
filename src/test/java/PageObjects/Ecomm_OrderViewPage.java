@@ -121,7 +121,8 @@ public class Ecomm_OrderViewPage {
     }
     
     public void closeView() {
-    	//Press esc
+        
+        //Press esc
     	Actions pressEsc = new Actions(driver);
     	pressEsc.sendKeys(Keys.ESCAPE).build().perform();
     	//Accept alert

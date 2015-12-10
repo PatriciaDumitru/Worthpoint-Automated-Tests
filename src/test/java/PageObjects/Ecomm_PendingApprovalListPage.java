@@ -217,7 +217,11 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         WebElement head = Wait.visible(driver,custPOHead);
         AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",head.getText().contains("Customer PO No."));
         
-        for (int i = 1; i <= 10; i++) {
+        By recordsField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > dl > dt > span.left");
+        int count = getRecordCount(recordsField);
+        int tableCount = (count > 10) ? 10 : count;
+        
+        for (int i = 1; i <= tableCount; i++) {
             By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(5)");     
             
             WebElement cell = Wait.visible(driver,locator);
@@ -234,7 +238,11 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         WebElement head = Wait.visible(driver,headLocator);
         AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",head.getText().contains("Customer PO No."));
         
-        for (int i = 1; i <= 10; i++) {
+        By recordsField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > dl > dt > span.left");
+        int count = getRecordCount(recordsField);
+        int tableCount = (count > 10) ? 10 : count;
+        
+        for (int i = 1; i <= tableCount; i++) {
             By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(4)");     
             
             WebElement cell = Wait.visible(driver,locator);

@@ -95,7 +95,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Order confirmation reached. Asserting errors appear...");
         
-        AssertJUnit.assertTrue("Order Confirmation Page: No errors found despite invalid material in spreadsheet",orderConf.viewErrorsNew());
+        AssertJUnit.assertTrue("Order Confirmation Page: No errors found despite invalid material in spreadsheet",orderConf.viewErrors());
         
         System.out.println("Errors found.");
     }

@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +23,7 @@ public class Mst_AddHierarchyPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddHierarchyPage setHierarchy(String item) {
@@ -31,16 +32,16 @@ public class Mst_AddHierarchyPage extends WBA_BasePage {
     }
     
     public Mst_HierarchyPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_HierarchyPage(driver);
     }
     
     public void checkFields() {
-        WebElement hierarchy = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hierarchyField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement hierarchy = Wait.clickable(driver,hierarchyField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Hierarchy Page: Hierarchy field not displayed",hierarchy.isDisplayed());
         AssertJUnit.assertTrue("Add Hierarchy Page: Save button not displayed",save.isDisplayed());
@@ -48,7 +49,7 @@ public class Mst_AddHierarchyPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement hierarchy = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hierarchyField));
+        WebElement hierarchy = Wait.clickable(driver,hierarchyField);
     }
     
 }

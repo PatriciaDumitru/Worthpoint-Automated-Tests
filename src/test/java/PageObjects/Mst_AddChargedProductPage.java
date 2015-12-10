@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,7 +28,7 @@ public class Mst_AddChargedProductPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddChargedProductPage setSalesOrg(String item) throws InterruptedException {
@@ -56,7 +57,7 @@ public class Mst_AddChargedProductPage extends WBA_BasePage {
     }
     
     public Mst_AddChargedProductPage setQuantity(String item) throws InterruptedException {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyField));
+        WebElement element = Wait.clickable(driver,qtyField);
         element.clear();
         
         CommonTask.setInputField(driver,qtyField,item);
@@ -64,21 +65,21 @@ public class Mst_AddChargedProductPage extends WBA_BasePage {
     }
     
     public Mst_ChargedProductsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_ChargedProductsPage(driver);
     }
     
     public void checkFields() {
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement mumType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
-        WebElement qty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(qtyField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
+        WebElement qty = Wait.clickable(driver,qtyField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Charged Product Page: Sales Organisation field not displayed",salesOrg.isDisplayed());
         AssertJUnit.assertTrue("Add Charged Product Page: Customer Name field not displayed",custName.isDisplayed());
@@ -91,7 +92,7 @@ public class Mst_AddChargedProductPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement mumType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
     }
     
 }

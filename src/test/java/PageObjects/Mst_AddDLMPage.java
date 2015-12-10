@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,7 +32,7 @@ public class Mst_AddDLMPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.clickable(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddDLMPage setSalesOrg(String item) throws InterruptedException {
@@ -79,25 +81,25 @@ public class Mst_AddDLMPage extends WBA_BasePage {
     }
     
     public Mst_DyeLotMultiplesPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
+        WebElement element = Wait.clickable(driver,searchButton);
         element.click();
         
         return new Mst_DyeLotMultiplesPage(driver);
     }
     
     public void checkFields() {
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement length = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement finish = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishField));
-        WebElement level = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(levelField));
-        WebElement rangeStart = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(rangeStartField));
-        WebElement rangeEnd = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(rangeEndField));
-        WebElement stepValue = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(stepValueField));
-        WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement article = Wait.clickable(driver,articleField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement length = Wait.clickable(driver,lengthField);
+        WebElement finish = Wait.clickable(driver,finishField);
+        WebElement level = Wait.clickable(driver,levelField);
+        WebElement rangeStart = Wait.clickable(driver,rangeStartField);
+        WebElement rangeEnd = Wait.clickable(driver,rangeEndField);
+        WebElement stepValue = Wait.clickable(driver,stepValueField);
+        WebElement search = Wait.clickable(driver,searchButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Dye Lot Multiple Page: Sales Org Field not displayed",salesOrg.isDisplayed());
         AssertJUnit.assertTrue("Add Dye Lot Multiple Page: Article Field not displayed",article.isDisplayed());
@@ -113,7 +115,7 @@ public class Mst_AddDLMPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement rangeStart = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(rangeStartField));
+        WebElement rangeStart = Wait.clickable(driver,rangeStartField);
     }
     
 }

@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ public class Mst_AddLightSourcePage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddLightSourcePage setLightSource(String item) {
@@ -32,16 +33,16 @@ public class Mst_AddLightSourcePage extends WBA_BasePage {
     }
     
     public Mst_LightSourcesPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_LightSourcesPage(driver);
     }
     
     public void checkFields() {
-        WebElement lightSource = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lightSourceField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement lightSource = Wait.clickable(driver,lightSourceField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Light Source Page: Hierarchy field not displayed",lightSource.isDisplayed());
         AssertJUnit.assertTrue("Add Light Source Page: Save button not displayed",save.isDisplayed());
@@ -49,7 +50,7 @@ public class Mst_AddLightSourcePage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement lightSource = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lightSourceField));
+        WebElement lightSource = Wait.clickable(driver,lightSourceField);
     }
     
 }

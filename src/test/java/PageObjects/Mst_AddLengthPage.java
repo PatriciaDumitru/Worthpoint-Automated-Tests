@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +23,7 @@ public class Mst_AddLengthPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddLengthPage setLengthName(String item) {
@@ -30,16 +32,16 @@ public class Mst_AddLengthPage extends WBA_BasePage {
     }
     
     public Mst_LengthsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_LengthsPage(driver);
     }
     
     public void checkFields() {
-        WebElement lengthName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthNameField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement lengthName = Wait.clickable(driver,lengthNameField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Length Page: Length Name field not displayed",lengthName.isDisplayed());
         AssertJUnit.assertTrue("Add Length Page: Save button not displayed",save.isDisplayed());
@@ -47,7 +49,7 @@ public class Mst_AddLengthPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement lengthName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthNameField));
+        WebElement lengthName = Wait.clickable(driver,lengthNameField);
     }
     
 }

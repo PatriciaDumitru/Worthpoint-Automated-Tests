@@ -160,9 +160,9 @@
                                 <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
                             </systemPropertyVariables>
                             <groups>Solo</groups>
-                            <!-- <suiteXmlFiles>
+                            <suiteXmlFiles>
                                 <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\Solo.xml</suiteXmlFile>
-                            </suiteXmlFiles> -->
+                            </suiteXmlFiles>
                             <skipTests>false</skipTests>
                         </configuration>
                         <dependencies>

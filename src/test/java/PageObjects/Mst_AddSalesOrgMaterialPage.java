@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,7 @@ public class Mst_AddSalesOrgMaterialPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddSalesOrgMaterialPage setArticle(String item) {
@@ -67,22 +68,22 @@ public class Mst_AddSalesOrgMaterialPage extends WBA_BasePage {
     }
     
     public Mst_SalesOrgMaterialsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_SalesOrgMaterialsPage(driver);
     }
     
     public void checkFields() {
-        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement plant = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantField));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement mumType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
-        WebElement length = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement article = Wait.clickable(driver,articleField);
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement plant = Wait.clickable(driver,plantField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
+        WebElement length = Wait.clickable(driver,lengthField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Sales Org Material Page: Article field is not displayed",article.isDisplayed());
         AssertJUnit.assertTrue("Add Sales Org Material Page: Sales Org field is not displayed",salesOrg.isDisplayed());
@@ -96,7 +97,7 @@ public class Mst_AddSalesOrgMaterialPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement mumType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
     }
     
 }

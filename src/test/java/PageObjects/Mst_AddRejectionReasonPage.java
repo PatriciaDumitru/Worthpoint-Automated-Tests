@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ public class Mst_AddRejectionReasonPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddRejectionReasonPage setRejectionCode(String item) {
@@ -37,17 +38,17 @@ public class Mst_AddRejectionReasonPage extends WBA_BasePage {
     }
     
     public Mst_RejectionReasonsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_RejectionReasonsPage(driver);
     }
     
     public void checkFields() {
-        WebElement rejCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(rejectionCodeField));
-        WebElement rejReason = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(rejectionReasonField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement rejCode = Wait.clickable(driver,rejectionCodeField);
+        WebElement rejReason = Wait.clickable(driver,rejectionReasonField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Rejection Reason: Rejection Code field not displayed",rejCode.isDisplayed());
         AssertJUnit.assertTrue("Add Rejection Reason: Rejection Reason field not displayed",rejReason.isDisplayed());
@@ -56,7 +57,7 @@ public class Mst_AddRejectionReasonPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement rejReason = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(rejectionReasonField));
+        WebElement rejReason = Wait.clickable(driver,rejectionReasonField);
     }
     
 }

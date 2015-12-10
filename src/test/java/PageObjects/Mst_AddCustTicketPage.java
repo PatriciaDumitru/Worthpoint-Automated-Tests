@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,7 +27,7 @@ public class Mst_AddCustTicketPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddCustTicketPage setSalesOrg(String item) throws InterruptedException {
@@ -49,7 +51,7 @@ public class Mst_AddCustTicketPage extends WBA_BasePage {
     }
     
     public Mst_CustTicketsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         
         element.click();
         
@@ -57,7 +59,7 @@ public class Mst_AddCustTicketPage extends WBA_BasePage {
     }
     
     public Mst_CustTicketsPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         
         element.click();
         
@@ -66,12 +68,12 @@ public class Mst_AddCustTicketPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement custTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custTicketField));
-        WebElement coatsTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsTicketField));
-        WebElement saveBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancelBtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement custTicket = Wait.clickable(driver,custTicketField);
+        WebElement coatsTicket = Wait.clickable(driver,coatsTicketField);
+        WebElement saveBtn = Wait.clickable(driver,saveButton);
+        WebElement cancelBtn = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Customer Tickets Page: Sales Organisation Field not displayed",salesOrg.isDisplayed());
@@ -83,7 +85,7 @@ public class Mst_AddCustTicketPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement coatsTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsTicketField));
+        WebElement coatsTicket = Wait.clickable(driver,coatsTicketField);
     }
     
 }

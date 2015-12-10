@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,7 +27,7 @@ public class Mst_AddForcedEnrichmentPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddForcedEnrichmentPage setSalesOrg(String item) throws InterruptedException {
@@ -54,18 +56,18 @@ public class Mst_AddForcedEnrichmentPage extends WBA_BasePage {
     }
     
     public Mst_ForcedEnrichmentPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_ForcedEnrichmentPage(driver);
     }
     
     public void checkFields() {
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement mumType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
     
         AssertJUnit.assertTrue("Add Forced Enrichment Product Page: Sales Org field not displayed",salesOrg.isDisplayed());
         AssertJUnit.assertTrue("Add Forced Enrichment Product Page: Customer Name field not displayed",custName.isDisplayed());
@@ -75,7 +77,7 @@ public class Mst_AddForcedEnrichmentPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
+        WebElement element = Wait.clickable(driver,mumTypeField);
     }
     
 }

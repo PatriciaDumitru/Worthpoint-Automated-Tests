@@ -76,18 +76,18 @@ public class Ecomm_OrderInformationPage {
     public void checkFields() {
         //Wait for all fields to be clickable
         WebElement ymn = Wait.clickable(driver,yourMatNumField);
-        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement length = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthField));
-        WebElement styleNo= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(styleNoField));
-        WebElement shadeCode= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
-        WebElement requiredDate= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(requiredDateField));
-        WebElement orderedQty= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderedQtyField));
-        WebElement finish= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishField));
-        WebElement otherInfo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(otherInfoField));
-        WebElement submit = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement article = Wait.clickable(driver,articleField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement length = Wait.clickable(driver,lengthField);
+        WebElement styleNo= Wait.clickable(driver,styleNoField);
+        WebElement shadeCode = Wait.clickable(driver,shadeCodeField);
+        WebElement requiredDate = Wait.clickable(driver,requiredDateField);
+        WebElement orderedQty = Wait.clickable(driver,orderedQtyField);
+        WebElement finish = Wait.clickable(driver,finishField);
+        WebElement otherInfo = Wait.clickable(driver,otherInfoField);
+        WebElement submit = Wait.clickable(driver,submitButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Order Information Page (overlay): Your Material Number Field not displayed correctly",ymn.isDisplayed());

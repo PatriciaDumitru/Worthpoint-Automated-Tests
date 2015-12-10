@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +30,7 @@ public class Mst_AddOurStockPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddOurStockPage setSalesOrg(String item) throws InterruptedException {
@@ -68,7 +69,7 @@ public class Mst_AddOurStockPage extends WBA_BasePage {
     }
     
     public Mst_AddOurStockPage setQuantity(String item) throws InterruptedException {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityField));
+        WebElement element = Wait.clickable(driver,quantityField);
         element.clear();
         
         CommonTask.setInputField(driver, quantityField, item);
@@ -76,23 +77,23 @@ public class Mst_AddOurStockPage extends WBA_BasePage {
     }
     
     public Mst_WarehouseStocksPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_WarehouseStocksPage(driver);
     }
     
     public void checkFields() {
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement plant = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantField));
-        WebElement article = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement mumType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
-        WebElement shade = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeField));
-        WebElement quantity = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(quantityField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement plant = Wait.clickable(driver,plantField);
+        WebElement article = Wait.clickable(driver,articleField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
+        WebElement shade = Wait.clickable(driver,shadeField);
+        WebElement quantity = Wait.clickable(driver,quantityField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,saveButton);
         
         AssertJUnit.assertTrue("Add Our Stock Page: Sales Org field not displayed",salesOrg.isDisplayed());
         AssertJUnit.assertTrue("Add Our Stock Page: Plant field not displayed",plant.isDisplayed());
@@ -106,7 +107,7 @@ public class Mst_AddOurStockPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement mumType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
     }    
     
 }

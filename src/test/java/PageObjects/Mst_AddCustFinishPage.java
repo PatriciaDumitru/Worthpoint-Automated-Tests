@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import java.sql.Driver;
 import org.openqa.selenium.By;
@@ -27,7 +28,7 @@ public class Mst_AddCustFinishPage extends WBA_BasePage {
     By cancelButton = By.cssSelector("#CustomerFinishAddForm > div.actions > ul > li:nth-child(2) > a");
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_EditCustFinishPage setSalesOrg(String item) throws InterruptedException {
@@ -51,14 +52,14 @@ public class Mst_AddCustFinishPage extends WBA_BasePage {
     }
     
     public Mst_CustFinishesPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_CustFinishesPage(driver);
     }
     
     public Mst_CustFinishesPage pressCancel() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
         
         return new Mst_CustFinishesPage(driver);
@@ -66,12 +67,12 @@ public class Mst_AddCustFinishPage extends WBA_BasePage {
     
     public void checkFields() {
         //Wait for all elements to be clickable
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
-        WebElement custFinish = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custFinishField));
-        WebElement coatsFinish = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsFinishField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement custName = Wait.clickable(driver,custNameField);
+        WebElement custFinish = Wait.clickable(driver,custFinishField);
+        WebElement coatsFinish = Wait.clickable(driver,coatsFinishField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Edit Customer Finish Page: Sales Organisation field not displayed as expected",salesOrg.isDisplayed());
@@ -83,7 +84,7 @@ public class Mst_AddCustFinishPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement coatsFinish = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsFinishField));
+        WebElement coatsFinish = Wait.clickable(driver,coatsFinishField);
     }
     
 }

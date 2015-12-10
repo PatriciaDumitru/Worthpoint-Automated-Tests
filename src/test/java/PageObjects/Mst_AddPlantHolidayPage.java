@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +26,7 @@ public class Mst_AddPlantHolidayPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddPlantHolidayPage setPlantName(String item) throws InterruptedException {
@@ -44,17 +45,17 @@ public class Mst_AddPlantHolidayPage extends WBA_BasePage {
     }
     
     public Mst_PlantHolidaysPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         return new Mst_PlantHolidaysPage(driver);
     }
     
     public void checkFields() {
-        WebElement plantName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
-        WebElement holidayDesc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(holidayDescField));
-        WebElement dateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dateFromField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement plantName = Wait.clickable(driver,plantNameField);
+        WebElement holidayDesc = Wait.clickable(driver,holidayDescField);
+        WebElement dateFrom = Wait.clickable(driver,dateFromField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
         
         AssertJUnit.assertTrue("Add Plant Holiday Page: Plant Name field not displayed",plantName.isDisplayed());
         AssertJUnit.assertTrue("Add Plant Holiday Page: Holiday Description field not displayed",holidayDesc.isDisplayed());
@@ -64,7 +65,7 @@ public class Mst_AddPlantHolidayPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement plantName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
+        WebElement plantName = Wait.clickable(driver,plantNameField);
     }
     
 }

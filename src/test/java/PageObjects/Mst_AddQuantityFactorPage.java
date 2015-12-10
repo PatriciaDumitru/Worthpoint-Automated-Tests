@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,7 @@ public class Mst_AddQuantityFactorPage extends WBA_BasePage {
     }
     
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return Wait.visible(driver,DataItems.breadcrumbLocator);
     }
     
     public Mst_AddQuantityFactorPage setSalesOrg(String item) throws InterruptedException {
@@ -57,7 +58,7 @@ public class Mst_AddQuantityFactorPage extends WBA_BasePage {
     }
     
     public Mst_AddQuantityFactorPage setLabQty(String item) throws InterruptedException {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(labQtyField));
+        WebElement element = Wait.clickable(driver,labQtyField);
         element.clear();
         
         CommonTask.setInputField(driver,labQtyField,item);
@@ -65,7 +66,7 @@ public class Mst_AddQuantityFactorPage extends WBA_BasePage {
     }
     
     public Mst_AddQuantityFactorPage setCCEQty(String item) throws InterruptedException {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cceQtyField));
+        WebElement element = Wait.clickable(driver,cceQtyField);
         element.clear();
         
         CommonTask.setInputField(driver,cceQtyField,item);
@@ -73,22 +74,22 @@ public class Mst_AddQuantityFactorPage extends WBA_BasePage {
     }
     
     public Mst_QuantityFactorsPage pressSave() {
-        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        WebElement element = Wait.clickable(driver,saveButton);
         element.click();
         
         return new Mst_QuantityFactorsPage(driver);
     }
     
     public void checkFields() {
-        WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
-        WebElement plantName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
-        WebElement mumType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mumTypeField));
-        WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
-        WebElement ticket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketField));
-        WebElement labQty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(labQtyField));
-        WebElement cceQty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cceQtyField));
-        WebElement save = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
-        WebElement cancel = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(cancelButton));
+        WebElement salesOrg = Wait.clickable(driver,salesOrgField);
+        WebElement plantName = Wait.clickable(driver,plantNameField);
+        WebElement mumType = Wait.clickable(driver,mumTypeField);
+        WebElement brand = Wait.clickable(driver,brandField);
+        WebElement ticket = Wait.clickable(driver,ticketField);
+        WebElement labQty = Wait.clickable(driver,labQtyField);
+        WebElement cceQty = Wait.clickable(driver,cceQtyField);
+        WebElement save = Wait.clickable(driver,saveButton);
+        WebElement cancel = Wait.clickable(driver,cancelButton);
     
         AssertJUnit.assertTrue("Add Quantity Factor Page: Sales Org field not displayed",salesOrg.isDisplayed());
         AssertJUnit.assertTrue("Add Quantity Factor Page: Plant Name field not displayed",plantName.isDisplayed());
@@ -102,7 +103,7 @@ public class Mst_AddQuantityFactorPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement plantName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
+        WebElement plantName = Wait.clickable(driver,plantNameField);
     }
     
 }
