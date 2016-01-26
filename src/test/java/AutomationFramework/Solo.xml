@@ -1,0 +1,12 @@
+<suite name="Time test Suite" verbose="1">
+  <test name="Solo Test">
+    <groups>
+      <run>
+        <include name="CCE" />
+      </run>
+    </groups>
+    <classes>
+      <class name="com.coats.selenium.tests.Cce_ConfirmProduction_Test" />
+    </classes>
+  </test>
+</suite>
