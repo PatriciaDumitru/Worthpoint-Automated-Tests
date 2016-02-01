@@ -224,7 +224,7 @@ public class CommonTask {
     	element.sendKeys(item);
         
         //Wait for "item" to be found in the field. This waiting condition uses getAttribute("value") because it is an input field
-    	boolean waitForText = Wait.textPresent(driver,fieldLocator,item);
+    	//boolean waitForText = Wait.textPresent(driver,fieldLocator,item);
     }
     
     public static void setInputFieldAlt(WebDriver driver, String id, String item) {

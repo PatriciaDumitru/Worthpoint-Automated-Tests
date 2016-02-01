@@ -713,7 +713,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         manualEntryPage.setCustomerName(DataItems.custDetails[0]);
         manualEntryPage.setShipToParty(DataItems.custDetails[1]);
         manualEntryPage.setBuyers(DataItems.custDetails[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails[4]);
+        //manualEntryPage.setPONumber(DataItems.custDetails[4]);
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
