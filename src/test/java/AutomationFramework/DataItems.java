@@ -18,7 +18,7 @@ public class DataItems {
     public static String lastUsedFilepath = ""; //Holds last used filepath when generating files using FileFactory
     
     //Login Credentials
-    public static String validCoatsUsername = "joe.sykes@coats.com";
+    public static String validCoatsUsername = "samson.vetharaj@coats.com"; //"joe.sykes@coats.com";
     public static String validCoatsPassword = "password";           //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
     
@@ -81,7 +81,7 @@ public class DataItems {
     //eComm Expected titles - the second array indicates which breadcrumb locator is used on each page, as the breadcrumb is not uniform across all pages
     public static String eCommPageTitle = "Coats eComm";
     public static String[][] eCommExpectedTitles = {
-        {"Orders | Manual Entry", "", "Orders | From Existing Bulk Order", "Orders | Shade Not Available", "Orders | Waiting For Shade Code", 
+        {"Orders | Manual Entry", "","Orders | From Existing Sample Order", "Orders | From Existing Bulk Order", "Orders | Shade Not Available", "Orders | Waiting For Shade Code",
             "Orders | Outstanding", "Orders | Drafts", "Orders | Upload Drafts", "Orders | Courier Tracking Update","Orders | Pending Approval List", "Orders | Denied Order List", "Orders | Drafts",
         "SAP Interface Log", 
         "Reports | Invoices", "Reports | Delivery Notes", "Reports | Summary of Purchase", "Reports | Outstanding Payments", "Reports | Customer Care", "Reports | Coats User","Terms and Conditions Report", "Reports | Order Approval History",

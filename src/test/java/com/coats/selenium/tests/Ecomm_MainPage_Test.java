@@ -81,11 +81,11 @@ public class Ecomm_MainPage_Test extends DriverFactory {
         //expected submenu items in order of appearance, all to lower case.
         //Those tabs without submenus must have empty arrays (for example, SAP interface log)
         String[][] expectedSubMenu = new String[][] {
-            {"manual entry","upload orders","from existing bulk order","shade not available","waiting for shade code"},
+            {"manual entry","upload orders","from existing sample order","from existing bulk order","shade not available","waiting for shade code"},
             {"outstanding orders list","outstanding orders draft list","outstanding upload draft","courier tracking update","pending approval list","denied order","upload draft with errors"},
             {},
-            {"invoices","delivery notes","summary of purchase","outstanding payments","my reports","coats user report","privacy policy and term & condition","order approval history"},
-            {"real upload failed files","backend in process files","backend failed files","ftp failed files","failed contract order"},
+            {"invoices","delivery notes","summary of purchase","outstanding payments","my reports","coats user report","order approval history"},
+            {"real upload failed files","backend in process files","backend failed files","ftp failed files","ad-hoc order update","failed contract order"},
             {}
         };
 
@@ -126,7 +126,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
         PageObjects.Ecomm_MainPage eCommPage = baseTest.setUp("eComm Main Page ECOMM2: Navigation link checks", "no ID");
 
         String[][] expectedSubMenu = new String[][] {
-            {"Manual Entry","Upload Orders","From Existing Bulk Order","Shade Not Available","Waiting For Shade Code"},
+            {"Manual Entry","Upload Orders","From Existing Sample Order","From Existing Bulk Order","Shade Not Available","Waiting For Shade Code"},
             {"Outstanding Orders List","Outstanding Orders Draft List","Outstanding Upload Draft","Courier Tracking Update","Pending Approval List","Denied Order","Upload Draft With Errors"},
             {},
             {"Invoices","Delivery Notes","Summary Of Purcchase","Outstanding Payments","My Reports","Coats User Report","Privacy Policy And Term & Condition","Order Approval History"},

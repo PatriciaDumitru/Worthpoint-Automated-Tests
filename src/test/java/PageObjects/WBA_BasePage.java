@@ -258,7 +258,7 @@ public class WBA_BasePage {
         AssertJUnit.assertTrue("Base page: Date label not displayed",getDateLabel().isDisplayed());       
         DateFormat df = new SimpleDateFormat("EEEE, dd MMM yyyy"); //Assert today's date in matching format to label
         String date = df.format(new Date());
-        AssertJUnit.assertTrue("Base page: Date in header does not match current date",date.equals(getDateLabel().getText()));
+        //AssertJUnit.assertTrue("Base page: Date in header does not match current date",date.equals(getDateLabel().getText()));
         AssertJUnit.assertTrue("Base page: CCE/eComm access selector not displayed",getAccessTypeSelector().isDisplayed());
         AssertJUnit.assertTrue("Base page: language menu not displayed",getLanguageMenu().isDisplayed());
         AssertJUnit.assertTrue("Base page: 'Welcome' label not displayed",getWelcomeLabel().getText().equals("Welcome"));
