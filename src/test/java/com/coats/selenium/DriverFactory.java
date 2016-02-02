@@ -39,8 +39,6 @@ public class DriverFactory {
     }
 
    // @AfterMethod (alwaysRun=true)
-
-
     /*
     public static void clearCookies() throws Exception {
         getDriver().manage().deleteAllCookies();
@@ -48,10 +46,12 @@ public class DriverFactory {
     }
     */
 
-    @AfterSuite (alwaysRun=true)
+    @AfterMethod (alwaysRun=true)
     public static void closeDriverObjects() {
         for (WebDriverThread webDriverThread : webDriverThreadPool) {
             webDriverThread.quitDriver();
         }
+        System.out.println("----------------------------------------------------");
+
     }
 }
