@@ -2,6 +2,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
@@ -34,6 +35,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 public class Ecomm_ME_SUMST_Test extends DriverFactory {
+
     
     @Test //Manual Entry Page :: SUMST :: Page checks, single line order using YMN and shade code from master data
     (groups = {"QuickTest","eComm","eComm_Orders"})
@@ -1054,6 +1056,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     @Test //Manual Entry Page :: SUMST :: Validation tests, no Ship To Party Name at confirmation page
     (groups = {"eComm","eComm_Orders","QuickTest"})
     public void SUMST13() throws InterruptedException, IOException, Exception {
+
         //New driver
         WebDriver driver = getDriver();
   
@@ -1086,6 +1089,10 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next...");
         
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        Alert alert = Wait.alert(driver);
+        alert.accept();
+
         orderConf.waitForElement();
         
         System.out.println("Confirmation page reached, removing Ship To Party Name...");
@@ -1104,6 +1111,9 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         try {
             WebElement flashMessage = errorPage.waitForError();
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+
             System.out.println("Error received: "+flashMessage.getText());
             errorDisplayed = true;
         } catch (Exception e) {
