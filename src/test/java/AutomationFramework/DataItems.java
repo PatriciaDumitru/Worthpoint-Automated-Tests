@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 public class DataItems {
     
     //Target URL
-    public static String targetURL = "http://qawcs.coatscolourexpress.com/";
+    public static String targetURL = "http://10.14.18.4/";
 
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
