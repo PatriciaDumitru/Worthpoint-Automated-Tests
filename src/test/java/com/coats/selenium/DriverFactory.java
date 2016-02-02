@@ -38,10 +38,14 @@ public class DriverFactory {
     }
 
     @AfterMethod (alwaysRun=true)
+
+
+    /*
     public static void clearCookies() throws Exception {
         getDriver().manage().deleteAllCookies();
         System.out.println("----------------------------------------------------");
     }
+    */
 
     @AfterSuite (alwaysRun=true)
     public static void closeDriverObjects() {
