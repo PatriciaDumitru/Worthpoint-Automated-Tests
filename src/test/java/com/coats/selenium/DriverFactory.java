@@ -38,7 +38,7 @@ public class DriverFactory {
         return driverThread.get().getDriver();
     }
 
-    @AfterMethod (alwaysRun=true)
+   // @AfterMethod (alwaysRun=true)
 
 
     /*
