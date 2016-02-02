@@ -349,10 +349,10 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         
         //Wait for the purpose type in the next line to be updated
         By purposeTypeField = By.id("SampleOrderLine"+lineNumber+"PurposeTypeId");
-        boolean waitAgain = Wait.selectionPresent(driver, purposeTypeField);
+        Wait.selectionPresent(driver, purposeTypeField);
         
         //Wait for the copy box to be checked
-        boolean waitForChecked = Wait.checked(driver,copyDataButton);
+        Wait.checked(driver,copyDataButton);
         
         return this;
     }

@@ -431,13 +431,13 @@ public class Cce_SOC_Test extends DriverFactory {
         CCE_OrderViewPage viewPage = orderStatus.pressView(2);
         viewPage.switchTo();
         viewPage.waitForContent();
-        String orderNo = viewPage.getOrderNumber();
+        //String orderNo = viewPage.getOrderNumber();
         
-        orderStatus = viewPage.closeView();
+        //orderStatus = viewPage.closeView();
         
-        System.out.println("Order Status: "+ orderStatus.getOrderStage(orderNo));
+        //System.out.println("Order Status: "+ orderStatus.getOrderStage(orderNo));
         
-        System.out.println("Order No.: "+orderNo);
+        //System.out.println("Order No.: "+orderNo);
         
         //Delete order draft
 

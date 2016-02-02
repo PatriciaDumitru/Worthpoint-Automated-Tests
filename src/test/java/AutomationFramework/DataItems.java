@@ -109,11 +109,11 @@ public class DataItems {
     
     //A list of all Masters by their link text
     public static String[][] masters = {
-        {"BLANK","Countries","Sales Organisations","Plants","Plant Holidays","Hubs","Enterprise Structure","Brands","Tickets","Lengths","Finishes","Basic Materials","Material Groups","Hierarchy","Light Sources","Purpose Types","Rejection Reasons","Warehouse Instructions"},
+        {"BLANK","Countries","Sales Organisations","Plant Holidays","Plants","Hubs","Enterprise Structure","Brands","Tickets","Lengths","Finishes","Basic Materials","Material Groups","Hierarchy","Light Sources","Purpose Types","Rejection Reasons","Warehouse Instructions"},
         
         {"BLANK","Shade Cards","Shade Card - Plants","Shades","BLANK","Sales Org. Materials","Quantity Factors","Length Offers","Charged Products","Forced Enrichment Products","Supply Plants","Dye Lot Multiples","Order Type","Warehouse Stocks","Allowed Quantities","Hub Stocks"},
         
-        {"BLANK","Customers","Ship To Parties","Sub Account","Business Principals","Customer Materials","Customer Brands","Customer Tickets","Customer Lengths","Customer Finishes","Customer Shades","Approver List","Multi Sold To Users","Customer Business Principal","Customer Ship To Party","Cabinets","Marketing New Features","Marketing Running Texts"}
+        {"BLANK","Customers","Ship To Parties","Sub Account","Business Principals","Buying House","Buyer Users","Customer Materials","Customer Brands","Customer Tickets","Customer Lengths","Customer Finishes","Customer Shades","Approver List","Multi Sold To Users","Customer Business Principal","Customer Ship To Party","Cabinets","Marketing New Features","Marketing Running Texts"}
     };
     
     //Customer details to be used in manual entry tests
