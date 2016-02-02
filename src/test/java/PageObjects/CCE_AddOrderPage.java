@@ -56,7 +56,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By newLineButton = By.id("add_tab");
     static By submitOrderButton = By.id("submit");
     static By pendOrderButton = By.id("pending");
-    static By cancelButton = By.cssSelector("#SampleOrderAddForm > div:nth-child(5) > div.actions > ul > li:nth-child(3) > a");
+    static By cancelButton = By.cssSelector("html body div#container div#content form#SampleOrderAddForm div.frm div.actions ul li a.button");
     static By cancelToDraftsButton = By.cssSelector("#SampleOrderEditForm > div:nth-child(4) > div.actions > ul > li:nth-child(3) > a"); //cancel button has different locator when reached from draft
     
     //Fields which appear upon click "Yes" to Direct Enrich
