@@ -857,7 +857,7 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Customer PO: " + DataItems.lastUsedPO);
         System.out.println("Current SOS: " + currentSOS);
     }
-    
+   /*
     @Test //Order Samples Page :: SUMST :: Maximum copy count test (copy 11 times)
     (groups = {"CCE","CCE_Orders","QuickTest"})
     public void SOC12() throws Exception {
@@ -904,25 +904,26 @@ public class Cce_SOC_Test extends DriverFactory {
         for (int i = 1; i < 11; i++) {
 
             addPage.waitForElement(i);
-            addPage.pressCopyAlt(i);
+            addPage.pressCopy(i);
             addPage.waitForCopy(i);
             
             addPage.setArticle("8754120",i);
             addPage.setQuantity(1, i);
+
             addPage.setCustomerRef(i);
             addPage.setPurposeType(DataItems.protoPurpose,i);
-            addPage.pressNewLineAlt(i+1);
+            addPage.pressNewLine(i+1);
             
             //If an alert appears after new-line is pressed, re-enter details to ensure no mandatory fields were missed
             try {
-                Alert alert = Wait.alert(driver,3);
-                alert.accept();
+                Alert alert2 = Wait.alert(driver,3);
+                alert2.accept();
                 
                 addPage.setArticle("8754120",i);
                 addPage.setQuantity(1, i);
                 addPage.setCustomerRef(i);
                 addPage.setPurposeType(DataItems.protoPurpose,i);
-                addPage.pressNewLineAlt(i+1);
+                addPage.pressNewLine(i+1);
                 
             } catch (Exception e) {
                 
@@ -947,5 +948,6 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Submitted.");
 
     }
+    */
     
 }

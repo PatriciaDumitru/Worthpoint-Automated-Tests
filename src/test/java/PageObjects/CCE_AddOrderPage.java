@@ -56,7 +56,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By newLineButton = By.id("add_tab");
     static By submitOrderButton = By.id("submit");
     static By pendOrderButton = By.id("pending");
-    static By cancelButton = By.cssSelector("html body div#container div#content form#SampleOrderAddForm div.frm div.actions ul li a.button");
+    static By cancelButton = By.cssSelector("#SampleOrderAddForm > div:nth-child(5) > div.actions > ul > li:nth-child(3) > a");
     static By cancelToDraftsButton = By.cssSelector("#SampleOrderEditForm > div:nth-child(4) > div.actions > ul > li:nth-child(3) > a"); //cancel button has different locator when reached from draft
     
     //Fields which appear upon click "Yes" to Direct Enrich
@@ -310,10 +310,12 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public CCE_AddOrderPage pressNewLine(int lineNumber) {
         //Wait for button to be clickable
         WebElement newLine = Wait.clickable(driver,newLineButton);
-        newLine.click();
+
+        Actions action = new Actions(driver);
+        action.click(newLine).build().perform();
         
         //Wait for new line form to load
-        WebElement qty = Wait.clickable(driver,quantityFieldLine2);
+        Wait.clickable(driver,quantityFieldLine2);
         
         return this;
     }
@@ -349,7 +351,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         
         //Wait for the purpose type in the next line to be updated
         By purposeTypeField = By.id("SampleOrderLine"+lineNumber+"PurposeTypeId");
-        Wait.selectionPresent(driver, purposeTypeField);
+        boolean waitAgain = Wait.selectionPresent(driver, purposeTypeField);
         
         //Wait for the copy box to be checked
         Wait.checked(driver,copyDataButton);
@@ -378,7 +380,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         WebElement purposeType = Wait.clickable(driver,purposeTypeField);
         
         //Wait for the copy button to be checked
-        boolean checked = Wait.checked(driver,copyButton);
+        Wait.checked(driver,copyButton);
         
         return this;
     }
