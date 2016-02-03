@@ -120,7 +120,8 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     //Take a screenshot
     File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\6Error line view.png"));
-    
+
+
     viewPage.closeView();
     viewPage.waitForInvisibility();
     
