@@ -37,8 +37,8 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
   private final By articleField = By.id("s2id_BulkOrderLine0ArticleId");
   private final By shadeCodeField = By.id("s2id_BulkOrderLine0ShadeId");
   private final By quantityField = By.id("quantity0");
-  private final By contractPOField = By.id("txtContract0");
-  private final By lineRefField = By.id("txtContractLine0");
+ // private final By contractPOField = By.id("txtContract0");
+  //private final By lineRefField = By.id("txtContractLine0");
   private final By overlayContent = By.cssSelector("#BulkOrderLineViewUplodErrorListForm");
   private final By submitButton = By.id("submit1");
   private final By cancelButton = By.id("cancel1");
@@ -84,10 +84,10 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     driver.findElement(quantityField).clear();
     driver.findElement(quantityField).sendKeys(String.valueOf(DataItems.conOrdQty));
     CommonTask.setDateField(driver, dateField);
-    driver.findElement(contractPOField).clear();
-    driver.findElement(contractPOField).sendKeys("random");
-    driver.findElement(lineRefField).clear();
-    driver.findElement(lineRefField).sendKeys(DataItems.conOrdLineRef);
+    //driver.findElement(contractPOField).clear();
+    //driver.findElement(contractPOField).sendKeys("random");
+    //driver.findElement(lineRefField).clear();
+    //driver.findElement(lineRefField).sendKeys(DataItems.conOrdLineRef);
     
       System.out.println("Line details entered. Pressing next...");
     
@@ -169,10 +169,10 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     driver.findElement(quantityField).clear();
     driver.findElement(quantityField).sendKeys(String.valueOf(DataItems.conOrdQty));
     CommonTask.setDateField(driver, dateField);
-    driver.findElement(contractPOField).clear();
-    driver.findElement(contractPOField).sendKeys(DataItems.conOrdPO);
-    driver.findElement(lineRefField).clear();
-    driver.findElement(lineRefField).sendKeys(DataItems.conOrdLineRef);
+    //driver.findElement(contractPOField).clear();
+    //driver.findElement(contractPOField).sendKeys(DataItems.conOrdPO);
+    //driver.findElement(lineRefField).clear();
+    //driver.findElement(lineRefField).sendKeys(DataItems.conOrdLineRef);
     
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     
@@ -234,10 +234,10 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     driver.findElement(By.id("quantity0")).clear();
     driver.findElement(By.id("quantity0")).sendKeys("1");
     mePage.setDate(0);
-    driver.findElement(By.id("txtContract0")).clear();
-    driver.findElement(By.id("txtContract0")).sendKeys("40000992");
-    driver.findElement(By.id("txtContractLine0")).clear();
-    driver.findElement(By.id("txtContractLine0")).sendKeys("10");
+    //driver.findElement(By.id("txtContract0")).clear();
+    //driver.findElement(By.id("txtContract0")).sendKeys("40000992");
+    //driver.findElement(By.id("txtContractLine0")).clear();
+    //driver.findElement(By.id("txtContractLine0")).sendKeys("10");
     
       System.out.println("Line details entered. Pressing next...");
     
@@ -393,9 +393,9 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
     System.out.println("Error received. ");
     
-    WebElement wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractPOField));  
-    Actions action = new Actions(driver);
-    action.moveToElement(driver.findElement(contractPOField)).build().perform();
+    //WebElement wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractPOField));
+    //Actions action = new Actions(driver);
+    //action.moveToElement(driver.findElement(contractPOField)).build().perform();
     
     //Take a screenshot
     File scrFile16 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -508,9 +508,9 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     boolean waitForError = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.textToBePresentInElementLocated(flashMessage, "could not"));
     System.out.println("Error received: "+driver.findElement(flashMessage).getText());
     
-    Actions action = new Actions(driver);
-    action.moveToElement(driver.findElement(contractPOField)).build().perform();
-    WebElement waitForVisible = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(contractPOField));
+    //Actions action = new Actions(driver);
+    //action.moveToElement(driver.findElement(contractPOField)).build().perform();
+   // WebElement waitForVisible = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(contractPOField));
     
     //Take a screenshot
     File scrFile14 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
