@@ -18,7 +18,7 @@ public class DataItems {
     public static String lastUsedFilepath = ""; //Holds last used filepath when generating files using FileFactory
     
     //Login Credentials
-    public static String validCoatsUsername = "samson.vetharaj@coats.com"; //"joe.sykes@coats.com";
+    public static String validCoatsUsername = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com";
     public static String validCoatsPassword = "password";           //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
     
