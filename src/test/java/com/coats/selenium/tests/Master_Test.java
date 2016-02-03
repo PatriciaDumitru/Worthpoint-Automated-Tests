@@ -152,6 +152,7 @@ import PageObjects.Mst_WarehouseInstructionsPage;
 import PageObjects.Mst_WarehouseStocksPage;
 import PageObjects.WBA_BasePage;
 import com.coats.selenium.DriverFactory;
+import PageObjects.Mst_EditCustLengthPage;
 import static com.coats.selenium.DriverFactory.getDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -1780,7 +1781,7 @@ public class Master_Test extends DriverFactory {
         AssertJUnit.assertFalse("Customer Length Page: Customer Length not present in table after creation",row==-1);
         
         System.out.println("Record found. Editing record...");
-        
+
         Mst_EditCustLengthPage editPage = lenPage.pressEdit(row);
         editPage.waitForElement();
         

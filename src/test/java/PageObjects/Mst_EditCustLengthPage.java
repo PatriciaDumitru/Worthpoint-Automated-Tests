@@ -1,5 +1,5 @@
 
-package com.coats.selenium.tests;
+package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;

@@ -88,7 +88,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForElement();
+       //orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
         
