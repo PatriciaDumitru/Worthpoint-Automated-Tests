@@ -631,8 +631,8 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         WebElement shipTo = Wait.clickable(driver,shipToPartyField);
         WebElement buyers = Wait.clickable(driver,buyersField);
         WebElement po = Wait.clickable(driver,poNumberField);
-        WebElement contractPO = Wait.clickable(driver,contractPOField);
-        WebElement lineRef = Wait.clickable(driver,lineRefField);
+        //WebElement contractPO = Wait.clickable(driver,contractPOField);
+        // WebElement lineRef = Wait.clickable(driver,lineRefField);
         
         //Wait for visibility of labels
         WebElement custName = Wait.visible(driver,custNameLabel);
@@ -643,8 +643,8 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Manual Entry Page: Buyers field not displayed correctly", buyers.isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Customer PO No. field not displayed correctly", po.isDisplayed());
         AssertJUnit.assertTrue("Manual Entry Page: Product Details table not displayed correctly", getProductTable().isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Contract PO Field not displayed",contractPO.isDisplayed());
-        AssertJUnit.assertTrue("Manual Entry Page: Contract PO Field not displayed",lineRef.isDisplayed());        
+        //AssertJUnit.assertTrue("Manual Entry Page: Contract PO Field not displayed",contractPO.isDisplayed());
+        //AssertJUnit.assertTrue("Manual Entry Page: Contract PO Field not displayed",lineRef.isDisplayed());
     }
     
     public boolean waitForAddMaterialMessage() {

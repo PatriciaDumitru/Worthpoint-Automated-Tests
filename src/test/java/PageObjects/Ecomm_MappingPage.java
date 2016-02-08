@@ -44,7 +44,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     By styleNoFieldLocator = By.id("BulkOrderLineProdStyleNo");
     By styleNoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.lineinfo > td:nth-child(1) > label");
     By contractPONoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(1) > label");
-    By contractPONoLocator = By.id("BulkOrderLineContract");
+    By contractPONoLocator = By.id("BulkOrderPoNumber");
     By subAccountFieldLocator = By.id("BulkOrderPayerId");
     By subAccountLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.headerinfopay > td:nth-child(1) > label");
     By lineRefLocator = By.id("BulkOrderLineContract");

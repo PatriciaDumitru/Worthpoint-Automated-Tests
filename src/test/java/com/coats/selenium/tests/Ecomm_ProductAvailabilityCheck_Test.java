@@ -1,7 +1,9 @@
 
 package com.coats.selenium.tests;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import org.openqa.selenium.WebDriver;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_OrderViewPage;
@@ -15,6 +17,13 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.AssertJUnit;
+import org.testng.annotations.*;
+
 
 public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
     
@@ -58,6 +67,10 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\2Details entered.png"));
         
         System.out.println("Details entered. Searching for product...");
+
+
+
+
         
         Ecomm_OrderViewPage viewPage = pacPage.pressSearch();
         viewPage.switchTo();
@@ -155,7 +168,10 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         pacPage.setQty("1");
         
         System.out.println("Details entered. Searching for product...");
-        
+
+        pacPage.checkBrandField("astra");
+
+
         Ecomm_OrderViewPage viewPage = pacPage.pressSearch();
         viewPage.switchTo();
         viewPage.waitForProductInfo();

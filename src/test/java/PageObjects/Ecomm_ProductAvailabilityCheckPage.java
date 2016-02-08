@@ -19,14 +19,21 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
     By yourMatNumField = By.id("material_no");
     By yourMatNumLabel = By.cssSelector("#sample_order_search_stock_check > table > tbody > tr:nth-child(1) > td:nth-child(1) > label");
     By articleField = By.id("s2id_ArticleId");
-    By brandField = By.id("BrandId");
+    public By brandField = By.id("BrandId");
     By ticketField = By.id("TicketId");
     By finishField = By.id("FinishId");
     By lengthField = By.id("LengthId");
     By shadeCodeField = By.id("s2id_shade_id");
     By quantityField = By.id("BulkOrderLineQuantity");
     By searchButton = By.id("search");
-    
+
+    public Ecomm_ProductAvailabilityCheckPage checkBrandField(String brand) throws InterruptedException {
+        CommonTask.waitForFieldUpdate(driver, brandField, brand);
+        return this;
+
+    }
+
+
     public Ecomm_ProductAvailabilityCheckPage(WebDriver passedDriver) {
         super(passedDriver);
     }
@@ -118,6 +125,8 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
         
         return new Ecomm_OrderViewPage(driver);
     }
+
+
     
     public void checkFields() {
         //Wait for all elements to be clickable

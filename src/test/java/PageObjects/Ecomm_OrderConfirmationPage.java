@@ -61,7 +61,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By uomCell = By.cssSelector("#remove_0 > td:nth-child(8)");  
     
     //Button locators
-    static By submitButtonLocator = By.id("submit1");
+    static By submitButtonLocator = By.id("BulkOrderOrderConfirmForm");
     static By cancelButtonLocator = By.id("cancel1");
     static By saveDraftButtonLocator = By.id("drafts");
     static By backButtonLocator = By.id("backLink");
@@ -289,10 +289,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     public Ecomm_UploadProcessPage pressSubmitExpectingFailure() {
         //Wait for element to be clickable
         WebElement element = Wait.clickable(driver,submitButtonLocator);
-        element.click();  
-        
-        Alert alert2 = Wait.alert(driver);
-        alert2.accept();
+        element.click();
         
         try {
             //wait for alert and confirm
@@ -476,7 +473,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats article does not appear in line details as expected",materialParts[0].equals(DataItems.conOrdArticle));
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats shade does not appear in line details as expected",materialParts[1].equals(DataItems.conOrdShadeCode));
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, UOM does not appear in line details as expected",uom.equals("Cone"));
-        AssertJUnit.assertTrue("Order Confirmation Page: For contract order, SAP Contract No. does not appear in line details as expected",sapConNo.equals(DataItems.conOrdPO));
+        //AssertJUnit.assertTrue("Order Confirmation Page: For contract order, SAP Contract No. does not appear in line details as expected",sapConNo.equals(DataItems.conOrdPO));
         
         return true;
     }
