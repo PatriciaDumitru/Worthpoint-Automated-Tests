@@ -297,7 +297,8 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
             System.out.println("Confirm selected. Selecting Deliver to Customer...");
             
             cpPage.setSendTo("Deliver to Customer");
-            
+
+
             System.out.println("Send To set. Printing DN...");
             
             CCE_OrderViewPage viewPage2 = cpPage.pressDnPrint();

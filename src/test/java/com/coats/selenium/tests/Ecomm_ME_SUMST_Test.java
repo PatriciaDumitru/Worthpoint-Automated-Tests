@@ -1090,8 +1090,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-        Alert alert = Wait.alert(driver);
-        alert.accept();
+//        Alert alert = Wait.alert(driver);
+  //      alert.accept();
 
         orderConf.waitForElement();
         
