@@ -160,6 +160,7 @@ public class WBA_BasePage {
             static By cabinetsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(18)");
             static By marketNewFeaturesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(19)");
             static By marketRunningTextOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(20)");
+            static By customerPrivateArticle = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(22)");
         static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
         static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
         static By archivesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(6)");
@@ -1511,6 +1512,17 @@ public class WBA_BasePage {
         action.click(driver.findElement(marketRunningTextOption)).build().perform();
         
         return new Mst_MarketRunningTextPage(driver);
+    }
+
+    public Mst_CustomerPrivateArticlesPage selectCustomerPrivateArticle() {
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerPrivateArticle));
+        action.click(driver.findElement(customerPrivateArticle)).build().perform();
+        return new Mst_CustomerPrivateArticlesPage(driver);
     }
     
     public WBA_LoginPage pressLogout() {

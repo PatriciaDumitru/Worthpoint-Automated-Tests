@@ -1,158 +1,11 @@
 
 package com.coats.selenium.tests;
 
-import PageObjects.Mst_PurposeTypesPage;
+import PageObjects.*;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
-import PageObjects.CCE_ExportDownloadPage;
-import PageObjects.CCE_MainPage;
-import PageObjects.Mst_AddAllowedQuantityPage;
-import PageObjects.Mst_AddApproverListPage;
-import PageObjects.Mst_AddBasicMaterialPage;
-import PageObjects.Mst_AddBrandPage;
-import PageObjects.Mst_AddBusinessPrincipalPage;
-import PageObjects.Mst_AddCabinetPage;
-import PageObjects.Mst_AddChargedProductPage;
-import PageObjects.Mst_AddCoatsUserPage;
-import PageObjects.Mst_AddCountryPage;
-import PageObjects.Mst_AddCustBrandPage;
-import PageObjects.Mst_AddCustBusPrincPage;
-import PageObjects.Mst_AddCustFinishPage;
-import PageObjects.Mst_AddCustLengthPage;
-import PageObjects.Mst_AddCustMaterialPage;
-import PageObjects.Mst_AddCustShadePage;
-import PageObjects.Mst_AddCustTicketPage;
-import PageObjects.Mst_AddCustomerPage;
-import PageObjects.Mst_AddDLMPage;
-import PageObjects.Mst_AddEnterpriseStructurePage;
-import PageObjects.Mst_AddFinishPage;
-import PageObjects.Mst_AddForcedEnrichmentPage;
-import PageObjects.Mst_AddHierarchyPage;
-import PageObjects.Mst_AddHubPage;
-import PageObjects.Mst_AddLengthOfferPage;
-import PageObjects.Mst_AddLengthPage;
-import PageObjects.Mst_AddLightSourcePage;
-import PageObjects.Mst_AddMarketNewFeaturePage;
-import PageObjects.Mst_AddMarketRunningTextPage;
-import PageObjects.Mst_AddMaterialGroupPage;
-import PageObjects.Mst_AddMultiUserPage;
-import PageObjects.Mst_AddOrderTypePage;
-import PageObjects.Mst_AddOurStockPage;
-import PageObjects.Mst_AddPlantHolidayPage;
-import PageObjects.Mst_AddPlantPage;
-import PageObjects.Mst_AddPurposeTypePage;
-import PageObjects.Mst_AddQuantityFactorPage;
-import PageObjects.Mst_AddRejectionReasonPage;
-import PageObjects.Mst_AddSalesOrgMaterialPage;
-import PageObjects.Mst_AddSalesOrgPage;
-import PageObjects.Mst_AddShadeCardPage;
-import PageObjects.Mst_AddShadeCardPlantPage;
-import PageObjects.Mst_AddShadePage;
-import PageObjects.Mst_AddShipToPartyPage;
-import PageObjects.Mst_AddSubAccountPage;
-import PageObjects.Mst_AddSupplyPlantPage;
-import PageObjects.Mst_AddTicketPage;
-import PageObjects.Mst_AddUserTypePage;
-import PageObjects.Mst_AddWarehouseInstructionPage;
-import PageObjects.Mst_AllUserTypesPage;
-import PageObjects.Mst_AllowedQuantitiesPage;
-import PageObjects.Mst_ApproverListPage;
-import PageObjects.Mst_BasicMaterialsPage;
-import PageObjects.Mst_BrandsPage;
-import PageObjects.Mst_BusinessPrincipalsPage;
-import PageObjects.Mst_CabinetsPage;
-import PageObjects.Mst_ChargedProductsPage;
-import PageObjects.Mst_CoatsUsersPage;
-import PageObjects.Mst_CountriesPage;
-import PageObjects.Mst_CustBrandsPage;
-import PageObjects.Mst_CustBusinessPrincipalPage;
-import PageObjects.Mst_CustFinishesPage;
-import PageObjects.Mst_CustLengthsPage;
-import PageObjects.Mst_CustMaterialsPage;
-import PageObjects.Mst_CustTicketsPage;
-import PageObjects.Mst_CustomerShadesPage;
-import PageObjects.Mst_CustomersPage;
-import PageObjects.Mst_DyeLotMultiplesPage;
-import PageObjects.Mst_EditAllowedQuantityPage;
-import PageObjects.Mst_EditApproverListPage;
-import PageObjects.Mst_EditBasicMaterialPage;
-import PageObjects.Mst_EditBrandPage;
-import PageObjects.Mst_EditBusinessPrincipalPage;
-import PageObjects.Mst_EditCabinetPage;
-import PageObjects.Mst_EditChargedProductPage;
-import PageObjects.Mst_EditCoatsUserPage;
-import PageObjects.Mst_EditCountryPage;
-import PageObjects.Mst_EditCustBrandPage;
-import PageObjects.Mst_EditCustBusPrincPage;
-import PageObjects.Mst_EditCustFinishPage;
-import PageObjects.Mst_EditCustMaterialPage;
-import PageObjects.Mst_EditCustShadePage;
-import PageObjects.Mst_EditCustTicketPage;
-import PageObjects.Mst_EditCustomerPage;
-import PageObjects.Mst_EditDLMPage;
-import PageObjects.Mst_EditEnterpriseStructurePage;
-import PageObjects.Mst_EditFinishPage;
-import PageObjects.Mst_EditForcedEnrichmentPage;
-import PageObjects.Mst_EditHierarchyPage;
-import PageObjects.Mst_EditHubPage;
-import PageObjects.Mst_EditLengthOfferPage;
-import PageObjects.Mst_EditLengthPage;
-import PageObjects.Mst_EditLightSourcePage;
-import PageObjects.Mst_EditMarketNewFeaturePage;
-import PageObjects.Mst_EditMarketRunningTextPage;
-import PageObjects.Mst_EditMaterialGroupPage;
-import PageObjects.Mst_EditMultiUserPage;
-import PageObjects.Mst_EditOrderTypePage;
-import PageObjects.Mst_EditOurStockPage;
-import PageObjects.Mst_EditPlantHolidayPage;
-import PageObjects.Mst_EditPlantPage;
-import PageObjects.Mst_EditPurposeTypePage;
-import PageObjects.Mst_EditQuantityFactorPage;
-import PageObjects.Mst_EditRejectionReasonPage;
-import PageObjects.Mst_EditSalesOrgMaterialPage;
-import PageObjects.Mst_EditSalesOrgPage;
-import PageObjects.Mst_EditShadeCardPage;
-import PageObjects.Mst_EditShadeCardPlantPage;
-import PageObjects.Mst_EditShadePage;
-import PageObjects.Mst_EditShipToPartyPage;
-import PageObjects.Mst_EditSubAccountPage;
-import PageObjects.Mst_EditSupplyPlantPage;
-import PageObjects.Mst_EditTicketPage;
-import PageObjects.Mst_EditUserTypePage;
-import PageObjects.Mst_EditWarehouseInstructionPage;
-import PageObjects.Mst_EnterpriseStructurePage;
-import PageObjects.Mst_FinishesPage;
-import PageObjects.Mst_ForcedEnrichmentPage;
-import PageObjects.Mst_HierarchyPage;
-import PageObjects.Mst_HubsPage;
-import PageObjects.Mst_ImportPage;
-import PageObjects.Mst_ImportShadesPage;
-import PageObjects.Mst_LengthOffersPage;
-import PageObjects.Mst_LengthsPage;
-import PageObjects.Mst_LightSourcesPage;
-import PageObjects.Mst_MarketNewFeaturesPage;
-import PageObjects.Mst_MarketRunningTextPage;
-import PageObjects.Mst_MaterialGroupsPage;
-import PageObjects.Mst_MultiSoldToPage;
-import PageObjects.Mst_OrderTypePage;
-import PageObjects.Mst_PlantHolidaysPage;
-import PageObjects.Mst_PlantsPage;
-import PageObjects.Mst_QuantityFactorsPage;
-import PageObjects.Mst_RejectionReasonsPage;
-import PageObjects.Mst_SalesOrgMaterialsPage;
-import PageObjects.Mst_SalesOrgPage;
-import PageObjects.Mst_ShadeCardPlantsPage;
-import PageObjects.Mst_ShadeCardsPage;
-import PageObjects.Mst_ShadesPage;
-import PageObjects.Mst_ShipToPartiesPage;
-import PageObjects.Mst_SubAccountPage;
-import PageObjects.Mst_SupplyPlantsPage;
-import PageObjects.Mst_TicketsPage;
-import PageObjects.Mst_WarehouseInstructionsPage;
-import PageObjects.Mst_WarehouseStocksPage;
-import PageObjects.WBA_BasePage;
 import com.coats.selenium.DriverFactory;
-import PageObjects.Mst_EditCustLengthPage;
+
 import static com.coats.selenium.DriverFactory.getDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7671,5 +7524,180 @@ public class Master_Test extends DriverFactory {
         
         System.out.println("Item removed.");
     }
-    
+
+    @Test //Customers Private Article :: Page and filter checks, add/edit/delete features
+            (groups = {"Masters"}) //DISABLED as data cannot be deleted from table (due to sharing violation) so test cannot pass
+    public void custPrivArt1() throws Exception {
+        WebDriver driver = getDriver();
+
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Customers Private Article: Page and filter checks, add/edit/delete features", "A_CM_P_1 to 8");
+        mainPage.waitForLoad();
+
+        System.out.println("Navigating to Customers Private Article Page...");
+
+        Mst_CustomerPrivateArticlesPage cpaPage = mainPage.selectCustomerPrivateArticle();
+        cpaPage.waitForElement();
+
+        System.out.println("Customers Private Article page reached. Checking title...");
+
+        Mst_PlantsPage pPage = mainPage.selectPlants();
+
+        AssertJUnit.assertTrue("Customers Private Page: Title not as expected", cpaPage.getBreadcrumb().getText().equals("Customer Private Articles"));
+
+        System.out.println("Title checked");
+
+        cpaPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        cpaPage.checkFields();
+
+        System.out.println("Fields checked. Entering filter criteria...");
+
+
+        //-------------
+        /*
+        pPage.setPlantName("ID10");
+
+        System.out.println("Filter criteria entered. Listing records...");
+
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Plants Page: Filtration not working as expected",pPage.checkFiltration(loc1,loc2,"ID10",recordField,2));
+
+*/
+        System.out.println("Creating new Customer Private Article...");
+
+        cpaPage.pressNewPrivateArticle();
+
+
+
+        ///////////////------------------------------///////////////
+
+
+
+        Mst_AddPlantPage addPage = pPage.pressNewPlant();
+        addPage.waitForElement();
+
+        System.out.println("Add Plant Page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Add Plant Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Plants | Add Plant"));
+
+        System.out.println("Title as expected");
+
+        addPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        addPage.checkFields();
+
+        System.out.println("Fields checked. Entering details...");
+
+        addPage.setPlantName("TEST");
+        addPage.setPlantDesc("Automated Test: generated by script");
+        addPage.setLeadTime1("48");
+        addPage.setLeadTime2("48");
+        addPage.setLeadTime3("48");
+        addPage.setLeadTime4("48");
+
+        System.out.println("Details entered. Saving...");
+
+        addPage.pressSave();
+        pPage.waitForElement();
+
+        System.out.println("Saved. Checking record appears...");
+
+        pPage.setPlantName("TEST");
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        int row = pPage.getRow("TEST");
+
+        AssertJUnit.assertFalse("Plants Page: Plant not present in table after creation",row==-1);
+
+        System.out.println("Record found. Editing record...");
+
+        Mst_EditPlantPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+
+        System.out.println("Edit page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Edit Plant Page: Title not as expected",editPage.getBreadcrumb().getText().equals("Plants | Edit Plant"));
+
+        System.out.println("Title checked");
+
+        editPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        editPage.checkFields();
+
+        System.out.println("Fields checked. Editing Sales Organisation...");
+
+        editPage.setPlantName("TESTEdited");
+        editPage.addDay("Saturday");
+
+        System.out.println("Edited. Saving...");
+
+        editPage.pressSave();
+        pPage.waitForElement();
+
+        System.out.println("Saved. Checking record is updated...");
+
+        pPage.setPlantName("TESTEdited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        int row2 = pPage.getRow("TESTEdited");
+        AssertJUnit.assertFalse("Plants Page: Edited changes are not applied in table",row2==-1);
+
+        System.out.println("Record updated. Deleting record...");
+
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+
+        System.out.println("Delete pressed. Checking item is removed...");
+
+        pPage.setPlantName("TESTEdited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        int row3 = pPage.getRow("TESTEdited");
+        AssertJUnit.assertTrue("Plants Page: Item not removed after deletion",row3==-1);
+
+        System.out.println("Item removed. Checking export function...");
+
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setPlantName("ID");
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+
+        System.out.println("Export function works. Checking import page...");
+
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+
+        System.out.println("Page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Plants Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Plants | Import"));
+
+        System.out.println("Title as expected");
+    }
+
+
 }
+
+    
+

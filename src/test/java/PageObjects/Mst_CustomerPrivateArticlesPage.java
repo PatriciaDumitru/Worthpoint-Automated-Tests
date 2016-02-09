@@ -14,16 +14,20 @@ import org.testng.AssertJUnit;
 public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
 
     //Locators
-    By customerNameField = By.id("filterPlantName");
+    By customerNameField = By.id("filterCustomerCustomerName");
     By salesOraganizationField = By.id("s2id_filterCustomerPrivateArticleSalesOrgId");
     By customerCodeField = By.id("filterCustomerCustomerCode");
     By searchButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
-    By newPrivateArticleField = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
+    By newPrivateArticleField = By.xpath(".//*[@id='content']/div[3]/ul/li/a");
 
 
     public Mst_CustomerPrivateArticlesPage(WebDriver driver) {
         super(driver);
+    }
+
+    public WebElement getBreadcrumb() {
+        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
     }
 
     public Mst_CustomerPrivateArticlesPage setCustomerName(String item) {
@@ -90,8 +94,10 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Customer Private Article Page: Reset button not displayed", reset.isDisplayed());
         AssertJUnit.assertTrue("Customer Private Article Page: New Private Article button not displayed", newPrivateArticle.isDisplayed());
 
+    }
 
-
+    public void waitForElement() {
+        WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
     }
 
 
