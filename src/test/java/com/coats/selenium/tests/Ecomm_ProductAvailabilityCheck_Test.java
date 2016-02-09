@@ -166,13 +166,15 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         pacPage.setShadeCode(DataItems.expShadeCode);
         pacPage.setTicket("120");       
         pacPage.setQty("1");
+        pacPage.setFinish("STANDARD");
+       // pacPage.setLength("5000");
         
         System.out.println("Details entered. Searching for product...");
 
-        pacPage.checkBrandField("astra");
-
-
         Ecomm_OrderViewPage viewPage = pacPage.pressSearch();
+
+        //driver.navigate().refresh();
+
         viewPage.switchTo();
         viewPage.waitForProductInfo();
         

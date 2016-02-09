@@ -30,7 +30,11 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
     public Ecomm_ProductAvailabilityCheckPage checkBrandField(String brand) throws InterruptedException {
         CommonTask.waitForFieldUpdate(driver, brandField, brand);
         return this;
+    }
 
+    public Ecomm_ProductAvailabilityCheckPage checkLenght(String brand) throws InterruptedException {
+        CommonTask.waitForFieldUpdate(driver, lengthField, brand);
+        return this;
     }
 
 
