@@ -2,8 +2,9 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
-import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
+
+import AutomationFramework.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 
-public class Mst_AddCustomerPrivateArticlesPage extends WBA_BasePage {
+public class Mst_EditCustomerPrivateArticlesPage extends WBA_BasePage{
 
     //Locators
     By salesOrgField = By.id("CustomerPrivateArticleSalesOrgId");
@@ -25,35 +26,37 @@ public class Mst_AddCustomerPrivateArticlesPage extends WBA_BasePage {
     By cancelButton = By.xpath(".//*[@id='CustomerPrivateArticleAddForm']/div[3]/ul/li[2]/a");
 
 
-    public Mst_AddCustomerPrivateArticlesPage(WebDriver driver) {
+
+    public Mst_EditCustomerPrivateArticlesPage(WebDriver driver) {
         super(driver);
     }
 
     public WebElement getBreadcrumb() {
-        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+        return element;
     }
 
-    public Mst_AddCustomerPrivateArticlesPage setSalesOrg(String item) throws InterruptedException {
+    public Mst_EditCustomerPrivateArticlesPage setSalesOrg(String item) throws InterruptedException {
         CommonTask.setDropDownField(driver, salesOrgField, item);
-        return new Mst_AddCustomerPrivateArticlesPage(driver);
+        return new Mst_EditCustomerPrivateArticlesPage(driver);
     }
 
-    public Mst_AddCustomerPrivateArticlesPage setCustomerName(String item) throws InterruptedException {
+    public Mst_EditCustomerPrivateArticlesPage setCustomerName(String item) throws InterruptedException {
         CommonTask.setSearchField(driver, custNameField, item);
-        return new Mst_AddCustomerPrivateArticlesPage(driver);
+        return new Mst_EditCustomerPrivateArticlesPage(driver);
     }
 
-    public Mst_AddCustomerPrivateArticlesPage setArticle(String item) throws InterruptedException {
+    public Mst_EditCustomerPrivateArticlesPage setArticle(String item) throws InterruptedException {
         CommonTask.setChoiceFieldAlt(driver, coatsArticleField, item);
-        return new Mst_AddCustomerPrivateArticlesPage(driver);
+        return new Mst_EditCustomerPrivateArticlesPage(driver);
     }
 
-    public Mst_AddCustomerPrivateArticlesPage setBrand(String item) throws InterruptedException {
+    public Mst_EditCustomerPrivateArticlesPage setBrand(String item) throws InterruptedException {
         CommonTask.setChoiceFieldAlt(driver, coatsBrandField, item);
-        return new Mst_AddCustomerPrivateArticlesPage(driver);
+        return new Mst_EditCustomerPrivateArticlesPage(driver);
     }
 
-    public Mst_AddCustomerPrivateArticlesPage pressEnable() {
+    public Mst_EditCustomerPrivateArticlesPage pressEnable() {
         //Wait for element to be clickable
         WebElement btn = Wait.clickable(driver, statusEnabledRButton);
         //New action to click button
@@ -63,8 +66,8 @@ public class Mst_AddCustomerPrivateArticlesPage extends WBA_BasePage {
         return this;
     }
 
-    public Mst_AddCustomerPrivateArticlesPage pressDisable() {
-        //Wait for element to be clickable
+    public Mst_EditCustomerPrivateArticlesPage pressDisable() {
+        //Wait for element to be clicable
         WebElement btn = Wait.clickable(driver, statusDisabledRbutton);
         //New action to click button
         Actions clickRealtime = new Actions(driver);
@@ -112,5 +115,4 @@ public class Mst_AddCustomerPrivateArticlesPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
     }
-
 }

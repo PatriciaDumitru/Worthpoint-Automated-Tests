@@ -41,7 +41,7 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
     }
 
     public Mst_CustomerPrivateArticlesPage setSalesOrganization(String item) {
-        CommonTask.setSearchField(driver, customerCodeField, item);
+        CommonTask.setSearchField(driver, salesOraganizationField, item);
         return new Mst_CustomerPrivateArticlesPage (driver);
     }
 
@@ -51,12 +51,13 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
         return new Mst_CustomerPrivateArticlesPage(driver);
     }
 
-    public Mst_CustomerPrivateArticlesPage pressEdit(int row) {
+    public Mst_EditCustomerPrivateArticlesPage pressEdit(int row) {
         By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(1) > span");
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
         element.click();
-        return new Mst_CustomerPrivateArticlesPage(driver);
+        return new Mst_EditCustomerPrivateArticlesPage(driver);
     }
+
 
     public Mst_CustomerPrivateArticlesPage pressDelete(int row) {
         By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(3) > span");
@@ -69,11 +70,35 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
         return new Mst_CustomerPrivateArticlesPage(driver);
     }
 
-    public Mst_CustomerPrivateArticlesPage pressNewPrivateArticle() {
+    public Mst_AddCustomerPrivateArticlesPage pressNewPrivateArticle() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newPrivateArticleField));
         element.click();
 
-        return new Mst_CustomerPrivateArticlesPage(driver);
+        return new Mst_AddCustomerPrivateArticlesPage(driver);
+    }
+
+    public int getRow(String title) {
+
+        if (!checkForRecords()) {
+            return -1;
+        }
+
+        By headerLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(2) > a");
+        WebElement header = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(headerLocator));
+        AssertJUnit.assertTrue("Customer Private Articles Page: Customer name column has moved, update locators",header.getText().equals("Customer Name"));
+
+        By recordsField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        int count = getRecordCount(recordsField);
+        int tableCount = (count > 10) ? 10 : count;
+
+        for (int i = 2; i < (tableCount+2); i++) {
+            By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(2)");
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            if (cell.getText().equals(title)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void checkFields() {
