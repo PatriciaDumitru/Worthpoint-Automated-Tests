@@ -323,7 +323,52 @@ public class CommonTask {
             //Find label for 3rd of the month and click
             By thirdOfMonthLocator = By.xpath("//a[contains(text(),\"3\")]");
             clickDatePicked.click(driver.findElement(thirdOfMonthLocator)).click().perform();
-        }       
+        }
+
+        //Select Now Time
+        By nowButton = By.xpath(".//*[@id='ui-datepicker-div']/div[3]/button[1]");
+        clickDatePicked.click(driver.findElement(nowButton)).click().perform();
+
+        //Select Now Time
+        By doneButton = By.xpath(".//*[@id='ui-datepicker-div']/div[3]/button[2]");
+        clickDatePicked.click(driver.findElement(doneButton)).click().perform();
+
+
+/*
+        //Move Minutes Bar
+        WebElement From = driver.findElement(By.cssSelector("html body div#ui-datepicker-div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all div#ui-timepicker-div-MarketingRunningtextAvailableFrom.ui-timepicker-div dl dd.ui_tpicker_hour div#ui_tpicker_hour_MarketingRunningtextAvailableFrom.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all a.ui-slider-handle.ui-state-default.ui-corner-all"));
+
+        WebElement To = driver.findElement(By.cssSelector("html body div#ui-datepicker-div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all div#ui-timepicker-div-MarketingRunningtextAvailableFrom.ui-timepicker-div dl dd.ui_tpicker_hour div#ui_tpicker_hour_MarketingRunningtextAvailableFrom.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all a.ui-slider-handle.ui-state-default.ui-corner-all"));
+
+        Actions dragAndDrop = new Actions(driver);
+
+        dragAndDrop.clickAndHold(From)
+
+                .moveToElement(To)
+
+                .release(To)
+
+                .build();
+
+        dragAndDrop.perform();
+
+        //Move Hour Bar
+        WebElement From2 = driver.findElement(By.cssSelector("html body div#ui-datepicker-div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all div#ui-timepicker-div-MarketingRunningtextAvailableFrom.ui-timepicker-div dl dd.ui_tpicker_minute div#ui_tpicker_minute_MarketingRunningtextAvailableFrom.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all a.ui-slider-handle.ui-state-default.ui-corner-all"));
+
+        WebElement To2 = driver.findElement(By.cssSelector("html body div#ui-datepicker-div.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all div#ui-timepicker-div-MarketingRunningtextAvailableFrom.ui-timepicker-div dl dd.ui_tpicker_minute div#ui_tpicker_minute_MarketingRunningtextAvailableFrom.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all a.ui-slider-handle.ui-state-default.ui-corner-all"));
+
+        Actions dragAndDrop2 = new Actions(driver);
+
+        dragAndDrop.clickAndHold(From2)
+
+                .moveToElement(To2)
+
+                .release(To)
+
+                .build();
+
+        dragAndDrop.perform();
+*/
     }
     
     public static ExpectedCondition<Boolean> textContains(final String text, final String elementText) {

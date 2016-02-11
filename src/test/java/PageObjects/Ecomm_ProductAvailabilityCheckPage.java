@@ -130,6 +130,11 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
         return new Ecomm_OrderViewPage(driver);
     }
 
+    public Ecomm_ProductAvailabilityCheckPage  waitForBrand() {
+         Wait.textPresent(driver,brandField,"astra");
+        return this;
+    }
+
 
     
     public void checkFields() {

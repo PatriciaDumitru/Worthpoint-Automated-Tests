@@ -115,6 +115,8 @@ public class Ecomm_OrderViewPage {
     public void waitForProductInfo() {
         Boolean waitForTitle = Wait.textPresent(driver,productInfoLocator,"Product Information");
     }
+
+
     
     public void waitForInvisibility() {
     	Boolean wait = Wait.invisible(driver,frameLocator);

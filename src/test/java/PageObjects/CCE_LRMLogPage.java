@@ -31,7 +31,7 @@ public class CCE_LRMLogPage extends WBA_BasePage {
     By resetButton = By.cssSelector("#FilterLrmLogForm > div.actions > ul > li:nth-child(2)");
     By exportButton = By.cssSelector("#content > div.actions > ul > li");
     By viewButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(12)");
-    By resendButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(13)");
+    By resendButton = By.xpath(".//*[@id='content']/div[2]/table/tbody/tr[2]/td[13]/a/span");
     
     
     public CCE_LRMLogPage(WebDriver passedDriver) {
