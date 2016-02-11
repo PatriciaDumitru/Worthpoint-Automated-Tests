@@ -61,7 +61,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By uomCell = By.cssSelector("#remove_0 > td:nth-child(8)");  
     
     //Button locators
-    static By submitButtonLocator = By.id("BulkOrderOrderConfirmForm");
+    static By submitButtonLocator = By.id("submit1");
     static By cancelButtonLocator = By.id("cancel1");
     static By saveDraftButtonLocator = By.id("drafts");
     static By backButtonLocator = By.id("backLink");

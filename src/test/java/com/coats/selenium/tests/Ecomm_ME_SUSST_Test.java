@@ -2,6 +2,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
@@ -12,9 +13,7 @@ import static com.coats.selenium.DriverFactory.getDriver;
 import com.google.common.base.Verify;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -88,7 +87,8 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-       //orderConf.waitForElement();
+
+        orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
         
@@ -105,7 +105,8 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         AssertJUnit.assertTrue("Order Confirmation Page: Required Date not maintained after manual entry page",orderConf.getRequiredDate().equals(date));
         
         //Press Submit
-        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit(); 
+        Ecomm_OutstandingOrdersPage outOrders = orderConf.pressSubmit();
+
         outOrders.waitForElement();
 
         System.out.println("Order submitted. Viewing order...");
@@ -196,6 +197,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -301,6 +310,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -408,6 +425,13 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -513,6 +537,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -618,6 +650,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -721,6 +761,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -825,6 +873,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -926,6 +982,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1042,6 +1106,13 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1157,6 +1228,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1273,6 +1352,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1389,6 +1476,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1506,6 +1601,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1622,6 +1725,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1739,6 +1850,14 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+
+        //Close alert
+        Alert promptAlert  = driver.switchTo().alert();
+        String alertText = promptAlert .getText();
+        System.out.println("Alert text is " + alertText);
+        promptAlert.accept();
+
+
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
