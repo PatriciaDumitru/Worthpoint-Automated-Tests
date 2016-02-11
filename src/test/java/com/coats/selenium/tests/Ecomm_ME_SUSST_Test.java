@@ -198,11 +198,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
 
 
         orderConf.waitForElement();
@@ -311,11 +307,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
 
 
         orderConf.waitForElement();
@@ -426,11 +418,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
 
         orderConf.waitForElement();
 
@@ -538,11 +526,8 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
+
 
 
         orderConf.waitForElement();
@@ -651,13 +636,6 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
-
-
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -761,12 +739,6 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
 
 
         orderConf.waitForElement();
@@ -874,11 +846,6 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
 
 
         orderConf.waitForElement();
@@ -983,11 +950,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
 
 
         orderConf.waitForElement();
@@ -1107,11 +1070,6 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
 
         orderConf.waitForElement();
         
@@ -1229,11 +1187,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
 
 
         orderConf.waitForElement();
@@ -1353,11 +1307,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
 
 
         orderConf.waitForElement();
@@ -1477,11 +1427,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
 
 
         orderConf.waitForElement();
@@ -1602,11 +1548,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
 
 
         orderConf.waitForElement();
@@ -1726,11 +1668,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
 
 
         orderConf.waitForElement();
@@ -1851,11 +1789,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-        //Close alert
-        Alert promptAlert  = driver.switchTo().alert();
-        String alertText = promptAlert .getText();
-        System.out.println("Alert text is " + alertText);
-        promptAlert.accept();
+
 
 
         orderConf.waitForElement();
