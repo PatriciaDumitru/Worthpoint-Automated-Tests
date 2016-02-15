@@ -49,6 +49,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         //Customer Edit Page
     By customerNameEditPageField = By.id("CustomerCustomerName");
     By mdqCheckBox = By.id("CustomerCustMdqEnabled");
+    By saveCustomerButton = By.xpath(".//*[@id='CustomerEditForm']/div[4]/ul/li[1]/input");
 
 
 
@@ -98,7 +99,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
     }
 
     public Ecomm_MOQ_Methods_Page setCustomerName(String item) {
-        CommonTask.setSearchField(driver, salesOrgIdField, item);
+        CommonTask.setInputField(driver, customerNameField, item);
         return this;
     }
 
@@ -110,7 +111,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
 
     public Ecomm_MOQ_Methods_Page editCustomerName() {
         Actions action = new Actions(driver);
-        action.click(driver.findElement(editSalesOrgButton)).build().perform();
+        action.click(driver.findElement(editCustomerButton)).build().perform();
         return this;
     }
 
@@ -136,7 +137,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
     }
 
     public Ecomm_MOQ_Methods_Page disableMOQCheckBox(){
-        CommonTask.setCheckBox(driver, mdqCheckBox);
+        CommonTask.uncheckBox(driver, mdqCheckBox);
         return this;
     }
 
@@ -166,6 +167,12 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
     public Ecomm_MOQ_Methods_Page saveSalesOrg() {
         Actions action = new Actions(driver);
         action.click(driver.findElement(saveSalesOrgButton)).build().perform();
+        return this;
+    }
+
+    public Ecomm_MOQ_Methods_Page saveCustomer() {
+        Actions action = new Actions(driver);
+        action.click(driver.findElement(saveCustomerButton)).build().perform();
         return this;
     }
 

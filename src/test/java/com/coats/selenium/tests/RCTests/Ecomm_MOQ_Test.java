@@ -53,6 +53,20 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
         moqMeth.saveSalesOrg();
 
+        System.out.println("Customer: Going to customer edit page...");
+
+        moqMeth.goToCustomerAndEdit();
+
+        System.out.println("Customer: Disabling MOQ Checkbox...");
+
+        moqMeth.disableMOQCheckBox();
+
+        System.out.println("Customer: Saving customers changes...");
+
+        moqMeth.saveCustomer();
+
+
+
 
 
     }
