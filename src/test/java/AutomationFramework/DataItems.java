@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 public class DataItems {
     
     //Target URL
-    public static String targetURL = "https://qawcs.coatscolourexpress.com/";
+    public static String targetURL = "http://10.14.18.4/";
     public static String mastersSalesOrgURL = targetURL + "qa_p4i/SalesOrgs";
     public static String manualEntryEcommUrl =targetURL + "qa_p4i/ecom/order/manual";
     public static String mastersCusotmersURL =targetURL + "qa_p4i/Customers";
