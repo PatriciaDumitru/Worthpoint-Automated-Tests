@@ -8,10 +8,11 @@ import org.openqa.selenium.By;
 public class DataItems {
     
     //Target URL
-    public static String targetURL = "http://10.14.18.4/";
-    public static String mastersSalesOrgURL = targetURL + "qa_p4i/SalesOrgs";
-    public static String manualEntryEcommUrl =targetURL + "qa_p4i/ecom/order/manual";
-    public static String mastersCusotmersURL =targetURL + "qa_p4i/Customers";
+    public static String targetURL = "https://qawcs.coatscolourexpress.com";  //"http://10.14.18.4";
+    public static String mastersSalesOrgURL = targetURL + "/qa_p4i/SalesOrgs";            //
+    public static String manualEntryEcommUrl =targetURL + "/qa_p4i/ecom/order/manual";
+    public static String mastersCusotmersURL =targetURL + "/qa_p4i/Customers";
+    public static String cceURL =targetURL + "/qa_p4i/cce";
 
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
@@ -274,12 +275,22 @@ public class DataItems {
     public static String countryName = "AutoTest Land";
 
     //MOQ data
-        //Sales Org
+        //Sales Org Page
     public static String salesOrgFilterString = "ID51";
-    public static String forwardDays = "10";
-        //Customer
+    public static String forwardDays10 = "10";
+        //Customer Page
     public static String custNameFilterString = "life easy";
-        //Manual order
+        //Manual order Page
+            //Customer details
+            public static String customerName = "Life Easy Customer";
+            public static String shipToParty = "Life Easy Customer";
+            public static String requesterName = "Life Easy";
+            public static String buyers = "*OTHERS*";
+            //Line order
+            public static String articleMOQ = "8754120";
+            public static String shadeCode01MOQ = "EC103";
+            public static String shadeCode02MOQ = "00001";
+            public static String nullPO = "null";
     
     //Wait times in seconds
     public static int shorterWait = 8;

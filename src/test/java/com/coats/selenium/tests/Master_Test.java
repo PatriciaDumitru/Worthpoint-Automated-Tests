@@ -672,7 +672,8 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Flag appears. Navigating to Approver List...");
 
-        driver.get(DataItems.targetURL + "/cee");
+        driver.navigate().refresh();
+        driver.get(DataItems.cceURL);
         
         Mst_ApproverListPage appList = editPage.selectApproverList();
         appList.waitForElement();

@@ -88,7 +88,7 @@ public class CommonTask {
         boolean waitForUpdate = Wait.textPresent(driver,By.id(id), ""); 
     }
     
-    public static void setDropDownField(WebDriver driver,By fieldLocator,String item) throws InterruptedException {        
+    public static void setDropDownField(WebDriver driver,By fieldLocator,String item)  {
         //Set value of drop down field (referenced by fieldLocator) to "item"
         
         //Wait for field to be available
@@ -256,6 +256,23 @@ public class CommonTask {
             Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsChecked(driver.findElement(fieldLocator)));
         }
         
+    }
+
+    public static void unSetCheckBox(WebDriver driver, By fieldLocator) {
+        //Check a checkbox, ensuring its value is "unchecked"
+
+        //Only perform the condition if it is not already selected to avoid a timeout exception
+        if (driver.findElement(fieldLocator).isSelected()) {
+            //Wait for element to be available
+            WebElement element = Wait.clickable(driver,fieldLocator);
+
+            //Check box
+            element.click();
+
+            //Wait for box to be checked
+            Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsNotChecked(driver.findElement(fieldLocator)));
+        }
+
     }
     
     public static void uncheckBox(WebDriver driver, By fieldLocator) {

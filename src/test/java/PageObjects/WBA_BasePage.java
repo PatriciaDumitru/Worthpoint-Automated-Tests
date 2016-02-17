@@ -183,11 +183,13 @@ public class WBA_BasePage {
         //find and return element
         return driver.findElement(dateLabelLocator);
     }
-    
+
     public static WebElement getAccessTypeSelector() {
         //find and return element
         return driver.findElement(accessTypeLocator);
     }
+
+
     
     public static WebElement getLanguageMenu() {
         //find and return element
@@ -275,7 +277,7 @@ public class WBA_BasePage {
     }
     
     //Switch site (from CCE to Ecomm and vice versa)
-    
+
     public Ecomm_MainPage clickEcomm() {
         WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(accessTypeLocator));
         btn.click();
@@ -289,6 +291,7 @@ public class WBA_BasePage {
         
         return new CCE_MainPage(driver);
     }
+
     
     //Ecomm Navigation methods
     

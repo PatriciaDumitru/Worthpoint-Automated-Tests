@@ -50,7 +50,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     //Customer detail labels (used for SUSST)
     static By custNameLabel = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > label");
     static By requestorLabel = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > table > tbody > tr:nth-child(3) > td > label");
-    
+
     //Line detail fields
     static By contractPOField = By.id("txtContract0");
     static By lineRefField = By.id("txtContractLine0");
@@ -326,7 +326,107 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         }       
         return this;
     }
-    
+
+    public Ecomm_ManualEntryPage setDateToday(int lineNumber) {
+        //produce locator for field. Line numbers start from 0
+        By dateFieldLocator = By.id("required_date_" + lineNumber);
+
+        //Click required field to open picker
+        Actions openPicker = new Actions(driver);
+        openPicker.click(driver.findElement(dateFieldLocator)).build().perform();
+
+        //Get the current day of the month
+        Calendar cal = Calendar.getInstance();
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+
+        //New action for clicking
+        Actions clickDatePicked = new Actions(driver);
+
+        //if current Day of month is less than 28th, choose date three days advance. Else, click next month and choose 3rd
+        if (dayOfMonth < 28) {
+            //calculate date three days in future
+            String date = String.valueOf((int) dayOfMonth);
+            By dateLocator = By.xpath("//a[contains(text(),'" + date + "')]");
+            clickDatePicked.click(driver.findElement(dateLocator)).build().perform();
+        } else {
+            //locate next month button and click
+            By nextMonthLocator = By.xpath("//*[@id=\"ui-datepicker-div\"]/div/a[2]/span");
+            clickDatePicked.click(driver.findElement(nextMonthLocator)).build().perform();
+
+            //locate 3rd of month button and click
+            By thirdOfMonthLocator = By.xpath("//a[contains(text(),\"3\")]");
+            clickDatePicked.click(driver.findElement(thirdOfMonthLocator)).click().perform();
+        }
+        return this;
+    }
+
+    public Ecomm_ManualEntryPage setDateTomorrow(int lineNumber) {
+        //produce locator for field. Line numbers start from 0
+        By dateFieldLocator = By.id("required_date_"+lineNumber);
+
+        //Click required field to open picker
+        Actions openPicker = new Actions(driver);
+        openPicker.click(driver.findElement(dateFieldLocator)).build().perform();
+
+        //Get the current day of the month
+        Calendar cal = Calendar.getInstance();
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+
+        //New action for clicking
+        Actions clickDatePicked = new Actions(driver);
+
+        //if current Day of month is less than 28th, choose date three days advance. Else, click next month and choose 3rd
+        if (dayOfMonth < 28) {
+            //calculate date three days in future
+            String date = String.valueOf((int)dayOfMonth+1);
+            By dateLocator = By.xpath("//a[contains(text(),'"+date+"')]");
+            clickDatePicked.click(driver.findElement(dateLocator)).build().perform();
+        } else {
+            //locate next month button and click
+            By nextMonthLocator = By.xpath("//*[@id=\"ui-datepicker-div\"]/div/a[2]/span");
+            clickDatePicked.click(driver.findElement(nextMonthLocator)).build().perform();
+
+            //locate 3rd of month button and click
+            By thirdOfMonthLocator = By.xpath("//a[contains(text(),\"3\")]");
+            clickDatePicked.click(driver.findElement(thirdOfMonthLocator)).click().perform();
+        }
+        return this;
+    }
+
+    public Ecomm_ManualEntryPage setDateDayAfterTomorrow(int lineNumber) {
+        //produce locator for field. Line numbers start from 0
+        By dateFieldLocator = By.id("required_date_"+lineNumber);
+
+        //Click required field to open picker
+        Actions openPicker = new Actions(driver);
+        openPicker.click(driver.findElement(dateFieldLocator)).build().perform();
+
+        //Get the current day of the month
+        Calendar cal = Calendar.getInstance();
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+
+        //New action for clicking
+        Actions clickDatePicked = new Actions(driver);
+
+        //if current Day of month is less than 28th, choose date three days advance. Else, click next month and choose 3rd
+        if (dayOfMonth < 28) {
+            //calculate date three days in future
+            String date = String.valueOf((int)dayOfMonth+2);
+            By dateLocator = By.xpath("//a[contains(text(),'"+date+"')]");
+            clickDatePicked.click(driver.findElement(dateLocator)).build().perform();
+        } else {
+            //locate next month button and click
+            By nextMonthLocator = By.xpath("//*[@id=\"ui-datepicker-div\"]/div/a[2]/span");
+            clickDatePicked.click(driver.findElement(nextMonthLocator)).build().perform();
+
+            //locate 3rd of month button and click
+            By thirdOfMonthLocator = By.xpath("//a[contains(text(),\"3\")]");
+            clickDatePicked.click(driver.findElement(thirdOfMonthLocator)).click().perform();
+        }
+        return this;
+    }
+
+
     public String getDate(int lineNumber) {
         By dateFieldLocator = By.id("required_date_" + lineNumber);
         
