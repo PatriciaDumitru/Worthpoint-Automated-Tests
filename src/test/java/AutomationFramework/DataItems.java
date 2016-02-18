@@ -291,6 +291,7 @@ public class DataItems {
             public static String articleMOQ = "8754120";
             public static String shadeCode01MOQ = "EC103";
             public static String shadeCode02MOQ = "00001";
+            public static String shadeCode03MOQ = "C1711";
             public static String nullPO = "null";
     
     //Wait times in seconds

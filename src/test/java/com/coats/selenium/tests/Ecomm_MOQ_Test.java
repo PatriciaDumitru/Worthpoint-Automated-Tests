@@ -155,7 +155,6 @@ public class Ecomm_MOQ_Test extends DriverFactory{
     }
 
 
-
     public void MOQ3(Integer quantity, String expectedMOQ, String article, String shade) throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();
@@ -428,4 +427,80 @@ public class Ecomm_MOQ_Test extends DriverFactory{
         MOQ6(6,"11",DataItems.articleMOQ, DataItems.shadeCode02MOQ);
     }
 
+    public void MOQ7(Integer quantity0, Integer quantity1, Integer quantity2, Integer quantity3, Integer quantity4, Integer quantity5,
+                     String expectedMOQ, String article, String shade) throws Exception {
+        //New chrome driver
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        base.setUp("Profile 7" ,"ECOMM_MOQ_06");
+
+        Ecomm_MOQ_Methods_Page moqMeth = new Ecomm_MOQ_Methods_Page(driver);
+
+        moqMeth.setProfile02();
+
+        System.out.println("Going Manual Entry page...");
+
+        moqMeth.goEccomManualEntry();
+
+        moqMeth.setCustomerDetails();
+
+        Ecomm_ManualEntryPage mePage = new Ecomm_ManualEntryPage(driver);
+
+        //Setting Line Details
+        System.out.println("Manual Entry : Entering line details...");
+
+        System.out.println("Manual Entry : Setting article...");
+
+        mePage.setArticle(article,0);
+        mePage.setArticle(article,1);
+        mePage.setArticle(article,2);
+        mePage.setArticle(article,3);
+        mePage.setArticle(article,4);
+        mePage.setArticle(article,5);
+
+        System.out.println("Manual Entry : Setting shade...");
+
+        mePage.setShadeCode(shade, 0);
+        mePage.setShadeCode(shade, 1);
+        mePage.setShadeCode(shade, 2);
+        mePage.setShadeCode(shade, 3);
+        mePage.setShadeCode(shade, 4);
+        mePage.setShadeCode(shade, 5);
+
+        System.out.println("Manual Entry : Setting Qty ...");
+
+        mePage.setQty(quantity0, 0);
+        mePage.setQty(quantity1, 1);
+        mePage.setQty(quantity2, 2);
+        mePage.setQty(quantity3, 3);
+        mePage.setQty(quantity4, 4);
+        mePage.setQty(quantity5, 5);
+
+        System.out.println("Manual Entry : Setting date...");
+
+        mePage.setDateToday(0);
+        mePage.setDateToday(1);
+        mePage.setDateToday(2);
+        mePage.setDateToday(3);
+        mePage.setDateToday(4);
+        mePage.setDateToday(5);
+
+        System.out.println("Manual Entry : Press next and accept alerts");
+
+        moqMeth.pressNext();
+
+        System.out.println("Manual Entry : Assert MOQ Output");
+        AssertJUnit.assertTrue("MOQ is not the right one", moqMeth.ajustMOQ().getText().equals(expectedMOQ));
+
+    }
+
+    @Test //MOQ7_1
+            (groups = {"eComm"})
+    public void MOQ7_3() throws Exception {
+        MOQ7(6,10,12,14,18,20,"11",DataItems.articleMOQ, DataItems.shadeCode03MOQ);
+    }
 }
