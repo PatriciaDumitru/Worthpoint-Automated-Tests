@@ -8,11 +8,11 @@ import org.openqa.selenium.By;
 public class DataItems {
     
     //Target URL
-    public static String targetURL = "https://qawcs.coatscolourexpress.com";  //"http://10.14.18.4";
-    public static String mastersSalesOrgURL = targetURL + "/qa_p4i/SalesOrgs";            //
-    public static String manualEntryEcommUrl =targetURL + "/qa_p4i/ecom/order/manual";
-    public static String mastersCusotmersURL =targetURL + "/qa_p4i/Customers";
-    public static String cceURL =targetURL + "/qa_p4i/cce";
+    public static String targetURL = "https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";
+    public static String mastersSalesOrgURL = targetURL + "qa_p4i//SalesOrgs";            //qa_p4i/
+    public static String manualEntryEcommUrl =targetURL + "qa_p4i//ecom/order/manual";
+    public static String mastersCusotmersURL =targetURL + "qa_p4i/Customers";
+    public static String cceURL =targetURL + "qa_p4i//cce";
 
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
@@ -22,8 +22,8 @@ public class DataItems {
     public static String lastUsedFilepath = ""; //Holds last used filepath when generating files using FileFactory
     
     //Login Credentials
-    public static String validCoatsUsername = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com";
-    public static String validCoatsPassword = "password";           //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
+    public static String validCoatsUsername = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
+    public static String validCoatsPassword = "password";     //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
     
     public static String approverLEUsername = "approver@lifeeasy.com";
@@ -278,6 +278,7 @@ public class DataItems {
         //Sales Org Page
     public static String salesOrgFilterString = "ID51";
     public static String forwardDays10 = "10";
+    public static String forwardDays01 = "1";
         //Customer Page
     public static String custNameFilterString = "life easy";
         //Manual order Page

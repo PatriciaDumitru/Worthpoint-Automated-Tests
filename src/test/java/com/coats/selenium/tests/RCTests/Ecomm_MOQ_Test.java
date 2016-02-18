@@ -47,7 +47,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
         System.out.println("Sales organization: Forwading Day and setting it to 10...");
 
-        moqMeth.enableFordwardOrderDayAndSetForwardDate();
+        moqMeth.enableFordwardOrderDayAndSetForwardDate10();
 
         System.out.println("Sales organization: Saving changes...");
 

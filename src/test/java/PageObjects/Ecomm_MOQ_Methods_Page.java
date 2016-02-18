@@ -140,7 +140,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
     }
 
     public Ecomm_MOQ_Methods_Page disablePartialStockCheckBox(){
-        CommonTask.unSetCheckBox(driver, partialStockCheckBox);
+        CommonTask.uncheckBox(driver, partialStockCheckBox);
 
         return this;
     }
@@ -155,9 +155,15 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         return this;
     }
 
-    public Ecomm_MOQ_Methods_Page enableFordwardOrderDayAndSetForwardDate(){
+    public Ecomm_MOQ_Methods_Page enableFordwardOrderDayAndSetForwardDate10(){
         enableFordwardOrderDay();
         setForwardDate(DataItems.forwardDays10);
+        return this;
+    }
+
+    public Ecomm_MOQ_Methods_Page enableFordwardOrderDayAndSetForwardDate01(){
+        enableFordwardOrderDay();
+        setForwardDate(DataItems.forwardDays01);
         return this;
     }
     public Ecomm_MOQ_Methods_Page enableFordwardOrderDay(){
@@ -204,7 +210,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
 
         System.out.println("Sales organization: Forwading Day and setting it to 10...");
 
-        enableFordwardOrderDayAndSetForwardDate();
+        enableFordwardOrderDayAndSetForwardDate10();
 
         System.out.println("Sales organization: Saving changes...");
 
@@ -237,7 +243,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
 
         System.out.println("Sales organization: Forwading Day and setting it to 10...");
 
-        enableFordwardOrderDayAndSetForwardDate();
+        enableFordwardOrderDayAndSetForwardDate10();
 
         System.out.println("Sales organization: Saving changes...");
 
@@ -270,7 +276,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
 
         System.out.println("Sales organization: Forwarding Day and setting it to 10...");
 
-        enableFordwardOrderDayAndSetForwardDate();
+        enableFordwardOrderDayAndSetForwardDate10();
 
         System.out.println("Sales organization: Saving changes...");
 
@@ -304,6 +310,39 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         System.out.println("Sales organization: Disabling fordard days checkbox...");
 
         disableFordwardOrderDay();
+
+        System.out.println("Sales organization: Saving changes...");
+
+        saveSalesOrg();
+
+        System.out.println("Customer: Going to customer edit page...");
+
+        goToCustomerAndEdit();
+
+        System.out.println("Customer: Enabling MOQ Checkbox...");
+
+        enableMOQCheckBox();
+
+        System.out.println("Customer: Saving customers changes...");
+
+        saveCustomer();
+        return this;
+    }
+
+    //MOQ Enabled, PartialStock Enabled, Forward Order Days: enabled , Forward Order days: 1
+    public Ecomm_MOQ_Methods_Page setProfile05(){
+
+        System.out.println("Sales organization: Going to sales organization edit page...");
+
+        goToSalesOrgAndEdit();
+
+        System.out.println("Sales organization: Enabling Partial...");
+
+        enablePartialStockCheckBox();
+
+        System.out.println("Sales organization: Forwading Day and setting it to 10...");
+
+        enableFordwardOrderDayAndSetForwardDate01();
 
         System.out.println("Sales organization: Saving changes...");
 
@@ -417,6 +456,10 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         if (alertPresence) {
             driver.switchTo().alert().accept();
         }
+        if (alertPresence) {
+            driver.switchTo().alert().accept();
+        }
+
         return this;
     }
 
