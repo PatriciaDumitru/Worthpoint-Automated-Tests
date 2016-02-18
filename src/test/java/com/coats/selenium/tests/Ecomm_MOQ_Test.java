@@ -64,7 +64,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
         System.out.println("Manual Entry : Press next and accept alerts");
 
-        moqMeth.pressNext();
+        moqMeth.pressNext1();
 
         System.out.println("Manual Entry : Assert MOQ Output");
         AssertJUnit.assertTrue("MOQ is not the right one", moqMeth.ajustMOQ().getText().equals(expectedMOQ));
@@ -123,7 +123,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
         System.out.println("Manual Entry : Press next and accept alerts");
 
-        moqMeth.pressNext();
+        moqMeth.pressNext1();
 
         System.out.println("Manual Entry : Assert MOQ Output");
         AssertJUnit.assertTrue("MOQ is not the right one", moqMeth.ajustMOQ().getText().equals(expectedMOQ));
@@ -196,7 +196,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
         System.out.println("Manual Entry : Press next and accept alerts");
 
-        moqMeth.pressNext();
+        moqMeth.pressNext1();
 
         System.out.println("Manual Entry : Assert MOQ Output");
         AssertJUnit.assertTrue("MOQ is not the right one", moqMeth.ajustMOQ().getText().equals(expectedMOQ));
@@ -270,7 +270,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
         System.out.println("Manual Entry : Press next and accept alerts");
 
-        moqMeth.pressNext();
+        moqMeth.pressNext1();
 
         System.out.println("Manual Entry : Assert MOQ Output");
         AssertJUnit.assertTrue("MOQ is not the right one", moqMeth.ajustMOQ().getText().equals(expectedMOQ));
@@ -334,7 +334,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
         System.out.println("Manual Entry : Press next and accept alerts");
 
-        moqMeth.pressNext();
+        moqMeth.pressNext1();
 
         System.out.println("Manual Entry : Assert MOQ Output");
         AssertJUnit.assertTrue("MOQ is not the right one", moqMeth.ajustMOQ().getText().equals(expectedMOQ));
@@ -402,7 +402,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
         System.out.println("Manual Entry : Press next and accept alerts");
 
-        moqMeth.pressNext();
+        moqMeth.pressNext2();
 
         System.out.println("Manual Entry : Assert MOQ Output");
         AssertJUnit.assertTrue("MOQ is not the right one", moqMeth.ajustMOQ().getText().equals(expectedMOQ));
@@ -491,7 +491,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
         System.out.println("Manual Entry : Press next and accept alerts");
 
-        moqMeth.pressNext();
+        moqMeth.pressNext1();
 
         System.out.println("Manual Entry : Assert MOQ Output");
         AssertJUnit.assertTrue("MOQ is not the right one", moqMeth.ajustMOQ().getText().equals(expectedMOQ));

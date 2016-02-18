@@ -430,7 +430,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         return this;
     }
 
-    public Ecomm_MOQ_Methods_Page pressNext() {
+    public Ecomm_MOQ_Methods_Page pressNext1() {
 
         //Wait for button to be clickable
         WebElement next = Wait.clickable(driver,nextButton);
@@ -462,6 +462,37 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
 
         return this;
     }
+
+    public Ecomm_MOQ_Methods_Page pressNext2() {
+
+        //Wait for button to be clickable
+        WebElement next = Wait.clickable(driver,nextButton);
+        //Click next
+        Actions clickNext = new Actions(driver);
+        clickNext.click(next).build().perform();
+        //Submit the alert
+        Alert alert = Wait.alert(driver);
+        alert.accept();
+
+        //Sometimes additional alerts appear. Catch these, output their text, and accept by default
+        boolean alertPresence;
+        try {
+            Alert secondAlert = Wait.alert(driver);
+            driver.switchTo().alert();
+            String alertText = secondAlert.getText();
+            alertPresence = true;
+            System.out.println("Additional alert appeared while confirming: " + alertText);
+        } catch (Exception e) {
+            alertPresence = false;
+        }
+
+        if (alertPresence) {
+            driver.switchTo().alert().accept();
+        }
+
+        return this;
+    }
+
 
 
 
