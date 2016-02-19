@@ -260,8 +260,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         Alert alert = Wait.alert(driver);
         alert.accept();
         
-        Alert alert2 = Wait.alert(driver);
-        alert2.accept();
+
         
         return new Ecomm_OrderConfirmationPage(driver);
     }
