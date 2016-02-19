@@ -88,6 +88,8 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
+        manualEntryPage.susstTwik();
+
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -198,8 +200,9 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
+        manualEntryPage.susstTwik();
 
-
+        manualEntryPage.susstTwik();
 
         orderConf.waitForElement();
 
@@ -308,6 +311,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
 
+        manualEntryPage.susstTwik();
 
 
         orderConf.waitForElement();
@@ -419,6 +423,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
 
+        manualEntryPage.susstTwik();
 
         orderConf.waitForElement();
 
@@ -526,7 +531,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-
+        manualEntryPage.susstTwik();
 
 
 
@@ -636,6 +641,8 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
+        manualEntryPage.susstTwik();
+
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -740,7 +747,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-
+        manualEntryPage.susstTwik();
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -847,7 +854,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
 
-
+        manualEntryPage.susstTwik();
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -952,7 +959,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
 
 
 
-
+        manualEntryPage.susstTwik();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1070,7 +1077,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-
+        manualEntryPage.susstTwik();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1188,7 +1195,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
 
-
+        manualEntryPage.susstTwik();
 
         orderConf.waitForElement();
         
@@ -1307,7 +1314,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-
+        manualEntryPage.susstTwik();
 
 
         orderConf.waitForElement();
@@ -1427,7 +1434,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-
+        manualEntryPage.susstTwik();
 
 
         orderConf.waitForElement();
@@ -1549,7 +1556,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
 
-
+        manualEntryPage.susstTwik();
 
         orderConf.waitForElement();
         
@@ -1669,7 +1676,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
 
-
+        manualEntryPage.susstTwik();
 
         orderConf.waitForElement();
         
@@ -1790,7 +1797,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
 
-
+        manualEntryPage.susstTwik();
 
         orderConf.waitForElement();
         
