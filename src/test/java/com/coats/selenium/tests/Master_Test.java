@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver.Timeouts;
 
 public class Master_Test extends DriverFactory {
     
-    //Most Masters, Solo tests will have the following structure:
+    //Most Masters tests will have the following structure:
     //Check title, fields, and filration
     //Add an item to the master data, and check the item appears in the table
     //Edit the item above, and check the item is updated in the table
@@ -25,7 +25,7 @@ public class Master_Test extends DriverFactory {
     //EXTENSION: Import an item to the master data
     
     @Test //All user types page :: Page and filter checks, create new user/edit/delete
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void allUserTypes1() throws Exception {
         
         WebDriver driver = getDriver();
@@ -143,7 +143,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Coats Users Page :: Page and filter checks
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void coatsUsers1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -287,7 +287,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Contract Order Related :: Flags active and available
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void contractOrder1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -392,7 +392,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Sub Account :: Page and filter checks, add/edit/delete
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void subaccount1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -525,7 +525,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Sub Account Related :: Switches appear in Sales Org and Customers master data
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void subAccount2() throws Exception {
         WebDriver driver = getDriver();
         
@@ -586,7 +586,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Mail Notification Related :: Switch for mail notifications present in sales org and customer (requester level) master data
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void mailNotification1() throws Exception {
         
         WebDriver driver = getDriver();
@@ -647,7 +647,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Approver List (Online Approval Related) :: Page and filter checks, add/edit/delete
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void approverList1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -813,8 +813,8 @@ public class Master_Test extends DriverFactory {
         System.out.println("Export download completed");
     }
     
-    @Test //Approver User Type :: User type can be found and used in Masters, Solo
-    (groups = {"Masters, Solo"})
+    @Test //Approver User Type :: User type can be found and used in Masters
+    (groups = {"Masters"})
     public void approverUserType1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -844,7 +844,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Cusotmer Business Principal :: Page and filter checks, add/edit/delete functions
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void businessPrinc1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -979,7 +979,7 @@ public class Master_Test extends DriverFactory {
     }
     
      @Test //MultiSoldToUser master :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void multiSoldToUsers1() throws Exception {
         
         WebDriver driver = getDriver();
@@ -1128,7 +1128,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Shades master :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"},enabled = false) //WBA Issue: Shade not deleted from table when delete pressed
+    (groups = {"Masters"},enabled = false) //WBA Issue: Shade not deleted from table when delete pressed
     public void shades1() throws Exception {
         
         WebDriver driver = getDriver();
@@ -1271,7 +1271,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Customer Shades :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void customerShades1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -1410,7 +1410,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Customer Finishes :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void customerFinishes1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -1559,7 +1559,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Customer Lengths :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void customerLengths1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -1710,7 +1710,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Customer Tickets :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void customerTickets1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -1861,7 +1861,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Customer Brands :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void customerBrands1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -2012,7 +2012,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Customer Materials :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void customerMaterials() throws Exception {
         WebDriver driver = getDriver();
         
@@ -2166,7 +2166,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Business Principals :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void businessPrincipals1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -2317,7 +2317,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Countries :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void countries1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -2479,7 +2479,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Sales Organisations :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void salesOrg1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -2632,7 +2632,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Plants :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"}, enabled = false) //DISABLED as data cannot be deleted from table (due to sharing violation) so test cannot pass
+    (groups = {"Masters"}, enabled = false) //DISABLED as data cannot be deleted from table (due to sharing violation) so test cannot pass
     public void plants1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -2789,7 +2789,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Plants :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void plantsHolidays1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -2942,7 +2942,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Hubs :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void hubs1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -3094,7 +3094,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Enterprise Structure: Page and filter checks, add/edit/delete/export functions
-    (groups = {"Masters, Solo",}, enabled=false) //DISABLED as the data created cannot be deleted and so the test cannot pass.
+    (groups = {"Masters",}, enabled=false) //DISABLED as the data created cannot be deleted and so the test cannot pass.
     public void enterpriseStructure1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -3249,7 +3249,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Brands: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void brands1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -3400,7 +3400,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Tickets: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void ticket1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -3551,7 +3551,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Lengths: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void lengths1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -3702,7 +3702,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Finishes :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void finishes1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -3853,7 +3853,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Basic Materials :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void basicMaterials1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -4010,7 +4010,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Material Groups :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void materialGroup1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -4158,7 +4158,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Hierarchy :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void hierarchy1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -4306,7 +4306,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Light Sources :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void lightSources1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -4454,7 +4454,7 @@ public class Master_Test extends DriverFactory {
     }
 
     @Test //Purpose Types :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void purposeTypes1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -4602,7 +4602,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Rejection Reasons :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void rejectionReasons1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -4751,7 +4751,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Quantity Factors :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void quantityFactors1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -4915,7 +4915,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Length Offers :: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void lengthOffers1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -5078,7 +5078,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Warehouse Instructions: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void warehouseInstructions1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -5230,7 +5230,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Shade Cards: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void shadeCards1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -5379,7 +5379,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Shade Cards Plants: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void shadeCardPlants1() throws Exception {
         
         WebDriver driver = getDriver();
@@ -5535,7 +5535,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Sales Org Materials: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void salesOrgMaterials1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -5695,7 +5695,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Charged Products: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void chargedProducts1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -5857,7 +5857,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Forced Enrichment Products: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void forcedEnrichment1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -6017,7 +6017,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Supply Plants: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void supplyPlants1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -6172,7 +6172,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Dye Lot Multiples: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void dyeLotMultiples1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -6331,7 +6331,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Order Type: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void orderTypes1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -6479,7 +6479,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Our Stocks/Warehouse Stocks: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void ourStocks1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -6633,7 +6633,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Allowed Quantities: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void allowedQuantities1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -6788,7 +6788,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Customers: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void customers1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -6950,7 +6950,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Ship To Parties: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void shipToParties1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -7111,7 +7111,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Cabinets: Page and filter checks, add/edit/delete/export features
-    (groups = {"Masters, Solo"}) 
+    (groups = {"Masters"}) 
     public void cabinets1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -7268,7 +7268,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Marketing New Features: Page and filter checks, add/edit/delete features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void marketingNewFeatures1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -7403,7 +7403,7 @@ public class Master_Test extends DriverFactory {
     }
     
     @Test //Marketing Running Text: Page and filter checks, add/edit/delete features
-    (groups = {"Masters, Solo"})
+    (groups = {"Masters"})
     public void marketingRunningText1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -7538,7 +7538,7 @@ public class Master_Test extends DriverFactory {
     }
 
     @Test //Marketing Running Text: Page and filter checks, add/edit/delete features
-            (groups = {"Masters, Solo"})
+            (groups = {"Masters"})
     public void customerPrivateArticle() throws Exception {
         WebDriver driver = getDriver();
 
