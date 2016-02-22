@@ -11,9 +11,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
+import org.openqa.selenium.support.ui.Select;
+import java.util.concurrent.TimeUnit;
 
 public class Mst_AddCountryPage extends WBA_BasePage {
-    
+
     //Locators
     By countryNameField = By.id("s2id_CountryCountryName");
     By countryCodeField = By.id("CountryCountryCode");
@@ -33,7 +35,7 @@ public class Mst_AddCountryPage extends WBA_BasePage {
         CommonTask.setSearchField(driver,countryNameField,item);
         
         Wait.textPresent(driver,countryCodeField, "VA");
-        
+
         return new Mst_AddCountryPage(driver);
     }
     
@@ -52,10 +54,16 @@ public class Mst_AddCountryPage extends WBA_BasePage {
     public Mst_CountriesPage pressCancel() {
         WebElement element = Wait.clickable(driver,cancelButton);
         element.click();
-        
+
+        return new Mst_CountriesPage(driver);
+
+
+    }
+
+    public Mst_CountriesPage wait3Seconds() {
+        driver.manage().timeouts().implicitlyWait(53, TimeUnit.HOURS);
         return new Mst_CountriesPage(driver);
     }
-    
     public void checkFields() {
         WebElement countryName = Wait.clickable(driver,countryNameField);
         WebElement countryCode = Wait.clickable(driver,countryCodeField);

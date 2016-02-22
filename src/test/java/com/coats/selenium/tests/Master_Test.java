@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-
+import org.openqa.selenium.WebDriver.Timeouts;
 
 public class Master_Test extends DriverFactory {
     
@@ -2329,6 +2329,10 @@ public class Master_Test extends DriverFactory {
         
         Mst_CountriesPage cPage = mainPage.selectCountries();
         cPage.waitForElement();
+
+        Mst_AddCountryPage wFct = new Mst_AddCountryPage(driver);
+
+        wFct.wait3Seconds();
         
         System.out.println("Countries page reached. Checking title...");
         
@@ -2341,15 +2345,21 @@ public class Master_Test extends DriverFactory {
         System.out.println("Checking fields...");
         
         cPage.checkFields();
+
+        wFct.wait3Seconds();
         
         System.out.println("Fields checked. Entering filter criteria...");
         
         cPage.setCountryName("Indonesia");
         
         System.out.println("Filter criteria entered. Listing records...");
-        
+
+        wFct.wait3Seconds();
+
         cPage.pressSearch();
         cPage.waitForElement();
+
+        wFct.wait3Seconds();
         
         System.out.println("Records listed. Checking filtration...");
         
@@ -2461,7 +2471,8 @@ public class Master_Test extends DriverFactory {
         impPage.waitForElement();
         
         System.out.println("Page reached. Checking title...");
-        
+
+
         AssertJUnit.assertTrue("Countries Import Page: Title not as expected",impPage.getBreadcrumb().getText().equals("Countries | Import"));
     
         System.out.println("Title as expected");
