@@ -8,11 +8,14 @@ import org.openqa.selenium.By;
 public class DataItems {
     
     //Target URL
-    public static String targetURL ="http://10.14.18.4"; //"https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";
-    public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
-    public static String manualEntryEcommUrl =targetURL + "/ecom/order/manual";
-    public static String mastersCusotmersURL =targetURL + "/Customers";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com"; //"https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";
+    public static String mastersSalesOrgURL = targetURL + "/qa_p4i/SalesOrgs";            //qa_p4i/
+    public static String mastersCustomerURL =targetURL + "/qa_p4i/Customers";
+    public static String mastersCSAUrl = targetURL + "/qa_p4i/customerprivatearticles";
+    public static String cceOrderSamplePrompt = targetURL + "/qa_p4i/cce/prompt";
+    public static String manualEntryEcommURL =targetURL + "/qa_p4i/ecom/order/manual";
     public static String cceURL =targetURL + "/cce";
+
 
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
@@ -299,5 +302,9 @@ public class DataItems {
     public static int shortWait = 10;
     public static int longWait = 20;
     public static int downloadWait = 60;
-    
+
+
+
+    //CSA Data
+
 }

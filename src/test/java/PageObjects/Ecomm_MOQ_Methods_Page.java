@@ -104,7 +104,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
     }
 
     public Ecomm_MOQ_Methods_Page goToCustomerAndEdit(){
-        driver.get(DataItems.mastersCusotmersURL);
+        driver.get(DataItems.mastersCustomerURL);
         setCustomerName(DataItems.custNameFilterString);
         filterCustomerName();
         editCustomerName();
@@ -368,7 +368,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
 
         System.out.println("Navigating to Manual Order Entry Page...");
 
-        driver.get(DataItems.manualEntryEcommUrl);
+        driver.get(DataItems.manualEntryEcommURL);
 
         System.out.println("Checking Manual Order Entry Page is reached...");
 
