@@ -8,13 +8,14 @@ import org.openqa.selenium.By;
 public class DataItems {
     
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com"; //"https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";
-    public static String mastersSalesOrgURL = targetURL + "/qa_p4i/SalesOrgs";            //qa_p4i/
-    public static String mastersCustomerURL =targetURL + "/qa_p4i/Customers";
-    public static String mastersCSAUrl = targetURL + "/qa_p4i/customerprivatearticles";
-    public static String cceOrderSamplePrompt = targetURL + "/qa_p4i/cce/prompt";
-    public static String manualEntryEcommURL =targetURL + "/qa_p4i/ecom/order/manual";
-    public static String cceURL =targetURL + "/cce";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/"; //"https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";
+    public static String mastersSalesOrgURL = targetURL +  "qa_p4i/SalesOrgs";            //qa_p4i/
+    public static String mastersCustomerURL =targetURL + "qa_p4i//Customers";
+    public static String mastersCSAUrl = targetURL + "qa_p4i/customerprivatearticles";
+    public static String cceOrderSamplePrompt = targetURL + "qa_p4i/cce/prompt";
+    public static String manualEntryEcommURL =targetURL + "qa_p4i/ecom/order/manual";
+    public static String cceURL =targetURL + "qa_p4i/cce";
+    public static String qaEnvAdd = "qa_p4i/";
 
 
     //Filepaths
@@ -306,5 +307,18 @@ public class DataItems {
 
 
     //CSA Data
+    public static String notFound = "No matches found";
+    public static String cceArticleFromBrandAstra = "8720025";
+    public static String cceArticleFromBrandStarNylon = "NKW2030";
+    public static String lifeEasyCustomer = "Life Easy Customer";
+    public static String lifeEasyRequester = "Life Easy";
+    public static String someOtherCustomer = "ADIS DIMENSION FOOTWEAR. PT";
+    public static String brandAstraCSA = "astra";
+    public static String brandAdmiralCSA = "astra";
+    public static String brandStarNylonCSA = "star nylon";
+    public static String salesOrgID = "ID51";
+    public static String deliveryToPlantAll = "Select";
+    public static String deliveryToPlantID10 = "ID10";
+
 
 }

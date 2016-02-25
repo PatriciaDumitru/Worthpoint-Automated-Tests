@@ -71,6 +71,34 @@ public class CommonTask {
         //Wait for field to update
         boolean waitForUpdate = Wait.textPresent(driver,fieldLocator, item); 
     }
+
+    public static void setSearchFieldAndCheckElementIsNotPresent(WebDriver driver,By fieldLocator, String item, String errorMSG) {
+        //Set the value of search field (located by fieldLocator) to "item"
+
+        //Locator for input field used to enter search term
+        By searchLocator = By.cssSelector("#select2-drop > div > input");
+
+        //Locator for result label which appears from search
+        By resultLocator = By.cssSelector("#select2-drop > ul > li");
+
+        //Wait for field to be available
+        WebElement waitForClickable = Wait.clickable(driver, fieldLocator);
+
+        //Click field, revealing search box
+        Actions action = new Actions(driver);
+        action.click(driver.findElement(fieldLocator)).build().perform();
+
+        //Wait for search box to be available
+        WebElement waitForSearch = Wait.presence(driver,searchLocator);
+
+        //Enter search term
+        driver.findElement(searchLocator).sendKeys(item);
+
+        //Wait for search result appear
+        Boolean waitForResult = Wait.textPresent(driver,resultLocator, errorMSG);
+
+
+    }
     
     public static void resetSearchField(WebDriver driver, String id) {
         //Reset the value of search field (located by id). Achieves this by clicking small "x" within field
@@ -106,6 +134,22 @@ public class CommonTask {
         
         //Wait for selection to be item
         boolean waitForSelection = Wait.selectionToBe(driver,fieldLocator,item);
+    }
+
+    public static boolean setDropDownFieldAndCheckThatElementIsNotPresent(WebDriver driver,By fieldLocator,String item)  {
+        //Set value of drop down field (referenced by fieldLocator) to "item"
+
+        //Wait for field to be available
+        WebElement wait = Wait.clickable(driver,fieldLocator);
+
+        //"Select" object provides useful methods for drop-down fields
+        Select select = new Select(driver.findElement(fieldLocator));
+        driver.findElement(fieldLocator).click();
+
+        //Wait for option to be visible
+        Boolean waitForOption = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.not(CommonTask.optionPresent(item,select)));
+
+        return waitForOption;
     }
     
     public static void setDropDownFieldAlt(WebDriver driver, By fieldLocator, String item) {
