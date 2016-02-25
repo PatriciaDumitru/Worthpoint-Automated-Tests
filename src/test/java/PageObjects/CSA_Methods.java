@@ -22,9 +22,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CPA_Methods extends WBA_BasePage {
+public class CSA_Methods extends WBA_BasePage {
 
-    public CPA_Methods(WebDriver passedDriver) {
+    public CSA_Methods(WebDriver passedDriver) {
         super(passedDriver);
     }
 
@@ -42,13 +42,13 @@ public class CPA_Methods extends WBA_BasePage {
     By customerDeliveryPlantIdField = By.id("CustomerDeliveryPlantId");
     By saveButtonCustomerPage = By.cssSelector("input[type=\"submit\"]");
 
-    //CPA Page
+    //CSA Page
     By addCSA = By.linkText("Assign Specific Article");
     By filterCustomerNameFieldCSA = By.id("filterCustomerCustomerName");
     By searchButton = By.xpath(".//*[@id='FilterIndexForm']/div[3]/ul/li[1]/input");
     By deleteButton = By.xpath(".//*[@id='content']/div[2]/table/tbody/tr[2]/td[8]/a[2]/span");
 
-    //CPA Edit Page
+    //CSA Edit Page
     By csaSalesOrgField = By.id("CustomerPrivateArticleSalesOrgId");
     By enableCSARBtutton = By.cssSelector("option[value=\"11\"]");
     By customerNameFieldCSA = By.id("s2id_CustomerPrivateArticleCustomerId");
@@ -72,7 +72,7 @@ public class CPA_Methods extends WBA_BasePage {
     By waitForFieldToBePresent = By.id("BulkOrderStyle");
 
 
-    public CPA_Methods custSetup(String plant){
+    public CSA_Methods custSetup(String plant){
 
         System.out.println("Going to customer page....");
         driver.get(DataItems.mastersCustomerURL);
@@ -94,7 +94,7 @@ public class CPA_Methods extends WBA_BasePage {
     }
 
     public void csaMiniSetup(String salesOrg, String custName) throws  Exception {
-        System.out.println("Going to CPA page....");
+        System.out.println("Going to CSA page....");
         driver.get(DataItems.mastersCSAUrl);
 
         System.out.println("Adding new CSA....");
@@ -111,7 +111,7 @@ public class CPA_Methods extends WBA_BasePage {
         CommonTask.setChoiceField(driver, csaBrand, brand);
         CommonTask.setChoiceField(driver, csaArticle, article);
 
-        System.out.println("Saving CPA....");
+        System.out.println("Saving CSA....");
         driver.findElement(csaSaveButton).click();
     }
 
@@ -120,7 +120,7 @@ public class CPA_Methods extends WBA_BasePage {
         csaMiniSetup(salesOrg, custName);
         CommonTask.setChoiceField(driver, csaBrand, brand);
 
-        System.out.println("Saving CPA....");
+        System.out.println("Saving CSA....");
         driver.findElement(csaSaveButton).click();
     }
 
@@ -129,7 +129,7 @@ public class CPA_Methods extends WBA_BasePage {
         csaMiniSetup(salesOrg, custName);
         CommonTask.setChoiceField(driver, csaArticle, article);
 
-        System.out.println("Saving CPA....");
+        System.out.println("Saving CSA....");
         driver.findElement(csaSaveButton).click();
     }
 
@@ -191,7 +191,7 @@ public class CPA_Methods extends WBA_BasePage {
         CommonTask.setDropDownField(driver, checkBrandFieldEcommME, brand);
     }
 
-    public void deleteCPA(String custName) throws Exception {
+    public void deleteCSA(String custName) throws Exception {
 
         System.out.println("Going to CSA page....");
         driver.get(DataItems.mastersCSAUrl);
