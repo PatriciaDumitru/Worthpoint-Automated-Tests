@@ -310,11 +310,12 @@ public class DataItems {
     public static String notFound = "No matches found";
     public static String cceArticleFromBrandAstra = "8720025";
     public static String cceArticleFromBrandStarNylon = "NKW2030";
+    public static String cceArticleFromBrandAdmiral = "NKW2030";
     public static String lifeEasyCustomer = "Life Easy Customer";
     public static String lifeEasyRequester = "Life Easy";
     public static String someOtherCustomer = "ADIS DIMENSION FOOTWEAR. PT";
     public static String brandAstraCSA = "astra";
-    public static String brandAdmiralCSA = "astra";
+    public static String brandAdmiralCSA = "admiral";
     public static String brandStarNylonCSA = "star nylon";
     public static String salesOrgID = "ID51";
     public static String deliveryToPlantAll = "Select";

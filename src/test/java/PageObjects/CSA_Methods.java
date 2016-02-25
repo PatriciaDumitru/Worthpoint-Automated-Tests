@@ -124,10 +124,30 @@ public class CSA_Methods extends WBA_BasePage {
         driver.findElement(csaSaveButton).click();
     }
 
+    public void csaSetup2Brands(String salesOrg, String custName, String brand1, String brand2) throws Exception {
+
+        csaMiniSetup(salesOrg, custName);
+        CommonTask.setChoiceField(driver, csaBrand, brand1);
+        CommonTask.setChoiceField(driver, csaBrand, brand2);
+
+        System.out.println("Saving CSA....");
+        driver.findElement(csaSaveButton).click();
+    }
+
     public void csaSetupOnlyArticle(String salesOrg, String custName, String article) throws Exception {
 
         csaMiniSetup(salesOrg, custName);
         CommonTask.setChoiceField(driver, csaArticle, article);
+
+        System.out.println("Saving CSA....");
+        driver.findElement(csaSaveButton).click();
+    }
+
+    public void csaSetup2Articles(String salesOrg, String custName, String article1, String article2) throws Exception {
+
+        csaMiniSetup(salesOrg, custName);
+        CommonTask.setChoiceField(driver, csaArticle, article1);
+        CommonTask.setChoiceField(driver, csaArticle, article2);
 
         System.out.println("Saving CSA....");
         driver.findElement(csaSaveButton).click();

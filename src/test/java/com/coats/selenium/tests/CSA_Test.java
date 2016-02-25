@@ -313,6 +313,123 @@ public class CSA_Test extends DriverFactory {
         csaMeth.deleteCSA(DataItems.someOtherCustomer);
     }
 
+    @Test //Delivery Plant Select, CSA CustomerA BrandA and BrandB , check Articles from those Brands and the Brands themselves with another Customer
+            (groups = {"CCE", "CSA"})
+    public void CSA10_1() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("Delivery Plant Select, CSA CustomerA BrandA and BrandB , check Articles from those Brands and the Brands themselves with another Customer", "CSA10_1");
+
+        CSA_Methods csaMeth = new CSA_Methods(driver);
+
+        //Select delivery to plant to Select so that customer has access to all articles in the plant
+        csaMeth.custSetup(DataItems.deliveryToPlantAll);
+
+        //Setting up CSA with brand
+        csaMeth.csaSetup2Brands(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA, DataItems.brandStarNylonCSA);
+
+        //Setting up Order Sample Prompt
+        csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
+
+        //Checking that article from brand astra is not present
+        csaMeth.assertArticleIsNotPresentCCE(DataItems.cceArticleFromBrandAstra, DataItems.notFound);
+
+        csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
+
+        //Checking that article from star nylon is not present
+        csaMeth.assertArticleIsNotPresentCCE(DataItems.cceArticleFromBrandStarNylon, DataItems.notFound);
+
+        csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
+
+        //Checking that brand not available for this customer
+        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandAstraCSA);
+
+        //Checking that brand not available for this customer
+        csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
+
+        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandStarNylonCSA);
+
+        //Deleting CSA
+        csaMeth.deleteCSA(DataItems.someOtherCustomer);
+    }
+
+    @Test //Delivery Plant Select, CSA CustomerA ArticleA ArticleB, check Articles with another Customer
+            (groups = {"CCE", "CSA"})
+    public void CSA10_2() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("Delivery Plant Select, CSA CustomerA ArticleA ArticleB, check Articles with another Customer", "CSA10_2");
+
+        CSA_Methods csaMeth = new CSA_Methods(driver);
+
+        //Select delivery to plant to Select so that customer has access to all articles in the plant
+        csaMeth.custSetup(DataItems.deliveryToPlantAll);
+
+        //Setting up CSA with 2 articles
+        csaMeth.csaSetup2Articles(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.cceArticleFromBrandAdmiral, DataItems.cceArticleFromBrandAstra);
+
+        //Setting up Order Sample Prompt
+        csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
+
+        //Checking that article is not available for this customer
+        csaMeth.assertArticleIsNotPresentCCE(DataItems.cceArticleFromBrandAdmiral, DataItems.notFound);
+
+        //Setting up Order Sample Prompt
+        csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
+
+        //Checking that article is not available for this customer
+        csaMeth.assertArticleIsNotPresentCCE(DataItems.cceArticleFromBrandAstra, DataItems.notFound);
+
+        //Deleting CSA
+        csaMeth.deleteCSA(DataItems.someOtherCustomer);
+    }
+
+    @Test //Delivery plant Select, CSA CustomerA BrandA, check article is present after CSA deletion with another customer
+            (groups = {"CCE", "CSA"})
+    public void CSA10_3() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("Delivery plant Select, CSA CustomerA BrandA, check article is present after CSA deletion with another customer", "CSA10_3");
+
+        CSA_Methods csaMeth = new CSA_Methods(driver);
+
+        //Select delivery to plant to Select so that customer has access to all articles in the plant
+        csaMeth.custSetup(DataItems.deliveryToPlantAll);
+
+        //Setting up CSA with brand
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+
+        //Setting up Order Sample Prompt
+        csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
+
+        //Checking that article from that brand is not available for this customer
+        csaMeth.assertArticleIsNotPresentCCE(DataItems.cceArticleFromBrandAstra, DataItems.notFound);
+
+        //Deleting CSA
+        csaMeth.deleteCSA(DataItems.someOtherCustomer);
+
+        //Setting up Order Sample Prompt
+        csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
+
+        //Checking that article from that brand is available for this customer
+        csaMeth.assertArticleIsPresentCCE(DataItems.cceArticleFromBrandAstra);
+    }
+
     @Test //Delivery Plant Select, CSA Brand CustomerA, check Article from Brand with another Customer
             (groups = {"eComm", "CSA"})
     public void CSA11() throws Exception {
@@ -610,6 +727,126 @@ public class CSA_Test extends DriverFactory {
         //Deleting CSA
         csaMeth.deleteCSA(DataItems.someOtherCustomer);
     }
+
+    @Test //Delivery Plant Select, CSA CustomerA BrandA and BrandB , check Articles from those Brands with another Customer
+            (groups = {"eComm", "CSA"})
+    public void CSA20_1() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("Delivery Plant Select, CSA CustomerA BrandA and BrandB , check Articles from those Brands with another Customer", "CSA20_1");
+
+        CSA_Methods csaMeth = new CSA_Methods(driver);
+
+        //Select delivery to plant to Select so that customer has access to all articles in the plant
+        csaMeth.custSetup(DataItems.deliveryToPlantAll);
+
+        //Setting up CSA with brand
+        csaMeth.csaSetup2Brands(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA, DataItems.brandStarNylonCSA);
+
+        csaMeth.ecommManualEntrySetup();
+
+        //Checking that article from brand astra is not present
+        csaMeth.assertArticleIsNotPresentEcomm(DataItems.cceArticleFromBrandAstra, DataItems.notFound);
+
+        csaMeth.ecommManualEntrySetup();
+
+        //Checking that article from star nylon is not present
+        csaMeth.assertArticleIsNotPresentEcomm(DataItems.cceArticleFromBrandStarNylon, DataItems.notFound);
+
+        csaMeth.ecommManualEntrySetup();
+
+        //Checking that brand not available for this customer
+        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandAstraCSA);
+
+
+        csaMeth.ecommManualEntrySetup();
+
+        //Checking that brand not available for this customer
+        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandStarNylonCSA);
+
+        csaMeth.chooseCEEPlatform();
+
+        //Deleting CSA
+        csaMeth.deleteCSA(DataItems.someOtherCustomer);
+    }
+
+    @Test //Delivery Plant Select, CSA CustomerA ArticleA ArticleB, check Articles with another Customer
+            (groups = {"eComm", "CSA"})
+    public void CSA20_2() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("Delivery Plant Select, CSA CustomerA ArticleA ArticleB, check Articles with another Customer", "CSA20_2");
+
+        CSA_Methods csaMeth = new CSA_Methods(driver);
+
+        //Select delivery to plant to Select so that customer has access to all articles in the plant
+        csaMeth.custSetup(DataItems.deliveryToPlantAll);
+
+        //Setting up CSA with 2 articles
+        csaMeth.csaSetup2Articles(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.cceArticleFromBrandAdmiral, DataItems.cceArticleFromBrandAstra);
+
+        //Going to ecomm manual entry page and setting customer
+        csaMeth.ecommManualEntrySetup();
+
+        //Checking that article is not available for this customer
+        csaMeth.assertArticleIsNotPresentEcomm(DataItems.cceArticleFromBrandAdmiral, DataItems.notFound);
+
+        //Going to ecomm manual entry page and setting customer
+        csaMeth.ecommManualEntrySetup();
+
+        //Checking that article is not available for this customer
+        csaMeth.assertArticleIsNotPresentEcomm(DataItems.cceArticleFromBrandAstra, DataItems.notFound);
+
+        //Deleting CSA
+        csaMeth.deleteCSA(DataItems.someOtherCustomer);
+    }
+
+    @Test //Delivery plant Select, CSA CustomerA BrandA, check article is present after CSA deletion with another customer
+            (groups = {"eComm", "CSA"})
+    public void CSA20_3() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("Delivery plant Select, CSA CustomerA BrandA, check article is present after CSA deletion with another customer", "CSA20_3");
+
+        CSA_Methods csaMeth = new CSA_Methods(driver);
+
+        //Select delivery to plant to Select so that customer has access to all articles in the plant
+        csaMeth.custSetup(DataItems.deliveryToPlantAll);
+
+        //Setting up CSA with brand
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+
+        //Setting up Order Sample Prompt
+        csaMeth.ecommManualEntrySetup();
+
+        //Checking that article from that brand is not available for this customer
+        csaMeth.assertArticleIsNotPresentEcomm(DataItems.cceArticleFromBrandAstra, DataItems.notFound);
+
+        //Deleting CSA
+        csaMeth.deleteCSA(DataItems.someOtherCustomer);
+
+        //Going to ecomm manual entry page and setting customer
+        csaMeth.ecommManualEntrySetup();
+
+        //Checking that article from that brand is available for this customer
+        csaMeth.assertArticleIsPresentEcomm(DataItems.cceArticleFromBrandAstra);
+    }
+
 
 
 
