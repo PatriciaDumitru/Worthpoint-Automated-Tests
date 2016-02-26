@@ -48,6 +48,10 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY SUMST1: Single line, Your Material Number with master data shade code","G_OOC_ME_SUMST_1");
 
+        System.out.println("Setup MasterData...");
+
+
+
         System.out.println("Navigating to Manual Entry...");
 
         //press manual entry
