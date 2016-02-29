@@ -47,6 +47,7 @@ public class CSA_Methods extends WBA_BasePage {
     By filterCustomerNameFieldCSA = By.id("filterCustomerCustomerName");
     By searchButton = By.xpath(".//*[@id='FilterIndexForm']/div[3]/ul/li[1]/input");
     By deleteButton = By.xpath(".//*[@id='content']/div[2]/table/tbody/tr[2]/td[8]/a[2]/span");
+    By flashMessage = By.cssSelector("div.flash-msg");
 
     //CSA Edit Page
     By csaSalesOrgField = By.id("CustomerPrivateArticleSalesOrgId");
@@ -223,6 +224,8 @@ public class CSA_Methods extends WBA_BasePage {
 
         Alert alert = Wait.alert(driver);
         alert.accept();
+
+        Wait.textPresent(driver, flashMessage, "Customer Specific Article has been deleted");
 
     }
 
