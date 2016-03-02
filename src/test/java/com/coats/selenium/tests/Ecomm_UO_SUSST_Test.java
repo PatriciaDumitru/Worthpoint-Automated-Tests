@@ -43,7 +43,8 @@ public class Ecomm_UO_SUSST_Test {
         uploadPage.waitForElement();
         
         System.out.println("Upload Order page loaded.");
-        
+
+
         //make assertions for base page elements and upload page elements
         uploadPage.assertBaseElements();
         System.out.println("Asserting other elements...");
