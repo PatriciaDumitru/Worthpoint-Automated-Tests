@@ -140,7 +140,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
     }
 
     public Ecomm_MOQ_Methods_Page disablePartialStockCheckBox(){
-        CommonTask.uncheckBox(driver, partialStockCheckBox);
+        CommonTask.unSetCheckBox(driver, partialStockCheckBox);
 
         return this;
     }

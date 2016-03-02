@@ -3,6 +3,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
+import AutomationFramework.Wait;
 import PageObjects.Ecomm_BackendInProcessPage;
 import PageObjects.Ecomm_BackendProcessPage;
 import PageObjects.Ecomm_MainPage;
@@ -127,6 +128,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\2Mapping set.png")); 
         
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
+        Alert alert2 = Wait.alert(driver);
+        alert2.accept();
         orderConf.waitForElement();
         
         orderConf.setRequestor(DataItems.custDetails[2]);

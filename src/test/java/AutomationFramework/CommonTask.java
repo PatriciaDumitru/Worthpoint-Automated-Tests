@@ -306,16 +306,15 @@ public class CommonTask {
         //Check a checkbox, ensuring its value is "unchecked"
 
         //Only perform the condition if it is not already selected to avoid a timeout exception
-        if (!driver.findElement(fieldLocator).isSelected()) {
+        if (driver.findElement(fieldLocator).isSelected()) {
             //Wait for element to be available
             WebElement element = Wait.clickable(driver,fieldLocator);
 
             //Check box
             element.click();
-            element.click();
 
-            //Wait for box to be checked
-            Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsNotChecked(driver.findElement(fieldLocator)));
+            //Wait for box to be unchecked
+            //Boolean waitForChecked = new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.boxIsNotChecked(driver.findElement(fieldLocator)));
         }
 
     }
