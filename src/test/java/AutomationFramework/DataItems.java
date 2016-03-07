@@ -199,7 +199,8 @@ public class DataItems {
     public static int conOrdQty = 1;
     public static String conOrdPO = "40000992";
     public static String conOrdLineRef = "10";
-    
+
+
     //Line details for use with SUSST Account (joecontract@coats.com, Star Garments Ltd.)
     public static String yourMatNumSUSST = "AutoTestMaterial";
     public static String articleSUSST = "1505025";
