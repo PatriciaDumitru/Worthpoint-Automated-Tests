@@ -9,12 +9,13 @@ public class DataItems {
     
     //Target URL
     public static String targetURL ="https://qawcs.coatscolourexpress.com/"; //"https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";
+    //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL +  "qa_p4i/SalesOrgs";            //qa_p4i/
-    public static String mastersCustomerURL =targetURL + "qa_p4i/Customers";
-    public static String mastersCSAUrl = targetURL + "qa_p4i/customerprivatearticles";
-    public static String cceOrderSamplePrompt = targetURL + "qa_p4i/cce/prompt";
-    public static String manualEntryEcommURL =targetURL + "qa_p4i/ecom/order/manual";
-    public static String cceURL =targetURL + "qa_p4i/cce";
+    public static String mastersCustomerURL =targetURL + "qa_p4i//Customers";
+    public static String mastersCSAUrl = targetURL + "qa_p4i//customerprivatearticles";
+    public static String cceOrderSamplePrompt = targetURL + "qa_p4i//cce/prompt";
+    public static String manualEntryEcommURL =targetURL + "qa_p4i//ecom/order/manual";
+    public static String cceURL =targetURL + "qa_p4i//cce";
     public static String qaEnvAdd = "qa_p4i/";
 
 
@@ -193,7 +194,8 @@ public class DataItems {
     public static String conOrdTicket = "120";
     public static String conOrdLength = "5000";
     public static String conOrdFinish = "STANDARD";
-    public static String conOrdShadeCode = "WHITE";
+    public static String conOrdShadeCode = "C1711";
+    public static String conOrdShadeCodeAssert = "WHITE(SLA)";
     public static int conOrdQty = 1;
     public static String conOrdPO = "40000992";
     public static String conOrdLineRef = "10";
