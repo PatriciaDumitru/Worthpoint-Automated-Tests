@@ -163,7 +163,6 @@ public class DataItems {
     public static String expLength2 = "5000";
     public static String expFinish2 = "STANDARD";
     public static String expShadeCode2 = "C9700";
-
     
     public static String brand2 = "gramax";
     public static String ticket2 = "080";   
