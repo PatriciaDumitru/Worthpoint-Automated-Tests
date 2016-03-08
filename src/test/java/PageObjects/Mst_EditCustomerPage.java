@@ -24,7 +24,8 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     By cceShipNoticeLabel = By.cssSelector("#test > tbody > tr:nth-child(1) > th:nth-child(13)");
     By approvalWorkflowBox = By.id("CustomerApprovalWorkflow");
     By subAcctField = By.id("CustomerPayerEnabled");
-    By subAcctLabel = By.cssSelector("#CustomerEditForm > div:nth-child(2) > table > tbody > tr:nth-child(34) > td:nth-child(1) > label");
+    By subAcctLabel = By.xpath("/html/body/div[1]/div[3]/form/div[2]/table/tbody/tr[35]/td[1]/label");
+
     By userTypeField = By.id("Requester0UserTypeId");
     By saveButton = By.cssSelector("#CustomerEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     
