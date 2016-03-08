@@ -53,6 +53,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
     By customerNameEditPageField = By.id("CustomerCustomerName");
     By mdqCheckBox = By.id("CustomerCustMdqEnabled");
     By saveCustomerButton = By.xpath(".//*[@id='CustomerEditForm']/div[4]/ul/li[1]/input");
+    By deliveryPlant = By.id("CustomerDeliveryPlantId");
 
 
     //Manual Entry Pag
@@ -220,6 +221,10 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
 
         goToCustomerAndEdit();
 
+        System.out.println("Customer: Set Delivery to Plant to ID12..");
+
+        setDeliveryPlant();
+
         System.out.println("Customer: Disabling MOQ Checkbox...");
 
         disableMOQCheckBox();
@@ -252,6 +257,10 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         System.out.println("Customer: Going to customer edit page...");
 
         goToCustomerAndEdit();
+
+        System.out.println("Customer: Set Delivery to Plant to ID12..");
+
+        setDeliveryPlant();
 
         System.out.println("Customer: Enabling MOQ Checkbox...");
 
@@ -286,6 +295,10 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
 
         goToCustomerAndEdit();
 
+        System.out.println("Customer: Set Delivery to Plant to ID12..");
+
+        setDeliveryPlant();
+
         System.out.println("Customer: Enabling MOQ Checkbox...");
 
         enableMOQCheckBox();
@@ -318,6 +331,10 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         System.out.println("Customer: Going to customer edit page...");
 
         goToCustomerAndEdit();
+
+        System.out.println("Customer: Set Delivery to Plant to ID12..");
+
+        setDeliveryPlant();
 
         System.out.println("Customer: Enabling MOQ Checkbox...");
 
@@ -352,6 +369,10 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
 
         goToCustomerAndEdit();
 
+        System.out.println("Customer: Set Delivery to Plant to ID12..");
+
+        setDeliveryPlant();
+
         System.out.println("Customer: Enabling MOQ Checkbox...");
 
         enableMOQCheckBox();
@@ -359,6 +380,11 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         System.out.println("Customer: Saving customers changes...");
 
         saveCustomer();
+        return this;
+    }
+
+    public Ecomm_MOQ_Methods_Page setDeliveryPlant() {
+        CommonTask.setDropDownField(driver, deliveryPlant, "ID12");
         return this;
     }
 

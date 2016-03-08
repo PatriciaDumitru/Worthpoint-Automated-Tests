@@ -2,6 +2,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.PreFlows;
 import AutomationFramework.Wait;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
@@ -911,10 +912,24 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+
+        Cce_Base base1 = new Cce_Base(driver);
+        base1.setUp("Bla", "TEst");
+
+        PreFlows pf = new PreFlows();
+
+        pf.goToCustomerAndEdit(driver, DataItems.lifeEasyCustomer);
+        pf.enableMOQCheckBoxAndSaveCustomer(driver);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
+
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUSST9: Single line, Article and shade code (MOQ ACTIVE)","G_OOC_ME_SUSST_MOQ_5",DataItems.susstUsername,DataItems.susstPassword);
+
 
         System.out.println("Navigating to Manual Entry...");
 
@@ -958,9 +973,6 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
-
-
-
          
         orderConf.waitForElement();
         

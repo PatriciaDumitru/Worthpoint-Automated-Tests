@@ -52,6 +52,10 @@ public class PreFlows {
     By saveCustomerButton = By.xpath(".//*[@id='CustomerEditForm']/div[4]/ul/li[1]/input");
 
 
+    //Locator
+    By logoutButton = By.xpath(".//*[@id='header']/div/span[2]/span[5]/a");
+
+
 
     public void goToSalesOrgAndEdit(WebDriver driver, String salesOrg){
         driver.get(DataItems.mastersSalesOrgURL);
@@ -103,6 +107,33 @@ public class PreFlows {
 
     public void waitForCustomerEditPageToOpen(WebDriver driver) {
         WebElement wait = Wait.clickable(driver,customerNameEditPageField);
+    }
+
+    public void enableMOQCheckBoxAndSaveCustomer(WebDriver driver){
+        enableMOQCheckBox(driver);
+        saveCustomer(driver);
+    }
+    public void enableMOQCheckBox(WebDriver driver){
+        CommonTask.setCheckBox(driver, mdqCheckBox);
+    }
+
+    public void disableMOQCheckBox(WebDriver driver){
+        CommonTask.unSetCheckBox(driver, mdqCheckBox);
+    }
+
+    public void saveCustomer(WebDriver driver) {
+        Actions action = new Actions(driver);
+        action.click(driver.findElement(saveCustomerButton)).build().perform();
+    }
+
+    public void chooseTheOtherProfile(WebDriver driver){
+        Actions action = new Actions(driver);
+        action.click(driver.findElement(chooseTheOtherProfile)).build().perform();
+    }
+
+    public void logoutAction(WebDriver driver){
+        Actions action = new Actions(driver);
+        action.click(driver.findElement(logoutButton)).build().perform();
     }
 
 
