@@ -44,7 +44,6 @@ public class DriverFactory {
         getDriver().manage().deleteAllCookies();
         System.out.println("----------------------------------------------------");
     }
-
 */
 
     @AfterMethod (alwaysRun=true)
