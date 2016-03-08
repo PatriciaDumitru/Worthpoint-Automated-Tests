@@ -179,6 +179,7 @@ public class DataItems {
     public static String finish3 = "STANDARD";
     public static String shadeCode3 = "C9455";
     public static int quantity3 = 1;
+
     
     //Details used in CCE Threshold qty tests (id=SOC_5)
     public static String thresholdBrand = "astra";
