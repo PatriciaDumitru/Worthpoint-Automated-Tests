@@ -19,7 +19,7 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
     By customerCodeField = By.id("filterCustomerCustomerCode");
     By searchButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
-    By newPrivateArticleField = By.xpath(".//*[@id='content']/div[3]/ul/li/a");
+    By newPrivateArticleField = By.xpath("/html/body/div[1]/div[3]/div[3]/ul/li[2]/a");
 
 
     public Mst_CustomerPrivateArticlesPage(WebDriver driver) {

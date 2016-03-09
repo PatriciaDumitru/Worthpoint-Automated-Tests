@@ -759,7 +759,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 		
             System.out.println("Checking title...");
             
-            AssertJUnit.assertTrue("My Reports (Customer care) Page: Title not displayed as expected",mrPage.getBreadcrumbText().equals("Reports | My Reportmaster"));
+            AssertJUnit.assertTrue("My Reports (Customer care) Page: Title not displayed as expected",mrPage.getBreadcrumbText().equals("Reports | My Report"));
             
             System.out.println("Title checked. Checking fields...");
 		
@@ -884,7 +884,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 		
             System.out.println("Checking title...");
             
-            AssertJUnit.assertTrue("My Reports (Customer care) Page: Title not displayed as expected",mrPage.getBreadcrumb().getText().equals("Reports | Customer Care"));
+            AssertJUnit.assertTrue("My Reports (Customer care) Page: Title not displayed as expected",mrPage.getBreadcrumb().getText().equals("Reports | My Report"));
             
             System.out.println("Title checked. Checking fields...");
 		

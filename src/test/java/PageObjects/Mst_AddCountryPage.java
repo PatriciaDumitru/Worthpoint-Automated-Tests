@@ -20,7 +20,7 @@ public class Mst_AddCountryPage extends WBA_BasePage {
     By countryNameField = By.id("s2id_CountryCountryName");
     By countryCodeField = By.id("CountryCountryCode");
     By languageField = By.id("CountryLanguageId");
-    By saveButton = By.cssSelector("#CountryAddForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
+    By saveButton = By.xpath("/html/body/div[1]/div[3]/form/div[3]/ul/li[1]/input");
     By cancelButton = By.cssSelector("#CountryAddForm > div.actions > ul > li:nth-child(2) > a");
     
     public Mst_AddCountryPage(WebDriver driver) {
@@ -33,12 +33,11 @@ public class Mst_AddCountryPage extends WBA_BasePage {
     
     public Mst_AddCountryPage setCountryName(String item) {
         CommonTask.setSearchField(driver,countryNameField,item);
-        
-        Wait.textPresent(driver,countryCodeField, "VA");
+        //Wait.textPresent(driver,countryCodeField, "VA");
 
         return new Mst_AddCountryPage(driver);
     }
-    
+
     public Mst_AddCountryPage setCountryCode(String item) {
         CommonTask.setInputField(driver,countryCodeField,item);
         return new Mst_AddCountryPage(driver);
