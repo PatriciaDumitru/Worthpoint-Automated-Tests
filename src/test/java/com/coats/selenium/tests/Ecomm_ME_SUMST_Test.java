@@ -1614,7 +1614,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         WBA_ContinuePage contPage2 = liPage.loginAs(DataItems.validCoatsUsername, DataItems.validCoatsPassword);
         WBA_SelectionPage selectPage2 = contPage.pressContinue();
         Ecomm_MainPage mainPage2 = selectPage.pressEcomm();
-        
+
+
         mainPage2.waitForLoad();
         
         System.out.println("Logged in. Navigating to SAP Log Page...");
