@@ -2,6 +2,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.PreFlows;
 import AutomationFramework.Wait;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_MainPage;
@@ -905,6 +906,10 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         manualEntryPage.setRequestor(DataItems.custDetails[2]);
         //CommonTask.resetSearchField(driver, "s2id_BuyerId");
         manualEntryPage.setPONumber(DataItems.custDetails[4]);
+
+        //Remove buyers for assert
+        PreFlows pf = new PreFlows();
+        pf.removeBuyers(driver);
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -1015,10 +1020,14 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Requestor removed. Confirming...");
         
         Ecomm_UploadProcessPage errorPage = orderConf.pressSubmitExpectingFailure();
- 
+
+
         boolean errorDisplayed;
         
         try {
+            Alert alert = Wait.alert(driver);
+            alert.accept();
+
             WebElement flashMessage = errorPage.waitForError();
             System.out.println("Error received: "+flashMessage.getText());
             errorDisplayed = true;
@@ -1026,6 +1035,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
             System.out.println("No error displayed");
             errorDisplayed = false;
         }
+
+
                 
         AssertJUnit.assertTrue("Order Confirmation Page: No error displayed despite missing mandatory field(s)",errorDisplayed);
         
@@ -1114,9 +1125,10 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         boolean errorDisplayed;
         
         try {
-            WebElement flashMessage = errorPage.waitForError();
             Alert alert2 = Wait.alert(driver);
             alert2.accept();
+            WebElement flashMessage = errorPage.waitForError();
+
 
             System.out.println("Error received: "+flashMessage.getText());
             errorDisplayed = true;
@@ -1205,9 +1217,13 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_UploadProcessPage errorPage = orderConf.pressSubmitExpectingFailure();
  
         boolean errorDisplayed;
-        
+
         try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
             WebElement flashMessage = errorPage.waitForError();
+
+
             System.out.println("Error received: "+flashMessage.getText());
             errorDisplayed = true;
         } catch (Exception e) {
@@ -1256,7 +1272,16 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST15: Draft creation/order simulation - check draft details and cancel","G_OOC_ME_SUSST_Unknown");
-        
+
+
+        System.out.println("Activating MOQ...");
+
+        //Activate MOQ for customer
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver);           //choose CCE page
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);           //choose ecomm page
+
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
@@ -1499,7 +1524,13 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUSST18: Sub-account availability and flat file inclusion","ME_SA_01");
-        
+
+        System.out.println("Set Delivery Plant to select and activate approver checkbox...");
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //change to CCE page
+        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver,DataItems.salesOrgID, "Angler Test Indonesia", "Select");
+        pf.chooseTheOtherProfile(driver); //change to ecomm page
+
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
@@ -1608,6 +1639,12 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUSST19: Send for approval feature","G_OOC_ME_SUSST_MOQ_1");
+
+        System.out.println("Set Delivery Plant to select and activate approver checkbox...");
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //change to CCE page
+        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver,DataItems.salesOrgID,"Angler Test Indonesia", "Select");
+        pf.chooseTheOtherProfile(driver); //change to ecomm page
         
         System.out.println("Navigating to Manual Entry...");
         
