@@ -146,5 +146,28 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Edit Customer Page: Approval Workflow Box not displayed",custName.isDisplayed());
         
     }
+
+    public int getRow(String title) {
+
+        if (!checkForRecords()) {
+            return -1;
+        }
+        By headerLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(2) > a");
+        WebElement header = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(headerLocator));
+        AssertJUnit.assertTrue("Customer Private Articles Page: Customer name column has moved, update locators",header.getText().equals("Customer Name"));
+
+        By recordsField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        int count = getRecordCount(recordsField);
+        int tableCount = (count > 10) ? 10 : count;
+
+        for (int i = 2; i < (tableCount+2); i++) {
+            By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(2)");
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            if (cell.getText().equals(title)) {
+                return i;
+            }
+        }
+        return -1;
+    }
     
 }

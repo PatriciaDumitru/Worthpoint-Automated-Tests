@@ -22,6 +22,7 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     By mailNotificationLabel = By.cssSelector("#SalesOrgEditForm > div.frm > table > tbody > tr:nth-child(6) > td:nth-child(1) > label");
     By saveButton = By.id("save");
     By cancelButton = By.cssSelector("#SalesOrgEditForm > div.actions > ul > li:nth-child(2) > a");
+    By orderUploadCheckBox=By.id("SalesOrgSampleUploadActive");
     
     public Mst_EditSalesOrgPage(WebDriver driver) {
         super(driver);
@@ -111,5 +112,12 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(descriptionField));
     }
-    
+
+    public void enableCCEOrderUploadCheckBox(){
+        CommonTask.setCheckBox(driver, orderUploadCheckBox);
+    }
+
+    public void disableCCEOrderUploadCheckBox(){
+        CommonTask.unSetCheckBox(driver, orderUploadCheckBox);
+    }
 }

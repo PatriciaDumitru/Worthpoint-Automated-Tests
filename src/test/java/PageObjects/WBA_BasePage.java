@@ -1,9 +1,7 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
-import AutomationFramework.Wait;
-import static PageObjects.CCE_MainPage.ordersHeader;
-import static PageObjects.Ecomm_MainPage.ordersTab;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,6 +35,7 @@ public class WBA_BasePage {
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
     public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
     public static By breadcrumbLocator3 = By.cssSelector("#list_page_breadcrumb > h2");
+    public static By breadcrumbzLocator=By.id("list_page_breadcrumbz");
     static By footerLocator = By.id("footer");
     static By contentFrame = By.id("content");
     public static By noRecords = By.className("norec");
@@ -85,16 +84,14 @@ public class WBA_BasePage {
     //CCE Navbar locators
     static By ordersHeader = By.cssSelector("#topnav > li:nth-child(2)");
         static By orderSamplesSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
-
-        static By uploadOrderSampleSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
-
-        static By outstandingDraftSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
-        static By manualEnrichSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
-        static By orderStatusSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
-        static By dnReprintSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
-        static By feedbackSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
-        static By feedbackCompletedSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
-        static By feedbackAwaitingSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(8)");
+        static By uploadOrderSamplesSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
+        static By outstandingDraftSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
+        static By manualEnrichSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
+        static By orderStatusSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
+        static By dnReprintSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
+        static By feedbackSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
+        static By feedbackCompletedSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(8)");
+        static By feedbackAwaitingSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(9)");
         
     static By hubHeader = By.cssSelector("#topnav > li:nth-child(3)");
         static By hubSosSubtab = By.cssSelector("#topnav > li:nth-child(3) > div > div > ul > li:nth-child(1)");
@@ -167,7 +164,10 @@ public class WBA_BasePage {
         static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
         static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
         static By archivesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(6)");
-    
+
+    static By dashboardHeader = By.cssSelector("#topnav > li:nth-child(9)");
+        static By sampleUploadFailedFilesSubtab = By.cssSelector("#topnav > li:nth-child(9) > div > div > ul > li:nth-child(1)");
+
     //Navigation headers specifically for requester/approver/alternative user types
         static By deniedOrderSubtabRequester = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
         static By deniedOrderSubtabApprover = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
@@ -596,6 +596,28 @@ public class WBA_BasePage {
         action.click(driver.findElement(orderSamplesSubtab)).build().perform();
         
         return new CCE_OrderSamplesPage(driver);
+    }
+
+    public CCE_UploadOrderSamplesPage pressUploadOrderSamples() {
+
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(ordersHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(uploadOrderSamplesSubtab));
+        action.click(driver.findElement(uploadOrderSamplesSubtab)).build().perform();
+
+        return new CCE_UploadOrderSamplesPage(driver);
+    }
+
+    public CCE_SampleUploadFailedFilesPage pressSampleUploadFailedFiles() {
+
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dashboardHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(dashboardHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sampleUploadFailedFilesSubtab));
+        action.click(driver.findElement(sampleUploadFailedFilesSubtab)).build().perform();
+
+        return new CCE_SampleUploadFailedFilesPage(driver);
     }
     
     public CCE_ManualEnrichPage pressManualEnrich() {
