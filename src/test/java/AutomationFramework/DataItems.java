@@ -18,7 +18,6 @@ public class DataItems {
     public static String cceURL =targetURL + "qa_p4i/cce";
     public static String qaEnvAdd = "qa_p4i/";
 
-
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots"; //Filepath to which all screenshots (taken on instruction from within program, NOT by surefire) are saved
