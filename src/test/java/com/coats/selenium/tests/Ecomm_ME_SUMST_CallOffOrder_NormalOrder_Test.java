@@ -139,7 +139,6 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");
 
         System.out.println("Values verified. Closing view...");
-
         //Exit view
         orderView.exitView();
         orderView.waitForInvisibility();
