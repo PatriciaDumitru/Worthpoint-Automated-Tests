@@ -1,7 +1,9 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
-
+import AutomationFramework.Wait;
+import static PageObjects.CCE_MainPage.ordersHeader;
+import static PageObjects.Ecomm_MainPage.ordersTab;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,7 +37,6 @@ public class WBA_BasePage {
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
     public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
     public static By breadcrumbLocator3 = By.cssSelector("#list_page_breadcrumb > h2");
-    public static By breadcrumbzLocator=By.id("list_page_breadcrumbz");
     static By footerLocator = By.id("footer");
     static By contentFrame = By.id("content");
     public static By noRecords = By.className("norec");
@@ -619,7 +620,7 @@ public class WBA_BasePage {
 
         return new CCE_SampleUploadFailedFilesPage(driver);
     }
-    
+
     public CCE_ManualEnrichPage pressManualEnrich() {
         
         WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));

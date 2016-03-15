@@ -292,7 +292,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     
     public Ecomm_PendingApprovalListPage pressApprove(int row) {
         
-        By selectButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(13)");
+        By selectButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(12)");
         CommonTask.clickInputCheckBox(driver, selectButton);
         
         WebElement approveBtn = Wait.clickable(driver,approveButton);
