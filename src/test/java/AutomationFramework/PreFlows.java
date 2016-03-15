@@ -53,9 +53,11 @@ public class PreFlows {
     By approvelCheckBoxCust = By.id("CustomerApprovalWorkflow");
     By saveCustomerButton = By.xpath(".//*[@id='CustomerEditForm']/div[4]/ul/li[1]/input");
     By deliveryPlant = By.id("CustomerDeliveryPlantId");
+    By callOffOrderCheckBox = By.id("CustomerOffOrder");
 
     //Manual Entry Page
-    By buyersField= By.xpath(".//*[@id='s2id_BuyerId']/a/abbr");
+    By buyersField = By.xpath(".//*[@id='s2id_BuyerId']/a/abbr");
+    By normalOrderRadioButton = By.id("normal_check");
 
 
     //Locator
@@ -182,6 +184,20 @@ public class PreFlows {
     public void removeBuyers(WebDriver driver){
         Actions action = new Actions(driver);
         action.click(driver.findElement(buyersField)).build().perform();
+    }
+
+    public void selectNormalOrderRadioButton(WebDriver driver){
+        CommonTask.setCheckBox(driver, normalOrderRadioButton);
+    }
+
+    public void activateCallOffOrderForCustomer(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        activateCallOffOrderCheckbox(driver);
+        saveCustomer(driver);
+    }
+
+    public void activateCallOffOrderCheckbox(WebDriver driver){
+        CommonTask.setCheckBox(driver,callOffOrderCheckBox );
     }
 
 
