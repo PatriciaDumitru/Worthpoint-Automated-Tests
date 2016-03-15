@@ -56,6 +56,7 @@ public class WBA_BasePage {
         static By courierTrackingUpdate = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
         static By pendingApprovalSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
         static By pendingApprovalSubTabApprover = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
+        static By pendingApprovalSubTabApproverSUMST18FIX = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
         static By deniedOrderSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
         static By uploadDraftErrorSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
         
@@ -415,6 +416,20 @@ public class WBA_BasePage {
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(pendingApprovalSubTabApprover)));
         action.click(driver.findElement(pendingApprovalSubTabApprover)).build().perform();
         
+        return new Ecomm_PendingApprovalListPage(driver);
+    }
+
+    public Ecomm_PendingApprovalListPage clickPendingApprovalListPageApproverSUMST18Fix() {
+        //Works specifically for approver account (mail.kamleshpatidar@gmail.com)
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        //wait for menu to drop down
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(pendingApprovalSubTabApprover)));
+        action.click(driver.findElement(pendingApprovalSubTabApproverSUMST18FIX)).build().perform();
+
         return new Ecomm_PendingApprovalListPage(driver);
     }
     

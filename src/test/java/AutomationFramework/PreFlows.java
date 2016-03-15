@@ -80,6 +80,16 @@ public class PreFlows {
         enableApprovalCheckBoxForCust(driver);
         saveCustomer(driver);
     }
+
+    public void disableApprovelCheckBoxForSalesOrgAndCust(WebDriver driver, String salesOrg, String customer){
+        goToSalesOrgAndEdit(driver,salesOrg);
+        disableApprovalCheckBoxForSalesOrg(driver);
+        saveSalesOrg(driver);
+        goToCustomerAndEdit(driver, customer);
+        disableApprovalCheckBoxForCust(driver);
+        saveCustomer(driver);
+    }
+
     public void setDeliveryPlant(WebDriver driver, String plant) {
         CommonTask.setDropDownField(driver, deliveryPlant, plant);
     }
@@ -149,10 +159,14 @@ public class PreFlows {
         CommonTask.setCheckBox(driver, approvelCheckBoxCust);
     }
 
+    public void disableApprovalCheckBoxForCust(WebDriver driver){
+        CommonTask.unSetCheckBox(driver, approvelCheckBoxCust);
+    }
+
     public void enableApprovalCheckBoxForSalesOrg(WebDriver driver){
         CommonTask.setCheckBox(driver, approvelCheckBoxSalesOrg);
     }
-    public void edisableApprovalCheckBoxForSalesOrg(WebDriver driver){
+    public void disableApprovalCheckBoxForSalesOrg(WebDriver driver){
         CommonTask.unSetCheckBox(driver, approvelCheckBoxSalesOrg);
     }
 

@@ -37,14 +37,13 @@ public class DriverFactory {
     public static WebDriver getDriver() throws Exception {
         return driverThread.get().getDriver();
     }
-
+/*
     // @AfterMethod (alwaysRun=true)
-    /*
     public static void clearCookies() throws Exception {
         getDriver().manage().deleteAllCookies();
         System.out.println("----------------------------------------------------");
     }
-*/
+
 
 
 
@@ -57,5 +56,5 @@ public class DriverFactory {
 
     }
 
-
+*/
 }

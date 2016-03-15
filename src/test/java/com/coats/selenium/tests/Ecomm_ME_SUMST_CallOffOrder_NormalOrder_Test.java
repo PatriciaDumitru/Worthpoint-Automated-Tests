@@ -41,7 +41,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Page checks, single line order using YMN and shade code from master data
             (groups = {"QuickTest","eComm","eComm_Orders"})
-    public void SUMST1_CONO_CONO() throws IOException, InterruptedException, Exception {
+    public void SUMST1_CONO() throws IOException, InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
 
@@ -346,7 +346,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //new base test to handle set up
         Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY SUMST4: Multiple lines, Your Material Number without master data shade code","G_OOC_ME_SUMST_4");
+        Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY SUMST4_CONO: Multiple lines, Your Material Number without master data shade code","G_OOC_ME_SUMST_4");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -434,7 +434,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //new base test to handle set up
         Ecomm_Base susstTest5 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest5.setUp("MANUAL ENTRY SUMST5: Single line, using Article and shade code","G_OOC_ME_SUMST_5");
+        Ecomm_MainPage eCommPage = susstTest5.setUp("MANUAL ENTRY SUMST5_CONO: Single line, using Article and shade code","G_OOC_ME_SUMST_5");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -521,7 +521,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //new base test to handle set up
         Ecomm_Base susstTest6 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest6.setUp("MANUAL ENTRY SUMST6: Multiple lines, using Article and shade code","G_OOC_ME_SUMST_6");
+        Ecomm_MainPage eCommPage = susstTest6.setUp("MANUAL ENTRY SUMST6_CONO: Multiple lines, using Article and shade code","G_OOC_ME_SUMST_6");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -610,7 +610,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //new base test to handle set up
         Ecomm_Base susstTest7 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest7.setUp("MANUAL ENTRY SUMST7: Single line, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUMST_7");
+        Ecomm_MainPage eCommPage = susstTest7.setUp("MANUAL ENTRY SUMST7_CONO: Single line, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUMST_7");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -693,7 +693,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST8: Multiple lines, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUMST_8");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST8_CONO: Multiple lines, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUMST_8");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -784,7 +784,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST9: Check validation at Manual Entry Page (no requester)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST9_CONO: Check validation at Manual Entry Page (no requester)","G_OOC_ME_SUSST_Unknown");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -878,14 +878,14 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no ship to party name at manual entry page
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST1_CONO0_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST10_CONO() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
 
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST1_CONO0: Check validation at Manual Entry Page (no ship to)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST10: Check validation at Manual Entry Page (no ship to)","G_OOC_ME_SUSST_Unknown");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -980,14 +980,14 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no buyer at manual entry page
             (groups = {"eComm","eComm_Orders",})
-    public void SUMST1_CONO1_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST11_CONO() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
 
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST1_CONO1: Check validation at Manual Entry Page (no buyer)","G_OOC_ME_SUMST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST1_CONO: Check validation at Manual Entry Page (no buyer)","G_OOC_ME_SUMST_Unknown");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -1077,14 +1077,14 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at confirmation page
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST1_CONO2_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST12_CONO() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
 
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST1_CONO2: Check validation at Confirmation Page (no requester)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST12: Check validation at Confirmation Page (no requester)","G_OOC_ME_SUSST_Unknown");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -1092,6 +1092,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, "ID51", DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -1182,7 +1183,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no Ship To Party Name at confirmation page
             (groups = {"eComm","eComm_Orders","QuickTest"})
-    public void SUMST1_CONO3_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST13_CONO() throws InterruptedException, IOException, Exception {
 
         //New driver
         WebDriver driver = getDriver();
@@ -1190,7 +1191,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST1_CONO3_CONO: Check validation at Confirmation Page (no ship to)","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST13_CONO: Check validation at Confirmation Page (no ship to)","G_OOC_ME_SUSST_Unknown");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -1292,14 +1293,14 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no Buyer at confirmation page
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST1_CONO4_CONO_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST14_CONO() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
 
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST1_CONO4_CONO_CONO: Check validation at Confirmation Page (no buyer)","G_OOC_ME_SUMST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST14_CONO: Check validation at Confirmation Page (no buyer)","G_OOC_ME_SUMST_Unknown");
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -1396,7 +1397,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Create order and cancel from confirmation page
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST1_CONO5_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST15_CONO() throws InterruptedException, IOException, Exception {
 
         //New driver
         WebDriver driver = getDriver();
@@ -1404,7 +1405,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST1_CONO5_CONO: Draft creation/order simulation - check draft details and cancel","G_OOC_ME_SUSST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST15_CONO: Draft creation/order simulation - check draft details and cancel","G_OOC_ME_SUSST_Unknown");
 
 
         System.out.println("Activating MOQ...");
@@ -1502,7 +1503,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Order Draft continuation and cancellation
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST1_CONO6_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST16_CONO() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -1593,14 +1594,14 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Order Draft continuation
             (groups = {"eComm","eComm_Orders","QuickTest"})
-    public void SUMST1_CONO7_CONO() throws InterruptedException, Exception {
+    public void SUMST17_CONO() throws InterruptedException, Exception {
         //New driver
         WebDriver driver = getDriver();
 
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST1_CONO7_CONO: Draft creation/order simulation","G_OOC_ME_SUMST_Unknown");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST17: Draft creation/order simulation","G_OOC_ME_SUMST_Unknown");
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
@@ -1669,7 +1670,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Sub-account test. Field appears and data included in Flat File
             (groups ={"eComm","eComm_Orders"}) //Konwn issue: order does not appear in pending approval page as it takes a while to be processed. Fix: wait and reload page, then check for order again
-    public void SUMST1_CONO8_CONO() throws Exception {
+    public void SUMST18_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -1682,7 +1683,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //change to CCE page
         pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver,DataItems.salesOrgID, "Angler Test Indonesia", "Select");
-        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.activateCallOffOrderForCustomer(driver, "Angler Test Indonesia");
         pf.chooseTheOtherProfile(driver); //change to ecomm page
 
 
@@ -1790,14 +1791,14 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Send for approval feature activated
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST1_CONO9_CONO() throws Exception {
+    public void SUMST19_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
         //new base test to handle set up
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
-        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUSST19: Send for approval feature","G_OOC_ME_SUSST_MOQ_1");
+        Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST19_CONO: Send for approval feature","G_OOC_ME_SUSST_MOQ_1");
 
         System.out.println("Set Delivery Plant to select and activate approver checkbox...");
         PreFlows pf = new PreFlows();
@@ -1854,6 +1855,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -1982,6 +1984,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -2111,6 +2114,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -2240,6 +2244,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -2369,6 +2374,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -2497,6 +2503,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -2626,6 +2633,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -2753,6 +2761,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
