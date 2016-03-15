@@ -31,7 +31,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
 
         //New base object to handle log-in and set up
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Sales Organisations: Page and filter checks, add/edit/delete/export features", "G_CCE_Unknown");
+        CCE_MainPage ccePage = base.setUp("Upload Order Samples: Page and filter checks, add/edit/delete/export features", "G_CCE_Unknown");
         ccePage.waitForLoad();
 
         System.out.println("Navigating to Upload Order Samples...");
@@ -189,7 +189,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
 
         //New base object to handle log-in and set up
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Sales Organisations: Page and filter checks, add/edit/delete/export features", "G_CCE_Unknown");
+        CCE_MainPage ccePage = base.setUp("Upload Order Samples: Page and filter checks, add/edit/delete/export features", "G_CCE_Unknown");
         ccePage.waitForLoad();
 
         System.out.println("Navigating to Upload Order Samples...");

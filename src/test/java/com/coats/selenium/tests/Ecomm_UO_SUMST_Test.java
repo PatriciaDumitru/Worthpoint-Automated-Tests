@@ -196,6 +196,18 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Details entered. Confirming map...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        boolean errorDisplayed;
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+
+            System.out.println("Error received: "+alert2.getText());
+            errorDisplayed = true;
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+            errorDisplayed = false;
+        }
+        orderConf.waitForElement();
         orderConf.waitForLoad();
         orderConf.waitForElement();
         
@@ -290,6 +302,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Details entered. Confirming map...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        boolean errorDisplayed;
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+
+            System.out.println("Error received: "+alert2.getText());
+            errorDisplayed = true;
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+            errorDisplayed = false;
+        }
         orderConf.waitForElement();
         
         DataItems.lastUsedPO = orderConf.getUploadCustPOField().getText();
@@ -360,6 +383,19 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Details entered. Confirming map...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+
+        boolean errorDisplayed;
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+
+            System.out.println("Error received: "+alert2.getText());
+            errorDisplayed = true;
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+            errorDisplayed = false;
+        }
+
         orderConf.waitForElement();
         
         DataItems.lastUsedPO = orderConf.getUploadCustPOField().getText();
@@ -444,6 +480,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Details entered. Confirming map...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        boolean errorDisplayed;
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+
+            System.out.println("Error received: "+alert2.getText());
+            errorDisplayed = true;
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+            errorDisplayed = false;
+        }
         orderConf.waitForElement();
         
         orderConf.setRequestor(DataItems.custDetails[2]);
@@ -550,6 +597,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Mapping set. Confirming...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        boolean errorDisplayed;
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+
+            System.out.println("Error received: "+alert2.getText());
+            errorDisplayed = true;
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+            errorDisplayed = false;
+        }
         orderConf.waitForElement();
         
         orderConf.setRequestor(DataItems.subCustDetails[2]);

@@ -471,7 +471,7 @@ public class Ecomm_OO_Test extends DriverFactory {
 
         Ecomm_PendingApprovalListPage pendPage = orderConf.pressSendForApproval();
         pendPage.waitForElement();
-        
+
         System.out.println("Pending Approval List Page reached. Checking title...");
         
         AssertJUnit.assertTrue("Pending Approval Page: Title not as expected",pendPage.getBreadcrumb().getText().equals("Orders | Pending Approval List"));

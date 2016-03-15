@@ -192,7 +192,19 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
         orderConf.waitForElement();
-        
+
+        //Input details for each line
+        for (int i = 0; i < numberOfLines; i++) {
+            manualEntryPage = manualEntryPage.setOrderDetailsYMN(details[i], i);
+        }
+
+        System.out.println("Quantity Product details re-entered. Pressing next...");
+
+        //Press next
+        Ecomm_OrderConfirmationPage orderConf2 = manualEntryPage.pressNext();
+        orderConf2.waitForElement();
+
+
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit
@@ -208,8 +220,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         orderView.waitForContent();
         orderView.switchTo();
 
-        Verify.verify(orderView.getYourMatNumCell().getText().equals(DataItems.yourMatNum),"Order view: Your Material Number does not match input");
-        Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
+        //Verify.verify(orderView.getYourMatNumCell().getText().equals(DataItems.yourMatNum),"Order view: Your Material Number does not match input");
+        //Verify.verify(orderView.getArticleCell().getText().equals(DataItems.expArticle),"Order view: Article does not match expected input");
         Verify.verify(orderView.getBrandCell().getText().equals(DataItems.expBrand),"Order view: Brand does not match expected input");
         Verify.verify(orderView.getTicketCell().getText().equals(DataItems.expTicket),"Order view: Ticket does not match expected input");
         Verify.verify(orderView.getShadeCodeCell().getText().equals(DataItems.expShadeCode),"Order view: Shade code does not match expected input");

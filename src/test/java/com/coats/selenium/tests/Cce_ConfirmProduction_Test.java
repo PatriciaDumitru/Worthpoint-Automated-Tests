@@ -2,6 +2,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import PageObjects.CCE_AddOrderPage;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_ConfirmProductionPage;
@@ -15,11 +16,8 @@ import static com.coats.selenium.DriverFactory.getDriver;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.testng.AssertJUnit;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -90,7 +88,20 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         System.out.println("Confirm selected. Pressing DN Print...");
         
         CCE_OrderViewPage viewPage = cpPage.pressDnPrint();
-        
+
+        boolean errorDisplayed;
+
+    /*    try {
+            Alert alert = Wait.alert(driver);
+            alert.accept();
+
+            System.out.println("Error received: "+alert.getText());
+            errorDisplayed = true;
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+            errorDisplayed = false;
+        }
+        */
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\5DN view.png"));
