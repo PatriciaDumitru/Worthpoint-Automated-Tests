@@ -17,7 +17,8 @@ public class Ecomm_ExportDownloadPage {
     WebDriver driver;
     
     //Locators
-    By frameLocator = By.id("TB_iframeContent");
+    By frameLocator = By.xpath("TB_iframeContent");
+    By completeDownloadMessageField = By.xpath(".//*[@id='popup_content']/div/table[1]/tbody/tr[1]/td/div/span");
     By yesButton = By.cssSelector("#popup_content > div > table:nth-child(2) > tbody > tr:nth-child(1) > td > div.actions > ul > li:nth-child(1)");
     By noButton = By.cssSelector("#popup_content > div > table:nth-child(2) > tbody > tr:nth-child(1) > td > div.actions > ul > li:nth-child(2)");
     
@@ -31,7 +32,11 @@ public class Ecomm_ExportDownloadPage {
     }
     
     public void waitForDownloadCompletion() {
-        Boolean waitForInvisibility = new WebDriverWait(driver,DataItems.downloadWait).ignoring(NoSuchElementException.class).until(ExpectedConditions.invisibilityOfElementLocated(frameLocator));      
+        Boolean waitForInvisibility = new WebDriverWait(driver,DataItems.downloadWait).ignoring(NoSuchElementException.class).until(ExpectedConditions.textToBePresentInElementLocated(completeDownloadMessageField, "100% Completed"));
+    }
+
+    public void waitForDowloadCompletion() {
+
     }
     
     public void waitForContent() {

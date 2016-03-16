@@ -765,6 +765,11 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Promt submitted. Pressing new buyer...");
         
         CCE_NewBuyerPage nbPage = addOrder.pressNewBuyer();
+
+        String parentHandle = driver.getWindowHandle();                //prinde handdle pagina principala
+        for (String handle : driver.getWindowHandles()) {
+            driver.switchTo().window(handle);							//schimba focus pe popup
+        }
         nbPage.waitForElement();
         
         System.out.println("New Buyer page reached. Checking fields...");

@@ -54,6 +54,7 @@ public class PreFlows {
     By saveCustomerButton = By.xpath(".//*[@id='CustomerEditForm']/div[4]/ul/li[1]/input");
     By deliveryPlant = By.id("CustomerDeliveryPlantId");
     By callOffOrderCheckBox = By.id("CustomerOffOrder");
+    By autoEnrichNoneOption = By.id("CustomerAutoEnrichOptions0");
 
     //Manual Entry Page
     By buyersField = By.xpath(".//*[@id='s2id_BuyerId']/a/abbr");
@@ -210,8 +211,42 @@ public class PreFlows {
         saveCustomer(driver);
     }
 
+    public void deActivateCallOffOrderForCustomer(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        deActivateCallOffOrderCheckbox(driver);
+        saveCustomer(driver);
+    }
+    public void activateCallOffOrderAndDeactivateApprovalForCustomer(WebDriver driver, String customer) {
+        goToCustomerAndEdit(driver, customer);
+        activateCallOffOrderCheckbox(driver);
+        disableApprovalCheckBox(driver);
+        saveCustomer(driver);
+    }
+
+    public void deActivateCallOffOrderAndApprovalForCustomer(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        deActivateCallOffOrderCheckbox(driver);
+        disableApprovalCheckBox(driver);
+        saveCustomer(driver);
+
+    }
+
     public void activateCallOffOrderCheckbox(WebDriver driver){
         CommonTask.setCheckBox(driver,callOffOrderCheckBox );
+    }
+
+    public void deActivateCallOffOrderCheckbox(WebDriver driver){
+        CommonTask.unSetCheckBox(driver,callOffOrderCheckBox );
+    }
+
+    public void deActivateAutoEnrichForCustomer(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        deActivateAutoEnrich(driver);
+        saveCustomer(driver);
+    }
+
+    public void deActivateAutoEnrich(WebDriver driver){
+        CommonTask.setCheckBox(driver, autoEnrichNoneOption);
     }
 
 

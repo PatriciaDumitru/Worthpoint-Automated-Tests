@@ -7,16 +7,17 @@ import org.openqa.selenium.By;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/test/"; //"https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test"; //"https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
-    public static String mastersSalesOrgURL = targetURL +  "/SalesOrgs";            //qa_p4i/
+    public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
     public static String mastersCustomerURL =targetURL + "/Customers";
     public static String mastersCSAUrl = targetURL + "/customerprivatearticles";
     public static String cceOrderSamplePrompt = targetURL + "/cce/prompt";
     public static String manualEntryEcommURL = targetURL + "/ecom/order/manual";
     public static String masterApproverList = targetURL + "/ApproverLists";
     public static String cceURL = targetURL + "/cce";
-    //ublic static String qaEnvAdd = "qa_p4i/";
+    public static String qaEnvAdd = "qa_p4i";
+    public static String qaTestEnv  = "test";
 
 
     //Filepaths
@@ -131,6 +132,7 @@ public class DataItems {
 
     //Customer details to be used in manual entry tests
     public static String[] custDetails = {"Life Easy Customer", "CCE HUB OFFICES", "approver 1 test", "*OTHERS*", "AutoTestPO_"};
+    public static String[] custDetails2 = {"ADIS DIMENSION FOOTWEAR. PT", "ADIS SHIP TO", "Dian ", "NIKE FOOTWEAR & EQUIPMENT", "AutoTestPO_"};
     public static String custCode = "106499"; //Customer code for Life Easy Customer
 
     //Customer details to be used in subaccount tests
@@ -316,6 +318,7 @@ public class DataItems {
     public static String cceArticleFromBrandStarNylon = "NKW2030";
     public static String cceArticleFromBrandAdmiral = "NKW2030";
     public static String lifeEasyCustomer = "Life Easy Customer";
+    public static String adisCustomer = "ADIS DIMENSION FOOTWEAR. PT";
     public static String lifeEasyRequester = "Life Easy";
     public static String someOtherCustomer = "ADIS DIMENSION FOOTWEAR. PT";
     public static String brandAstraCSA = "astra";

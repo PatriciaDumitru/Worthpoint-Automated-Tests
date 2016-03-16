@@ -28,7 +28,7 @@ public class CCE_SampleUploadFailedFilesPage extends WBA_BasePage {
     }
 
     public WebElement getBreadcrumb() {
-        WebElement item = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(breadcrumbzLocator));
+        WebElement item = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(breadcrumbLocator));
         return item;
     }
     public void checkFields() {

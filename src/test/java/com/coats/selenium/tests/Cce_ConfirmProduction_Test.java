@@ -2,6 +2,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.PreFlows;
 import AutomationFramework.Wait;
 import PageObjects.CCE_AddOrderPage;
 import PageObjects.CCE_MainPage;
@@ -220,7 +221,10 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         
         Cce_Base base = new Cce_Base(driver);
         CCE_MainPage mainPage = base.setUp("Confirm Production CP3: Lab SOS status update", "G_CCE_SOC_16");
-        
+
+        PreFlows pf = new PreFlows();
+        pf.deActivateAutoEnrichForCustomer(driver, DataItems.lifeEasyCustomer);
+
         System.out.println("Navigating to Order Samples Page...");
         
         CCE_OrderSamplesPage orderPage = mainPage.pressOrderSamples();
@@ -255,6 +259,8 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         System.out.println("Order Status Page loaded. Retrieving Order No. for order...");
         
         String orderNo = statusPage.getOrderNo(DataItems.lastUsedPO);
+
+        driver.navigate().refresh();
         
         System.out.println("Order No.: " + orderNo+". Navigating to Manual Enrich Page...");
         
