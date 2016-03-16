@@ -144,7 +144,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = susstTest4.setUp("OUTSTANDING ORDER DRAFTS ODP1: Page check, search, view, edit, cancel draft","G_OP_ODP_1 to 5");
+        Ecomm_MainPage eCommPage = susstTest4.setUp("DOUTSTANDING ORDER DRAFTS ODP1: Page check, search, view, edit, cancel draft","G_OP_ODP_1 to 5");
 
         System.out.println("Navigating to Outstanding Order Draft Page...");
 
@@ -284,8 +284,8 @@ public class Ecomm_OO_Test extends DriverFactory {
         CCE_MainPage mainPage = base.setUp("Pending Approval Page: Page and filter checks/print function for Requester","OA_WP_OO_PAL_RU_1 to 4"); 
         mainPage.waitForLoad();
 
-        PreFlows pf = new PreFlows();
 
+        PreFlows pf = new PreFlows();
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
 
         System.out.println("Navigating to Masters...");
@@ -488,7 +488,9 @@ public class Ecomm_OO_Test extends DriverFactory {
         System.out.println("Checking fields...");
         
         pendPage.checkFieldsApprover();
-        
+
+        driver.navigate().refresh();
+
         System.out.println("Fields checked. Creating another order...");
         
         Ecomm_ManualEntryPage mePage2 = pendPage.clickManualEntry();
@@ -610,13 +612,16 @@ public class Ecomm_OO_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         CCE_MainPage mainPage = base.setUp("Denied Order Page DO1: (Requester user) Page and filter checks, view/edit/delete functions","OA_WP_OO_DO_RU_1 to 5"); 
         mainPage.waitForLoad();
-        
+
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver,"Angler Test Indonesia");
+
         System.out.println("Navigating to Masters...");
         
         Mst_CustomersPage custPage = mainPage.selectCustomers();
         custPage.waitForElement();
         
-        System.out.println("Customers Master reached. Finding 'Life Easy Customer' and turning approval workflow on...");
+        System.out.println("Customers Master reached. Finding 'Angler' and turning approval workflow on...");
         
         custPage.setCustomerName(DataItems.custDetails[0]);
         custPage.pressSearch();
