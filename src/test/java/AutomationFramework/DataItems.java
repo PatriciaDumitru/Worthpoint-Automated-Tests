@@ -129,6 +129,7 @@ public class DataItems {
 
     //Customer details to be used in manual entry tests
     public static String[] custDetails = {"Life Easy Customer", "CCE HUB OFFICES", "approver 1 test", "*OTHERS*", "AutoTestPO_"};
+    public static String[] custDetails2 = {"ADIS DIMENSION FOOTWEAR. PT", "ADIS SHIP TO", "Dian ", "NIKE FOOTWEAR & EQUIPMENT", "AutoTestPO_"};
     public static String custCode = "106499"; //Customer code for Life Easy Customer
 
     //Customer details to be used in subaccount tests
@@ -314,6 +315,7 @@ public class DataItems {
     public static String cceArticleFromBrandStarNylon = "NKW2030";
     public static String cceArticleFromBrandAdmiral = "NKW2030";
     public static String lifeEasyCustomer = "Life Easy Customer";
+    public static String adisCustomer = "ADIS DIMENSION FOOTWEAR. PT";
     public static String lifeEasyRequester = "Life Easy";
     public static String someOtherCustomer = "ADIS DIMENSION FOOTWEAR. PT";
     public static String brandAstraCSA = "astra";
