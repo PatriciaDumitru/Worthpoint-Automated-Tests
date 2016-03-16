@@ -615,19 +615,18 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         System.out.println("Mapping set. Confirming mapping...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+
         boolean errorDisplayed;
+
         try {
             Alert alert2 = Wait.alert(driver);
             alert2.accept();
 
-            System.out.println("Error received: "+alert2.getText());
             errorDisplayed = true;
         } catch (Exception e) {
             System.out.println("No error displayed");
             errorDisplayed = false;
         }
-        orderConf.waitForElement();
-        
         System.out.println("Order confirmation page reached. Checking Ship-to party is blank...");
         
         AssertJUnit.assertTrue("Order Confirmation Page: Ship-to party set despite error in spreadsheet",orderConf.getShipToParty().equals("Select"));

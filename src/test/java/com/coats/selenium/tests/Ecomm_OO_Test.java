@@ -2,21 +2,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
-import PageObjects.CCE_MainPage;
-import PageObjects.Ecomm_DeniedOrderPage;
-import PageObjects.Ecomm_ExportDownloadPage;
-import PageObjects.Ecomm_MainPage;
-import PageObjects.Ecomm_ManualEntryPage;
-import PageObjects.Ecomm_OrderApprovalHistoryPage;
-import PageObjects.Ecomm_OrderConfirmationPage;
-import PageObjects.Ecomm_OrderViewPage;
-import PageObjects.Ecomm_OutstandingOrderDraftPage;
-import PageObjects.Ecomm_OutstandingOrdersPage;
-import PageObjects.Ecomm_OutstandingUploadDraftPage;
-import PageObjects.Ecomm_PendingApprovalListPage;
-import PageObjects.Mst_CustomersPage;
-import PageObjects.Mst_EditCustomerPage;
-import PageObjects.WBA_LoginPage;
+import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import java.io.File;
 import java.io.IOException;
@@ -310,8 +296,10 @@ public class Ecomm_OO_Test extends DriverFactory {
         Ecomm_Base base2 = new Ecomm_Base(driver);
         Ecomm_MainPage mainPage2 = base2.setUp("", "", DataItems.requesterUsername, DataItems.requesterPassword);
         mainPage2.waitForLoad();
-        
+
+
         System.out.println("Logged in. Navigating to Manual Entry Page...");
+
 
         Ecomm_ManualEntryPage mePage = mainPage2.clickManualEntry();
         mePage.waitForElement();

@@ -7,16 +7,16 @@ import org.openqa.selenium.By;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/"; //"https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/test/"; //"https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
-    public static String mastersSalesOrgURL = targetURL +  "qa_p4i/SalesOrgs";            //qa_p4i/
-    public static String mastersCustomerURL =targetURL + "qa_p4i/Customers";
-    public static String mastersCSAUrl = targetURL + "qa_p4i/customerprivatearticles";
-    public static String cceOrderSamplePrompt = targetURL + "qa_p4i/cce/prompt";
-    public static String manualEntryEcommURL = targetURL + "qa_p4i/ecom/order/manual";
-    public static String masterApproverList = targetURL + "qa_p4i/ApproverLists";
-    public static String cceURL = targetURL + "qa_p4i/cce";
-    public static String qaEnvAdd = "qa_p4i/";
+    public static String mastersSalesOrgURL = targetURL +  "/SalesOrgs";            //qa_p4i/
+    public static String mastersCustomerURL =targetURL + "/Customers";
+    public static String mastersCSAUrl = targetURL + "/customerprivatearticles";
+    public static String cceOrderSamplePrompt = targetURL + "/cce/prompt";
+    public static String manualEntryEcommURL = targetURL + "/ecom/order/manual";
+    public static String masterApproverList = targetURL + "/ApproverLists";
+    public static String cceURL = targetURL + "/cce";
+    //ublic static String qaEnvAdd = "qa_p4i/";
 
 
     //Filepaths
@@ -46,6 +46,9 @@ public class DataItems {
     public static String susstUsername = "lifeeasy@customer.com";
     public static String susstPassword = "password";                //CUSTOMER, LIFE EASY CUSTOMER,SUSST
     public static String expectedSUSSTUserName = "Life Easy";
+
+    public static String susstUsername2 = "compras.calkini@gkmexico.com";
+    public static String susstPassword2 = "password";                //CUSTOMER, compras.calkini CUSTOMER
 
     public static String requesterUsername = "autolifeeasy@coats.com";
     public static String requesterPassword = "password";            //CUSTOMER, LIFE EASY CUSTOMER, SUSST, REQUESTER

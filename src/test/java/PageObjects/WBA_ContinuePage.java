@@ -19,6 +19,8 @@ public class WBA_ContinuePage {
     static By continueImageLocator = By.cssSelector("#wrapper > div:nth-child(4) > a:nth-child(2) > img");
     static By continueImageDuringMaintenance = By.cssSelector("#wrapper > div:nth-child(4) > a > img");
 
+    static By agreeTermsAndCondLocator = By.xpath("/html/body/div[2]/div[11]/div/button[1]");
+
     public WBA_ContinuePage(WebDriver passedDriver) {
         //Initialise driver
         driver = passedDriver;
@@ -41,6 +43,8 @@ public class WBA_ContinuePage {
         WebElement waitForImage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(continueImageDuringMaintenance));
         return driver.findElement(continueImageDuringMaintenance);
     }
+
+
     
     public WBA_SelectionPage pressContinue() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(continueImageLocator));
@@ -50,6 +54,21 @@ public class WBA_ContinuePage {
         clickContinue.click(getContinueImage()).build().perform();
         return new WBA_SelectionPage(driver);
     }
-    
+
+/*    public WBA_SelectionPage pressContinueTerms() {
+        WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(agreeTermsAndCondLocator));
+
+        //new action to click continue button
+        Actions clickContinue = new Actions(driver);
+        clickContinue.click(getContinueImage()).build().perform();
+        return new WBA_SelectionPage(driver);
+    }
+
+    public static WebElement getAgreeTermsAndCondLocator() {
+        //find and return element
+        WebElement waitForImage = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(continueImageDuringMaintenance));
+        return driver.findElement(agreeTermsAndCondLocator);
+    }
+    */
     
 }
