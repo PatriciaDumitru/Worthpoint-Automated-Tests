@@ -2,6 +2,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.PreFlows;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_DeniedOrderPage;
 import PageObjects.Ecomm_ExportDownloadPage;
@@ -282,7 +283,11 @@ public class Ecomm_OO_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         CCE_MainPage mainPage = base.setUp("Pending Approval Page: Page and filter checks/print function for Requester","OA_WP_OO_PAL_RU_1 to 4"); 
         mainPage.waitForLoad();
-        
+
+        PreFlows pf = new PreFlows();
+
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+
         System.out.println("Navigating to Masters...");
         
         Mst_CustomersPage custPage = mainPage.selectCustomers();

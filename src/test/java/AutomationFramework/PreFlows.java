@@ -210,8 +210,18 @@ public class PreFlows {
         saveCustomer(driver);
     }
 
+    public void deActivateCallOffOrderForCustomer(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        deActivateCallOffOrderCheckbox(driver);
+        saveCustomer(driver);
+    }
+
     public void activateCallOffOrderCheckbox(WebDriver driver){
         CommonTask.setCheckBox(driver,callOffOrderCheckBox );
+    }
+
+    public void deActivateCallOffOrderCheckbox(WebDriver driver){
+        CommonTask.unSetCheckBox(driver,callOffOrderCheckBox );
     }
 
 
