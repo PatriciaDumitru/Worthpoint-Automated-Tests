@@ -250,7 +250,12 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_Base susstTest3 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest3.setUp("MANUAL ENTRY SUMST3: Single line, Your Material Number without master data shade code","G_OOC_ME_SUMST_3");
-        
+
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
+
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
@@ -330,7 +335,14 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY SUMST4: Multiple lines, Your Material Number without master data shade code","G_OOC_ME_SUMST_4");
-        
+
+        System.out.println("Setup Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
+
+
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
@@ -409,7 +421,12 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_Base susstTest5 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest5.setUp("MANUAL ENTRY SUMST5: Single line, using Article and shade code","G_OOC_ME_SUMST_5");
-        
+
+        System.out.println("Setup Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
@@ -486,7 +503,12 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_Base susstTest6 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest6.setUp("MANUAL ENTRY SUMST6: Multiple lines, using Article and shade code","G_OOC_ME_SUMST_6");
-        
+
+        System.out.println("Setup Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
@@ -565,7 +587,12 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_Base susstTest7 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest7.setUp("MANUAL ENTRY SUMST7: Single line, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUMST_7");
-        
+
+        System.out.println("Setup Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
@@ -639,7 +666,12 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_Base susstTest8 = new Ecomm_Base(driver);
         //Set up returns an eComm main page
         Ecomm_MainPage eCommPage = susstTest8.setUp("MANUAL ENTRY SUMST8: Multiple lines, using brand, ticket, length, finish, and shade code","G_OOC_ME_SUMST_8");
-        
+
+        System.out.println("Setup Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();

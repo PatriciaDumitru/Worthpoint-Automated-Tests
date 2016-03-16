@@ -32,7 +32,7 @@ public class Ecomm_ExportDownloadPage {
     }
     
     public void waitForDownloadCompletion() {
-        Boolean waitForInvisibility = new WebDriverWait(driver,DataItems.downloadWait).ignoring(NoSuchElementException.class).until(ExpectedConditions.textToBePresentInElement(completeDownloadMessageField, "100% Completed"));
+        Boolean waitForInvisibility = new WebDriverWait(driver,DataItems.downloadWait).ignoring(NoSuchElementException.class).until(ExpectedConditions.textToBePresentInElementLocated(completeDownloadMessageField, "100% Completed"));
     }
 
     public void waitForDowloadCompletion() {

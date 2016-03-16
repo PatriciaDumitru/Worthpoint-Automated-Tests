@@ -217,6 +217,13 @@ public class PreFlows {
         saveCustomer(driver);
     }
 
+    public void deActivateCallOffOrderAndApprovalForCustomer(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        disableApprovalCheckBox(driver);
+        saveCustomer(driver);
+
+    }
+
     public void activateCallOffOrderCheckbox(WebDriver driver){
         CommonTask.setCheckBox(driver,callOffOrderCheckBox );
     }
