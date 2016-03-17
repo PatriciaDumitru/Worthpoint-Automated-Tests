@@ -68,10 +68,8 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         
         System.out.println("Details entered. Searching for product...");
 
-
         pacPage.waitForBrand();
 
-        
         Ecomm_OrderViewPage viewPage = pacPage.pressSearch();
 
         Alert promptAlert  = driver.switchTo().alert();
