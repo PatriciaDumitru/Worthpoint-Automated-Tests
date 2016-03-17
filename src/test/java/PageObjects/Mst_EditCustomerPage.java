@@ -25,6 +25,7 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     By approvalWorkflowBox = By.id("CustomerApprovalWorkflow");
     By subAcctField = By.id("CustomerPayerEnabled");
     By subAcctLabel = By.xpath("/html/body/div[1]/div[3]/form/div[2]/table/tbody/tr[35]/td[1]/label");
+    By approvelCheckBoxCust = By.id("CustomerApprovalWorkflow");
 
     By userTypeField = By.id("Requester0UserTypeId");
     By saveButton = By.cssSelector("#CustomerEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
@@ -135,7 +136,10 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
     }
-    
+
+
+
+
     public void checkFields() {
         //Wait for all elements to be clickable
         WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
@@ -145,6 +149,9 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Edit Customer Page: Customer name field not displayed",custName.isDisplayed());
         AssertJUnit.assertTrue("Edit Customer Page: Approval Workflow Box not displayed",custName.isDisplayed());
         
+    }
+    public void disableApprovalCheckBoxForCust() {
+        CommonTask.unSetCheckBox(driver, approvelCheckBoxCust);
     }
 
     public int getRow(String title) {
@@ -169,5 +176,6 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
         }
         return -1;
     }
-    
+
+
 }

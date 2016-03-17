@@ -3,22 +3,9 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
+import AutomationFramework.PreFlows;
 import AutomationFramework.Wait;
-import PageObjects.Ecomm_BackendInProcessPage;
-import PageObjects.Ecomm_BackendProcessPage;
-import PageObjects.Ecomm_MainPage;
-import PageObjects.Ecomm_MappingAlert;
-import PageObjects.Ecomm_MappingPage;
-import PageObjects.Ecomm_OrderConfirmationPage;
-import PageObjects.Ecomm_OutstandingOrdersPage;
-import PageObjects.Ecomm_OutstandingUploadDraftPage;
-import PageObjects.Ecomm_PendingApprovalListPage;
-import PageObjects.Ecomm_SAPInterfaceLogPage;
-import PageObjects.Ecomm_UploadOrderPage;
-import PageObjects.Ecomm_UploadProcessPage;
-import PageObjects.WBA_ContinuePage;
-import PageObjects.WBA_LoginPage;
-import PageObjects.WBA_SelectionPage;
+import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import static com.coats.selenium.DriverFactory.getDriver;
 import com.google.common.base.Verify;
@@ -49,13 +36,35 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUMST");
-        
+
+        driver.get(DataItems.cceURL);
+        Mst_CustomersPage custPage = eCommPage.selectCustomers();
+        custPage.waitForElement();
+
+        custPage.setCustomerName("Life Easy Customer");
+        custPage.pressSearch();
+        custPage.waitForElement();
+
+        int row2 = custPage.getRow("Life Easy Customer");
+        System.out.println("Record found. Editing record...");
+
+        Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
+        editPage2.waitForElement();
+
+        System.out.println("Edit page reached.");
+
+        editPage2.disableApprovalCheckBoxForCust();
+
+        System.out.println("'Disable CCE order upload' flag checked. Saving...");
+        editPage2.pressSave();
+        //editPage2.waitForElement();
+
+        driver.get(DataItems.ecommURL);
         System.out.println("Navigating to Upload Order...");
-        
         //new upload order page
         Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
         uploadPage.waitForElement();
-        
+
         System.out.println("Upload Order page loaded.");
         
         //make assertions for base page elements and upload page elements
@@ -152,7 +161,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         String orderNo = outOrdersPage.getOrderNumber(0);
         
         System.out.println("Order number: "+orderNo);
-        
+
     }    
 
     @Test //Upload Order Page :: SUMST :: Realtime upload order of <100 lines, removing mandatory fields at before submission
@@ -165,7 +174,33 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST UORT2: File of <100 lines, realtime upload, validation check", "G_OOC_UORT_SUSST");
-        
+
+
+        driver.get(DataItems.cceURL);
+        Mst_CustomersPage custPage = eCommPage.selectCustomers();
+        custPage.waitForElement();
+
+        custPage.setCustomerName("Life Easy Customer");
+        custPage.pressSearch();
+        custPage.waitForElement();
+
+        int row2 = custPage.getRow("Life Easy Customer");
+        System.out.println("Record found. Editing record...");
+
+        Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
+        editPage2.waitForElement();
+
+        System.out.println("Edit page reached.");
+
+        editPage2.disableApprovalCheckBoxForCust();
+
+        System.out.println("'Disable CCE order upload' flag checked. Saving...");
+        editPage2.pressSave();
+        //editPage2.waitForElement();
+
+        driver.get(DataItems.ecommURL);
+
+
         System.out.println("Navigating to Upload Order...");
         
         //new upload order page

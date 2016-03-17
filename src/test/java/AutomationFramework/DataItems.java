@@ -18,7 +18,7 @@ public class DataItems {
     public static String cceURL = targetURL + "/cce";
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
-
+    public static String ecommURL = "https://qawcs.coatscolourexpress.com/test/ecom";
 
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath

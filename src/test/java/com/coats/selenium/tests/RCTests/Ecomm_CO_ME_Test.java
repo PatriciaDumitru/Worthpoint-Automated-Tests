@@ -81,7 +81,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     CommonTask.setSearchField(driver,shadeCodeField,DataItems.conOrdShadeCode);
     driver.findElement(quantityField).clear();
     driver.findElement(quantityField).sendKeys(String.valueOf(DataItems.conOrdQty));
-    CommonTask.setDateField(driver, dateField);
+    CommonTask.setDateFieldWithoutHours(driver, dateField);
     //driver.findElement(contractPOField).clear();
     //driver.findElement(contractPOField).sendKeys("random");
     //driver.findElement(lineRefField).clear();
@@ -170,7 +170,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     CommonTask.setSearchField(driver,shadeCodeField,DataItems.conOrdShadeCode);
     driver.findElement(quantityField).clear();
     driver.findElement(quantityField).sendKeys(String.valueOf(DataItems.conOrdQty));
-    CommonTask.setDateField(driver, dateField);
+    CommonTask.setDateFieldWithoutHours(driver, dateField);
     //driver.findElement(contractPOField).clear();
     //driver.findElement(contractPOField).sendKeys(DataItems.conOrdPO);
     //driver.findElement(lineRefField).clear();

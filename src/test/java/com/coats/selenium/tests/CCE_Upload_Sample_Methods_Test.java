@@ -44,7 +44,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         suffPage2.waitForElement();
 
         System.out.println("Sample Upload Failed Files page reached. Checking title...");
-        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", suffPage2.getBreadcrumb().getText().equals("Sample Upload Failed Files"));
+        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", suffPage2.getBreadcrumb2().getText().equals("Sample Upload Failed Files"));
         System.out.println("Title checked");
         suffPage2.assertBaseElements();
 
@@ -204,7 +204,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         suffPage2.waitForElement();
 
         System.out.println("Sample Upload Failed Files page reached. Checking title...");
-        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", suffPage2.getBreadcrumb().getText().equals("Sample Upload Failed Files"));
+        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", suffPage2.getBreadcrumb2().getText().equals("Sample Upload Failed Files"));
         System.out.println("Title checked");
         suffPage2.assertBaseElements();
 
