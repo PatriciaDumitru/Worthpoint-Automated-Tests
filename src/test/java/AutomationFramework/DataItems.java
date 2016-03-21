@@ -18,7 +18,7 @@ public class DataItems {
     public static String cceURL = targetURL + "/cce";
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
-
+    public static String ecommURL = "https://qawcs.coatscolourexpress.com/test/ecom";
 
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
@@ -47,6 +47,9 @@ public class DataItems {
     public static String susstUsername = "lifeeasy@customer.com";
     public static String susstPassword = "password";                //CUSTOMER, LIFE EASY CUSTOMER,SUSST
     public static String expectedSUSSTUserName = "Life Easy";
+
+    public static String susstUsername2 = "compras.calkini@gkmexico.com";
+    public static String susstPassword2 = "password";                //CUSTOMER, compras.calkini CUSTOMER
 
     public static String requesterUsername = "autolifeeasy@coats.com";
     public static String requesterPassword = "password";            //CUSTOMER, LIFE EASY CUSTOMER, SUSST, REQUESTER

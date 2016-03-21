@@ -315,8 +315,10 @@ public class Ecomm_OO_Test extends DriverFactory {
         Ecomm_Base base2 = new Ecomm_Base(driver);
         Ecomm_MainPage mainPage2 = base2.setUp("", "", DataItems.requesterUsername, DataItems.requesterPassword);
         mainPage2.waitForLoad();
-        
+
+
         System.out.println("Logged in. Navigating to Manual Entry Page...");
+
 
         Ecomm_ManualEntryPage mePage = mainPage2.clickManualEntry();
         mePage.waitForElement();

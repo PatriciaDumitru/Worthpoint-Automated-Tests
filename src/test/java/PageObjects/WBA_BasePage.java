@@ -37,6 +37,7 @@ public class WBA_BasePage {
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
     public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
     public static By breadcrumbLocator3 = By.cssSelector("#list_page_breadcrumb > h2");
+    public static By breadcrumbzLocator = By.xpath("/html/body/div[1]/div[3]/div[1]/h2");
     static By footerLocator = By.id("footer");
     static By contentFrame = By.id("content");
     public static By noRecords = By.className("norec");

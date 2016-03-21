@@ -44,7 +44,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         suffPage2.waitForElement();
 
         System.out.println("Sample Upload Failed Files page reached. Checking title...");
-        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", suffPage2.getBreadcrumb().getText().equals("Sample Upload Failed Files"));
+        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", suffPage2.getBreadcrumb2().getText().equals("Sample Upload Failed Files"));
         System.out.println("Title checked");
         suffPage2.assertBaseElements();
 
@@ -52,7 +52,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         suffPage2.checkFields();
         System.out.println("Fields checked.");
 
-        //Go Masters -> Sales Org and edit Sales Org (ID51)
+        //Go Masters -> Sales Org and edit Sales Org (MX51)
         System.out.println("Navigating to Sales Organisations Page...");
         Mst_SalesOrgPage soPage = ccePage.selectSalesOrg();
         soPage.waitForElement();
@@ -66,11 +66,11 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         soPage.checkFields();
         System.out.println("Fields checked. Checking record appears...");
 
-        soPage.setSalesOrg("ID51");
+        soPage.setSalesOrg("MX51");
         soPage.pressSearch();
         soPage.waitForElement();
 
-        int row = soPage.getRow("ID51");
+        int row = soPage.getRow("MX51");
         AssertJUnit.assertFalse("Sales Organisations Page: Sales Organisation not present in table after creation", row == -1);
 
         System.out.println("Record found. Editing record...");
@@ -101,11 +101,11 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         Mst_CustomersPage custPage = ccePage.selectCustomers();
         custPage.waitForElement();
 
-        custPage.setCustomerName("Life Easy Customer");
+        custPage.setCustomerName("AMMAR APPAREL II S DE RL DE CV");
         custPage.pressSearch();
         custPage.waitForElement();
 
-        int row2 = custPage.getRow("Life Easy Customer");
+        int row2 = custPage.getRow("AMMAR APPAREL II S DE RL DE CV");
         //AssertJUnit.assertFalse("Customers Page: Customers Page not present in table after creation", row2 == -1);
         System.out.println("Record found. Editing record...");
 
@@ -114,8 +114,8 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
 
         System.out.println("Edit page reached.");
 
-        //Activate "CCE Order Upload" flag for Requester in the Customer (lifeeasy@customer.com)
-        By lifeEasyOrderUploadCheckBox = By.id("Requester9SampleUpload");
+        //Activate "CCE Order Upload" flag for Requester in the Customer (compras.calkini@gkmexico.com)
+        By lifeEasyOrderUploadCheckBox = By.id("Requester0SampleUpload");
         CommonTask.setCheckBox(driver, lifeEasyOrderUploadCheckBox);
         System.out.println("'CCE order upload' flag checked for customer Life Easy. Saving...");
         editPage2.pressSave();
@@ -126,13 +126,13 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
         logout.click();
 
-        System.out.println("Logging in lifeeasy@customer.com...");
+        System.out.println("Logging in compras.calkini@gkmexico.com...");
 
         //new login page
         WBA_LoginPage liPage = new WBA_LoginPage(driver);
 
         //login with valid coats details
-        WBA_ContinuePage contPage = liPage.loginAs(DataItems.susstUsername, DataItems.susstPassword);
+        WBA_ContinuePage contPage = liPage.loginAs(DataItems.susstUsername2, DataItems.susstPassword2);
 
         System.out.println("Logged in. Asserting continue page elements are displayed...");
 
@@ -180,6 +180,8 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         System.out.println("Upload Order Sample page loaded.");
     }
 
+
+
     @Test //Order status page :: page and filter checks, reset function, export data
             (groups = {"CCE"})
     public void US02() throws IOException, Exception {
@@ -202,7 +204,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         suffPage2.waitForElement();
 
         System.out.println("Sample Upload Failed Files page reached. Checking title...");
-        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", suffPage2.getBreadcrumb().getText().equals("Sample Upload Failed Files"));
+        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", suffPage2.getBreadcrumb2().getText().equals("Sample Upload Failed Files"));
         System.out.println("Title checked");
         suffPage2.assertBaseElements();
 
@@ -210,7 +212,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         suffPage2.checkFields();
         System.out.println("Fields checked.");
 
-        //Go Masters -> Sales Org and edit Sales Org (ID51)
+        //Go Masters -> Sales Org and edit Sales Org (MX51)
         System.out.println("Navigating to Sales Organisations Page...");
         Mst_SalesOrgPage soPage = ccePage.selectSalesOrg();
         soPage.waitForElement();
@@ -224,11 +226,11 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         soPage.checkFields();
         System.out.println("Fields checked. Checking record appears...");
 
-        soPage.setSalesOrg("ID51");
+        soPage.setSalesOrg("MX51");
         soPage.pressSearch();
         soPage.waitForElement();
 
-        int row = soPage.getRow("ID51");
+        int row = soPage.getRow("MX51");
         AssertJUnit.assertFalse("Sales Organisations Page: Sales Organisation not present in table after creation", row == -1);
 
         System.out.println("Record found. Editing record...");
@@ -259,11 +261,11 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         Mst_CustomersPage custPage = ccePage.selectCustomers();
         custPage.waitForElement();
 
-        custPage.setCustomerName("Life Easy Customer");
+        custPage.setCustomerName("AMMAR APPAREL II S DE RL DE CV");
         custPage.pressSearch();
         custPage.waitForElement();
 
-        int row2 = custPage.getRow("Life Easy Customer");
+        int row2 = custPage.getRow("AMMAR APPAREL II S DE RL DE CV");
         //AssertJUnit.assertFalse("Customers Page: Customers Page not present in table after creation", row2 == -1);
         System.out.println("Record found. Editing record...");
 
@@ -272,25 +274,25 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
 
         System.out.println("Edit page reached.");
 
-        //Activate "CCE Order Upload" flag for Requester in the Customer (lifeeasy@customer.com)
-        By lifeEasyOrderUploadCheckBox = By.id("Requester9SampleUpload");
+        //Activate "CCE Order Upload" flag for Requester in the Customer (compras.calkini@gkmexico.com)
+        By lifeEasyOrderUploadCheckBox = By.id("Requester0SampleUpload");
         CommonTask.setCheckBox(driver, lifeEasyOrderUploadCheckBox);
         System.out.println("'CCE order upload' flag unchecked for customer Life Easy. Saving...");
         editPage2.pressSave();
         custPage.waitForElement();
         System.out.println("Saved. Log out...");
 
-        //Logout of globalAdmin ang login with Requster(lifeeasy@customer.com)
+        //Logout of globalAdmin ang login with Requster(compras.calkini@gkmexico.com)
         WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
         logout.click();
 
-        System.out.println("Logging in lifeeasy@customer.com...");
+        System.out.println("Logging in compras.calkini@gkmexico.com...");
 
         //new login page
         WBA_LoginPage liPage = new WBA_LoginPage(driver);
 
         //login with valid coats details
-        WBA_ContinuePage contPage = liPage.loginAs(DataItems.susstUsername, DataItems.susstPassword);
+        WBA_ContinuePage contPage = liPage.loginAs(DataItems.susstUsername2, DataItems.susstPassword2);
 
         System.out.println("Logged in. Asserting continue page elements are displayed...");
 

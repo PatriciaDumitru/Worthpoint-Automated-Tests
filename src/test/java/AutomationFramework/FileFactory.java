@@ -20,7 +20,7 @@ public class FileFactory {
     
     //The items to head each column in the file. Standard across all file types for simplicity. Items can be left blank if they are not required
     public static String[] headData = {"Customer Name","Ship to Party Name","Customer PO No","Required Date","Your Material Number","Article","Brand","Ticket",
-        "Length","Finish","Shade Code","Qty","Contract PO No.","Line Reference","Sub Account","Requestor Name","Contract Order"};
+        "Length","Finish","Shade Code","Qty","Contract PO No.","Line Reference","Sub Account","Requestor Name"};
     
     //Data used for testing MOQ (Minimum Order Quantity, a.k.a MDQ) function. MOQ must be active for the customer used (can be changed in Mastesr > Customer)
     public static String[][] MOQData = {{"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1711","1","","","",""},
@@ -67,12 +67,12 @@ public class FileFactory {
         {"Life Easy Customer","invalidPlace","","","","","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
     
     //Data for invalid contract order tests (negative conditions)
-    public static String[][] susstCOInvalidData = {{"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","random","random","","joe sykes", "Y"},
-        {"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","random","random","","joe sykes", "Y"}};
+    public static String[][] susstCOInvalidData = {{"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","random","random","","joe sykes"},
+        {"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","random","random","","joe sykes"}};
     
     //Data for Contract Order tests (positive conditions)
-    public static String[][] susstCOValidData = {{"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","joe sykes", "Y"},
-        {"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","joe sykes", "Y"}};
+    public static String[][] susstCOValidData = {{"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","joe sykes"},
+        {"Star Garments Ltd.","Star Garments","TEST ZCQ ARUN 02","","","","","","","","","1","40000992","10","","joe sykes"}};
     
     //Data for Sub Account tests
     public static String[][] sumstSubAcctValidData ={{"Angler Test Indonesia","test","","","","","astra","120","5000","STANDARD","C9700","3","","","andywisak","abc test"},
