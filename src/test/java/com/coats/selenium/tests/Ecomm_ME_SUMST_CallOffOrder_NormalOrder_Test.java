@@ -40,7 +40,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
 
     @Test //Manual Entry Page :: SUMST :: Page checks, single line order using YMN and shade code from master data
-            (groups = {"QuickTest","eComm","eComm_Orders", "Solo"})
+            (groups = {"Solo, Solo"})
     public void SUMST1_CONO() throws IOException, InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
