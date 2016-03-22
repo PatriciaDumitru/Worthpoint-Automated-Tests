@@ -84,8 +84,11 @@ public class Cce_Inbox_Test extends DriverFactory {
         viewPage.closeView();
         
         System.out.println("View closed. Selecting 'Send to' option depending on status...");
+
+        driver.navigate().refresh();
         
         String orderStatus = ibPage.getOrderStatus();
+        System.out.println(orderStatus);
         
         if (orderStatus.equals("Sent to GIS")) {
             ibPage.pressSAP();        
