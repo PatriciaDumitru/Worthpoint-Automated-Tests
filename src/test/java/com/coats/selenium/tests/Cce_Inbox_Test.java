@@ -35,11 +35,7 @@ public class Cce_Inbox_Test extends DriverFactory {
         
         CCE_InboxPage ibPage = ccePage.pressInbox();
         ibPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\1Inbox page.png"));
-        
+
         System.out.println("Inbox reached.");
         
         //Assert base elements
@@ -56,40 +52,31 @@ public class Cce_Inbox_Test extends DriverFactory {
         System.out.println("Fields checked. Entering filter criteria...");
         
         ibPage.setCustName(DataItems.custDetails[0]);
-        
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\2Filter criteria entered.png"));
-        
+
         System.out.println("Criteria entered. Listing orders...");
         
         ibPage.pressListOrders();
         ibPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\3Orders listed.png"));
-        
+
         System.out.println("Orders listed. Viewing order...");
         
         CCE_OrderViewPage viewPage = ibPage.pressView();
         viewPage.waitForContent();
-        
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\4Order view.png"));
-        
+
         System.out.println("Order view displayed. Closing order...");
         
         viewPage.closeView();
-        
-        System.out.println("View closed. Selecting 'Send to' option depending on status...");
 
         driver.navigate().refresh();
-        
+
+        System.out.println("View closed. Selecting 'Send to' option depending on status...");
+
+
         String orderStatus = ibPage.getOrderStatus();
+
         System.out.println(orderStatus);
-        
+
+
         if (orderStatus.equals("Sent to GIS")) {
             ibPage.pressSAP();        
             System.out.println("SAP selected. Saving...");
@@ -97,18 +84,10 @@ public class Cce_Inbox_Test extends DriverFactory {
             ibPage.pressLRM();
             System.out.println("LRM selected. Saving...");
         }
-        
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\5Send to selected.png"));
-        
+
         ibPage.pressSave();     
         ibPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\6Changes saved.png"));
-        
+
     }
     
     @Test //Inbox Page : Reset, cancel, and print

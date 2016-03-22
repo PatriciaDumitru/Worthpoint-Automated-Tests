@@ -33,7 +33,10 @@ public class Mst_AddCountryPage extends WBA_BasePage {
     
     public Mst_AddCountryPage setCountryName(String item) {
         CommonTask.setSearchField(driver,countryNameField,item);
-        Wait.textPresent(driver,countryCodeField, "VA");
+        WebElement element=driver.findElement(countryCodeField);
+        String elementval = element.getAttribute("value");
+        System.out.print(elementval);
+        Wait.textPresentInput3(driver,elementval, "VA");
 
         return new Mst_AddCountryPage(driver);
     }
