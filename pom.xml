@@ -161,7 +161,9 @@
                             </systemPropertyVariables>
                             <group>Solo</group>
                             <suiteXmlFiles>
+                                <!-- <suiteXmlFiles>
                                 <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\Solo.xml</suiteXmlFile>
+                            </suiteXmlFiles> -->
                             </suiteXmlFiles>
                             <skipTests>false</skipTests>
                         </configuration>
