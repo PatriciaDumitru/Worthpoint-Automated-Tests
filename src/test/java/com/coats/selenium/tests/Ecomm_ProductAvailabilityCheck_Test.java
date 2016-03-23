@@ -74,14 +74,14 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         
         Ecomm_OrderViewPage viewPage = pacPage.pressSearch();
 
-      /*  Alert promptAlert  = driver.switchTo().alert();
+        Alert promptAlert  = driver.switchTo().alert();
         String alertText = promptAlert .getText();
         System.out.println("Alert text is " + alertText);
         //Send some text to the alert
         promptAlert .sendKeys("Accepting the alert");
         promptAlert.dismiss();
 
-        pacPage.pressSearch();*/
+        pacPage.pressSearch();
 
         viewPage.switchTo();
         viewPage.waitForProductInfo();
@@ -144,8 +144,8 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         System.out.println("Available Quantity: " + viewPage.getAvailableQty());
         
         //Take a screenshot
-        //File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        //FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\6Search view.png"));
+        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\6Search view.png"));
         
         System.out.println("View displayed. Closing view...");
         

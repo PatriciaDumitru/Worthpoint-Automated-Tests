@@ -85,7 +85,8 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\4Confirm selected.png"));
-        
+
+
         System.out.println("Confirm selected. Pressing DN Print...");
         
         CCE_OrderViewPage viewPage = cpPage.pressDnPrint();
@@ -215,7 +216,7 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
     }
 
     @Test //Confirm Production Page :: SUMST :: Lab SOS can be confirmed and status changes to Delivered
-    (groups = {"CCE","CCE_Orders"})
+    (groups = {"Solo"})
     public void CP3() throws Exception {
         WebDriver driver = getDriver();
         

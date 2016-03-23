@@ -127,7 +127,8 @@ public class Mst_CountriesPage extends WBA_BasePage {
     }
     
     public Mst_EditCountryPage pressEdit(int row) {
-        By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(1) > span");
+        //By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(1) > span");
+        By locator = By.xpath("/html/body/div[1]/div[3]/div[2]/table/tbody/tr["+row+"]/td[9]/a[1]/span");
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
         
         element.click();

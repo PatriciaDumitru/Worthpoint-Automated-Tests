@@ -552,6 +552,21 @@ public class CommonTask {
             }
         };
     }
+
+    public static ExpectedCondition<Boolean> textToBePresentInput3(final String element, final String text) {
+        //A wait condition which will ensure text is present in the field (for input fields) before continuing
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver f) {
+
+                WebElement inputField = f.findElement(By.id("CountryCountryCode"));
+                if (inputField.getAttribute("value").equals(text)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
     
     public static ExpectedCondition<Boolean> selectionToBePresent(final By locator) {
         //A wait condition which will ensure a drop-down menu is not blank before continuing
