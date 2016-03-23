@@ -61,7 +61,7 @@ public class CCE_InboxPage extends WBA_BasePage {
     }
     
     public String getOrderStatus() {
-       // WebElement cell = orderStatusCell(driver);
+        //WebElement cell = orderStatusCell(driver);
         return driver.findElement(orderStatusCell).getText();
     }
     

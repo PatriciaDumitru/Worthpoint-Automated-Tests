@@ -82,7 +82,9 @@ public class Cce_Inbox_Test extends DriverFactory {
         System.out.println("Order view displayed. Closing order...");
         
         viewPage.closeView();
-        
+
+        driver.navigate().refresh();
+
         System.out.println("View closed. Selecting 'Send to' option depending on status...");
         
         String orderStatus = ibPage.getOrderStatus();
