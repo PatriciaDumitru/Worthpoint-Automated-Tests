@@ -133,6 +133,8 @@ public class DataItems {
     //Customer details to be used in manual entry tests
     public static String[] custDetails = {"Life Easy Customer", "CCE HUB OFFICES", "approver 1 test", "*OTHERS*", "AutoTestPO_"};
     public static String[] custDetails2 = {"ADIS DIMENSION FOOTWEAR. PT", "ADIS SHIP TO", "Dian ", "NIKE FOOTWEAR & EQUIPMENT", "AutoTestPO_"};
+    public static String[] custDetails3 = {"Star Garments Ltd.", "Star Garments", "joe sykes", "*OTHERS*", "AutoTestPO_"};
+    public static String customer4="AMMAR APPAREL II S DE RL DE CV";
     public static String custCode = "106499"; //Customer code for Life Easy Customer
 
     //Customer details to be used in subaccount tests
@@ -185,6 +187,26 @@ public class DataItems {
     public static String shadeCode3 = "C9455";
     public static int quantity3 = 1;
 
+    public static String expTicket3 = "120";
+    public static String orderedQty="66";
+    public static String adjustedQty="66";
+    public static String orderedQty2="4";
+    public static String adjustedQty2="4";
+    public static String orderedQtyNull="--";
+    public static String adjustedQtyNull="--";
+    public static String UOM="Cone";
+    public static String unitPrice="1.00";
+    public static String unitPriceNull="0.00";
+    public static String valueNull="0.00";
+    public static String value2="66.00";
+    public static String value3="4.00";
+    public static String notUniqMsg="CONTRACT REFERENCE IS NOT UNIQUE";
+    public static String invalidDataMsg="INVALID COMBINATION OF INPUT DATA";
+    public static String sapCodeMsg="CONTRACT SAP MATERIAL CODE DOES NOT MATCH INPUT SAP MATERIAL CODE";
+
+
+
+
     //Details used in CCE Threshold qty tests (id=SOC_5)
     public static String thresholdBrand = "astra";
     public static String thresholdTicket = "120";
@@ -201,9 +223,15 @@ public class DataItems {
     public static String conOrdLength = "5000";
     public static String conOrdFinish = "STANDARD";
     public static String conOrdShadeCode = "WHITE";
+    public static String conOrdShadeCode2 = "BLACKD";
     public static int conOrdQty = 1;
     public static String conOrdPO = "40000992";
     public static String conOrdLineRef = "10";
+
+    public static String expConOrdArticle = "8754120";
+    public static String expConOrdShadeCode = "WHITE";
+    public static String expConOrdTicket = "120";
+    public static String expConOrdBrand = "astra";
 
     //Line details for use with SUSST Account (joecontract@coats.com, Star Garments Ltd.)
     public static String yourMatNumSUSST = "AutoTestMaterial";

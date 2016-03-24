@@ -37,6 +37,8 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     static By formLocator = By.id("BulkOrderOrdermanualForm");
     static By addMaterial = By.className("msgBox");
     static By addMaterialText = By.className("msgBoxTitle");
+    static By flashMsg = By.cssSelector("#BulkOrderOrdermanualForm > div.container > div:nth-child(2) > div.tbl-title > h4");
+
 
     //Customer detail field locators
     static By customerNameField = By.id("s2id_customer_id");//Initial customer name field to click
@@ -54,6 +56,9 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     //Line detail fields
     static By contractPOField = By.id("txtContract0");
     static By lineRefField = By.id("txtContractLine0");
+
+    static By contractOrderButton = By.id("contract_check");
+    static By findNormalOrdButton = By.id("normal_check");
 
     public Ecomm_ManualEntryPage(WebDriver passedDriver) {
         super(passedDriver);
@@ -97,6 +102,28 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public boolean findContractOrdButton() {
+
+        try {
+            WebElement element = driver.findElement(contractOrderButton);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    public boolean findNormalOrdButton() {
+
+        try {
+            WebElement element =  driver.findElement (findNormalOrdButton);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     public WebElement getNextButton() {
@@ -542,7 +569,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
                 alert2.accept();
             }
         } catch (TimeoutException t) {
-
+            System.out.print(t);
         }
 
         AssertJUnit.assertTrue("Manual Entry Page: Rounded quantity (MOQ) Alert did not appear", waitForQuantityAlert());
@@ -795,5 +822,9 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
         pressNext();
 
         return this;
+    }
+
+    public WebElement getFlashMessage() {
+        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMsg));
     }
 }

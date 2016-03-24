@@ -23,6 +23,8 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     By saveButton = By.id("save");
     By cancelButton = By.cssSelector("#SalesOrgEditForm > div.actions > ul > li:nth-child(2) > a");
     By orderUploadCheckBox=By.id("SalesOrgSampleUploadActive");
+    By callOffOrderCheckBox=By.id("SalesOrgOffOrder");
+
     
     public Mst_EditSalesOrgPage(WebDriver driver) {
         super(driver);
@@ -117,7 +119,15 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         CommonTask.setCheckBox(driver, orderUploadCheckBox);
     }
 
+    public void enableCallOffOrderCheckBox(){
+        CommonTask.setCheckBox(driver, callOffOrderCheckBox);
+    }
+
     public void disableCCEOrderUploadCheckBox(){
         CommonTask.unSetCheckBox(driver, orderUploadCheckBox);
+    }
+
+    public void disableCallOffOrderCheckBox(){
+        CommonTask.unSetCheckBox(driver, callOffOrderCheckBox);
     }
 }
