@@ -199,6 +199,8 @@ public class Cce_Hub_Test extends DriverFactory {
 
             orderView.closeView();
 
+            driver.navigate().refresh();
+
             System.out.println("Order view closed. Pressing send to customer for first item...");
 
             rhPage.pressSendToCust();

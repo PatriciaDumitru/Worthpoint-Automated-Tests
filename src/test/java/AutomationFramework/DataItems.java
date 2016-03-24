@@ -2,6 +2,7 @@
 package AutomationFramework;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 
 public class DataItems {
@@ -20,6 +21,7 @@ public class DataItems {
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
     public static String ecommURL = "https://qawcs.coatscolourexpress.com/test/ecom";
+
 
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
@@ -201,7 +203,7 @@ public class DataItems {
     public static String conOrdTicket = "120";
     public static String conOrdLength = "5000";
     public static String conOrdFinish = "STANDARD";
-    public static String conOrdShadeCode = "WHITE";
+    public static String conOrdShadeCode = "C1711";
     public static int conOrdQty = 1;
     public static String conOrdPO = "40000992";
     public static String conOrdLineRef = "10";
@@ -312,7 +314,6 @@ public class DataItems {
     public static int longWait = 20;
     public static int downloadWait = 60;
 
-
     //CSA Data
     public static String notFound = "No matches found";
     public static String cceArticleFromBrandAstra = "8720025";
@@ -328,6 +329,10 @@ public class DataItems {
     public static String salesOrgID = "ID51";
     public static String deliveryToPlantAll = "Select";
     public static String deliveryToPlantID10 = "ID10";
+
+
+    //QuickFix
+    public static String othersWithCode = "*OTHERS*(10000000001)";
 
 
 }

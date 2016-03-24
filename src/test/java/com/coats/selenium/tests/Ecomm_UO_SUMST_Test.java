@@ -59,7 +59,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         editPage2.pressSave();
         //editPage2.waitForElement();
 
-        driver.get(DataItems.ecommURL);
+        //driver.get(DataItems.manualEntryEcommURL);
         System.out.println("Navigating to Upload Order...");
         //new upload order page
         Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();

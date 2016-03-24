@@ -126,7 +126,7 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Prompt submitted. Adding order details...");
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
+        addOrder.inputDetails(DataItems.custDetails[1],DataItems.othersWithCode,DataItems.expArticle,
                 DataItems.expShadeCode,DataItems.copMUM,DataItems.sewing,DataItems.salesSamp,1);
         
         //Take a screenshot
@@ -192,7 +192,7 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Prompt submitted. Adding order details...");
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
+        addOrder.inputDetails(DataItems.custDetails[1],DataItems.othersWithCode,DataItems.expArticle,
                 DataItems.expShadeCode,DataItems.copMUM,DataItems.sewing,DataItems.salesSamp,1);
         
         System.out.println("Line 1 details added. Creating new line and adding details...");
@@ -269,7 +269,7 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Prompt submitted. Adding order details...");
         
         //Ship to, business principal, article, shade code, mum type, request, purpose, quantity, line numer
-        addOrder.inputDetails(DataItems.custDetails[1],DataItems.custDetails[3],DataItems.expArticle,
+        addOrder.inputDetails(DataItems.custDetails[1],DataItems.othersWithCode,DataItems.expArticle,
                 DataItems.expShadeCode,DataItems.coneMUM,DataItems.sewing,DataItems.salesSamp,15);
         
         System.out.println("Details added. Submitting order, expecting rejection...");
@@ -629,7 +629,8 @@ public class Cce_SOC_Test extends DriverFactory {
         addOrder.setShipToParty(DataItems.custDetails[1]);
         
         System.out.println("Ship To entered. Adding order details...");
-        
+
+        addOrder.setBusinessPrincipal(DataItems.othersWithCode);
         addOrder.setArticle(DataItems.article, 0);
         addOrder.setShadeCode(DataItems.shadeCode, 0);
         addOrder.setMUMType("Cop", 0);
@@ -693,7 +694,8 @@ public class Cce_SOC_Test extends DriverFactory {
         orderPage.setShipToParty(DataItems.custDetails[1]);
         
         System.out.println("Ship-to set. Entering order line details...");
-        
+
+        addOrder.setBusinessPrincipal(DataItems.othersWithCode);
         addOrder.setArticle(DataItems.article, 0);
         addOrder.setShadeCode(DataItems.shadeCode, 0);
         addOrder.setMUMType("Cop", 0);
@@ -721,6 +723,8 @@ public class Cce_SOC_Test extends DriverFactory {
 //        AssertJUnit.assertTrue("Order Status Page: Order Stage not as expected. Order No.: " + orderNo2, statusPage.getOrderStage(orderNo2).equals("Hub SOS"));
         
         System.out.println("Order No.: " + orderNo2 + ". Searching for order in Hub SOS...");
+
+        driver.navigate().refresh();
         
         CCE_HubSosPage hubPage = statusPage2.pressHubSos();
         hubPage.waitForElement();
@@ -816,6 +820,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         orderSamples.setCustName(DataItems.custDetails[0]);
         orderSamples.setRequestor(DataItems.custDetails[2]);
+
+
         
         System.out.println("Customer details entered. Submitting...");
         
@@ -825,6 +831,7 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Adding details
         addOrder.setShipToParty(DataItems.custDetails[1]);
+        addOrder.setBusinessPrincipal(DataItems.othersWithCode);
         addOrder.setBrand(DataItems.thresholdBrand, 0);
         addOrder.setShadeCode(DataItems.shadeCode, 0);
         addOrder.setMUMType(DataItems.thresholdMUMType, 0);

@@ -1,5 +1,6 @@
 package com.coats.selenium;
 
+import AutomationFramework.CommonTask;
 import com.coats.selenium.config.WebDriverThread;
 import com.coats.selenium.listeners.ScreenshotListener;
 import org.openqa.selenium.WebDriver;
@@ -54,4 +55,6 @@ public class DriverFactory {
         System.out.println("----------------------------------------------------");
 
     }
+
+
 }
