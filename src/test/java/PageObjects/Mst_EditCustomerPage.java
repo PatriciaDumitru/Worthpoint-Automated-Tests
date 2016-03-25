@@ -5,7 +5,10 @@ import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import java.util.List;
 import static PageObjects.WBA_BasePage.driver;
+
+import AutomationFramework.Wait;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,6 +29,7 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     By subAcctField = By.id("CustomerPayerEnabled");
     By subAcctLabel = By.xpath("/html/body/div[1]/div[3]/form/div[2]/table/tbody/tr[35]/td[1]/label");
     By approvelCheckBoxCust = By.id("CustomerApprovalWorkflow");
+    By callOffOrderCheckBox=By.id("CustomerOffOrder");
     By enableOrdersWithoutShade = By.id("CustomerCusOrdersWithoutShade");
 
     By userTypeField = By.id("Requester0UserTypeId");
@@ -181,6 +185,10 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     public void enableCCEOrdersWithoutShade(){ CommonTask.setCheckBox(driver, enableOrdersWithoutShade); }
 
     public void disableCCEOrdersWithoutShade(){ CommonTask.unSetCheckBox(driver, enableOrdersWithoutShade); }
+
+    public void enableCallOffOrderCheckBox(){
+        CommonTask.setCheckBox(driver, callOffOrderCheckBox);
+    }
 
 
 }

@@ -21,6 +21,8 @@ public class Mst_CustomersPage extends WBA_BasePage {
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
     By exportButton = By.cssSelector("#export-menu > a");
     By newCustomerButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
+    By flashMsg=By.id("flashMessage");
+
     
     public Mst_CustomersPage(WebDriver driver) {
         super(driver);
@@ -28,6 +30,10 @@ public class Mst_CustomersPage extends WBA_BasePage {
     
     public WebElement getBreadcrumb() {
         return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
+    }
+
+    public WebElement getFlashMessage() {
+        return new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(flashMsg));
     }
     
     public WebElement getCustomerNameField() {
@@ -194,5 +200,6 @@ public class Mst_CustomersPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Customers Master Page: Export field not displayed correctly", export.isDisplayed());
         AssertJUnit.assertTrue("Customers Master Page: New Customer field not displayed correctly", newCust.isDisplayed());
     }
-    
+
+
 }
