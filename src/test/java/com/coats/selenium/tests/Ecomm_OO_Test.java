@@ -184,7 +184,9 @@ public class Ecomm_OO_Test extends DriverFactory {
         Ecomm_OutstandingOrderDraftPage draftPage2 = draftPage.closeView();
         
         System.out.println("Draft view closed. Pressing edit draft...");
-        
+
+        driver.navigate().refresh();
+
         Ecomm_ManualEntryPage manualEntry = draftPage2.pressEdit();
         
         System.out.println("Edit draft pressed. Navigating back to draft search page...");
@@ -420,7 +422,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         System.out.println("Approval workflow disabled.");
         
     }
-    
+     /* APPROVERS DON'T HAVE MANUAL ENTRY ACCESS, THIS TEST MAY BE readded later
     @Test //Pending Approval List Page :: Approver User :: Page and filter checks, approver/deny function
     (groups = {"eComm"}) //CHANGES MASTER DATA
     public void PA2() throws Exception {
@@ -457,7 +459,8 @@ public class Ecomm_OO_Test extends DriverFactory {
         Ecomm_Base base2 = new Ecomm_Base(driver);
         Ecomm_MainPage mainPage2 = base2.setUp("", "", DataItems.approverUsername, DataItems.approverPassword);
         mainPage2.waitForLoad();
-        
+
+
         System.out.println("Logged in. Navigating to Manual Entry...");
         
         Ecomm_ManualEntryPage mePage = mainPage2.clickManualEntry();
@@ -605,6 +608,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         System.out.println("Approval workflow disabled.");
         
     }
+     */
     
     @Test //Denied Order Page :: Requester User :: Page and filter checks, edit and delete
     (groups = {"eComm"}) //CHANGES MASTER DATA

@@ -490,7 +490,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats article does not appear in line details as expected",materialParts[0].equals(DataItems.conOrdArticle));
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats shade does not appear in line details as expected",materialParts[1].equals(DataItems.conOrdShadeCode));
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, UOM does not appear in line details as expected",uom.equals("Cone"));
-        //AssertJUnit.assertTrue("Order Confirmation Page: For contract order, SAP Contract No. does not appear in line details as expected",sapConNo.equals(DataItems.conOrdPO));
+        AssertJUnit.assertTrue("Order Confirmation Page: For contract order, SAP Contract No. does not appear in line details as expected",sapConNo.equals(DataItems.conOrdPO));
         
         return true;
     }

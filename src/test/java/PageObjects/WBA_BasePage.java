@@ -56,7 +56,8 @@ public class WBA_BasePage {
         static By outstUploadDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
         static By courierTrackingUpdate = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
         static By pendingApprovalSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
-        static By pendingApprovalSubTabApprover = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
+        static By outstandingOrdersTabApprover = By.cssSelector("#topnav > li:nth-child(1)");
+        static By pendingApprovalSubTabApprover = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
         static By deniedOrderSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
         static By uploadDraftErrorSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
         
@@ -70,7 +71,7 @@ public class WBA_BasePage {
         static By myReportsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(5)");
         static By coatsUserRepSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(6)");
         static By termsConditionsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(7)");
-        static By orderAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(8)");
+        static By orderAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(7)");
         
     static By dashboardTab = By.cssSelector("#topnav > li:nth-child(5)");
         static By realUploadFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(1)");
@@ -172,7 +173,7 @@ public class WBA_BasePage {
 
     //Navigation headers specifically for requester/approver/alternative user types
         static By deniedOrderSubtabRequester = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
-        static By deniedOrderSubtabApprover = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
+        static By deniedOrderSubtabApprover = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3)");
     
     
     public WBA_BasePage(WebDriver passedDriver) {
@@ -412,10 +413,10 @@ public class WBA_BasePage {
     public Ecomm_PendingApprovalListPage clickPendingApprovalListPageApprover() {
         //Works specifically for approver account (mail.kamleshpatidar@gmail.com)
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTabApprover)));
         
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        action.moveToElement(driver.findElement(outstandingOrdersTabApprover)).click().build().perform();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(pendingApprovalSubTabApprover)));
         action.click(driver.findElement(pendingApprovalSubTabApprover)).build().perform();
@@ -440,10 +441,10 @@ public class WBA_BasePage {
     public Ecomm_DeniedOrderPage clickDeniedOrderApprover() {
         //Works specifically for requester account (autolifeeasy@coats.com)
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTabApprover)));
         
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        action.moveToElement(driver.findElement(outstandingOrdersTabApprover)).click().build().perform();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(deniedOrderSubtabApprover)));
         action.click(driver.findElement(deniedOrderSubtabApprover)).build().perform();

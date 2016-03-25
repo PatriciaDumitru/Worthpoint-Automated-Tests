@@ -95,7 +95,8 @@ public class Ecomm_FailedContractOrder_Test extends DriverFactory {
             
             viewPage.closeView();
             viewPage.waitForInvisibility();
-            //driver.switchTo().defaultContent();
+
+            driver.navigate().refresh();
             
             System.out.println("View closed. Editing top record...");
             

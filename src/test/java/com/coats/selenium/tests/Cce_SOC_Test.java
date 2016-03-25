@@ -770,10 +770,9 @@ public class Cce_SOC_Test extends DriverFactory {
         
         CCE_NewBuyerPage nbPage = addOrder.pressNewBuyer();
 
-        String parentHandle = driver.getWindowHandle();                //prinde handdle pagina principala
-        for (String handle : driver.getWindowHandles()) {
-            driver.switchTo().window(handle);							//schimba focus pe popup
-        }
+
+       /* FUNCTIONALITY CHANGED - ON PRESSING NEW BUYER USER IS NO LONGER DIRECTED TO BUYERS MASTERS PAGE
+
         nbPage.waitForElement();
         
         System.out.println("New Buyer page reached. Checking fields...");
@@ -798,6 +797,7 @@ public class Cce_SOC_Test extends DriverFactory {
         addPage.waitForElement();
         
         System.out.println("Add Order page reached.");
+        */
     }
     
     @Test //Order Samples Page :: SUMST :: Above Qty for LAB but within threshold Qty
@@ -862,8 +862,10 @@ public class Cce_SOC_Test extends DriverFactory {
         
         System.out.println("Checking order appears in status page with correct SOS...");
         
-        AssertJUnit.assertFalse("Order Status Page: Order (Order No.:" + orderNo+"), not found",statusPage.getCurrentSOS(orderNo).equals("not found"));
-        
+       // AssertJUnit.assertFalse("Order Status Page: Order (Order No.:" + orderNo+"), not found",statusPage.getCurrentSOS(orderNo).equals("not found"));
+
+        driver.navigate().refresh();
+
         String currentSOS = statusPage.getCurrentSOS(orderNo);
         
         AssertJUnit.assertTrue("Order Status Page: Current SOS not as expected. Warehouse expected", currentSOS.equals("Warehouse"));

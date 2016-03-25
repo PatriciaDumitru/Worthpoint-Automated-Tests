@@ -128,6 +128,8 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
         
         viewPage.closeView();
         viewPage.waitForInvisibility();
+
+        driver.navigate().refresh();
         
         System.out.println("View closed. Resetting filter...");
         
@@ -203,6 +205,8 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
 
             viewPage.closeView();
             viewPage.waitForInvisibility();
+
+            driver.navigate().refresh();
 
             System.out.println("View closed. Resetting filter...");
 
