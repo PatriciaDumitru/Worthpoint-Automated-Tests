@@ -21,6 +21,10 @@ public class FileFactory {
     //The items to head each column in the file. Standard across all file types for simplicity. Items can be left blank if they are not required
     public static String[] headData = {"Customer Name","Ship to Party Name","Customer PO No","Required Date","Your Material Number","Article","Brand","Ticket",
         "Length","Finish","Shade Code","Qty","Contract PO No.","Line Reference","Sub Account","Requestor Name"};
+
+    //The items to head each column in the file. Standard across all file types for simplicity. Items can be left blank if they are not required
+    public static String[] headData2 = {"Customer Name","Ship to Party Name","Customer PO No","Required Date","Your Material Number","Article","Brand","Ticket",
+            "Length","Finish","Shade Code","Qty","Contract PO No.","Line Reference","Sub Account","Requestor Name","Contract Order","Contract","Buyers"};
     
     //Data used for testing MOQ (Minimum Order Quantity, a.k.a MDQ) function. MOQ must be active for the customer used (can be changed in Mastesr > Customer)
     public static String[][] MOQData = {{"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1711","1","","","",""},
@@ -31,8 +35,29 @@ public class FileFactory {
         {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}};
 
     //Data used for testing SUSST upload orders
-    public static String[][] susstUOData = {{"","","","2016-03-27","","","","","","","","","TEST ZCQ BE POSITIV 03","000030","","","Contract Order", "Contract"},
-            {"","","","2016-03-27","","","","","","","","","TEST ZCQ BE POSITIV 03","000030","",""}};
+    public static String[][] susstUOData = {{"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","TEST ZCQ BE POSITIV 03","*Others*"},
+            {"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","TEST ZCQ BE POSITIV 03","*Others*"}};
+
+    //Data used for testing SUSST upload orders
+    public static String[][] susstUOData2 = {{"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","40000799","*Others*"},
+            {"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","40000799","*Others*"}};
+
+    //Data used for testing SUSST upload orders
+    public static String[][] susstUOData3 = {{"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"},
+            {"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"}};
+
+    //Data used for testing SUSST upload orders
+    public static String[][] susstUOData5 = {{"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","test ZCQ qty check 01","*Others*"},
+            {"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","test ZCQ qty check 01","*Others*"}};
+
+    //Data used for testing SUSST upload orders
+    public static String[][] susstUOData6 = {{"","Star Garments","","18-01-2016","","","","","","","","","","","","contract@testing.com","Y","test ZCQ qty check 01","*Others*"},
+            {"","Star Garments","","18-01-2016","","","","","","","","","","","","contract@testing.com","Y","test ZCQ qty check 01","*Others*"}};
+
+    //Data used for testing SUSST upload orders
+    public static String[][] susstUOData7 = {{"","Star Garments","","18-01-2016","","8754120","","","","","BLACKD","","","000010","","contract@testing.com","Y","TEST ZCQ ARUN 02","*Others*"},
+            {"","Star Garments","","18-01-2016","","8754120","","","","","BLACKD","","","000010","","contract@testing.com","Y","TEST ZCQ ARUN 02","*Others*"}};
+
 
     //Data used for testing SUMST upload orders
     public static String[][] sumstBasicData = {{"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","3","","","","approver 1 test"},
@@ -183,6 +208,21 @@ public class FileFactory {
                 } else if (type.equals("UO")) {
                     po = "UO_SUSS" + id;
                     data = susstUOData.clone();
+                } else if (type.equals("UO2")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData2.clone();
+                } else if (type.equals("UO3")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData3.clone();
+                } else if (type.equals("UO5")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData5.clone();
+                } else if (type.equals("UO6")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData6.clone();
+                } else if (type.equals("UO7")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData7.clone();
                 } else if (type.equals("Basic")) {
                     po = "UO_SUSST" + id;
                     data = susstBasicData.clone();                   
@@ -337,8 +377,8 @@ public class FileFactory {
             XSSFRow headRow = sheet.createRow(0);
 
             //Create a cell for each column and set value to head items
-            for (int i = 0; i < headData.length; i++) {
-                headRow.createCell(i).setCellValue(headData[i]);
+            for (int i = 0; i < headData2.length; i++) {
+                headRow.createCell(i).setCellValue(headData2[i]);
             }
 
             //Fill an array with the appropriate data based off of the parameters
@@ -393,22 +433,32 @@ public class FileFactory {
             if (valid) {
 
                 if (type.equals("MOQ")) {
-                    //MOQ Test data to be used, customise PO number for easier reference
-                    po = "UO_SUSST_MOQ" + id;
-                    //Copy data using clone
-                    data = MOQData.clone();
+
                 } else if (type.equals("CO")) {
-                    po = susstCOValidData[0][2];
-                    data = susstCOValidData.clone();
+
                 } else if (type.equals("UO")) {
                     po = "UO_SUSS" + id;
                     data = susstUOData.clone();
+
+                } else if (type.equals("UO2")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData2.clone();
+                } else if (type.equals("UO3")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData3.clone();
+                } else if (type.equals("UO5")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData5.clone();
+                } else if (type.equals("UO6")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData6.clone();
+                } else if (type.equals("UO7")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData7.clone();
                 } else if (type.equals("Basic")) {
-                    po = "UO_SUSST" + id;
-                    data = susstBasicData.clone();
+
                 } else if (type.equals("BE")) {
-                    //getBackendData will handle files with large line counts. "samePO" argument determines whether each line will have the same PO or not, and can be stored in "combination"
-                    return getBackendData(soldTo,lineCount,combination,valid,id);
+
                 }
 
             } else if (!valid) {
