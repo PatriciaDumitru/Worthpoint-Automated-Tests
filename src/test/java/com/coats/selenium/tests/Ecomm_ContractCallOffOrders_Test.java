@@ -1,10 +1,12 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.FileFactory;
 import AutomationFramework.PreFlows;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -306,7 +308,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
     public void CCO_CO_01() throws Exception {
         CCO_GC_01();
 
-        System.out.println("Navigating to Manual Entry...");
+
         WebDriver driver = getDriver();
 
         WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
@@ -315,6 +317,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
 
+        System.out.println("Navigating to Manual Entry...");
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
         manualEntryPage.waitForElement();
 
@@ -332,30 +335,18 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         manualEntryPage.setLineRef("000030", 0);
 
         System.out.println("Product details entered. Pressing next...");
-
-        //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForElement();
-        System.out.println("Order confirmation page reached.");
-
-        Verify.verify(orderConf.getOrderedQty2().getText().equals(DataItems.orderedQty2), "Order view: Ordered Qty does not match ");
-        Verify.verify(orderConf.getAdjustedQty2().getText().equals(DataItems.adjustedQty2), "Order view: Adjusted Qty does not match expected input");
-        Verify.verify(orderConf.getUOM().getText().equals(DataItems.UOM), "Order view: UOM does not match expected input");
-        Verify.verify(orderConf.getUnitPrice().getText().equals(DataItems.unitPrice), "Order view: Unit Price does not match expected input");
-        Verify.verify(orderConf.getValue2().getText().equals(DataItems.value3), "Order view: Value does not match expected input");
-        System.out.println("Order is created with correct fields");
     }
 
     @Test(groups = {"eComm"})
     public void CCO_CO_02() throws Exception {
         CCO_GC_01();
 
-        System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
         WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
         logout.click();
 
+        System.out.println("Navigating to Manual Entry...");
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
 
@@ -394,12 +385,12 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
     public void CCO_CO_03() throws Exception {
         CCO_GC_01();
 
-        System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
         WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
         logout.click();
 
+        System.out.println("Navigating to Manual Entry...");
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
 
@@ -475,12 +466,12 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
     public void CCO_CO_04() throws Exception {
         CCO_GC_01();
 
-        System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
         WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
         logout.click();
 
+        System.out.println("Navigating to Manual Entry...");
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
 
@@ -547,12 +538,12 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
     public void CCO_CO_05() throws Exception {
         CCO_GC_01();
 
-        System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
         WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
         logout.click();
 
+        System.out.println("Navigating to Manual Entry...");
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
 
@@ -604,12 +595,12 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
     public void CCO_CO_06() throws Exception {
         CCO_GC_01();
 
-        System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
         WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
         logout.click();
 
+        System.out.println("Navigating to Manual Entry...");
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
 
@@ -659,12 +650,12 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
     public void CCO_CO_07() throws Exception {
         CCO_GC_01();
 
-        System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
         WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
         logout.click();
 
+        System.out.println("Navigating to Manual Entry...");
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
 
@@ -713,4 +704,82 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         System.out.println("CONTRACT SAP MATERIAL CODE DOES NOT MATCH INPUT SAP MATERIAL CODE as expected");
     }
 
+
+
+    @Test(groups = {"eComm"})
+    public void CCO_UO_01() throws Exception {
+        //CCO_GC_01();
+
+        System.out.println("Navigating to Manual Entry...");
+        WebDriver driver = getDriver();
+
+        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        //logout.click();
+
+        Ecomm_Base sTest = new Ecomm_Base(driver);
+        Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);
+
+        //new upload order page
+        Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
+        uploadPage.waitForElement();
+
+        System.out.println("Upload Order page loaded. Setting filepath...");
+
+        uploadPage.setFilePath(FileFactory.createFile2("SUSST",1,"UO","",true));
+
+        Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
+        Ecomm_MappingPage mapPage = mapAlert.pressYes();
+        mapPage.waitForElement();
+
+        System.out.println("Mapping page reached. Setting sales org and customer name...");
+
+        //mapPage.setSalesOrg("LK53");
+        //mapPage.setCustomerName(DataItems.custDetails3[0]);
+
+        System.out.println("Details set. Setting mapping...");
+
+        String[][] mapping = {
+                {"Article","Article"},
+                {"Ticket","Ticket"},
+                {"Finish","Finish"},
+                {"Shade Code","Shade Code"},
+                {"Required Date","Required Date"},
+                {"Qty","Qty"},
+                {"Style","N/A"},
+                {"Style No./Production No.","N/A"},
+                {"Contract PO No.","N/A"},
+                {"Customer Price","N/A"},
+                {"Sub Account","N/A"},
+                {"Ship to Party Name","Ship to Party Name"},
+                {"Your Material No.","Your Material Number"},
+                {"Brand","Brand"},
+                {"Length","Length"},
+                {"Buyers","N/A"},
+                {"Customer PO No","Customer PO No"},
+                {"Requestor Name","Requestor Name"},
+                {"Warehouse Instruction","N/A"},
+                {"Buyer Sales Order Number","N/A"},
+                {"Other Information","N/A"},
+                {"Customer Price","N/A"}
+        };
+
+        mapPage.setMappingNew(mapping,false,false,false);
+        System.out.println("Mapping set. Confirming map...");
+
+        Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        orderConf.waitForElement();
+
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+        }
+        orderConf.waitForElement();
+
+        System.out.println("Order confirmation reached. Asserting errors appear...");
+
+
+    }
 }

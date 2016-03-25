@@ -29,7 +29,11 @@ public class FileFactory {
     //Data used for testing SUSST upload orders
     public static String[][] susstBasicData = {{"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","3","","","","abc test"},
         {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}};
-    
+
+    //Data used for testing SUSST upload orders
+    public static String[][] susstUOData = {{"","","","2016-03-27","","","","","","","","","TEST ZCQ BE POSITIV 03","000030","","","Contract Order", "Contract"},
+            {"","","","2016-03-27","","","","","","","","","TEST ZCQ BE POSITIV 03","000030","",""}};
+
     //Data used for testing SUMST upload orders
     public static String[][] sumstBasicData = {{"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","3","","","","approver 1 test"},
         {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
@@ -161,7 +165,7 @@ public class FileFactory {
         //This method determines which data is required for the file depending on the criteria (parameters)
         
         //Create a new array with 2 lines (maximum for all tests except backend). There are 16 fields which need to be held
-        String data[][] = new String[2][16];
+        String data[][] = new String[lineCount][16];
         String po = "";
         
         if (soldTo.equals("SUSST")) {
@@ -176,6 +180,9 @@ public class FileFactory {
                 } else if (type.equals("CO")) {
                     po = susstCOValidData[0][2];
                     data = susstCOValidData.clone();
+                } else if (type.equals("UO")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData.clone();
                 } else if (type.equals("Basic")) {
                     po = "UO_SUSST" + id;
                     data = susstBasicData.clone();                   
@@ -299,6 +306,174 @@ public class FileFactory {
         
         return df.format(cal.getTime());
         
+    }
+
+
+
+
+
+    public static String createFile2(String soldTo,int lineCount,String type,String combination,boolean valid) throws IOException {
+        //Create File is called within the program and will co-ordinate the creation of an excel spreadsheet containing data to test Upload Orders
+        //Creating files in this manner saves time as otherwise tester would have to rename a file and change its data every time
+        /*Parameters: soldTo = SUSST/SUMST (single or multi sold to)
+                      lineCount = number of lines to be written in file. Either 1 or 2 for all cases EXCEPT backend which may have 100+
+                      type = type of test, Contract Order/MOQ/Sub Account/Basic/Backend
+                      combination = a variable to more finely determine which data is needed. e.g. YMN/Article/Brand combination
+                      valid = true will produce valid data for positive conditions, false the opposite
+        */
+
+        //Create file with name based on PO (to ensure unique file names, as WBA will not allow duplicate file names)
+        String uniqueId = CommonTask.generatePO("file");
+        String fileName = "UploadTestFile" + uniqueId;
+        String filePath = "C:\\Selenium\\" + fileName +".xlsx";
+
+        //New workbook and sheet
+        XSSFWorkbook wb = new XSSFWorkbook();
+        XSSFSheet sheet = wb.createSheet();
+
+        try {
+
+            //New row for field headings
+            XSSFRow headRow = sheet.createRow(0);
+
+            //Create a cell for each column and set value to head items
+            for (int i = 0; i < headData.length; i++) {
+                headRow.createCell(i).setCellValue(headData[i]);
+            }
+
+            //Fill an array with the appropriate data based off of the parameters
+            String data[][] = getAppropriateData2(soldTo,lineCount,type,combination,valid,uniqueId);
+
+            //For the number of rows declared, create row and fill values accordingly
+            for (int rowCount = 1; rowCount <= lineCount; rowCount++) {
+
+                //Set date in data
+                data[rowCount-1][3] = getDate();
+
+                //create new row for data
+                XSSFRow row = sheet.createRow(rowCount);
+
+                //For each field item, create a cell and give it the corresponding data value
+                for (int colCount = 0; colCount < data[0].length; colCount++) {
+                    row.createCell(colCount).setCellValue(new XSSFRichTextString(data[rowCount-1][colCount]));
+                }
+
+            }
+
+            //Write the above workbook to the file
+            FileOutputStream fos = new FileOutputStream(filePath);
+            wb.write(fos);
+
+            //Safely close file
+            fos.close();
+
+            System.out.println("File written");
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        //Output filepath used to allow reference if something goes wrong and to allow testers to find the file and ensure the correct data is used
+        System.out.println("Filepath used: "+filePath);
+        DataItems.lastUsedFilepath = filePath;
+
+        //Return the filepath string
+        return filePath;
+    }
+
+    public static String[][] getAppropriateData2(String soldTo, int lineCount,String type, String combination, boolean valid,String id) throws IOException {
+        //This method determines which data is required for the file depending on the criteria (parameters)
+
+        //Create a new array with 2 lines (maximum for all tests except backend). There are 18 fields which need to be held
+        String data[][] = new String[lineCount][18];
+        String po = "";
+
+        if (soldTo.equals("SUSST")) {
+
+            if (valid) {
+
+                if (type.equals("MOQ")) {
+                    //MOQ Test data to be used, customise PO number for easier reference
+                    po = "UO_SUSST_MOQ" + id;
+                    //Copy data using clone
+                    data = MOQData.clone();
+                } else if (type.equals("CO")) {
+                    po = susstCOValidData[0][2];
+                    data = susstCOValidData.clone();
+                } else if (type.equals("UO")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData.clone();
+                } else if (type.equals("Basic")) {
+                    po = "UO_SUSST" + id;
+                    data = susstBasicData.clone();
+                } else if (type.equals("BE")) {
+                    //getBackendData will handle files with large line counts. "samePO" argument determines whether each line will have the same PO or not, and can be stored in "combination"
+                    return getBackendData(soldTo,lineCount,combination,valid,id);
+                }
+
+            } else if (!valid) {
+                //For tests requiring invalid data
+
+                if (type.equals("CO")) {
+                    data = susstCOInvalidData.clone();
+                    po = susstCOInvalidData[0][2];
+                } else if (type.equals("Basic")) {
+                    po = "UO_SUSST" + id;
+                    switch (combination) {
+                        //Check which item needs to be invalid. Note: use SUMST user for invalid item tests unless SUSST is specifically requried
+                        case "YMN": break;
+                        case "YMNShade": break;
+                        case "Article": break;
+                        case "Combination": break;
+                        default: break;
+                    }
+                }
+
+            }
+
+        } else if (soldTo.equals("SUMST")) {
+
+            if (valid) {
+
+                if (type.equals("MOQ")) {
+                    po = "UO_SUMST_MOQ" + id;
+                    data = MOQData.clone();
+                } else if (type.equals("Basic")) {
+                    po = "UO_SUMST" + id;
+                    data = sumstBasicData.clone();
+                    switch (combination) {
+                        case "YMN": break;
+                        case "YMNShade": break;
+                        case "Article": break;
+                        case "Combination": break;
+                    }
+                } else if (type.equals("SA")) {
+                    po = "UO_SUMST_SubAcct";
+                    data = sumstSubAcctValidData.clone();
+                }
+
+            } else if (!valid) {
+                po = "UO_SUMST" + id;
+                switch (combination) {
+                    case "YMN": data = sumstYMNInvalidData; break;
+                    case "Article": data = sumstArtInvalidData; break;
+                    case "Brand": data = sumstBrndInvalidData; break;
+                    case "Ticket": data = sumstTktInvalidData; break;
+                    case "Length": data = sumstLgthInvalidData; break;
+                    case "Finish": data = sumstFnshInvalidData; break;
+                    case "Shade": data = sumstShadeInvalidData; break;
+                    case "Ship": data = sumstShipInvalidData; break;
+                }
+
+            }
+
+        }
+        //Set the PO number for each line. To allow any number of lines to be used in an upload order test (rather than a max of 2), this task must be placed in a loop
+        data[0][2] = po;
+        data[1][2] = po;
+
+        return data;
+
     }
     
 }
