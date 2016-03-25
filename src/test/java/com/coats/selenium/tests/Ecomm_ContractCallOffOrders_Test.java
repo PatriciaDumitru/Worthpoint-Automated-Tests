@@ -965,6 +965,104 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
     }
 
     @Test(groups = {"eComm"})
+    public void CCO_UO_04() throws Exception {
+        //CCO_GC_01();
+
+        System.out.println("Navigating to Manual Entry...");
+        WebDriver driver = getDriver();
+
+        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        //logout.click();
+
+        Ecomm_Base sTest = new Ecomm_Base(driver);
+        Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);
+
+        //new upload order page
+        Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
+        uploadPage.waitForElement();
+
+        System.out.println("Upload Order page loaded. Setting filepath...");
+
+        uploadPage.setFilePath(FileFactory.createFile2("SUSST",1,"UOM4","",true));
+
+        Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
+        Ecomm_MappingPage mapPage = mapAlert.pressYes();
+        mapPage.waitForElement();
+
+        System.out.println("Mapping page reached. Setting sales org and customer name...");
+
+        //mapPage.setSalesOrg("LK53");
+        //mapPage.setCustomerName(DataItems.custDetails3[0]);
+
+        System.out.println("Details set. Setting mapping...");
+
+        String[][] mapping = {
+                {"Article","Article"},
+                {"Ticket","Ticket"},
+                {"Finish","Finish"},
+                {"Shade Code","Shade Code"},
+                {"Required Date","Required Date"},
+                {"Qty","Qty"},
+                {"Style","N/A"},
+                {"Style No./Production No.","N/A"},
+                {"Contract PO No.","N/A"},
+                {"Customer Price","N/A"},
+                {"Sub Account","N/A"},
+                {"Ship to Party Name","Ship to Party Name"},
+                {"Your Material No.","Your Material Number"},
+                {"Brand","Brand"},
+                {"Length","Length"},
+                {"Buyers","N/A"},
+                {"Customer PO No","Customer PO No"},
+                {"Requestor Name","Requestor Name"},
+                {"Warehouse Instruction","N/A"},
+                {"Buyer Sales Order Number","N/A"},
+                {"Other Information","N/A"},
+                //{"Customer Price","N/A"},
+                {"Line Reference","Line Reference"}
+        };
+
+        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        System.out.println("Mapping set. Confirming map...");
+
+        Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+        }
+        orderConf.waitForElement();
+
+        System.out.println("Order confirmation page reached.");
+
+        //verify line 1
+        Verify.verify(orderConf.getOrderedQty2().getText().equals(DataItems.orderedQty2), "Order view: Ordered Qty does not match ");
+        Verify.verify(orderConf.getAdjustedQty2().getText().equals(DataItems.adjustedQty2), "Order view: Adjusted Qty does not match expected input");
+        Verify.verify(orderConf.getUOM().getText().equals(DataItems.UOM), "Order view: UOM does not match expected input");
+        Verify.verify(orderConf.getUnitPrice().getText().equals(DataItems.unitPrice), "Order view: Unit Price does not match expected input");
+        Verify.verify(orderConf.getValue2().getText().equals(DataItems.value3), "Order view: Value does not match expected input");
+
+        //verify line 2
+        AssertJUnit.assertEquals(orderConf.getOrderedQty3().getText(), DataItems.orderedQtyNull);
+        AssertJUnit.assertEquals(orderConf.getOrderedQty3().getText(), DataItems.adjustedQtyNull);
+        Verify.verify(orderConf.getUOM3().getText().equals(DataItems.UOM), "Order view: UOM does not match expected input");
+        Verify.verify(orderConf.getUnitPrice3().getText().equals(DataItems.unitPriceNull), "Order view: Unit Price does not match expected input");
+        Verify.verify(orderConf.getValue3().getText().equals(DataItems.valueNull), "Order view: Value does not match expected input");
+
+        //verify line 3
+        Verify.verify(orderConf.getOrderedQty4().getText().equals(DataItems.orderedQty), "Order view: Ordered Qty does not match ");
+        Verify.verify(orderConf.getAdjustedQty4().getText().equals(DataItems.adjustedQty), "Order view: Adjusted Qty does not match expected input");
+        Verify.verify(orderConf.getUOM4().getText().equals(DataItems.UOM), "Order view: UOM does not match expected input");
+        Verify.verify(orderConf.getUnitPrice4().getText().equals(DataItems.unitPrice), "Order view: Unit Price does not match expected input");
+        Verify.verify(orderConf.getValue4().getText().equals(DataItems.value2), "Order view: Value does not match expected input");
+        System.out.println("Order is created with correct fields");
+
+    }
+
+    @Test(groups = {"eComm"})
     public void CCO_UO_05() throws Exception {
         //CCO_GC_01();
 
