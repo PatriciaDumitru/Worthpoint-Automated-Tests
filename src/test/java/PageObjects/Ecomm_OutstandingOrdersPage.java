@@ -210,6 +210,13 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         WebElement cell = Wait.visible(driver,locator);
         return cell.getText();
     }
+
+    public String getNoOfOrderLines (int row){
+        //Locator for "number of order lines" table cell
+        By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+row+" > td:nth-child(12)");
+        WebElement cell = Wait.visible(driver,locator);
+        return cell.getText();
+    }
     
     public void checkFields() {
         //Wait for all elements to be clickable

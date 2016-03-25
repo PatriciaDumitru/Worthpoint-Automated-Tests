@@ -25,6 +25,12 @@ public class Ecomm_ShadeNotAvailablePage extends WBA_BasePage {
     By resetButton = By.cssSelector("#FilterShadenotavailableListForm > div.grid_12 > table > tbody > tr:nth-child(4) > td > a");
     By editButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(1)");
     By viewButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > a");
+    //table content locators
+    By tableSalesOrg = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(3)");
+    By tableCustName = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(4)");
+    By tableCustPONo = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(5)");
+    By tableOrderNo = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(6)");
+    By tableNoOfOrderLines = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(7)");
     
     public Ecomm_ShadeNotAvailablePage(WebDriver driver) {
         super(driver);
@@ -46,8 +52,33 @@ public class Ecomm_ShadeNotAvailablePage extends WBA_BasePage {
     }
     
     public Ecomm_ShadeNotAvailablePage setCustPO(String item) {
-        CommonTask.setSearchField(driver, custPOField, item);
+        CommonTask.setInputField(driver, custPOField, item);
         return this;
+    }
+
+    public String getTableSalesOrgText() {
+        String text = driver.findElement(tableSalesOrg).getText();
+        return text;
+    }
+
+    public String getTableCustNameText() {
+        String text = driver.findElement(tableCustName).getText();
+        return text;
+    }
+
+    public String getTableCustPONo() {
+        String text = driver.findElement(tableCustPONo).getText();
+        return text;
+    }
+
+    public String getTableOrderNo() {
+        String text = driver.findElement(tableOrderNo).getText();
+        return text;
+    }
+
+    public String getTableNoOfOrderLines() {
+        String text = driver.findElement(tableNoOfOrderLines).getText();
+        return text;
     }
     
     public void checkFields() {

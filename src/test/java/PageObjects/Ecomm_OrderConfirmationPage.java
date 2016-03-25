@@ -478,4 +478,10 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return true;
     }
 
+    public String getFlashMessage (){
+        WebElement flashMessage = Wait.visible(driver,flashMessageLocator);
+        String text = flashMessage.getText();
+        return text;
+    }
+
 }

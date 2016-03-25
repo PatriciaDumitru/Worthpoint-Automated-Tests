@@ -82,6 +82,12 @@ public class FileFactory {
     //Data to be used in Backend Upload tests (this data is duplicated by the program to produce large files)
     public static String[][] susstBackendData = {{"Life Easy Customer","Life Easy Customer","","","","","astra","120","5000","STANDARD","C9700","1","","","","Life Easy"},
         {"Life Easy Customer","Life Easy Customer","","","","","gral","180","3000","STANDARD","H0972","1","","","","Life Easy"}};
+
+    //Data for Enable Orders without Shade
+    public static String[][] susstEOwSData ={{"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","120","5000","STANDARD","fdafadsfasd","3","","","","prafull.patil@igate.com"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","180","3000","STANDARD","C1711","3","","","","prafull.patil@igate.com"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","030","1000","STANDARD","","3","","","","prafull.patil@igate.com"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","030","1000","STANDARD","","3","","","","prafull.patil@igate.com"}};
     
     public static void main(String[] args) throws IOException {
         //Main method can be used to test the FileFactory class in isolation
@@ -93,7 +99,7 @@ public class FileFactory {
         //Creating files in this manner saves time as otherwise tester would have to rename a file and change its data every time
         /*Parameters: soldTo = SUSST/SUMST (single or multi sold to)
                       lineCount = number of lines to be written in file. Either 1 or 2 for all cases EXCEPT backend which may have 100+
-                      type = type of test, Contract Order/MOQ/Sub Account/Basic/Backend
+                      type = type of test, Contract Order/MOQ/Sub Account/Basic/Backend/EOwS
                       combination = a variable to more finely determine which data is needed. e.g. YMN/Article/Brand combination
                       valid = true will produce valid data for positive conditions, false the opposite
         */
@@ -161,7 +167,7 @@ public class FileFactory {
         //This method determines which data is required for the file depending on the criteria (parameters)
         
         //Create a new array with 2 lines (maximum for all tests except backend). There are 16 fields which need to be held
-        String data[][] = new String[2][16];
+        String data[][] = new String[lineCount][16];
         String po = "";
         
         if (soldTo.equals("SUSST")) {
@@ -178,7 +184,10 @@ public class FileFactory {
                     data = susstCOValidData.clone();
                 } else if (type.equals("Basic")) {
                     po = "UO_SUSST" + id;
-                    data = susstBasicData.clone();                   
+                    data = susstBasicData.clone();
+                } else if (type.equals("EOwS")) {
+                    po = "UO_EOwS" + id;
+                    data = susstEOwSData.clone();
                 } else if (type.equals("BE")) {
                     //getBackendData will handle files with large line counts. "samePO" argument determines whether each line will have the same PO or not, and can be stored in "combination"
                     return getBackendData(soldTo,lineCount,combination,valid,id);
@@ -241,9 +250,16 @@ public class FileFactory {
             }
             
         }
-        //Set the PO number for each line. To allow any number of lines to be used in an upload order test (rather than a max of 2), this task must be placed in a loop
-        data[0][2] = po;
-        data[1][2] = po;
+        //Set the PO number for each line. To allow any number of lines to be used in an upload order test (rather than a max of 4), this task must be placed in a loop
+
+        for (int i=0;i<lineCount;i++ ){
+            data[i][2]=po;
+        }
+
+//        data[0][2] = po;
+//        data[1][2] = po;
+//        data[2][2] = po;
+//        data[3][2] = po;
         
         return data;
         

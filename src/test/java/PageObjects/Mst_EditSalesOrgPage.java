@@ -137,23 +137,23 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
 
 
 
-    public boolean isChecked(By fieldLocator){
-        if (driver.findElement(fieldLocator).isSelected()) {
-            System.out.println("Flag is checked!");
-            return true;
-        }
-        else {
-            System.out.println("Flag is not checked!");
-            return false;
-        }
-    }
-
-    public boolean isEOwS_Checked(){
-        if (driver.findElement(enableOrdersWithoutShade).isSelected()) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+//    public boolean isChecked(By fieldLocator){
+//        if (driver.findElement(fieldLocator).isSelected()) {
+//            System.out.println("Flag is checked!");
+//            return true;
+//        }
+//        else {
+//            System.out.println("Flag is not checked!");
+//            return false;
+//        }
+//    }
+//
+//    public boolean isEOwS_Checked(){
+//        if (driver.findElement(enableOrdersWithoutShade).isSelected()) {
+//            return true;
+//        }
+//        else {
+//            return false;
+//        }
+//    }
 }
