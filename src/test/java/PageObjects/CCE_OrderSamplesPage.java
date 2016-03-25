@@ -20,11 +20,18 @@ public class CCE_OrderSamplesPage extends WBA_BasePage {
     static By requestorNameField = By.id("SampleOrderRequesterId");
     static By submitButton = By.cssSelector("#SampleOrderPromptForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     static By contentFrame = By.id("content");
+    static By custBusinessPrincipal = By.id("SampleOrderBusinessPrincipalId");
     
     public CCE_OrderSamplesPage(WebDriver passedDriver) {
         super(passedDriver);
     }
-    
+
+
+    public CCE_OrderSamplesPage setBusinessPrincipal(String bssPrincipal) {
+        CommonTask.setSearchField(driver,custBusinessPrincipal,bssPrincipal);
+        return this;
+    }
+
     public CCE_OrderSamplesPage setCustName(String custName) {
         CommonTask.setSearchField(driver,custNameField,custName);
         return this;
