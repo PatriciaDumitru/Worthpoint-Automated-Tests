@@ -93,7 +93,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public WebElement getTicketField() {
         return driver.findElement(ticketField);
     }
-    
+
     public WebElement getShadeCodeField() {
         return driver.findElement(shadeCodeField);
     }
@@ -388,7 +388,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public void inputDetails(String shipTo, String buyer, String article, String shadeCode, String MUM, String request, String purpose, int quantity) throws InterruptedException {        
         
         setShipToParty(shipTo);
-        //setBusinessPrincipal(buyer); //This method may not be required - it is generally easier to set each line individually
+        setBusinessPrincipal(buyer); //This method may not be required - it is generally easier to set each line individually
         setArticle(article,0);
         setShadeCode(shadeCode,0);
         setMUMType(MUM,0);

@@ -23,6 +23,8 @@ import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
 import java.io.File;
 import java.io.IOException;
+
+import com.sun.jna.platform.unix.X11;
 import org.apache.commons.io.FileUtils;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
@@ -40,7 +42,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
 
     @Test //Manual Entry Page :: SUMST :: Page checks, single line order using YMN and shade code from master data
-            (groups = {"QuickTest","eComm","eComm_Orders", "Solo"})
+            (groups = {"Solo, Solo"})
     public void SUMST1_CONO() throws IOException, InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
@@ -56,7 +58,6 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
         pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests

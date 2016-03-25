@@ -2,12 +2,14 @@
 package AutomationFramework;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test"; //"https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "qa_p4i";
+    //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
     public static String mastersCustomerURL =targetURL + "/Customers";
@@ -355,6 +357,10 @@ public class DataItems {
     public static String salesOrgID = "ID51";
     public static String deliveryToPlantAll = "Select";
     public static String deliveryToPlantID10 = "ID10";
+
+
+    //QuickFix
+    public static String othersWithCode = "*OTHERS*(10000000001)";
 
 
 }

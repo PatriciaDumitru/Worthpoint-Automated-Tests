@@ -25,7 +25,8 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     By orderUploadCheckBox=By.id("SalesOrgSampleUploadActive");
     By callOffOrderCheckBox=By.id("SalesOrgOffOrder");
 
-    
+    By enableOrdersWithoutShade = By.id("SalesOrgEnabledOrdersWithoutShade");
+
     public Mst_EditSalesOrgPage(WebDriver driver) {
         super(driver);
     }
@@ -79,7 +80,12 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cancelButton));
         return element;
     }
-    
+
+    public WebElement getEnableOrdersWithoutShade(){
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(enableOrdersWithoutShade));
+        return element;
+    }
+
     public Mst_SalesOrgPage pressSave() {
         WebElement btn = getSaveButton();
         btn.click();
@@ -125,6 +131,36 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
 
     public void disableCCEOrderUploadCheckBox(){
         CommonTask.unSetCheckBox(driver, orderUploadCheckBox);
+    }
+
+    public void enableCCEOrdersWithoutShade(){
+        CommonTask.setCheckBox(driver, enableOrdersWithoutShade);
+    }
+
+    public void disableCCEOrdersWithoutShade(){
+        CommonTask.unSetCheckBox(driver, enableOrdersWithoutShade);
+    }
+
+
+
+    public boolean isChecked(By fieldLocator){
+        if (driver.findElement(fieldLocator).isSelected()) {
+            System.out.println("Flag is checked!");
+            return true;
+        }
+        else {
+            System.out.println("Flag is not checked!");
+            return false;
+        }
+    }
+
+    public boolean isEOwS_Checked(){
+        if (driver.findElement(enableOrdersWithoutShade).isSelected()) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public void disableCallOffOrderCheckBox(){

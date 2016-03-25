@@ -95,7 +95,7 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
             
             System.out.println("Order enriched. Checking order is removed from Enrich Page...");
             
-            //AssertJUnit.assertFalse("Manual Enrich Page: Enriched order (Order No.: "+orderNo+") did not disappear from table",mePage2.findOrder(orderNo));
+            AssertJUnit.assertFalse("Manual Enrich Page: Enriched order (Order No.: "+orderNo+") did not disappear from table",mePage2.findOrder(orderNo));
             
             System.out.println("Order removed after enrichment. Checking Hub SOS for order...");
             
@@ -144,6 +144,7 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         addPage.waitForElement();
         
         addPage.setShipToParty(DataItems.custDetails[1]);
+        addPage.setBusinessPrincipal(DataItems.othersWithCode);
         addPage.setArticle("8754120",0);
         addPage.setShadeCode("C1202",0);
         addPage.setMUMType("Cone",0);

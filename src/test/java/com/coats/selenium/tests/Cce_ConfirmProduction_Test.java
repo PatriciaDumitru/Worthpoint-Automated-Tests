@@ -85,7 +85,8 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\4Confirm selected.png"));
-        
+
+
         System.out.println("Confirm selected. Pressing DN Print...");
         
         CCE_OrderViewPage viewPage = cpPage.pressDnPrint();

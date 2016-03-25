@@ -1149,9 +1149,16 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-//        Alert alert = Wait.alert(driver);
-  //      alert.accept();
+        boolean errorDisplayed;
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
 
+            errorDisplayed = true;
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+            errorDisplayed = false;
+        }
         orderConf.waitForElement();
         
         System.out.println("Confirmation page reached, removing Ship To Party Name...");
@@ -1166,7 +1173,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         
         Ecomm_UploadProcessPage errorPage = orderConf.pressSubmitExpectingFailure();
 
-        boolean errorDisplayed;
+
         
         try {
             Alert alert2 = Wait.alert(driver);
@@ -1246,8 +1253,20 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Line details entered. Pressing next...");
         
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+
+
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+
+        }
+
         orderConf.waitForElement();
-        
+
+
         System.out.println("Confirmation page reached, removing Buyer...");
         
         CommonTask.resetSearchField(driver, "s2id_BuyerId_0");

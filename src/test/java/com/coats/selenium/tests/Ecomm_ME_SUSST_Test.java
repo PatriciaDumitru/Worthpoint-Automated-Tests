@@ -1810,9 +1810,6 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
 
-
-         
-
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");

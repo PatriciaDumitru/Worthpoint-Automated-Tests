@@ -24,13 +24,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-
 public class Ecomm_UO_Exceptions_Test extends DriverFactory {
-    
+
     @Test //Upload Order Realtime :: SUMST :: Incomplete material in spreadsheet exception
-    (groups = {"eComm","eComm_Orders","Upload_Order"})
+            (groups = {"eComm","eComm_Orders","Upload_Order"})
     public void UORTex1() throws Exception{
         //new chrome driver
+
         WebDriver driver = getDriver();
         
         //new base test to set up
