@@ -95,6 +95,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
 		
 		viewPage.closeView();
 		viewPage.waitForInvisibility();
+
+        driver.navigate().refresh();
 		
 		System.out.println("View closed. Printing invoice...");
 		
@@ -105,8 +107,13 @@ public class Ecomm_Reports_Test extends DriverFactory {
             File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Reports\\Invoices\\5Invoice view.png"));
 		
-		printPage.pressPrint();
-		invPage.waitForLoad();
+		//printPage.pressPrint();
+		//invPage.waitForLoad();
+
+        viewPage.closeView();
+        viewPage.waitForInvisibility();
+
+        driver.navigate().refresh();
                 
                 System.out.println("Re-entering filter criteria...");
                 
@@ -191,9 +198,14 @@ public class Ecomm_Reports_Test extends DriverFactory {
             Ecomm_OrderViewPage printPage = invPage.pressPrint();
             printPage.waitForContent();
 		
-            printPage.pressPrint();
+            // printPage.pressPrint();
             
-            invPage.waitForLoad();
+            // invPage.waitForLoad();
+
+            viewPage.closeView();
+            viewPage.waitForInvisibility();
+
+            driver.navigate().refresh();
 		
             System.out.println("Exporting records...");
 		
@@ -290,10 +302,12 @@ public class Ecomm_Reports_Test extends DriverFactory {
             System.out.println("Print view displayed. Sending item to printer...");
             
             printPage.pressPrint();
+
+            driver.navigate().refresh();
             
             System.out.println("Exporting records...");
             
-            Ecomm_ExportDownloadPage dlPage = dnPage.pressExport();           
+            Ecomm_ExportDownloadPage dlPage = dnPage.pressExport();
             dlPage.waitForDownloadCompletion();
             
             System.out.println("Records exported.");
@@ -367,6 +381,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
             printPage.pressPrint();
             
             System.out.println("Exporting records...");
+
+            driver.navigate().refresh();
             
             Ecomm_ExportDownloadPage dlPage = dnPage.pressExport();           
             dlPage.waitForDownloadCompletion();

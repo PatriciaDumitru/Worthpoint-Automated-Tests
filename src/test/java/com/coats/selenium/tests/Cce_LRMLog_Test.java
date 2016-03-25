@@ -85,6 +85,8 @@ public class Cce_LRMLog_Test extends DriverFactory {
         
         viewPage.closeView();
         viewPage.waitForInvisibility();
+
+        driver.navigate().refresh();
         
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

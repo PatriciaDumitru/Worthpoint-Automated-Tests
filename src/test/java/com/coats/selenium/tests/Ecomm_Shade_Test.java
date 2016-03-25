@@ -1,12 +1,8 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
-import PageObjects.Ecomm_OrderInformationPage;
-import PageObjects.Ecomm_OrderViewPage;
-import PageObjects.Ecomm_OutstandingOrdersPage;
-import PageObjects.Ecomm_ShadeOrderConfirmationPage;
-import PageObjects.Ecomm_ShadeNotAvailablePage;
-import PageObjects.Ecomm_WaitingForShadePage;
+import AutomationFramework.PreFlows;
+import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +29,15 @@ public class Ecomm_Shade_Test extends DriverFactory {
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         PageObjects.Ecomm_MainPage eCommPage = baseTest.setUp("Shade Not Available Page SNA1: Page and filter checks, view and edit", "UNKNOWN");
-        
+
+        System.out.println("Setup MasterData...");
+        //Activate CallOffOrder for customer
+
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.enableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
+
         System.out.println("Navigating to Shade Not Available page...");
         
         Ecomm_ShadeNotAvailablePage snaPage = eCommPage.clickShadeNotAvailable();
@@ -147,8 +151,8 @@ public class Ecomm_Shade_Test extends DriverFactory {
         //Take a screenshot
         File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\9Information view closed.png"));
-        
-        Ecomm_OutstandingOrdersPage outPage = snaConf.pressSubmit();
+
+        Ecomm_PendingApprovalListPage outPage = snaConf.pressSend();
         outPage.waitForLoad();
         
         System.out.println("Order sent for approval.");
@@ -156,7 +160,6 @@ public class Ecomm_Shade_Test extends DriverFactory {
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\10Order submitted.png"));
-        
     }
     
     @Test //Waiting for Shade Code Page :: Page and filter checks, view and edit
