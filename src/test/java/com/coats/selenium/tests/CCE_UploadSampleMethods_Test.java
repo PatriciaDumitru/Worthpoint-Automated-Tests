@@ -340,6 +340,104 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         // so the assertion passes when the element is not present. Also it would fail if it was present.
         Assert.assertEquals(0, driver.findElements(By.cssSelector("a[href*='sampleupload']")).size());
     }
+
+    @Test(groups = {"CCE"})
+    public void SUF_GC_01() throws Exception {
+
+        WebDriver driver = getDriver();
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Upload Order Samples: Flag Check Enable", "SUF_GC_01", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
+        ccePage.waitForLoad();
+
+        //Go Masters -> Sales Org and edit Sales Org (ID51)
+        System.out.println("Navigating to Sales Organisations Page...");
+        Mst_SalesOrgPage soPage = ccePage.selectSalesOrg();
+        soPage.waitForElement();
+
+        System.out.println("Sales Organisations page reached. Checking title...");
+        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", soPage.getBreadcrumb().getText().equals("Sales Organisations"));
+        System.out.println("Title checked");
+        soPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+        soPage.checkFields();
+        System.out.println("Fields checked. Checking record appears...");
+
+        soPage.setSalesOrg("ID51");
+        soPage.pressSearch();
+        soPage.waitForElement();
+
+        int row = soPage.getRow("ID51");
+        AssertJUnit.assertFalse("Sales Organisations Page: Sales Organisation not present in table after creation", row == -1);
+
+        System.out.println("Record found. Editing record...");
+        Mst_EditSalesOrgPage editPage = soPage.pressEdit(row);
+        editPage.waitForElement();
+        System.out.println("Edit page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Edit Sales Organisation Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Sales Organisations | Edit Sales Organisation"));
+        System.out.println("Title checked");
+
+        editPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+        editPage.checkFields();
+
+        ///Check "Enable CCE order upload" flag
+        System.out.println("Fields checked. Editing Sales Organisation...");
+        editPage.enableCCEOrderUpload();
+
+        //Save
+        System.out.println("'Enable CCE order upload' flag checked. Saving...");
+        editPage.pressSave();
+        soPage.waitForElement();
+
+        System.out.println("Saved. Navigating to Customer master data...");
+
+
+        //Go Masters -> Customers and edit Customer(Star Garments Ltd.)
+        Mst_CustomersPage custPage = ccePage.selectCustomers();
+        custPage.waitForElement();
+
+        custPage.setCustomerName("Life Easy Customer");
+        custPage.pressSearch();
+        custPage.waitForElement();
+
+        int row2 = custPage.getRow("Life Easy Customer");
+        System.out.println("Record found. Editing record...");
+
+        Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
+        editPage2.waitForElement();
+
+        System.out.println("Edit page reached.");
+
+        //Check "Enable CCE order upload" flag
+        System.out.println("Fields checked. Check 'Enable CCE order upload'...");
+        editPage2.enableCCEOrderUploadCheckBox();
+        editPage2.pressSave();
+        custPage.waitForElement();
+
+        System.out.println("Customers page reached. The Customer has been updated");
+        AssertJUnit.assertTrue("Customers Page: Flash Message not as expected", custPage.getFlashMessage().getText().equals("The Customer has been updated"));
+
+
+        //logout from master
+        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        logout.click();
+        //New base object to handle log-in and set up
+        Cce_Base base2 = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage2 = base2.setUp("Order File Upload", "SUF_GC_01",DataItems.susstUsername, DataItems.susstPassword);
+
+        System.out.println("Navigating to Order File Upload...");
+
+        CCE_UploadOrderSamplesPage orderSamples = ccePage2.pressUploadOrderSamples();
+        orderSamples.waitForLoad();
+
+        AssertJUnit.assertTrue(orderSamples.getBrowseFile().isDisplayed());
+
+    }
 }
 
 

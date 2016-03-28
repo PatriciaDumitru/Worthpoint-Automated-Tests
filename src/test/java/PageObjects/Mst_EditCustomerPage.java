@@ -30,7 +30,9 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     By subAcctLabel = By.xpath("/html/body/div[1]/div[3]/form/div[2]/table/tbody/tr[35]/td[1]/label");
     By approvelCheckBoxCust = By.id("CustomerApprovalWorkflow");
     By callOffOrderCheckBox=By.id("CustomerOffOrder");
+    By CCEOrderUploadCheckBox=By.id("Requester9SampleUpload");
     By enableOrdersWithoutShade = By.id("CustomerCusOrdersWithoutShade");
+    By SAPContractValidityCheckBox=By.id("CustomerOffOrderType");
 
     By userTypeField = By.id("Requester0UserTypeId");
     By saveButton = By.cssSelector("#CustomerEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
@@ -186,8 +188,16 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
 
     public void disableCCEOrdersWithoutShade(){ CommonTask.unSetCheckBox(driver, enableOrdersWithoutShade); }
 
+    public void enableCCEOrderUploadCheckBox(){
+        CommonTask.setCheckBox(driver, CCEOrderUploadCheckBox);
+    }
+
     public void enableCallOffOrderCheckBox(){
         CommonTask.setCheckBox(driver, callOffOrderCheckBox);
+    }
+
+    public void enableSAPContractValidityCheckBox(){
+        CommonTask.setCheckBox(driver, SAPContractValidityCheckBox);
     }
 
 

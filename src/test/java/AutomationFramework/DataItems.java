@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test/";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "qa_p4i/";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
@@ -190,8 +190,8 @@ public class DataItems {
     //public static int quantity3 = 1;
 
     //public static String expTicket3 = "120";
-    public static String orderedQty="66";
-    public static String adjustedQty="66";
+    public static String orderedQty="60";
+    public static String adjustedQty="60";
     public static String orderedQty2="4";
     public static String adjustedQty2="4";
     public static String orderedQtyNull="--";
@@ -200,7 +200,7 @@ public class DataItems {
     public static String unitPrice="1.00";
     public static String unitPriceNull="0.00";
     public static String valueNull="0.00";
-    public static String value2="66.00";
+    public static String value2="60.00";
     public static String value3="4.00";
     public static String notUniqMsg="CONTRACT REFERENCE IS NOT UNIQUE";
     public static String invalidDataMsg="INVALID COMBINATION OF INPUT DATA";

@@ -98,8 +98,10 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         System.out.println("Edit page reached.");
 
         //Check "Enable Contract CALL OFF Order" flag
-        System.out.println("Fields checked. Check 'Enable Contract CALL OFF Order'...");
+        System.out.println("Check 'Enable Contract CALL OFF Order'...");
         editPage2.enableCallOffOrderCheckBox();
+        System.out.println("Field checked. Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
+        editPage2.enableSAPContractValidityCheckBox();
         editPage2.pressSave();
         custPage.waitForElement();
 
@@ -214,8 +216,8 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         AssertJUnit.assertEquals(manualEntryPage.getFlashMessage().getText(), "CONTRACT ORDER");
         AssertJUnit.assertTrue(manualEntryPage.findContractPOField());
         AssertJUnit.assertTrue(manualEntryPage.findLineRefField());
-        AssertJUnit.assertTrue(manualEntryPage.findContractOrdButton());
-        AssertJUnit.assertTrue(manualEntryPage.findNormalOrdButton());
+        //AssertJUnit.assertTrue(manualEntryPage.findContractOrdButton());
+        //AssertJUnit.assertTrue(manualEntryPage.findNormalOrdButton());
 
     }
 
@@ -261,8 +263,10 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         manualEntryPage.waitForElement();
 
         System.out.println("Manual Entry page reached. Check that elements for Call Off Order are present");
-        AssertJUnit.assertTrue(manualEntryPage.findContractOrdButton());
-        AssertJUnit.assertTrue(manualEntryPage.findNormalOrdButton());
+        AssertJUnit.assertTrue(manualEntryPage.findContractPOField());
+        AssertJUnit.assertTrue(manualEntryPage.findLineRefField());
+        //AssertJUnit.assertTrue(manualEntryPage.findContractOrdButton());
+        //AssertJUnit.assertTrue(manualEntryPage.findNormalOrdButton());
         System.out.println("Elements for Call Off Order are present");
 
     }
@@ -720,13 +724,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
     @Test(groups = {"eComm"})
     public void CCO_UO_01() throws Exception {
-        //CCO_GC_01();
+        CCO_GC_01();
 
         System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
-        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        //logout.click();
+        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        logout.click();
 
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);
@@ -802,13 +806,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
     @Test(groups = {"eComm"})
     public void CCO_UO_02() throws Exception {
-        //CCO_GC_01();
+        CCO_GC_01();
 
         System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
-        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        //logout.click();
+        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        logout.click();
 
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);
@@ -884,13 +888,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
     @Test(groups = {"eComm"})
     public void CCO_UO_03() throws Exception {
-        //CCO_GC_01();
+        CCO_GC_01();
 
         System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
-        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        //logout.click();
+        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        logout.click();
 
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);
@@ -910,7 +914,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
         //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
+       //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
 
@@ -964,15 +968,15 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
     }
 
-    @Test(groups = {"eComm"})
+   /* @Test(groups = {"eComm"})
     public void CCO_UO_04() throws Exception {
-        //CCO_GC_01();
+        CCO_GC_01();
 
         System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
-        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        //logout.click();
+        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        logout.click();
 
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);
@@ -991,8 +995,8 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
+        mapPage.setSalesOrg("LK53");
+        mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
 
@@ -1060,17 +1064,17 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         Verify.verify(orderConf.getValue4().getText().equals(DataItems.value2), "Order view: Value does not match expected input");
         System.out.println("Order is created with correct fields");
 
-    }
+    }*/
 
     @Test(groups = {"eComm"})
     public void CCO_UO_05() throws Exception {
-        //CCO_GC_01();
+        CCO_GC_01();
 
         System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
-        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        //logout.click();
+        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        logout.click();
 
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);
@@ -1160,13 +1164,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
     @Test(groups = {"eComm"})
     public void CCO_UO_06() throws Exception {
-        //CCO_GC_01();
+        CCO_GC_01();
 
         System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
-        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        //logout.click();
+        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        logout.click();
 
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);
@@ -1255,13 +1259,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
     @Test(groups = {"eComm"})
     public void CCO_UO_07() throws Exception {
-        //CCO_GC_01();
+        CCO_GC_01();
 
         System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
-        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        //logout.click();
+        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        logout.click();
 
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);

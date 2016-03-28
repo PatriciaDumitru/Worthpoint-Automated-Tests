@@ -24,6 +24,9 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     By cancelButton = By.cssSelector("#SalesOrgEditForm > div.actions > ul > li:nth-child(2) > a");
     By orderUploadCheckBox=By.id("SalesOrgSampleUploadActive");
     By callOffOrderCheckBox=By.id("SalesOrgOffOrder");
+    By CCEOrderUpload =By.id("SalesOrgSampleUploadActive");
+
+
 
     By enableOrdersWithoutShade = By.id("SalesOrgEnabledOrdersWithoutShade");
 
@@ -129,6 +132,8 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         CommonTask.setCheckBox(driver, callOffOrderCheckBox);
     }
 
+
+
     public void disableCCEOrderUploadCheckBox(){
         CommonTask.unSetCheckBox(driver, orderUploadCheckBox);
     }
@@ -166,4 +171,9 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     public void disableCallOffOrderCheckBox(){
         CommonTask.unSetCheckBox(driver, callOffOrderCheckBox);
     }
+
+    public void enableCCEOrderUpload(){
+        CommonTask.setCheckBox(driver, CCEOrderUpload);
+    }
+
 }
