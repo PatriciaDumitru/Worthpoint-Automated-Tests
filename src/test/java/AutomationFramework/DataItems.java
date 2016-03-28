@@ -219,7 +219,7 @@ public class DataItems {
     public static String length2SUSST = "5000";
     public static String finish2SUSST = "STANDARD";
     public static String shade2SUSST = "01212";
-    //ads
+    //adsaa
     
     //Line details for MOQ tests
     public static String testYourMatNum = "MOQTest";
@@ -232,7 +232,7 @@ public class DataItems {
     //Switch on/off Contract Order Call-off
     public static boolean contractOrderCallOff = false;
     
-    //Refill cabinet code
+    //Refill cabinet code a
     public static String cabinetName = "AutoTestCabinet";
     
     //MUM Types
