@@ -12,7 +12,12 @@ import PageObjects.Ecomm_OrderConfirmationPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_UploadOrderPage;
 import static com.coats.selenium.DriverFactory.getDriver;
+
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+
+import com.coats.selenium.DriverFactory;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -23,11 +28,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
-public class Ecomm_UO_SUSST_Test {
+public class Ecomm_UO_SUSST_Test extends DriverFactory {
     
     @Test //Upload Order Page :: SUSST :: Realtime Upload order (<100 lines) (MOQ ACTIVE)
     (groups = {"eComm","eComm_Orders","Upload_Order"})
-    public void RT1() throws Exception {
+    public void RT1() throws AWTException, IOException, Exception  {
         //new chrome driver
         WebDriver driver = getDriver();
         

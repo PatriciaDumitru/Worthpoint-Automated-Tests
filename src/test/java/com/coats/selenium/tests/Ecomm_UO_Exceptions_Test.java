@@ -3,6 +3,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
+import AutomationFramework.Wait;
 import PageObjects.Ecomm_BackendProcessPage;
 import PageObjects.Ecomm_ErrorPage;
 import PageObjects.Ecomm_MainPage;
@@ -13,6 +14,8 @@ import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_UploadOrderPage;
 import com.coats.selenium.DriverFactory;
 import static com.coats.selenium.DriverFactory.getDriver;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,13 +24,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-
 public class Ecomm_UO_Exceptions_Test extends DriverFactory {
-    
+
     @Test //Upload Order Realtime :: SUMST :: Incomplete material in spreadsheet exception
-    (groups = {"eComm","eComm_Orders","Upload_Order"})
+            (groups = {"eComm","eComm_Orders","Upload_Order"})
     public void UORTex1() throws Exception{
         //new chrome driver
+
         WebDriver driver = getDriver();
         
         //new base test to set up
@@ -42,12 +45,12 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         uploadPage.waitForElement();
         
         System.out.println("Upload Order page loaded. Setting filepath...");
-        
+
         //Create a file with 2 rows of invalid values to test the Your Material Number format
         uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "YMN", false));
         
         System.out.println("File path set. Uploading...");
-        
+
         //Select existing mapping
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -91,6 +94,15 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         System.out.println("Mapping set. Confirming...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        boolean errorDisplayed;
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+        }
+
         orderConf.waitForElement();
         
         System.out.println("Order confirmation reached. Asserting errors appear...");
@@ -603,8 +615,18 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         System.out.println("Mapping set. Confirming mapping...");
         
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
-        orderConf.waitForElement();
-        
+
+        boolean errorDisplayed;
+
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+
+            errorDisplayed = true;
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+            errorDisplayed = false;
+        }
         System.out.println("Order confirmation page reached. Checking Ship-to party is blank...");
         
         AssertJUnit.assertTrue("Order Confirmation Page: Ship-to party set despite error in spreadsheet",orderConf.getShipToParty().equals("Select"));

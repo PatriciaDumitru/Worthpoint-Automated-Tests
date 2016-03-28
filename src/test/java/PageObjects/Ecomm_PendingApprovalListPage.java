@@ -292,7 +292,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     
     public Ecomm_PendingApprovalListPage pressApprove(int row) {
         
-        By selectButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(13)");
+        By selectButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(12)");
         CommonTask.clickInputCheckBox(driver, selectButton);
         
         WebElement approveBtn = Wait.clickable(driver,approveButton);
@@ -318,10 +318,10 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     }
     
     public Ecomm_PendingApprovalListPage pressDeny(int row) {
-        By selectButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(13)");
-        CommonTask.clickInputCheckBox(driver, selectButton);
+        By selectButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(12)");
+        driver.findElement(selectButton).click();
         
-        By reasonField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(12) > div > input");
+        By reasonField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(11) > div > input");
         WebElement reason = Wait.clickable(driver,reasonField);
         CommonTask.setInputField(driver, reasonField, "AutoTest Denied");
         
@@ -347,7 +347,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
         
         for (int i = 1; i <= tableCount; i++) {
             
-            By reasonField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(12) > div > input");
+            By reasonField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(11) > div > input");
             CommonTask.setInputField(driver,reasonField,"AutoTest Denied");
         }
         

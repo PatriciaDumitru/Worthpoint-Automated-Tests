@@ -1,12 +1,8 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
-import PageObjects.Ecomm_OrderInformationPage;
-import PageObjects.Ecomm_OrderViewPage;
-import PageObjects.Ecomm_OutstandingOrdersPage;
-import PageObjects.Ecomm_ShadeOrderConfirmationPage;
-import PageObjects.Ecomm_ShadeNotAvailablePage;
-import PageObjects.Ecomm_WaitingForShadePage;
+import AutomationFramework.PreFlows;
+import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import java.io.File;
 import java.io.IOException;
@@ -26,23 +22,31 @@ public class Ecomm_Shade_Test extends DriverFactory {
     
     @Test //Shade Not Available Page :: Page and filter checks, view and edit
     (groups = {"eComm"})
-    public void SNA1() throws IOException, Exception {
+    public void SNA1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 		
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         PageObjects.Ecomm_MainPage eCommPage = baseTest.setUp("Shade Not Available Page SNA1: Page and filter checks, view and edit", "UNKNOWN");
-        
+
+        System.out.println("Setup MasterData...");
+        //Activate CallOffOrder for customer
+
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.enableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
+
         System.out.println("Navigating to Shade Not Available page...");
         
         Ecomm_ShadeNotAvailablePage snaPage = eCommPage.clickShadeNotAvailable();
         snaPage.waitForLoad();
-        
+
         //Take a screenshot
         File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\1Shade Not Available Page.png"));
-        
+
         System.out.println("Shade Not Available page reached. Checking title...");
         
         AssertJUnit.assertTrue("Shade Not Available Page: Title not as expected",snaPage.getBreadcrumbText2().equals("Orders | Shade Not Available"));
@@ -57,40 +61,40 @@ public class Ecomm_Shade_Test extends DriverFactory {
         
         snaPage.setSalesOrg("ID50");
         snaPage.setCustName(DataItems.custDetails[0]);
-        
+
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\2Filter criteria entered.png"));
-        
+
         System.out.println("Criteria entered. Listing records...");
         
         snaPage.pressSearch();
         snaPage.waitForLoad();
-        
+
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\3Records listed.png"));
-        
+
         System.out.println("Records listed. Resetting filter...");
         
         snaPage.pressReset();
         snaPage.waitForLoad();
-        
+
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\4Filter reset.png"));
-        
+
         System.out.println("Filter reset. Finding order with single order line...");
         
         int row = snaPage.getSingleLineRecord();
         
         Ecomm_OrderViewPage viewPage = snaPage.pressView(row);
         viewPage.waitForContent();
-        
+
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\5Order view displayed.png"));
-        
+
         System.out.println("View displayed. Closing view...");
         
         viewPage.closeView();
@@ -109,11 +113,11 @@ public class Ecomm_Shade_Test extends DriverFactory {
         }
         
         snaConf.waitForLoad();
-        
+
         //Take a screenshot
         File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\6Shade Not Available Order Confirmation Page.png"));
-        
+
         System.out.println("Shade Not Available Order Confirmation Page reached. Checking fields...");
         
         snaConf.checkFields();
@@ -147,8 +151,8 @@ public class Ecomm_Shade_Test extends DriverFactory {
         //Take a screenshot
         File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\9Information view closed.png"));
-        
-        Ecomm_OutstandingOrdersPage outPage = snaConf.pressSubmit();
+
+        Ecomm_PendingApprovalListPage outPage = snaConf.pressSend();
         outPage.waitForLoad();
         
         System.out.println("Order sent for approval.");
@@ -156,7 +160,6 @@ public class Ecomm_Shade_Test extends DriverFactory {
         //Take a screenshot
         File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Shade Not Available\\10Order submitted.png"));
-        
     }
     
     @Test //Waiting for Shade Code Page :: Page and filter checks, view and edit

@@ -90,7 +90,7 @@ public class Mst_EditCustomerPrivateArticlesPage extends WBA_BasePage{
         return new Mst_EditCustomerPrivateArticlesPage(driver);
     }
 
-    public void checkFields() {
+    public void checkFieldsEdit() {
         //Wait for all elements to be clickable
         WebElement salesOrg = Wait.clickable(driver, salesOrgField);
         WebElement custName = Wait.clickable(driver, custNameField);

@@ -25,6 +25,8 @@ import org.testng.AssertJUnit;
 
 public class PreFlows {
 
+    WebDriver driver;
+
     //Locators
     //General
     By chooseTheOtherProfile = By.id("access_type"); //CCE or Ecomm depending on which page you are
@@ -41,6 +43,7 @@ public class PreFlows {
     By forwardDaysField = By.id("SalesOrgForwardOrderDays");
     By saveSalesOrgButton = By.id("save");
     By approvelCheckBoxSalesOrg = By.id("SalesOrgSalesApprovalWorkflow");
+    By getCallOffOrderCheckBoxSalesOrg = By.id("SalesOrgOffOrder");
 
     //Customer Masters Page
     By customerNameField = By.id("filterCustomerCustomerName");
@@ -53,9 +56,14 @@ public class PreFlows {
     By approvelCheckBoxCust = By.id("CustomerApprovalWorkflow");
     By saveCustomerButton = By.xpath(".//*[@id='CustomerEditForm']/div[4]/ul/li[1]/input");
     By deliveryPlant = By.id("CustomerDeliveryPlantId");
+    By callOffOrderCheckBoxCust = By.id("CustomerOffOrder");
+    By autoEnrichNoneOption = By.id("CustomerAutoEnrichOptions0");
 
     //Manual Entry Page
-    By buyersField= By.xpath(".//*[@id='s2id_BuyerId']/a/abbr");
+    By buyersField = By.xpath(".//*[@id='s2id_BuyerId']/a/abbr");
+    By normalOrderRadioButton = By.id("normal_check");
+    By contractOrderRadioButton = By.id("contract_check");
+
 
 
     //Locator
@@ -78,6 +86,26 @@ public class PreFlows {
         enableApprovalCheckBoxForCust(driver);
         saveCustomer(driver);
     }
+
+
+    public void enableApprovelCheckBoxForSalesOrgAndCust(WebDriver driver, String salesOrg, String customer){
+        goToSalesOrgAndEdit(driver,salesOrg);
+        enableApprovalCheckBoxForSalesOrg(driver);
+        saveSalesOrg(driver);
+        goToCustomerAndEdit(driver, customer);
+        enableApprovalCheckBoxForCust(driver);
+        saveCustomer(driver);
+    }
+
+    public void disableApprovelCheckBoxForSalesOrgAndCust(WebDriver driver, String salesOrg, String customer){
+        goToSalesOrgAndEdit(driver,salesOrg);
+        disableApprovalCheckBoxForSalesOrg(driver);
+        saveSalesOrg(driver);
+        goToCustomerAndEdit(driver, customer);
+        disableApprovalCheckBoxForCust(driver);
+        saveCustomer(driver);
+    }
+
     public void setDeliveryPlant(WebDriver driver, String plant) {
         CommonTask.setDropDownField(driver, deliveryPlant, plant);
     }
@@ -147,10 +175,15 @@ public class PreFlows {
         CommonTask.setCheckBox(driver, approvelCheckBoxCust);
     }
 
+    public void disableApprovalCheckBoxForCust(WebDriver driver){
+        CommonTask.unSetCheckBox(driver, approvelCheckBoxCust);
+    }
+
+
     public void enableApprovalCheckBoxForSalesOrg(WebDriver driver){
         CommonTask.setCheckBox(driver, approvelCheckBoxSalesOrg);
     }
-    public void edisableApprovalCheckBoxForSalesOrg(WebDriver driver){
+    public void disableApprovalCheckBoxForSalesOrg(WebDriver driver){
         CommonTask.unSetCheckBox(driver, approvelCheckBoxSalesOrg);
     }
 
@@ -182,6 +215,69 @@ public class PreFlows {
     public void removeBuyers(WebDriver driver){
         Actions action = new Actions(driver);
         action.click(driver.findElement(buyersField)).build().perform();
+    }
+
+    public void selectNormalOrderRadioButton(WebDriver driver){
+        CommonTask.setCheckBox(driver, normalOrderRadioButton);
+    }
+
+    public void selectContractOrderRadioButton(WebDriver driver) {
+        CommonTask.setCheckBox(driver, contractOrderRadioButton);
+    }
+
+    public void activateCallOffOrderForCustomer(WebDriver driver, String customer) {
+        goToCustomerAndEdit(driver, customer);
+        activateCallOffOrderCheckboxCust(driver);
+        saveCustomer(driver);
+    }
+
+    public void activateCallOffOrderForSalesOrg(WebDriver driver, String salesOrg){
+        goToSalesOrgAndEdit(driver, salesOrg);
+        activateCallOffOrderCheckboxSalesOrg(driver);
+        saveSalesOrg(driver);
+    }
+
+    public void deActivateCallOffOrderForCustomer(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        deActivateCallOffOrderCheckbox(driver);
+        saveCustomer(driver);
+    }
+
+    public void activateCallOffOrderAndDeactivateApprovalForCustomer(WebDriver driver, String customer) {
+        goToCustomerAndEdit(driver, customer);
+        activateCallOffOrderCheckboxCust(driver);
+        disableApprovalCheckBox(driver);
+        saveCustomer(driver);
+    }
+
+    public void deActivateCallOffOrderAndApprovalForCustomer(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        deActivateCallOffOrderCheckbox(driver);
+        disableApprovalCheckBox(driver);
+        saveCustomer(driver);
+
+    }
+
+    public void activateCallOffOrderCheckboxCust(WebDriver driver){
+        CommonTask.setCheckBox(driver,callOffOrderCheckBoxCust);
+    }
+
+    public void activateCallOffOrderCheckboxSalesOrg(WebDriver driver){
+        CommonTask.setCheckBox(driver,getCallOffOrderCheckBoxSalesOrg);
+    }
+
+    public void deActivateCallOffOrderCheckbox(WebDriver driver){
+        CommonTask.unSetCheckBox(driver,callOffOrderCheckBoxCust);
+    }
+
+    public void deActivateAutoEnrichForCustomer(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        deActivateAutoEnrich(driver);
+        saveCustomer(driver);
+    }
+
+    public void deActivateAutoEnrich(WebDriver driver){
+        CommonTask.setCheckBox(driver, autoEnrichNoneOption);
     }
 
 

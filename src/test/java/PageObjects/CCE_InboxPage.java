@@ -36,7 +36,7 @@ public class CCE_InboxPage extends WBA_BasePage {
     By sapStatusField = By.id("s2id_filterSampleOrderLineSapOrderStatusId");
     By requesterField = By.cssSelector("#s2id_filterSampleOrderRequesterId > ul > li > input");
     By viewFrame = By.id("TB_iframeContent");
-    By orderStatusCell = By.xpath(".//*[@id='SampleOrderLineInboxForm']/table/tbody/tr[2]/td[14]");
+    By orderStatusCell = By.xpath("//form[@id='SampleOrderLineInboxForm']/table/tbody/tr[2]/td[14]");
  
     By listOrdersButton = By.cssSelector("#FilterInboxForm > div.actions > ul > li:nth-child(1)");
     By resetButton = By.cssSelector("#FilterInboxForm > div.actions > ul > li:nth-child(2)");
@@ -61,7 +61,7 @@ public class CCE_InboxPage extends WBA_BasePage {
     }
     
     public String getOrderStatus() {
-       // WebElement cell = orderStatusCell(driver);
+        //WebElement cell = orderStatusCell(driver);
         return driver.findElement(orderStatusCell).getText();
     }
     

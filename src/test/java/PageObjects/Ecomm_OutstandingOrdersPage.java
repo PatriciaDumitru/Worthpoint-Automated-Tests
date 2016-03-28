@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 
+import java.util.List;
+
 public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     
     By formLocator = By.id("FilterOutstandingOrderForm");
@@ -26,7 +28,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     By resetButton = By.cssSelector("#freetext > table > tbody > tr > td.searchreset_buttons > div > input");
     By exportButton = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.btn_sap_error > a");
     By noRecords = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div");
-    
+
     public Ecomm_OutstandingOrdersPage(WebDriver driver) {
         super(driver);
     }
@@ -112,7 +114,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         
         return -1;  
     }
-    
+
     public int getRowAlt(String poNumber) {
         //The outstanding order tables vary so require alternative methods to getRow
         boolean waitForLoad = Wait.textPresent(driver,By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No.");
@@ -210,6 +212,13 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         WebElement cell = Wait.visible(driver,locator);
         return cell.getText();
     }
+
+    public String getNoOfOrderLines (int row){
+        //Locator for "number of order lines" table cell
+        By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+row+" > td:nth-child(12)");
+        WebElement cell = Wait.visible(driver,locator);
+        return cell.getText();
+    }
     
     public void checkFields() {
         //Wait for all elements to be clickable
@@ -236,5 +245,6 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement waitForForm = Wait.visible(driver,formLocator);
     }
-    
+
+
 }

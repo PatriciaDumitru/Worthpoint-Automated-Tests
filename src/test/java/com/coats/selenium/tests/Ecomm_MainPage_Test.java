@@ -45,7 +45,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
         WBA_LoginPage loginPage = new WBA_LoginPage(driver);
 
         //Login and press continue
-        WBA_ContinuePage contPage = loginPage.loginAs(DataItems.validCoatsUsername,DataItems.validCoatsPassword);
+        WBA_ContinuePage contPage = loginPage.loginAs(DataItems.validCoatsUsername2,DataItems.validCoatsPassword);//"samson.vetharaj@coats.com"
         WBA_SelectionPage selectionPage = contPage.pressContinue();
 
         System.out.println("Logged in. Continuing to selection page...");

@@ -131,7 +131,15 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
     }
 
     public Ecomm_ProductAvailabilityCheckPage  waitForBrand() {
-         Wait.textPresent(driver,brandField,"astra");
+        Wait.textPresentInput(driver,brandField,"astra");
+        return this;
+    }
+
+    public Ecomm_ProductAvailabilityCheckPage  waitForBrand2() {
+        WebElement element=driver.findElement(By.id("BrandName"));
+        String elementval = element.getAttribute("value");
+        System.out.print(elementval);
+        Wait.textPresentInput2(driver,elementval,"astra");
         return this;
     }
 

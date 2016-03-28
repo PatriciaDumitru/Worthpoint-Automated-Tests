@@ -22,7 +22,8 @@ public class Mst_SalesOrgPage extends WBA_BasePage {
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
     By exportButton = By.cssSelector("#export-menu > a");
     By newSalesOrgButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
-    
+    //By tableSalesOrgName = By.xpath("//*[@id='content']/div[2]/table/tbody/tr[2]/td[2]");
+
     public Mst_SalesOrgPage(WebDriver driver) {
         super(driver);
     }
@@ -142,5 +143,9 @@ public class Mst_SalesOrgPage extends WBA_BasePage {
         return -1;
         
     }
+
+
+
+
     
 }

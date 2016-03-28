@@ -2,6 +2,8 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
+import AutomationFramework.PreFlows;
+import AutomationFramework.Wait;
 import PageObjects.CCE_AddOrderPage;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_ConfirmProductionPage;
@@ -15,11 +17,8 @@ import static com.coats.selenium.DriverFactory.getDriver;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.testng.AssertJUnit;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -86,11 +85,25 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\4Confirm selected.png"));
-        
+
+
         System.out.println("Confirm selected. Pressing DN Print...");
         
         CCE_OrderViewPage viewPage = cpPage.pressDnPrint();
-        
+
+        boolean errorDisplayed;
+
+    /*    try {
+            Alert alert = Wait.alert(driver);
+            alert.accept();
+
+            System.out.println("Error received: "+alert.getText());
+            errorDisplayed = true;
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+            errorDisplayed = false;
+        }
+        */
         //Take a screenshot
         File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Confirm Production\\5DN view.png"));
@@ -203,13 +216,16 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
     }
 
     @Test //Confirm Production Page :: SUMST :: Lab SOS can be confirmed and status changes to Delivered
-    (groups = {"CCE","CCE_Orders"})
+    (groups = {"Solo"})
     public void CP3() throws Exception {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
         CCE_MainPage mainPage = base.setUp("Confirm Production CP3: Lab SOS status update", "G_CCE_SOC_16");
-        
+
+        PreFlows pf = new PreFlows();
+        pf.deActivateAutoEnrichForCustomer(driver, DataItems.lifeEasyCustomer);
+
         System.out.println("Navigating to Order Samples Page...");
         
         CCE_OrderSamplesPage orderPage = mainPage.pressOrderSamples();
@@ -244,6 +260,8 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         System.out.println("Order Status Page loaded. Retrieving Order No. for order...");
         
         String orderNo = statusPage.getOrderNo(DataItems.lastUsedPO);
+
+        driver.navigate().refresh();
         
         System.out.println("Order No.: " + orderNo+". Navigating to Manual Enrich Page...");
         

@@ -23,6 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
+import org.w3c.dom.Element;
 
 
 public class CommonTask {
@@ -431,6 +432,44 @@ public class CommonTask {
         dragAndDrop.perform();
 */
     }
+
+
+    public static void setDateFieldWithoutHours(WebDriver driver, By fieldLocator) {
+        //Set the value of a date field. The algorithm will selet a date 3 days in advance,
+        //unless the date is beyond the 25th, when the 3rd of next month will be selected
+
+        //Wait for element to be available
+        WebElement element = Wait.clickable(driver,fieldLocator);
+
+        //Click element to reveal date picker
+        element.click();
+
+        //Get the current day of the month
+        Calendar cal = Calendar.getInstance();
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+
+        //New action for clicking
+        Actions clickDatePicked = new Actions(driver);
+
+        if (dayOfMonth < 25) {
+            //Calculate day of month three days in future
+            String date = String.valueOf((int)dayOfMonth+3);
+
+            //Find label with corect date and click it
+            By dateLocator = By.xpath("//a[contains(text(),'"+date+"')]");
+            clickDatePicked.click(driver.findElement(dateLocator)).build().perform();
+        } else {
+            //Find label for next month and click
+            By nextMonthLocator = By.xpath("//*[@id=\"ui-datepicker-div\"]/div/a[2]/span");
+            clickDatePicked.click(driver.findElement(nextMonthLocator)).build().perform();
+
+            //Find label for 3rd of the month and click
+            By thirdOfMonthLocator = By.xpath("//a[contains(text(),\"3\")]");
+            clickDatePicked.click(driver.findElement(thirdOfMonthLocator)).click().perform();
+        }
+
+
+    }
     
     public static ExpectedCondition<Boolean> textContains(final String text, final String elementText) {
         //A wait condition which will ensure the elementText variable contains the text variable before continuing
@@ -490,6 +529,36 @@ public class CommonTask {
         return new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver f) {
                 WebElement inputField = f.findElement(locator);
+                if (inputField.getAttribute("value").equals(text)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
+
+    public static ExpectedCondition<Boolean> textToBePresentInput2(final String element, final String text) {
+        //A wait condition which will ensure text is present in the field (for input fields) before continuing
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver f) {
+
+                WebElement inputField = f.findElement(By.id("BrandName"));
+                if (inputField.getAttribute("value").equals(text)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
+
+    public static ExpectedCondition<Boolean> textToBePresentInput3(final String element, final String text) {
+        //A wait condition which will ensure text is present in the field (for input fields) before continuing
+        return new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver f) {
+
+                WebElement inputField = f.findElement(By.id("CountryCountryCode"));
                 if (inputField.getAttribute("value").equals(text)) {
                     return true;
                 } else {

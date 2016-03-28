@@ -88,6 +88,8 @@ public class Cce_SAPLog_Test extends DriverFactory {
         viewPage.waitForInvisibility();
         
         System.out.println("View closed. Exporting records...");
+
+        driver.navigate().refresh();
         
         Ecomm_ExportDownloadPage dlPage = sapPage.pressExport();
         dlPage.waitForDownloadCompletion();

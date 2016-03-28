@@ -78,6 +78,14 @@ public class Wait {
     public static boolean textPresentInput(WebDriver driver, By locator, String text) {
         return new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.textToBePresentInput(locator,text));
     }
+
+    public static boolean textPresentInput2(WebDriver driver, String element, String text) {
+        return new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.textToBePresentInput2(element,text));
+    }
+    public static boolean textPresentInput3(WebDriver driver, String element, String text) {
+        return new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.textToBePresentInput3(element,text));
+    }
+
     
     public static boolean selectionPresent(WebDriver driver, By locator) {
         return new WebDriverWait(driver,DataItems.shortWait).until(CommonTask.selectionToBePresent(locator));

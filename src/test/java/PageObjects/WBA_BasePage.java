@@ -37,6 +37,7 @@ public class WBA_BasePage {
     public static By breadcrumbLocator = By.cssSelector("#content > h2");
     public static By breadcrumbLocator2 = By.cssSelector("#list_page_breadcrumb > h1");
     public static By breadcrumbLocator3 = By.cssSelector("#list_page_breadcrumb > h2");
+    public static By breadcrumbzLocator = By.xpath("/html/body/div[1]/div[3]/div[1]/h2");
     static By footerLocator = By.id("footer");
     static By contentFrame = By.id("content");
     public static By noRecords = By.className("norec");
@@ -55,7 +56,8 @@ public class WBA_BasePage {
         static By outstUploadDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
         static By courierTrackingUpdate = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
         static By pendingApprovalSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
-        static By pendingApprovalSubTabApprover = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
+        static By outstandingOrdersTabApprover = By.cssSelector("#topnav > li:nth-child(1)");
+        static By pendingApprovalSubTabApprover = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
         static By deniedOrderSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
         static By uploadDraftErrorSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
         
@@ -69,7 +71,7 @@ public class WBA_BasePage {
         static By myReportsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(5)");
         static By coatsUserRepSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(6)");
         static By termsConditionsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(7)");
-        static By orderAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(8)");
+        static By orderAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(7)");
         
     static By dashboardTab = By.cssSelector("#topnav > li:nth-child(5)");
         static By realUploadFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(1)");
@@ -85,13 +87,14 @@ public class WBA_BasePage {
     //CCE Navbar locators
     static By ordersHeader = By.cssSelector("#topnav > li:nth-child(2)");
         static By orderSamplesSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
-        static By outstandingDraftSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
-        static By manualEnrichSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
-        static By orderStatusSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
-        static By dnReprintSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
-        static By feedbackSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
-        static By feedbackCompletedSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
-        static By feedbackAwaitingSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(8)");
+        static By uploadOrderSamplesSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
+        static By outstandingDraftSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
+        static By manualEnrichSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
+        static By orderStatusSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
+        static By dnReprintSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
+        static By feedbackSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
+        static By feedbackCompletedSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(8)");
+        static By feedbackAwaitingSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(9)");
         
     static By hubHeader = By.cssSelector("#topnav > li:nth-child(3)");
         static By hubSosSubtab = By.cssSelector("#topnav > li:nth-child(3) > div > div > ul > li:nth-child(1)");
@@ -132,7 +135,7 @@ public class WBA_BasePage {
             static By businessPrincipalsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(5)");
             static By plantsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(4) > a");
             static By hubsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(6)");
-            static By plantHolidaysOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(4) > a");
+            static By plantHolidaysOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(5) > a");
             static By enterpriseStructureOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(7)");
             static By brandsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(8)");
             static By ticketsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(9)");
@@ -164,10 +167,13 @@ public class WBA_BasePage {
         static By lrmLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(4)");
         static By sapLogSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(5)");
         static By archivesSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(6)");
-    
+
+    static By dashboardHeader = By.cssSelector("#topnav > li:nth-child(9)");
+        static By sampleUploadFailedFilesSubtab = By.cssSelector("#topnav > li:nth-child(9) > div > div > ul > li:nth-child(1)");
+
     //Navigation headers specifically for requester/approver/alternative user types
         static By deniedOrderSubtabRequester = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
-        static By deniedOrderSubtabApprover = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
+        static By deniedOrderSubtabApprover = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3)");
     
     
     public WBA_BasePage(WebDriver passedDriver) {
@@ -407,10 +413,10 @@ public class WBA_BasePage {
     public Ecomm_PendingApprovalListPage clickPendingApprovalListPageApprover() {
         //Works specifically for approver account (mail.kamleshpatidar@gmail.com)
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTabApprover)));
         
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        action.moveToElement(driver.findElement(outstandingOrdersTabApprover)).click().build().perform();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(pendingApprovalSubTabApprover)));
         action.click(driver.findElement(pendingApprovalSubTabApprover)).build().perform();
@@ -435,10 +441,10 @@ public class WBA_BasePage {
     public Ecomm_DeniedOrderPage clickDeniedOrderApprover() {
         //Works specifically for requester account (autolifeeasy@coats.com)
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTabApprover)));
         
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        action.moveToElement(driver.findElement(outstandingOrdersTabApprover)).click().build().perform();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(deniedOrderSubtabApprover)));
         action.click(driver.findElement(deniedOrderSubtabApprover)).build().perform();
@@ -594,7 +600,29 @@ public class WBA_BasePage {
         
         return new CCE_OrderSamplesPage(driver);
     }
-    
+
+    public CCE_UploadOrderSamplesPage pressUploadOrderSamples() {
+
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(ordersHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(uploadOrderSamplesSubtab));
+        action.click(driver.findElement(uploadOrderSamplesSubtab)).build().perform();
+
+        return new CCE_UploadOrderSamplesPage(driver);
+    }
+
+    public CCE_SampleUploadFailedFilesPage pressSampleUploadFailedFiles() {
+
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dashboardHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(dashboardHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(sampleUploadFailedFilesSubtab));
+        action.click(driver.findElement(sampleUploadFailedFilesSubtab)).build().perform();
+
+        return new CCE_SampleUploadFailedFilesPage(driver);
+    }
+
     public CCE_ManualEnrichPage pressManualEnrich() {
         
         WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));

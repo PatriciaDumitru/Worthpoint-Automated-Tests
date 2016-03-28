@@ -5,7 +5,10 @@ import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import java.util.List;
 import static PageObjects.WBA_BasePage.driver;
+
+import AutomationFramework.Wait;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,7 +27,11 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     By cceShipNoticeLabel = By.cssSelector("#test > tbody > tr:nth-child(1) > th:nth-child(13)");
     By approvalWorkflowBox = By.id("CustomerApprovalWorkflow");
     By subAcctField = By.id("CustomerPayerEnabled");
-    By subAcctLabel = By.cssSelector("#CustomerEditForm > div:nth-child(2) > table > tbody > tr:nth-child(34) > td:nth-child(1) > label");
+    By subAcctLabel = By.xpath("/html/body/div[1]/div[3]/form/div[2]/table/tbody/tr[35]/td[1]/label");
+    By approvelCheckBoxCust = By.id("CustomerApprovalWorkflow");
+    By callOffOrderCheckBox=By.id("CustomerOffOrder");
+    By enableOrdersWithoutShade = By.id("CustomerCusOrdersWithoutShade");
+
     By userTypeField = By.id("Requester0UserTypeId");
     By saveButton = By.cssSelector("#CustomerEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     
@@ -134,7 +141,10 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
     }
-    
+
+
+
+
     public void checkFields() {
         //Wait for all elements to be clickable
         WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(customerNameField));
@@ -145,5 +155,40 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Edit Customer Page: Approval Workflow Box not displayed",custName.isDisplayed());
         
     }
-    
+    public void disableApprovalCheckBoxForCust() {
+        CommonTask.unSetCheckBox(driver, approvelCheckBoxCust);
+    }
+
+    public int getRow(String title) {
+
+        if (!checkForRecords()) {
+            return -1;
+        }
+        By headerLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(2) > a");
+        WebElement header = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(headerLocator));
+        AssertJUnit.assertTrue("Customer Private Articles Page: Customer name column has moved, update locators",header.getText().equals("Customer Name"));
+
+        By recordsField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        int count = getRecordCount(recordsField);
+        int tableCount = (count > 10) ? 10 : count;
+
+        for (int i = 2; i < (tableCount+2); i++) {
+            By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(2)");
+            WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
+            if (cell.getText().equals(title)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void enableCCEOrdersWithoutShade(){ CommonTask.setCheckBox(driver, enableOrdersWithoutShade); }
+
+    public void disableCCEOrdersWithoutShade(){ CommonTask.unSetCheckBox(driver, enableOrdersWithoutShade); }
+
+    public void enableCallOffOrderCheckBox(){
+        CommonTask.setCheckBox(driver, callOffOrderCheckBox);
+    }
+
+
 }
