@@ -19,7 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CCE_AddOrderPage extends WBA_BasePage {
    
-    //Locators
+    //Locators a
     public static By flashMessageLocator = By.id("flashMessage");
     static By shipToPartyField = By.id("SampleOrderShipToPartyId");
     static By busPrincipalField = By.id("SampleOrderBusinessPrincipalId");
