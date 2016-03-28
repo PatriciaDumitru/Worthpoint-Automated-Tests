@@ -219,6 +219,7 @@ public class DataItems {
     public static String length2SUSST = "5000";
     public static String finish2SUSST = "STANDARD";
     public static String shade2SUSST = "01212";
+    //ads
     
     //Line details for MOQ tests
     public static String testYourMatNum = "MOQTest";
