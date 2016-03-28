@@ -43,8 +43,8 @@ public class Ecomm_OrderInformationPage {
     public Ecomm_ShadeOrderConfirmationPage pressSubmit() {
         WebElement submit = Wait.clickable(driver,submitButton);
         submit.submit();
-        Alert alert = Wait.alert(driver,DataItems.longWait);
-        alert.accept();
+        //Alert alert = Wait.alert(driver,DataItems.longWait);
+        //alert.accept();
         
         try {
             Alert alert2 = Wait.alert(driver);
@@ -69,7 +69,7 @@ public class Ecomm_OrderInformationPage {
     }
     
     public Ecomm_OrderInformationPage setRequiredDate() {
-        CommonTask.setDateField(driver, requiredDateField);
+        CommonTask.setDateFieldWithoutHours(driver, requiredDateField);
         return this;
     }
     

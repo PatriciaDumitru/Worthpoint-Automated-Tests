@@ -23,8 +23,10 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     By saveButton = By.id("save");
     By cancelButton = By.cssSelector("#SalesOrgEditForm > div.actions > ul > li:nth-child(2) > a");
     By orderUploadCheckBox=By.id("SalesOrgSampleUploadActive");
+    By callOffOrderCheckBox=By.id("SalesOrgOffOrder");
+
     By enableOrdersWithoutShade = By.id("SalesOrgEnabledOrdersWithoutShade");
-    
+
     public Mst_EditSalesOrgPage(WebDriver driver) {
         super(driver);
     }
@@ -83,7 +85,7 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(enableOrdersWithoutShade));
         return element;
     }
-    
+
     public Mst_SalesOrgPage pressSave() {
         WebElement btn = getSaveButton();
         btn.click();
@@ -123,6 +125,10 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         CommonTask.setCheckBox(driver, orderUploadCheckBox);
     }
 
+    public void enableCallOffOrderCheckBox(){
+        CommonTask.setCheckBox(driver, callOffOrderCheckBox);
+    }
+
     public void disableCCEOrderUploadCheckBox(){
         CommonTask.unSetCheckBox(driver, orderUploadCheckBox);
     }
@@ -156,4 +162,7 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
 //            return false;
 //        }
 //    }
+public void disableCallOffOrderCheckBox(){
+    CommonTask.unSetCheckBox(driver, callOffOrderCheckBox);
+}
 }

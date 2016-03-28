@@ -22,7 +22,6 @@ public class DataItems {
     public static String qaTestEnv  = "test";
     public static String ecommURL = "https://qawcs.coatscolourexpress.com/test/ecom";
 
-
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
     public static String screenshotsFilepath = "C:\\Selenium\\Screenshots"; //Filepath to which all screenshots (taken on instruction from within program, NOT by surefire) are saved
@@ -136,6 +135,8 @@ public class DataItems {
     //Customer details to be used in manual entry tests
     public static String[] custDetails = {"Life Easy Customer", "CCE HUB OFFICES", "approver 1 test", "*OTHERS*", "AutoTestPO_"};
     public static String[] custDetails2 = {"ADIS DIMENSION FOOTWEAR. PT", "ADIS SHIP TO", "Dian ", "NIKE FOOTWEAR & EQUIPMENT", "AutoTestPO_"};
+    public static String[] custDetails3 = {"Star Garments Ltd.", "Star Garments", "joe sykes", "*OTHERS*", "AutoTestPO_"};
+    //public static String customer4="AMMAR APPAREL II S DE RL DE CV";
     public static String custCode = "106499"; //Customer code for Life Easy Customer
 
     //Customer details to be used in subaccount tests
@@ -146,7 +147,7 @@ public class DataItems {
     public static String[] testCustDetails = {"Life Easy Customer", "Life Easy Customer", "Life Easy", "*OTHERS*", "AutoTestPO_"};
 
     //Requester used during Upload Order Tests
-    public static String UORTrequestor = "approver 1 test";
+    //public static String UORTrequestor = "approver 1 test";
 
     //Line details for manual entry tests
     public static String article = "8754180";
@@ -167,10 +168,10 @@ public class DataItems {
 
     public static String yourMatNum2 = "eComm Astra 180";
     public static String expArticle2 = "8754180";
-    public static String expBrand2 = "astra";
-    public static String expTicket2 = "180";
-    public static String expLength2 = "5000";
-    public static String expFinish2 = "STANDARD";
+    //public static String expBrand2 = "astra";
+    //public static String expTicket2 = "180";
+    //public static String expLength2 = "5000";
+    //public static String expFinish2 = "STANDARD";
     public static String expShadeCode2 = "C9700";
 
     public static String brand2 = "gramax";
@@ -186,7 +187,27 @@ public class DataItems {
     public static String length3 = "5000";
     public static String finish3 = "STANDARD";
     public static String shadeCode3 = "C9455";
-    public static int quantity3 = 1;
+    //public static int quantity3 = 1;
+
+    //public static String expTicket3 = "120";
+    public static String orderedQty="66";
+    public static String adjustedQty="66";
+    public static String orderedQty2="4";
+    public static String adjustedQty2="4";
+    public static String orderedQtyNull="--";
+    public static String adjustedQtyNull="--";
+    public static String UOM="Cone";
+    public static String unitPrice="1.00";
+    public static String unitPriceNull="0.00";
+    public static String valueNull="0.00";
+    public static String value2="66.00";
+    public static String value3="4.00";
+    public static String notUniqMsg="CONTRACT REFERENCE IS NOT UNIQUE";
+    public static String invalidDataMsg="INVALID COMBINATION OF INPUT DATA";
+    public static String sapCodeMsg="CONTRACT SAP MATERIAL CODE DOES NOT MATCH INPUT SAP MATERIAL CODE";
+
+
+
 
     //Details used in CCE Threshold qty tests (id=SOC_5)
     public static String thresholdBrand = "astra";
@@ -203,10 +224,16 @@ public class DataItems {
     public static String conOrdTicket = "120";
     public static String conOrdLength = "5000";
     public static String conOrdFinish = "STANDARD";
-    public static String conOrdShadeCode = "C1711";
+    public static String conOrdShadeCode = "WHITE";
+    public static String conOrdShadeCode2 = "BLACKD";
     public static int conOrdQty = 1;
     public static String conOrdPO = "40000992";
-    public static String conOrdLineRef = "10";
+    //public static String conOrdLineRef = "10";
+
+    //public static String expConOrdArticle = "8754120";
+    //public static String expConOrdShadeCode = "WHITE";
+    //public static String expConOrdTicket = "120";
+    //public static String expConOrdBrand = "astra";
 
     //Line details for use with SUSST Account (joecontract@coats.com, Star Garments Ltd.)
     public static String yourMatNumSUSST = "AutoTestMaterial";
@@ -246,13 +273,13 @@ public class DataItems {
 
     //Request types
     public static String sewing = "sewing";
-    public static String shadeDev = "Shade Development";
+    //public static String shadeDev = "Shade Development";
     public static String colourMatch = "colMat";
     public static String salesSamp = "Salesman Sample";
 
     //Purpose types
     public static String bulkPurpose = "Bulk (Samples for Bulk Fabric)";
-    public static String preprodPurpose = "Pre-production";
+    //public static String preprodPurpose = "Pre-production";
     public static String protoPurpose = "Prototype";
 
     //Cancellation reasons
@@ -286,7 +313,7 @@ public class DataItems {
 
     //Data used in masters
     public static String autoUserType = "AutoTestUser";
-    public static String countryName = "AutoTest Land";
+    //public static String countryName = "AutoTest Land";
 
     //MOQ data
     //Sales Org Page
@@ -314,6 +341,7 @@ public class DataItems {
     public static int longWait = 20;
     public static int downloadWait = 60;
 
+
     //CSA Data
     public static String notFound = "No matches found";
     public static String cceArticleFromBrandAstra = "8720025";
@@ -324,7 +352,7 @@ public class DataItems {
     public static String lifeEasyRequester = "Life Easy";
     public static String someOtherCustomer = "ADIS DIMENSION FOOTWEAR. PT";
     public static String brandAstraCSA = "astra";
-    public static String brandAdmiralCSA = "admiral";
+    //public static String brandAdmiralCSA = "admiral";
     public static String brandStarNylonCSA = "star nylon";
     public static String salesOrgID = "ID51";
     public static String deliveryToPlantAll = "Select";

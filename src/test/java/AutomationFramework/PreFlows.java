@@ -25,6 +25,8 @@ import org.testng.AssertJUnit;
 
 public class PreFlows {
 
+    WebDriver driver;
+
     //Locators
     //General
     By chooseTheOtherProfile = By.id("access_type"); //CCE or Ecomm depending on which page you are
@@ -60,6 +62,8 @@ public class PreFlows {
     //Manual Entry Page
     By buyersField = By.xpath(".//*[@id='s2id_BuyerId']/a/abbr");
     By normalOrderRadioButton = By.id("normal_check");
+    By contractOrderRadioButton = By.id("contract_check");
+
 
 
     //Locator
@@ -79,6 +83,16 @@ public class PreFlows {
         saveSalesOrg(driver);
         goToCustomerAndEdit(driver, customer);
         setDeliveryPlant(driver, plant);
+        enableApprovalCheckBoxForCust(driver);
+        saveCustomer(driver);
+    }
+
+
+    public void enableApprovelCheckBoxForSalesOrgAndCust(WebDriver driver, String salesOrg, String customer){
+        goToSalesOrgAndEdit(driver,salesOrg);
+        enableApprovalCheckBoxForSalesOrg(driver);
+        saveSalesOrg(driver);
+        goToCustomerAndEdit(driver, customer);
         enableApprovalCheckBoxForCust(driver);
         saveCustomer(driver);
     }
@@ -207,7 +221,11 @@ public class PreFlows {
         CommonTask.setCheckBox(driver, normalOrderRadioButton);
     }
 
-    public void activateCallOffOrderForCustomer(WebDriver driver, String customer){
+    public void selectContractOrderRadioButton(WebDriver driver) {
+        CommonTask.setCheckBox(driver, contractOrderRadioButton);
+    }
+
+    public void activateCallOffOrderForCustomer(WebDriver driver, String customer) {
         goToCustomerAndEdit(driver, customer);
         activateCallOffOrderCheckboxCust(driver);
         saveCustomer(driver);
@@ -224,6 +242,7 @@ public class PreFlows {
         deActivateCallOffOrderCheckbox(driver);
         saveCustomer(driver);
     }
+
     public void activateCallOffOrderAndDeactivateApprovalForCustomer(WebDriver driver, String customer) {
         goToCustomerAndEdit(driver, customer);
         activateCallOffOrderCheckboxCust(driver);

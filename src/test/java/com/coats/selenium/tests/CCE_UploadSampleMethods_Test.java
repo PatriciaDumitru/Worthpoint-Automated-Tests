@@ -20,11 +20,11 @@ import java.io.IOException;
 /**
  * Created by dion on 09.03.2016.
  */
-public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
+public class CCE_UploadSampleMethods_Test extends DriverFactory {
 
     @Test //Order status page :: page and filter checks, reset function, export data
             (groups = {"CCE"})
-    public void US01() throws IOException, Exception {
+    public void US01() throws Exception {
 
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -97,7 +97,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
 
         System.out.println("Saved. Navigating to Customer master data...");
 
-        //Go Masters -> Customers and edit Customer(Life Easy Customer)
+        //Go Masters -> Customers and edit Customer(AMMAR APPAREL II S DE RL DE CV)
         Mst_CustomersPage custPage = ccePage.selectCustomers();
         custPage.waitForElement();
 
@@ -184,7 +184,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
 
     @Test //Order status page :: page and filter checks, reset function, export data
             (groups = {"CCE"})
-    public void US02() throws IOException, Exception {
+    public void US02() throws Exception {
 
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -257,7 +257,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
 
         System.out.println("Saved. Navigating to Customer master data...");
 
-        //Go Masters -> Customers and edit Customer(Life Easy Customer)
+        //Go Masters -> Customers and edit Customer(AMMAR APPAREL II S DE RL DE CV)
         Mst_CustomersPage custPage = ccePage.selectCustomers();
         custPage.waitForElement();
 
@@ -282,7 +282,7 @@ public class CCE_Upload_Sample_Methods_Test extends DriverFactory {
         custPage.waitForElement();
         System.out.println("Saved. Log out...");
 
-        //Logout of globalAdmin ang login with Requster(compras.calkini@gkmexico.com)
+        //Logout of globalAdmin and login with Requster(compras.calkini@gkmexico.com)
         WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
         logout.click();
 

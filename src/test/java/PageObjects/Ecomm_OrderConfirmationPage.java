@@ -58,8 +58,25 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     static By contractPOCell = By.cssSelector("#order_table > table > thead > tr:nth-child(1) > th:nth-child(15) > label");
     static By SAPContractNoCell = By.cssSelector("#remove_0 > td:nth-child(14)");
     static By lineRefCell = By.cssSelector("#order_table > table > thead > tr:nth-child(1) > th:nth-child(14) > label");
-    static By uomCell = By.cssSelector("#remove_0 > td:nth-child(8)");  
-    
+    static By uomCell = By.cssSelector("#remove_0 > td:nth-child(8)");
+
+    By orderedQty = By.cssSelector("#remove_0 > td:nth-child(6)");
+    By orderedQty3 = By.cssSelector("#remove_1 > td:nth-child(6)");
+    By orderedQty4 = By.cssSelector("#remove_2 > td:nth-child(6)");
+    By adjustedQty = By.cssSelector("#remove_0 > td:nth-child(7)");
+    By adjustedQty3 = By.cssSelector("#remove_1 > td:nth-child(7)");
+    By adjustedQty4 = By.cssSelector("#remove_2 > td:nth-child(7)");
+    By UOM = By.cssSelector("#remove_0 > td:nth-child(8)");
+    By UOM3 = By.cssSelector("#remove_1 > td:nth-child(8)");
+    By UOM4 = By.cssSelector("#remove_2 > td:nth-child(8)");
+    By unitPrice = By.cssSelector("#remove_0 > td:nth-child(9)");
+    By unitPrice3 = By.cssSelector("#remove_1 > td:nth-child(9)");
+    By unitPrice4 = By.cssSelector("#remove_2 > td:nth-child(9)");
+    By value2 = By.cssSelector("#remove_0 > td:nth-child(10)");
+    By value3 = By.cssSelector("#remove_1 > td:nth-child(10)");
+    By value4 = By.cssSelector("#remove_2 > td:nth-child(10)");
+
+
     //Button locators
     static By submitButtonLocator = By.id("submit1");
     static By cancelButtonLocator = By.id("cancel1");
@@ -264,7 +281,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             Alert alert = Wait.alert(driver);
             alert.accept();
         } catch (Exception e) {
-            
+            System.out.print(e);
         }
 
         //Sometimes unexpected alerts appear. Catch these and accept by default
@@ -296,7 +313,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             Alert alert = Wait.alert(driver,DataItems.longWait);
             alert.accept();
         } catch (Exception e) {
-            
+            System.out.print(e);
         }
         
         return new Ecomm_UploadProcessPage(driver);
@@ -315,7 +332,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             Alert alert2 = Wait.alert(driver);
             alert2.accept();
         } catch (TimeoutException t) {
-            
+            System.out.print(t);
         }
         
         return new Ecomm_OrderConfirmationPage(driver);
@@ -349,7 +366,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             Alert alert = Wait.alert(driver);
             alert.accept();
         } catch (TimeoutException t) {
-            
+            System.out.print(t);
         }
         
         return new Ecomm_PendingApprovalListPage(driver);
@@ -473,9 +490,79 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats article does not appear in line details as expected",materialParts[0].equals(DataItems.conOrdArticle));
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, Coats shade does not appear in line details as expected",materialParts[1].equals(DataItems.conOrdShadeCode));
         AssertJUnit.assertTrue("Order Confirmation Page: For contract order, UOM does not appear in line details as expected",uom.equals("Cone"));
-        //AssertJUnit.assertTrue("Order Confirmation Page: For contract order, SAP Contract No. does not appear in line details as expected",sapConNo.equals(DataItems.conOrdPO));
+        AssertJUnit.assertTrue("Order Confirmation Page: For contract order, SAP Contract No. does not appear in line details as expected",sapConNo.equals(DataItems.conOrdPO));
         
         return true;
+    }
+    public WebElement getOrderedQty2() {
+        //find and return element
+        return driver.findElement(orderedQty);
+    }
+
+    public WebElement getOrderedQty3() {
+        //find and return element
+        return driver.findElement(orderedQty3);
+    }
+
+    public WebElement getOrderedQty4() {
+        //find and return element
+        return driver.findElement(orderedQty4);
+    }
+
+    public WebElement getAdjustedQty2() {
+        //find and return element
+        return driver.findElement(adjustedQty);
+    }
+
+    public WebElement getAdjustedQty3() {
+        //find and return element
+        return driver.findElement(adjustedQty3);
+    }
+    public WebElement getAdjustedQty4() {
+        //find and return element
+        return driver.findElement(adjustedQty4);
+    }
+
+    public WebElement getUOM() {
+        //find and return element
+        return driver.findElement(UOM);
+    }
+
+    public WebElement getUOM3() {
+        //find and return element
+        return driver.findElement(UOM3);
+    }
+
+    public WebElement getUOM4() {
+        //find and return element
+        return driver.findElement(UOM4);
+    }
+    public WebElement getValue2() {
+        //find and return element
+        return driver.findElement(value2);
+    }
+
+    public WebElement getValue3() {
+        //find and return element
+        return driver.findElement(value3);
+    }
+
+    public WebElement getValue4() {
+        //find and return element
+        return driver.findElement(value4);
+    }
+    public WebElement getUnitPrice() {
+        //find and return element
+        return driver.findElement(unitPrice);
+    }
+
+    public WebElement getUnitPrice3() {
+        //find and return element
+        return driver.findElement(unitPrice3);
+    }
+    public WebElement getUnitPrice4() {
+        //find and return element
+        return driver.findElement(unitPrice4);
     }
 
     public String getFlashMessage (){
