@@ -3,8 +3,10 @@ package com.coats.selenium.tests;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
+import AutomationFramework.Wait;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -46,16 +48,46 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //Select existing mapping
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
-        mapPage.waitForElement();
+
+        System.out.println("Mapping page loaded. Setting mapping...");
+
+        //Mapping details
+        //Element 0 of each array holds the field name. Element 1 of each array holds the corresponding header used in the file.
+        //If there is no corresponding header in the file, use "N/A"
+        String[][] mapping = {  {"Customer Name","Customer Name"},
+                {"Article","Article"},
+                {"Ticket","Ticket"},
+                {"Finish","Finish"},
+                {"Shade Code","Shade Code"},
+                {"Required Date","Required Date"},
+                {"Qty","Qty"},
+                {"Style","N/A"},
+                {"Style No./Production No.","N/A"},
+                {"Sub Account","N/A"},
+                {"Ship to Party Name","Ship to Party Name"},
+                {"Your Material No.","N/A"},
+                {"Brand","Brand"},
+                {"Length","Length"},
+                {"Buyers","N/A"},
+                {"Customer PO No","Customer PO No"},
+                {"Requestor Name","Requestor Name"},
+                {"Warehouse Instruction","N/A"},
+                {"Buyer Sales Order Number","N/A"},
+                {"Other Information","N/A"},
+                {"Customer Price","N/A"}
+        };
+
+        Ecomm_MappingPage mappedPage = mapPage.setMapping(mapping);
 
         System.out.println("Mapping page reached. Confirming...");
 
-        Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
 
         //Closing all alerts
         closeAlert(driver);
 
         closeAlert(driver);
+
 
         //Verifying that Order Confirmation Page is displayed
         orderConf.waitForElement();
@@ -278,6 +310,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //Get PO number
         String currentPO = orderConf.getCustUploadPOField().getAttribute("value");
         System.out.println("PO number in Order Confirmation page:" + currentPO);
+
         //Press submit
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
         outOrdersPage.waitForElement();
@@ -290,27 +323,40 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //Verifying the No Of Order Lines compared to the Order Status
         outOrdersPage.pressSearch();
 
-        StringBuilder currentOrderNumber = new StringBuilder();
+        StringBuilder noShadeOrderNumber = new StringBuilder();
+        StringBuilder correctShadeOrderNumber = new StringBuilder();
+
         for (int i = 0; i < 3; i++) {
             String orderNo = outOrdersPage.getOrderNumberSUMST(i);
             String orderStatus = outOrdersPage.getOrderStatus(i);
 
-            System.out.println("Order number on row" + i + ":" + orderNo);
-            System.out.println("Order status on row" + i + ":" + orderStatus);
+            System.out.println("Order number on row" + (i+1) + ":" + orderNo);
+            System.out.println("Order status on row" + (i+1) + ":" + orderStatus);
+
 
             if (orderStatus.contains("Waiting For Shade Code")) {
                 System.out.println("Verifying No. of Order Lines when Status is " + orderStatus + "...");
                 AssertJUnit.assertEquals("Incorrect No. of Order Lines!", "2", outOrdersPage.getNoOfOrderLines(i));
-                currentOrderNumber.append(orderNo);
+                noShadeOrderNumber.append(orderNo);
                 System.out.println("Verified!");
             } else {
-                System.out.println("Verifying No. of Order Lines when Status is " + orderStatus + "...");
-                AssertJUnit.assertEquals("Incorrect No. of Order Lines!", "1", outOrdersPage.getNoOfOrderLines(i));
-                System.out.println("Verified!");
+//                if (orderStatus.contains("Open")){
+//                    System.out.println("Verifying No. of Order Lines when Status is " + orderStatus + "...");
+//                    AssertJUnit.assertEquals("Incorrect No. of Order Lines!", "1", outOrdersPage.getNoOfOrderLines(i));
+//                    correctShadeOrderNumber.append(orderNo);
+//                    System.out.println("Verified!");
+//                } else {
+                    System.out.println("Verifying No. of Order Lines when Status is " + orderStatus + "...");
+                    AssertJUnit.assertEquals("Incorrect No. of Order Lines!", "1", outOrdersPage.getNoOfOrderLines(i));
+                    correctShadeOrderNumber.append(orderNo);
+                    System.out.println("Verified!");
+//                }
             }
         }
 
-        System.out.println(currentOrderNumber);
+        System.out.println("Order No for Waiting for Shade Code order status:"+noShadeOrderNumber);
+        System.out.println("Order No for Open order status:"+correctShadeOrderNumber);
+
 
         //Navigating to Waiting for Shade Page
         Ecomm_WaitingForShadePage waitForShadePage = eCommPage.clickWaitingForShade();
@@ -325,8 +371,13 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //Editing the order without shade
         waitForShadePage.pressEdit();
         driver.findElement(By.cssSelector("#remove_0 > td:nth-child(1) > a > span")).click();
-        //driver.findElement(By.cssSelector("#s2id_shade_id")).click();
-        CommonTask.setSearchField(driver,By.id("#s2id_shade_id"),"C1103");
+        CommonTask.waitForOverlay(driver);
+        CommonTask.setSearchField(driver,By.cssSelector("#s2id_shade_id"),"C1103");
+        driver.findElement(By.cssSelector("#Submit")).click();
+//        driver.findElement(By.cssSelector("#s2id_shade_id")).click();
+//        driver.findElement(By.cssSelector("#select2-drop > div > input")).sendKeys("c1730");
+//        driver.findElement(By.cssSelector("#Submit")).click();
+        //CommonTask.setSearchField(driver,By.id("#s2id_shade_id"),"C1103");
 
     }
 
@@ -340,6 +391,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         } catch (Exception e) {
             System.out.println("No error(s) displayed");
         }
+
     }
 
 

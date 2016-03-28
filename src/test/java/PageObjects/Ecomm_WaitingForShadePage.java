@@ -22,9 +22,10 @@ public class Ecomm_WaitingForShadePage extends WBA_BasePage {
     By orderNoField = By.id("s2id_filterBulkOrderId");
     By searchButton = By.cssSelector("#FilterWaitingforshadesListForm > div.grid_12 > table > tbody > tr:nth-child(4) > td > div > input");
     By resetButton = By.cssSelector("#FilterWaitingforshadesListForm > div.grid_12 > table > tbody > tr:nth-child(4) > td > a");
+
+    //table content locators
     By editButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(1) > a > span");
     By viewButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > a > span");
-    //table content locators
     By tableSalesOrg = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(3)");
     By tableCustName = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(4)");
     By tableCustPONo = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(5)");
