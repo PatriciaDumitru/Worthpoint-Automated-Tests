@@ -411,7 +411,7 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
 
         System.out.println("Edit page reached.");
 
-        //Check "Enable CCE order upload" flag
+        //Check "Enable CCE order upload"  flag
         System.out.println("Fields checked. Check 'Enable CCE order upload'...");
         editPage2.enableCCEOrderUploadCheckBox();
         editPage2.pressSave();
