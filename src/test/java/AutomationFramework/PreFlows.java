@@ -44,11 +44,13 @@ public class PreFlows {
     By saveSalesOrgButton = By.id("save");
     By approvelCheckBoxSalesOrg = By.id("SalesOrgSalesApprovalWorkflow");
     By getCallOffOrderCheckBoxSalesOrg = By.id("SalesOrgOffOrder");
+    By enableOrdersWithoutShade = By.id("SalesOrgEnabledOrdersWithoutShade");
 
     //Customer Masters Page
     By customerNameField = By.id("filterCustomerCustomerName");
     By filterCustomerButton = By.xpath(".//*[@id='FilterIndexForm']/div[3]/ul/li[1]/input");
     By editCustomerButton= By.xpath(".//*[@id='content']/div[2]/table/tbody/tr[2]/td[7]/a[1]/span");
+    By enableOrdersWithoutShadeCust = By.id("CustomerCusOrdersWithoutShade");
 
     //Customer Edit Page
     By customerNameEditPageField = By.id("CustomerCustomerName");
@@ -87,6 +89,15 @@ public class PreFlows {
         saveCustomer(driver);
     }
 
+    public void enableEnableOrdersWithoutShadeForSalesOrgandCust(WebDriver driver,String salesOrg,String customer){
+        goToSalesOrgAndEdit(driver, salesOrg);
+        enableEOwSForSalesOrg(driver);
+        saveSalesOrg(driver);
+        goToCustomerAndEdit(driver, customer);
+        enableEOwSForCust(driver);
+        disableMOQCheckBox(driver);
+        saveCustomer(driver);
+    }
 
     public void enableApprovelCheckBoxForSalesOrgAndCust(WebDriver driver, String salesOrg, String customer){
         goToSalesOrgAndEdit(driver,salesOrg);
@@ -159,10 +170,16 @@ public class PreFlows {
         enableMOQCheckBoxAndSaveCustomer(driver);
     }
 
+    public void disableMOQForCustomer(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        disableMOQCheckBox(driver);
+    }
+
     public void enableMOQCheckBoxAndSaveCustomer(WebDriver driver){
         enableMOQCheckBox(driver);
         saveCustomer(driver);
     }
+
     public void enableMOQCheckBox(WebDriver driver){
         CommonTask.setCheckBox(driver, mdqCheckBox);
     }
@@ -185,6 +202,14 @@ public class PreFlows {
     }
     public void disableApprovalCheckBoxForSalesOrg(WebDriver driver){
         CommonTask.unSetCheckBox(driver, approvelCheckBoxSalesOrg);
+    }
+
+    public void enableEOwSForSalesOrg(WebDriver driver){
+        CommonTask.setCheckBox(driver, enableOrdersWithoutShade);
+    }
+
+    public void enableEOwSForCust(WebDriver driver){
+        CommonTask.setCheckBox(driver, enableOrdersWithoutShadeCust);
     }
 
     public void disableApprovalCheckBox(WebDriver driver){

@@ -1,6 +1,7 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.PreFlows;
 import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
 import AutomationFramework.Wait;
@@ -15,22 +16,24 @@ import org.testng.annotations.Test;
 
 /**
  * Created by Stefan on 23.03.2016.
- *
- *
- * Prerequisites: Ensure Cce_EnableOrdersWithoutShade_Test -> EOwS_GC_010 is run before this test.
- * We need to enable the flag as a prerequisite.
  */
 public class Ecomm_UO_EOwS_Test extends DriverFactory {
     @Test //Enable Order without Shade :: Blank shade orders are separately ordered - Waiting for shade.
             (groups = {"eComm"})
     public void EOwS_GC_030() throws Exception {
+
         //new chrome driver
         WebDriver driver = getDriver();
 
         //new base test to set up
         Ecomm_Base uoRTTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uoRTTest1.setUp("UPLOAD ORDER Exceptions UORTex1: Invalid material number in spreadsheet", "GE_O_OC_URT_Ex1");
+        Ecomm_MainPage eCommPage = uoRTTest1.setUp("Enable Order without Shade on Sales Organizations page", "EOwS_GC_030");
+
+
+        //Enabling the flags for Sales Org and Customer
+        PreFlows pf = new PreFlows();
+        pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
 
         System.out.println("Navigating to Upload Order...");
 
@@ -55,29 +58,29 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //Element 0 of each array holds the field name. Element 1 of each array holds the corresponding header used in the file.
         //If there is no corresponding header in the file, use "N/A"
         String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","Article"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
+                                {"Article","Article"},
+                                {"Ticket","Ticket"},
+                                {"Finish","Finish"},
+                                {"Shade Code","Shade Code"},
+                                {"Required Date","Required Date"},
+                                {"Qty","Qty"},
+                                {"Style","N/A"},
+                                {"Style No./Production No.","N/A"},
+                                {"Sub Account","N/A"},
+                                {"Ship to Party Name","Ship to Party Name"},
+                                {"Your Material No.","N/A"},
+                                {"Brand","Brand"},
+                                {"Length","Length"},
+                                {"Buyers","N/A"},
+                                {"Customer PO No","Customer PO No"},
+                                {"Requestor Name","Requestor Name"},
+                                {"Warehouse Instruction","N/A"},
+                                {"Buyer Sales Order Number","N/A"},
+                                {"Other Information","N/A"},
+                                {"Customer Price","N/A"}
+                                };
 
-        Ecomm_MappingPage mappedPage = mapPage.setMapping(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
 
         System.out.println("Mapping page reached. Confirming...");
 
@@ -155,7 +158,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         System.out.println("Test PASSED!");
     }
 
-    @Test //Enable Order without Shade :: Invalid shade orders are separately ordered - Shade Nt Available.
+    @Test //Enable Order without Shade :: Invalid shade orders are separately ordered - Shade Not Available.
             (groups = {"eComm"})
     public void EOwS_GC_40() throws Exception {
         //new chrome driver
@@ -164,7 +167,11 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uoRTTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uoRTTest1.setUp("UPLOAD ORDER Exceptions UORTex1: Invalid material number in spreadsheet", "GE_O_OC_URT_Ex1");
+        Ecomm_MainPage eCommPage = uoRTTest1.setUp("Enable Order without Shade on Sales Organizations page", "EOwS_GC_040");
+
+        //Enabling the flags for Sales Org and Customer
+        PreFlows pf = new PreFlows();
+        pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
 
         System.out.println("Navigating to Upload Order...");
 
@@ -269,7 +276,11 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uoRTTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uoRTTest1.setUp("UPLOAD ORDER Exceptions UORTex1: Invalid material number in spreadsheet", "GE_O_OC_URT_Ex1");
+        Ecomm_MainPage eCommPage = uoRTTest1.setUp("Enable Order without Shade on Sales Organizations page", "EOwS_GC_050");
+
+        //Enabling the flags for Sales Org and Customer
+        PreFlows pf = new PreFlows();
+        pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
 
         System.out.println("Navigating to Upload Order...");
 
@@ -336,7 +347,11 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
             if (orderStatus.contains("Waiting For Shade Code")) {
                 System.out.println("Verifying No. of Order Lines when Status is " + orderStatus + "...");
+
+                //Verify that Waiting For Shade Code status is set to 2 lines
                 AssertJUnit.assertEquals("Incorrect No. of Order Lines!", "2", outOrdersPage.getNoOfOrderLines(i));
+
+                //
                 noShadeOrderNumber.append(orderNo);
                 System.out.println("Verified!");
             } else {
@@ -370,7 +385,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         //Editing the order without shade
         waitForShadePage.pressEdit();
-        driver.findElement(By.cssSelector("#remove_0 > td:nth-child(1) > a > span")).click();
+        driver.findElement(By.cssSelector("#remove_0 > td:nth-child(2) > a > span")).click(); //Edit Button locator from Waiting For Shade Code Order Confirmation
         CommonTask.waitForOverlay(driver);
         CommonTask.setSearchField(driver,By.cssSelector("#s2id_shade_id"),"C1103");
         driver.findElement(By.cssSelector("#Submit")).click();
