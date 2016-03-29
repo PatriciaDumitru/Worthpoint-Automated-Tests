@@ -206,9 +206,6 @@ public class DataItems {
     public static String invalidDataMsg="INVALID COMBINATION OF INPUT DATA";
     public static String sapCodeMsg="CONTRACT SAP MATERIAL CODE DOES NOT MATCH INPUT SAP MATERIAL CODE";
 
-
-
-
     //Details used in CCE Threshold qty tests (id=SOC_5)
     public static String thresholdBrand = "astra";
     public static String thresholdTicket = "120";
