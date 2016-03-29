@@ -180,7 +180,4 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         CommonTask.unSetCheckBox(driver, CCEOrderUpload);
     }
 
-public void disableCallOffOrderCheckBox(){
-    CommonTask.unSetCheckBox(driver, callOffOrderCheckBox);
-}
 }

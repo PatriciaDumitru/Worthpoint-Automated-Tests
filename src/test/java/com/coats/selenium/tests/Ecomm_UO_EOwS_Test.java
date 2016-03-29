@@ -7,7 +7,6 @@ import AutomationFramework.FileFactory;
 import AutomationFramework.Wait;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
