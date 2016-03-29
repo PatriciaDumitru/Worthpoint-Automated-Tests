@@ -51,8 +51,6 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         System.out.println("Setup MasterData...");
 
-
-
         System.out.println("Navigating to Manual Entry...");
 
         //press manual entry
@@ -142,6 +140,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Output order number for test reference
         String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
+
+
     
     }
 

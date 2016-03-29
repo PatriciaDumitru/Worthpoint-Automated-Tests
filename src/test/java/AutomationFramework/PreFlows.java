@@ -187,7 +187,6 @@ public class PreFlows {
         CommonTask.unSetCheckBox(driver, approvelCheckBoxSalesOrg);
     }
 
-
     public void disableApprovalCheckBox(WebDriver driver){
         CommonTask.unSetCheckBox(driver, approvelCheckBoxCust);
     }
