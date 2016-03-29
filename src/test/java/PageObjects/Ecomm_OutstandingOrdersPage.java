@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 
+import java.util.List;
+
 public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     
     By formLocator = By.id("FilterOutstandingOrderForm");
@@ -112,7 +114,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         
         return -1;  
     }
-    
+
     public int getRowAlt(String poNumber) {
         //The outstanding order tables vary so require alternative methods to getRow
         boolean waitForLoad = Wait.textPresent(driver,By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label"), "Customer PO No.");
@@ -207,6 +209,13 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     public String getOrderStatus(int row) {
         //For approver account (mail.kamleshpatidar@gmail.com)
         By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+row+" > td:nth-child(13)");
+        WebElement cell = Wait.visible(driver,locator);
+        return cell.getText();
+    }
+
+    public String getNoOfOrderLines (int row){
+        //Locator for "number of order lines" table cell
+        By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+row+" > td:nth-child(12)");
         WebElement cell = Wait.visible(driver,locator);
         return cell.getText();
     }

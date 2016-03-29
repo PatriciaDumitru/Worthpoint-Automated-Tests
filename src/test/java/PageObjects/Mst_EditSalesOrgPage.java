@@ -35,7 +35,7 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
         return element;
     }
-    
+
     public WebElement getNameField() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(nameField));
         return element;
@@ -143,27 +143,26 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
 
 
 
-    public boolean isChecked(By fieldLocator){
-        if (driver.findElement(fieldLocator).isSelected()) {
-            System.out.println("Flag is checked!");
-            return true;
-        }
-        else {
-            System.out.println("Flag is not checked!");
-            return false;
-        }
-    }
-
-    public boolean isEOwS_Checked(){
-        if (driver.findElement(enableOrdersWithoutShade).isSelected()) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    public void disableCallOffOrderCheckBox(){
-        CommonTask.unSetCheckBox(driver, callOffOrderCheckBox);
-    }
+//    public boolean isChecked(By fieldLocator){
+//        if (driver.findElement(fieldLocator).isSelected()) {
+//            System.out.println("Flag is checked!");
+//            return true;
+//        }
+//        else {
+//            System.out.println("Flag is not checked!");
+//            return false;
+//        }
+//    }
+//
+//    public boolean isEOwS_Checked(){
+//        if (driver.findElement(enableOrdersWithoutShade).isSelected()) {
+//            return true;
+//        }
+//        else {
+//            return false;
+//        }
+//    }
+public void disableCallOffOrderCheckBox(){
+    CommonTask.unSetCheckBox(driver, callOffOrderCheckBox);
+}
 }

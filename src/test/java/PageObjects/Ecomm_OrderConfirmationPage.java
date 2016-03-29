@@ -565,4 +565,10 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         return driver.findElement(unitPrice4);
     }
 
+    public String getFlashMessage (){
+        WebElement flashMessage = Wait.visible(driver,flashMessageLocator);
+        String text = flashMessage.getText();
+        return text;
+    }
+
 }
