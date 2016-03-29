@@ -38,7 +38,7 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));
         return element;
     }
-    
+
     public WebElement getNameField() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(nameField));
         return element;
@@ -180,4 +180,7 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         CommonTask.unSetCheckBox(driver, CCEOrderUpload);
     }
 
+public void disableCallOffOrderCheckBox(){
+    CommonTask.unSetCheckBox(driver, callOffOrderCheckBox);
+}
 }

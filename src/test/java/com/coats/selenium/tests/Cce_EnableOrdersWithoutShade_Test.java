@@ -13,6 +13,9 @@ import org.testng.annotations.Test;
 
 /**
  * Created by Stefan on 22.03.2016.
+ * This class contains 2 tests:
+ * test1: Enable flag for Enable Order without Shade in Sales Organizations Page and Customers Page
+ * test2: Disable flag for Enable Order without Shade in Sales Organizations Page and Customers Page
  */
 public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
 
@@ -51,8 +54,8 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
         //get the row number of Sales Organization searched for
         int row = soPage.getRow(DataItems.salesOrgFilterString);
 
-        //Press Edit
-        System.out.println("Record found. Editing record...");
+          //Press Edit
+        System.out.println("Record found on row:"+row+". Editing record...");
         Mst_EditSalesOrgPage editPage = soPage.pressEdit(row);
         editPage.waitForElement();
         System.out.println("Edit page reached. Checking title...");
@@ -215,12 +218,6 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
         custPage.waitForElement();
 
         System.out.println("Saved.");
-    }
-
-    @Test //Enable Order without Shade :: Blank shade orders are separately ordered - Waiting for shade.
-            (groups={"CCE"})
-    public void EOwS_GC_030() throws Exception {
-
     }
 
 }
