@@ -524,6 +524,8 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
 
     public Ecomm_OrderConfirmationPage pressNext() {
+
+
         //Wait for button to be clickable
         WebElement next = Wait.clickable(driver, nextButtonLocator);
         //Click next

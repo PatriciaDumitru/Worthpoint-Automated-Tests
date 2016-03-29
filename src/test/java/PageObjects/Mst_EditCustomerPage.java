@@ -31,9 +31,11 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     By approvelCheckBoxCust = By.id("CustomerApprovalWorkflow");
     By callOffOrderCheckBox=By.id("CustomerOffOrder");
     By CCEOrderUploadCheckBox=By.id("Requester9SampleUpload");
+    By disableCCEOrderUploadCheckBox=By.id("Requester0SampleUpload");
     By enableOrdersWithoutShade = By.id("CustomerCusOrdersWithoutShade");
     By SAPContractValidityCheckBox=By.id("CustomerOffOrderType");
-
+    static By orderUploadCheckBoxLocator = By.xpath("//*[@id=\"test\"]/tbody/tr[1]/th[14]");
+    static By orderUploadCheckBoxLocator2 = By.id("Requester9SampleUpload");
     By userTypeField = By.id("Requester0UserTypeId");
     By saveButton = By.cssSelector("#CustomerEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     
@@ -192,13 +194,28 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
         CommonTask.setCheckBox(driver, CCEOrderUploadCheckBox);
     }
 
+    public void disableCCEOrderUploadCheckBox(){
+        CommonTask.unSetCheckBox(driver, disableCCEOrderUploadCheckBox);
+    }
+
     public void enableCallOffOrderCheckBox(){
         CommonTask.setCheckBox(driver, callOffOrderCheckBox);
     }
 
-    public void enableSAPContractValidityCheckBox(){
-        CommonTask.setCheckBox(driver, SAPContractValidityCheckBox);
+    public void disableSAPContractValidityCheckBox(){
+        CommonTask.unSetCheckBox(driver, SAPContractValidityCheckBox);
     }
+
+    public static WebElement getOrderUploadCheckBox() {
+        //find and return element
+        return driver.findElement(orderUploadCheckBoxLocator);
+    }
+
+    public static WebElement getOrderUploadCheckBox2() {
+        //find and return element
+        return driver.findElement(orderUploadCheckBoxLocator2);
+    }
+
 
 
 }

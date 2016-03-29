@@ -100,8 +100,8 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         //Check "Enable Contract CALL OFF Order" flag
         System.out.println("Check 'Enable Contract CALL OFF Order'...");
         editPage2.enableCallOffOrderCheckBox();
-        System.out.println("Field checked. Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
-        editPage2.enableSAPContractValidityCheckBox();
+        System.out.println("Field checked. Un-Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
+        editPage2.disableSAPContractValidityCheckBox();
         editPage2.pressSave();
         custPage.waitForElement();
 
@@ -181,7 +181,8 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         editPage2.waitForElement();
 
         System.out.println("Edit page reached.");
-
+        System.out.println("Field checked. Un-Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
+        editPage2.disableSAPContractValidityCheckBox();
         System.out.println("Customers Edit page page reached. Verify that Flag 'Enable Contract CALL OFF Order' is not present");
         AssertJUnit.assertTrue(!driver.findElement(By.id("CustomerOffOrder")).isDisplayed());
         System.out.println("Flag 'Enable Contract CALL OFF Order' is not present");
@@ -341,7 +342,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         System.out.println("Product details entered. Pressing next...");
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
         System.out.println("Order confirmation page reached.");
 
         Verify.verify(orderConf.getOrderedQty2().getText().equals(DataItems.orderedQty2), "Order view: Ordered Qty does not match ");
@@ -386,7 +387,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
         System.out.println("Order confirmation page reached.");
 
         Verify.verify(orderConf.getOrderedQty2().getText().equals(DataItems.orderedQty2), "Order view: Ordered Qty does not match ");
@@ -431,7 +432,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
         System.out.println("Order confirmation page reached.");
 
         Verify.verify(orderConf.getOrderedQty2().getText().equals(DataItems.orderedQty), "Order view: Ordered Qty does not match ");
@@ -524,7 +525,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
         System.out.println("Order confirmation page reached.");
 
         //verify line 1
@@ -584,7 +585,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
         System.out.println("Order confirmation page reached.");
 
         boolean success;
@@ -639,7 +640,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
         System.out.println("Order confirmation page reached.");
 
         boolean success;
@@ -697,7 +698,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
         System.out.println("Order confirmation page reached.");
 
         boolean success;

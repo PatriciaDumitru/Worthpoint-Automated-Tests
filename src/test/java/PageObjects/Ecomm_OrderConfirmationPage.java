@@ -379,7 +379,17 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement wait = Wait.visible(driver,orderConfHeadingLocator);
     }
-    
+
+    public void waitForElement2() {
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+        }
+        WebElement wait = Wait.visible(driver,orderConfHeadingLocator);
+    }
     public Ecomm_ManualEntryPage pressCancel() {
         WebElement button = Wait.clickable(driver,cancelButtonLocator);
         button.click();

@@ -176,4 +176,8 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         CommonTask.setCheckBox(driver, CCEOrderUpload);
     }
 
+    public void disableCCEOrderUpload(){
+        CommonTask.unSetCheckBox(driver, CCEOrderUpload);
+    }
+
 }
