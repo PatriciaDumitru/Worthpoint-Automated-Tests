@@ -59,7 +59,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -86,11 +86,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -153,6 +153,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+
     }
 
     @Test //Manual Entry Page :: SUMST :: Multiple line order, YMN with master shade code
@@ -173,7 +179,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -184,11 +190,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry page loaded. Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -268,7 +274,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -278,11 +284,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry page loaded. Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -340,6 +346,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+
     }
 
     @Test //Manual Entry Page :: SUMST :: Multi-line order, YMN without master shade code
@@ -359,18 +371,18 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
 
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -429,6 +441,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+
     }
 
     @Test //Manual Entry Page :: SUMST :: Single line order, article and shade code
@@ -448,7 +466,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -456,11 +474,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
 
         //Input customer details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -517,6 +535,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+
     }
 
     @Test //Manual Entry Page :: SUMST :: Multi-line order, using Article and shade code
@@ -536,7 +560,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -544,11 +568,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
 
         //Input customer details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -607,6 +631,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+
     }
 
     @Test //Manual Entry Page :: SUMST :: Single line order, using brand/ticket/length/finish and shade code
@@ -626,7 +656,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
 
@@ -634,11 +664,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         manualEntryPage.waitForElement();
 
         //Input customer details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -691,6 +721,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         String orderNumber = outOrdersPage.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+
     }
 
     @Test //Manual Entry Page :: SUMST :: Multi-line order, using brand/ticket/length/finish and shade code
@@ -710,7 +746,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
 
@@ -720,11 +756,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry page reached. Entering customer details...");
 
         //Input customer details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -783,6 +819,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         String orderNumber = outOrdersPage.getOrderNumberSUMST(rowNumber);
         System.out.println("Order Number: " + orderNumber);
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+
     }
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at manual entry page
@@ -802,7 +844,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
 
@@ -811,10 +853,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Manual Entry page reached. Entering customer details...");
 
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        //manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        //manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -885,6 +927,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("No draft created");
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+
     }
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no ship to party name at manual entry page
@@ -904,7 +952,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
 
@@ -913,9 +961,9 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Manual Entry page reached. Entering customer details...");
 
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
         manualEntryPage.setRequestor("Select");
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -988,6 +1036,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\12Error - order created without shipto.png"));
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no buyer at manual entry page
@@ -1007,7 +1060,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
 
@@ -1015,11 +1068,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Manual Entry page reached. Entering customer details...");
 
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
         //CommonTask.resetSearchField(driver, "s2id_BuyerId");
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -1105,8 +1158,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
-        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, "ID51", DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, "ID51", DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -1116,11 +1169,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Manual Entry page reached. Entering customer details...");
 
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -1193,6 +1246,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Draft found, as expected");
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no Ship To Party Name at confirmation page
@@ -1213,7 +1271,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -1223,11 +1281,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Manual Entry page reached. Entering customer details...");
 
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
         
@@ -1304,6 +1362,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Draft found, as expected");
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no Buyer at confirmation page
@@ -1323,7 +1386,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
 
@@ -1332,11 +1395,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Manual Entry page reached. Entering customer details...");
 
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
         
@@ -1409,6 +1472,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Draft found, as expected");
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Create order and cancel from confirmation page
@@ -1430,8 +1498,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver);           //choose CCE page
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.enableMOQForCustomer(driver, DataItems.adisCustomer);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);           //choose ecomm page
 
         System.out.println("Navigating to Manual Entry...");
@@ -1441,11 +1509,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Manual Entry page reached. Entering customer details...");
 
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
         
@@ -1516,6 +1584,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
             System.out.println("***ORDER DRAFT UNEXPECTEDLY CREATED***");
         }
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Order Draft continuation and cancellation
@@ -1532,7 +1605,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry Page...");
@@ -1542,11 +1615,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Manual Entry page reached. Entering customer details...");
 
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
         
@@ -1608,6 +1681,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
             System.out.println("***ORDER DRAFT NOT DELETED***");
         }
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Order Draft continuation
@@ -1624,7 +1702,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -1634,11 +1712,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Manual Entry page reached. Entering customer details...");
 
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToParty(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToParty(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
         
@@ -1674,10 +1752,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Manual Entry Page reached. Checking details are consistent with input...");
 
-        Verify.verify(mePage.getCustomerName().equals(DataItems.custDetails2[0]),"Order Draft Edit: Customer name not consistent with input");
-        Verify.verify(mePage.getShipToName().equals(DataItems.custDetails2[1]),"Order Draft Edit: Ship To Name not consistent with input");
-        Verify.verify(mePage.getRequestorName().equals(DataItems.custDetails2[2]),"Order Draft Edit: Requester Name not consistent with input");
-        Verify.verify(mePage.getBuyer().equals(DataItems.custDetails2[3]),"Order Draft Edit: Buyers not consistent with input");
+        Verify.verify(mePage.getCustomerName().equals(DataItems.custDetails[0]),"Order Draft Edit: Customer name not consistent with input");
+        Verify.verify(mePage.getShipToName().equals(DataItems.custDetails[1]),"Order Draft Edit: Ship To Name not consistent with input");
+        Verify.verify(mePage.getRequestorName().equals(DataItems.custDetails[2]),"Order Draft Edit: Requester Name not consistent with input");
+        Verify.verify(mePage.getBuyer().equals(DataItems.custDetails[3]),"Order Draft Edit: Buyers not consistent with input");
         Verify.verify(mePage.getCustPONo().equals(DataItems.lastUsedPO),"Order Draft Edit: Customer PO No. not consistent with input");
         Verify.verify(mePage.getYourMatNum(0).equals(DataItems.yourMatNum),"Order Draft Edit: Your Material Number not consistent with input");
         Verify.verify(mePage.getQuantity(0).equals("3"),"Order Draft Edit: Quantity not consistent with input");
@@ -1685,6 +1763,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Details checked.");
 
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Sub-account test. Field appears and data included in Flat File
@@ -1805,7 +1888,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         sapPage.getFlatFile(orderNo);
 
+        driver.navigate().refresh();
 
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Send for approval feature activated
@@ -1824,7 +1911,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         pf.chooseTheOtherProfile(driver); //change to CCE page
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
         pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver,DataItems.salesOrgID,"Angler Test Indonesia", "Select");
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //change to ecomm page
 
         System.out.println("Navigating to Manual Entry...");
@@ -1838,7 +1925,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         manualEntryPage.setShipToParty(DataItems.subCustDetails[1]);
         manualEntryPage.setBuyers(DataItems.subCustDetails[3]);
         manualEntryPage.setRequestor(DataItems.subCustDetails[2]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -1876,8 +1963,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.enableMOQForCustomer(driver, DataItems.adisCustomer);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -1889,11 +1976,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry Page reached. Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -1935,10 +2022,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
 
-        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails2[0]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails2[1]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails2[2]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails2[3]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
 
         String[] parts = orderConf.getCoatsMaterial().split("-");
         System.out.println(parts[1]);
@@ -1990,6 +2077,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //Output order number for test reference
         String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
+
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Multi-line, order using YMN with master shade (MOQ ACTIVE)
@@ -2006,8 +2099,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.enableMOQForCustomer(driver, DataItems.adisCustomer);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -2019,11 +2112,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry Page reached. Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -2066,10 +2159,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
 
-        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails2[0]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails2[1]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails2[2]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails2[3]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
 
         String[] parts = orderConf.getCoatsMaterial().split("-");
         System.out.println(parts[1]);
@@ -2137,8 +2230,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.enableMOQForCustomer(driver, DataItems.adisCustomer);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -2150,11 +2243,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry Page reached. Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -2196,10 +2289,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
 
-        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails2[0]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails2[1]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails2[2]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails2[3]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
 
         String[] parts = orderConf.getCoatsMaterial().split("-");
         System.out.println(parts[1]);
@@ -2268,8 +2361,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.enableMOQForCustomer(driver, DataItems.adisCustomer);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -2281,11 +2374,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry Page reached. Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -2328,10 +2421,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
 
-        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails2[0]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails2[1]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails2[2]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails2[3]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
 
         String[] parts = orderConf.getCoatsMaterial().split("-");
         System.out.println(parts[1]);
@@ -2383,6 +2476,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //Output order number for test reference
         String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
+
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Single-line, order using Article and shadecode (MOQ ACTIVE)
@@ -2399,8 +2498,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.enableMOQForCustomer(driver, DataItems.adisCustomer);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -2412,11 +2511,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry Page reached. Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -2458,10 +2557,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
 
-        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails2[0]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails2[1]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails2[2]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails2[3]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
 
         String[] parts = orderConf.getCoatsMaterial().split("-");
         System.out.println(parts[1]);
@@ -2513,6 +2612,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //Output order number for test reference
         String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
+
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Multi-line, order using Article and shadecode (MOQ ACTIVE)
@@ -2529,8 +2634,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.enableMOQForCustomer(driver, DataItems.adisCustomer);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -2542,11 +2647,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry Page reached. Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -2589,10 +2694,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
 
-        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails2[0]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails2[1]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails2[2]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails2[3]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
 
         String[] parts = orderConf.getCoatsMaterial().split("-");
         System.out.println(parts[1]);
@@ -2644,6 +2749,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //Output order number for test reference
         String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
+
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Single-line, order using Brand/Ticket/Length/Finish/Shade combination (MOQ ACTIVE)
@@ -2660,8 +2771,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.enableMOQForCustomer(driver, DataItems.adisCustomer);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -2673,11 +2784,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry Page reached. Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -2718,10 +2829,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
 
-        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails2[0]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails2[1]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails2[2]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails2[3]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
 
         String[] parts = orderConf.getCoatsMaterial().split("-");
         System.out.println(parts[1]);
@@ -2789,8 +2900,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.enableMOQForCustomer(driver, DataItems.adisCustomer);
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -2802,11 +2913,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Manual Entry Page reached. Entering customer details...");
 
         //Input Customer Details
-        manualEntryPage.setCustomerName(DataItems.custDetails2[0]);
-        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails2[1]);
-        manualEntryPage.setRequestor(DataItems.custDetails2[2]);
-        manualEntryPage.setBuyers(DataItems.custDetails2[3]);
-        manualEntryPage.setPONumber(DataItems.custDetails2[4]);
+        manualEntryPage.setCustomerName(DataItems.custDetails[0]);
+        manualEntryPage.setShipToPartyWithWait(DataItems.custDetails[1]);
+        manualEntryPage.setRequestor(DataItems.custDetails[2]);
+        manualEntryPage.setBuyers(DataItems.custDetails[3]);
+        manualEntryPage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -2848,10 +2959,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
 
-        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails2[0]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails2[1]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails2[2]));
-        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails2[3]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Customer Name not maintained after manual entry page",orderConf.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Ship To Party not maintained after manual entry page",orderConf.getShipToParty().equals(DataItems.custDetails[1]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Requester not maintained after manual entry page",orderConf.getRequester().equals(DataItems.custDetails[2]));
+        AssertJUnit.assertTrue("Order Confirmation Page: Buyers not maintained after manual entry page",orderConf.getBuyers().equals(DataItems.custDetails[3]));
 
         String[] parts = orderConf.getCoatsMaterial().split("-");
         System.out.println(parts[1]);
@@ -2903,6 +3014,12 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //Output order number for test reference
         String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
+
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
     }
 
     @Test //Manual Entry Page :: SUMST :: Approver workflow enabled
@@ -2914,7 +3031,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         CCE_MainPage mainPage = base.setUp("Manual Entry Page SUMST28CONO: Approver workflow enabled", "OA_OAP_SUSS_ME_2");
 
         PreFlows pf = new PreFlows();
-        pf.activateCallOffOrderForCustomer(driver, DataItems.adisCustomer);
+        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
 
 
         System.out.println("Navigating to Masters...");
@@ -2924,14 +3041,14 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Customers Master reached. Finding 'Life Easy Customer' and turning approval workflow on...");
 
-        custPage.setCustomerName(DataItems.custDetails2[0]);
+        custPage.setCustomerName(DataItems.custDetails[0]);
         custPage.pressSearch();
-        int row = custPage.findCustomer(DataItems.custDetails2[0]);
+        int row = custPage.findCustomer(DataItems.custDetails[0]);
 
         Mst_EditCustomerPage editPage = custPage.pressEdit(row);
         editPage.waitForElement();
 
-        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage.getCustomerName().equals(DataItems.custDetails2[0]));
+        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage.getCustomerName().equals(DataItems.custDetails[0]));
 
         editPage.setApprovalWorkflow();
         editPage.pressSave();
@@ -2950,7 +3067,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         mePage.setShipToParty(DataItems.subCustDetails[1]);
         mePage.setRequestor(DataItems.subCustDetails[2]);
         mePage.setBuyers(DataItems.subCustDetails[3]);
-        mePage.setPONumber(DataItems.custDetails2[4]);
+        mePage.setPONumber(DataItems.custDetails[4]);
 
         pf.selectNormalOrderRadioButton(driver);
 
@@ -3046,20 +3163,32 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         Mst_CustomersPage custPage2 = mainPage4.selectCustomers();
         custPage2.waitForElement();
 
-        custPage2.setCustomerName(DataItems.custDetails2[0]);
+        custPage2.setCustomerName(DataItems.custDetails[0]);
         custPage2.pressSearch();
-        int row2 = custPage2.findCustomer(DataItems.custDetails2[0]);
+        int row2 = custPage2.findCustomer(DataItems.custDetails[0]);
 
         Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
         editPage2.waitForElement();
 
-        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage2.getCustomerName().equals(DataItems.custDetails2[0]));
+        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage2.getCustomerName().equals(DataItems.custDetails[0]));
 
         editPage2.unsetApprovalWorkflow();
         editPage2.pressSave();
         custPage2.waitForElement();
 
         System.out.println("Approval workflow disabled");
+
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+
+        driver.navigate().refresh();
+
+        //Deactivate call off order for customer
+        pf.chooseTheOtherProfile(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
 
     }
 

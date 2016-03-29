@@ -45,6 +45,7 @@ public class ScreenshotListener extends TestListenerAdapter {
         }
     }
 
+
     @Override
     public void onTestFailure(ITestResult failingTest) {
         try {
