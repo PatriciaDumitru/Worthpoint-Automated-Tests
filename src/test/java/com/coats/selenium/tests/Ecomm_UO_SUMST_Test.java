@@ -131,7 +131,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
                                 {"Customer Price","N/A"}
                                 };
         
-        Ecomm_MappingPage mappedPage = mapPage.setMapping(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
         
         System.out.println("Mapping set. Confirming map...");
         
@@ -787,7 +787,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
                                 {"Customer Price","N/A"}
                                 };
         
-        Ecomm_MappingPage mappedPage = mapPage.setMapping(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
         
         System.out.println("Mapping set. Confirming map...");
         
@@ -885,7 +885,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
                                 {"Customer Price","N/A"}
                                 };
         
-        Ecomm_MappingPage mappedPage = mapPage.setMapping(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
         
         System.out.println("Mapping set. Confirming map..."); 
         
@@ -989,7 +989,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
                                 {"Customer Price","N/A"}
                                 };
         
-        Ecomm_MappingPage mappedPage = mapPage.setMapping(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
         
         System.out.println("Mapping set. Confirming map..."); 
         
