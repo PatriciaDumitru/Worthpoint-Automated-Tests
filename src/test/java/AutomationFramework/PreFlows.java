@@ -90,12 +90,14 @@ public class PreFlows {
     }
 
     public void enableEnableOrdersWithoutShadeForSalesOrgandCust(WebDriver driver,String salesOrg,String customer){
+        //This is used as a prerequisite for Ecomm_UO_EOwS_Test class
         goToSalesOrgAndEdit(driver, salesOrg);
         enableEOwSForSalesOrg(driver);
         saveSalesOrg(driver);
         goToCustomerAndEdit(driver, customer);
         enableEOwSForCust(driver);
         disableMOQCheckBox(driver);
+        disableApprovalCheckBox(driver);
         saveCustomer(driver);
     }
 

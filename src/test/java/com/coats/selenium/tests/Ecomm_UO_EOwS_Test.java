@@ -400,13 +400,12 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
     public void closeAlert(WebDriver driver) {
         try {
             Alert alert = driver.switchTo().alert();
-            alert.getText();
+            System.out.println("Alert message:"+alert.getText());
             alert.accept();
             System.out.println("Alert closed!");
         } catch (Exception e) {
             System.out.println("No error(s) displayed");
         }
-
     }
 
 
