@@ -566,7 +566,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
 
         try {
             Alert alert2 = Wait.alert(driver);
-            if (!(alert2.getText().contains("order qty has been rounded"))) {
+            if (!(alert2.getText().contains("order quantity has been rounded"))) {
                 System.out.println("Additional alert appeared: " + alert2.getText());
                 alert2.accept();
             }

@@ -3,14 +3,9 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
-import PageObjects.Ecomm_BackendProcessPage;
-import PageObjects.Ecomm_BackendInProcessPage;
-import PageObjects.Ecomm_MainPage;
-import PageObjects.Ecomm_MappingAlert;
-import PageObjects.Ecomm_MappingPage;
-import PageObjects.Ecomm_OrderConfirmationPage;
-import PageObjects.Ecomm_OutstandingOrdersPage;
-import PageObjects.Ecomm_UploadOrderPage;
+import AutomationFramework.PreFlows;
+import PageObjects.*;
+
 import static com.coats.selenium.DriverFactory.getDriver;
 
 import java.awt.*;
@@ -38,6 +33,23 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
         
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
+
+        //Login as admin and set master data
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("", "");
+
+
+        //Seting masster data
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+
+        //Logout
+        pf.logoutAction(driver);
+
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER SUSST TEST RT1: File of <100 lines, realtime upload, MOQ active", "G_OOC_UORT_SUSST_MOQ",DataItems.susstUsername,DataItems.susstPassword);
         
