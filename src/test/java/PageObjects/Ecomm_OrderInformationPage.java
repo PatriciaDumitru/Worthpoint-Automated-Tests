@@ -56,6 +56,23 @@ public class Ecomm_OrderInformationPage {
         
         return new Ecomm_ShadeOrderConfirmationPage(driver);
     }
+
+    public Ecomm_WaitingForShadeCodeOrderConfirmationPage pressSubmit2() {
+        WebElement submit = Wait.clickable(driver,submitButton);
+        submit.submit();
+        //Alert alert = Wait.alert(driver,DataItems.longWait);
+        //alert.accept();
+
+        try {
+            Alert alert2 = Wait.alert(driver);
+            System.out.println("Alert appeared: " + alert2.getText());
+            alert2.accept();
+        } catch (Exception e) {
+
+        }
+
+        return new Ecomm_WaitingForShadeCodeOrderConfirmationPage(driver);
+    }
     
     public Ecomm_ShadeOrderConfirmationPage pressCancel() {
         WebElement cancel = Wait.clickable(driver,cancelButton);

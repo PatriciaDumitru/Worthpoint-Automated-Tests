@@ -10,6 +10,7 @@ import com.coats.selenium.DriverFactory;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -159,7 +160,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
     @Test //Enable Order without Shade :: Invalid shade orders are separately ordered - Shade Not Available.
             (groups = {"eComm"})
-    public void EOwS_GC_40() throws Exception {
+    public void EOwS_GC_040() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
 
@@ -266,7 +267,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
     }
 
-    @Test //Enable Order without Shade :: Edit Waiting for shade and reorder
+    @Test //Enable Order without Shade :: Edit Waiting for Shade and submit changes
             (groups = {"eComm"})
     public void EOwS_GC_050() throws Exception{
         //new chrome driver
@@ -369,7 +370,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         }
 
         System.out.println("Order No for Waiting for Shade Code order status:"+noShadeOrderNumber);
-        System.out.println("Order No for Open order status:"+correctShadeOrderNumber);
+        //System.out.println("Order No for Open order status:"+correctShadeOrderNumber);
 
 
         //Navigating to Waiting for Shade Page
@@ -383,15 +384,24 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         waitForShadePage.pressSearch();
 
         //Editing the order without shade
-        waitForShadePage.pressEdit();
-        driver.findElement(By.cssSelector("#remove_0 > td:nth-child(2) > a > span")).click(); //Edit Button locator from Waiting For Shade Code Order Confirmation
+        Ecomm_WaitingForShadeCodeOrderConfirmationPage waitForShadeCodeConf = waitForShadePage.pressEdit2();
+
+        waitForShadeCodeConf.waitForElement();
+
+        //Press Edit button of first table row
+        Ecomm_OrderInformationPage orderInfoPage = waitForShadeCodeConf.pressEdit(0);
+
         CommonTask.waitForOverlay(driver);
-        CommonTask.setSearchField(driver,By.cssSelector("#s2id_shade_id"),"C1103");
-        driver.findElement(By.cssSelector("#Submit")).click();
-//        driver.findElement(By.cssSelector("#s2id_shade_id")).click();
-//        driver.findElement(By.cssSelector("#select2-drop > div > input")).sendKeys("c1730");
-//        driver.findElement(By.cssSelector("#Submit")).click();
-        //CommonTask.setSearchField(driver,By.id("#s2id_shade_id"),"C1103");
+
+        orderInfoPage.setShadeCode("C1103");
+        Ecomm_WaitingForShadeCodeOrderConfirmationPage waitForShadeCodeConf2 = orderInfoPage.pressSubmit2();
+        AssertJUnit.assertTrue("Flash message is not correct or update was not performed!",waitForShadeCodeConf2.getFlashMessage().contains("The Order Line 10 has been updated"));
+
+        Ecomm_OutstandingOrdersPage outstandingOrdersPage2 = waitForShadeCodeConf2.pressConfirm();
+
+        //Verify Flash Message
+        AssertJUnit.assertTrue("Flash message is not correct!",outstandingOrdersPage2.getFlashMessage().contains(noShadeOrderNumber+" has been updated"));
+        System.out.println("Test PASSED!");
 
     }
 
