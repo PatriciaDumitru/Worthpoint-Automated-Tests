@@ -923,7 +923,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
 
 
 
-    
+
     public Ecomm_MappingPage setMappingNotCustomer(String[][] mapping) {
         //Wait for page to load
         WebElement waitForLoad = Wait.clickable(driver,confirmButtonLocator);

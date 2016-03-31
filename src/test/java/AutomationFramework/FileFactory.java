@@ -38,24 +38,26 @@ public class FileFactory {
         {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}};
 
     //Data used for testing SUSST upload orders
-    public static String[][] susstUOData = {{"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","TEST ZCQ BE POSITIV 03","*Others*"},
+    public static String[][] susstUOData = {
+            {"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","TEST ZCQ BE POSITIV 03","*Others*"},
             {"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","TEST ZCQ BE POSITIV 03","*Others*"}};
 
     //Data used for testing SUSST upload orders
-    public static String[][] susstUOData2 = {{"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","40000799","*Others*"},
+    public static String[][] susstUOData2 = {
+            {"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","40000799","*Others*"},
             {"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","40000799","*Others*"}};
 
     //Data used for testing SUSST upload orders
-    public static String[][] susstUOData3 = {{"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"},
-            {"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"}};
-
-
-    public static String[][] susstUOData4 = {{"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","TEST ZCQ BE POSITIV 03","*Others*"},
-            {"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","TEST ZCQ BE POSITIV 03","*Others*"},
-            {"","Star Garments","","18-01-2016","","","","","","","","","","000030","","contract@testing.com","Y","40000799","*Others*"},
-            {"","Star Garments","","18-01-2016","","","","","","","","","","000030","","contract@testing.com","Y","40000799","*Others*"},
+    public static String[][] susstUOData3 = {
             {"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"},
             {"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"}};
+
+
+    public static String[][] susstUOData4 = {
+            {"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","TEST ZCQ BE POSITIV 03","*Others*"},
+            {"","Star Garments","","18-01-2016","","","","","","","","","","000030","","contract@testing.com","Y","40000799","*Others*"},
+            {"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"},
+    };
 
     //Data used for testing SUSST upload orders
     public static String[][] susstUOData5 = {{"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","test ZCQ qty check 01","*Others*"},
@@ -124,26 +126,23 @@ public class FileFactory {
         {"Life Easy Customer","Life Easy Customer","","","","","gral","180","3000","STANDARD","H0972","1","","","","Life Easy"}};
 
     //Data for Enable Orders without Shade
-    public static String[][] susstEOwSData ={{"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","120","5000","STANDARD","fdafadsfasd","3","","","","prafull.patil@igate.com"},
+    public static String[][] susstEOwSData ={
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","120","5000","STANDARD","fdafadsfasd","3","","","","prafull.patil@igate.com"},
             {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","180","3000","STANDARD","C1711","3","","","","prafull.patil@igate.com"},
             {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","030","1000","STANDARD","","3","","","","prafull.patil@igate.com"},
             {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","030","1000","STANDARD","","3","","","","prafull.patil@igate.com"}};
 
     public static String[][] sumstOFUData ={
             {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D","A","A","8754180","ASTRA","110","BLACK","Cop","1","Color Matching","Bulk (Samples for Bulk Fabric)","test requirememt1","test customrere1","test fabric1","Yes","black","test fce comment1","Lab"},
-            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D","A","A","8754180","ASTRA","110","BLACK","Cop","1","Color Matching","Bulk (Samples for Bulk Fabric)","test requirememt1","test customrere1","test fabric1","Yes","black","test fce comment1","Lab"},
-            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D65","ABCD001","ABCD002","8754180","ASTRA","110","C9700","Cone","2","Color Matching","Pre-production","test requirememt2","test customrere2","test fabric2","Yes","c9700","test fce comment2","Hub"},
             {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D65","ABCD001","ABCD002","8754180","ASTRA","110","C9700","Cone","2","Color Matching","Pre-production","test requirememt2","test customrere2","test fabric2","Yes","c9700","test fce comment2","Hub"},
             {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D65","ABCD00","ABCD003","8754180","ASTRA","","WHITE","Vicone","3","Sewing","Prototype","test requirememt3","test customrere3","test fabric3","Yes","","test fce comment3","Warehouse"},
-            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D65","ABCD00","ABCD003","8754180","ASTRA","","WHITE","Vicone","3","Sewing","Prototype","test requirememt3","test customrere3","test fabric3","Yes","","test fce comment3","Warehouse"},
             {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D650","ABCD0","ABCD004","8754180","ASTRA","","C9750","Vicone","4","Sewing","Salesman Sample","test requirememt4","test customrere4","","No","","","Hub"},
-            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D650","ABCD0","ABCD004","8754180","ASTRA","","C9750","Vicone","4","Sewing","Salesman Sample","test requirememt4","test customrere4","","No","","","Hub"},
-            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D6500","A1","ABCD000","8754180","ASTRA","","C9760","Vicone","5","Sewing","Shade Development","test requirememt5","test customrere5","test fabric5","No","","","Lab"},
-            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D6500","A1","ABCD000","8754180","ASTRA","","C9760","Vicone","5","Sewing","Shade Development","test requirememt5","test customrere5","test fabric5","No","","","Lab"}};
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D6500","A1","ABCD000","8754180","ASTRA","","C9760","Vicone","5","Sewing","Shade Development","test requirememt5","test customrere5","test fabric5","No","","","Lab"}
+    };
 
     public static void main(String[] args) throws IOException {
         //Main method can be used to test the FileFactory class in isolation
-        createFile("SUSST",102,"BE","false",true);
+        createFile3("SUSST",5,"OFU","",true);
     }
     
     public static String createFile(String soldTo,int lineCount,String type,String combination,boolean valid) throws IOException {
@@ -610,13 +609,13 @@ public class FileFactory {
             }
 
             //Fill an array with the appropriate data based off of the parameters
-            String data[][] = getAppropriateData2(soldTo,lineCount,type,combination,valid,uniqueId);
+            String data[][] = getAppropriateData3(soldTo,lineCount,type,combination,valid,uniqueId);
 
             //For the number of rows declared, create row and fill values accordingly
             for (int rowCount = 1; rowCount <= lineCount; rowCount++) {
 
                 //Set date in data
-                data[rowCount-1][3] = getDate();
+                //data[rowCount-1][3] = getDate();
 
                 //create new row for data
                 XSSFRow row = sheet.createRow(rowCount);
@@ -652,7 +651,7 @@ public class FileFactory {
     public static String[][] getAppropriateData3(String soldTo, int lineCount,String type, String combination, boolean valid,String id) throws IOException {
         //This method determines which data is required for the file depending on the criteria (parameters)
 
-        //Create a new array with 2 lines (maximum for all tests except backend). There are 18 fields which need to be held
+        //Create a new array. There are 22 fields which need to be held
         String data[][] = new String[lineCount][22];
         String po = "";
 
@@ -708,9 +707,6 @@ public class FileFactory {
             }
 
         }
-        //Set the PO number for each line. To allow any number of lines to be used in an upload order test (rather than a max of 2), this task must be placed in a loop
-        data[0][2] = po;
-        data[1][2] = po;
 
         return data;
 

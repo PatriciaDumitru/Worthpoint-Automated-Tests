@@ -2,6 +2,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.FileFactory;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import org.openqa.selenium.By;
@@ -542,7 +543,11 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         System.out.println("Order File Upload page is not available in the menu");
     }
 
-    /*@Test(groups = {"CCE"})
+   /* public void SUF_OFU_01() throws Exception {
+     TODO
+    }*/
+
+    @Test(groups = {"CCE"})
     public void SUF_OFU_02() throws Exception {
 
         WebDriver driver = getDriver();
@@ -554,10 +559,51 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         CCE_UploadOrderSamplesPage orderSamples = ccePage.pressUploadOrderSamples();
         orderSamples.waitForLoad();
 
+        System.out.println("Order File Upload page loaded. Setting filepath...");
+        orderSamples.setFilePath(FileFactory.createFile3("SUSST",5,"OFU","",true));
 
+        CCE_MappingAlert mapAlert = orderSamples.pressUpload();
+        CCE_MappingPage mapPage = mapAlert.pressYes();
+        mapPage.waitForElement();
 
-    }*/
+        System.out.println("Mapping page reached. Setting sales org and customer name...");
+
+        mapPage.setSalesOrg("ID51");
+        mapPage.setCustomerName(DataItems.custDetails[1]);
+
+        String[][] mapping = {
+                {"Ship to Party Name", "Ship to Party Name"},
+                {"Requester Name", "Requester Name"},
+                {"BusinessPrincipal Name", "BusinessPrincipal Name"},
+                {"1st Light Source", "1st Light Source"},
+                {"2nd Light Source", "2nd Light Source"},
+                {"3rd Light Source", "3rd Light Source"},
+                {"Articleee", "Articleee"},
+                {"Brand", "Brand"},
+                {"Ticket", "Ticket"},
+                {"Shade Code", "Shade Code"},
+                {"MUM Type", "MUM Type"},
+                {"Qty", "Qty"},
+                {"RequestType", "RequestType"},
+                {"PurposeType", "PurposeType"},
+                {"Requirements", "Requirements"},
+                {"Customer Reference", "Customer Reference"},
+                {"Fabric Reference Name", "Fabric Reference Name"},
+                {"Direct Enrich", "Direct Enrich"},
+                {"Starting shade", "Starting shade"},
+                {"FCE Comments", "FCE Comments"},
+                {"Source of Supply", "Source of Supply"}
+        };
+
+        mapPage.setMappingNewUOF(mapping);
+        System.out.println("Mapping set. Confirming map...");
+
+        CCE_UploadOrderSamplesPage orderConf = mapPage.pressConfirm();
+        //orderConf.waitForElement();
+
+    }
 }
+
 
 
 

@@ -990,7 +990,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
     }
 
- /*   @Test(groups = {"eComm"})
+    @Test(groups = {"eComm"})
     public void CCO_UO_04() throws Exception {
         //CCO_GC_01();
 
@@ -1009,7 +1009,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUSST",2,"UO4","",true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUSST",3,"UO4","",true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -1120,7 +1120,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         Verify.verify(orderConf.getValue4().getText().equals(DataItems.value2), "Order view: Value does not match expected input");
         System.out.println("Order is created with correct fields");
 
-    }*/
+    }
 
     @Test(groups = {"eComm"})
     public void CCO_UO_05() throws Exception {
