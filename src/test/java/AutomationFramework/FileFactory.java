@@ -49,6 +49,14 @@ public class FileFactory {
     public static String[][] susstUOData3 = {{"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"},
             {"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"}};
 
+
+    public static String[][] susstUOData4 = {{"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","TEST ZCQ BE POSITIV 03","*Others*"},
+            {"","Star Garments","","18-01-2016","","","","","","","black","","","000030","","contract@testing.com","Y","TEST ZCQ BE POSITIV 03","*Others*"},
+            {"","Star Garments","","18-01-2016","","","","","","","","","","000030","","contract@testing.com","Y","40000799","*Others*"},
+            {"","Star Garments","","18-01-2016","","","","","","","","","","000030","","contract@testing.com","Y","40000799","*Others*"},
+            {"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"},
+            {"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","TEST ZCQ SFTP POSITIV 01","*Others*"}};
+
     //Data used for testing SUSST upload orders
     public static String[][] susstUOData5 = {{"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","test ZCQ qty check 01","*Others*"},
             {"","Star Garments","","18-01-2016","","8754120","","","","","WHITE","","","","","contract@testing.com","Y","test ZCQ qty check 01","*Others*"}};
@@ -121,10 +129,17 @@ public class FileFactory {
             {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","030","1000","STANDARD","","3","","","","prafull.patil@igate.com"},
             {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","030","1000","STANDARD","","3","","","","prafull.patil@igate.com"}};
 
-    public static String[][] sumstOFUData ={{"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D","A","A","ASTRA","BLACK","Cop","1","Color Matching","Bulk (Samples for Bulk Fabric)","test requ irememt1","test fabric1","Yes","black","test fce comment1","Lab"},
-            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D","A","A","ASTRA","BLACK","Cop","1","Color Matching","Bulk (Samples for Bulk Fabric)","test requ irememt1","test fabric1","Yes","black","test fce comment1","Lab"},
-            {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","030","1000","STANDARD","","3","","","","prafull.patil@igate.com"},
-            {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","030","1000","STANDARD","","3","","","","prafull.patil@igate.com"}};
+    public static String[][] sumstOFUData ={
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D","A","A","8754180","ASTRA","110","BLACK","Cop","1","Color Matching","Bulk (Samples for Bulk Fabric)","test requirememt1","test customrere1","test fabric1","Yes","black","test fce comment1","Lab"},
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D","A","A","8754180","ASTRA","110","BLACK","Cop","1","Color Matching","Bulk (Samples for Bulk Fabric)","test requirememt1","test customrere1","test fabric1","Yes","black","test fce comment1","Lab"},
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D65","ABCD001","ABCD002","8754180","ASTRA","110","C9700","Cone","2","Color Matching","Pre-production","test requirememt2","test customrere2","test fabric2","Yes","c9700","test fce comment2","Hub"},
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D65","ABCD001","ABCD002","8754180","ASTRA","110","C9700","Cone","2","Color Matching","Pre-production","test requirememt2","test customrere2","test fabric2","Yes","c9700","test fce comment2","Hub"},
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D65","ABCD00","ABCD003","8754180","ASTRA","","WHITE","Vicone","3","Sewing","Prototype","test requirememt3","test customrere3","test fabric3","Yes","","test fce comment3","Warehouse"},
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D65","ABCD00","ABCD003","8754180","ASTRA","","WHITE","Vicone","3","Sewing","Prototype","test requirememt3","test customrere3","test fabric3","Yes","","test fce comment3","Warehouse"},
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D650","ABCD0","ABCD004","8754180","ASTRA","","C9750","Vicone","4","Sewing","Salesman Sample","test requirememt4","test customrere4","","No","","","Hub"},
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D650","ABCD0","ABCD004","8754180","ASTRA","","C9750","Vicone","4","Sewing","Salesman Sample","test requirememt4","test customrere4","","No","","","Hub"},
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D6500","A1","ABCD000","8754180","ASTRA","","C9760","Vicone","5","Sewing","Shade Development","test requirememt5","test customrere5","test fabric5","No","","","Lab"},
+            {"CCE HUB offices","CCE HUB OFFICES","approver@ccehub.com","ADIDAS","D6500","A1","ABCD000","8754180","ASTRA","","C9760","Vicone","5","Sewing","Shade Development","test requirememt5","test customrere5","test fabric5","No","","","Lab"}};
 
     public static void main(String[] args) throws IOException {
         //Main method can be used to test the FileFactory class in isolation
@@ -228,6 +243,9 @@ public class FileFactory {
                 } else if (type.equals("UO3")) {
                     po = "UO_SUSS" + id;
                     data = susstUOData3.clone();
+                } else if (type.equals("UO4")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData4.clone();
                 } else if (type.equals("UO5")) {
                     po = "UO_SUSS" + id;
                     data = susstUOData5.clone();
@@ -470,6 +488,9 @@ public class FileFactory {
                 } else if (type.equals("UO3")) {
                     po = "UO_SUSS" + id;
                     data = susstUOData3.clone();
+                } else if (type.equals("UO4")) {
+                    po = "UO_SUSS" + id;
+                    data = susstUOData4.clone();
                 } else if (type.equals("UO5")) {
                     po = "UO_SUSS" + id;
                     data = susstUOData5.clone();
@@ -543,8 +564,14 @@ public class FileFactory {
 
         }
         //Set the PO number for each line. To allow any number of lines to be used in an upload order test (rather than a max of 2), this task must be placed in a loop
-        data[0][2] = po;
-        data[1][2] = po;
+        for (int i=0;i<lineCount;i++ ){
+            data[i][2]=po;
+        }
+
+//        data[0][2] = po;
+//        data[1][2] = po;
+//        data[2][2] = po;
+//        data[3][2] = po;
 
         return data;
 
@@ -629,7 +656,7 @@ public class FileFactory {
         String data[][] = new String[lineCount][22];
         String po = "";
 
-        if (soldTo.equals("SUMST")) {
+        if (soldTo.equals("SUSST")) {
 
             if (valid) {
 

@@ -542,15 +542,22 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         System.out.println("Order File Upload page is not available in the menu");
     }
 
-
-    @Test(groups = {"CCE"})
-    public void __01() throws Exception {
+    /*@Test(groups = {"CCE"})
+    public void SUF_OFU_02() throws Exception {
 
         WebDriver driver = getDriver();
-        SUF_GC_01();
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Upload Order Samples", "SUF_OFU_02", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
+        ccePage.waitForLoad();
+
+        System.out.println("Navigating to Order File Upload...");
+        CCE_UploadOrderSamplesPage orderSamples = ccePage.pressUploadOrderSamples();
+        orderSamples.waitForLoad();
 
 
-    }
-    }
+
+    }*/
+}
+
 
 

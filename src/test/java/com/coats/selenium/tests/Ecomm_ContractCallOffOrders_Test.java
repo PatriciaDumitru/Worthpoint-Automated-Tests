@@ -757,23 +757,23 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         String[][] mapping = {
                 {"Article","Article"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
+                {"Ticket","N/A"},
+                {"Finish","Select"},
                 {"Shade Code","Shade Code"},
                 {"Required Date","Required Date"},
                 {"Qty","Qty"},
                 {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Contract PO No.","N/A"},
+                {"Style No./Production No.","Select"},
+                {"Contract PO No.","Contract"},
                 {"Customer Price","N/A"},
                 {"Sub Account","N/A"},
                 {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","Your Material Number"},
-                {"Brand","Brand"},
-                {"Length","Length"},
+                {"Your Material No.","N/A"},
+                {"Brand","N/A"},
+                {"Length","N/A"},
                 {"Buyers","N/A"},
                 {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
+                {"Requestor Name","Requestor"},
                 {"Warehouse Instruction","N/A"},
                 {"Buyer Sales Order Number","N/A"},
                 {"Other Information","N/A"},
@@ -793,7 +793,15 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         } catch (Exception e) {
             System.out.println("No error displayed");
         }
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
+        }
         orderConf.waitForElement();
+
 
         System.out.println("Order confirmation page reached. Asserting errors appear...");
         Verify.verify(orderConf.getOrderedQty2().getText().equals(DataItems.orderedQty2), "Order view: Ordered Qty does not match ");
@@ -839,23 +847,23 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         String[][] mapping = {
                 {"Article","Article"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
+                {"Ticket","N/A"},
+                {"Finish","Select"},
                 {"Shade Code","Shade Code"},
                 {"Required Date","Required Date"},
                 {"Qty","Qty"},
                 {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Contract PO No.","N/A"},
+                {"Style No./Production No.","Select"},
+                {"Contract PO No.","Contract"},
                 {"Customer Price","N/A"},
                 {"Sub Account","N/A"},
                 {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","Your Material Number"},
-                {"Brand","Brand"},
-                {"Length","Length"},
+                {"Your Material No.","N/A"},
+                {"Brand","N/A"},
+                {"Length","N/A"},
                 {"Buyers","N/A"},
                 {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
+                {"Requestor Name","Requestor"},
                 {"Warehouse Instruction","N/A"},
                 {"Buyer Sales Order Number","N/A"},
                 {"Other Information","N/A"},
@@ -874,6 +882,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
             alert.accept();
         } catch (Exception e) {
             System.out.println("No error displayed");
+        }
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
         }
         orderConf.waitForElement();
 
@@ -921,30 +936,29 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         String[][] mapping = {
                 {"Article","Article"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
+                {"Ticket","N/A"},
+                {"Finish","Select"},
                 {"Shade Code","Shade Code"},
                 {"Required Date","Required Date"},
                 {"Qty","Qty"},
                 {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Contract PO No.","N/A"},
+                {"Style No./Production No.","Select"},
+                {"Contract PO No.","Contract"},
                 {"Customer Price","N/A"},
                 {"Sub Account","N/A"},
                 {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","Your Material Number"},
-                {"Brand","Brand"},
-                {"Length","Length"},
+                {"Your Material No.","N/A"},
+                {"Brand","N/A"},
+                {"Length","N/A"},
                 {"Buyers","N/A"},
                 {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
+                {"Requestor Name","Requestor"},
                 {"Warehouse Instruction","N/A"},
                 {"Buyer Sales Order Number","N/A"},
                 {"Other Information","N/A"},
                 //{"Customer Price","N/A"},
                 {"Line Reference","Line Reference"}
         };
-
         mapPage.setMappingNew2(mapping,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
@@ -956,6 +970,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
             alert.accept();
         } catch (Exception e) {
             System.out.println("No error displayed");
+        }
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
         }
         orderConf.waitForElement();
 
@@ -969,15 +990,15 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
     }
 
-   /* @Test(groups = {"eComm"})
+ /*   @Test(groups = {"eComm"})
     public void CCO_UO_04() throws Exception {
-        CCO_GC_01();
+        //CCO_GC_01();
 
         System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
-        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        logout.click();
+        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        //logout.click();
 
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);
@@ -988,7 +1009,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUSST",1,"UOM4","",true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUSST",2,"UO4","",true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -996,30 +1017,30 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        mapPage.setSalesOrg("LK53");
-        mapPage.setCustomerName(DataItems.custDetails3[0]);
+        //mapPage.setSalesOrg("LK53");
+        //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
 
         String[][] mapping = {
                 {"Article","Article"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
+                {"Ticket","N/A"},
+                {"Finish","Select"},
                 {"Shade Code","Shade Code"},
                 {"Required Date","Required Date"},
                 {"Qty","Qty"},
                 {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Contract PO No.","N/A"},
+                {"Style No./Production No.","Select"},
+                {"Contract PO No.","Contract"},
                 {"Customer Price","N/A"},
                 {"Sub Account","N/A"},
                 {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","Your Material Number"},
-                {"Brand","Brand"},
-                {"Length","Length"},
+                {"Your Material No.","N/A"},
+                {"Brand","N/A"},
+                {"Length","N/A"},
                 {"Buyers","N/A"},
                 {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
+                {"Requestor Name","Requestor"},
                 {"Warehouse Instruction","N/A"},
                 {"Buyer Sales Order Number","N/A"},
                 {"Other Information","N/A"},
@@ -1039,7 +1060,41 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         } catch (Exception e) {
             System.out.println("No error displayed");
         }
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
+        }
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
+        }
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
+        }
+        try {
+            By lineWithErrorsButton = By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
+            WebElement button = new WebDriverWait(driver, DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lineWithErrorsButton));
+            button.click();
+
+            CommonTask.waitForOverlay(driver);
+            //System.out.println(CommonTask.getErrorDescription(driver));
+            CommonTask.closeView(driver);
+        } catch (Exception e) {
+            System.out.println("No lines with errors");
+        }
+
         orderConf.waitForElement();
+
 
         System.out.println("Order confirmation page reached.");
 
@@ -1101,23 +1156,23 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         String[][] mapping = {
                 {"Article","Article"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
+                {"Ticket","N/A"},
+                {"Finish","Select"},
                 {"Shade Code","Shade Code"},
                 {"Required Date","Required Date"},
                 {"Qty","Qty"},
                 {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Contract PO No.","N/A"},
+                {"Style No./Production No.","Select"},
+                {"Contract PO No.","Contract"},
                 {"Customer Price","N/A"},
                 {"Sub Account","N/A"},
                 {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","Your Material Number"},
-                {"Brand","Brand"},
-                {"Length","Length"},
+                {"Your Material No.","N/A"},
+                {"Brand","N/A"},
+                {"Length","N/A"},
                 {"Buyers","N/A"},
                 {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
+                {"Requestor Name","Requestor"},
                 {"Warehouse Instruction","N/A"},
                 {"Buyer Sales Order Number","N/A"},
                 {"Other Information","N/A"},
@@ -1136,6 +1191,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
             alert.accept();
         } catch (Exception e) {
             System.out.println("No error displayed");
+        }
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
         }
         orderConf.waitForElement();
 
@@ -1156,6 +1218,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
             System.out.println("No lines with errors");
             success = true;
         }
+
         AssertJUnit.assertFalse("Order Confirmation Page: Lines with errors button appears but test expected to fail", success);
         AssertJUnit.assertEquals(CommonTask.getErrorDescription(driver), DataItems.notUniqMsg);
 
@@ -1197,29 +1260,31 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         String[][] mapping = {
                 {"Article","Article"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
+                {"Ticket","N/A"},
+                {"Finish","Select"},
                 {"Shade Code","Shade Code"},
                 {"Required Date","Required Date"},
                 {"Qty","Qty"},
                 {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Contract PO No.","N/A"},
+                {"Style No./Production No.","Select"},
+                {"Contract PO No.","Contract"},
                 {"Customer Price","N/A"},
                 {"Sub Account","N/A"},
                 {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","Your Material Number"},
-                {"Brand","Brand"},
-                {"Length","Length"},
+                {"Your Material No.","N/A"},
+                {"Brand","N/A"},
+                {"Length","N/A"},
                 {"Buyers","N/A"},
                 {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
+                {"Requestor Name","Requestor"},
                 {"Warehouse Instruction","N/A"},
                 {"Buyer Sales Order Number","N/A"},
                 {"Other Information","N/A"},
                 //{"Customer Price","N/A"},
                 {"Line Reference","Line Reference"}
         };
+
+
 
         mapPage.setMappingNew2(mapping,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
@@ -1232,6 +1297,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
             alert.accept();
         } catch (Exception e) {
             System.out.println("No error displayed");
+        }
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
         }
         orderConf.waitForElement();
 
@@ -1292,23 +1364,23 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         String[][] mapping = {
                 {"Article","Article"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
+                {"Ticket","N/A"},
+                {"Finish","Select"},
                 {"Shade Code","Shade Code"},
                 {"Required Date","Required Date"},
                 {"Qty","Qty"},
                 {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Contract PO No.","N/A"},
+                {"Style No./Production No.","Select"},
+                {"Contract PO No.","Contract"},
                 {"Customer Price","N/A"},
                 {"Sub Account","N/A"},
                 {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","Your Material Number"},
-                {"Brand","Brand"},
-                {"Length","Length"},
+                {"Your Material No.","N/A"},
+                {"Brand","N/A"},
+                {"Length","N/A"},
                 {"Buyers","N/A"},
                 {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
+                {"Requestor Name","Requestor"},
                 {"Warehouse Instruction","N/A"},
                 {"Buyer Sales Order Number","N/A"},
                 {"Other Information","N/A"},
@@ -1327,6 +1399,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
             alert.accept();
         } catch (Exception e) {
             System.out.println("No error displayed");
+        }
+        try {
+            Alert alert = driver.switchTo().alert();
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
         }
         orderConf.waitForElement();
 
