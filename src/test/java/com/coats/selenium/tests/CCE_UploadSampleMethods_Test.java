@@ -5,6 +5,7 @@ import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
+import com.google.common.base.Verify;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by dion on 09.03.2016.
+ * Created by Daniel Ion on 09.03.2016.
  */
 public class CCE_UploadSampleMethods_Test extends DriverFactory {
 
@@ -560,7 +561,7 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         orderSamples.waitForLoad();
 
         System.out.println("Order File Upload page loaded. Setting filepath...");
-        orderSamples.setFilePath(FileFactory.createFile3("SUSST",5,"OFU","",true));
+        orderSamples.setFilePath(FileFactory.createFile3("SUSST", 5, "OFU", "", true));
 
         CCE_MappingAlert mapAlert = orderSamples.pressUpload();
         CCE_MappingPage mapPage = mapAlert.pressYes();
@@ -601,6 +602,42 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         CCE_UploadOrderSamplesPage orderConf = mapPage.pressConfirm();
         //orderConf.waitForElement();
 
+        //verify line 1
+        AssertJUnit.assertEquals(DataItems.shadeCodeCCE, orderConf.getShadeCode().getText().trim());
+        AssertJUnit.assertTrue(orderConf.getMUMType().isSelected());
+        AssertJUnit.assertTrue(orderConf.getRequestType().isSelected());
+        AssertJUnit.assertTrue(orderConf.getDirectEnrichType().isSelected());
+        AssertJUnit.assertTrue(orderConf.getSourceOfSupType2().isSelected());
+
+        //verify line 2
+        orderConf.getOrderLine2().click();
+        AssertJUnit.assertEquals(DataItems.shadeCodeCCE2, orderConf.getShadeCode2().getText().trim());
+        AssertJUnit.assertTrue(orderConf.getMUMType2().isSelected());
+        AssertJUnit.assertTrue(orderConf.getRequestType().isSelected());
+        AssertJUnit.assertTrue(orderConf.getDirectEnrichType().isSelected());
+        AssertJUnit.assertTrue(orderConf.getSourceOfSupType().isSelected());
+
+        //verify line 3
+        orderConf.getOrderLine3().click();
+        AssertJUnit.assertEquals(DataItems.shadeCodeCCE3, orderConf.getShadeCode3().getText().trim());
+        AssertJUnit.assertTrue(orderConf.getMUMType2().isSelected()); //should be Vicone getMUMType3
+        AssertJUnit.assertTrue(orderConf.getRequestType2().isSelected());
+        AssertJUnit.assertTrue(orderConf.getDirectEnrichType().isSelected());
+        AssertJUnit.assertTrue(orderConf.getSourceOfSupType3().isSelected());
+
+        //verify line 4
+        orderConf.getOrderLine4().click();
+        AssertJUnit.assertEquals(DataItems.shadeCodeCCE4, orderConf.getShadeCode4().getText().trim());
+        AssertJUnit.assertTrue(orderConf.getMUMType2().isSelected());  //should be Vicone getMUMType3
+        AssertJUnit.assertTrue(orderConf.getRequestType2().isSelected());
+        AssertJUnit.assertTrue(orderConf.getDirectEnrichType2().isSelected());
+
+        //verify line 5
+        orderConf.getOrderLine5().click();
+        AssertJUnit.assertEquals(DataItems.shadeCodeCCE5, orderConf.getShadeCode5().getText().trim());
+        AssertJUnit.assertTrue(orderConf.getMUMType2().isSelected());  //should be Vicone getMUMType3
+        AssertJUnit.assertTrue(orderConf.getRequestType2().isSelected());
+        AssertJUnit.assertTrue(orderConf.getDirectEnrichType2().isSelected());
     }
 }
 

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 /**
- * Created by dion on 31.03.2016.
+ * Created by Daniel Ion on 31.03.2016.
  */
 //This class is used after "Upload" is pressed in CCE > Order File Upload and displays the question "Do you want to go with existing Mapping?"
 public class CCE_MappingAlert {

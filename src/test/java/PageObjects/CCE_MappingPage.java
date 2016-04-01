@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.AssertJUnit;
 
 /**
- * Created by dion on 31.03.2016.
+ * Created by Daniel Ion on 31.03.2016.
  */
 //This page appears after the mapping alert has been submitted, and allows the user to map the uploaded file
 public class CCE_MappingPage extends WBA_BasePage {
