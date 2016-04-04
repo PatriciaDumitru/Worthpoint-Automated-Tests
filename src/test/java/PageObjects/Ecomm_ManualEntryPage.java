@@ -574,7 +574,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
             System.out.print(t);
         }
 
-        AssertJUnit.assertTrue("Manual Entry Page: Rounded quantity (MOQ) Alert did not appear", waitForQuantityAlert());
+        //AssertJUnit.assertTrue("Manual Entry Page: Rounded quantity (MOQ) Alert did not appear", waitForQuantityAlert());
 
         return new Ecomm_OrderConfirmationPage(driver);
     }
