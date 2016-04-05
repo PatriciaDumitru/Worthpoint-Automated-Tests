@@ -26,12 +26,8 @@ import java.io.IOException;
 
 import com.sun.jna.platform.unix.X11;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.testng.AssertJUnit;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -42,7 +38,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
 
     @Test //Manual Entry Page :: SUMST :: Page checks, single line order using YMN and shade code from master data
-            (groups = {"Solo, Solo"})
+            (groups = {"eComm"})
     public void SUMST1_CONO() throws IOException, InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
@@ -2951,6 +2947,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+
+        Alert alert = Wait.alert(driver);
+        alert.accept();
+
         orderConf.waitForElement();
 
         System.out.println("MOQ Alert appeared as expected.");
@@ -3024,11 +3024,11 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Approver workflow enabled
             (groups = {"eComm","eComm_Orders"}) //CHANGES MASTER DATA
-    public void SUMST28CONO() throws Exception {
+    public void SUMST28_CONO() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Manual Entry Page SUMST28CONO: Approver workflow enabled", "OA_OAP_SUSS_ME_2");
+        CCE_MainPage mainPage = base.setUp("Manual Entry Page SUMST28_CONO: Approver workflow enabled", "OA_OAP_SUSS_ME_2");
 
         PreFlows pf = new PreFlows();
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);

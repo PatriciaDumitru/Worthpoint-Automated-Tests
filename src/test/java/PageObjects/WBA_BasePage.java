@@ -71,7 +71,7 @@ public class WBA_BasePage {
         static By myReportsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(5)");
         static By coatsUserRepSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(6)");
         static By termsConditionsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(7)");
-        static By orderAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(7)");
+        static By orderAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(8)");
         
     static By dashboardTab = By.cssSelector("#topnav > li:nth-child(5)");
         static By realUploadFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(1)");

@@ -29,7 +29,7 @@ public class Master_Test extends DriverFactory {
 
     @Test //All user types page :: Page and filter checks, create new user/edit/delete
             (groups = {"Masters"})
-    public void allUserTypes1() throws Exception {
+    public void A_AUT() throws Exception {
 
         WebDriver driver = getDriver();
 
@@ -147,7 +147,7 @@ public class Master_Test extends DriverFactory {
 
     @Test //Coats Users Page :: Page and filter checks
             (groups = {"Masters"})
-    public void coatsUsers1() throws Exception {
+    public void A_CU() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
@@ -289,13 +289,13 @@ public class Master_Test extends DriverFactory {
         System.out.println("Cancel function works");
     }
 
-    @Test //Contract Order Related :: Flags active and available
+    @Test //Filter Checks
             (groups = {"Masters"})
-    public void contractOrder1() throws Exception {
+    public void A_M_FC() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Contract Order Related: Flags avaiable and function", "CO_MD_01");
+        CCE_MainPage ccePage = base.setUp("Filter Checks", "A_M_FC");
         ccePage.waitForLoad();
 
         System.out.println("Navigating to Sales Organisation page...");
@@ -381,11 +381,9 @@ public class Master_Test extends DriverFactory {
         Mst_EditCustomerPage editPage2 = custPage.pressEdit(2);
         editPage2.waitForLoad();
 
-        System.out.println("Edit page reached. Checking contract order field is activated...");
-
+        //System.out.println("Edit page reached. Checking contract order field is activated...");
         //AssertJUnit.assertTrue("Edit Customer Page: Contract Order field not enabled",editPage2.getContractOrderField().getAttribute("checked").equals("true"));
-
-        System.out.println("Field activated, as expected. Saving...");
+        //System.out.println("Field activated, as expected. Saving...");
 
         Mst_CustomersPage custPage2 = editPage2.pressSave();
         custPage2.waitForElement();
