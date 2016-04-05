@@ -1330,7 +1330,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
     }
 
-    @Test(groups = {"eComm"})
+    @Test(groups = {"Solo"})
     public void CCO_UO_07() throws Exception {
         CCO_GC_01();
 

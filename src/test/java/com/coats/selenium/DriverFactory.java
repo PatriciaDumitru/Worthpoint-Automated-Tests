@@ -38,22 +38,22 @@ public class DriverFactory {
     public static WebDriver getDriver() throws Exception {
         return driverThread.get().getDriver();
     }
-
-    /*     @AfterMethod (alwaysRun=true)
+   /*
+         @AfterMethod (alwaysRun=true)
 
       public static void clearCookies() throws Exception {
           getDriver().manage().deleteAllCookies();
           System.out.println("----------------------------------------------------");
       }
-*/
-    @AfterMethod (alwaysRun=true)
-    public static void closeDriverObjects() {
+
+      @AfterMethod (alwaysRun=true)
+      public static void closeDriverObjects() {
         for (WebDriverThread webDriverThread : webDriverThreadPool) {
             webDriverThread.quitDriver();
         }
         System.out.println("----------------------------------------------------");
 
     }
-
+*/
 
 }
