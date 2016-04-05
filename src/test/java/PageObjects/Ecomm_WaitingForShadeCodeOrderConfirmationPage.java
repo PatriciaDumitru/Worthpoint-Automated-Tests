@@ -22,6 +22,7 @@ public class Ecomm_WaitingForShadeCodeOrderConfirmationPage extends WBA_BasePage
     By flashMessage = By.cssSelector("#flashMessage");
     By confirmButton = By.cssSelector("#submit1");
     By cancelButton = By.cssSelector("#cancel1");
+    By backBtn = By.cssSelector("#backLink");
 
     //table locators
 
@@ -61,6 +62,13 @@ public class Ecomm_WaitingForShadeCodeOrderConfirmationPage extends WBA_BasePage
 
         }
         return new Ecomm_OutstandingOrdersPage(driver);
+    }
+
+    public Ecomm_WaitingForShadePage pressBackBtn(){
+        WebElement back = Wait.clickable(driver,backBtn);
+        back.click();
+
+        return new Ecomm_WaitingForShadePage(driver);
     }
 
     public void waitForElement() {

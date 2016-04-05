@@ -30,6 +30,7 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
     By noRecords = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div");
     By flashMessage = By.cssSelector("#flashMessage");
 
+
     public Ecomm_OutstandingOrdersPage(WebDriver driver) {
         super(driver);
     }
@@ -223,6 +224,13 @@ public class Ecomm_OutstandingOrdersPage extends WBA_BasePage {
         //Locator for "number of order lines" table cell
         By locator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+row+" > td:nth-child(12)");
         WebElement cell = Wait.visible(driver,locator);
+        return cell.getText();
+    }
+
+    public String getShadeNotAvailable (int row){
+        //Locator for "Shade Not Available" table cell
+        By shadeNotAvailable = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr.row-remove_"+row+" > td:nth-child(22)");
+        WebElement cell = Wait.visible(driver,shadeNotAvailable);
         return cell.getText();
     }
     

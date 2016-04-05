@@ -21,6 +21,7 @@ public class Ecomm_ShadeOrderConfirmationPage extends WBA_BasePage {
     By cancelButton = By.id("cancel1");
     By sendForApprovalButton = By.cssSelector("#BulkOrderShadenotavailableConfirmForm > div:nth-child(7) > div:nth-child(3) > input");
     By submitButton = By.id("submit1");
+    By flashMessage = By.id("flashMessage");
     
     public Ecomm_ShadeOrderConfirmationPage(WebDriver driver) {
         super(driver);
@@ -66,6 +67,11 @@ public class Ecomm_ShadeOrderConfirmationPage extends WBA_BasePage {
         }
         
         return new Ecomm_OutstandingOrdersPage(driver);
+    }
+
+    public String getFlashMessage(){
+        String text = driver.findElement(flashMessage).getText();
+        return text;
     }
     
     public void checkFields() {

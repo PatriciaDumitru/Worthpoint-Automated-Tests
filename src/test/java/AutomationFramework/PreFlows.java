@@ -89,7 +89,7 @@ public class PreFlows {
         saveCustomer(driver);
     }
 
-    public void enableEnableOrdersWithoutShadeForSalesOrgandCust(WebDriver driver,String salesOrg,String customer){
+    public void enableEnableOrdersWithoutShadeForSalesOrgAndCust(WebDriver driver,String salesOrg,String customer){
         //This is used as a prerequisite for Ecomm_UO_EOwS_Test class
         goToSalesOrgAndEdit(driver, salesOrg);
         enableEOwSForSalesOrg(driver);
