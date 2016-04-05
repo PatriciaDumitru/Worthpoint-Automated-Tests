@@ -33,6 +33,16 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     public Mst_EditSalesOrgPage(WebDriver driver) {
         super(driver);
     }
+
+    public Mst_EditSalesOrgPage checkSubAcctField() {
+        CommonTask.setCheckBox(driver,subAcctField);
+        return this;
+    }
+
+    public Mst_EditSalesOrgPage checkMailNotificationField() {
+        CommonTask.setCheckBox(driver,mailNotificationField);
+        return this;
+    }
     
     public WebElement getBreadcrumb() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(DataItems.breadcrumbLocator));

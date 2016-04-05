@@ -8,9 +8,12 @@ import com.coats.selenium.DriverFactory;
 
 import static com.coats.selenium.DriverFactory.getDriver;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriver.Timeouts;
@@ -392,13 +395,209 @@ public class Master_Test extends DriverFactory {
 
     }
 
-    @Test //Sub Account :: Page and filter checks, add/edit/delete
+    @Test //Approver List (Online Approval Related) :: Page and filter checks, add/edit/delete
             (groups = {"Masters"})
-    public void subaccount1() throws Exception {
+    public void A_M_AL() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Sub Account: Page displayed and functioning", "MD_SA_01");
+        CCE_MainPage ccePage = base.setUp("Approver List (Online Approval Related): Page and filter checks, add/edit/delete", "A_M_AL");
+        ccePage.waitForLoad();
+
+        System.out.println("Navigating to Customer...");
+
+        Mst_CustomersPage custPage = ccePage.selectCustomers();
+        custPage.waitForElement();
+
+        System.out.println("Page reached. Editing top item...");
+
+        Mst_EditCustomerPage editPage = custPage.pressEdit(2);
+        editPage.waitForElement();
+
+        System.out.println("Edit page reached. Asserting approval workflow flag appears...");
+
+        AssertJUnit.assertTrue("Edit Customer Page: Approval workflow checkbox not displayed", editPage.getApprovalWorkflowBox().isDisplayed());
+
+        System.out.println("Flag appears. Navigating to Approver List...");
+
+        driver.navigate().refresh();
+        driver.get(DataItems.cceURL);
+
+        Mst_ApproverListPage appList = editPage.selectApproverList();
+        appList.waitForElement();
+
+        System.out.println("Approver List Page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Approver List Page: Title not as expected", appList.getBreadcrumb().getText().equals("Approver List"));
+
+        System.out.println("Title as expected");
+
+        appList.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        appList.checkFields();
+
+        System.out.println("Fields checked. Entering filter criteria...");
+
+        appList.setSalesOrg("ID51");
+        appList.setCustomerName(DataItems.custDetails[0]);
+        appList.pressSearch();
+        appList.waitForElement();
+
+        System.out.println("Filter criteria entered. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(3)";
+
+        By countField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Filtration not as expected", appList.checkFiltration(loc1, loc2, DataItems.custDetails[0], countField, 2));
+
+        System.out.println("Filtration checked. Creating new approver list...");
+
+        Mst_AddApproverListPage addPage = appList.pressAddApproverList();
+        addPage.waitForElement();
+
+        System.out.println("Add list page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Add Approver List Page: Title not as expected", addPage.getBreadcrumb().getText().equals("Approver List | Add Approver List"));
+
+        System.out.println("Title as expected");
+
+        addPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        addPage.checkFields();
+
+        System.out.println("Fields checked. Entering details...");
+
+        addPage.setSalesOrg("ID51");
+        addPage.setCustomerName(DataItems.custDetails[0]);
+        addPage.setRequester("Auto Approver");
+        addPage.setValueStart("0.01");
+        addPage.setValueUntil("100.00");
+        addPage.enableEmailNotif();
+
+        System.out.println("Details entered. Saving...");
+
+        addPage.pressSave();
+        appList.waitForElement();
+
+        System.out.println("Saved. Checking record is created...");
+
+        appList.setSalesOrg("ID51");
+        appList.setCustomerName(DataItems.custDetails[0]);
+        appList.pressSearch();
+        appList.waitForElement();
+
+        int row = appList.getRow("approver@lifeeasy.com");
+        System.out.println(row);
+        AssertJUnit.assertFalse("Approver List Page: Approver list not found after being created", row == -1);
+
+        System.out.println("Record created. Editing item...");
+
+        Mst_EditApproverListPage editPage2 = appList.pressEdit(row);
+        editPage2.waitForElement();
+
+        System.out.println("Edit page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Edit Approver List Page: Title not as expected", editPage2.getBreadcrumb().getText().equals("Approver List | Edit Approver List"));
+
+        System.out.println("Title checked");
+
+        editPage2.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        editPage2.checkFields();
+
+        System.out.println("Fields checked. Editing until value...");
+
+        AssertJUnit.assertTrue("Edit Approver List Page: Requester not as expected, record not edited", editPage2.getRequester().equals("Auto Approver"));
+
+        editPage2.setValueUntil("10.00");
+
+        System.out.println("Value edited. Saving...");
+
+        editPage2.pressSave();
+        appList.waitForElement();
+
+        System.out.println("Saved. Checking changes were applied...");
+
+        appList.setSalesOrg("ID51");
+        appList.setCustomerName(DataItems.custDetails[0]);
+        appList.pressSearch();
+        appList.waitForElement();
+
+        int row2 = appList.getRow("approver@lifeeasy.com");
+        String value = appList.getValueUntil(row2);
+
+        AssertJUnit.assertTrue("Approver List Page: Record not updated after edit saved. Value until: " + value, value.equals("10.00"));
+
+        System.out.println("Changes correctly applied. Deleting record...");
+
+        appList.pressDelete(row2);
+
+        System.out.println("Delete pressed. Checking record is removed...");
+
+        appList.setSalesOrg("ID51");
+        appList.setCustomerName(DataItems.custDetails[0]);
+        appList.pressSearch();
+        appList.waitForElement();
+
+        int row3 = appList.getRow("approver@lifeeasy.com");
+        AssertJUnit.assertTrue("Approver List Page: Record persists after deletion", row3 == -1);
+
+        System.out.println("Record removed. Testing export feature...");
+
+        appList.setCustomerName(DataItems.custDetails[0]);
+        appList.pressSearch();
+        appList.waitForLoad();
+        CCE_ExportDownloadPage dlPage = appList.pressExport();
+        dlPage.waitForDownloadCompletion();
+
+        System.out.println("Export download completed");
+    }
+
+    @Test //Approver User Type :: User type can be found and used in Masters, Solo
+            (groups = {"Masters"})
+    public void A_M_AUT() throws Exception {
+        WebDriver driver = getDriver();
+
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Approver User Type: Customer user type can be set to 'Approver'", "A_M_AUT");
+        ccePage.waitForLoad();
+
+        System.out.println("Navigating to Customer...");
+
+        Mst_CustomersPage custPage = ccePage.selectCustomers();
+        custPage.waitForElement();
+
+        System.out.println("Page reached. Entering filter criteria and editing...");
+
+        custPage.setCustomerName(DataItems.custDetails[0]);
+        custPage.pressSearch();
+        custPage.waitForElement();
+
+        Mst_EditCustomerPage editPage = custPage.pressEdit(2);
+        editPage.waitForElement();
+
+        System.out.println("Edit page reached. Asserting Requester User Type can be set to Approver...");
+
+        AssertJUnit.assertTrue("Edit Customer Page: Approver User Type is not available to be set", editPage.findUserType("Approver"));
+
+        System.out.println("Approver type found");
+    }
+
+    @Test //Sub Account :: Page and filter checks, add/edit/delete
+            (groups = {"Masters"})
+    public void A_M_SA1() throws Exception {
+        WebDriver driver = getDriver();
+
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage ccePage = base.setUp("Sub Account: Page displayed and functioning", "A_M_SA");
         ccePage.waitForLoad();
 
         System.out.println("Navigating to Sub Account page...");
@@ -433,6 +632,28 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
 
         AssertJUnit.assertTrue("Sub Account Page: Filter produced unexpected results", saPage.checkFiltration(loc1, loc2, "ID51", 2));
+
+        try {
+            int row4 = saPage.getRow("AutoTest SubAccount");
+            if  (row4 > 0){
+                System.out.println("Deleting old unedited record...");
+                saPage.pressDelete(row4,"AutoTest SubAccount");
+                saPage.waitForLoad();
+            }
+        } catch (Exception e) {
+            System.out.println("Old unedited record to be deleted not found");
+        }
+
+        try {
+            int row3 = saPage.getRow("AutoEdited");
+            if  (row3 > 0){
+                System.out.println("Deleting old edited record...");
+                saPage.pressDelete(row3,"AutoTest SubAccount");
+                saPage.waitForLoad();
+            }
+        } catch (Exception e) {
+            System.out.println("Old edited record to be deleted not found");
+        }
 
         System.out.println("Filtration functions as expected. Checking export function...");
 
@@ -527,11 +748,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Sub Account Related :: Switches appear in Sales Org and Customers master data
             (groups = {"Masters"})
-    public void subAccount2() throws Exception {
+    public void A_M_SA2() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Sub Account Related: Sales Org and Customers levels contain switch", "MD_SA_02 and 03");
+        CCE_MainPage ccePage = base.setUp("Sub Account Related: Sales Org and Customers levels contain switch", "A_M_SA2");
         ccePage.waitForLoad();
 
         System.out.println("Navigating to Sales Org page...");
@@ -554,12 +775,15 @@ public class Master_Test extends DriverFactory {
         editPage.waitForElement();
 
         System.out.println("Edit page reached. Checking for Sub Account field...");
+        editPage.checkSubAcctField();
 
         AssertJUnit.assertTrue("Edit Sales Org Page: Sub Account label not displayed", editPage.getSubAccountLabel().getText().equals("Enabled Sub Account Option"));
         AssertJUnit.assertTrue("Edit Sales Org Page: Sub Account field not displayed", editPage.getSubAccountField().isDisplayed());
         String status = editPage.getSubAccountField().getAttribute("checked");
         AssertJUnit.assertTrue("Edit Sales Org Page: Sub Account field not enabled as expected", status.equals("true"));
-
+        System.out.println("Saving...");
+        editPage.pressSave();
+        System.out.println("Saved");
         System.out.println("Field displayed. Current status: " + status + ", as expected. Navigating to Customer master...");
 
         Mst_CustomersPage custPage = editPage.selectCustomers();
@@ -575,7 +799,7 @@ public class Master_Test extends DriverFactory {
         editPage2.waitForElement();
 
         System.out.println("Customer found. Checking for Sub-account field...");
-
+        editPage2.checkSubAcctField();
         AssertJUnit.assertTrue("Edit Customer Page: Sub Account label not displayed", editPage2.getSubAcctLabel().getText().equals("Enabled SubAccount Option"));
         AssertJUnit.assertTrue("Edit Customer Page: Sub Account field not displayed", editPage2.getSubAcctField().isDisplayed());
         String status2 = editPage2.getSubAcctField().getAttribute("checked");
@@ -588,7 +812,7 @@ public class Master_Test extends DriverFactory {
 
     @Test //Mail Notification Related :: Switch for mail notifications present in sales org and customer (requester level) master data
             (groups = {"Masters"})
-    public void mailNotification1() throws Exception {
+    public void A_M_MN() throws Exception {
 
         WebDriver driver = getDriver();
 
@@ -616,13 +840,15 @@ public class Master_Test extends DriverFactory {
         editPage.waitForElement();
 
         System.out.println("Edit page reached. Checking for Mail Notification field...");
+        editPage.checkMailNotificationField();
 
         AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification label text not as expected", editPage.getMailNotificationLabel().getText().equals("Enabled CCE Ship Notice"));
         AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification field not displayed", editPage.getMailNotificationField().isDisplayed());
-        String status = editPage.getSubAccountField().getAttribute("checked");
+        String status = editPage.getMailNotificationField().getAttribute("checked");
         AssertJUnit.assertTrue("Edit Sales Org Page: Mail Notification field not enabled as expected", status.equals("true"));
-
-        System.out.println("Field displayed. Current status: " + status + ", as expected. Navigating to Customer master...");
+        editPage.pressSave();
+        System.out.println("Saved");
+       /* System.out.println("Field displayed. Current status: " + status + ", as expected. Navigating to Customer master...");
 
         Mst_CustomersPage custPage = editPage.selectCustomers();
         custPage.waitForLoad();
@@ -636,224 +862,25 @@ public class Master_Test extends DriverFactory {
         Mst_EditCustomerPage editPage2 = custPage.pressEdit(2);
         editPage2.waitForElement();
 
-        System.out.println("Customer found. Checking for Sub-account field...");
-
-        String a= editPage2.getSubAcctLabel().getText();
-        System.out.println(a);
+        System.out.println("Customer found. Checking for CCE Ship Notice field...");
+        editPage2.checkCceShipNoticeField();
 
         AssertJUnit.assertTrue("Edit Customer Page: Sub Account label not displayed", editPage2.getSubAcctLabel().getText().equals("Enabled SubAccount Option"));
         AssertJUnit.assertTrue("Edit Customer Page: Sub Account field not displayed", editPage2.getSubAcctField().isDisplayed());
         String status2 = editPage2.getSubAcctField().getAttribute("checked");
         AssertJUnit.assertTrue("Edit Customer Page: Sub Account field not enabled as expected", status2.equals("true"));
 
-        System.out.println("Field displayed. Current status: " + status + ", as expected.");
+        System.out.println("Field displayed. Current status: " + status + ", as expected.");*/
 
-    }
-
-    @Test //Approver List (Online Approval Related) :: Page and filter checks, add/edit/delete
-            (groups = {"Masters"})
-    public void approverList1() throws Exception {
-        WebDriver driver = getDriver();
-
-        Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Approver List (Online Approval Related): Page and filter checks, add/edit/delete", "OA_MD_MA_1 to 10");
-        ccePage.waitForLoad();
-
-
-        System.out.println("Navigating to Customer...");
-
-        Mst_CustomersPage custPage = ccePage.selectCustomers();
-        custPage.waitForElement();
-
-        System.out.println("Page reached. Editing top item...");
-
-        Mst_EditCustomerPage editPage = custPage.pressEdit(2);
-        editPage.waitForElement();
-
-        System.out.println("Edit page reached. Asserting approval workflow flag appears...");
-
-        AssertJUnit.assertTrue("Edit Customer Page: Approval workflow checkbox not displayed",editPage.getApprovalWorkflowBox().isDisplayed());
-
-        System.out.println("Flag appears. Navigating to Approver List...");
-
-        driver.navigate().refresh();
-        driver.get(DataItems.cceURL);
-
-        Mst_ApproverListPage appList = editPage.selectApproverList();
-        appList.waitForElement();
-
-        System.out.println("Approver List Page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Approver List Page: Title not as expected",appList.getBreadcrumb().getText().equals("Approver List"));
-
-        System.out.println("Title as expected");
-
-        appList.assertBaseElements();
-
-        System.out.println("Checking fields...");
-
-        appList.checkFields();
-
-        System.out.println("Fields checked. Entering filter criteria...");
-
-        appList.setSalesOrg("ID51");
-        appList.setCustomerName(DataItems.custDetails[0]);
-        appList.pressSearch();
-        appList.waitForElement();
-
-        System.out.println("Filter criteria entered. Checking filtration...");
-
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(3)";
-
-        By countField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Filtration not as expected",appList.checkFiltration(loc1, loc2,DataItems.custDetails[0],countField, 2));
-
-        System.out.println("Filtration checked. Creating new approver list...");
-
-        Mst_AddApproverListPage addPage = appList.pressAddApproverList();
-        addPage.waitForElement();
-
-        System.out.println("Add list page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Add Approver List Page: Title not as expected",addPage.getBreadcrumb().getText().equals("Approver List | Add Approver List"));
-
-        System.out.println("Title as expected");
-
-        addPage.assertBaseElements();
-
-        System.out.println("Checking fields...");
-
-        addPage.checkFields();
-
-        System.out.println("Fields checked. Entering details...");
-
-        addPage.setSalesOrg("ID51");
-        addPage.setCustomerName(DataItems.custDetails[0]);
-        addPage.setRequester("Auto Approver");
-        addPage.setValueStart("0.01");
-        addPage.setValueUntil("100.00");
-        addPage.enableEmailNotif();
-
-        System.out.println("Details entered. Saving...");
-
-        addPage.pressSave();
-        appList.waitForElement();
-
-        System.out.println("Saved. Checking record is created...");
-
-        appList.setSalesOrg("ID51");
-        appList.setCustomerName(DataItems.custDetails[0]);
-        appList.pressSearch();
-        appList.waitForElement();
-
-        int row = appList.getRow("approver@lifeeasy.com");
-        System.out.println(row);
-        AssertJUnit.assertFalse("Approver List Page: Approver list not found after being created",row==-1);
-
-        System.out.println("Record created. Editing item...");
-
-        Mst_EditApproverListPage editPage2 = appList.pressEdit(row);
-        editPage2.waitForElement();
-
-        System.out.println("Edit page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Edit Approver List Page: Title not as expected",editPage2.getBreadcrumb().getText().equals("Approver List | Edit Approver List"));
-
-        System.out.println("Title checked");
-
-        editPage2.assertBaseElements();
-
-        System.out.println("Checking fields...");
-
-        editPage2.checkFields();
-
-        System.out.println("Fields checked. Editing until value...");
-
-        AssertJUnit.assertTrue("Edit Approver List Page: Requester not as expected, record not edited",editPage2.getRequester().equals("Auto Approver"));
-
-        editPage2.setValueUntil("10.00");
-
-        System.out.println("Value edited. Saving...");
-
-        editPage2.pressSave();
-        appList.waitForElement();
-
-        System.out.println("Saved. Checking changes were applied...");
-
-        appList.setSalesOrg("ID51");
-        appList.setCustomerName(DataItems.custDetails[0]);
-        appList.pressSearch();
-        appList.waitForElement();
-
-        int row2 = appList.getRow("approver@lifeeasy.com");
-        String value = appList.getValueUntil(row2);
-
-        AssertJUnit.assertTrue("Approver List Page: Record not updated after edit saved. Value until: " + value,value.equals("10.00"));
-
-        System.out.println("Changes correctly applied. Deleting record...");
-
-        appList.pressDelete(row2);
-
-        System.out.println("Delete pressed. Checking record is removed...");
-
-        appList.setSalesOrg("ID51");
-        appList.setCustomerName(DataItems.custDetails[0]);
-        appList.pressSearch();
-        appList.waitForElement();
-
-        int row3 = appList.getRow("approver@lifeeasy.com");
-        AssertJUnit.assertTrue("Approver List Page: Record persists after deletion",row3 == -1);
-
-        System.out.println("Record removed. Testing export feature...");
-
-        appList.setCustomerName(DataItems.custDetails[0]);
-        appList.pressSearch();
-        appList.waitForLoad();
-        CCE_ExportDownloadPage dlPage = appList.pressExport();
-        dlPage.waitForDownloadCompletion();
-
-        System.out.println("Export download completed");
-    }
-
-    @Test //Approver User Type :: User type can be found and used in Masters, Solo
-            (groups = {"Masters"})
-    public void approverUserType1() throws Exception {
-        WebDriver driver = getDriver();
-
-        Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Approver User Type: Customer user type can be set to 'Approver'", "OA_MD_UT_2");
-        ccePage.waitForLoad();
-
-        System.out.println("Navigating to Customer...");
-
-        Mst_CustomersPage custPage = ccePage.selectCustomers();
-        custPage.waitForElement();
-
-        System.out.println("Page reached. Entering filter criteria and editing...");
-
-        custPage.setCustomerName(DataItems.custDetails[0]);
-        custPage.pressSearch();
-        custPage.waitForElement();
-
-        Mst_EditCustomerPage editPage = custPage.pressEdit(2);
-        editPage.waitForElement();
-
-        System.out.println("Edit page reached. Asserting Requester User Type can be set to Approver...");
-
-        AssertJUnit.assertTrue("Edit Customer Page: Approver User Type is not available to be set", editPage.findUserType("Approver"));
-
-        System.out.println("Approver type found");
     }
 
     @Test //Cusotmer Business Principal :: Page and filter checks, add/edit/delete functions
             (groups = {"Masters"})
-    public void businessPrinc1() throws Exception {
+    public void A_M_CBP() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Customer Business Principal: Page and filter checks, add/edit/delete functions", "A_CB_CBP_1 to 8");
+        CCE_MainPage ccePage = base.setUp("Customer Business Principal: Page and filter checks, add/edit/delete functions", "A_M_CBP");
         ccePage.waitForLoad();
 
         System.out.println("Navigating to Customer Business Principals...");
@@ -977,12 +1004,12 @@ public class Master_Test extends DriverFactory {
 
     @Test //MultiSoldToUser master :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void multiSoldToUsers1() throws Exception {
+    public void A_M_MSU() throws Exception {
 
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Multi Sold To Users: Page and filter checks, add/edit/delete/export", "A_CB_MSTU_1 to 8");
+        CCE_MainPage ccePage = base.setUp("Multi Sold To Users: Page and filter checks, add/edit/delete/export", "A_M_MSU");
         ccePage.waitForLoad();
 
         System.out.println("Navigating to Multi Sold To Users page...");
@@ -1269,11 +1296,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Customer Shades :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void customerShades1() throws Exception {
+    public void A_M_CS() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Customer Shades: Page and filter checks, add/edit/delete/export", "A_CB_CS_1 to 8");
+        CCE_MainPage ccePage = base.setUp("Customer Shades: Page and filter checks, add/edit/delete/export", "A_M_CS");
         ccePage.waitForLoad();
 
         System.out.println("Navigating to Customer Shades page...");
@@ -1408,11 +1435,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Customer Finishes :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void customerFinishes1() throws Exception {
+    public void A_M_CF() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Customer Finishes: Page and filter checks, add/edit/delete/export features", "A_CB_CF_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Customer Finishes: Page and filter checks, add/edit/delete/export features", "A_M_CF");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Customer Finishes Page...");
@@ -1557,11 +1584,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Customer Lengths :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void customerLengths1() throws Exception {
+    public void A_M_CL() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Customer Lengths: Page and filter checks, add/edit/delete/export features", "A_CB_CL_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Customer Lengths: Page and filter checks, add/edit/delete/export features", "A_M_CL");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Customer Lengths Page...");
@@ -1708,11 +1735,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Customer Tickets :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void customerTickets1() throws Exception {
+    public void A_M_CT() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Customer Tickets: Page and filter checks, add/edit/delete/export features", "A_CB_Ctkt_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Customer Tickets: Page and filter checks, add/edit/delete/export features", "A_M_CT");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Customer Tickets Page...");
@@ -1749,6 +1776,28 @@ public class Master_Test extends DriverFactory {
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
         AssertJUnit.assertTrue("Customer Tickets Page: Filtration not working as expected", tktPage.checkFiltration(loc1, loc2, DataItems.custDetails[0], recordField, 2));
+
+        try {
+            int row4 = tktPage.getRow("AutoTkt");
+            if  (row4 > 0){
+                System.out.println("Deleting old unedited record...");
+                tktPage.pressDelete(row4);
+                tktPage.waitForLoad();
+            }
+        } catch (Exception e) {
+            System.out.println("Old unedited record to be deleted not found");
+        }
+
+        try {
+            int row3 = tktPage.getRow("AutoEdited");
+            if  (row3 > 0){
+                System.out.println("Deleting old edited record...");
+                tktPage.pressDelete(row3);
+                tktPage.waitForLoad();
+            }
+        } catch (Exception e) {
+            System.out.println("Old edited record to be deleted not found");
+        }
 
         System.out.println("Filtration as expected. Creating new Customer Ticket...");
 
@@ -1859,11 +1908,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Customer Brands :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void customerBrands1() throws Exception {
+    public void A_M_CB() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Customer Brands: Page and filter checks, add/edit/delete/export features", "A_CB_CB_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Customer Brands: Page and filter checks, add/edit/delete/export features", "A_M_CB");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Customer Brands Page...");
@@ -1900,6 +1949,28 @@ public class Master_Test extends DriverFactory {
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
         AssertJUnit.assertTrue("Customer Brands Page: Filtration not working as expected", brndPage.checkFiltration(loc1, loc2, DataItems.custDetails[0], recordField, 2));
+
+        try {
+            int row4 = brndPage.getRow("AutoBrand");
+            if  (row4 > 0){
+                System.out.println("Deleting old unedited record...");
+                brndPage.pressDelete(row4);
+                brndPage.waitForLoad();
+            }
+        } catch (Exception e) {
+            System.out.println("Old unedited record to be deleted not found");
+        }
+
+        try {
+            int row3 = brndPage.getRow("AutoEdited");
+            if  (row3 > 0){
+                System.out.println("Deleting old edited record...");
+                brndPage.pressDelete(row3);
+                brndPage.waitForLoad();
+            }
+        } catch (Exception e) {
+            System.out.println("Old edited record to be deleted not found");
+        }
 
         System.out.println("Filtration as expected. Creating new Customer Ticket...");
 
@@ -2010,11 +2081,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Customer Materials :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void customerMaterials() throws Exception {
+    public void A_M_CM() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Customer Materials: Page and filter checks, add/edit/delete/export features", "A_CB_CM_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Customer Materials: Page and filter checks, add/edit/delete/export features", "A_M_CM");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Customer Materials Page...");
@@ -2164,11 +2235,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Business Principals :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void businessPrincipals1() throws Exception {
+    public void A_M_BP() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Business Principals: Page and filter checks, add/edit/delete/export features", "A_CB_BP_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Business Principals: Page and filter checks, add/edit/delete/export features", "A_M_BP");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Business Principals Page...");
@@ -2312,7 +2383,160 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Title as expected");
     }
-/* test hangs
+
+    @Test //Sales Organisations :: Page and filter checks, add/edit/delete/export features
+            (groups = {"Masters"})
+    public void A_M_SO() throws Exception {
+        WebDriver driver = getDriver();
+
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Sales Organisations: Page and filter checks, add/edit/delete/export features", "A_M_SO");
+        mainPage.waitForLoad();
+
+        System.out.println("Navigating to Sales Organisations Page...");
+
+        Mst_SalesOrgPage soPage = mainPage.selectSalesOrg();
+        soPage.waitForElement();
+
+        System.out.println("Sales Organisations page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", soPage.getBreadcrumb().getText().equals("Sales Organisations"));
+
+        System.out.println("Title checked");
+
+        soPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        soPage.checkFields();
+
+        System.out.println("Fields checked. Entering filter criteria...");
+
+        soPage.setSalesOrg("ID51");
+
+        System.out.println("Filter criteria entered. Listing records...");
+
+        soPage.pressSearch();
+        soPage.waitForElement();
+
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Sales Organisations Page: Filtration not working as expected", soPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+
+        System.out.println("Filtration as expected. Creating new Sales Organisations...");
+
+        Mst_AddSalesOrgPage addPage = soPage.pressNewSalesOrg();
+        addPage.waitForElement();
+
+        System.out.println("Add Sales Organisation Page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Add Sales Organisation Page: Title not as expected", addPage.getBreadcrumb().getText().equals("Sales Organisations | Add Sales Organisation"));
+
+        System.out.println("Title as expected");
+
+        addPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        addPage.checkFields();
+
+        System.out.println("Fields checked. Entering details...");
+
+        addPage.setSalesOrg("ID99");
+        addPage.setDescription("Automated tests: generated by test script");
+        addPage.setSAPInstance("SAP603");
+
+        System.out.println("Details entered. Saving...");
+
+        addPage.pressSave();
+        soPage.waitForElement();
+
+        System.out.println("Saved. Checking record appears...");
+
+        soPage.setSalesOrg("ID99");
+        soPage.pressSearch();
+        soPage.waitForElement();
+
+        int row = soPage.getRow("ID99");
+
+        AssertJUnit.assertFalse("Sales Organisations Page: Sales Organisation not present in table after creation", row == -1);
+
+        System.out.println("Record found. Editing record...");
+
+        Mst_EditSalesOrgPage editPage = soPage.pressEdit(row);
+        editPage.waitForElement();
+
+        System.out.println("Edit page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Edit Sales Organisation Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Sales Organisations | Edit Sales Organisation"));
+
+        System.out.println("Title checked");
+
+        editPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        editPage.checkFields();
+
+        System.out.println("Fields checked. Editing Sales Organisation...");
+
+        editPage.setSalesOrg("ID100");
+
+        System.out.println("Edited. Saving...");
+
+        editPage.pressSave();
+        soPage.waitForElement();
+
+        System.out.println("Saved. Checking record is updated...");
+
+        soPage.setSalesOrg("ID100");
+        soPage.pressSearch();
+        soPage.waitForElement();
+
+        int row2 = soPage.getRow("ID100");
+        AssertJUnit.assertFalse("Sales Organisations Page: Edited changes are not applied in table", row2 == -1);
+
+        System.out.println("Record updated. Deleting record...");
+
+        soPage.pressDelete(row2);
+        soPage.waitForElement();
+
+        System.out.println("Delete pressed. Checking item is removed...");
+
+        soPage.setSalesOrg("ID100");
+        soPage.pressSearch();
+        soPage.waitForElement();
+
+        int row3 = soPage.getRow("ID100");
+        AssertJUnit.assertTrue("Sales Organisations Page: Item not removed after deletion", row3 == -1);
+
+        System.out.println("Item removed. Checking export function...");
+
+        soPage.pressReset();
+        soPage.waitForElement();
+        soPage.setSalesOrg("ID");
+        soPage.pressSearch();
+        soPage.waitForElement();
+
+        CCE_ExportDownloadPage dlPage = soPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+
+        System.out.println("Export function works. Checking import page...");
+
+        Mst_ImportPage impPage = soPage.pressImport();
+        impPage.waitForElement();
+
+        System.out.println("Page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Sales Organisations Import Page: Title not as expected", impPage.getBreadcrumb().getText().equals("Sales Organisations | Import"));
+
+        System.out.println("Title as expected");
+    }
+
     @Test //Countries :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
     public void countries1() throws Exception {
@@ -2472,43 +2696,42 @@ public class Master_Test extends DriverFactory {
         System.out.println("Title as expected");
     }
 
-
-    */
-
-    @Test //Sales Organisations :: Page and filter checks, add/edit/delete/export features
-            (groups = {"Masters"})
-    public void salesOrg1() throws Exception {
+    @Test //Enterprise Structure: Page and filter checks, add/edit/delete/export functions
+            (groups = {"Masters",}, enabled = false)
+    //DISABLED as the data created cannot be deleted and so the test cannot pass.
+    //Error Msg.: "Enterprise Structure was not deleted due to sharing voilation with other masters"
+    public void enterpriseStructure1() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Sales Organisations: Page and filter checks, add/edit/delete/export features", "A_CM_Sorg_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Enterprise Structure: Page and filter checks, add/edit/delete/export features", "A_CM_ES_1 to 8");
         mainPage.waitForLoad();
 
-        System.out.println("Navigating to Sales Organisations Page...");
+        System.out.println("Navigating to Enterprise Structure Page...");
 
-        Mst_SalesOrgPage soPage = mainPage.selectSalesOrg();
-        soPage.waitForElement();
+        Mst_EnterpriseStructurePage pPage = mainPage.selectEnterpriseStructure();
+        pPage.waitForElement();
 
-        System.out.println("Sales Organisations page reached. Checking title...");
+        System.out.println("Enterprise Structure page reached. Checking title...");
 
-        AssertJUnit.assertTrue("Sales Organisations Page: Title not as expected", soPage.getBreadcrumb().getText().equals("Sales Organisations"));
+        AssertJUnit.assertTrue("Enterprise Structure Page: Title not as expected", pPage.getBreadcrumb().getText().equals("Enterprise Structure"));
 
         System.out.println("Title checked");
 
-        soPage.assertBaseElements();
+        pPage.assertBaseElements();
 
         System.out.println("Checking fields...");
 
-        soPage.checkFields();
+        pPage.checkFields();
 
         System.out.println("Fields checked. Entering filter criteria...");
 
-        soPage.setSalesOrg("ID51");
+        pPage.setRegion("EMEAI (Europe Middle East and Africa)");
 
         System.out.println("Filter criteria entered. Listing records...");
 
-        soPage.pressSearch();
-        soPage.waitForElement();
+        pPage.pressSearch();
+        pPage.waitForElement();
 
         System.out.println("Records listed. Checking filtration...");
 
@@ -2516,16 +2739,16 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Sales Organisations Page: Filtration not working as expected", soPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+        AssertJUnit.assertTrue("Enterprise Structure Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "EMEAI (Europe Middle East and Africa)", recordField, 2));
 
-        System.out.println("Filtration as expected. Creating new Sales Organisations...");
+        System.out.println("Filtration as expected. Creating new Hub...");
 
-        Mst_AddSalesOrgPage addPage = soPage.pressNewSalesOrg();
+        Mst_AddEnterpriseStructurePage addPage = pPage.pressNewEnterpriseStructure();
         addPage.waitForElement();
 
-        System.out.println("Add Sales Organisation Page reached. Checking title...");
+        System.out.println("Add Enterprise Structure Page reached. Checking title...");
 
-        AssertJUnit.assertTrue("Add Sales Organisation Page: Title not as expected", addPage.getBreadcrumb().getText().equals("Sales Organisations | Add Sales Organisation"));
+        AssertJUnit.assertTrue("Add Enterprise Structure Page: Title not as expected", addPage.getBreadcrumb().getText().equals("Enterprise Structure | Add Enterprise Structure"));
 
         System.out.println("Title as expected");
 
@@ -2537,33 +2760,35 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID99");
-        addPage.setDescription("Automated tests: generated by test script");
-        addPage.setSAPInstance("SAP603");
+        addPage.setRegion("EMEAI (Europe Middle East and Africa)");
+        addPage.setSalesOrg("Test123");
+        addPage.setCountryCode("AD");
+        addPage.setHub("test");
 
         System.out.println("Details entered. Saving...");
 
         addPage.pressSave();
-        soPage.waitForElement();
+        pPage.waitForElement();
 
         System.out.println("Saved. Checking record appears...");
 
-        soPage.setSalesOrg("ID99");
-        soPage.pressSearch();
-        soPage.waitForElement();
+        pPage.setCountryCode("AD");
+        pPage.setHub("test");
+        pPage.pressSearch();
+        pPage.waitForElement();
 
-        int row = soPage.getRow("ID99");
+        int row = pPage.getRow("test");
 
-        AssertJUnit.assertFalse("Sales Organisations Page: Sales Organisation not present in table after creation", row == -1);
+        AssertJUnit.assertFalse("Enterprise Structure Page: Enterprise Structure not present in table after creation", row == -1);
 
         System.out.println("Record found. Editing record...");
 
-        Mst_EditSalesOrgPage editPage = soPage.pressEdit(row);
+        Mst_EditEnterpriseStructurePage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
 
         System.out.println("Edit page reached. Checking title...");
 
-        AssertJUnit.assertTrue("Edit Sales Organisation Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Sales Organisations | Edit Sales Organisation"));
+        AssertJUnit.assertTrue("Edit Enterprise Structure Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Enterprise Structure | Edit Enterprise Structure"));
 
         System.out.println("Title checked");
 
@@ -2573,57 +2798,57 @@ public class Master_Test extends DriverFactory {
 
         editPage.checkFields();
 
-        System.out.println("Fields checked. Editing Sales Organisation...");
+        System.out.println("Fields checked. Editing Hub name...");
 
-        editPage.setSalesOrg("ID100");
+        editPage.setHub("Test_HUB");
 
         System.out.println("Edited. Saving...");
 
         editPage.pressSave();
-        soPage.waitForElement();
+        pPage.waitForElement();
 
         System.out.println("Saved. Checking record is updated...");
 
-        soPage.setSalesOrg("ID100");
-        soPage.pressSearch();
-        soPage.waitForElement();
+        pPage.setHub("Test_HUB");
+        pPage.pressSearch();
+        pPage.waitForElement();
 
-        int row2 = soPage.getRow("ID100");
-        AssertJUnit.assertFalse("Sales Organisations Page: Edited changes are not applied in table", row2 == -1);
+        int row2 = pPage.getRow("Test_HUB");
+        AssertJUnit.assertFalse("Enterprise Structure Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
 
-        soPage.pressDelete(row2);
-        soPage.waitForElement();
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        soPage.setSalesOrg("ID100");
-        soPage.pressSearch();
-        soPage.waitForElement();
+        pPage.setHub("Test_HUB");
+        pPage.pressSearch();
+        pPage.waitForElement();
 
-        int row3 = soPage.getRow("ID100");
-        AssertJUnit.assertTrue("Sales Organisations Page: Item not removed after deletion", row3 == -1);
+        int row3 = pPage.getRow("Test_HUB");
+        AssertJUnit.assertTrue("Hubs Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
 
-        soPage.pressReset();
-        soPage.waitForElement();
-        soPage.setSalesOrg("ID");
-        soPage.pressSearch();
-        soPage.waitForElement();
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setCountryCode("AD");
+        pPage.pressSearch();
+        pPage.waitForElement();
 
-        CCE_ExportDownloadPage dlPage = soPage.pressExport();
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
         dlPage.waitForDownloadCompletion();
 
         System.out.println("Export function works. Checking import page...");
 
-        Mst_ImportPage impPage = soPage.pressImport();
+        Mst_ImportPage impPage = pPage.pressImport();
         impPage.waitForElement();
 
         System.out.println("Page reached. Checking title...");
 
-        AssertJUnit.assertTrue("Sales Organisations Import Page: Title not as expected", impPage.getBreadcrumb().getText().equals("Sales Organisations | Import"));
+        AssertJUnit.assertTrue("Enterprise Structure Import Page: Title not as expected", impPage.getBreadcrumb().getText().equals("Enterprise Structure | Import"));
 
         System.out.println("Title as expected");
     }
@@ -2631,6 +2856,7 @@ public class Master_Test extends DriverFactory {
     @Test //Plants :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"}, enabled = false)
     //DISABLED as data cannot be deleted from table (due to sharing violation) so test cannot pass
+    //Error Msg: "Plant was not deleted due to sharing voilation with other masters"
     public void plants1() throws Exception {
         WebDriver driver = getDriver();
 
@@ -2788,7 +3014,7 @@ public class Master_Test extends DriverFactory {
 
     @Test //Plants :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void plantsHolidays1() throws Exception {
+    public void A_M_PH() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
@@ -2850,7 +3076,7 @@ public class Master_Test extends DriverFactory {
 
         addPage.setPlantName("ID10");
         addPage.setHolidayDescription("Automated Test Holiday");
-        addPage.setDateFrom("2015-12-25");
+        addPage.setDateFrom("2016-04-04");
 
         System.out.println("Details entered. Saving...");
 
@@ -2941,7 +3167,7 @@ public class Master_Test extends DriverFactory {
 
     @Test //Hubs :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void hubs1() throws Exception {
+    public void A_M_H() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
@@ -3091,169 +3317,13 @@ public class Master_Test extends DriverFactory {
         System.out.println("Title as expected");
     }
 
-    @Test //Enterprise Structure: Page and filter checks, add/edit/delete/export functions
-            (groups = {"Masters",}, enabled = false)
-    //DISABLED as the data created cannot be deleted and so the test cannot pass.
-    public void enterpriseStructure1() throws Exception {
-        WebDriver driver = getDriver();
-
-        Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Enterprise Structure: Page and filter checks, add/edit/delete/export features", "A_CM_ES_1 to 8");
-        mainPage.waitForLoad();
-
-        System.out.println("Navigating to Enterprise Structure Page...");
-
-        Mst_EnterpriseStructurePage pPage = mainPage.selectEnterpriseStructure();
-        pPage.waitForElement();
-
-        System.out.println("Enterprise Structure page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Enterprise Structure Page: Title not as expected", pPage.getBreadcrumb().getText().equals("Enterprise Structure"));
-
-        System.out.println("Title checked");
-
-        pPage.assertBaseElements();
-
-        System.out.println("Checking fields...");
-
-        pPage.checkFields();
-
-        System.out.println("Fields checked. Entering filter criteria...");
-
-        pPage.setRegion("EMEAI (Europe Middle East and Africa)");
-
-        System.out.println("Filter criteria entered. Listing records...");
-
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        System.out.println("Records listed. Checking filtration...");
-
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(2)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Enterprise Structure Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "EMEAI (Europe Middle East and Africa)", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Hub...");
-
-        Mst_AddEnterpriseStructurePage addPage = pPage.pressNewEnterpriseStructure();
-        addPage.waitForElement();
-
-        System.out.println("Add Enterprise Structure Page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Add Enterprise Structure Page: Title not as expected", addPage.getBreadcrumb().getText().equals("Enterprise Structure | Add Enterprise Structure"));
-
-        System.out.println("Title as expected");
-
-        addPage.assertBaseElements();
-
-        System.out.println("Checking fields...");
-
-        addPage.checkFields();
-
-        System.out.println("Fields checked. Entering details...");
-
-        addPage.setRegion("EMEAI (Europe Middle East and Africa)");
-        addPage.setSalesOrg("Test123");
-        addPage.setCountryCode("AD");
-        addPage.setHub("test");
-
-        System.out.println("Details entered. Saving...");
-
-        addPage.pressSave();
-        pPage.waitForElement();
-
-        System.out.println("Saved. Checking record appears...");
-
-        pPage.setCountryCode("AD");
-        pPage.setHub("test");
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        int row = pPage.getRow("test");
-
-        AssertJUnit.assertFalse("Enterprise Structure Page: Enterprise Structure not present in table after creation", row == -1);
-
-        System.out.println("Record found. Editing record...");
-
-        Mst_EditEnterpriseStructurePage editPage = pPage.pressEdit(row);
-        editPage.waitForElement();
-
-        System.out.println("Edit page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Edit Enterprise Structure Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Enterprise Structure | Edit Enterprise Structure"));
-
-        System.out.println("Title checked");
-
-        editPage.assertBaseElements();
-
-        System.out.println("Checking fields...");
-
-        editPage.checkFields();
-
-        System.out.println("Fields checked. Editing Hub name...");
-
-        editPage.setHub("Test_HUB");
-
-        System.out.println("Edited. Saving...");
-
-        editPage.pressSave();
-        pPage.waitForElement();
-
-        System.out.println("Saved. Checking record is updated...");
-
-        pPage.setHub("Test_HUB");
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        int row2 = pPage.getRow("Test_HUB");
-        AssertJUnit.assertFalse("Enterprise Structure Page: Edited changes are not applied in table", row2 == -1);
-
-        System.out.println("Record updated. Deleting record...");
-
-        pPage.pressDelete(row2);
-        pPage.waitForElement();
-
-        System.out.println("Delete pressed. Checking item is removed...");
-
-        pPage.setHub("Test_HUB");
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        int row3 = pPage.getRow("Test_HUB");
-        AssertJUnit.assertTrue("Hubs Page: Item not removed after deletion", row3 == -1);
-
-        System.out.println("Item removed. Checking export function...");
-
-        pPage.pressReset();
-        pPage.waitForElement();
-        pPage.setCountryCode("AD");
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        CCE_ExportDownloadPage dlPage = pPage.pressExport();
-        dlPage.waitForDownloadCompletion();
-
-        System.out.println("Export function works. Checking import page...");
-
-        Mst_ImportPage impPage = pPage.pressImport();
-        impPage.waitForElement();
-
-        System.out.println("Page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Enterprise Structure Import Page: Title not as expected", impPage.getBreadcrumb().getText().equals("Enterprise Structure | Import"));
-
-        System.out.println("Title as expected");
-    }
-
     @Test //Brands: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void brands1() throws Exception {
+    public void A_M_B() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Brands: Page and filter checks, add/edit/delete/export features", "A_CM_BR_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Brands: Page and filter checks, add/edit/delete/export features", "A_M_B");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Brands Page...");
@@ -3400,11 +3470,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Tickets: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void ticket1() throws Exception {
+    public void A_M_T() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Tickets: Page and filter checks, add/edit/delete/export features", "A_CM_Tkt_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Tickets: Page and filter checks, add/edit/delete/export features", "A_M_T");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Tickets Page...");
@@ -3551,11 +3621,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Lengths: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void lengths1() throws Exception {
+    public void A_M_L() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Lengths: Page and filter checks, add/edit/delete/export features", "A_CM_L_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Lengths: Page and filter checks, add/edit/delete/export features", "A_M_L");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Lengths Page...");
@@ -3702,11 +3772,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Finishes :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void finishes1() throws Exception {
+    public void A_M_F() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Finishes: Page and filter checks, add/edit/delete/export features", "A_CM_F_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Finishes: Page and filter checks, add/edit/delete/export features", "A_M_F");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Finishes Page...");
@@ -3853,11 +3923,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Basic Materials :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void basicMaterials1() throws Exception {
+    public void A_M_BM() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Basic Materials: Page and filter checks, add/edit/delete/export features", "A_CM_BM_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Basic Materials: Page and filter checks, add/edit/delete/export features", "A_M_BM");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Basic Materials Page...");
@@ -4010,7 +4080,7 @@ public class Master_Test extends DriverFactory {
 
     @Test //Material Groups :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void materialGroup1() throws Exception {
+    public void A_M_MG() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
@@ -4158,11 +4228,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Hierarchy :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void hierarchy1() throws Exception {
+    public void A_M_Hi() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Hierarchy: Page and filter checks, add/edit/delete/export features", "A_CM_H_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Hierarchy: Page and filter checks, add/edit/delete/export features", "A_M_Hi");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Hierarchy Page...");
@@ -4306,11 +4376,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Light Sources :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void lightSources1() throws Exception {
+    public void A_M_LS() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Light Sources: Page and filter checks, add/edit/delete/export features", "A_CM_LS_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Light Sources: Page and filter checks, add/edit/delete/export features", "A_M_LS");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Light Sources Page...");
@@ -4454,11 +4524,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Purpose Types :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void purposeTypes1() throws Exception {
+    public void A_M_PT() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Purpose Types: Page and filter checks, add/edit/delete/export features", "A_CM_PT_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Purpose Types: Page and filter checks, add/edit/delete/export features", "A_M_PT");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Purpose Types Page...");
@@ -4602,7 +4672,7 @@ public class Master_Test extends DriverFactory {
 
     @Test //Rejection Reasons :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void rejectionReasons1() throws Exception {
+    public void A_M_RR() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
@@ -4745,6 +4815,158 @@ public class Master_Test extends DriverFactory {
         System.out.println("Page reached. Checking title...");
 
         AssertJUnit.assertTrue("Rejection Reasons Import Page: Title not as expected", impPage.getBreadcrumb().getText().equals("Rejection Reasons | Import"));
+
+        System.out.println("Title as expected");
+    }
+
+    @Test //Warehouse Instructions: Page and filter checks, add/edit/delete/export features
+            (groups = {"Masters"})
+    public void A_M_WI() throws Exception {
+        WebDriver driver = getDriver();
+
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("Warehouse Instructions: Page and filter checks, add/edit/delete/export features", "A_CM_WI_1 to 8");
+        mainPage.waitForLoad();
+
+        System.out.println("Navigating to Warehouse Instructions Page...");
+
+        Mst_WarehouseInstructionsPage pPage = mainPage.selectWarehouseInstructions();
+        pPage.waitForElement();
+
+        System.out.println("Warehouse Instructions page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Warehouse Instructions Page: Title not as expected", pPage.getBreadcrumb().getText().equals("Warehouse Instructions"));
+
+        System.out.println("Title checked");
+
+        pPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        pPage.checkFields();
+
+        System.out.println("Fields checked. Entering filter criteria...");
+
+        pPage.setSalesOrg("ID51");
+
+        System.out.println("Filter criteria entered. Listing records...");
+
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+
+        System.out.println("Filtration as expected. Creating new Length Offer...");
+
+        Mst_AddWarehouseInstructionPage addPage = pPage.pressNewWarehouseInstruction();
+        addPage.waitForElement();
+
+        System.out.println("Add Warehouse Instructions Page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Add Warehouse Instructions Page: Title not as expected", addPage.getBreadcrumb().getText().equals("Warehouse Instructions | Add Warehouse Instruction"));
+
+        System.out.println("Title as expected");
+
+        addPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        addPage.checkFields();
+
+        System.out.println("Fields checked. Entering details...");
+
+        addPage.setSalesOrg("ID51");
+        addPage.setWarehouseInstruction("AutoTest");
+
+        System.out.println("Details entered. Saving...");
+
+        addPage.pressSave();
+        pPage.waitForElement();
+
+        System.out.println("Saved. Checking record appears...");
+
+        pPage.setSalesOrg("ID51");
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        int row = pPage.getRow("AutoTest");
+
+        AssertJUnit.assertFalse("Warehouse Instructions Page: Warehouse Instruction not present in table after creation", row == -1);
+
+        System.out.println("Record found. Editing record...");
+
+        Mst_EditWarehouseInstructionPage editPage = pPage.pressEdit(row);
+        editPage.waitForElement();
+
+        System.out.println("Edit page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Edit Warehouse Instruction Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Warehouse Instructions | Edit Warehouse Instruction"));
+
+        System.out.println("Title checked");
+
+        editPage.assertBaseElements();
+
+        System.out.println("Checking fields...");
+
+        editPage.checkFields();
+
+        System.out.println("Fields checked. Editing Warehouse Instructions...");
+
+        editPage.setWarehouseInstruction("Edited");
+
+        System.out.println("Edited. Saving...");
+
+        editPage.pressSave();
+        pPage.waitForElement();
+
+        System.out.println("Saved. Checking record is updated...");
+
+        pPage.setSalesOrg("ID51");
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        int row2 = pPage.getRow("Edited");
+        AssertJUnit.assertFalse("Warehouse Instructions Page: Edited changes are not applied in table", row2 == -1);
+
+        System.out.println("Record updated. Deleting record...");
+
+        pPage.pressDelete(row2);
+        pPage.waitForElement();
+
+        System.out.println("Delete pressed. Checking item is removed...");
+
+        pPage.setSalesOrg("ID51");
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        int row3 = pPage.getRow("Edited");
+        AssertJUnit.assertTrue("Warehouse Instructions Page: Item not removed after deletion", row3 == -1);
+
+        System.out.println("Item removed. Checking export function...");
+
+        pPage.pressReset();
+        pPage.waitForElement();
+        pPage.setSalesOrg("ID");
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        CCE_ExportDownloadPage dlPage = pPage.pressExport();
+        dlPage.waitForDownloadCompletion();
+
+        System.out.println("Export function works. Checking import page...");
+
+        Mst_ImportPage impPage = pPage.pressImport();
+        impPage.waitForElement();
+
+        System.out.println("Page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Warehouse Instructions Import Page: Title not as expected", impPage.getBreadcrumb().getText().equals("WarehouseInstructions | Import"));
 
         System.out.println("Title as expected");
     }
@@ -5076,157 +5298,6 @@ public class Master_Test extends DriverFactory {
         System.out.println("Title as expected");
     }
 
-    @Test //Warehouse Instructions: Page and filter checks, add/edit/delete/export features
-            (groups = {"Masters"})
-    public void warehouseInstructions1() throws Exception {
-        WebDriver driver = getDriver();
-
-        Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Warehouse Instructions: Page and filter checks, add/edit/delete/export features", "A_CM_WI_1 to 8");
-        mainPage.waitForLoad();
-
-        System.out.println("Navigating to Warehouse Instructions Page...");
-
-        Mst_WarehouseInstructionsPage pPage = mainPage.selectWarehouseInstructions();
-        pPage.waitForElement();
-
-        System.out.println("Warehouse Instructions page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Warehouse Instructions Page: Title not as expected", pPage.getBreadcrumb().getText().equals("Warehouse Instructions"));
-
-        System.out.println("Title checked");
-
-        pPage.assertBaseElements();
-
-        System.out.println("Checking fields...");
-
-        pPage.checkFields();
-
-        System.out.println("Fields checked. Entering filter criteria...");
-
-        pPage.setSalesOrg("ID51");
-
-        System.out.println("Filter criteria entered. Listing records...");
-
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        System.out.println("Records listed. Checking filtration...");
-
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(2)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Length Offer...");
-
-        Mst_AddWarehouseInstructionPage addPage = pPage.pressNewWarehouseInstruction();
-        addPage.waitForElement();
-
-        System.out.println("Add Warehouse Instructions Page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Add Warehouse Instructions Page: Title not as expected", addPage.getBreadcrumb().getText().equals("Warehouse Instructions | Add Warehouse Instruction"));
-
-        System.out.println("Title as expected");
-
-        addPage.assertBaseElements();
-
-        System.out.println("Checking fields...");
-
-        addPage.checkFields();
-
-        System.out.println("Fields checked. Entering details...");
-
-        addPage.setSalesOrg("ID51");
-        addPage.setWarehouseInstruction("AutoTest");
-
-        System.out.println("Details entered. Saving...");
-
-        addPage.pressSave();
-        pPage.waitForElement();
-
-        System.out.println("Saved. Checking record appears...");
-
-        pPage.setSalesOrg("ID51");
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        int row = pPage.getRow("AutoTest");
-
-        AssertJUnit.assertFalse("Warehouse Instructions Page: Warehouse Instruction not present in table after creation", row == -1);
-
-        System.out.println("Record found. Editing record...");
-
-        Mst_EditWarehouseInstructionPage editPage = pPage.pressEdit(row);
-        editPage.waitForElement();
-
-        System.out.println("Edit page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Edit Warehouse Instruction Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Warehouse Instructions | Edit Warehouse Instruction"));
-
-        System.out.println("Title checked");
-
-        editPage.assertBaseElements();
-
-        System.out.println("Checking fields...");
-
-        editPage.checkFields();
-
-        System.out.println("Fields checked. Editing Warehouse Instructions...");
-
-        editPage.setWarehouseInstruction("Edited");
-
-        System.out.println("Edited. Saving...");
-
-        editPage.pressSave();
-        pPage.waitForElement();
-
-        System.out.println("Saved. Checking record is updated...");
-
-        pPage.setSalesOrg("ID51");
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        int row2 = pPage.getRow("Edited");
-        AssertJUnit.assertFalse("Warehouse Instructions Page: Edited changes are not applied in table", row2 == -1);
-
-        System.out.println("Record updated. Deleting record...");
-
-        pPage.pressDelete(row2);
-        pPage.waitForElement();
-
-        System.out.println("Delete pressed. Checking item is removed...");
-
-        pPage.setSalesOrg("ID51");
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        int row3 = pPage.getRow("Edited");
-        AssertJUnit.assertTrue("Warehouse Instructions Page: Item not removed after deletion", row3 == -1);
-
-        System.out.println("Item removed. Checking export function...");
-
-        pPage.pressReset();
-        pPage.waitForElement();
-        pPage.setSalesOrg("ID");
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        CCE_ExportDownloadPage dlPage = pPage.pressExport();
-        dlPage.waitForDownloadCompletion();
-
-        System.out.println("Export function works. Checking import page...");
-
-        Mst_ImportPage impPage = pPage.pressImport();
-        impPage.waitForElement();
-
-        System.out.println("Page reached. Checking title...");
-
-        AssertJUnit.assertTrue("Warehouse Instructions Import Page: Title not as expected", impPage.getBreadcrumb().getText().equals("WarehouseInstructions | Import"));
-
-        System.out.println("Title as expected");
-    }
 
     @Test //Shade Cards: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
@@ -6058,6 +6129,36 @@ public class Master_Test extends DriverFactory {
 
         AssertJUnit.assertTrue("Forced Enrichment Products Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "astra", recordField, 2));
 
+        try {
+            pPage.setBrand("Test");
+            pPage.setTicket("000");
+            pPage.pressSearch();
+            pPage.waitForElement();
+            int row4 = pPage.getRow2("Test", "000");
+            System.out.println(row4);
+                System.out.println("Deleting old unedited record...");
+                pPage.pressDelete(row4);
+                pPage.waitForLoad();
+
+        } catch (Exception e) {
+            System.out.println("Old unedited record to be deleted not found");
+        }
+
+        try {
+            pPage.setBrand("Test");
+            pPage.setTicket("002");
+            pPage.pressSearch();
+            pPage.waitForElement();
+            int row3 = pPage.getRow2("Test", "002");
+            System.out.println(row3);
+                System.out.println("Deleting old edited record...");
+                pPage.pressDelete(row3);
+                pPage.waitForLoad();
+
+        } catch (Exception e) {
+            System.out.println("Old edited record to be deleted not found");
+        }
+
         System.out.println("Filtration as expected. Creating new Supply Plant...");
 
         Mst_AddSupplyPlantPage addPage = pPage.pressNewSupplyPlant();
@@ -6831,9 +6932,9 @@ public class Master_Test extends DriverFactory {
 
 
         System.out.println("Details entered. Saving...");
-       // driver.get(DataItems.mastersCustomerURL);
-       // int row22 = pPage.getRow("AutoEdited");
-       // if(row22!=0) {pPage.pressDelete(row22);}
+        // driver.get(DataItems.mastersCustomerURL);
+        // int row22 = pPage.getRow("AutoEdited");
+        // if(row22!=0) {pPage.pressDelete(row22);}
 
         System.out.println("Filtration as expected. Creating new Customer...");
 
@@ -7615,41 +7716,41 @@ public class Master_Test extends DriverFactory {
         System.out.println("Record found. Editing record...");
 
         /**
-        System.out.println("Editing record...");
-        Mst_EditCustomerPrivateArticlesPage editPage = pPage.pressEdit(row);
-        //editPage.waitForElement();
+         System.out.println("Editing record...");
+         Mst_EditCustomerPrivateArticlesPage editPage = pPage.pressEdit(row);
+         //editPage.waitForElement();
 
-        System.out.println("Edit page reached. Checking title...");
+         System.out.println("Edit page reached. Checking title...");
 
-        AssertJUnit.assertTrue("Customer Private Articles Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Customer Specific Article | Edit Customer Specific Article"));
+         AssertJUnit.assertTrue("Customer Private Articles Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Customer Specific Article | Edit Customer Specific Article"));
 
-        System.out.println("Title checked");
+         System.out.println("Title checked");
 
-        editPage.assertBaseElements();
+         editPage.assertBaseElements();
 
-        System.out.println("Checking fields...");
+         System.out.println("Checking fields...");
 
-        //editPage.checkFieldsEdit();
+         //editPage.checkFieldsEdit();
 
-        System.out.println("Fields checked. Editing Running Text...");
+         System.out.println("Fields checked. Editing Running Text...");
 
-        editPage.setSalesOrg("ID51");
+         editPage.setSalesOrg("ID51");
 
-        System.out.println("Edited. Saving...");
+         System.out.println("Edited. Saving...");
 
-        editPage.pressSave();
-        pPage.waitForElement();
+         editPage.pressSave();
+         pPage.waitForElement();
 
-        System.out.println("Saved. Checking record is updated...");
+         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setSalesOrganization("ID51");
-        pPage.pressSearch();
-        pPage.waitForElement();
+         pPage.setSalesOrganization("ID51");
+         pPage.pressSearch();
+         pPage.waitForElement();
 
-        int row2 = pPage.getRow("Life Easy Customer");
-        AssertJUnit.assertFalse("Marketing Running Text Page: Edited changes are not applied in table", row2 == -1);
+         int row2 = pPage.getRow("Life Easy Customer");
+         AssertJUnit.assertFalse("Marketing Running Text Page: Edited changes are not applied in table", row2 == -1);
 
-        System.out.println("Record updated. Deleting record...");
+         System.out.println("Record updated. Deleting record...");
          */
         int row2 = pPage.getRow("Life Easy Customer");
         System.out.println("Deleting record...");

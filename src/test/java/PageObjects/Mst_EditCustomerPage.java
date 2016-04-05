@@ -65,6 +65,16 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAcctField));
         return element;
     }
+
+    public Mst_EditCustomerPage checkSubAcctField() {
+        CommonTask.setCheckBox(driver,subAcctField);
+        return this;
+    }
+
+    public Mst_EditCustomerPage checkCceShipNoticeField() {
+        CommonTask.setCheckBox(driver,cceShipNoticeField);
+        return this;
+    }
     
     public WebElement getSubAcctLabel() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAcctLabel));
