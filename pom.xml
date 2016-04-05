@@ -258,11 +258,11 @@
                                 <webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>
                                 <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
                             </systemPropertyVariables>
-                            <groups>CCE,CCE_Orders</groups>
+                            <groups>Solo</groups>
+                            <skipTests>false</skipTests>
                             <!-- <suiteXmlFiles>
                                 <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\Solo.xml</suiteXmlFile>
                             </suiteXmlFiles> -->
-                            <skipTests>false</skipTests>
                         </configuration>
                         <dependencies>
                             <dependency>
