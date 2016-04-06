@@ -34,7 +34,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
-        pf.enableEnableOrdersWithoutShadeForSalesOrgAndCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
+        pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
 
         System.out.println("Navigating to Upload Order...");
 
@@ -172,7 +172,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
-        pf.enableEnableOrdersWithoutShadeForSalesOrgAndCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
+        pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
 
         System.out.println("Navigating to Upload Order...");
 
@@ -281,7 +281,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
-        pf.enableEnableOrdersWithoutShadeForSalesOrgAndCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
+        pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
 
         System.out.println("Navigating to Upload Order...");
 
@@ -419,7 +419,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
-        pf.enableEnableOrdersWithoutShadeForSalesOrgAndCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
+        pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
 
         System.out.println("Navigating to Upload Order...");
 
@@ -547,7 +547,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
-        pf.enableEnableOrdersWithoutShadeForSalesOrgAndCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
+        pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
 
         System.out.println("Navigating to Upload Order...");
 
@@ -680,7 +680,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
-        pf.enableEnableOrdersWithoutShadeForSalesOrgAndCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
+        pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
 
         System.out.println("Navigating to Upload Order...");
 
@@ -798,6 +798,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         System.out.println("Test PASSED!");
     }
+
 
     //Methods used for this Class
     public void closeAlert(WebDriver driver) {
