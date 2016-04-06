@@ -2538,7 +2538,7 @@ public class Master_Test extends DriverFactory {
     }
 
     @Test //Countries :: Page and filter checks, add/edit/delete/export features
-            (groups = {"Masters"})
+            (groups = {"Masters",},enabled = false)
     public void countries1() throws Exception {
         WebDriver driver = getDriver();
 
@@ -4973,11 +4973,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Quantity Factors :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void quantityFactors1() throws Exception {
+    public void A_M_QF() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Quantity Factors: Page and filter checks, add/edit/delete/export features", "A_CM_QF_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Quantity Factors: Page and filter checks, add/edit/delete/export features", "A_M_QF");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Quantity Factors Page...");
@@ -5137,11 +5137,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Length Offers :: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void lengthOffers1() throws Exception {
+    public void A_M_LO() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Length Offers: Page and filter checks, add/edit/delete/export features", "A_CM_LO_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Length Offers: Page and filter checks, add/edit/delete/export features", "A_M_LO");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Length Offers Page...");
@@ -5301,11 +5301,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Shade Cards: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void shadeCards1() throws Exception {
+    public void A_M_SC() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Shade Cards Page: Page and filter checks, add/edit/delete/export features", "A_SR_SC_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Shade Cards Page: Page and filter checks, add/edit/delete/export features", "A_M_SC");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Shade Cards Page...");
@@ -5450,12 +5450,12 @@ public class Master_Test extends DriverFactory {
 
     @Test //Shade Cards Plants: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void shadeCardPlants1() throws Exception {
+    public void A_M_SCP() throws Exception {
 
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Shade Card Plants Page: Page and filter checks, add/edit/delete/export features", "A_SR_SC/P_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Shade Card Plants Page: Page and filter checks, add/edit/delete/export features", "A_M_SCP");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Shade Card Plants Page...");
@@ -5606,11 +5606,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Sales Org Materials: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void salesOrgMaterials1() throws Exception {
+    public void A_M_SOM() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Sales Org. Materials Page: Page and filter checks, add/edit/delete/export features", "A_PR_S.Org M_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Sales Org. Materials Page: Page and filter checks, add/edit/delete/export features", "A_M_SOM");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Sales Org. Materials Page...");
@@ -5766,11 +5766,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Charged Products: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void chargedProducts1() throws Exception {
+    public void A_M_CP() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Charged Products Page: Page and filter checks, add/edit/delete/export features", "A_PR_CP_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Charged Products Page: Page and filter checks, add/edit/delete/export features", "A_M_CP");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Charged Products Page...");
@@ -5928,11 +5928,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Forced Enrichment Products: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void forcedEnrichment1() throws Exception {
+    public void A_M_FEP() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Forced Enrichment Products Page: Page and filter checks, add/edit/delete/export features", "A_PR_FEP_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Forced Enrichment Products Page: Page and filter checks, add/edit/delete/export features", "A_M_FEP");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Forced Enrichment Products Page...");
@@ -6088,14 +6088,14 @@ public class Master_Test extends DriverFactory {
 
     @Test //Supply Plants: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void supplyPlants1() throws Exception {
+    public void A_M_SP() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Supply Plants Page: Page and filter checks, add/edit/delete/export features", "A_PR_SP_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Supply Plants Page: Page and filter checks, add/edit/delete/export features", "A_M_SP");
         mainPage.waitForLoad();
 
-        System.out.println("Navigating to Supply Plant Page...");
+        System.out.println("Navigating to Supply Plants Page...");
 
         Mst_SupplyPlantsPage pPage = mainPage.selectSupplyPlants();
         pPage.waitForElement();
@@ -6127,7 +6127,7 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(4)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Forced Enrichment Products Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "astra", recordField, 2));
+        AssertJUnit.assertTrue("Supply Plants Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "astra", recordField, 2));
 
         try {
             pPage.setBrand("Test");
@@ -6273,11 +6273,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Dye Lot Multiples: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void dyeLotMultiples1() throws Exception {
+    public void A_M_DLM() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Dye Lot Multiples Page: Page and filter checks, add/edit/delete/export features", "A_PR_DLM_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Dye Lot Multiples Page: Page and filter checks, add/edit/delete/export features", "A_M_DLM");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Dye Lot Multiples Page...");
@@ -6432,11 +6432,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Order Type: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void orderTypes1() throws Exception {
+    public void A_M_OT() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Order Types Page: Page and filter checks, add/edit/delete/export features", "A_PR_OT_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Order Types Page: Page and filter checks, add/edit/delete/export features", "A_M_OT");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Order Types Page...");
@@ -6580,11 +6580,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Our Stocks/Warehouse Stocks: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void ourStocks1() throws Exception {
+    public void A_M_OS() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Our Stocks Page: Page and filter checks, add/edit/delete/export features", "A_PR_OS_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Our Stocks Page: Page and filter checks, add/edit/delete/export features", "A_M_OS");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Our Stocks Page...");
@@ -6734,11 +6734,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Allowed Quantities: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void allowedQuantities1() throws Exception {
+    public void A_M_AQ() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Allowed Quantities Page: Page and filter checks, add/edit/delete/export features", "A_PR_OS_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Allowed Quantities Page: Page and filter checks, add/edit/delete/export features", "A_M_AQ");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Allowed Quantities Page...");
@@ -6889,11 +6889,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Customers: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void customers1() throws Exception {
+    public void A_M_C() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Customers Page: Page and filter checks, add/edit/delete/export features", "A_CB_C_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Customers Page: Page and filter checks, add/edit/delete/export features", "A_M_C");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Customers Page...");
@@ -7056,11 +7056,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Ship To Parties: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void shipToParties1() throws Exception {
+    public void A_M_STP() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Ship To Parties Page: Page and filter checks, add/edit/delete/export features", "A_CB_STP_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Ship To Parties Page: Page and filter checks, add/edit/delete/export features", "A_M_STP");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Ship To Parties Page...");
@@ -7217,11 +7217,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Cabinets: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
-    public void cabinets1() throws Exception {
+    public void A_M_Ca() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Cabinets Page: Page and filter checks, add/edit/delete/export features", "A_CB_Cab_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Cabinets Page: Page and filter checks, add/edit/delete/export features", "A_M_Ca");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Cabinets Page...");
@@ -7374,7 +7374,7 @@ public class Master_Test extends DriverFactory {
 
     @Test //Marketing New Features: Page and filter checks, add/edit/delete features
             (groups = {"Masters"})
-    public void marketingNewFeatures1() throws Exception {
+    public void A_M_MNF() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
@@ -7509,14 +7509,14 @@ public class Master_Test extends DriverFactory {
 
     @Test //Marketing Running Text: Page and filter checks, add/edit/delete features
             (groups = {"Masters"})
-    public void marketingRunningText1() throws Exception {
+    public void A_M_MRT() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Marketing Running Text Page: Page and filter checks, add/edit/delete features", "A_CB_MRT_1 to 5");
+        CCE_MainPage mainPage = base.setUp("Marketing Running Text Page: Page and filter checks, add/edit/delete features", "A_M_MRT");
         mainPage.waitForLoad();
 
-        System.out.println("Navigating to Marketing Running Text Page...");
+        System.out.println("Navigating to Marketing Running Texts Page...");
 
         Mst_MarketRunningTextPage pPage = mainPage.selectMarketRunningText();
         pPage.waitForElement();
@@ -7573,9 +7573,9 @@ public class Master_Test extends DriverFactory {
         addPage.setSalesOrg("ID51");
         addPage.setRunningText("Generated by Automated Test");
         addPage.setAvailableFromDate();
-        Thread.sleep(3000);
+        addPage.waitForElement();
         addPage.setAvailableToDate();
-        Thread.sleep(3000);
+        addPage.waitForElement();
         addPage.setAccessType("eComm");
 
         System.out.println("Details entered. Saving...");
@@ -7646,11 +7646,11 @@ public class Master_Test extends DriverFactory {
 
     @Test //Marketing Running Text: Page and filter checks, add/edit/delete features
             (groups = {"Masters"})
-    public void customerPrivateArticle() throws Exception {
+    public void A_M_CPA () throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Customer Private Articles Page: Page and filter checks, add/edit/delete features", "A_CB_MRT_1 to 5");
+        CCE_MainPage mainPage = base.setUp("Customer Private Articles Page: Page and filter checks, add/edit/delete features", "A_M_CPA");
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Customer Private Articles Page...");
@@ -7715,10 +7715,10 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Record found. Editing record...");
 
-        /**
+
          System.out.println("Editing record...");
          Mst_EditCustomerPrivateArticlesPage editPage = pPage.pressEdit(row);
-         //editPage.waitForElement();
+         editPage.waitForElement();
 
          System.out.println("Edit page reached. Checking title...");
 
@@ -7730,11 +7730,11 @@ public class Master_Test extends DriverFactory {
 
          System.out.println("Checking fields...");
 
-         //editPage.checkFieldsEdit();
+         editPage.checkFieldsEdit();
 
          System.out.println("Fields checked. Editing Running Text...");
 
-         editPage.setSalesOrg("ID51");
+         editPage.setArticle("8754110");
 
          System.out.println("Edited. Saving...");
 
@@ -7751,10 +7751,10 @@ public class Master_Test extends DriverFactory {
          AssertJUnit.assertFalse("Marketing Running Text Page: Edited changes are not applied in table", row2 == -1);
 
          System.out.println("Record updated. Deleting record...");
-         */
-        int row2 = pPage.getRow("Life Easy Customer");
+
+        int row4 = pPage.getRow("Life Easy Customer");
         System.out.println("Deleting record...");
-        pPage.pressDelete(row2);
+        pPage.pressDelete(row4);
 
         System.out.println("Delete pressed. Checking item is removed...");
 
@@ -7762,15 +7762,10 @@ public class Master_Test extends DriverFactory {
         pPage.pressSearch();
         pPage.waitForElement();
 
-        //int row3 = pPage.getRow("Edited");
-        //AssertJUnit.assertTrue("Marketing New Feature Page: Item not removed after deletion", row3 == -1);
+        int row3 = pPage.getRow("Edited");
+        AssertJUnit.assertTrue("Marketing New Feature Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed.");
 
     }
-
-
 }
-
-    
-
