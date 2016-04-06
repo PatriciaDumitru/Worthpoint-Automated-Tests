@@ -391,6 +391,8 @@ public class CommonTask {
         By nowButton = By.xpath(".//*[@id='ui-datepicker-div']/div[3]/button[1]");
         clickDatePicked.click(driver.findElement(nowButton)).click().perform();
 
+        new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(driver.findElement(nowButton)));
+
         //Select Now Time
         By doneButton = By.xpath(".//*[@id='ui-datepicker-div']/div[3]/button[2]");
         clickDatePicked.click(driver.findElement(doneButton)).click().perform();

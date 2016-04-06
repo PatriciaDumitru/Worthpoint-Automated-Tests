@@ -12,7 +12,7 @@ public class DataItems {
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
-    public static String mastersCustomerURL =targetURL + "/Customers";
+    public static String mastersCustomerURL = targetURL + "/Customers";
     public static String mastersCSAUrl = targetURL + "/customerprivatearticles";
     public static String cceOrderSamplePrompt = targetURL + "/cce/prompt";
     public static String manualEntryEcommURL = targetURL + "/ecom/order/manual";
@@ -21,6 +21,13 @@ public class DataItems {
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
     public static String ecommURL = "https://qawcs.coatscolourexpress.com/test/ecom";
+
+    public static String invoicePage = targetURL + "/reports/cc/invoices";
+    public static String deliveyNotesPage = targetURL + "/reports/cc/deliverynotes";
+    public static String summaryOfPurchasePage = targetURL + "/reports/cc/purchases";
+    public static String outstandingPaymentsPage = targetURL + "/reports/cc/payment";
+    public static String orderApprovalHistory = targetURL + "/ecom/approvalhistory";
+
 
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
