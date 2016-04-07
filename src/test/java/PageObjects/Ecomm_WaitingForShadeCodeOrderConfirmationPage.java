@@ -25,7 +25,7 @@ public class Ecomm_WaitingForShadeCodeOrderConfirmationPage extends WBA_BasePage
     By backBtn = By.cssSelector("#backLink");
 
     //table locators
-
+    By checkBox = By.cssSelector("#remove_0 > td:nth-child(1) > input");
 
     public Ecomm_WaitingForShadeCodeOrderConfirmationPage(WebDriver driver) {
         super(driver);
@@ -69,6 +69,13 @@ public class Ecomm_WaitingForShadeCodeOrderConfirmationPage extends WBA_BasePage
         back.click();
 
         return new Ecomm_WaitingForShadePage(driver);
+    }
+
+    public By getCheckboxLocator (int row){
+        //Locator depending on row
+        By checkBox = By.cssSelector("#remove_"+row+" > td:nth-child(1) > input");
+
+        return checkBox;
     }
 
     public void waitForElement() {

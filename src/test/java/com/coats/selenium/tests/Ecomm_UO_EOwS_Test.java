@@ -790,7 +790,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         Ecomm_ShadeNotAvailablePage shadeNotAvailablePage2 = waitShadeCodeOrderConf2.pressBack();
 
-        waitShadeCodeOrderConf2.pressBack();
+        waitShadeCodeOrderConf2.pressBack(); // this will be removed when the extra alert is gone
         shadeNotAvailablePage2.pressSearch();
 
         //Verify that nothing really modified and the order number is still under Shade Not Available
@@ -799,6 +799,180 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         System.out.println("Test PASSED!");
     }
 
+    @Test //Enable Order without Shade :: WBA-684
+            (groups = {"eComm"})
+    public void EOwS_GC_090() throws Exception{
+        //new chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to set up
+        Ecomm_Base uoRTTest1 = new Ecomm_Base(driver);
+        //Set up returns an eComm page
+        Ecomm_MainPage eCommPage = uoRTTest1.setUp("WBA-684", "EOwS_GC_090");
+
+        //Enabling the flags for Sales Org and Customer
+        PreFlows pf = new PreFlows();
+        pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
+
+        System.out.println("Navigating to Upload Order...");
+
+        //new upload order page
+        Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
+        uploadPage.waitForElement();
+
+        System.out.println("Upload Order page loaded. Setting filepath...");
+
+        //Create a file with 4 rows : One row with valid shade, one row with invalid shade and 2 rows without shade
+        uploadPage.setFilePath(FileFactory.createFile("SUSST", 4, "EOwS", "", true));
+
+        System.out.println("File path set. Uploading...");
+
+        //Select existing mapping
+        Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
+        Ecomm_MappingPage mapPage = mapAlert.pressYes();
+        mapPage.waitForElement();
+
+        System.out.println("Mapping page reached. Confirming...");
+
+        Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+
+        //Closing all alerts
+        closeAlert(driver);
+
+        closeAlert(driver);
+
+        //Verifying that Order Confirmation Page is displayed
+        orderConf.waitForElement();
+
+        //Checking the Flash Message from Order Confirmation page
+        System.out.println(orderConf.getFlashMessage());
+        AssertJUnit.assertTrue(orderConf.getFlashMessage().contains("No. of rows Failed :0"));
+        AssertJUnit.assertTrue(orderConf.getFlashMessage().contains("No. of rows Processed :4"));
+        AssertJUnit.assertTrue(orderConf.getFlashMessage().contains("Your orders are split due to some of the order lines don’t have the shade code in the upload file or not defined in our WBA system. Please refer to orders/Waiting for shade or shade not available submenu for more detail."));
+
+        //Get PO number
+        String currentPO = orderConf.getCustUploadPOField().getAttribute("value");
+        System.out.println("PO number in Order Confirmation page:" + currentPO);
+
+        //Press submit
+        Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        outOrdersPage.waitForElement();
+
+        System.out.println("Order submitted.Navigating to Outstanding Upload Order...");
+
+        //Filtering on current PO
+        outOrdersPage.setCustomerPO(currentPO);
+
+        //Verifying the No Of Order Lines compared to the Order Status
+        outOrdersPage.pressSearch();
+
+        StringBuilder noShadeOrderNumber = new StringBuilder();
+        StringBuilder correctShadeOrderNumber = new StringBuilder();
+
+        for (int i = 0; i < 3; i++) {
+            String orderNo = outOrdersPage.getOrderNumberSUMST(i);
+            String orderStatus = outOrdersPage.getOrderStatus(i);
+
+            System.out.println("Order number on row" + (i+1) + ":" + orderNo);
+            System.out.println("Order status on row" + (i+1) + ":" + orderStatus);
+
+
+            if (orderStatus.contains("Waiting For Shade Code")) {
+                System.out.println("Verifying No. of Order Lines when Status is " + orderStatus + "...");
+
+                //Verify that Waiting For Shade Code status is set to 2 lines
+                AssertJUnit.assertEquals("Incorrect No. of Order Lines!", "2", outOrdersPage.getNoOfOrderLines(i));
+
+                //
+                noShadeOrderNumber.append(orderNo);
+                System.out.println("Verified!");
+            } else {
+                System.out.println("Verifying No. of Order Lines when Status is " + orderStatus + "...");
+                AssertJUnit.assertEquals("Incorrect No. of Order Lines!", "1", outOrdersPage.getNoOfOrderLines(i));
+                correctShadeOrderNumber.append(orderNo);
+                System.out.println("Verified!");
+            }
+        }
+
+        System.out.println("Order No for Waiting for Shade Code order status:"+noShadeOrderNumber);
+        //System.out.println("Order No for Open order status:"+correctShadeOrderNumber);
+
+
+        //Navigating to Waiting for Shade Page
+        Ecomm_WaitingForShadePage waitForShadePage = eCommPage.clickWaitingForShade();
+
+        waitForShadePage.waitForElement();
+
+        //Searching for Current PO number
+        waitForShadePage.setCustPO(currentPO);
+
+        waitForShadePage.pressSearch();
+
+        //Editing the order without shade
+        Ecomm_WaitingForShadeCodeOrderConfirmationPage waitForShadeCodeConf = waitForShadePage.pressEdit2();
+
+        waitForShadeCodeConf.waitForElement();
+
+        //Press Edit button of first table row
+        Ecomm_OrderInformationPage orderInfoPage = waitForShadeCodeConf.pressEdit(0);
+
+        CommonTask.waitForOverlay(driver);
+
+        orderInfoPage.setShadeCode("C1103");
+        Ecomm_WaitingForShadeCodeOrderConfirmationPage waitForShadeCodeConf2 = orderInfoPage.pressSubmit2();
+        orderInfoPage.waitForContent();
+        AssertJUnit.assertTrue("Flash message is not correct or update was not performed!",waitForShadeCodeConf2.getFlashMessage().contains("The Order Line 10 has been updated"));
+
+        //Press Edit button on second row
+        Ecomm_OrderInformationPage orderInfoPage2 = waitForShadeCodeConf2.pressEdit(0);
+        CommonTask.waitForOverlay(driver);
+        orderInfoPage2.setShadeCode("BLACKD");
+        Ecomm_WaitingForShadeCodeOrderConfirmationPage waitForShadeCodeConf3 = orderInfoPage2.pressSubmit2();
+        orderInfoPage2.waitForContent();
+        AssertJUnit.assertTrue("Flash message is not correct or update was not performed!",waitForShadeCodeConf3.getFlashMessage().contains("The Order Line 20 has been updated"));
+
+        //Un-check the first line checkbox
+        CommonTask.unSetCheckBox(driver,waitForShadeCodeConf3.getCheckboxLocator(0));
+
+        //Confirm order with only one row checked
+        Ecomm_OutstandingOrdersPage outstandingOrdersPage2 = waitForShadeCodeConf3.pressConfirm();
+
+        //Navigating to Waiting for Shade Page
+        Ecomm_WaitingForShadePage waitForShadePage2 = eCommPage.clickWaitingForShade();
+
+        waitForShadePage2.waitForElement();
+
+        //Searching for Current PO number
+        waitForShadePage2.setCustPO(currentPO);
+
+        waitForShadePage2.pressSearch();
+
+        //Editing the order without shade
+        Ecomm_WaitingForShadeCodeOrderConfirmationPage waitForShadeCodeConf4 = waitForShadePage2.pressEdit2();
+
+        //Confirming the order
+        Ecomm_OutstandingOrdersPage outstandingOrdersPage3 = waitForShadeCodeConf4.pressConfirm();
+
+        //Navigating to Waiting for Shade Page
+        Ecomm_WaitingForShadePage waitForShadePage3 = eCommPage.clickWaitingForShade();
+
+        waitForShadePage3.waitForElement();
+
+        //Searching for Current PO number
+        waitForShadePage3.setCustPO(currentPO);
+
+        waitForShadePage3.pressSearch();
+
+        //Verify the table is empty
+        AssertJUnit.assertTrue("Table has content!",waitForShadePage3.getNoResultsText().equals("No records found."));
+
+
+        //Verify that no or order line is still 2 in Waiting For Shade Code
+        // AssertJUnit.assertTrue("Incorrect number of order lines!",waitForShadePage2.getTableNoOfOrderLines().equals("2"));
+
+        //System.out.println("Test PASSED!");
+
+    }
 
     //Methods used for this Class
     public void closeAlert(WebDriver driver) {
@@ -813,7 +987,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
     }
 
 
-    //@Test //enable this only when you need to create a file to use in manual tests
+    @Test //enable this only when you need to create a file to use in manual tests
     public void testCreateFile123() throws Exception {
         FileFactory.createFile("SUSST",4,"EOwS","",true);
     }
