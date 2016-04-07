@@ -299,7 +299,7 @@ public class PreFlows {
 
     public void activateCallOffOrderAndDeactivateApprovalForCustomer(WebDriver driver, String customer) {
         goToCustomerAndEdit(driver, customer);
-        disableCallOffOrderCheckboxForCust(driver);
+        enableCallOffOrderCheckboxForCust(driver);
         disableApprovalCheckBoxForCust(driver);
         saveCustomer(driver);
     }

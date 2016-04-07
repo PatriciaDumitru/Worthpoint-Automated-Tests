@@ -218,8 +218,6 @@ public class Ecomm_ReportingPaginationChecks_Test extends DriverFactory{
         //Reset Filter
         rpc.resetFilterOP(driver);
 
-
-
         //Resetting Filter and checking pagination is not available
         System.out.println("Resetting filter and check pagination is not available...");
         rpc.resetFilterSoP(driver);
@@ -274,7 +272,6 @@ public class Ecomm_ReportingPaginationChecks_Test extends DriverFactory{
         System.out.println("Resetting filter and check pagination is not available...");
         rpc.resetFilterOAH(driver);
         AssertJUnit.assertFalse("Pagination is not displayed and should",rpc.paginationIsDisplayed(driver));
-
     }
 
 }

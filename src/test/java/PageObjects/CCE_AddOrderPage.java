@@ -60,6 +60,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By cancelToDraftsButton = By.cssSelector("#SampleOrderEditForm > div:nth-child(4) > div.actions > ul > li:nth-child(3) > a"); //cancel button has different locator when reached from draft
     
     //Fields which appear upon click "Yes" to Direct Enrich
+    static By customerSwatchYes = By.id("SampleOrderLine0IsMeasureable1");
+    static By customerSwatchNo = By.id("SampleOrderLine0IsMeasureable0");
     static By enrichCommentsField = By.id("SampleOrderLine0FceComments");
     static By enrichCompletedYesButton = By.id("SampleOrderLine0IsOrderCompleted1");
     static By enrichCompletedNoButton = By.id("SampleOrderLine0IsOrderCompleted0");
@@ -105,6 +107,14 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public WebElement getDirEnNoButton() {
         return driver.findElement(dirEnNoButton);
     }
+
+    public WebElement setCustSwatchYesButton() {
+        return driver.findElement(customerSwatchYes);
+    }
+
+    public WebElement setCustSwatchNoButton() {
+        return driver.findElement(customerSwatchNo);
+    }
     
     public WebElement getPurposeField() {
         return driver.findElement(purposeField);
@@ -125,7 +135,27 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public WebElement getEnrichWHSButton() {
         return driver.findElement(enrichWHSButton);
     }
-    
+
+    public CCE_AddOrderPage setDirectEnrichYes() throws InterruptedException {
+        CommonTask.setCheckBox(driver, dirEnYesButton);
+        return this;
+    }
+
+    public CCE_AddOrderPage setDirectEnrichNo() throws InterruptedException {
+        CommonTask.setCheckBox(driver, dirEnNoButton);
+        return this;
+    }
+
+    public CCE_AddOrderPage setCustomerSwatchYes() throws InterruptedException {
+        CommonTask.setCheckBox(driver, customerSwatchYes);
+        return this;
+    }
+
+    public CCE_AddOrderPage setCustomerSwatchNo() throws InterruptedException {
+        CommonTask.setCheckBox(driver, customerSwatchNo);
+        return this;
+    }
+
     public CCE_AddOrderPage setShipToParty(String shipToParty) throws InterruptedException {
         CommonTask.setDropDownField(driver, shipToPartyField, shipToParty);
         return this;
