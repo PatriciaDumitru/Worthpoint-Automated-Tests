@@ -32,6 +32,8 @@ public class Ecomm_WaitingForShadePage extends WBA_BasePage {
     By tableOrderNo = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(6)");
     By tableNoOfOrderLines = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(7)");
 
+    By noResults = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div");
+
     public Ecomm_WaitingForShadePage(WebDriver driver) {
         super(driver);
     }
@@ -78,6 +80,11 @@ public class Ecomm_WaitingForShadePage extends WBA_BasePage {
 
     public String getTableNoOfOrderLines() {
         String text = driver.findElement(tableNoOfOrderLines).getText();
+        return text;
+    }
+
+    public String getNoResultsText (){
+        String text = driver.findElement(noResults).getText();
         return text;
     }
     
