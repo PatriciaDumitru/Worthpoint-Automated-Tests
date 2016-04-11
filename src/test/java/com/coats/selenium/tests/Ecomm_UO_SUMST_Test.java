@@ -1071,7 +1071,6 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         WebElement element= driver.findElement(lineRef);
         //Assert.assertFalse(element.getText().equals("Line Reference"));
 
-
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
