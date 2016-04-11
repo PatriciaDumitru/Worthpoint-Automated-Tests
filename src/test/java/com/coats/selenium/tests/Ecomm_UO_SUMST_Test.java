@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 public class Ecomm_UO_SUMST_Test extends DriverFactory {
     
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-    (groups = {"eComm","eComm_Orders","Upload_Order"})
+    (groups = {"eComm","eComm_Orders","Upload_Order", "QuickTest"})
     public void UORT1() throws AWTException, IOException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();

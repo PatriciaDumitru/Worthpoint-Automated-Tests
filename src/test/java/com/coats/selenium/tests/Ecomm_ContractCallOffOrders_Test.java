@@ -25,7 +25,7 @@ import AutomationFramework.DataItems;
 public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
 
-    @Test(groups = {"eComm"})
+    @Test(groups = {"eComm", "QuickTest"})
     public void CCO_GC_01() throws Exception {
 
         //New driver
@@ -309,7 +309,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
     }
 
 
-    @Test(groups = {"eComm"})
+    @Test(groups = {"eComm", "QuickTest"})
     public void CCO_CO_01() throws Exception {
         CCO_GC_01();
 
@@ -723,7 +723,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
 
 
-    @Test(groups = {"eComm"})
+    @Test(groups = {"eComm", "QuickTest"})
     public void CCO_UO_01() throws Exception {
         CCO_GC_01();
 

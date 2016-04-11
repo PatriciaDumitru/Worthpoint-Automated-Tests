@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 public class Cce_LRMLog_Test extends DriverFactory {
     
     @Test
-    (groups = {"CCE"})
+    (groups = {"CCE", "QuickTest"})
     public void LRM1() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();
