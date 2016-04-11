@@ -55,6 +55,7 @@ public class PreFlows {
     //Customer Edit Page
     By customerNameEditPageField = By.id("CustomerCustomerName");
     By mdqCheckBox = By.id("CustomerCustMdqEnabled");
+    By SAPContractValidityCheckBox = By.id("CustomerOffOrderType");
     By approvelCheckBoxCust = By.id("CustomerApprovalWorkflow");
     By saveCustomerButton = By.xpath(".//*[@id='CustomerEditForm']/div[4]/ul/li[1]/input");
     By deliveryPlant = By.id("CustomerDeliveryPlantId");
@@ -240,6 +241,10 @@ public class PreFlows {
     public void disableCallOffOrderCheckboxForCust(WebDriver driver){
         CommonTask.unSetCheckBox(driver,callOffOrderCheckBoxCust);
     }
+    public void enableSAPContractValidityCheckBoxForCust(WebDriver driver){
+        CommonTask.setCheckBox(driver, SAPContractValidityCheckBox);
+    }
+
 
 
     public void enableEOwSForCust(WebDriver driver){
@@ -290,6 +295,18 @@ public class PreFlows {
         enableCallOffOrderCheckboxForSalesOrg(driver);
         saveSalesOrg(driver);
     }
+
+    public void deactivateCallOffOrderForSalesOrg(WebDriver driver, String salesOrg){
+        goToSalesOrgAndEdit(driver, salesOrg);
+        disableCallOffOrderCheckboxForSalesOrg(driver);
+        saveSalesOrg(driver);
+    }
+    public void deactivateCallOffOrderForCustomer(WebDriver driver, String customer) {
+        goToCustomerAndEdit(driver, customer);
+        disableCallOffOrderCheckboxForCust(driver);
+        saveCustomer(driver);
+    }
+
 
     public void deActivateCallOffOrderForCustomer(WebDriver driver, String customer){
         goToCustomerAndEdit(driver, customer);
@@ -357,6 +374,17 @@ public class PreFlows {
         enableMOQCheckBoxForCust(driver);
         saveCustomer(driver);
     }
+
+    public void enableSAPContractValidityForCust(WebDriver driver, String customer){
+        goToCustomerAndEdit(driver, customer);
+        enableSAPContractValidityCheckBoxForCust(driver);
+        saveCustomer(driver);
+    }
+
+
+
+
+
 
     public void disableMOQForCustomer(WebDriver driver, String customer){
         goToCustomerAndEdit(driver, customer);
