@@ -55,7 +55,7 @@ public class WBA_Login_Test extends DriverFactory {
     }
   
     @Test //Login Page :: Login using valid Coats user details, navigate to and from CCE and eComm
-    (groups = {"QuickTest","General"})
+    (groups = {"General"})
     public void L2() throws InterruptedException, IOException, Exception {
         System.out.println("TEST: LOGIN PAGE/CONTINUE PAGE/SELECTION PAGE: Check elements are displayed");
         
@@ -146,7 +146,7 @@ public class WBA_Login_Test extends DriverFactory {
     }
     
     @Test //Login Page :: Login using valid Customer user details, navigate to and from CCE and eComm
-    (groups = {"QuickTest","General"})
+    (groups = {"General"})
     public void L2_1() throws InterruptedException, Exception {
         System.out.println("TEST: LOGIN PAGE/CONTINUE PAGE/SELECTION PAGE: Check elements are displayed for customer");
         System.out.println("WBA_Login_Test > L2_1");
@@ -227,7 +227,7 @@ public class WBA_Login_Test extends DriverFactory {
     }
      
     @Test //Login Page :: Login using invlaid username
-    (groups = {"QuickTest","General"})
+    (groups = {"General"})
     public void L3() throws Exception {
         System.out.println("TEST Login Page L3: Login with invalid username");
         System.out.println("Scenario ID: GE_UL_L_2");

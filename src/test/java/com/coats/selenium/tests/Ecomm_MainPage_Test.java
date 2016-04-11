@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
 public class Ecomm_MainPage_Test extends DriverFactory {
 
     @Test //EComm Page :: Page checks, navigation bar check
-    (groups = {"eComm","QuickTest"})
+    (groups = {"eComm"})
     public void ECOMM1() throws IOException, Exception {
         System.out.println("TEST: ECOMM HOME PAGE");
         System.out.println("Scenario ID: (no ID)");
@@ -116,7 +116,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
     }
 /*
     //Ecomm Page:: Navbar link checks
-    @Test (groups = {"QuickTest","eComm"})
+    @Test (groups = {"eComm"})
     public void ECOMM2() throws IOException, Exception {
         //New driver instance
         WebDriver driver = getDriver();

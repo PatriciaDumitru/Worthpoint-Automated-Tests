@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 public class Ecomm_UO_SUMST_Test extends DriverFactory {
     
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-    (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"})
+    (groups = {"eComm","eComm_Orders","Upload_Order"})
     public void UORT1() throws AWTException, IOException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -168,7 +168,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }    
 
     @Test //Upload Order Page :: SUMST :: Realtime upload order of <100 lines, removing mandatory fields at before submission
-    (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"})
+    (groups = {"eComm","eComm_Orders","Upload_Order"})
     public void UORT2() throws AWTException, IOException, InterruptedException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -716,7 +716,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
     
     @Test //Upload Order Page :: SUMST :: Realtime upload (MOQ Active)
-    (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"})
+    (groups = {"eComm","eComm_Orders","Upload_Order"})
     public void UORT7() throws AWTException, IOException, Exception {
         //new chrome driver
         WebDriver driver = getDriver();

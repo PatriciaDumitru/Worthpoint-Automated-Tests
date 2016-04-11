@@ -116,7 +116,7 @@ public class Cce_MainPage_Test extends DriverFactory {
     }
 
     @Test //CCE Main Page: Navigation bar link checks
-    (groups = {"QuickTest","CCE"})
+    (groups = {"CCE"})
     public void CCE2() throws InterruptedException, IOException, Exception {
         System.out.println("TEST: CCE NAVIGATION TAB LINKS");
         System.out.println("Scenario ID: G_CCE_MS_02 to 23");
@@ -254,7 +254,7 @@ public class Cce_MainPage_Test extends DriverFactory {
     }
     
     @Test //CCE Main Page: Masters headings appear
-    (groups = {"QuickTest","CCE"})
+    (groups = {"CCE"})
     public void CCE3() throws Exception {
         System.out.println("TEST: CCE Masters appear");
         System.out.println("Scenario ID: WebPage 1 to 5.6.5");

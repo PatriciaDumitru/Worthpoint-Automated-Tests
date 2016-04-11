@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 public class CCE_EnrichOrder_Test extends DriverFactory {
     
     @Test //Manual Enrich Page :: SUMST :: Page and filter checks, Hub SOS selection
-    (groups={"CCE","CCE_Orders"})
+    (groups={"CCE","CCE_Orders","QuickTest"})
     public void EO1() throws Exception {
         
         WebDriver driver = getDriver();
