@@ -39,7 +39,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
     
     @Test //Manual Entry Page :: SUMST :: Page checks, single line order using YMN and shade code from master data
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void SUMST1() throws IOException, InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
@@ -836,7 +836,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no ship to party name at manual entry page
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void SUMST10() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -2677,7 +2677,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUMST :: Multi-line, order using Brand/Ticket/Length/Finish/Shade combination (MOQ ACTIVE)
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void SUMST27() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();

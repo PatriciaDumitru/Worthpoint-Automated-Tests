@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 public class WBA_ForgotPassword_Test extends DriverFactory {
     
     @Test //Forgot Password Page :: Reset password
-    (groups = {"General"})
+    (groups = {"General", "QuickTest"})
     public void FP1() throws IOException, Exception {
         System.out.println("TEST: FORGOT PASSWORD: Coats user forgot password process");
         System.out.println("Scenario ID: G_FP_1");

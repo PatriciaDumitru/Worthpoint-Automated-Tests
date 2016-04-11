@@ -37,7 +37,7 @@ import org.testng.annotations.Test;
 public class Cce_SOC_Test extends DriverFactory {
     
     @Test // Order Samples Page :: Page and filter checks, cancel function 
-    (groups = {"CCE","CCE_Orders"})
+    (groups = {"CCE","CCE_Orders","QuickTest"})
     public void SOC1() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

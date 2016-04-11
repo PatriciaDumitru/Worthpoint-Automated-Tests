@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 public class Ecomm_UO_Exceptions_Test extends DriverFactory {
 
     @Test //Upload Order Realtime :: SUMST :: Incomplete material in spreadsheet exception
-            (groups = {"eComm","eComm_Orders","Upload_Order"})
+            (groups = {"eComm","eComm_Orders","Upload_Order", "QuickTest"})
     public void UORTex1() throws Exception{
         //new chrome driver
 
@@ -666,7 +666,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
     }
     
     @Test //Upload Order Backend :: SUMST :: Invalid YMN in spreadsheet exception
-    (groups = {"eComm","eComm_Orders","Upload_Order"})
+    (groups = {"eComm","eComm_Orders","Upload_Order", "QuickTest"})
     public void UOBEex1() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();

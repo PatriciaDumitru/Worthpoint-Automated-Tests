@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 public class Ecomm_SAPInterfaceLog_Test extends DriverFactory {
     
     @Test //SAP Interface Log Page :: Page and filter checks, view and reset
-    (groups = {"eComm"})
+    (groups = {"eComm", "QuickTest"})
     public void SILM1() throws IOException, Exception {
 		
         //New driver instance

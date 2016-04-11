@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 public class Cce_MainPage_Test extends DriverFactory {
     
     @Test //CCE Main Page :: Navigation bar check
-    (groups = {"CCE"})
+    (groups = {"CCE", "QuickTest"})
     public void CCE1() throws IOException, Exception {
         
         System.out.println("TEST: CCE HOME PAGE");

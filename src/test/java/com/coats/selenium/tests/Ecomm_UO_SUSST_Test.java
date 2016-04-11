@@ -26,7 +26,7 @@ import org.testng.annotations.Test;
 public class Ecomm_UO_SUSST_Test extends DriverFactory {
     
     @Test //Upload Order Page :: SUSST :: Realtime Upload order (<100 lines) (MOQ ACTIVE)
-    (groups = {"eComm","eComm_Orders","Upload_Order"})
+    (groups = {"eComm","eComm_Orders","Upload_Order", "QuickTest"})
     public void RT1() throws AWTException, IOException, Exception  {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -235,7 +235,7 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
     }
     
     @Test //Upload Order Page :: SUSST :: Backend Upload order (<100 lines)
-    (groups = {"eComm","eComm_Orders","Upload_Order"})
+    (groups = {"eComm","eComm_Orders","Upload_Order", "QuickTest", "QuickTest"})
     public void BE1() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();

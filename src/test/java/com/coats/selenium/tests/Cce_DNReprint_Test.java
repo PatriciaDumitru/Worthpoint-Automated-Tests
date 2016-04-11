@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 public class Cce_DNReprint_Test extends DriverFactory {
     
     @Test //DN Reprint Page :: Page checks
-    (groups = {"CCE"})
+    (groups = {"CCE", "QuickTest"})
     public void DR1() throws IOException,Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

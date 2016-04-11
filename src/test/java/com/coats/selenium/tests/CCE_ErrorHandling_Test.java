@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 public class CCE_ErrorHandling_Test extends DriverFactory {
 
     @Test //	ER_MF_XML_01: Error Handling Mandatory Field XML with empty xml file
-            (groups = {"CCE"})
+            (groups = {"CCE", "QuickTest"})
     public void ER_MF_XML_01() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

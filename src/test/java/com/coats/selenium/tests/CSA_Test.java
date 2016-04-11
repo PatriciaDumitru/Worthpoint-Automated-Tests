@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 public class CSA_Test extends DriverFactory {
 
     @Test //Delivery Plant Select, CSA Brand CustomerA, check Article from Brand with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA", "QuickTest"})
     public void CSA01() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -314,7 +314,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA CustomerA BrandA and BrandB , check Articles from those Brands and the Brands themselves with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA", "QuickTest"})
     public void CSA10_1() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -431,7 +431,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA Brand CustomerA, check Article from Brand with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA", "QuickTest"})
     public void CSA11() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -729,7 +729,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA CustomerA BrandA and BrandB , check Articles from those Brands with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA", "QuickTest"})
     public void CSA20_1() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

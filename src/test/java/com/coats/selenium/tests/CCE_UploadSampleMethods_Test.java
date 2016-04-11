@@ -26,7 +26,7 @@ import java.util.List;
 public class CCE_UploadSampleMethods_Test extends DriverFactory {
 
     @Test //Order status page :: page and filter checks, reset function, export data
-            (groups = {"CCE"})
+            (groups = {"CCE", "QuickTest"})
     public void US01() throws Exception {
 
         //New driver object to control browser
@@ -345,7 +345,7 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         System.out.println("Order File Upload page is not available in the menu");
     }
 
-    @Test(groups = {"CCE"})
+    @Test(groups = {"CCE", "QuickTest"})
     public void SUF_GC_01() throws Exception {
 
         WebDriver driver = getDriver();
