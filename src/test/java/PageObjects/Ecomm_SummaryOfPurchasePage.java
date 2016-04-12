@@ -51,6 +51,25 @@ public class Ecomm_SummaryOfPurchasePage extends WBA_BasePage {
         CommonTask.setDropDownField(driver,requesterField,item);
         return this;
     }
+
+    public String getClearButtonLabel() {
+        WebElement button = Wait.clickable(driver,resetButton);
+        String label = driver.findElement(resetButton).getText();
+        return label;
+    }
+
+    public StringBuilder getTableHeader() {
+        WebElement button = Wait.clickable(driver,searchButton);
+
+        StringBuilder header = new StringBuilder();
+        for (int i=0;i<5;i++){
+            By tableHeader = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(1) > th:nth-child("+(i+1)+")");
+            //#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(1) > th:nth-child(1)
+            header = header.append(driver.findElement(tableHeader).getText());
+            header = header.append("|");
+        }
+        return header;
+    }
     
     public Ecomm_SummaryOfPurchasePage pressSearch() {
         WebElement search = Wait.clickable(driver,searchButton);
