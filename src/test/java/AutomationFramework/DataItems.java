@@ -374,4 +374,9 @@ public class DataItems {
     public static String othersWithCode = "*OTHERS*(10000000001)";
 
 
+
+    //Type of extensions
+    public static String xmlExtension = ".xml";
+    public static String qtcExtention = ".qtc";
+
 }

@@ -66,7 +66,7 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
         //Set Customer Swatch Yes
         orderPage.setCustomerSwatchYes();
 
-        orderPage.uploadXMLFile(0);
+        orderPage.uploadExtentionFile(DataItems.xmlExtension, 0);
 
     }
 
@@ -171,7 +171,7 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
         orderPage.inputDetails(DataItems.custDetails[1],DataItems.othersWithCode,DataItems.expArticle,
                 DataItems.expShadeCode,DataItems.copMUM,DataItems.sewing,DataItems.salesSamp,1);
 
-        orderPage.uploadXMLFile(0);
+        orderPage.uploadExtentionFile(DataItems.xmlExtension, 0);
 
         //Adding new line
         orderPage.pressNewLine(1);

@@ -781,14 +781,13 @@ public class FileFactory {
 
     }
 
+    // Creates FILE WITH YOUR DESIRED EXTENSION AND RETURNS PATH
+    public static String createExtensionFile (String typeOfExtension)  throws IOException {
 
-    public static String createXMLFile ()  throws IOException {
-
-        //TO BE EXPLORED ON HOW TO BE USED ON XML, QTC UPLOAD ON CCE
 
         String uniqueId = CommonTask.generatePO("file");
         String fileName = "UploadTestFile" + uniqueId;
-        String filePath = "C:\\Selenium\\" + fileName +".xml";
+        String filePath = "C:\\Selenium\\" + fileName + typeOfExtension;
 
         try {
 
@@ -854,83 +853,9 @@ public class FileFactory {
         //Return the filepath string
         return filePath;
 
-
     }
 
 
-    public static String createQTXFile ()  throws IOException {
 
-        //TO BE EXPLORED ON HOW TO BE USED ON XML, QTC UPLOAD ON CCE
-
-        String uniqueId = CommonTask.generatePO("file");
-        String fileName = "UploadTestFile" + uniqueId;
-        String filePath = "C:\\Selenium\\" + fileName +".qtx";
-
-        try {
-
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-
-            // root elements
-            Document doc = docBuilder.newDocument();
-            Element rootElement = doc.createElement("company");
-            doc.appendChild(rootElement);
-
-            // staff elements
-            Element staff = doc.createElement("Staff");
-            rootElement.appendChild(staff);
-
-            // set attribute to staff element
-            Attr attr = doc.createAttribute("id");
-            attr.setValue("1");
-            staff.setAttributeNode(attr);
-
-            // shorten way
-            // staff.setAttribute("id", "1");
-
-            // firstname elements
-            Element firstname = doc.createElement("firstname");
-            firstname.appendChild(doc.createTextNode("yong"));
-            staff.appendChild(firstname);
-
-            // lastname elements
-            Element lastname = doc.createElement("lastname");
-            lastname.appendChild(doc.createTextNode("mook kim"));
-            staff.appendChild(lastname);
-
-            // nickname elements
-            Element nickname = doc.createElement("nickname");
-            nickname.appendChild(doc.createTextNode("mkyong"));
-            staff.appendChild(nickname);
-
-            // salary elements
-            Element salary = doc.createElement("salary");
-            salary.appendChild(doc.createTextNode("100000"));
-            staff.appendChild(salary);
-
-            // write the content into xml file
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(filePath));
-
-            // Output to console for testing
-            // StreamResult result = new StreamResult(System.out);
-
-            transformer.transform(source, result);
-
-            System.out.println("File saved!");
-
-        } catch (ParserConfigurationException pce) {
-            pce.printStackTrace();
-        } catch (TransformerException tfe) {
-            tfe.printStackTrace();
-        }
-
-        //Return the filepath string
-        return filePath;
-
-
-    }
 
 }

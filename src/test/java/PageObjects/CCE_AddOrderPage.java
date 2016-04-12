@@ -168,19 +168,14 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         return this;
     }
 
-    public CCE_AddOrderPage uploadXMLFile(int lineNumber) throws IOException{
+    public CCE_AddOrderPage uploadExtentionFile(String extensionType, int lineNumber) throws IOException{
         //Line numbers start from 0
         By articleLocator = By.id("SampleOrderLine"+lineNumber+"Measurement");
-        driver.findElement(articleLocator).sendKeys(FileFactory.createXMLFile());
+        driver.findElement(articleLocator).sendKeys(FileFactory.createExtensionFile(extensionType));
         return this;
     }
 
-    public CCE_AddOrderPage uploadQTXFile(int lineNumber) throws IOException{
-        //Line numbers start from 0
-        By articleLocator = By.id("SampleOrderLine"+lineNumber+"Measurement");
-        driver.findElement(articleLocator).sendKeys(FileFactory.createQTXFile());
-        return this;
-    }
+
 
 
     public CCE_AddOrderPage setArticle(String article, int lineNumber) {
