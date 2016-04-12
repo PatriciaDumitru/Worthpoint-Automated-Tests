@@ -64,7 +64,7 @@ public class Ecomm_ReportingPaginationChecks_Page {
     By creationDateToField = By.id("filterBulkOrderCreatedTo");
     By searchButtonOAH = By.cssSelector("#FilterApprovalhistoryForm > div.grid_12 > table > tbody > tr:nth-child(6) > td > div > input");
     By resetButtonOAH = By.cssSelector("#FilterApprovalhistoryForm > div.grid_12 > table > tbody > tr:nth-child(6) > td > a");
-By test = By.xpath("//*[@id=\"s2id_filterSapccInvoiceCustomerId\"]/a/span[1]");
+    By test = By.xpath("//*[@id=\"s2id_filterSapccInvoiceCustomerId\"]/a/span[1]");
 
     // ---------------------- Methods
 

@@ -38,7 +38,7 @@ public class DataItems {
 
     //Login Credentials
     public static String validCoatsUsername = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
-    public static String validCoatsUsername2 = "samson.vetharaj@coats.com";
+    public static String validCoatsUsername2 = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com";
     public static String validCoatsPassword = "password";     //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
 
