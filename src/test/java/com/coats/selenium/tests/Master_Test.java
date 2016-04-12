@@ -2538,7 +2538,7 @@ public class Master_Test extends DriverFactory {
     }
 
     @Test //Countries :: Page and filter checks, add/edit/delete/export features
-            (groups = {"Masters",},enabled = false)
+            (groups = {"Masters",},enabled = true)
     public void countries1() throws Exception {
         WebDriver driver = getDriver();
 
@@ -2553,7 +2553,6 @@ public class Master_Test extends DriverFactory {
 
         Mst_AddCountryPage wFct = new Mst_AddCountryPage(driver);
 
-        wFct.wait3Seconds();
 
         System.out.println("Countries page reached. Checking title...");
 
@@ -2573,8 +2572,6 @@ public class Master_Test extends DriverFactory {
         cPage.setCountryName("Indonesia");
 
         System.out.println("Filter criteria entered. Listing records...");
-
-        wFct.wait3Seconds();
 
         cPage.pressSearch();
         cPage.waitForElement();
@@ -5297,7 +5294,6 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Title as expected");
     }
-
 
     @Test //Shade Cards: Page and filter checks, add/edit/delete/export features
             (groups = {"Masters"})
