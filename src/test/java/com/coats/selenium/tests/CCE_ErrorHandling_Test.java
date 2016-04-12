@@ -1,5 +1,6 @@
 package com.coats.selenium.tests;
 
+import AutomationFramework.FileFactory;
 import com.coats.selenium.DriverFactory;
 
 import AutomationFramework.DataItems;
@@ -65,7 +66,7 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
         //Set Customer Swatch Yes
         orderPage.setCustomerSwatchYes();
 
-
+        driver.findElement(By.id("SampleOrderLine0Measurement")).sendKeys(FileFactory.createXMLFile());
 
 
 
