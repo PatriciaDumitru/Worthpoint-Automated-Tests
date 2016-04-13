@@ -172,7 +172,7 @@ public class Cce_Inbox_Test extends DriverFactory {
         
         System.out.println("Inbox loaded. Entering filter criteria...");
         
-        isPage.setHub(DataItems.hub);
+        isPage.setHub("IDH001");//DataItems.hub
         
         //Take a screenshot
         File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -190,7 +190,7 @@ public class Cce_Inbox_Test extends DriverFactory {
         System.out.println("Orders listed. Entering search criteria...");
         
         isPage.setSalesOrg(DataItems.salesOrganisation);
-        isPage.setHub(DataItems.hub);
+        isPage.setHub("IDH001");//DataItems.hub
         
         //Take a screenshot
         File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);

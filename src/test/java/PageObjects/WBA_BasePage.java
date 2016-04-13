@@ -194,7 +194,7 @@ public class WBA_BasePage {
 
     public static WebElement getAccessTypeSelector() {
         //find and return element
-        return driver.findElement(accessTypeLocator);
+        return driver.findElement(dateLabelLocator);
     }
 
 

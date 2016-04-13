@@ -100,12 +100,127 @@ public class FileFactory {
             {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}
     };
 
+    public static String[][] sumstBasicData5 = {
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","4","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","180","5000","STANDARD","C1711","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","120","5000","STANDARD","C1202","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1202","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}
+    };
+
+    public static String[][] sumstBasicData7 = {
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","180","5000","STANDARD","C1711","4","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","120","5000","STANDARD","C1202","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1202","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}
+    };
+
     public static String[][] sumstBasicData8 = {
             //{"Star Garments Ltd.","Star Garments","","","","","","","","","","1","TEST ZCQ BE POSITIV 03","000040","",""},
             {"Star Garments Ltd.","Star Garments","","18-01-2016","","","","","","","","","TEST ZCQ BE POSITIV 03","000040","","contract@testing.com","Y","40000799","*Others*"}
            // {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","ContractOrderNo","0123","","abc test"},
     };
-    
+
+    public static String[][] sumstBasicData9 = {
+            {"Star Garments Ltd.","Star Garments","","19-01-2016","","","","","","","","","TEST ZCQ BE POSITIV 03","000040","","contract@testing.com","Y","40000799","*Others*"}
+    };
+
+    public static String[][] sumstBasicData10 = {
+            {"Star Garments Ltd.","Star Garments","","20-01-2016","","","","","","","","","TEST ZCQ BE POSITIV 03","000040","","contract@testing.com","Y","40000799","*Others*"}
+    };
+
+    public static String[][] sumstBasicData12 = {
+            //{"Star Garments Ltd.","Star Garments","","","","","","","","","","1","TEST ZCQ BE POSITIV 03","000040","",""},
+            {"Star Garments Ltd.","Star Garments","","18-01-2016","","8754180","","","","","","100000","","","","*Others*"}
+            //{"Star Garments Ltd.","Star Garments","","18-01-2016","1234","8754120","","","","","","","","000030","","contract@testing.com","Y","40000799","*Others*"}
+            // {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","ContractOrderNo","0123","","abc test"},
+    };
+
+    public static String[][] sumstBasicData13 = {
+            //{"Star Garments Ltd.","Star Garments","","","","","","","","","","1","TEST ZCQ BE POSITIV 03","000040","",""},
+            {"Star Garments Ltd.","Star Garments","","18-01-2016","","","","","","","","99999999","TEST ZCQ BE POSITIV 03","000030","","contract@testing.com","Y","40000799","*Others*"}
+            // {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","ContractOrderNo","0123","","abc test"},
+    };
+
+    public static String[][] sumstBasicData14 = {
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","1","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","1","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","180","5000","STANDARD","C1711","1","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","120","5000","STANDARD","C1202","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1202","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}
+    };
+
+    public static String[][] sumstBasicData15 = {
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","180","5000","STANDARD","C1711","","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","120","5000","STANDARD","C1202","","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1202","","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","","","","","abc test"}
+    };
+
+    public static String[][] sumstBasicData18 = {
+            {"Star Garments Ltd.","Star Garments","","18-01-2016","","","","","","","","99999999","TEST ZCQ BE POSITIV 03","000030","","contract@testing.com","Y","40000799","*Others*"}
+    };
+
+    public static String[][] sumstBasicData19 = {
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","4","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","4","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","180","5000","STANDARD","C1711","4","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","120","5000","STANDARD","C1202","4","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1202","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}
+    };
+
+    public static String[][] sumstBasicData20 = {
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","5","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","5","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","180","5000","STANDARD","C1711","5","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","120","5000","STANDARD","C1202","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1202","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}
+    };
+
+
+    public static String[][] sumstBasicData21 = {
+            //{"Star Garments Ltd.","Star Garments","","","","","","","","","","1","TEST ZCQ BE POSITIV 03","000040","",""},
+            {"Star Garments Ltd.","Star Garments","","18-01-2016","","","","","","","","","TEST ZCQ BE POSITIV 03","000040","","contract@testing.com","Y","40000799","*Others*"}
+            // {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","ContractOrderNo","0123","","abc test"},
+    };
+
+    public static String[][] sumstBasicData23 = {
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","7","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","7","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","180","5000","STANDARD","C1711","7","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","120","5000","STANDARD","C1202","7","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1711","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","2","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","8754120","astra","120","5000","STANDARD","C1202","3","","","","abc test"},
+            {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","","","","abc test"}
+    };
+
+    public static String[][] sumstBasicData52 = {
+            //{"Star Garments Ltd.","Star Garments","","","","","","","","","","1","TEST ZCQ BE POSITIV 03","000040","",""},
+            {"Star Garments Ltd.","Star Garments","","18-01-2016","","","","","","","","","TEST ZC BE POSITIV 0","000041","","contract@testing.com","Y","40020799","*Others*"}
+            // {"Life Easy Customer","CCE HUB OFFICES","","","","","astra","180","5000","STANDARD","C1202","3","ContractOrderNo","0123","","abc test"},
+    };
+
     //Data containing invalid Your Material Number
     public static String[][] sumstYMNInvalidData = {{"Life Easy Customer","CCE HUB OFFICES","","","InvalidMaterialNum","","","","","","","3","","","","approver 1 test"},
         {"Life Easy Customer","CCE HUB OFFICES","","","","8754180","astra","180","5000","STANDARD","C1202","3","","","","approver 1 test"}};
@@ -342,15 +457,62 @@ public class FileFactory {
                     po = "Non Contract Upload File multiple scenario";
                     data = sumstBasicData4.clone();
                 }
+                else if (type.equals("Basic15")) {
+                    po = "Non Contract Upload File multiple scenario";
+                    data = sumstBasicData15.clone();
+                }
                 else if (type.equals("Basic5")) {
                     po = "Non Contract Upload File multiple scenario"+id;
-                   // data = sumstBasicData5.clone();
+                    data = sumstBasicData5.clone();
+                }
+                else if (type.equals("Basic7")) {
+                    po = "Non Contract Upload File multiple scenario"+id;
+                     data = sumstBasicData7.clone();
                 }
                 else if (type.equals("Basic8")) {
                     po = "Non Contract Upload File multiple scenario"+id;
                     data = sumstBasicData8.clone();
                 }
+                else if (type.equals("Basic13")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData13.clone();
+                }
+                else if (type.equals("Basic18")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData18.clone();
+                }
+                else if (type.equals("Basic12")) {
+                    po = "Non Contract Upload File multiple scenario"+id;
+                    data = sumstBasicData12.clone();
 
+                }
+                else if (type.equals("Basic14")) {
+                    po = "Non Contract Upload File multiple scenario";
+                    data = sumstBasicData14.clone();
+                }
+                else if (type.equals("Basic15")) {
+                    po = "Non Contract Upload File multiple scenario";
+                    data = sumstBasicData15.clone();
+                }
+
+                else if (type.equals("Basic19")) {
+                    po = "Non Contract Upload File multiple scenario";
+                    data = sumstBasicData19.clone();
+                }
+                else if (type.equals("Basic20")) {
+                    po = "Non Contract Upload File multiple scenario";
+                    data = sumstBasicData20.clone();
+                }
+
+                else if (type.equals("Basic21")) {
+                    po = "Non Contract Upload File multiple scenario"+id;
+                    data = sumstBasicData21.clone();
+                }
+
+                else if (type.equals("Basic23")) {
+                    po = "Non Contract Upload File multiple scenario";
+                    data = sumstBasicData23.clone();
+                }
 
                 else if (type.equals("SA")) {
                     po = "UO_SUMST_SubAcct";
@@ -601,6 +763,40 @@ public class FileFactory {
                 else if (type.equals("Basic8")) {
                     po = "Non Contract Upload File multiple scenario"+id;
                     data = sumstBasicData8.clone();
+                }
+
+                else if (type.equals("Basic9")) {
+                    po = "Non Contract Upload File multiple scenario"+id;
+                    data = sumstBasicData9.clone();
+                }
+
+                else if (type.equals("Basic10")) {
+                    po = "Non Contract Upload File multiple scenario"+id;
+                    data = sumstBasicData10.clone();
+                }
+                else if (type.equals("Basic12")) {
+                    po = "Non Contract Upload File multiple scenario"+id;
+                    data = sumstBasicData12.clone();
+                }
+
+                else if (type.equals("Basic13")) {
+                    po = "Non Contract Upload File multiple scenario"+id;
+                    data = sumstBasicData13.clone();
+                }
+
+                else if (type.equals("Basic18")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData18.clone();
+                }
+
+                else if (type.equals("Basic21")) {
+                    po = "Non Contract Upload File multiple scenario"+id;
+                    data = sumstBasicData21.clone();
+                }
+
+                else if (type.equals("Basic52")) {
+                    po = "Non Contract Upload File multiple scenario"+id;
+                    data = sumstBasicData52.clone();
                 }
 
             } else if (!valid) {

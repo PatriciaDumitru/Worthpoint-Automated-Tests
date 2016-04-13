@@ -30,12 +30,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     By createDateToField = By.id("filterBulkOrderCreatedTo");
     By custCodeField = By.id("filterCustomerCustomerCode");
     By saveMyReportButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1) > input");
-    By printButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
+    By printButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(2) > input[type=\"submit\"]");
     By exportButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3)");
-    By resetButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3) > a");
-    By printButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1)");
+    By resetButton_SUSST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(4) > a");
+
+    By printButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By exportButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(2)");
-    By resetButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3)");
+    By resetButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3) ");
     By flashMessage = By.id("flashMessage");
     
     public Ecomm_MyReportsPage(WebDriver driver) {

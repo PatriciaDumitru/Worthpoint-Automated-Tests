@@ -303,7 +303,7 @@ public class DataItems {
     public static String sampSalesOrg = "ID52";
 
     //Sample bulk order number
-    public static String bulkOrderNo = "5020757";
+    public static String bulkOrderNo = "50200052";
 
     //eComm My Reports report title
     public static String reportTitle = "AutoTestReport";
