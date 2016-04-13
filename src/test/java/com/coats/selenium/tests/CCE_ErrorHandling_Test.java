@@ -17,6 +17,8 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.util.SystemOutLogger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -59,6 +61,15 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
         orderPage.setQuantity(1,0);
 
         System.out.println("Set Direct Enrich Yes...");
+
+
+        try {
+            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            alert.accept();
+            System.out.println("Alert appeared: " + alert.getText());
+        } catch (Exception e) {
+            System.out.println("No alert.");
+        }
         //Set Direct Enrich Yes
         orderPage.setDirectEnrichYes();
 

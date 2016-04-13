@@ -64,7 +64,7 @@ public class Cce_Hub_Test extends DriverFactory {
         
         hsPage.pressListOrders();
         hsPage.waitForLoad();
-        
+
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\3Orders listed.png"));
