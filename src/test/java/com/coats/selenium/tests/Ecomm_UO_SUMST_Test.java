@@ -156,7 +156,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
     @Test //Upload Order Page :: SUMST :: Realtime upload order of <100 lines, removing mandatory fields at before submission
     (groups = {"eComm","eComm_Orders","Upload_Order"})
-    public void UORT2() throws AWTException, IOException, InterruptedException, Exception {
+    public void UORT2() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
         
@@ -704,7 +704,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     
     @Test //Upload Order Page :: SUMST :: Realtime upload (MOQ Active)
     (groups = {"eComm","eComm_Orders","Upload_Order"})
-    public void UORT7() throws AWTException, IOException, Exception {
+    public void UORT7() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
         
