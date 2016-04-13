@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 public class Cce_OrderCycleTime_Test extends DriverFactory { 
     
     @Test //Order Cycle Time Page :: Page and filter checks, print, export, and reset
-    (groups = {"CCE"})
+    (groups = {"CCE", "QuickTest"})
     public void OCTR1() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();

@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.FileFactory;
 import AutomationFramework.Wait;
 import java.io.IOException;
 import org.testng.AssertJUnit;
@@ -68,6 +69,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By enrichHubButton = By.id("SampleOrderLine0SosId30");
     static By enrichLabButton = By.id("SampleOrderLine0SosId50");
     static By enrichWHSButton = By.id("SampleOrderLine0SosId40");
+    static By browserFileButton = By.id("SampleOrderLine0Measurement");
     
     public CCE_AddOrderPage(WebDriver passedDriver) {
        super(passedDriver);
@@ -165,7 +167,17 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         CommonTask.setDropDownField(driver, busPrincipalField, businessPrincipal);
         return this;
     }
-    
+
+    public CCE_AddOrderPage uploadExtentionFile(String extensionType, int lineNumber) throws IOException{
+        //Line numbers start from 0
+        By articleLocator = By.id("SampleOrderLine"+lineNumber+"Measurement");
+        driver.findElement(articleLocator).sendKeys(FileFactory.createExtensionFile(extensionType));
+        return this;
+    }
+
+
+
+
     public CCE_AddOrderPage setArticle(String article, int lineNumber) {
         //Line numbers start from 0
         By articleLocator = By.id("s2id_SampleOrderLine"+lineNumber+"ArticleId");

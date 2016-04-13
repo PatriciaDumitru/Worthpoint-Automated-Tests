@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "qa_p4i";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
-    //public static String targetURL ="http://10.14.18.4";
+   // public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
     public static String mastersCustomerURL = targetURL + "/Customers";
     public static String mastersCSAUrl = targetURL + "/customerprivatearticles";
@@ -38,7 +38,7 @@ public class DataItems {
 
     //Login Credentials
     public static String validCoatsUsername = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
-    public static String validCoatsUsername2 = "samson.vetharaj@coats.com";
+    public static String validCoatsUsername2 = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com";
     public static String validCoatsPassword = "password";     //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
 
@@ -373,5 +373,10 @@ public class DataItems {
     //QuickFix
     public static String othersWithCode = "*OTHERS*(10000000001)";
 
+
+
+    //Type of extensions
+    public static String xmlExtension = ".xml";
+    public static String qtcExtention = ".qtc";
 
 }

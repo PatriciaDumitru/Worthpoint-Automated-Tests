@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 public class Ecomm_Shade_Test extends DriverFactory {
     
     @Test //Shade Not Available Page :: Page and filter checks, view and edit
-    (groups = {"eComm"})
+    (groups = {"eComm", "QuickTest"})
     public void SNA1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
@@ -163,7 +163,7 @@ public class Ecomm_Shade_Test extends DriverFactory {
     }
     
     @Test //Waiting for Shade Code Page :: Page and filter checks, view and edit
-    (groups = {"eComm"})
+    (groups = {"eComm", "QuickTest"})
     public void WFS1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();

@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 public class Ecomm_ME_SUSST_Test extends DriverFactory {
     
     @Test //Manual Entry Page :: SUSST :: Page checks and single line order using YMN and master shade
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void SUSST1() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();
@@ -1103,7 +1103,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUSST :: Multi-line order using Article and shade code (MOQ ACTIVE)
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void SUSST10() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();

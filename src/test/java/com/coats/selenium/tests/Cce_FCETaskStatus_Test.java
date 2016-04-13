@@ -88,7 +88,7 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
     }
     
     @Test //FCE Task Status Page :: Filter reset
-    (groups = {"CCE"})
+    (groups = {"CCE", "QuickTest"})
     public void TS2() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();

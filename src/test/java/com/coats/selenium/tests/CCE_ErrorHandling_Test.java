@@ -1,5 +1,6 @@
 package com.coats.selenium.tests;
 
+import AutomationFramework.FileFactory;
 import com.coats.selenium.DriverFactory;
 
 import AutomationFramework.DataItems;
@@ -24,7 +25,7 @@ import org.testng.annotations.Test;
 public class CCE_ErrorHandling_Test extends DriverFactory {
 
     @Test //	ER_MF_XML_01: Error Handling Mandatory Field XML with empty xml file
-            (groups = {"CCE"})
+            (groups = {"CCE", "QuickTest"})
     public void ER_MF_XML_01() throws IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -76,9 +77,7 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
         //Set Customer Swatch Yes
         orderPage.setCustomerSwatchYes();
 
-
-
-
+        orderPage.uploadExtentionFile(DataItems.xmlExtension, 0);
 
     }
 
@@ -136,6 +135,8 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
         orderPage.setCustomerSwatchYes();
 
 
+
+
     }
 
     @Test //	ER_MF_XML_03: Error Handling Mandatory Field XML with uploaded xml file
@@ -146,7 +147,6 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
 
 
 
-        
 
     }
 
@@ -182,11 +182,15 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
         orderPage.inputDetails(DataItems.custDetails[1],DataItems.othersWithCode,DataItems.expArticle,
                 DataItems.expShadeCode,DataItems.copMUM,DataItems.sewing,DataItems.salesSamp,1);
 
+        orderPage.uploadExtentionFile(DataItems.xmlExtension, 0);
+
         //Adding new line
         orderPage.pressNewLine(1);
         System.out.println("Entering product details second line...");
         orderPage.inputAdditionalLines(DataItems.article3,
                 DataItems.shadeCode3,DataItems.copMUM,DataItems.sewing,DataItems.salesSamp,1,1);
+
+
 
 
 

@@ -40,7 +40,7 @@ import org.testng.annotations.Test;
 public class Ecomm_OO_Test extends DriverFactory {
     
     @Test //Outstanding Orders Page :: Page and filter checks
-    (groups ={"eComm"})
+    (groups ={"eComm", "QuickTest"})
     public void OP1() throws Exception{
         WebDriver driver = getDriver();
         
@@ -137,7 +137,7 @@ public class Ecomm_OO_Test extends DriverFactory {
     }
     
     @Test //Outstanding Order Drafts Page :: Page and filter checks, view, edit, and cancel
-    (groups = {"eComm"})
+    (groups = {"eComm", "QuickTest"})
     public void ODP1() throws IOException, Exception {
         WebDriver driver = getDriver();
         
@@ -207,7 +207,7 @@ public class Ecomm_OO_Test extends DriverFactory {
     }
        
     @Test //Upload Order Drafts Page :: Page checks, edit, and cancel upload order draft
-    (groups = {"eComm"})
+    (groups = {"eComm", "QuickTest"})
     public void UODP1() throws IOException, Exception {
         WebDriver driver = getDriver();
         
@@ -278,7 +278,7 @@ public class Ecomm_OO_Test extends DriverFactory {
     }
     
     @Test //Pending Approval List Page :: Requester user :: Page and filter checks, print function
-    (groups = {"eComm"}) //CHANGES MASTER DATA
+    (groups = {"eComm", "QuickTest"}) //CHANGES MASTER DATA
     public void PA1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -611,7 +611,7 @@ public class Ecomm_OO_Test extends DriverFactory {
      */
     
     @Test //Denied Order Page :: Requester User :: Page and filter checks, edit and delete
-    (groups = {"eComm"}) //CHANGES MASTER DATA
+    (groups = {"eComm", "QuickTest"}) //CHANGES MASTER DATA
     public void DO1() throws Exception {
         WebDriver driver = getDriver();
         
@@ -848,7 +848,7 @@ public class Ecomm_OO_Test extends DriverFactory {
     }
     
     @Test //Order Approver History Page :: Global Admin :: Filter checks, export function
-    (groups = {"eComm"})
+    (groups = {"eComm", "QuickTest"})
     public void OAH1() throws Exception {
         WebDriver driver = getDriver();
         

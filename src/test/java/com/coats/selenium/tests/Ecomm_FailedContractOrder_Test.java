@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
 public class Ecomm_FailedContractOrder_Test extends DriverFactory {
     
     @Test //Failed Contract Order Page :: Page and filter checks, search, reset, view and edit
-    (groups = {"eComm"})
+    (groups = {"eComm", "QuickTest"})
     public void FCO1() throws Exception {
         
         //new driver instance

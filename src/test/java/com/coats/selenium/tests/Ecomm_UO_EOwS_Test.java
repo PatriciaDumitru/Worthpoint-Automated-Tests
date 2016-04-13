@@ -800,7 +800,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
     }
 
     @Test //Enable Order without Shade :: WBA-684
-            (groups = {"eComm"})
+            (groups = {"eComm", "QuickTest"})
     public void EOwS_GC_090() throws Exception{
         //new chrome driver
         WebDriver driver = getDriver();

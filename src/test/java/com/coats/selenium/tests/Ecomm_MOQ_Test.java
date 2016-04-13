@@ -72,7 +72,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
     }
 
     @Test //MOQ1
-            (groups = {"eComm"})
+            (groups = {"eComm", "QuickTest"})
     public void MOQ1_1() throws Exception {
         MOQ1(10,"10",DataItems.articleMOQ, DataItems.shadeCode01MOQ);
     }
@@ -182,7 +182,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
 
     @Test //MOQ2_1
-            (groups = {"eComm"})
+            (groups = {"eComm", "QuickTest"})
     public void MOQ2_1() throws Exception {
         MOQ2B(10,"11",DataItems.articleMOQ, DataItems.shadeCode01MOQ);
     }
@@ -303,7 +303,7 @@ public class Ecomm_MOQ_Test extends DriverFactory{
     }
 
     @Test //MOQ3_1
-            (groups = {"eComm"})
+            (groups = {"eComm", "QuickTest"})
     public void MOQ3_1() throws Exception {
         MOQ3B(10,"11",DataItems.articleMOQ, DataItems.shadeCode01MOQ);
     }

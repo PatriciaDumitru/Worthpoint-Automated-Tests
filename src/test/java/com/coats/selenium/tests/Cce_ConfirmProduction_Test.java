@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 public class Cce_ConfirmProduction_Test extends DriverFactory {
     
     @Test //Confirm Production Page :: Page and filer checks, view and confirm
-    (groups = {"CCE"})
+    (groups = {"CCE", "QuickTest"})
     public void CP1() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -38,7 +38,7 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("Confirm Production CP1: Page checks, filter function, view button, confirm selection", "C_CCE_CP_1-2");
         
-        System.out.println("Navigating to Confirm Production...");
+        System.out.println("Navigating to Confirm ProductiRon...");
         
         CCE_ConfirmProductionPage cpPage = ccePage.pressConfirmProduction();
         cpPage.waitForLoad();
