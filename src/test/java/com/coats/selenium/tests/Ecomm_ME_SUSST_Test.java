@@ -1116,6 +1116,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
         pf.logoutAction(driver);
@@ -1246,6 +1247,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
         pf.logoutAction(driver);
@@ -1374,6 +1376,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
         pf.logoutAction(driver);
@@ -1503,6 +1506,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
         pf.logoutAction(driver);
@@ -1632,6 +1636,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
         pf.logoutAction(driver);
@@ -1762,6 +1767,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
         pf.logoutAction(driver);
@@ -1891,6 +1897,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
         pf.logoutAction(driver);
