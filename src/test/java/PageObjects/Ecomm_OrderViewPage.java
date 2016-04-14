@@ -39,7 +39,7 @@ public class Ecomm_OrderViewPage {
         //find and return element
         return driver.findElement(yourMatNumCellLocator);
     }
-    
+
     public WebElement getArticleCell() {
         //find and return element
         return driver.findElement(articleCellLocator);
@@ -66,7 +66,7 @@ public class Ecomm_OrderViewPage {
     
     public String getCOError() {
         switchTo();
-        WebElement cell = Wait.visible(driver,COError);
+        WebElement cell = Wait.visible(driver,errorHeader); //COError
         return cell.getText();
     }
     
