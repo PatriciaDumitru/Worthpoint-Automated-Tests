@@ -20,6 +20,8 @@ import org.testng.annotations.Test;
 
 public class Ecomm_ReportingPaginationChecks_Test extends DriverFactory{
 
+    /* FEATURE IS NO LONGER AVAILABLE
+
     @Test //Reporting Check Pagination Invoice
             (groups = {"eComm"})
     public void Rep_CP_I() throws IOException, InterruptedException, Exception {
@@ -274,4 +276,7 @@ public class Ecomm_ReportingPaginationChecks_Test extends DriverFactory{
         AssertJUnit.assertFalse("Pagination is not displayed and should",rpc.paginationIsDisplayed(driver));
     }
 
+     */
+
 }
+

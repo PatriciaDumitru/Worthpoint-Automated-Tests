@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "qa_p4i";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test_archive";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
-   // public static String targetURL ="http://10.14.18.4";
+    //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
     public static String mastersCustomerURL = targetURL + "/Customers";
     public static String mastersCSAUrl = targetURL + "/customerprivatearticles";
@@ -37,9 +37,9 @@ public class DataItems {
     public static String lastUsedFilepath = ""; //Holds last used filepath when generating files using FileFactory
 
     //Login Credentials
-    public static String validCoatsUsername = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
+    public static String validCoatsUsername = "samson.vetharaj@coats.com"; //"admin@coats.com";     //"joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
     public static String validCoatsUsername2 = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com";
-    public static String validCoatsPassword = "password";     //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
+    public static String validCoatsPassword = "password"; //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
 
     public static String approverLEUsername = "approver@lifeeasy.com";

@@ -197,7 +197,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
             Ecomm_OrderViewPage viewPage = ftpPage.pressView();
             viewPage.waitForErrorTable();
 
-            //Take a screenshot
+            //Take a screenshotF
             File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\4View displayed.png"));
 

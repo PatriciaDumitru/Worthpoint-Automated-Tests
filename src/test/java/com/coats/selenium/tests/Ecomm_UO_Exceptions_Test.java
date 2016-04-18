@@ -3,6 +3,7 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
+import AutomationFramework.PreFlows;
 import AutomationFramework.Wait;
 import PageObjects.Ecomm_BackendProcessPage;
 import PageObjects.Ecomm_ErrorPage;
@@ -37,6 +38,10 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex1: Invalid material number in spreadsheet", "GE_O_OC_URT_Ex1");
+
+        //Disable the flags for Sales Org and Customer
+        PreFlows pf = new PreFlows();
+        pf.disableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
         
         System.out.println("Navigating to Upload Order...");
         

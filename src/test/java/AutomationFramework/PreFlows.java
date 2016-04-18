@@ -343,6 +343,18 @@ public class PreFlows {
         saveCustomer(driver);
     }
 
+    public void disableEnableOrdersWithoutShadeForSalesOrgandCust(WebDriver driver,String salesOrg,String customer){
+        //This is used as a prerequisite for Ecomm_UO_Exceptions_Test class
+        goToSalesOrgAndEdit(driver, salesOrg);
+        disableEOwSForSalesOrg(driver);
+        saveSalesOrg(driver);
+        goToCustomerAndEdit(driver, customer);
+        disableEOwSForCust(driver);
+        disableMOQCheckBoxForCust(driver);
+        disableApprovalCheckBoxForCust(driver);
+        saveCustomer(driver);
+    }
+
     public void enableApprovelCheckBoxForSalesOrgAndCust(WebDriver driver, String salesOrg, String customer){
         goToSalesOrgAndEdit(driver,salesOrg);
         enableApprovalCheckBoxForSalesOrg(driver);
