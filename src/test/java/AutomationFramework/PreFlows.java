@@ -48,6 +48,7 @@ public class PreFlows {
     By approvelCheckBoxSalesOrg = By.id("SalesOrgSalesApprovalWorkflow");
     By getCallOffOrderCheckBoxSalesOrg = By.id("SalesOrgOffOrder");
     By ordersWithoutShadeCheckBoxSalesOrg = By.id("SalesOrgEnabledOrdersWithoutShade");
+    By autoEnrichOptionsCheckBox = By.id("SalesOrgAutoEnrichOptions");
 
     //Customer Masters Page
     By customerNameField = By.id("filterCustomerCustomerName");
@@ -64,6 +65,9 @@ public class PreFlows {
     By callOffOrderCheckBoxCust = By.id("CustomerOffOrder");
     By autoEnrichNoneOption = By.id("CustomerAutoEnrichOptions0");
     By ordersWithoutShadeCheckBoxCust = By.id("CustomerCusOrdersWithoutShade");
+    By enrichToHubRadiobutton = By.id("CustomerAutoEnrichStockId1");
+    By enrichToWarehouseRadiobutton = By.id("CustomerAutoEnrichStockId2");
+    By enrichToBothRadiobutton = By.id("CustomerAutoEnrichStockId3");
 
     //Manual Entry Page
     By buyersField = By.xpath(".//*[@id='s2id_BuyerId']/a/abbr");
@@ -213,6 +217,14 @@ public class PreFlows {
         CommonTask.setDropDownField(driver, deliveryPlant, plant);
     } //Set Delivery Plant From Sales Org Edit page
 
+    public void enableAutoEnrichToOptions(WebDriver driver){
+        CommonTask.setCheckBox(driver,autoEnrichOptionsCheckBox);
+    }
+
+    public void disableAutoEnrichOptions(WebDriver driver){
+        CommonTask.unSetCheckBox(driver,autoEnrichOptionsCheckBox);
+    }
+
 
 
 
@@ -262,6 +274,15 @@ public class PreFlows {
         CommonTask.setCheckBox(driver, autoEnrichNoneOption);
     }
 
+    public void enableEnrichToBoth(WebDriver driver){
+        CommonTask.setCheckBox(driver, enrichToBothRadiobutton);
+    }
+    public void enableEnrichToWarehouse(WebDriver driver){
+        CommonTask.setCheckBox(driver, enrichToWarehouseRadiobutton);
+    }
+    public void enableEnrichToHub(WebDriver driver){
+        CommonTask.setCheckBox(driver, enrichToHubRadiobutton);
+    }
 
 
 
@@ -285,6 +306,19 @@ public class PreFlows {
 
 
     // -------------------- CUSTOM METHODS DEPENDING ON MASTER SETUP
+
+    public void activateEnrichToForSalesOrgAndCustomer(WebDriver driver, String salesOrg, String customer, String custEnrichoOption){
+        goToSalesOrgAndEdit(driver, salesOrg);
+        enableAutoEnrichToOptions(driver);
+        saveSalesOrg(driver);
+        goToCustomerAndEdit(driver, customer);
+        if (custEnrichoOption == "Both")enableEnrichToBoth(driver);
+        else if (custEnrichoOption == "Hub")enableEnrichToHub(driver);
+        else if (custEnrichoOption == "Warehouse")enableEnrichToWarehouse(driver);
+        else System.out.println("Customer Enrich To Otion does not exist...");
+        saveCustomer(driver);
+    }
+
 
     public void activateCallOffOrderForCustomer(WebDriver driver, String customer) {
         goToCustomerAndEdit(driver, customer);

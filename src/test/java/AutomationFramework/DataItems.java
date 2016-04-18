@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test_archive";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
@@ -373,10 +373,14 @@ public class DataItems {
     //QuickFix
     public static String othersWithCode = "*OTHERS*(10000000001)";
 
-
-
     //Type of extensions
     public static String xmlExtension = ".xml";
     public static String qtcExtention = ".qtc";
+
+    //Types of Enrich To
+    public static String enrichBoth = "Both";
+    public static String enrichHub = "Hub";
+    public static String enrichWarehouse = "Warehouse";
+
 
 }
