@@ -46,7 +46,7 @@ public class DataItems {
     public static String approverLEPassword = "password";           //CUSTOMER, LIFE EASY CUSTOMER, SUSST, APPROVER
 
     public static String validCustUsername = "joecontract@coats.com";
-    public static String validCustPassword = "password";            //CUSTOMER, STAR GARMENTS LTD, SUSST, N/A
+    public static String validCustPassword = "password";             //CUSTOMER, STAR GARMENTS LTD, SUSST, N/A
     public static String expectedCustUserName = "joe sykes";
 
     public static String validTestUsername = "testarun1@coats.com";
