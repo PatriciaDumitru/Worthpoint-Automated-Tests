@@ -81,7 +81,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println(dn.getTableHeader());
         String tableHeader = dn.getTableHeader().toString();
         //Actions|Delivery Date|Delivery Note No.|Delivered Quantity|Customer PO number|Requester Name|
-        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Delivery Note No.|Delivery Date|Requestor Name|"));
+        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Actions|Delivery Date|Delivery Note No.|Delivered Quantity|Requester Name|"));
         System.out.println("Table Header correct!");
 
         System.out.println("Test PASSED!");
