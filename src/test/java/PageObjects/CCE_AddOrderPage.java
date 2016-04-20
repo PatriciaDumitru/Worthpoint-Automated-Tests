@@ -197,7 +197,6 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         By ticketFieldLocator = By.id("SampleOrderLine"+lineNumber+"TicketId");
         
         CommonTask.setDropDownField(driver, ticketFieldLocator, ticket);
-        
         return this;
     }
     
@@ -437,8 +436,13 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         setRequestType(request,0);
         setPurposeType(purpose,0);
         setQuantity(quantity,0);
-
     }
+
+    public void inputCustDetails(String shipTo, String buyer) throws InterruptedException{
+        setShipToParty(shipTo);
+        setBusinessPrincipal(buyer); //This method may not be required - it is generally easier to set each line individually
+    }
+
     
     public void inputAdditionalLines (String article, String shadeCode,String MUM, String request, String purpose, int quantity, int lineNumber) throws InterruptedException {
         
@@ -448,7 +452,16 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         setRequestType(request,lineNumber);
         setPurposeType(purpose,lineNumber);
         setQuantity(1,lineNumber);
-        
+    }
+
+    public void inputArticleShadeMUMForLine (String article, String MUM, String shadeCode, int lineNumber) throws InterruptedException {
+
+        setArticle(article,lineNumber);
+        setMUMType(MUM,lineNumber);
+        setShadeCode(shadeCode,lineNumber);
+        setRequestType(DataItems.sewing,lineNumber);
+        setPurposeType(DataItems.salesSamp,lineNumber);
+        setQuantity(1,lineNumber);
     }
     
     public CCE_AddOrderPage waitForCopy() {

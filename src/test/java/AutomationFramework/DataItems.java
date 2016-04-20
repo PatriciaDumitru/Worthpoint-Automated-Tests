@@ -4,6 +4,8 @@ package AutomationFramework;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.lang.reflect.Array;
+
 
 public class DataItems {
 
@@ -17,6 +19,8 @@ public class DataItems {
     public static String cceOrderSamplePrompt = targetURL + "/cce/prompt";
     public static String manualEntryEcommURL = targetURL + "/ecom/order/manual";
     public static String masterApproverList = targetURL + "/ApproverLists";
+    public static String hubStockURL = targetURL + "/HubStocks";
+    public static String warehouseURL = targetURL + "/OurStocks";
     public static String cceURL = targetURL + "/cce";
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
@@ -377,10 +381,18 @@ public class DataItems {
     public static String xmlExtension = ".xml";
     public static String qtcExtention = ".qtc";
 
+
+    public static String plantID12 = "ID12";
+
     //Types of Enrich To
     public static String enrichBoth = "Both";
     public static String enrichHub = "Hub";
     public static String enrichWarehouse = "Warehouse";
 
+    public static String addToWarehouse = "Our";
+    public static String addToHub = "Hub";
+
+    public static String[] articleData01 = {"ID51", "ID12", "8754180", "astra", "180", "Cone", "WHITE", "100"};
+    public static String[] articleData02 = {"ID51", "ID12", "8754120", "astra", "180", "Cone", "WHITE", "100"};
 
 }
