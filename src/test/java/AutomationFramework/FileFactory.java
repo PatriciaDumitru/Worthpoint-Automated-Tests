@@ -368,6 +368,13 @@ public class FileFactory {
             {"CCE HUB offices", "CCE HUB OFFICES", "approver@ccehub.com", "ADIDAS", "D6500", "A1", "ABCD000", "8754180", "ASTRA", "", "C9760", "Vicone", "5", "Sewing", "Shade Development", "test requirememt5", "test customrere5", "test fabric5", "No", "", "", "Lab"}
     };
 
+    public static String[][] sumstBasicDataURT = {
+            {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "8754120", "astra", "120", "5000", "STANDARD", "C1711", "1", "", "", "", "abc test"},
+            {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "", "astra", "180", "5000", "STANDARD", "C1202", "2", "", "", "", "abc test"}};
+            //{"Life Easy Customer", "CCE HUB OFFICES", "", "18-01-2016", "", "", "", "", "", "", "", "", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
+            //{"Life Easy Customer", "CCE HUB OFFICES", "", "18-01-2016", "", "", "", "", "", "", "", "", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}};
+
+
     public static void main(String[] args) throws IOException {
         //Main method can be used to test the FileFactory class in isolation
         createFile2("SUMST", 1, "Basic8", "", true);
@@ -634,6 +641,10 @@ public class FileFactory {
                 } else if (type.equals("SA")) {
                     po = "UO_SUMST_SubAcct";
                     data = sumstSubAcctValidData.clone();
+                }
+                else if (type.equals("BasicDataURT")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicDataURT.clone();
                 }
 
             } else if (!valid) {
@@ -965,6 +976,10 @@ public class FileFactory {
                 } else if (type.equals("Basic52")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicData52.clone();
+                }
+                else if (type.equals("BasicDataURT")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicDataURT.clone();
                 }
 
             } else if (!valid) {

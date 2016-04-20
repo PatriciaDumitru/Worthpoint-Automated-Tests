@@ -57,7 +57,9 @@ public class WBA_BasePage {
         static By courierTrackingUpdate = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
         static By pendingApprovalSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
         static By outstandingOrdersTabApprover = By.cssSelector("#topnav > li:nth-child(1)");
+    static By outstandingOrdersTabApprover2 = By.cssSelector("#topnav > li:nth-child(2)");
         static By pendingApprovalSubTabApprover = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
+        static By pendingApprovalSubTabApprover2 = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
         static By deniedOrderSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
         static By uploadDraftErrorSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
         
@@ -423,6 +425,21 @@ public class WBA_BasePage {
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(pendingApprovalSubTabApprover)));
         action.click(driver.findElement(pendingApprovalSubTabApprover)).build().perform();
         
+        return new Ecomm_PendingApprovalListPage(driver);
+    }
+
+    public Ecomm_PendingApprovalListPage clickPendingApprovalListPageApprover2() {
+        //Works specifically for approver account (mail.kamleshpatidar@gmail.com)
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTabApprover2)));
+
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(outstandingOrdersTabApprover2)).click().build().perform();
+        //wait for menu to drop down
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(pendingApprovalSubTabApprover2)));
+        action.click(driver.findElement(pendingApprovalSubTabApprover2)).build().perform();
+
+
         return new Ecomm_PendingApprovalListPage(driver);
     }
     
