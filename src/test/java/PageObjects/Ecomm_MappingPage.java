@@ -480,6 +480,159 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         
         return this;
     }
+
+    public Ecomm_MappingPage setMappingWithoutLineRef(String[][] mapping) {
+        //Wait for page to load
+        WebElement confirm = Wait.clickable(driver,confirmButtonLocator);
+
+        Actions inputKeys = new Actions(driver);
+
+        //Check and set fields
+
+        //Sales Organisation
+        AssertJUnit.assertTrue("Mapping page: Sales organisation field not displayed", this.getSalesOrgField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Sales Organisation label incorrectly displayed",this.getSalesOrgLabel().getText().equals("Sales Organization"));
+        inputKeys.click(this.getSalesOrgField()).build().perform();
+        inputKeys.sendKeys(DataItems.salesOrganisation+Keys.ENTER).build().perform();
+
+        //Customer Name
+        AssertJUnit.assertTrue("Mapping page: Customer name field not displayed",this.getCustNameField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Custome name label incorrectly displayed",this.getCustNameLabel().getText().equals(mapping[0][0]));
+        inputKeys.click(this.getCustNameField()).build().perform();
+        inputKeys.sendKeys(DataItems.custDetails[0]).build().perform();
+        //Wait for result to appear and press enter
+        WebElement result = Wait.visible(driver,custNameResultLocator);
+        boolean waitForText = Wait.textPresent(driver,custNameResultLocator, DataItems.custDetails[0]);
+        inputKeys.sendKeys(Keys.ENTER);
+
+        //Article
+        AssertJUnit.assertTrue("Mapping page: Article field not displayed",this.getArticleField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Article label incorrectly displayed",this.getArticleLabel().getText().equals(mapping[1][0]));
+        inputKeys.click(this.getArticleField()).build().perform();
+        WebElement waitForOptions = Wait.visible(driver,articleOptionLocator);
+        inputKeys.sendKeys(mapping[1][1]).build().perform();
+        //Wait for field to update
+        Boolean waitForUpdate = Wait.textPresent(driver,articleFieldLocator, mapping[1][1]);
+
+        //Ticket
+        AssertJUnit.assertTrue("Mapping page: Ticket field not displayed",this.getTicketField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Ticket label incorrectly displayed",this.getTicketLabel().getText().equals(mapping[2][0]));
+        inputKeys.click(this.getTicketField()).build().perform();
+        inputKeys.sendKeys(mapping[2][1]).build().perform();
+
+        //Finish
+        AssertJUnit.assertTrue("Mapping page: Finish field not displayed",this.getFinishField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Finish label incorrectly displayed",this.getFinishLabel().getText().equals(mapping[3][0]));
+        inputKeys.click(this.getFinishField()).build().perform();
+        inputKeys.sendKeys(mapping[3][1]).build().perform();
+
+        //Shade code
+        AssertJUnit.assertTrue("Mapping page: Shade code field not displayed",this.getShadeCodeField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Shade code label incorrectly displayed",this.getShadeCodeLabel().getText().equals(mapping[4][0]));
+        inputKeys.click(this.getShadeCodeField()).build().perform();
+        inputKeys.sendKeys(mapping[4][1]).build().perform();
+
+        //Required date
+        AssertJUnit.assertTrue("Mapping page: Required Date field not displayed",this.getRequiredDateField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Required Date label incorrectly displayed",this.getRequiredDateLabel().getText().equals(mapping[5][0]));
+        inputKeys.click(this.getRequiredDateField()).build().perform();
+        inputKeys.sendKeys(mapping[5][1]).build().perform();
+
+        //Qty
+        AssertJUnit.assertTrue("Mapping page: Quantity field not displayed",this.getQuantityField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Quantity label incorrectly displayed",this.getQuantityLabel().getText().equals(mapping[6][0]));
+        inputKeys.click(this.getQuantityField()).build().perform();
+        inputKeys.sendKeys(mapping[6][1]).build().perform();
+
+        //Style
+        AssertJUnit.assertTrue("Mapping page: Style field not displayed",this.getStyleField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Style label incorrectly displayed",this.getStyleLabel().getText().equals(mapping[7][0]));
+        inputKeys.click(this.getStyleField()).build().perform();
+        inputKeys.sendKeys(mapping[7][1]).build().perform();
+
+        //Style No.
+        AssertJUnit.assertTrue("Mapping page: Style No field not displayed",this.getStyleNoField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Style No. label incorrectly displayed",this.getStyleNoLabel().getText().equals(mapping[8][0]));
+        inputKeys.click(this.getStyleNoField()).build().perform();
+        inputKeys.sendKeys(mapping[8][1]).build().perform();
+
+        //Ship to party name
+        AssertJUnit.assertTrue("Mapping page: Ship to party name field not displayed",this.getShipToPartyField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Ship to party name label incorrectly displayed",this.getShipToPartyLabel().getText().equals(mapping[10][0]));
+        inputKeys.click(this.getShipToPartyField()).build().perform();
+        inputKeys.sendKeys(mapping[10][1]).build().perform();
+
+        //Your material number
+        AssertJUnit.assertTrue("Mapping page: Your material number field not displayed",this.getYourMaterialNumberField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Your material number label incorrectly displayed",this.getYourMaterialNumberLabel().getText().equals(mapping[11][0]));
+        inputKeys.click(this.getYourMaterialNumberField()).build().perform();
+        inputKeys.sendKeys(mapping[11][1]).build().perform();
+
+        //Brand
+        AssertJUnit.assertTrue("Mapping page: Brand field not displayed",this.getBrandField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Brand label incorrectly displayed",this.getBrandLabel().getText().equals(mapping[12][0]));
+        inputKeys.click(this.getBrandField()).build().perform();
+        inputKeys.sendKeys(mapping[12][1]).build().perform();
+
+        //Length
+        AssertJUnit.assertTrue("Mapping page: Length field not displayed",this.getLengthField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Length label incorrectly displayed",this.getLengthLabel().getText().equals(mapping[13][0]));
+        inputKeys.click(this.getLengthField()).build().perform();
+        inputKeys.sendKeys(mapping[13][1]).build().perform();
+
+        //Buyers
+        AssertJUnit.assertTrue("Mapping page: Buyers field not displayed",this.getBuyersField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Buyers label incorrectly displayed",this.getBuyersLabel().getText().equals(mapping[14][0]));
+        inputKeys.click(this.getBuyersField()).build().perform();
+        inputKeys.sendKeys(mapping[14][1]).build().perform();
+
+        //Customer PO No
+        AssertJUnit.assertTrue("Mapping page: Customer PO field not displayed",this.getCustomerPOField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Customer PO label incorrectly displayed",this.getCustomerPOLabel().getText().equals(mapping[15][0]));
+        inputKeys.click(this.getCustomerPOField()).build().perform();
+        inputKeys.sendKeys(mapping[15][1]).build().perform();
+
+        //Requestor name
+        AssertJUnit.assertTrue("Mapping page: Requestor field not displayed",this.getRequestorNameField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Requestor label incorrectly displayed",this.getRequestorNameLabel().getText().equals(mapping[16][0]));
+        inputKeys.click(this.getRequestorNameField()).build().perform();
+        inputKeys.sendKeys(mapping[16][1]).build().perform();
+
+        //Warehouse instruction
+        AssertJUnit.assertTrue("Mapping page: Warehouse instruction field not displayed",this.getWarehouseInstField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Warehouse instruction label incorrectly displayed",this.getWarehouseInstLabel().getText().equals(mapping[17][0]));
+        inputKeys.click(this.getWarehouseInstField()).build().perform();
+        inputKeys.sendKeys(mapping[17][1]).build().perform();
+
+        //Buyer Order Sales Number
+        AssertJUnit.assertTrue("Mapping page: Buyer order sales number field not displayed",this.getBuyerNumberField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Buyer order sales number label incorrectly displayed",this.getBuyerNumberLabel().getText().equals(mapping[18][0]));
+        inputKeys.click(this.getBuyerNumberField()).build().perform();
+        inputKeys.sendKeys(mapping[18][1]).build().perform();
+
+        //Other Information
+        AssertJUnit.assertTrue("Mapping page: Other Information field not displayed",this.getOtherInformationField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Other Information label incorrectly displayed",this.getOtherInformationLabel().getText().equals(mapping[19][0]));
+        inputKeys.click(this.getOtherInformationField()).build().perform();
+        inputKeys.sendKeys(mapping[19][1]).build().perform();
+
+        //Customer Price
+        AssertJUnit.assertTrue("Mapping page: Customer price field not displayed",this.getCustomerPriceField().isDisplayed());
+        AssertJUnit.assertTrue("Mapping page: Customer price label incorrectly displayed",this.getCustomerPriceLabel().getText().equals(mapping[20][0]));
+        inputKeys.click(this.getCustomerPriceField()).build().perform();
+        inputKeys.sendKeys(mapping[20][1]).build().perform();
+
+        //Line Reference
+        //AssertJUnit.assertTrue("Mapping page: Line Reference field not displayed",this.getLineReferenceField().isDisplayed());
+        //AssertJUnit.assertTrue("Mapping page: Line Reference label incorrectly displayed",this.getLineReferenceLabel().getText().equals(mapping[20][0]));
+        //inputKeys.click(this.getLineReferenceField()).build().perform();
+        //inputKeys.sendKeys(mapping[21][1]).build().perform();
+
+        //Remove focus from final field to complete input
+        inputKeys.click(this.getCustomerPriceLabel()).build().perform();
+
+        return this;
+    }
     
     public Ecomm_MappingPage setMappingNew(String[][] mapping, boolean contract, boolean subaccount, boolean requestor) {
         WebElement confirmBtn = Wait.clickable(driver,confirmButtonLocator);
@@ -770,7 +923,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
 
 
 
-    
+
     public Ecomm_MappingPage setMappingNotCustomer(String[][] mapping) {
         //Wait for page to load
         WebElement waitForLoad = Wait.clickable(driver,confirmButtonLocator);

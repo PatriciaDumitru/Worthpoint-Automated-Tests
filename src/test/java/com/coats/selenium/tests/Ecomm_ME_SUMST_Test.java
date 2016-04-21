@@ -39,7 +39,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
     
     @Test //Manual Entry Page :: SUMST :: Page checks, single line order using YMN and shade code from master data
-    (groups = {"QuickTest","eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void SUMST1() throws IOException, InterruptedException, Exception {
         //New chrome driver
         WebDriver driver = getDriver();
@@ -50,8 +50,6 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY SUMST1: Single line, Your Material Number with master data shade code","G_OOC_ME_SUMST_1");
 
         System.out.println("Setup MasterData...");
-
-
 
         System.out.println("Navigating to Manual Entry...");
 
@@ -142,6 +140,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Output order number for test reference
         String orderNumber = outOrders.getOrderNumber(rowNumber);
         System.out.println("Order Number: " + orderNumber);
+
+
     
     }
 
@@ -744,7 +744,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at manual entry page
-    (groups = {"eComm","eComm_Orders","QuickTest"})
+    (groups = {"eComm","eComm_Orders"})
     public void SUMST9() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -836,7 +836,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no ship to party name at manual entry page
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void SUMST10() throws InterruptedException, IOException, Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -1113,7 +1113,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUMST :: Validation tests, no Ship To Party Name at confirmation page
-    (groups = {"eComm","eComm_Orders","QuickTest"})
+    (groups = {"eComm","eComm_Orders"})
     public void SUMST13() throws InterruptedException, IOException, Exception {
 
         //New driver
@@ -1510,7 +1510,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUMST :: Order Draft continuation
-    (groups = {"eComm","eComm_Orders","QuickTest"})
+    (groups = {"eComm","eComm_Orders"})
     public void SUMST17() throws InterruptedException, Exception {
          //New driver
         WebDriver driver = getDriver();
@@ -1749,6 +1749,18 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -1798,7 +1810,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1870,6 +1882,18 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -1920,7 +1944,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1992,6 +2016,18 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -2041,7 +2077,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -2113,6 +2149,18 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -2163,7 +2211,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -2235,6 +2283,18 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -2284,7 +2344,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -2356,6 +2416,18 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -2406,7 +2478,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -2478,6 +2550,18 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -2526,7 +2610,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -2593,10 +2677,22 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUMST :: Multi-line, order using Brand/Ticket/Length/Finish/Shade combination (MOQ ACTIVE)
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void SUMST27() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();
+
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
 
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
@@ -2647,7 +2743,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");

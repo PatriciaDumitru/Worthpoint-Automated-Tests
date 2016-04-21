@@ -24,11 +24,24 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     By cancelButton = By.cssSelector("#SalesOrgEditForm > div.actions > ul > li:nth-child(2) > a");
     By orderUploadCheckBox=By.id("SalesOrgSampleUploadActive");
     By callOffOrderCheckBox=By.id("SalesOrgOffOrder");
+    By CCEOrderUpload =By.id("SalesOrgSampleUploadActive");
+
+
 
     By enableOrdersWithoutShade = By.id("SalesOrgEnabledOrdersWithoutShade");
 
     public Mst_EditSalesOrgPage(WebDriver driver) {
         super(driver);
+    }
+
+    public Mst_EditSalesOrgPage checkSubAcctField() {
+        CommonTask.setCheckBox(driver,subAcctField);
+        return this;
+    }
+
+    public Mst_EditSalesOrgPage checkMailNotificationField() {
+        CommonTask.setCheckBox(driver,mailNotificationField);
+        return this;
     }
     
     public WebElement getBreadcrumb() {
@@ -129,6 +142,8 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
         CommonTask.setCheckBox(driver, callOffOrderCheckBox);
     }
 
+
+
     public void disableCCEOrderUploadCheckBox(){
         CommonTask.unSetCheckBox(driver, orderUploadCheckBox);
     }
@@ -143,26 +158,36 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
 
 
 
-//    public boolean isChecked(By fieldLocator){
-//        if (driver.findElement(fieldLocator).isSelected()) {
-//            System.out.println("Flag is checked!");
-//            return true;
-//        }
-//        else {
-//            System.out.println("Flag is not checked!");
-//            return false;
-//        }
-//    }
-//
-//    public boolean isEOwS_Checked(){
-//        if (driver.findElement(enableOrdersWithoutShade).isSelected()) {
-//            return true;
-//        }
-//        else {
-//            return false;
-//        }
-//    }
-public void disableCallOffOrderCheckBox(){
-    CommonTask.unSetCheckBox(driver, callOffOrderCheckBox);
-}
+    public boolean isChecked(By fieldLocator){
+        if (driver.findElement(fieldLocator).isSelected()) {
+            System.out.println("Flag is checked!");
+            return true;
+        }
+        else {
+            System.out.println("Flag is not checked!");
+            return false;
+        }
+    }
+
+    public boolean isEOwS_Checked(){
+        if (driver.findElement(enableOrdersWithoutShade).isSelected()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void disableCallOffOrderCheckBox(){
+        CommonTask.unSetCheckBox(driver, callOffOrderCheckBox);
+    }
+
+    public void enableCCEOrderUpload(){
+        CommonTask.setCheckBox(driver, CCEOrderUpload);
+    }
+
+    public void disableCCEOrderUpload(){
+        CommonTask.unSetCheckBox(driver, CCEOrderUpload);
+    }
+
 }

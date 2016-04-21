@@ -23,7 +23,7 @@ public class Ecomm_WaitingForShadePage extends WBA_BasePage {
     By searchButton = By.cssSelector("#FilterWaitingforshadesListForm > div.grid_12 > table > tbody > tr:nth-child(4) > td > div > input");
     By resetButton = By.cssSelector("#FilterWaitingforshadesListForm > div.grid_12 > table > tbody > tr:nth-child(4) > td > a");
 
-    //table content locators
+    //table content locators // first row of table data
     By editButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(1) > a > span");
     By viewButton = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > a > span");
     By tableSalesOrg = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(3)");
@@ -31,6 +31,8 @@ public class Ecomm_WaitingForShadePage extends WBA_BasePage {
     By tableCustPONo = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(5)");
     By tableOrderNo = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(6)");
     By tableNoOfOrderLines = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr > td:nth-child(7)");
+
+    By noResults = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div");
 
     public Ecomm_WaitingForShadePage(WebDriver driver) {
         super(driver);
@@ -81,6 +83,10 @@ public class Ecomm_WaitingForShadePage extends WBA_BasePage {
         return text;
     }
 
+    public String getNoResultsText (){
+        String text = driver.findElement(noResults).getText();
+        return text;
+    }
     
     public void checkFields() {
         //Wait for all elements to be clickable
@@ -124,6 +130,12 @@ public class Ecomm_WaitingForShadePage extends WBA_BasePage {
         WebElement edit = Wait.clickable(driver,editButton);
         edit.click();
         return new Ecomm_ShadeOrderConfirmationPage(driver);
+    }
+
+    public Ecomm_WaitingForShadeCodeOrderConfirmationPage pressEdit2() {
+        WebElement edit = Wait.clickable(driver,editButton);
+        edit.click();
+        return new Ecomm_WaitingForShadeCodeOrderConfirmationPage(driver);
     }
     
     public Ecomm_OrderViewPage pressView() {

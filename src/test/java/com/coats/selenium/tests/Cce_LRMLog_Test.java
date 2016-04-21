@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 public class Cce_LRMLog_Test extends DriverFactory {
     
     @Test
-    (groups = {"CCE"})
+    (groups = {"CCE", "QuickTest"})
     public void LRM1() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();
@@ -55,7 +55,7 @@ public class Cce_LRMLog_Test extends DriverFactory {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        lrmPage.setShadeCode(DataItems.expShadeCode2);
+        lrmPage.setShadeCode(DataItems.expShadeCode2);//
         lrmPage.setErrorMessage("Yes");
         
         //Take a screenshot
@@ -120,11 +120,11 @@ public class Cce_LRMLog_Test extends DriverFactory {
         
         lrmPage.pressReset();
         lrmPage.waitForLoad();
-        
+
         //Take a screenshot
         File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\CCE\\Admin\\LRM Log\\8Filter reset.png"));
-        
+
         System.out.println("Filter reset.");
               
     }

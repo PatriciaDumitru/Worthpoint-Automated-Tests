@@ -2,6 +2,7 @@ package com.coats.selenium.tests.RCTests;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.PreFlows;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
@@ -676,7 +677,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     mePage2.setShadeCode(DataItems.conOrdShadeCode, 0);
     mePage2.setQty(1, 0);
     mePage2.setDate(0);
-//    mePage2.setContractPO(DataItems.conOrdPO, 0);
+    mePage2.setContractPO(DataItems.conOrdPO, 0);
     
       System.out.println("Details set. Pressing next...");
     
@@ -706,10 +707,26 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
   (groups = {"eComm","eComm_Orders"})
   public void COME11() throws Exception {
     WebDriver driver = getDriver();
-      
+
+      //Login as admin and set master data
+      Cce_Base base = new Cce_Base(driver);
+
+      //Set up returns a CCE Page and outputs test details
+      CCE_MainPage ccePage = base.setUp("", "");
+
+      //Setting master data
+      PreFlows pf = new PreFlows();
+      pf.chooseTheOtherProfile(driver);
+      pf.disableMOQForCustomer(driver, "Star Garments Ltd.");
+      pf.chooseTheOtherProfile(driver);
+
+      //Logout of admin
+      pf.logoutAction(driver);
+
       Ecomm_Base base2 = new Ecomm_Base(driver);
-    Ecomm_MainPage mainPage = base2.setUp("eComm Manual Entry Contract Order COME10", "CO_+_ME_13", DataItems.validCustUsername, DataItems.validCustPassword);
+    Ecomm_MainPage mainPage = base2.setUp("eComm Manual Entry Contract Order COME11", "CO_+_ME_11", DataItems.validCustUsername, DataItems.validCustPassword);
     mainPage.waitForLoad();
+
     
       System.out.println("Navigating to Manual Entry...");
       
@@ -727,7 +744,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     mePage2.setArticle(DataItems.conOrdArticle, 0);
     mePage2.setShadeCode(DataItems.conOrdShadeCode, 0);
     mePage2.setDate(0);
-//    mePage2.setContractPO(DataItems.conOrdPO, 0);
+    mePage2.setContractPO(DataItems.conOrdPO, 0);
     
       System.out.println("Details set. Pressing next...");
     

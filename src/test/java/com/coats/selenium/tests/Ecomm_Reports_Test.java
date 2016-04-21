@@ -26,7 +26,7 @@ import org.testng.annotations.Test;
 public class Ecomm_Reports_Test extends DriverFactory {
     
 	@Test //Invoices Page :: SUMST :: Page and filter checks, reset, view, print, and export
-	(groups = {"eComm"})
+	(groups = {"eComm", "QuickTest"})
         public void SUMST_I1() throws IOException, InterruptedException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -136,7 +136,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 	}
         
         @Test //Invoices Page :: SUSST :: Page and filter checks, reset, view, print, and export
-        (groups = {"eComm"})
+        (groups = {"eComm", "QuickTest"})
         public void SUSST_I1() throws Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -217,7 +217,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
         }
 	
 	@Test //Delivery Notes Page :: SUMST :: Page and filter checks, view, print, and export
-        (groups = {"eComm"})
+        (groups = {"eComm", "QuickTest"})
         public void SUMST_D1() throws InterruptedException, IOException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -314,7 +314,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
         }
         
         @Test //Delivery Notes Page :: SUSST :: Page and filter checks, view, print, and export
-        (groups = {"eComm"})
+        (groups = {"eComm", "QuickTest"})
         public void SUSST_D1() throws InterruptedException, IOException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -391,7 +391,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
         }
 	
         @Test //Summary of Purchases Page :: SUMST :: Page and filter checks,reset, view and export
-        (groups = {"eComm"})
+        (groups = {"eComm", "QuickTest"})
         public void SUMST_SoP1() throws IOException, InterruptedException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -480,7 +480,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
         }
         
         @Test //Summary of Purchases Page :: SUSST :: Page and filter checks,reset, view and export
-        (groups = {"eComm"})
+        (groups = {"eComm", "QuickTest"})
         public void SUSST_SoP1() throws IOException, InterruptedException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -562,7 +562,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
         }
         
         @Test //Outstanding Payments Page :: SUMST :: Page and filter checks, reset, view, and export
-        (groups = {"eComm"})
+        (groups = {"eComm", "QuickTest"})
         public void SUMST_OP1() throws IOException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -660,14 +660,14 @@ public class Ecomm_Reports_Test extends DriverFactory {
         } 
         
         @Test //Outstanding Payments Page :: SUSST :: Page and filter checks, reset, view, and export
-        (groups = {"eComm"})
+        (groups = {"eComm", "QuickTest"})
         public void SUSST_OP1() throws IOException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_Base baseTest = new Ecomm_Base(driver);
-            Ecomm_MainPage eCommPage = baseTest.setUp("Outstanding Payments Page SUSST_OP1: Page and filter checks, reset, view, and export", "G_R_CU_SUSST_4",DataItems.validCustUsername,DataItems.validCustPassword);
+            Ecomm_MainPage eCommPage = baseTest.setUp("Outstanding Payments Page SUSST_OP1: Page and filter checks, reset, view, and export", "G_R_CU_SUSST_4");
 				
             Ecomm_OutstandingPaymentsPage opPage = eCommPage.clickOutstandingPayments();
             opPage.waitForLoad();
@@ -751,7 +751,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
         } 
         
         @Test //My Reports Page :: SUMST :: Page and filter checks, print, export, save, and reset
-        (groups = {"eComm"})
+        (groups = {"eComm", "QuickTest"})
         public void SUMST_MR1() throws IOException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
@@ -880,14 +880,14 @@ public class Ecomm_Reports_Test extends DriverFactory {
         }
         
         @Test //My Reports Page :: SUSST :: Page and filter checks, print, export, save, and reset
-        (groups = {"eComm"})
+        (groups = {"eComm", "QuickTest"})
         public void SUSST_MR1() throws IOException, Exception {
             //new driver instance
             WebDriver driver = getDriver();
 		
             //New eComm base test to handle log-in and navigation
             Ecomm_Base baseTest = new Ecomm_Base(driver);
-            Ecomm_MainPage eCommPage = baseTest.setUp("My Report Page SUSST_MR1: Page and filter checks, reset, print, save, and export", "G_R_CU_SUSST_5",DataItems.validCustUsername,DataItems.validCustPassword);
+            Ecomm_MainPage eCommPage = baseTest.setUp("My Report Page SUSST_MR1: Page and filter checks, reset, print, save, and export", "G_R_CU_SUSST_5");
 				
             System.out.println("Navigating to My Reports page...");
             

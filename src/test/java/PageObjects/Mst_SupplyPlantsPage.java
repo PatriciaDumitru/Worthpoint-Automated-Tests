@@ -19,6 +19,7 @@ public class Mst_SupplyPlantsPage extends WBA_BasePage {
     By supplyPlantField = By.id("s2id_filterSupplyPlantId");
     By articleField = By.id("s2id_filterArticleId");
     By brandField = By.id("s2id_filterBrandId");
+    By ticketField = By.cssSelector("#s2id_filterTicketId > a > span.select2-chosen");
     By searchButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
@@ -35,6 +36,11 @@ public class Mst_SupplyPlantsPage extends WBA_BasePage {
     
     public Mst_SupplyPlantsPage setDeliveryPlant(String item) {
         CommonTask.setSearchField(driver, deliveryPlantField, item);
+        return new Mst_SupplyPlantsPage(driver);
+    }
+
+    public Mst_SupplyPlantsPage setTicket(String item){
+        CommonTask.setSearchField(driver, ticketField, item);
         return new Mst_SupplyPlantsPage(driver);
     }
     
@@ -163,7 +169,54 @@ public class Mst_SupplyPlantsPage extends WBA_BasePage {
         }
         return -1;
     }
-    
+
+    public int getRow2(String brand, String ticket) {
+        //Check that records are present
+        if (!checkForRecords()) {
+            return -1;
+        }
+
+        //Check if columns have moved
+        By headerLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(7) > a");
+        WebElement header = driver.findElement(headerLocator);
+        AssertJUnit.assertTrue("Supply Plants Page: Supply Plant column has moved, update locators",header.getText().equals("Supply Plant"));
+
+        //Check how many records are available in the table
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+        int count = getRecordCount(recordField);
+        //If 10 or more records found, use value of 10
+        int tableCount = (count >= 10) ? 10 : count;
+
+        for (int i = 2; i < (tableCount+2); i++) {
+            //Check Delivery Plant, Brand, Ticket, and Supply Plant for each row until found
+            By locator1 = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(2)");
+            WebElement cell1 = driver.findElement(locator1);
+
+
+                By locator2 = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(4)");
+                WebElement cell2 = driver.findElement(locator2);
+
+                if (cell2.getText().equals(brand)) {
+
+                    By locator3 = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(5)");
+                    WebElement cell3 = driver.findElement(locator3);
+
+                    if (cell3.getText().equals(ticket)) {
+
+                        By locator4 = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(7)");
+                        WebElement cell4 = driver.findElement(locator4);
+
+
+                    }
+
+                }
+
+
+
+        }
+        return 2;
+    }
+
     public void checkFields() {
         WebElement delPlants = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(deliveryPlantField));
         WebElement supplyPlants = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(supplyPlantField));

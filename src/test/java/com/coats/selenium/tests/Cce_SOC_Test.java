@@ -37,7 +37,7 @@ import org.testng.annotations.Test;
 public class Cce_SOC_Test extends DriverFactory {
     
     @Test // Order Samples Page :: Page and filter checks, cancel function 
-    (groups = {"QuickTest","CCE","CCE_Orders"})
+    (groups = {"CCE","CCE_Orders","QuickTest"})
     public void SOC1() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -242,7 +242,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
 
     @Test //Order Samples Page :: Single line order, quantity above threshold
-    (groups = {"CCE","CCE_Orders","QuickTest"})
+    (groups = {"CCE","CCE_Orders"})
     public void SOC4() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -295,7 +295,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: Multi-line copied data
-    (groups = {"CCE","CCE_Orders","QuickTest"})
+    (groups = {"CCE","CCE_Orders"})
     public void SOC5() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -382,7 +382,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
     
     @Test //Order Samples Page :: Pend order 
-    (groups = {"CCE","CCE_Orders","QuickTest"})
+    (groups = {"CCE","CCE_Orders"})
     public void SOC6() throws InterruptedException, IOException, Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -877,7 +877,7 @@ public class Cce_SOC_Test extends DriverFactory {
     }
    /*
     @Test //Order Samples Page :: SUMST :: Maximum copy count test (copy 11 times)
-    (groups = {"CCE","CCE_Orders","QuickTest"})
+    (groups = {"CCE","CCE_Orders"})
     public void SOC12() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

@@ -4,23 +4,34 @@ package AutomationFramework;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.lang.reflect.Array;
+
 
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test"; // + "qa_p4i"
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
-    public static String mastersCustomerURL =targetURL + "/Customers";
+    public static String mastersCustomerURL = targetURL + "/Customers";
     public static String mastersCSAUrl = targetURL + "/customerprivatearticles";
     public static String cceOrderSamplePrompt = targetURL + "/cce/prompt";
     public static String manualEntryEcommURL = targetURL + "/ecom/order/manual";
     public static String masterApproverList = targetURL + "/ApproverLists";
+    public static String hubStockURL = targetURL + "/HubStocks";
+    public static String warehouseURL = targetURL + "/OurStocks";
     public static String cceURL = targetURL + "/cce";
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
     public static String ecommURL = "https://qawcs.coatscolourexpress.com/test/ecom";
+
+    public static String invoicePage = targetURL + "/reports/cc/invoices";
+    public static String deliveyNotesPage = targetURL + "/reports/cc/deliverynotes";
+    public static String summaryOfPurchasePage = targetURL + "/reports/cc/purchases";
+    public static String outstandingPaymentsPage = targetURL + "/reports/cc/payment";
+    public static String orderApprovalHistory = targetURL + "/ecom/approvalhistory";
+
 
     //Filepaths
     public static String chromeDriverFilepath = "C:\\Selenium\\chromedriver V2_19\\chromedriver.exe"; //DEPRECATED: Chrome driver exe filepath
@@ -30,9 +41,9 @@ public class DataItems {
     public static String lastUsedFilepath = ""; //Holds last used filepath when generating files using FileFactory
 
     //Login Credentials
-    public static String validCoatsUsername = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
-    public static String validCoatsUsername2 = "samson.vetharaj@coats.com";
-    public static String validCoatsPassword = "password";     //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
+    public static String validCoatsUsername = "samson.vetharaj@coats.com"; //"admin@coats.com";     //"joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
+    public static String validCoatsUsername2 = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com";
+    public static String validCoatsPassword = "password"; //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
 
     public static String approverLEUsername = "approver@lifeeasy.com";
@@ -190,8 +201,8 @@ public class DataItems {
     //public static int quantity3 = 1;
 
     //public static String expTicket3 = "120";
-    public static String orderedQty="66";
-    public static String adjustedQty="66";
+    public static String orderedQty="60";
+    public static String adjustedQty="60";
     public static String orderedQty2="4";
     public static String adjustedQty2="4";
     public static String orderedQtyNull="--";
@@ -200,14 +211,18 @@ public class DataItems {
     public static String unitPrice="1.00";
     public static String unitPriceNull="0.00";
     public static String valueNull="0.00";
-    public static String value2="66.00";
+    public static String value2="60.00";
     public static String value3="4.00";
     public static String notUniqMsg="CONTRACT REFERENCE IS NOT UNIQUE";
     public static String invalidDataMsg="INVALID COMBINATION OF INPUT DATA";
     public static String sapCodeMsg="CONTRACT SAP MATERIAL CODE DOES NOT MATCH INPUT SAP MATERIAL CODE";
 
-
-
+    //CCE Order details to be used in Sample Orders
+    public static String shadeCodeCCE="BLACK";
+    public static String shadeCodeCCE2="C9700";
+    public static String shadeCodeCCE3="WHITE";
+    public static String shadeCodeCCE4="C9750";
+    public static String shadeCodeCCE5="C9760";
 
     //Details used in CCE Threshold qty tests (id=SOC_5)
     public static String thresholdBrand = "astra";
@@ -292,7 +307,7 @@ public class DataItems {
     public static String sampSalesOrg = "ID52";
 
     //Sample bulk order number
-    public static String bulkOrderNo = "5020757";
+    public static String bulkOrderNo = "50200052";
 
     //eComm My Reports report title
     public static String reportTitle = "AutoTestReport";
@@ -362,5 +377,22 @@ public class DataItems {
     //QuickFix
     public static String othersWithCode = "*OTHERS*(10000000001)";
 
+    //Type of extensions
+    public static String xmlExtension = ".xml";
+    public static String qtcExtention = ".qtc";
+
+
+    public static String plantID12 = "ID12";
+
+    //Types of Enrich To
+    public static String enrichBoth = "Both";
+    public static String enrichHub = "Hub";
+    public static String enrichWarehouse = "Warehouse";
+
+    public static String addToWarehouse = "Our";
+    public static String addToHub = "Hub";
+
+    public static String[] articleData01 = {"ID51", "ID12", "8754180", "astra", "180", "Cone", "WHITE", "100"};
+    public static String[] articleData02 = {"ID51", "ID12", "8754120", "astra", "180", "Cone", "WHITE", "100"};
 
 }

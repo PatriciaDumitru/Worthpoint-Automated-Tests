@@ -524,6 +524,8 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
 
     public Ecomm_OrderConfirmationPage pressNext() {
+
+
         //Wait for button to be clickable
         WebElement next = Wait.clickable(driver, nextButtonLocator);
         //Click next
@@ -553,6 +555,31 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     }
 
     public Ecomm_OrderConfirmationPage pressNextMOQ() {
+        //Wait for button to be clickable
+        WebElement next = Wait.clickable(driver, nextButtonLocator);
+        //Click next
+        Actions clickNext = new Actions(driver);
+        clickNext.click(next).build().perform();
+        //Submit the alert
+        Alert alert = Wait.alert(driver);
+        alert.accept();
+
+        try {
+            Alert alert2 = Wait.alert(driver);
+            if (!(alert2.getText().contains("order quantity has been rounded"))) {
+                System.out.println("Additional alert appeared: " + alert2.getText());
+                alert2.accept();
+            }
+        } catch (TimeoutException t) {
+            System.out.print(t);
+        }
+
+        //AssertJUnit.assertTrue("Manual Entry Page: Rounded quantity (MOQ) Alert did not appear", waitForQuantityAlert());
+
+        return new Ecomm_OrderConfirmationPage(driver);
+    }
+
+    public Ecomm_OrderConfirmationPage pressNextMOQDoubleAlert() {
         //Wait for button to be clickable
         WebElement next = Wait.clickable(driver, nextButtonLocator);
         //Click next

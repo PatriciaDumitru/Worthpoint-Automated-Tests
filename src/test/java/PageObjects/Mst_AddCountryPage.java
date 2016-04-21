@@ -61,11 +61,6 @@ public class Mst_AddCountryPage extends WBA_BasePage {
 
 
     }
-
-    public Mst_CountriesPage wait3Seconds() {
-        driver.manage().timeouts().implicitlyWait(53, TimeUnit.HOURS);
-        return new Mst_CountriesPage(driver);
-    }
     public void checkFields() {
         WebElement countryName = Wait.clickable(driver,countryNameField);
         WebElement countryCode = Wait.clickable(driver,countryCodeField);

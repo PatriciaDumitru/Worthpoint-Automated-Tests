@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 
 /**
- * Created by dion on 09.03.2016.
+ * Created by Daniel Ion on 09.03.2016.
  */
 public class CCE_SampleUploadFailedFilesPage extends WBA_BasePage {
 

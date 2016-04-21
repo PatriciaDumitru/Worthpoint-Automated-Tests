@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 public class Ecomm_ME_Exceptions_Test extends DriverFactory {
     
     @Test //Manual Entry Exception :: SUMST :: Your Material Number does not exist
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void MEex1() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();

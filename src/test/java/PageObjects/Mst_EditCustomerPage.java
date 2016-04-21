@@ -30,8 +30,12 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     By subAcctLabel = By.xpath("/html/body/div[1]/div[3]/form/div[2]/table/tbody/tr[35]/td[1]/label");
     By approvelCheckBoxCust = By.id("CustomerApprovalWorkflow");
     By callOffOrderCheckBox=By.id("CustomerOffOrder");
+    By CCEOrderUploadCheckBox=By.id("Requester9SampleUpload");
+    By disableCCEOrderUploadCheckBox=By.id("Requester0SampleUpload");
     By enableOrdersWithoutShade = By.id("CustomerCusOrdersWithoutShade");
-
+    By SAPContractValidityCheckBox=By.id("CustomerOffOrderType");
+    static By orderUploadCheckBoxLocator = By.xpath("//*[@id=\"test\"]/tbody/tr[1]/th[14]");
+    static By orderUploadCheckBoxLocator2 = By.id("Requester9SampleUpload");
     By userTypeField = By.id("Requester0UserTypeId");
     By saveButton = By.cssSelector("#CustomerEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     
@@ -60,6 +64,16 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     public WebElement getSubAcctField() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAcctField));
         return element;
+    }
+
+    public Mst_EditCustomerPage checkSubAcctField() {
+        CommonTask.setCheckBox(driver,subAcctField);
+        return this;
+    }
+
+    public Mst_EditCustomerPage checkCceShipNoticeField() {
+        CommonTask.setCheckBox(driver,cceShipNoticeField);
+        return this;
     }
     
     public WebElement getSubAcctLabel() {
@@ -186,9 +200,32 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
 
     public void disableCCEOrdersWithoutShade(){ CommonTask.unSetCheckBox(driver, enableOrdersWithoutShade); }
 
+    public void enableCCEOrderUploadCheckBox(){
+        CommonTask.setCheckBox(driver, CCEOrderUploadCheckBox);
+    }
+
+    public void disableCCEOrderUploadCheckBox(){
+        CommonTask.unSetCheckBox(driver, disableCCEOrderUploadCheckBox);
+    }
+
     public void enableCallOffOrderCheckBox(){
         CommonTask.setCheckBox(driver, callOffOrderCheckBox);
     }
+
+    public void disableSAPContractValidityCheckBox(){
+        CommonTask.unSetCheckBox(driver, SAPContractValidityCheckBox);
+    }
+
+    public static WebElement getOrderUploadCheckBox() {
+        //find and return element
+        return driver.findElement(orderUploadCheckBoxLocator);
+    }
+
+    public static WebElement getOrderUploadCheckBox2() {
+        //find and return element
+        return driver.findElement(orderUploadCheckBoxLocator2);
+    }
+
 
 
 }

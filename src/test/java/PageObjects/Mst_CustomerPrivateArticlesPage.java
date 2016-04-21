@@ -16,6 +16,7 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
     //Locators
     By customerNameField = By.id("filterCustomerCustomerName");
     By salesOraganizationField = By.id("s2id_filterCustomerPrivateArticleSalesOrgId");
+    By articleField = By.id("s2id_autogen2");
     By customerCodeField = By.id("filterCustomerCustomerCode");
     By searchButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
@@ -42,6 +43,11 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
 
     public Mst_CustomerPrivateArticlesPage setSalesOrganization(String item) {
         CommonTask.setSearchField(driver, salesOraganizationField, item);
+        return new Mst_CustomerPrivateArticlesPage (driver);
+    }
+
+    public Mst_CustomerPrivateArticlesPage setArticle(String item) {
+        CommonTask.setSearchField(driver, articleField, item);
         return new Mst_CustomerPrivateArticlesPage (driver);
     }
 

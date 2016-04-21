@@ -71,7 +71,7 @@ public class WBA_BasePage {
         static By myReportsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(5)");
         static By coatsUserRepSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(6)");
         static By termsConditionsSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(7)");
-        static By orderAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(7)");
+        static By orderAppHistSubTab = By.cssSelector("#topnav > li:nth-child(4) > div > div > ul > li:nth-child(8)");
         
     static By dashboardTab = By.cssSelector("#topnav > li:nth-child(5)");
         static By realUploadFailedSubTab = By.cssSelector("#topnav > li:nth-child(5) > div > div > ul > li:nth-child(1)");
@@ -86,8 +86,10 @@ public class WBA_BasePage {
     
     //CCE Navbar locators
     static By ordersHeader = By.cssSelector("#topnav > li:nth-child(2)");
+            static By ordersHeaderRequester = By.cssSelector("#topnav > li:nth-child(1)");
         static By orderSamplesSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
         static By uploadOrderSamplesSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
+            static By uploadOrderSamplesSubtabRequester = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
         static By outstandingDraftSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
         static By manualEnrichSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
         static By orderStatusSubtab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
@@ -133,9 +135,9 @@ public class WBA_BasePage {
             static By custBrandsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(9)");
             static By custMaterialsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(8)");
             static By businessPrincipalsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(5)");
-            static By plantsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(4) > a");
+            static By plantsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(5) > a");
             static By hubsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(6)");
-            static By plantHolidaysOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(5) > a");
+            static By plantHolidaysOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(4) > a");
             static By enterpriseStructureOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(7)");
             static By brandsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(8)");
             static By ticketsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(9)");
@@ -192,7 +194,7 @@ public class WBA_BasePage {
 
     public static WebElement getAccessTypeSelector() {
         //find and return element
-        return driver.findElement(accessTypeLocator);
+        return driver.findElement(dateLabelLocator);
     }
 
 
@@ -608,6 +610,17 @@ public class WBA_BasePage {
         action.moveToElement(driver.findElement(ordersHeader)).build().perform();
         WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(uploadOrderSamplesSubtab));
         action.click(driver.findElement(uploadOrderSamplesSubtab)).build().perform();
+
+        return new CCE_UploadOrderSamplesPage(driver);
+    }
+
+    public CCE_UploadOrderSamplesPage pressUploadOrderSamplesRequester() {
+
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(ordersHeaderRequester)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(uploadOrderSamplesSubtabRequester));
+        action.click(driver.findElement(uploadOrderSamplesSubtabRequester)).build().perform();
 
         return new CCE_UploadOrderSamplesPage(driver);
     }

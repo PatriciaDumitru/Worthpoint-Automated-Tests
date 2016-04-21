@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 public class Cce_Hub_Test extends DriverFactory {
     
     @Test //Hub SOS Page :: Page and filter checks
-    (groups = {"CCE"})
+    (groups = {"CCE", "QuickTest"})
     public void HS1() throws InterruptedException, IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();
@@ -64,7 +64,7 @@ public class Cce_Hub_Test extends DriverFactory {
         
         hsPage.pressListOrders();
         hsPage.waitForLoad();
-        
+
         //Take a screenshot
         File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Hub\\Hub SOS\\3Orders listed.png"));
@@ -126,7 +126,7 @@ public class Cce_Hub_Test extends DriverFactory {
     } 
     
     @Test //Received Hub Page :: Page and filter checks, reset, view and send to customer
-    (groups = {"CCE"})
+    (groups = {"CCE", "QuickTest"})
     public void RH1() throws IOException, Exception {
         //New driver object
         WebDriver driver = getDriver();

@@ -3,6 +3,7 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.FileFactory;
 import AutomationFramework.Wait;
 import java.io.IOException;
 import org.testng.AssertJUnit;
@@ -60,12 +61,15 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By cancelToDraftsButton = By.cssSelector("#SampleOrderEditForm > div:nth-child(4) > div.actions > ul > li:nth-child(3) > a"); //cancel button has different locator when reached from draft
     
     //Fields which appear upon click "Yes" to Direct Enrich
+    static By customerSwatchYes = By.id("SampleOrderLine0IsMeasureable1");
+    static By customerSwatchNo = By.id("SampleOrderLine0IsMeasureable0");
     static By enrichCommentsField = By.id("SampleOrderLine0FceComments");
     static By enrichCompletedYesButton = By.id("SampleOrderLine0IsOrderCompleted1");
     static By enrichCompletedNoButton = By.id("SampleOrderLine0IsOrderCompleted0");
     static By enrichHubButton = By.id("SampleOrderLine0SosId30");
     static By enrichLabButton = By.id("SampleOrderLine0SosId50");
     static By enrichWHSButton = By.id("SampleOrderLine0SosId40");
+    static By browserFileButton = By.id("SampleOrderLine0Measurement");
     
     public CCE_AddOrderPage(WebDriver passedDriver) {
        super(passedDriver);
@@ -105,6 +109,14 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public WebElement getDirEnNoButton() {
         return driver.findElement(dirEnNoButton);
     }
+
+    public WebElement setCustSwatchYesButton() {
+        return driver.findElement(customerSwatchYes);
+    }
+
+    public WebElement setCustSwatchNoButton() {
+        return driver.findElement(customerSwatchNo);
+    }
     
     public WebElement getPurposeField() {
         return driver.findElement(purposeField);
@@ -125,7 +137,27 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public WebElement getEnrichWHSButton() {
         return driver.findElement(enrichWHSButton);
     }
-    
+
+    public CCE_AddOrderPage setDirectEnrichYes() throws InterruptedException {
+        CommonTask.setCheckBox(driver, dirEnYesButton);
+        return this;
+    }
+
+    public CCE_AddOrderPage setDirectEnrichNo() throws InterruptedException {
+        CommonTask.setCheckBox(driver, dirEnNoButton);
+        return this;
+    }
+
+    public CCE_AddOrderPage setCustomerSwatchYes() throws InterruptedException {
+        CommonTask.setCheckBox(driver, customerSwatchYes);
+        return this;
+    }
+
+    public CCE_AddOrderPage setCustomerSwatchNo() throws InterruptedException {
+        CommonTask.setCheckBox(driver, customerSwatchNo);
+        return this;
+    }
+
     public CCE_AddOrderPage setShipToParty(String shipToParty) throws InterruptedException {
         CommonTask.setDropDownField(driver, shipToPartyField, shipToParty);
         return this;
@@ -135,7 +167,17 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         CommonTask.setDropDownField(driver, busPrincipalField, businessPrincipal);
         return this;
     }
-    
+
+    public CCE_AddOrderPage uploadExtentionFile(String extensionType, int lineNumber) throws IOException{
+        //Line numbers start from 0
+        By articleLocator = By.id("SampleOrderLine"+lineNumber+"Measurement");
+        driver.findElement(articleLocator).sendKeys(FileFactory.createExtensionFile(extensionType));
+        return this;
+    }
+
+
+
+
     public CCE_AddOrderPage setArticle(String article, int lineNumber) {
         //Line numbers start from 0
         By articleLocator = By.id("s2id_SampleOrderLine"+lineNumber+"ArticleId");
@@ -155,7 +197,6 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         By ticketFieldLocator = By.id("SampleOrderLine"+lineNumber+"TicketId");
         
         CommonTask.setDropDownField(driver, ticketFieldLocator, ticket);
-        
         return this;
     }
     
@@ -395,8 +436,13 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         setRequestType(request,0);
         setPurposeType(purpose,0);
         setQuantity(quantity,0);
-
     }
+
+    public void inputCustDetails(String shipTo, String buyer) throws InterruptedException{
+        setShipToParty(shipTo);
+        setBusinessPrincipal(buyer); //This method may not be required - it is generally easier to set each line individually
+    }
+
     
     public void inputAdditionalLines (String article, String shadeCode,String MUM, String request, String purpose, int quantity, int lineNumber) throws InterruptedException {
         
@@ -406,7 +452,16 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         setRequestType(request,lineNumber);
         setPurposeType(purpose,lineNumber);
         setQuantity(1,lineNumber);
-        
+    }
+
+    public void inputArticleShadeMUMForLine (String article, String MUM, String shadeCode, int lineNumber) throws InterruptedException {
+
+        setArticle(article,lineNumber);
+        setMUMType(MUM,lineNumber);
+        setShadeCode(shadeCode,lineNumber);
+        setRequestType(DataItems.sewing,lineNumber);
+        setPurposeType(DataItems.salesSamp,lineNumber);
+        setQuantity(1,lineNumber);
     }
     
     public CCE_AddOrderPage waitForCopy() {

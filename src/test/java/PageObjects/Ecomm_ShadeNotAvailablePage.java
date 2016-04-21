@@ -118,10 +118,16 @@ public class Ecomm_ShadeNotAvailablePage extends WBA_BasePage {
         reset.click();
         return this;
     }
-    
+
     public Ecomm_ShadeOrderConfirmationPage pressEdit(int row) {
         By editBtn = By.cssSelector("#content > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+row+") > td:nth-child(1) > a > span");
         WebElement edit = Wait.clickable(driver,editBtn);
+        edit.click();
+        return new Ecomm_ShadeOrderConfirmationPage(driver);
+    }
+
+    public Ecomm_ShadeOrderConfirmationPage pressEdit2() {
+        WebElement edit = Wait.clickable(driver,editButton);
         edit.click();
         return new Ecomm_ShadeOrderConfirmationPage(driver);
     }

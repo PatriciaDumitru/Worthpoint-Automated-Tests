@@ -391,6 +391,8 @@ public class CommonTask {
         By nowButton = By.xpath(".//*[@id='ui-datepicker-div']/div[3]/button[1]");
         clickDatePicked.click(driver.findElement(nowButton)).click().perform();
 
+        new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(driver.findElement(nowButton)));
+
         //Select Now Time
         By doneButton = By.xpath(".//*[@id='ui-datepicker-div']/div[3]/button[2]");
         clickDatePicked.click(driver.findElement(doneButton)).click().perform();
@@ -658,8 +660,8 @@ public class CommonTask {
         By cellLocator = By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
         
         //Wait for cell to be available
-        WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cellLocator));
-        
+        WebElement cell = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.visibilityOfElementLocated(cellLocator));
+
         //Return the error
         return cell.getText();
     }

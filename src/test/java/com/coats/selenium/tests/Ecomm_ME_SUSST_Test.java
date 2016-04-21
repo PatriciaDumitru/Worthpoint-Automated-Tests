@@ -4,11 +4,7 @@ package com.coats.selenium.tests;
 import AutomationFramework.DataItems;
 import AutomationFramework.PreFlows;
 import AutomationFramework.Wait;
-import PageObjects.Ecomm_MainPage;
-import PageObjects.Ecomm_ManualEntryPage;
-import PageObjects.Ecomm_OrderConfirmationPage;
-import PageObjects.Ecomm_OrderViewPage;
-import PageObjects.Ecomm_OutstandingOrdersPage;
+import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import static com.coats.selenium.DriverFactory.getDriver;
 import com.google.common.base.Verify;
@@ -22,10 +18,22 @@ import org.testng.annotations.Test;
 public class Ecomm_ME_SUSST_Test extends DriverFactory {
     
     @Test //Manual Entry Page :: SUSST :: Page checks and single line order using YMN and master shade
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void SUSST1() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();
+
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
 
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
@@ -203,10 +211,6 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
 
-         
-
-         
-
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
@@ -265,6 +269,18 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -312,10 +328,6 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-
-
-         
-
 
         orderConf.waitForElement();
 
@@ -375,6 +387,18 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -424,9 +448,6 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-
-
-         
 
         orderConf.waitForElement();
 
@@ -486,6 +507,18 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -533,10 +566,6 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
-
-         
-
-
 
         orderConf.waitForElement();
 
@@ -593,6 +622,18 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
     public void SUSST6() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();
+
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
 
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
@@ -702,6 +743,18 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -806,6 +859,18 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
     public void SUSST8() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();
+
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
 
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
@@ -912,14 +977,15 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
 
-        Cce_Base base1 = new Cce_Base(driver);
-        base1.setUp("Bla", "TEst");
-
+        //Set Master Data
+        System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
-
-        pf.goToCustomerAndEdit(driver, DataItems.lifeEasyCustomer);
-        pf.enableMOQCheckBoxAndSaveCustomer(driver);
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
         pf.logoutAction(driver);
 
@@ -972,7 +1038,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
          
         orderConf.waitForElement();
         
@@ -1037,13 +1103,27 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
     }
     
     @Test //Manual Entry Page :: SUSST :: Multi-line order using Article and shade code (MOQ ACTIVE)
-    (groups = {"eComm","eComm_Orders"})
+    (groups = {"eComm","eComm_Orders", "QuickTest"})
     public void SUSST10() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
+
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUSST10: Multi-line, Article and shade code (MOQ ACTIVE)","G_OOC_ME_SUSST_MOQ_6",DataItems.susstUsername,DataItems.susstPassword);
 
@@ -1079,19 +1159,18 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         String date = manualEntryPage.getDate(0);
         
         System.out.println("Product details entered. Ensuring auto-fill is correct...");
-        
+
         AssertJUnit.assertTrue("Manual Entry Page: Auto-fill brand not as expected in master data",manualEntryPage.getSetBrand(0).equals(DataItems.MOQBrand));
         AssertJUnit.assertTrue("Manual Entry Page: Auto-fill ticket not as expected in master data",manualEntryPage.getSetTicket(0).equals(DataItems.MOQTicket));
         AssertJUnit.assertTrue("Manual Entry Page: Auto-fill length not as expected in master data",manualEntryPage.getSetLength(0).equals(DataItems.MOQLength));
         AssertJUnit.assertTrue("Manual Entry Page: Auto-fill finish not as expected in master data",manualEntryPage.getSetFinish(0).equals(DataItems.MOQFinish));
         AssertJUnit.assertTrue("Manual Entry Page: Shade code not as expected after being changed from material Master shade",manualEntryPage.getShadeCode(0).equals(DataItems.expShadeCode));
-        
+
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
 
-         
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");
@@ -1160,6 +1239,19 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -1206,10 +1298,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
-
-
-         
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
 
         orderConf.waitForElement();
         
@@ -1279,6 +1368,19 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -1326,10 +1428,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
-
-         
-
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
 
         orderConf.waitForElement();
         
@@ -1399,6 +1498,19 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -1446,10 +1558,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
-
-         
-
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
 
         orderConf.waitForElement();
         
@@ -1519,6 +1628,19 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -1567,10 +1689,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
-
-
-         
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
 
         orderConf.waitForElement();
         
@@ -1640,6 +1759,19 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -1687,10 +1819,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
-
-
-         
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
 
         orderConf.waitForElement();
         
@@ -1760,6 +1889,19 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //New chrome driver
         WebDriver driver = getDriver();
 
+        //Login as global admin to setup master data
+        Cce_Base baseSetupMaster = new Cce_Base(driver);
+        baseSetupMaster.setUp("Set Master", "Data");
+
+        //Set Master Data
+        System.out.println("Set Master Data...");
+        PreFlows pf = new PreFlows();
+        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver);
+        pf.logoutAction(driver);
+
         //new base test to handle set up
         Ecomm_Base base = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
@@ -1808,7 +1950,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         System.out.println("Auto-fill correct. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
 
         orderConf.waitForElement();
         
