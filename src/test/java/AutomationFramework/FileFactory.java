@@ -281,14 +281,41 @@ public class FileFactory {
             {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "2", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
+    public static String[][] sumstBasicData37 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "2", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData38 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "3", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData39 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "4", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
 
     public static String[][] sumstBasicData40 = {
             {"Star Garments Ltd.", "Star Garments", "", "19-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "test ZCQ qty check 01", "", "", "contract@testing.com", "Y", "40000709", "*Others*"},
             {"Star Garments Ltd.", "Star Garments", "", "19-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "test ZCQ qty check 01", "", "", "contract@testing.com", "Y", "40000709", "*Others*"}
     };
 
+    public static String[][] sumstBasicData41 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "9999989", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData42 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "2", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
     public static String[][] sumstBasicData43 = {
             {"Star Garments Ltd.", "Star Garments", "", "19-01-2016", "", "", "", "", "", "", "", "", "test ZCQ qty check 01", "", "", "contract@testing.com", "Y", "40000709", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData45 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "2", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData46 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "2", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
     public static String[][] sumstBasicData47 = {
@@ -300,8 +327,28 @@ public class FileFactory {
             {"Star Garments Ltd.", "Star Garments", "", "19-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "test ZCQ qty check 01", "", "", "contract@testing.com", "Y", "40000709", "*Others*"}
     };
 
+    public static String[][] sumstBasicData49 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "9999199", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData50 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "9999991", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData51 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "2", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
     public static String[][] sumstBasicData52 = {
             {"Star Garments Ltd.", "Star Garments", "", "19-01-2016", "", "", "", "", "", "", "", "", "test ZCQ qty check 01", "", "", "contract@testing.com", "Y", "40000709", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData53 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "9999992", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData54 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "2", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
     //Data containing invalid Your Material Number
@@ -371,8 +418,8 @@ public class FileFactory {
     public static String[][] sumstBasicDataURT = {
             {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "8754120", "astra", "120", "5000", "STANDARD", "C1711", "1", "", "", "", "abc test"},
             {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "", "astra", "180", "5000", "STANDARD", "C1202", "2", "", "", "", "abc test"}};
-            //{"Life Easy Customer", "CCE HUB OFFICES", "", "18-01-2016", "", "", "", "", "", "", "", "", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
-            //{"Life Easy Customer", "CCE HUB OFFICES", "", "18-01-2016", "", "", "", "", "", "", "", "", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}};
+    //{"Life Easy Customer", "CCE HUB OFFICES", "", "18-01-2016", "", "", "", "", "", "", "", "", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
+    //{"Life Easy Customer", "CCE HUB OFFICES", "", "18-01-2016", "", "", "", "", "", "", "", "", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}};
 
 
     public static void main(String[] args) throws IOException {
@@ -622,30 +669,65 @@ public class FileFactory {
                 } else if (type.equals("Basic34")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicData34.clone();
-                } else if (type.equals("Basic35")) {
-                    po = "Non Contract Upload File multiple scenario" + id;
-                    data = sumstBasicData35.clone();
-                } else if (type.equals("Basic40")) {
-                    po = "Non Contract Upload File multiple scenario" + id;
-                    data = sumstBasicData40.clone();
-                } else if (type.equals("Basic43")) {
-                    po = "Non Contract Upload File multiple scenario" + id;
-                    data = sumstBasicData43.clone();
-                } else if (type.equals("Basic47")) {
-                    data = sumstBasicData47.clone();
-                } else if (type.equals("Basic48")) {
-                    data = sumstBasicData48.clone();
-                } else if (type.equals("Basic52")) {
-                    po = "Non Contract Upload File multiple scenario" + id;
-                    data = sumstBasicData52.clone();
-                } else if (type.equals("SA")) {
-                    po = "UO_SUMST_SubAcct";
-                    data = sumstSubAcctValidData.clone();
                 }
-                else if (type.equals("BasicDataURT")) {
-                    po = "Non Contract Upload File multiple scenario" + id;
-                    data = sumstBasicDataURT.clone();
-                }
+            } else if (type.equals("Basic37")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData37.clone();
+            } else if (type.equals("Basic38")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData38.clone();
+            } else if (type.equals("Basic39")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData39.clone();
+            } else if (type.equals("Basic40")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData40.clone();
+            } else if (type.equals("Basic41")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData41.clone();
+            } else if (type.equals("Basic42")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData42.clone();
+            } else if (type.equals("Basic43")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData43.clone();
+            } else if (type.equals("Basic45")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData45.clone();
+            } else if (type.equals("Basic46")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData46.clone();
+            } else if (type.equals("Basic47")) {
+                data = sumstBasicData47.clone();
+            } else if (type.equals("Basic48")) {
+                data = sumstBasicData48.clone();
+            } else if (type.equals("Basic49")) {
+                data = sumstBasicData49.clone();
+            } else if (type.equals("Basic50")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData50.clone();
+            } else if (type.equals("Basic51")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData51.clone();
+            } else if (type.equals("Basic52")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData52.clone();
+            } else if (type.equals("Basic53")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData53.clone();
+            } else if (type.equals("BasicDataURT")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicDataURT.clone();
+            } else if (type.equals("Basic54")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicData54.clone();
+            } else if (type.equals("SA")) {
+                po = "UO_SUMST_SubAcct";
+                data = sumstSubAcctValidData.clone();
+            } else if (type.equals("BasicDataURT")) {
+                po = "Non Contract Upload File multiple scenario" + id;
+                data = sumstBasicDataURT.clone();
+
 
             } else if (!valid) {
                 po = "UO_SUMST" + id;
@@ -681,7 +763,11 @@ public class FileFactory {
         }
         //Set the PO number for each line. To allow any number of lines to be used in an upload order test (rather than a max of 4), this task must be placed in a loop
 
-        for (int i = 0; i < lineCount; i++) {
+        for (
+                int i = 0;
+                i < lineCount; i++)
+
+        {
             data[i][2] = po;
         }
 
@@ -963,23 +1049,58 @@ public class FileFactory {
                 } else if (type.equals("Basic35")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicData35.clone();
+
+                } else if (type.equals("Basic37")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData37.clone();
+                } else if (type.equals("Basic38")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData38.clone();
+                } else if (type.equals("Basic39")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData39.clone();
                 } else if (type.equals("Basic40")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicData40.clone();
+                } else if (type.equals("Basic41")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData41.clone();
+                } else if (type.equals("Basic42")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData42.clone();
                 } else if (type.equals("Basic43")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicData43.clone();
+                } else if (type.equals("Basic45")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData45.clone();
+                } else if (type.equals("Basic46")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData46.clone();
                 } else if (type.equals("Basic47")) {
                     data = sumstBasicData47.clone();
                 } else if (type.equals("Basic48")) {
                     data = sumstBasicData48.clone();
+                } else if (type.equals("Basic49")) {
+                    data = sumstBasicData49.clone();
+                } else if (type.equals("Basic50")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData50.clone();
+                } else if (type.equals("Basic51")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData51.clone();
                 } else if (type.equals("Basic52")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicData52.clone();
-                }
-                else if (type.equals("BasicDataURT")) {
+                } else if (type.equals("Basic53")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData53.clone();
+                } else if (type.equals("BasicDataURT")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicDataURT.clone();
+                } else if (type.equals("Basic54")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData54.clone();
                 }
 
             } else if (!valid) {
