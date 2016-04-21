@@ -2811,13 +2811,20 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Order Number: " + orderNumber);
     }
 
+
     @Test //Manual Entry Page :: SUMST :: Approver workflow enabled
-            (groups = {"eComm", "eComm_Orders"}) //CHANGES MASTER DATA
+            (groups = {"eComm","eComm_Orders"})
     public void SUMST28() throws Exception {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Manual Entry Page SUMST28: Approver workflow enabled", "OA_OAP_SUSS_ME_2");
+        CCE_MainPage mainPage = base.setUp("Manual Entry Page SUMST28: Approver workflow enabled", "SUMST28");
+
+        //Enabled Approval Workflow
+        PreFlows pf=new PreFlows();
+        pf.goToSalesOrgAndEdit(driver,"ID51");
+        pf.enableApprovalCheckBoxForSalesOrg(driver);
+        pf.saveSalesOrg(driver);
 
         System.out.println("Navigating to Masters...");
 
@@ -2833,7 +2840,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Mst_EditCustomerPage editPage = custPage.pressEdit(row);
         editPage.waitForElement();
 
-        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table", editPage.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage.getCustomerName().equals(DataItems.custDetails[0]));
 
         editPage.setApprovalWorkflow();
         editPage.pressSave();
@@ -2855,8 +2862,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         mePage.setPONumber(DataItems.custDetails[4]);
 
         System.out.println("Customer details entered. Entering line details...");
-
-        mePage.setArticle("8754120", 0);
+        
+        mePage.setArticle("8754120",0);
         mePage.setShadeCode("C1202", 0);
         mePage.setQty(3, 0);
         mePage.setDate(0);
@@ -2868,7 +2875,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         System.out.println("Order Confirmation Page reached. Check 'Send for Approval' button is displayed...");
 
-        AssertJUnit.assertTrue("Order Confirmation Page: Send for approval button not displayed despite Approval Workflow enabled", orderConf.getSendForApprovalButton().isDisplayed());
+        AssertJUnit.assertTrue("Order Confirmation Page: Send for approval button not displayed despite Approval Workflow enabled",orderConf.getSendForApprovalButton().isDisplayed());
 
         System.out.println("Button displayed. Sending...");
 
@@ -2877,13 +2884,13 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         System.out.println("Item sent for approval. Asserting Pending Approval Page appears...");
 
-        AssertJUnit.assertTrue("Pending Approval Page: Not correctly linked after confirmation/title incorrect", pendPage.getBreadcrumb().getText().equals("Orders | Pending Approval List"));
+        AssertJUnit.assertTrue("Pending Approval Page: Not correctly linked after confirmation/title incorrect",pendPage.getBreadcrumb().getText().equals("Orders | Pending Approval List"));
 
         System.out.println("Pending Approval Page reached. Finding order...");
 
         int orderRow = pendPage.getRow(DataItems.lastUsedPO);
 
-        AssertJUnit.assertFalse("Pending Approval Page: Order (PO: " + DataItems.lastUsedPO + ") not found after being sent for approval", orderRow == -1);
+        AssertJUnit.assertFalse("Pending Approval Page: Order (PO: "+DataItems.lastUsedPO+") not found after being sent for approval",orderRow == -1);
 
         System.out.println("Order found. Logging into approver account...");
 
@@ -2894,14 +2901,14 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_MainPage mainPage2 = base2.setUp("", "", DataItems.approverUsername, DataItems.approverPassword);
         mainPage2.waitForLoad();
 
-        Ecomm_PendingApprovalListPage pendPage2 = mainPage2.clickPendingApprovalListPageApprover();
+        Ecomm_PendingApprovalListPage pendPage2 = mainPage2.clickPendingApprovalListPageApprover2();
         pendPage2.waitForElement();
 
         System.out.println("Pending Approval List Page reached. Finding order...");
 
         int orderRow2 = pendPage2.getRowAlt(DataItems.lastUsedPO);
 
-        AssertJUnit.assertFalse("Pending Approval List Page: Order (PO: " + DataItems.lastUsedPO + ") not found in table for Approver account", orderRow2 == -1);
+        AssertJUnit.assertFalse("Pending Approval List Page: Order (PO: "+DataItems.lastUsedPO+") not found in table for Approver account",orderRow2==-1);
 
         System.out.println("Order found. Approving...");
 
@@ -2926,14 +2933,14 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         int row3 = outOrds.getRowAlt(DataItems.lastUsedPO);
 
-        AssertJUnit.assertFalse("Outstanding Orders Page: Order does not appear after approval", row3 == -1);
+        AssertJUnit.assertFalse("Outstanding Orders Page: Order does not appear after approval",row3==-1);
 
         System.out.println("Order found. Checking order status...");
 
         String status = outOrds.getOrderStatus(row3);
         System.out.println("Order Status: " + status);
 
-        AssertJUnit.assertTrue("Outstanding Orders Page: Order (Order No.: " + orderNo + ") does not have expected In Progress/Open status", status.equals("In Progress") | status.equals("Open"));
+        AssertJUnit.assertTrue("Outstanding Orders Page: Order (Order No.: "+orderNo+") does not have expected In Progress/Open status",status.equals("In Progress") | status.equals("Open"));
 
         WBA_LoginPage liPage3 = outOrds.pressLogout();
         liPage3.waitForElement();
@@ -2953,11 +2960,14 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
         editPage2.waitForElement();
 
-        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table", editPage2.getCustomerName().equals(DataItems.custDetails[0]));
+        AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage2.getCustomerName().equals(DataItems.custDetails[0]));
 
         editPage2.unsetApprovalWorkflow();
         editPage2.pressSave();
         custPage2.waitForElement();
+        pf.goToSalesOrgAndEdit(driver,"ID51");
+        pf.disableApprovalCheckBoxForSalesOrg(driver);
+        pf.saveSalesOrg(driver);
 
         System.out.println("Approval workflow disabled");
 
