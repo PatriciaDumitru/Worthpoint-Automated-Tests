@@ -3210,7 +3210,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic31", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -3578,7 +3578,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic35", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -3764,7 +3764,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic37", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -3856,7 +3856,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic38", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -3948,7 +3948,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic39", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4133,7 +4133,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic41", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4225,7 +4225,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic42", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4411,7 +4411,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic45", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4503,7 +4503,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic46", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4779,7 +4779,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic49", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4873,7 +4873,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic50", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4965,7 +4965,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic51", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -5153,7 +5153,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic53", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -5245,7 +5245,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic54", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();

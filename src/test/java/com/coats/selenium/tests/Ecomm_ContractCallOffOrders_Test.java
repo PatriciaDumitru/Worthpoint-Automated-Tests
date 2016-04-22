@@ -1,8 +1,6 @@
 package com.coats.selenium.tests;
 
-import AutomationFramework.CommonTask;
-import AutomationFramework.FileFactory;
-import AutomationFramework.PreFlows;
+import AutomationFramework.*;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
@@ -14,9 +12,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-import AutomationFramework.DataItems;
 
 /**
  * Created by Daniel Ion on 23.03.2016.
@@ -1449,6 +1447,173 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         AssertJUnit.assertEquals(CommonTask.getErrorDescription(driver), DataItems.sapCodeMsg);
 
         System.out.println("CONTRACT SAP MATERIAL CODE DOES NOT MATCH INPUT SAP MATERIAL CODE as expected");
+
+    }
+
+
+    @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"}, enabled = false)
+    public void OE_RTU() throws Exception {
+        //new chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to set up
+        Ecomm_Base uortTest1 = new Ecomm_Base(driver);
+        //Set up returns an eComm page
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "OE_RTU_01 OE_RTU_07");
+
+      /*  driver.get(DataItems.cceURL);
+        Mst_CustomersPage custPage = eCommPage.selectCustomers();
+        custPage.waitForElement();
+
+        custPage.setCustomerName("Life Easy Customer");
+        custPage.pressSearch();
+        custPage.waitForElement();
+
+        int row2 = custPage.getRow("Life Easy Customer");
+        System.out.println("Record found. Editing record...");
+
+        Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
+        editPage2.waitForElement();
+
+        System.out.println("Edit page reached.");
+
+        editPage2.disableApprovalCheckBoxForCust();
+
+        System.out.println("'Disable CCE order upload' flag checked. Saving...");
+        editPage2.pressSave();
+        //editPage2.waitForElement();
+
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver);*/
+
+        driver.get(DataItems.manualEntryEcommURL);
+        System.out.println("Navigating to Upload Order...");
+        //new upload order page
+        Ecomm_UploadOrderPage uploadPage = eCommPage.clickUploadOrder();
+        uploadPage.waitForElement();
+
+        System.out.println("Upload Order page loaded.");
+
+        //make assertions for base page elements and upload page elements
+        uploadPage.assertBaseElements();
+        System.out.println("Asserting other elements...");
+        //Wait for page to load before asserting the other elements
+        WebElement waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(uploadPage.getUploadButton()));
+        AssertJUnit.assertTrue("Upload Order page: File name field not displayed",uploadPage.getFileNameOutputField().isDisplayed());
+        AssertJUnit.assertTrue("Upload Order page: Realtime upload radio button not displayed",uploadPage.getRealtimeRadio().isDisplayed());
+        AssertJUnit.assertTrue("Upload Order page: Backend upload radio button not displayed",uploadPage.getBackendRadio().isDisplayed());
+        AssertJUnit.assertTrue("Upload Order page: Upload button not displayed",uploadPage.getUploadButton().isDisplayed());
+
+        System.out.println("Assertions successful. Sending file path...");
+
+        //Send file path to field
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 3, "Basic2", "", true));
+
+        //Select realtime upload
+        uploadPage.pressRealtime();
+
+        //Press upload
+        Ecomm_MappingAlert alert = uploadPage.pressUpload();
+
+        System.out.println("Upload pressed. Choosing new mapping...");
+
+        //Press "no" to alert, continuing to mapping page
+        Ecomm_MappingPage mapPage = alert.pressYes();
+
+        System.out.println("Mapping page loaded. Setting mapping...");
+
+        //Mapping details
+        //Element 0 of each array holds the field name. Element 1 of each array holds the corresponding header used in the file.
+        //If there is no corresponding header in the file, use "N/A"
+        String[][] mapping = {  {"Customer Name","Customer Name"},
+                {"Article","N/A"},
+                {"Ticket","Ticket"},
+                {"Finish","Finish"},
+                {"Shade Code","Shade Code"},
+                {"Required Date","Required Date"},
+                {"Qty","Qty"},
+                {"Style","N/A"},
+                {"Style No./Production No.","N/A"},
+                {"Sub Account","N/A"},
+                {"Ship to Party Name","Ship to Party Name"},
+                {"Your Material No.","N/A"},
+                {"Brand","Brand"},
+                {"Length","Length"},
+                {"Buyers","N/A"},
+                {"Customer PO No","Customer PO No"},
+                {"Requestor Name","Requestor Name"},
+                {"Warehouse Instruction","N/A"},
+                {"Buyer Sales Order Number","N/A"},
+                {"Other Information","N/A"},
+                {"Customer Price","N/A"}
+        };
+
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+
+        System.out.println("Mapping set. Confirming map...");
+
+        Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
+        Alert alert2 = Wait.alert(driver);
+        alert2.accept();
+
+        try {
+            Alert alert3 = driver.switchTo().alert();
+            alert3.getText();
+            alert3.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
+        }
+
+        try {
+            Alert alert4 = driver.switchTo().alert();
+            alert4.getText();
+            alert4.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
+        }
+
+        String flashMessageTxt=driver.findElement(DataItems.flashMessage).getText();
+        Assert.assertEquals(flashMessageTxt, "No. of rows Processed :3\n" +
+                "No. of rows Failed :0\n" +
+                "\n" +
+                "Your orders are split due to some of the order lines don’t have the shade code in the upload file or not defined in our WBA system. Please refer to orders/Waiting for shade or shade not available submenu for more detail.\n" +
+                "\n" +
+                "No. of Order ready to process :1\n" +
+                "No. of Line Item ready to process :1\n" +
+                "No. of Order transfered to Waiting for Shade page :1\n" +
+                "No. of Order transfered to Shade not available page :1");
+
+        By editBtn2= By.cssSelector("#remove_0 > td:nth-child(1) > a > span");
+        WebElement element = driver.findElement(editBtn2);
+        Assert.assertTrue(element.isDisplayed());
+        element.click();
+
+        driver.switchTo().frame("TB_iframeContent");
+
+        By cancelButton = By.id("cancel1");
+        WebElement cancelBtn = driver.findElement(cancelButton);
+        Assert.assertTrue(cancelBtn.isDisplayed());
+        cancelBtn.click();
+
+        try {
+            Alert alert5 = driver.switchTo().alert();
+            alert5.getText();
+            alert5.accept();
+        } catch (Exception e) {
+            System.out.println("No alert displayed");
+        }
+
+        System.out.println("Map confirmed. Submitting order...");
+
+        // Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+        //outOrdersPage.waitForElement();
+
+        System.out.println("Order submitted. Navigating to Outstanding Upload Order...");
+
+        // String orderNo = outOrdersPage.getOrderNumber(0);
+
+        //  System.out.println("Order number: "+orderNo);
 
     }
 
