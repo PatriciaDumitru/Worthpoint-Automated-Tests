@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test_qa";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
@@ -27,6 +27,7 @@ public class DataItems {
     public static String summaryOfPurchasePage = targetURL + "/reports/cc/purchases";
     public static String outstandingPaymentsPage = targetURL + "/reports/cc/payment";
     public static String orderApprovalHistory = targetURL + "/ecom/approvalhistory";
+    public static String advancedReports = targetURL + "/reports/cc/myreports";
 
 
     //Filepaths
