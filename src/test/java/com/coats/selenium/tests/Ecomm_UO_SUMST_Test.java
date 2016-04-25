@@ -7,6 +7,9 @@ import AutomationFramework.PreFlows;
 import AutomationFramework.Wait;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
+
+import static AutomationFramework.DataItems.validCoatsPassword;
+import static AutomationFramework.DataItems.validCoatsUsername2;
 import static com.coats.selenium.DriverFactory.getDriver;
 import com.google.common.base.Verify;
 import java.awt.AWTException;
@@ -156,7 +159,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
     @Test //Upload Order Page :: SUMST :: Realtime upload order of <100 lines, removing mandatory fields at before submission
     (groups = {"eComm","eComm_Orders","Upload_Order"})
-    public void UORT2() throws AWTException, IOException, InterruptedException, Exception {
+    public void UORT2() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
         
@@ -704,7 +707,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     
     @Test //Upload Order Page :: SUMST :: Realtime upload (MOQ Active)
     (groups = {"eComm","eComm_Orders","Upload_Order"})
-    public void UORT7() throws AWTException, IOException, Exception {
+    public void UORT7() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
         
@@ -1069,7 +1072,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT3() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1186,7 +1189,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT4() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1286,7 +1289,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT5() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1387,7 +1390,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT7() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1665,7 +1668,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT9() throws Exception {
 
         helpCheck();
@@ -1759,7 +1762,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT10() throws Exception {
 
         helpCheck();
@@ -1944,7 +1947,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT14() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -2058,7 +2061,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT15() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -2380,7 +2383,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT18() throws Exception {
 
         helpCheck();
@@ -2474,7 +2477,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT19() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -2588,7 +2591,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT20() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -2884,7 +2887,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT23() throws Exception {
 
         //new chrome driver
@@ -2999,7 +3002,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT24() throws Exception {
 
         helpCheck();
@@ -3207,7 +3210,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic31", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -3279,7 +3282,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT32() throws Exception {
 
         helpCheck();
@@ -3555,7 +3558,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT35() throws Exception {
 
         helpCheck();
@@ -3575,7 +3578,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic35", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -3647,7 +3650,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT36() throws Exception {
 
         helpCheck();
@@ -3741,7 +3744,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT37() throws Exception {
 
         helpCheck();
@@ -3761,7 +3764,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic37", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -3833,7 +3836,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT38() throws Exception {
 
         helpCheck();
@@ -3853,7 +3856,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic38", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -3925,7 +3928,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT39() throws Exception {
 
         helpCheck();
@@ -3945,7 +3948,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic39", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4108,7 +4111,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT41() throws Exception {
 
         helpCheck();
@@ -4130,7 +4133,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic41", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4202,7 +4205,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT42() throws Exception {
 
         helpCheck();
@@ -4222,7 +4225,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic42", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4388,7 +4391,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT45() throws Exception {
 
         helpCheck();
@@ -4408,7 +4411,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic45", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4480,7 +4483,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT46() throws Exception {
 
         helpCheck();
@@ -4500,7 +4503,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic46", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4754,7 +4757,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT49() throws Exception {
 
         helpCheck();
@@ -4776,7 +4779,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic49", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4848,7 +4851,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT50() throws Exception {
 
         helpCheck();
@@ -4870,7 +4873,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic50", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -4942,7 +4945,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT51() throws Exception {
 
         helpCheck();
@@ -4962,7 +4965,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic51", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -5034,7 +5037,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT52() throws Exception {
 
         helpCheck();
@@ -5128,7 +5131,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT53() throws Exception {
 
         helpCheck();
@@ -5150,7 +5153,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic53", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -5222,7 +5225,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
     public void UPRT54() throws Exception {
 
         helpCheck();
@@ -5242,7 +5245,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic8", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic54", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -5311,6 +5314,154 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         WebElement errorLines=driver.findElement(errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
 */
+    }
+
+    @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at confirmation page
+            (groups = {"eComm", "eComm_Orders"})
+    public void SUMST_OA_OAP_URT() throws Exception {
+
+        //new chrome driver
+        WebDriver driver = getDriver();
+
+        //new base test to set up
+        Ecomm_Base uortTest1 = new Ecomm_Base(driver);
+        //Set up returns an eComm page
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST UORT5: Upload Draft continuation", "G_OOC_UORT_Unknown");
+
+        System.out.println("Navigating to Upload Order Page...");
+
+        Ecomm_UploadOrderPage uoPage = eCommPage.clickUploadOrder();
+        uoPage.waitForElement();
+
+        System.out.println("Upload Order page reached. Setting filepath...");
+
+        uoPage.setFilePath(FileFactory.createFile("SUMST", 2, "SA", "", true));
+
+        System.out.println("Filepath set. Uploading...");
+
+        Ecomm_MappingAlert mapAlert = uoPage.pressUpload();
+        Ecomm_MappingPage mapPage = mapAlert.pressYes();
+        mapPage.waitForElement();
+
+        System.out.println("Uploaded. Setting mapping...");
+
+        mapPage.setSalesOrg("ID51");
+        mapPage.setCustomerName(DataItems.subCustDetails[0]);
+
+        String[][] mapping = {  {"Customer Name","Customer Name"},
+                {"Article","N/A"},
+                {"Ticket","Ticket"},
+                {"Finish","Finish"},
+                {"Shade Code","Shade Code"},
+                {"Required Date","Required Date"},
+                {"Qty","Qty"},
+                {"Style","N/A"},
+                {"Style No./Production No.","N/A"},
+                {"Sub Account","Sub Account"},
+                {"Ship to Party Name","Ship to Party Name"},
+                {"Your Material No.","N/A"},
+                {"Brand","Brand"},
+                {"Length","Length"},
+                {"Buyers","N/A"},
+                {"Customer PO No","Customer PO No"},
+                {"Requestor Name","Requestor Name"},
+                {"Warehouse Instruction","N/A"},
+                {"Buyer Sales Order Number","N/A"},
+                {"Other Information","N/A"},
+                {"Customer Price","N/A"}
+        };
+
+        mapPage.setMappingNotCustomer(mapping);
+
+        System.out.println("Mapping set. Confirming...");
+
+        Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
+        boolean errorDisplayed;
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+
+            System.out.println("Error received: "+alert2.getText());
+            errorDisplayed = true;
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+            errorDisplayed = false;
+        }
+        orderConf.waitForElement();
+
+        orderConf.setRequestor(DataItems.subCustDetails[2]);
+
+        String poNumber = orderConf.getUploadPONumber();
+
+        System.out.println("Order Confirmation Page reached. Checking sub-account field appears with correct value...");
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Sub-account field does not appear for upload order confirmation",orderConf.getSubAccountField().isDisplayed());
+
+        AssertJUnit.assertTrue("Order Confirmation Page: Sub-account field does not hold correct value from spreadsheet",orderConf.getSubAccount().equals(DataItems.subAccount));
+
+        System.out.println("Sub-account field present, with correct value. Submitting order...");
+
+        Ecomm_PendingApprovalListPage appPage = orderConf.pressSendForApproval();
+        appPage.waitForLoad();
+
+        System.out.println("Order submitted. Viewing order...");
+
+        try {
+            Alert alert = Wait.alert(driver);
+            alert.accept();
+            System.out.println("Error received: "+ alert.getText());
+
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+        }
+
+        int row = appPage.getRow(DataItems.lastUsedPO);
+        //AssertJUnit.assertFalse("Pending Approval List Page: Order does not appear after Send for Approval pressed", row == -1);
+
+        String orderNo = appPage.getOrderNoSUMST(1);
+
+        System.out.println("Order appears. Order No.: " + orderNo);
+
+        System.out.println("Logging in to approver account to approve order...");
+
+        WBA_LoginPage liPage = appPage.pressLogout();
+        liPage.waitForElement();
+
+        WBA_ContinuePage contPage = liPage.loginAs(DataItems.approverUsername, DataItems.approverPassword);
+        WBA_SelectionPage selectPage = contPage.pressContinue();
+        Ecomm_MainPage mainPage = selectPage.pressEcomm();
+        mainPage.waitForLoad();
+
+        System.out.println("Logged in. Navigating to Pending Approval List Page...");
+
+        Ecomm_PendingApprovalListPage pendPage = mainPage.clickPendingApprovalListPageApprover2();
+        pendPage.waitForElement();
+
+        System.out.println("Pending Approval page reached. Finding order...");
+
+        AssertJUnit.assertTrue("Pending Approval Page: Order (Order No.: " + orderNo + ") not approved.", pendPage.approveOrder(orderNo));
+
+        System.out.println("Order approved. Logging into other account to view SAP Log...");
+
+        WBA_LoginPage liPage2 = pendPage.pressLogout();
+        liPage2.waitForElement();
+
+        WBA_ContinuePage contPage2 = liPage.loginAs(DataItems.validCoatsUsername, DataItems.validCoatsPassword);
+        WBA_SelectionPage selectPage2 = contPage.pressContinue();
+        Ecomm_MainPage mainPage2 = selectPage.pressEcomm();
+
+
+        mainPage2.waitForLoad();
+
+        System.out.println("Logged in. Navigating to SAP Log Page...");
+
+        Ecomm_SAPInterfaceLogPage sapPage = mainPage2.clickSAPInterfaceLog();
+        sapPage.waitForElement();
+
+        System.out.println("SAP Log Page reached. Finding order and viewing Flat File...");
+
+        sapPage.getFlatFile(orderNo);
+
     }
 }
 

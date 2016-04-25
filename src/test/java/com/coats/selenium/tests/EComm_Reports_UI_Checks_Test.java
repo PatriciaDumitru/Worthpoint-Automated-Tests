@@ -1,10 +1,8 @@
 package com.coats.selenium.tests;
 
+import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
-import PageObjects.Ecomm_DeliveryNotesPage;
-import PageObjects.Ecomm_InvoicesPage;
-import PageObjects.Ecomm_MainPage;
-import PageObjects.Ecomm_SummaryOfPurchasePage;
+import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.AssertJUnit;
@@ -72,7 +70,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
          Verifying the label of Clear button - renamed from reset
          */
         System.out.println("Checking \"Clear\" button label...");
-        AssertJUnit.assertTrue("Incorrect button label!",dn.getClearButtonLabel().equals("Reset")); //"Clear"
+        AssertJUnit.assertTrue("Incorrect button label!",dn.getClearButtonLabel().equals("Clear")); //"Clear"
         System.out.println("Label correct!");
 
         /**
@@ -107,7 +105,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
          Verifying the label of Clear button - renamed from reset
          */
         System.out.println("Checking \"Clear\" button label...");
-        AssertJUnit.assertTrue("Incorrect button label!",posr.getClearButtonLabel().equals("Reset")); //"Clear"
+        AssertJUnit.assertTrue("Incorrect button label!",posr.getClearButtonLabel().equals("Clear")); //"Clear"
         System.out.println("Label correct!");
 
         /**
@@ -120,5 +118,63 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Table Header correct!");
 
         System.out.println("Test PASSED!");
+    }
+
+    @Test //My Reports UI screen changes - WBA-566
+            (groups = {"eComm"})
+    public void Rep_UI() throws IOException, InterruptedException, Exception {
+        //new driver instance
+        WebDriver driver = getDriver();
+
+        //New eComm base test to handle log-in and navigation
+        Ecomm_Base baseTest = new Ecomm_Base(driver);
+        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_UI", "My Reports UI screen changes","admin@coats.com", "superadmin@coats");
+
+        //Navigate to Advanced Reports
+        System.out.println("Navigating to Invoice Page...");
+        driver.get(DataItems.advancedReports);
+
+        Ecomm_MyReportsPage advRep = new Ecomm_MyReportsPage(driver);
+        /**
+         Verifying the breadcrumb - renamed from Reports | My Report to Reports | Advanced Reports
+         */
+        System.out.println("Checking breadcrumb...");
+        AssertJUnit.assertTrue("Incorrect breadcrumb!",advRep.getBreadcrumb().getText().equals("Reports | Advanced Reports"));
+
+        //Create New Report
+        Ecomm_CreateNewReportPage cnrp = advRep.createNewReport();
+
+        /**
+         Verifying the breadcrumb - Reports | Advanced Reports| New Report
+         */
+        AssertJUnit.assertTrue("***Incorrect breadcrumb!",cnrp.getBreadcrumb().getText().equals("Reports | Advanced Reports| New Report"));
+
+        cnrp.selectDateRange("Last 90 days");
+
+        cnrp.selectRepCriteria("Custom Fields");
+
+        cnrp.selectAllFromOrders();
+        cnrp.selectAllDeliveryNotes();
+
+        cnrp.pressSaveReport();
+
+        CommonTask.waitForOverlay(driver);
+
+        //Input report name
+        cnrp.inputReportName("Rep1");
+        cnrp.saveRep();
+
+        /**
+         * Verify flash message
+         */
+        AssertJUnit.assertEquals("***Incorrect Flash Message!","Message:\n" + "Your Report has been saved",cnrp.getFlashMessage());
+
+
+
+        //Delete a saved report
+//        if (advRep.checkSavedReports()){
+//            advRep.deleteSavedReport();
+//        }
+
     }
 }
