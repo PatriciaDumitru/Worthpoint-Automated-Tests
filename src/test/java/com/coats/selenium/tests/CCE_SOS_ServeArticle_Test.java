@@ -45,6 +45,9 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
                 DataItems.articleData01[3],DataItems.articleData01[4], DataItems.articleData01[5], DataItems.articleData01[6],DataItems.articleData01[7]);
      articleData01 = {"ID51", "ID12", "8754180", "astra", "180", "Cone", "WHITE", "100"};
 
+      // General (SalesOrg Enrich Option, Where to add article, Name of article that is added, Article to make order with, Shade that is the same for both articles, What article should appear after order is processed, what sos is expected)
+
+
                                                                                                                         */
 
     public void completeOrderPromptPageAndAddCustDetails() throws Exception {
@@ -110,14 +113,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
             System.out.println("Navigating to HubStock page...");
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
-            sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData01[0], DataItems.articleData01[1], DataItems.articleData01[2],
+            sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData01[0], DataItems.articleData01[1], articleInStock,
                     DataItems.articleData01[3], DataItems.articleData01[4], DataItems.articleData01[5], DataItems.articleData01[6], DataItems.articleData01[7]);
 
             //Add article to Warehouse
             System.out.println("Navigating to Warehouse page...");
             driver.get(DataItems.warehouseURL);
             System.out.println("Adding Article to WarehouseStock...");
-            sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData01[0], DataItems.articleData01[1], DataItems.articleData01[2],
+            sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData01[0], DataItems.articleData01[1],articleInStock,
                     DataItems.articleData01[3], DataItems.articleData01[4], DataItems.articleData01[5], DataItems.articleData01[6], DataItems.articleData01[7]);
         }
 
@@ -150,7 +153,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
     @Test //SL_B_01 : Single Line - Both - Similar Article:No - H:Y -W:N
             (groups = {"CCE"})
-    public void Test() throws Exception {
+    public void SL_B_01() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
 
@@ -158,9 +161,326 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_B_01", "Single Line - Both - Similar Article:No - H:Y - W:N");
+        CCE_MainPage ccePage = base.setUp("SL_W_01", "Single Line - Both - Similar Article:No - H:Y - W:N");
 
-        General("Hub", "Hub", DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData02[2],"--");
+        General(DataItems.Both, DataItems.Hub, DataItems.articleData01[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.Hub);
+    }
+
+    @Test //SL_B_02 : Single Line - Both - Similar Article:No - H:N -W:Y
+            (groups = {"CCE"})
+    public void SL_B_02() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_B_02", "Single Line - Both - Similar Article:No - H:N -W:Y");
+
+        General(DataItems.Both, DataItems.Warehouse, DataItems.articleData01[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2], DataItems.Warehouse);
+    }
+
+    @Test //SL_B_03 : Single Line - Both - Similar Article:No - H:N -W:N
+            (groups = {"CCE"})
+    public void SL_B_03() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_B_03", "Single Line - Both - Similar Article:No - H:N -W:N");
+
+        General(DataItems.Both, DataItems.Both, DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData02[2], DataItems.None);
+    }
+
+    @Test //SL_B_04 : SSingle Line - Both - Similar Article:No - H:Y -W:Y
+            (groups = {"CCE"})
+    public void SL_B_04() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_B_04", "Single Line - Both - Similar Article:No - H:Y -W:Y");
+
+        General(DataItems.Both, DataItems.Both, DataItems.articleData01[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2], DataItems.Hub);
+    }
+
+    @Test //SL_B_05 : Single Line - Both - Similar Article:Yes - H:Y -W:N
+            (groups = {"CCE"})
+    public void SL_B_05() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_B_05", "Single Line - Both - Similar Article:Yes - H:Y - W:N");
+
+        General(DataItems.Both, DataItems.Hub, DataItems.articleData02[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.None);
+    }
+
+    @Test //SL_B_06 : Single Line - Both - Similar Article:Yes - H:N -W:Y
+            (groups = {"CCE"})
+    public void SL_B_06() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_B_06", "Single Line - Both - Similar Article:No - H:N -W:Y");
+
+        General(DataItems.Both, DataItems.Warehouse, DataItems.articleData02[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData02[2], DataItems.Warehouse);
+    }
+
+    @Test //SL_B_07 : Single Line - Both - Similar Article:Yes - H:N -W:N
+            (groups = {"CCE"})
+    public void SL_B_07() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_B_07", "Single Line - Both - Similar Article:Yes - H:N -W:N");
+
+        General(DataItems.Both, DataItems.Both, DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.None);
+    }
+
+    @Test //SL_B_08 : Single Line - Both - Similar Article:Yes - H:Y -W:Y
+            (groups = {"CCE"})
+    public void SL_B_08() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_B_08", "Single Line - Both - Similar Article:Yes - H:Y -W:Y");
+
+        General(DataItems.Both, DataItems.Both, DataItems.articleData02[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData02[2],DataItems.Warehouse);
+    }
+
+    @Test //SL_W_01 : Single Line - Warehouse - Similar Article:No - H:Y -W:N
+            (groups = {"CCE"})
+    public void SL_W_01() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_W_01", "Single Line - Warehouse - Similar Article:No - H:Y - W:N");
+
+        General(DataItems.Warehouse, DataItems.Hub, DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData02[2],DataItems.None);
+    }
+
+    @Test //SL_W_02 : Single Line - Warehouse - Similar Article:No - H:N -W:Y
+            (groups = {"CCE"})
+    public void SL_W_02() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_W_02", "Single Line - Warehouse - Similar Article:No - H:N -W:Y");
+
+        General(DataItems.Warehouse, DataItems.Warehouse, DataItems.articleData01[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2], DataItems.Warehouse);
+    }
+
+    @Test //SL_W_03 : Single Line - Warehouse - Similar Article:No - H:N -W:N
+            (groups = {"CCE"})
+    public void SL_W_03() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_W_03", "Single Line - Warehouse - Similar Article:No - H:N -W:N");
+
+        General(DataItems.Warehouse, DataItems.Both, DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData02[2], DataItems.Warehouse);
+    }
+
+    @Test //SL_W_04 : SSingle Line - Warehouse - Similar Article:No - H:Y -W:Y
+            (groups = {"CCE"})
+    public void SL_W_04() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_W_04", "Single Line - Warehouse - Similar Article:No - H:Y -W:Y");
+
+        General(DataItems.Warehouse, DataItems.Both, DataItems.articleData01[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2], DataItems.Warehouse);
+    }
+
+    @Test //SL_W_05 : Single Line - Warehouse - Similar Article:Yes - H:Y -W:N
+            (groups = {"CCE"})
+    public void SL_W_05() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_W_05", "Single Line - Warehouse - Similar Article:Yes - H:Y - W:N");
+
+        General(DataItems.Warehouse, DataItems.Hub, DataItems.articleData02[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.None);
+    }
+
+
+    @Test //SL_W_07 : Single Line - Warehouse - Similar Article:Yes - H:N -W:N
+            (groups = {"CCE"})
+    public void SL_W_06() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_W_07", "Single Line - Warehouse - Similar Article:Yes - H:N -W:N");
+
+        General(DataItems.Warehouse, DataItems.Both, DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData02[2],DataItems.None);
+    }
+
+    @Test //SL_W_08 : SSingle Line - Warehouse - Similar Article:Yes - H:Y -W:Y
+            (groups = {"CCE"})
+    public void SL_W_07() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_W_08", "Single Line - Warehouse - Similar Article:Yes - H:Y -W:Y");
+
+        General(DataItems.Warehouse, DataItems.Both, DataItems.articleData02[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData02[2], DataItems.Warehouse);
+    }
+
+    @Test //SL_H_01 : Single Line - Hub - Similar Article:No - H:Y -W:N
+            (groups = {"CCE"})
+    public void SL_H_01() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_H_01", "Single Line - Hub - Similar Article:No - H:Y - W:N");
+
+        General(DataItems.Hub, DataItems.Hub, DataItems.articleData01[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.Hub);
+    }
+
+    @Test //SL_H_02 : Single Line - Hub - Similar Article:No - H:N -W:Y
+            (groups = {"CCE"})
+    public void SL_H_02() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_H_02", "Single Line - Hub - Similar Article:No - H:N -W:Y");
+
+        General(DataItems.Hub, DataItems.Warehouse, DataItems.articleData01[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.None);
+    }
+
+    @Test //SL_H_03 : Single Line - Hub - Similar Article:No - H:N -W:N
+            (groups = {"CCE"})
+    public void SL_H_03() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_H_03", "Single Line - Hub - Similar Article:No - H:N -W:N");
+
+        General(DataItems.Hub, DataItems.Both, DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData02[2],DataItems.None);
+    }
+
+    @Test //SL_H_04 : Single Line - Hub - Similar Article:No - H:Y -W:Y
+            (groups = {"CCE"})
+    public void SL_H_04() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_H_04", "Single Line - Hub - Similar Article:No - H:Y -W:Y");
+
+        General(DataItems.Hub, DataItems.Both, DataItems.articleData01[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.Hub);
+    }
+
+
+    @Test //SL_H_06 : Single Line - Hub - Similar Article:Yes - H:N -W:Y
+            (groups = {"CCE"})
+    public void SL_H_06() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_H_06", "Single Line - Hub - Similar Article:Yes - H:N -W:Y");
+
+        General(DataItems.Hub, DataItems.Warehouse, DataItems.articleData02[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.None);
+    }
+
+    @Test //SL_H_07 : Single Line - Hub - Similar Article:Yes - H:N -W:N
+            (groups = {"CCE"})
+    public void SL_H_07() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_H_07", "Single Line - Hub - Similar Article:Yes - H:N -W:N");
+
+        General(DataItems.Hub, DataItems.Both, DataItems.articleData02[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.None);
+    }
+
+    @Test //SL_H_08 : SSingle Line - Hub - Similar Article:Yes - H:Y -W:Y
+            (groups = {"CCE"})
+    public void SL_H_08() throws Exception {
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("SL_H_08", "Single Line - Hub - Similar Article:Yes - H:Y -W:Y");
+
+        General(DataItems.Hub, DataItems.Both, DataItems.articleData02[2], DataItems.articleData01[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.None);
     }
 
 
@@ -182,8 +502,8 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
 
     @Test //SL_B_01 : Single Line - Both - Similar Article:No - H:Y -W:N
-            (groups = {"CCE"})
-    public void SL_B_01() throws Exception {
+            (groups = {"CCE"}, enabled = false)
+    public void SL_B_01A() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
 

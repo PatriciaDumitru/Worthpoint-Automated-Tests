@@ -33,13 +33,13 @@ public class CCE_SOS_ServeArticle_Page extends WBA_BasePage  {
     // ------------------------------------- Locators
 
     By newEntry = By.xpath(".//*[@id='OurStockListForm']/div[3]/ul/li[3]/a");  //has the same selector for both HUB And Warehouse
-    By deleteAllButton = By.xpath(".//*[@id='OurStockListForm']/div[3]/ul/li[3]/a"); //has the same selector for both HUB And Warehouse
+    By deleteAllButton = By.cssSelector("#OurStockListForm > div.actions > ul > li:nth-child(4) > input[type=\"submit\"]"); //has the same selector for both HUB And Warehouse
     By selectAllCheckBox = By.id("select_all"); //has the same selector for both HUB And Warehouse
     By filterPlantField = By.xpath(".//*[@id='s2id_filterPlantId']/a/span[1]");
     By searchButton = By.xpath(".//*[@id='FilterIndexForm']/div[3]/ul/li[1]/input");
 
     By currentSOS = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(10)"); //In Order Status Page
-    By viewOrder = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(17) > a > span"); //In Order Status Page
+    By viewOrder = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(16) > a > span"); //In Order Status Page
     By article = By.cssSelector("#popup_content > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(2)"); //In View Order Page
 
     // ------------------------------------- Locators in Methods to select Data for Warehouse Stocks or Hub Stocks when creating new Entry

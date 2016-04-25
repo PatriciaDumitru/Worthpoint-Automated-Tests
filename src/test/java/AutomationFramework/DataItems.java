@@ -10,7 +10,7 @@ import java.lang.reflect.Array;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "qa_p4i";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
@@ -41,7 +41,7 @@ public class DataItems {
     public static String lastUsedFilepath = ""; //Holds last used filepath when generating files using FileFactory
 
     //Login Credentials
-    public static String validCoatsUsername = "samson.vetharaj@coats.com"; //"admin@coats.com";     //"joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
+    public static String validCoatsUsername = "joe.sykes@coats.com"; //"admin@coats.com";     //"joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
     public static String validCoatsUsername2 = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com";
     public static String validCoatsPassword = "password"; //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
@@ -388,6 +388,14 @@ public class DataItems {
     public static String enrichBoth = "Both";
     public static String enrichHub = "Hub";
     public static String enrichWarehouse = "Warehouse";
+
+    //SalesOrg
+    public static String Both = "Both";
+    public static String Hub = "Hub";
+    public static String Warehouse = "Warehouse";
+    public static String None = "--";
+
+
 
     public static String addToWarehouse = "Our";
     public static String addToHub = "Hub";
