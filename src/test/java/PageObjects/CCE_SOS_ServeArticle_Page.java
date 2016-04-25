@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import com.google.common.base.Verify;
+import net.sf.cglib.asm.ByteVector;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -41,6 +42,8 @@ public class CCE_SOS_ServeArticle_Page extends WBA_BasePage  {
     By currentSOS = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(10)"); //In Order Status Page
     By viewOrder = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(16) > a > span"); //In Order Status Page
     By article = By.cssSelector("#popup_content > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(2)"); //In View Order Page
+
+    By articleLine2 = By.cssSelector("#popup_content > div:nth-child(3) > table > tbody > tr:nth-child(3) > td:nth-child(2)");
 
     // ------------------------------------- Locators in Methods to select Data for Warehouse Stocks or Hub Stocks when creating new Entry
 
@@ -111,7 +114,9 @@ public class CCE_SOS_ServeArticle_Page extends WBA_BasePage  {
         setQuantity(location, qty);
         saveNewEntry(location);
     }
-
+    //#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(10)
+    //#content > div.flexi-grid > table > tbody > tr:nth-child(3) > td:nth-child(5)
+    //#content > div.flexi-grid > table > tbody > tr:nth-child(4) > td:nth-child(5)
 
     public WebElement getArticleFromOrder() {
         //find and return element
@@ -123,10 +128,27 @@ public class CCE_SOS_ServeArticle_Page extends WBA_BasePage  {
         return driver.findElement(currentSOS);
     }
 
-    public void pressViewOrder(){
+    public WebElement getArticleFromOrderLine(int lineNumber){
+        By articleLine1 = By.cssSelector("#popup_content > div:nth-child(3) > table > tbody > tr:nth-child("+ lineNumber +") > td:nth-child(2)");
+        //find and return element
+        return driver.findElement(articleLine1);
+    }
+
+    public WebElement getCurrentSOSLine(int lineNumber){
+        By lineOne = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(10)");
+        By restOfLines = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(" + lineNumber + ") > td:nth-child(5)");
+        //find and return element
+        if (lineNumber == 2) return driver.findElement(lineOne);
+        else return  driver.findElement(restOfLines);
+
+    }
+
+
+    public void pressViewOrder() {
         driver.findElement(viewOrder).click();
         CommonTask.waitForOverlay(driver);
     }
+
 
 
     public void filterArticlesByPlantAndDeleteAll(String plant){

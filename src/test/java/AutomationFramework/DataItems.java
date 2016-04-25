@@ -401,7 +401,10 @@ public class DataItems {
     public static String addToWarehouse = "Our";
     public static String addToHub = "Hub";
 
-    public static String[] articleData01 = {"ID51", "ID12", "8754180", "astra", "180", "Cone", "WHITE", "100"};
+    public static String[] articleData180 = {"ID51", "ID12", "8754180", "astra", "180", "Cone", "WHITE", "100"};
     public static String[] articleData02 = {"ID51", "ID12", "8754120", "astra", "180", "Cone", "WHITE", "100"};
+    public static String[] articleData120 = {"ID51", "ID12", "8754120", "astra", "120", "Cone", "BLACK", "100"};
+    public static String[] articleData110 = {"ID51", "ID12", "8754110", "astra", "110", "Cone", "BLACK", "100"};
+
 
 }

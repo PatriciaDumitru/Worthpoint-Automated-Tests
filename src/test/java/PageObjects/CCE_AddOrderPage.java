@@ -454,6 +454,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         setQuantity(1,lineNumber);
     }
 
+
     public void inputArticleShadeMUMForLine (String article, String MUM, String shadeCode, int lineNumber) throws InterruptedException {
 
         setArticle(article,lineNumber);
