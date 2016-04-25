@@ -79,7 +79,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         PreFlows pf = new PreFlows();
         if (salesOrgEnrichOption == "Both")pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer, DataItems.enrichBoth);
         else if (salesOrgEnrichOption == "Hub")pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer, DataItems.enrichHub);
-        else if (salesOrgEnrichOption == "Warehouse)")pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer, DataItems.enrichWarehouse);
+        else if (salesOrgEnrichOption == "Warehouse")pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer, DataItems.enrichWarehouse);
         else System.out.println("WRONG INPUT FOR SELECTED 'ENRICH TO' PARAM...");
 
         CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);
@@ -254,6 +254,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         CCE_MainPage ccePage = base.setUp("SL_B_07", "Single Line - Both - Similar Article:Yes - H:N -W:N");
 
         General(DataItems.Both, DataItems.Both, DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData01[2],DataItems.None);
+        General(DataItems.Both, DataItems.Both, DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData02[2],DataItems.None);
     }
 
     @Test //SL_B_08 : Single Line - Both - Similar Article:Yes - H:Y -W:Y
@@ -313,7 +314,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SL_W_03", "Single Line - Warehouse - Similar Article:No - H:N -W:N");
 
-        General(DataItems.Warehouse, DataItems.Both, DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData02[2], DataItems.Warehouse);
+        General(DataItems.Warehouse, DataItems.Both, DataItems.articleData01[2], DataItems.articleData02[2], DataItems.articleData01[6], DataItems.articleData02[2], DataItems.None);
     }
 
     @Test //SL_W_04 : SSingle Line - Warehouse - Similar Article:No - H:Y -W:Y
