@@ -10,7 +10,7 @@ import java.lang.reflect.Array;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "qa_p4i";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
@@ -395,6 +395,11 @@ public class DataItems {
     public static String Hub = "Hub";
     public static String Warehouse = "Warehouse";
     public static String None = "--";
+    public static String MixWHW = "MixWHW";
+    public static String MixHWH = "MixHWH";
+    public static String MixWH = "MixWH";
+    public static String MixHW = "MixHW";
+
 
 
 
@@ -405,6 +410,9 @@ public class DataItems {
     public static String[] articleData02 = {"ID51", "ID12", "8754120", "astra", "180", "Cone", "WHITE", "100"};
     public static String[] articleData120 = {"ID51", "ID12", "8754120", "astra", "120", "Cone", "BLACK", "100"};
     public static String[] articleData110 = {"ID51", "ID12", "8754110", "astra", "110", "Cone", "BLACK", "100"};
+    public static String noneArticle01 = "8754075";
+    public static String noneArticle02 = "8754090";
+    public static String noneArticle03 = "8430045";
 
 
 }
