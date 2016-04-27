@@ -54,7 +54,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
     public void completeOrderPromptPageAndAddCustDetails() throws Exception {
         WebDriver driver = getDriver();
 
-        CCE_MainPage ccePage = new CCE_MainPage(driver);
+        CCE_MainPage ccePage =  new CCE_MainPage(driver);
 
         System.out.println("Navigating to Order Samples...");
         CCE_OrderSamplesPage osPage = ccePage.pressOrderSamples();
@@ -160,7 +160,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_W_01", "Single Line - Both - Similar Article:No - H:Y - W:N");
+        base.setUp("SL_W_01", "Single Line - Both - Similar Article:No - H:Y - W:N");
 
         GeneralSingleLine(DataItems.Both, DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.Hub);
     }
@@ -175,7 +175,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_B_02", "Single Line - Both - Similar Article:No - H:N -W:Y");
+        base.setUp("SL_B_02", "Single Line - Both - Similar Article:No - H:N -W:Y");
 
         GeneralSingleLine(DataItems.Both, DataItems.Warehouse, DataItems.articleData180[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.Warehouse);
     }
@@ -190,7 +190,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_B_03", "Single Line - Both - Similar Article:No - H:N -W:N");
+        base.setUp("SL_B_03", "Single Line - Both - Similar Article:No - H:N -W:N");
 
         GeneralSingleLine(DataItems.Both, DataItems.Both, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.None);
     }
@@ -205,7 +205,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_B_04", "Single Line - Both - Similar Article:No - H:Y -W:Y");
+        base.setUp("SL_B_04", "Single Line - Both - Similar Article:No - H:Y -W:Y");
 
         GeneralSingleLine(DataItems.Both, DataItems.Both, DataItems.articleData180[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.Hub);
     }
@@ -220,7 +220,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_B_05", "Single Line - Both - Similar Article:Yes - H:Y - W:N");
+        base.setUp("SL_B_05", "Single Line - Both - Similar Article:Yes - H:Y - W:N");
 
         GeneralSingleLine(DataItems.Both, DataItems.Hub, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
     }
@@ -235,7 +235,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_B_06", "Single Line - Both - Similar Article:No - H:N -W:Y");
+        base.setUp("SL_B_06", "Single Line - Both - Similar Article:No - H:N -W:Y");
 
         GeneralSingleLine(DataItems.Both, DataItems.Warehouse, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.Warehouse);
     }
@@ -250,7 +250,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_B_07", "Single Line - Both - Similar Article:Yes - H:N -W:N");
+        base.setUp("SL_B_07", "Single Line - Both - Similar Article:Yes - H:N -W:N");
 
         GeneralSingleLine(DataItems.Both, DataItems.Both, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
         GeneralSingleLine(DataItems.Both, DataItems.Both, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.None);
@@ -266,7 +266,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_B_08", "Single Line - Both - Similar Article:Yes - H:Y -W:Y");
+        base.setUp("SL_B_08", "Single Line - Both - Similar Article:Yes - H:Y -W:Y");
 
         GeneralSingleLine(DataItems.Both, DataItems.Both, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.Warehouse);
     }
@@ -281,7 +281,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_W_01", "Single Line - Warehouse - Similar Article:No - H:Y - W:N");
+        base.setUp("SL_W_01", "Single Line - Warehouse - Similar Article:No - H:Y - W:N");
 
         GeneralSingleLine(DataItems.Warehouse, DataItems.Hub, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.None);
     }
@@ -296,7 +296,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_W_02", "Single Line - Warehouse - Similar Article:No - H:N -W:Y");
+        base.setUp("SL_W_02", "Single Line - Warehouse - Similar Article:No - H:N -W:Y");
 
         GeneralSingleLine(DataItems.Warehouse, DataItems.Warehouse, DataItems.articleData180[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.Warehouse);
     }
@@ -311,7 +311,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_W_03", "Single Line - Warehouse - Similar Article:No - H:N -W:N");
+        base.setUp("SL_W_03", "Single Line - Warehouse - Similar Article:No - H:N -W:N");
 
         GeneralSingleLine(DataItems.Warehouse, DataItems.Both, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.None);
     }
@@ -326,7 +326,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_W_04", "Single Line - Warehouse - Similar Article:No - H:Y -W:Y");
+        base.setUp("SL_W_04", "Single Line - Warehouse - Similar Article:No - H:Y -W:Y");
 
         GeneralSingleLine(DataItems.Warehouse, DataItems.Both, DataItems.articleData180[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.Warehouse);
     }
@@ -341,7 +341,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_W_05", "Single Line - Warehouse - Similar Article:Yes - H:Y - W:N");
+        base.setUp("SL_W_05", "Single Line - Warehouse - Similar Article:Yes - H:Y - W:N");
 
         GeneralSingleLine(DataItems.Warehouse, DataItems.Hub, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
     }
@@ -357,7 +357,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_W_07", "Single Line - Warehouse - Similar Article:Yes - H:N -W:N");
+        base.setUp("SL_W_07", "Single Line - Warehouse - Similar Article:Yes - H:N -W:N");
 
         GeneralSingleLine(DataItems.Warehouse, DataItems.Both, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.None);
     }
@@ -372,7 +372,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_W_08", "Single Line - Warehouse - Similar Article:Yes - H:Y -W:Y");
+        base.setUp("SL_W_08", "Single Line - Warehouse - Similar Article:Yes - H:Y -W:Y");
 
         GeneralSingleLine(DataItems.Warehouse, DataItems.Both, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.Warehouse);
     }
@@ -387,7 +387,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_H_01", "Single Line - Hub - Similar Article:No - H:Y - W:N");
+        base.setUp("SL_H_01", "Single Line - Hub - Similar Article:No - H:Y - W:N");
 
         GeneralSingleLine(DataItems.Hub, DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.Hub);
     }
@@ -402,7 +402,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_H_02", "Single Line - Hub - Similar Article:No - H:N -W:Y");
+        base.setUp("SL_H_02", "Single Line - Hub - Similar Article:No - H:N -W:Y");
 
         GeneralSingleLine(DataItems.Hub, DataItems.Warehouse, DataItems.articleData180[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
     }
@@ -417,7 +417,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_H_03", "Single Line - Hub - Similar Article:No - H:N -W:N");
+        base.setUp("SL_H_03", "Single Line - Hub - Similar Article:No - H:N -W:N");
 
         GeneralSingleLine(DataItems.Hub, DataItems.Both, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.None);
     }
@@ -432,7 +432,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_H_04", "Single Line - Hub - Similar Article:No - H:Y -W:Y");
+        base.setUp("SL_H_04", "Single Line - Hub - Similar Article:No - H:Y -W:Y");
 
         GeneralSingleLine(DataItems.Hub, DataItems.Both, DataItems.articleData180[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.Hub);
     }
@@ -448,7 +448,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_H_06", "Single Line - Hub - Similar Article:Yes - H:N -W:Y");
+        base.setUp("SL_H_06", "Single Line - Hub - Similar Article:Yes - H:N -W:Y");
 
         GeneralSingleLine(DataItems.Hub, DataItems.Warehouse, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
     }
@@ -463,7 +463,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_H_07", "Single Line - Hub - Similar Article:Yes - H:N -W:N");
+        base.setUp("SL_H_07", "Single Line - Hub - Similar Article:Yes - H:N -W:N");
 
         GeneralSingleLine(DataItems.Hub, DataItems.Both, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
     }
@@ -478,7 +478,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("SL_H_08", "Single Line - Hub - Similar Article:Yes - H:Y -W:Y");
+        base.setUp("SL_H_08", "Single Line - Hub - Similar Article:Yes - H:Y -W:Y");
 
         GeneralSingleLine(DataItems.Hub, DataItems.Both, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
     }
@@ -628,7 +628,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_B_01", "Multi Line – Both – Similar Article:No – L1[H:Y, W:N] – L2[H:Y, W:N] – L3[H:Y, W:N] ");
+        base.setUp("ML_B_01", "Multi Line – Both – Similar Article:No – L1[H:Y, W:N] – L2[H:Y, W:N] – L3[H:Y, W:N] ");
 
         setEnv(DataItems.Both);
 
@@ -652,7 +652,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_B_2", "Multi Line – Both – Similar Article:No – L1[H:Y, W:N] – L2[H:Y, W:N] – L3[H:Y, W:N] ");
+        base.setUp("ML_B_2", "Multi Line – Both – Similar Article:No – L1[H:Y, W:N] – L2[H:Y, W:N] – L3[H:Y, W:N] ");
 
         setEnv(DataItems.Both);
 
@@ -676,7 +676,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_B_03", "Multi Line – Both – Similar Article:No – L1[H:N, W:N] – L2[H:N, W:N] – L3[H:N, W:N]");
+        base.setUp("ML_B_03", "Multi Line – Both – Similar Article:No – L1[H:N, W:N] – L2[H:N, W:N] – L3[H:N, W:N]");
 
         setEnv(DataItems.Both);
 
@@ -699,7 +699,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_B_04", "Multi Line – Both – Similar Article:No – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N] ");
+        base.setUp("ML_B_04", "Multi Line – Both – Similar Article:No – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N] ");
 
         setEnv(DataItems.Both);
 
@@ -723,7 +723,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_B_05", "Multi Line – Both – Similar Article:Yes – L1[H:Y, W:N] – L2[H:Y, W:N] – L3[H:Y, W:N]");
+        base.setUp("ML_B_05", "Multi Line – Both – Similar Article:Yes – L1[H:Y, W:N] – L2[H:Y, W:N] – L3[H:Y, W:N]");
 
         setEnv(DataItems.Both);
 
@@ -747,7 +747,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_B_06", "Multi Line – Both – Similar Article:Yes – L1[H:N, W:Y] – L2[H:N, W:Y] – L3[H:N, W:Y]  ");
+        base.setUp("ML_B_06", "Multi Line – Both – Similar Article:Yes – L1[H:N, W:Y] – L2[H:N, W:Y] – L3[H:N, W:Y]  ");
 
         setEnv(DataItems.Both);
 
@@ -772,7 +772,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_B_08", "Multi Line – Both – Similar Article:Yes – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N]");
+        base.setUp("ML_B_08", "Multi Line – Both – Similar Article:Yes – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N]");
 
         setEnv(DataItems.Both);
 
@@ -796,7 +796,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_B_09", "Multi Line – Both – Similar Article:Mixed – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N]  ");
+        base.setUp("ML_B_09", "Multi Line – Both – Similar Article:Mixed – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N]  ");
 
         setEnv(DataItems.Both);
 
@@ -820,7 +820,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_B_10", "Multi Line – Both – Similar Article:Mixed – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N] ");
+        base.setUp("ML_B_10", "Multi Line – Both – Similar Article:Mixed – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N] ");
 
         setEnv(DataItems.Both);
 
@@ -932,7 +932,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_H_01", "Multi Hub – Both – Multi Line – Hub – Similar Article:No – L1[H:Y] – L2[H:N]  ");
+        base.setUp("ML_H_01", "Multi Hub – Both – Multi Line – Hub – Similar Article:No – L1[H:Y] – L2[H:N]  ");
 
         setEnv(DataItems.Hub);
 
@@ -956,7 +956,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_H_02", "ulti Line – Hub – Similar Article:No – L1[H:N, W:Y] – L2[H:Y] ");
+        base.setUp("ML_H_02", "ulti Line – Hub – Similar Article:No – L1[H:N, W:Y] – L2[H:Y] ");
 
         setEnv(DataItems.Hub);
 
@@ -980,7 +980,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_H_03", "Multi Line – Hub – Similar Article:Yes – L1[H:Y] – L2[H:N]  ");
+        base.setUp("ML_H_03", "Multi Line – Hub – Similar Article:Yes – L1[H:Y] – L2[H:N]  ");
 
         setEnv(DataItems.Hub);
 
@@ -1004,7 +1004,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_H_04", "Multi Line – Hub – Similar Article:Yes – L1[H:N, W:Y] – L2[H:Y]  ");
+        base.setUp("ML_H_04", "Multi Line – Hub – Similar Article:Yes – L1[H:N, W:Y] – L2[H:Y]  ");
 
         setEnv(DataItems.Hub);
 
@@ -1028,7 +1028,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_H_05", "Multi Line – Hub – Similar Article:Mix – L1[H:Y] – L2[H:N] ");
+        base.setUp("ML_H_05", "Multi Line – Hub – Similar Article:Mix – L1[H:Y] – L2[H:N] ");
 
         setEnv(DataItems.Hub);
 
@@ -1052,7 +1052,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_H_06", "Multi Line – Hub – Similar Article:Mix – L1[H:N, W:Y] – L2[H:Y] ");
+        base.setUp("ML_H_06", "Multi Line – Hub – Similar Article:Mix – L1[H:N, W:Y] – L2[H:Y] ");
 
         setEnv(DataItems.Hub);
 
@@ -1076,7 +1076,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_W_01", "Multi Line – Warehouse – Similar Article:No – L1[W:Y] – L2[W:N] ");
+        base.setUp("ML_W_01", "Multi Line – Warehouse – Similar Article:No – L1[W:Y] – L2[W:N] ");
 
         setEnv(DataItems.Warehouse);
 
@@ -1098,7 +1098,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_W_02", "Multi Line – Warehouse – Similar Article:No – L1[W:N, H:Y] – L2[W:Y] ");
+        base.setUp("ML_W_02", "Multi Line – Warehouse – Similar Article:No – L1[W:N, H:Y] – L2[W:Y] ");
 
         setEnv(DataItems.Warehouse);
 
@@ -1120,7 +1120,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_W_03", "Multi Line – Warehouse – Similar Article:Yes – L1[W:Y] – L2[W:N]");
+        base.setUp("ML_W_03", "Multi Line – Warehouse – Similar Article:Yes – L1[W:Y] – L2[W:N]");
 
         setEnv(DataItems.Warehouse);
 
@@ -1142,7 +1142,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_W_04", "Multi Line – Warehouse – Similar Article:Yes – L1[W:N, H:Y] – L2[W:Y]  ");
+        base.setUp("ML_W_04", "Multi Line – Warehouse – Similar Article:Yes – L1[W:N, H:Y] – L2[W:Y]  ");
 
         setEnv(DataItems.Warehouse);
 
@@ -1164,7 +1164,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_W_05", "Multi Line – Warehouse – Similar Article:Mix – L1[W:Y] – L2[W:N]");
+        base.setUp("ML_W_05", "Multi Line – Warehouse – Similar Article:Mix – L1[W:Y] – L2[W:N]");
 
         setEnv(DataItems.Warehouse);
 
@@ -1186,7 +1186,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("ML_W_01", "Multi Line – Warehouse – Similar Article:Mix – L1[W:N, H:Y] – L2[W:Y]  ");
+        base.setUp("ML_W_01", "Multi Line – Warehouse – Similar Article:Mix – L1[W:N, H:Y] – L2[W:Y]  ");
 
         setEnv(DataItems.Warehouse);
 
