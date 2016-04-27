@@ -354,6 +354,11 @@ public class Ecomm_CreateNewReportPage extends WBA_BasePage {
         setDelivereyQty();
     }
 
+    public void selectSAPOrder(){
+        WebElement elem = Wait.clickable(driver,sapOrderNo);
+        setSAPOrderNo();
+    }
+
     //Save Report pop-up
     public void inputReportName(String text){
         WebElement element = Wait.clickable(driver,reportName);
@@ -365,7 +370,7 @@ public class Ecomm_CreateNewReportPage extends WBA_BasePage {
         element.click();
     }
 
-    public String getFlashMessage(){
+    public String getFlashMessageText(){
         WebElement element = Wait.visible(driver,flashMessage);
         return element.getText();
     }

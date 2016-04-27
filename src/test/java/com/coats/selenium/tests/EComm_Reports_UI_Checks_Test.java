@@ -123,6 +123,9 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
     @Test //My Reports UI screen changes - WBA-566
             (groups = {"eComm"})
     public void Rep_UI() throws IOException, InterruptedException, Exception {
+        /**
+         * Ensure there is no saved report for this user when starting test
+         */
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -142,6 +145,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         AssertJUnit.assertTrue("Incorrect breadcrumb!",advRep.getBreadcrumb().getText().equals("Reports | Advanced Reports"));
 
         //Create New Report
+        System.out.println("Creating a new report...");
         Ecomm_CreateNewReportPage cnrp = advRep.createNewReport();
 
         /**
@@ -167,14 +171,66 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         /**
          * Verify flash message
          */
-        AssertJUnit.assertEquals("***Incorrect Flash Message!","Message:\n" + "Your Report has been saved",cnrp.getFlashMessage());
+        AssertJUnit.assertEquals("***Incorrect Flash Message!","Message:\n" + "Your Report has been saved",cnrp.getFlashMessageText());
+        System.out.println("Report Rep1 created!");
+
+        //Navigate again to Advanced Reports in order to verify the saved report
+        System.out.println("Navigating to Invoice Page...");
+        driver.get(DataItems.advancedReports);
+
+        Ecomm_MyReportsPage advRep2 = new Ecomm_MyReportsPage(driver);
 
 
+        //Go to Saved Reports
 
-        //Delete a saved report
-//        if (advRep.checkSavedReports()){
-//            advRep.deleteSavedReport();
-//        }
+        /**
+         * Verify that saved reports is displayed
+         */
+        advRep2.checkSavedReports();
+
+
+        /**
+         * Verify the Saved Report exist
+         */
+        advRep2.clickSavedReports();
+        AssertJUnit.assertTrue("***Incorrect Saved Report Name!",advRep2.getSavedRepName().contentEquals("Rep1"));
+
+        //Open this saved report and create a new one
+        advRep2.selectSavedReport();
+        System.out.println("Creating a new report...");
+        Ecomm_CreateNewReportPage cnrp2 = advRep2.createNewReport();
+
+        cnrp2.selectAllFromInvoices();
+        cnrp2.pressSaveReport();
+
+        CommonTask.waitForOverlay(driver);
+        //Input report name
+        cnrp2.inputReportName("Rep2");
+        cnrp2.saveRep();
+
+        /**
+         * Verify flash message
+         */
+        AssertJUnit.assertEquals("***Incorrect Flash Message!","Message:\n" + "Your Report has been saved",cnrp.getFlashMessageText());
+        System.out.println("Report Rep2 created!");
+
+        //Navigate again to Advanced Reports in order to delete one saved report
+        System.out.println("Navigating to Invoice Page...");
+        driver.get(DataItems.advancedReports);
+
+        Ecomm_MyReportsPage advRep3 = new Ecomm_MyReportsPage(driver);
+
+        advRep3.clickSavedReports();
+
+        //Delete first saved report
+        System.out.println("Deleting first saved report...");
+        advRep3.deleteSavedReport();
+
+        /**
+         * Verify Flash Message
+         */
+        AssertJUnit.assertEquals("***Incorrect Flash Message!","Saved Report has been deleted",advRep3.getFlashMessageText());
+        System.out.println("Saved Report has been deleted!");
 
     }
 }

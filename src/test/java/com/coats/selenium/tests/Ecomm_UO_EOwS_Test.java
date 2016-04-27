@@ -921,7 +921,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         orderInfoPage.setShadeCode("C1103");
         Ecomm_WaitingForShadeCodeOrderConfirmationPage waitForShadeCodeConf2 = orderInfoPage.pressSubmit2();
         waitForShadeCodeConf2.waitForElement();
-        //AssertJUnit.assertTrue("Flash message is not correct or update was not performed!",waitForShadeCodeConf2.getFlashMessage().contains("The Order Line 10 has been updated"));
+        //AssertJUnit.assertTrue("Flash message is not correct or update was not performed!",waitForShadeCodeConf2.getFlashMessageText().contains("The Order Line 10 has been updated"));
 
         //Press Edit button on second row
         Ecomm_OrderInformationPage orderInfoPage2 = waitForShadeCodeConf2.pressEdit(0);
@@ -929,7 +929,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         orderInfoPage2.setShadeCode("BLACKD");
         Ecomm_WaitingForShadeCodeOrderConfirmationPage waitForShadeCodeConf3 = orderInfoPage2.pressSubmit2();
         waitForShadeCodeConf3.waitForElement();
-        //AssertJUnit.assertTrue("Flash message is not correct or update was not performed!",waitForShadeCodeConf3.getFlashMessage().contains("The Order Line 20 has been updated"));
+        //AssertJUnit.assertTrue("Flash message is not correct or update was not performed!",waitForShadeCodeConf3.getFlashMessageText().contains("The Order Line 20 has been updated"));
 
         //Un-check the first line checkbox
         CommonTask.unSetCheckBox(driver,waitForShadeCodeConf3.getCheckboxLocator(0));
