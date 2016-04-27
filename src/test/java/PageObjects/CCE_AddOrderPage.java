@@ -83,6 +83,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public String getRequesterName() {
         return driver.findElement(requesterField).getText();
     }
+
+    public String getFlashMessageText(){return driver.findElement(flashMessageLocator).getText();}
     
     public String getShipToParty() {
         WebElement field = Wait.visible(driver, shipToPartyField);
@@ -592,4 +594,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         }
     }
 
+    public void waitForElement2() {
+        WebElement wait = Wait.clickable(driver,flashMessageLocator);
+    }
 }
