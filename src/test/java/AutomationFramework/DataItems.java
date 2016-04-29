@@ -4,6 +4,8 @@ package AutomationFramework;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.lang.reflect.Array;
+
 
 public class DataItems {
 
@@ -17,6 +19,8 @@ public class DataItems {
     public static String cceOrderSamplePrompt = targetURL + "/cce/prompt";
     public static String manualEntryEcommURL = targetURL + "/ecom/order/manual";
     public static String masterApproverList = targetURL + "/ApproverLists";
+    public static String hubStockURL = targetURL + "/HubStocks";
+    public static String warehouseURL = targetURL + "/OurStocks";
     public static String cceURL = targetURL + "/cce";
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
@@ -27,6 +31,7 @@ public class DataItems {
     public static String summaryOfPurchasePage = targetURL + "/reports/cc/purchases";
     public static String outstandingPaymentsPage = targetURL + "/reports/cc/payment";
     public static String orderApprovalHistory = targetURL + "/ecom/approvalhistory";
+    public static String advancedReports = targetURL + "/reports/cc/myreports";
 
 
     //Filepaths
@@ -37,7 +42,7 @@ public class DataItems {
     public static String lastUsedFilepath = ""; //Holds last used filepath when generating files using FileFactory
 
     //Login Credentials
-    public static String validCoatsUsername = "samson.vetharaj@coats.com"; //"admin@coats.com";     //"joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
+    public static String validCoatsUsername = "joe.sykes@coats.com"; //"admin@coats.com";     //"joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
     public static String validCoatsUsername2 = "joe.sykes@coats.com"; //"samson.vetharaj@coats.com";
     public static String validCoatsPassword = "password"; //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
@@ -381,10 +386,37 @@ public class DataItems {
     public static String xmlExtension = ".xml";
     public static String qtcExtention = ".qtc";
 
+
+    public static String plantID12 = "ID12";
+
     //Types of Enrich To
     public static String enrichBoth = "Both";
     public static String enrichHub = "Hub";
     public static String enrichWarehouse = "Warehouse";
+
+    //SalesOrg
+    public static String Both = "Both";
+    public static String Hub = "Hub";
+    public static String Warehouse = "Warehouse";
+    public static String None = "--";
+    public static String MixWHW = "MixWHW";
+    public static String MixHWH = "MixHWH";
+    public static String MixWH = "MixWH";
+    public static String MixHW = "MixHW";
+
+
+
+
+    public static String addToWarehouse = "Our";
+    public static String addToHub = "Hub";
+
+    public static String[] articleData180 = {"ID51", "ID12", "8754180", "astra", "180", "Cone", "WHITE", "100"};
+    public static String[] articleData02 = {"ID51", "ID12", "8754120", "astra", "180", "Cone", "WHITE", "100"};
+    public static String[] articleData120 = {"ID51", "ID12", "8754120", "astra", "120", "Cone", "BLACK", "100"};
+    public static String[] articleData110 = {"ID51", "ID12", "8754110", "astra", "110", "Cone", "BLACK", "100"};
+    public static String noneArticle01 = "8754075";
+    public static String noneArticle02 = "8754090";
+    public static String noneArticle03 = "8430045";
 
 
     //eComm mapping

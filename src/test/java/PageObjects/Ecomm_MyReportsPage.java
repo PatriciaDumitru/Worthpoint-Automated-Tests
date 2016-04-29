@@ -5,6 +5,8 @@ import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
 import static PageObjects.WBA_BasePage.driver;
+
+import org.openqa.selenium.Alert;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -38,7 +40,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     By exportButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(2)");
     By resetButton_SUMST = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li:nth-child(3) ");
     By flashMessage = By.id("flashMessage");
-    
+
+    By savedReports = By.cssSelector("#\\31");
+    By savedRepName = By.cssSelector("#content > div:nth-child(4) > table > tbody > tr:nth-child(1) > td:nth-child(1)"); //first row
+    By createNewRep = By.cssSelector("#content > div:nth-child(5) > a");//#content > div > a //#content > div:nth-child(5)
+    By createNewRep2 = By.cssSelector("#content > div > a");
+    By deleteSavedRep = By.cssSelector("#content > div:nth-child(4) > table > tbody > tr:nth-child(1) > td:nth-child(4) > a > span"); //first row
+    By openSavedRadio = By.cssSelector("#content > div:nth-child(4) > table > tbody > tr > td:nth-child(3)"); //first row
+
     public Ecomm_MyReportsPage(WebDriver driver) {
         super(driver);
     }
@@ -134,6 +143,45 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     public WebElement getFlashMessage() {
         return driver.findElement(flashMessage);
     }
+
+    public boolean checkSavedReports() {
+        try {
+            WebElement savedRep = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(savedReports)));
+            System.out.println("There are Saved Reports!");
+            return true;
+        } catch (Exception e) {
+            System.out.println("No Saved Reports!");
+            return false;
+        }
+    }
+
+    public void deleteSavedReport(){
+        WebElement del = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(savedReports)));
+        del.click();
+        driver.findElement(deleteSavedRep).click();
+        try {
+            Alert alert = driver.switchTo().alert();
+            System.out.println("Alert message:"+alert.getText());
+            alert.accept();
+            System.out.println("Alert closed!");
+        } catch (Exception e) {
+            System.out.println("No error(s) displayed");
+        }
+    }
+
+    public Ecomm_CreateNewReportPage createNewReport(){
+        try {
+            WebElement elem = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(createNewRep)));
+            elem.click();
+            return new Ecomm_CreateNewReportPage(driver);
+        } catch (Exception e) {
+            WebElement elem = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(createNewRep2)));
+            elem.click();
+            return new Ecomm_CreateNewReportPage(driver);
+        }
+
+    }
+
     
     public Ecomm_MyReportsPage setSelectAll() {
         CommonTask.setCheckBox(driver, selectAllButton);
@@ -230,6 +278,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         CommonTask.waitForPageLoad(driver);
         Boolean wait2 = Wait.unchecked(driver,selectAllButton);
         return this;
+    }
+
+    public Ecomm_MyReportsPage clickSavedReports(){
+        WebElement savedRep = Wait.clickable(driver,savedReports);
+        savedRep.click();
+        return new Ecomm_MyReportsPage(driver);
+    }
+
+    public Ecomm_MyReportsPage selectSavedReport(){
+        //CommonTask.setCheckBox(driver, openSavedRadio);
+        WebElement savedRep = Wait.clickable(driver,openSavedRadio);
+        savedRep.click();
+        return new Ecomm_MyReportsPage(driver);
+    }
+
+    public String getSavedRepName (){
+        WebElement savedRep = Wait.visible(driver,savedRepName);
+        return savedRep.getText();
+    }
+
+    public String getFlashMessageText(){
+        WebElement flash = Wait.visible(driver,flashMessage);
+        return flash.getText();
     }
     
     public void waitForElement() {
