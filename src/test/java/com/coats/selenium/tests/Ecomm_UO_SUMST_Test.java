@@ -1013,7 +1013,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT2() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1072,9 +1072,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         Assert.assertFalse(element.isDisplayed());
     }
 
-
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT3() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1166,7 +1165,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT4() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1241,7 +1240,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT5() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1317,7 +1316,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT7() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1476,7 +1475,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT8() throws Exception {
 
         helpCheck();
@@ -1542,7 +1541,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT9() throws Exception {
 
         helpCheck();
@@ -1604,7 +1603,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT10() throws Exception {
 
         helpCheck();
@@ -1664,7 +1663,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT13() throws Exception {
 
         helpCheck();
@@ -1727,7 +1726,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT14() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1816,7 +1815,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT15() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1905,7 +1904,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT16() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1994,7 +1993,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT17() throws Exception {
 
         helpCheck();
@@ -2057,7 +2056,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT18() throws Exception {
 
         helpCheck();
@@ -2121,7 +2120,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT19() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -2210,7 +2209,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT20() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -2299,7 +2298,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT21() throws Exception {
 
         helpCheck();
@@ -2359,7 +2358,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT22() throws Exception {
 
         helpCheck();
@@ -2419,7 +2418,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT23() throws Exception {
 
         //new chrome driver
@@ -2509,7 +2508,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT24() throws Exception {
 
         helpCheck();
@@ -2572,7 +2571,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT25() throws Exception {
 
         helpCheck();
@@ -2633,7 +2632,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT31() throws Exception {
 
         helpCheck();
@@ -2696,7 +2695,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT32() throws Exception {
 
         helpCheck();
@@ -2758,7 +2757,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT33() throws Exception {
 
         helpCheck();
@@ -2819,7 +2818,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT34() throws Exception {
 
         helpCheck();
@@ -2883,7 +2882,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT35() throws Exception {
 
         helpCheck();
@@ -2944,7 +2943,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT36() throws Exception {
 
         helpCheck();
@@ -3007,7 +3006,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT37() throws Exception {
 
         helpCheck();
@@ -3068,7 +3067,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT38() throws Exception {
 
         helpCheck();
@@ -3129,7 +3128,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT39() throws Exception {
 
         helpCheck();
@@ -3190,7 +3189,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT40() throws Exception {
 
         helpCheck();
@@ -3250,7 +3249,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT41() throws Exception {
 
         helpCheck();
@@ -3313,7 +3312,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT42() throws Exception {
 
         helpCheck();
@@ -3374,7 +3373,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT43() throws Exception {
 
         helpCheck();
@@ -3440,7 +3439,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT45() throws Exception {
 
         helpCheck();
@@ -3502,7 +3501,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT46() throws Exception {
 
         helpCheck();
@@ -3563,7 +3562,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT47() throws Exception {
 
         helpCheck();
@@ -3624,7 +3623,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT48() throws Exception {
 
         helpCheck();
@@ -3684,7 +3683,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT49() throws Exception {
 
         helpCheck();
@@ -3748,7 +3747,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT50() throws Exception {
 
         helpCheck();
@@ -3814,7 +3813,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT51() throws Exception {
 
         helpCheck();
@@ -3875,7 +3874,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT52() throws Exception {
 
         helpCheck();
@@ -3941,7 +3940,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT53() throws Exception {
 
         helpCheck();
@@ -4005,7 +4004,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
+            (groups = {"testBank"},enabled = true)
     public void UPRT54() throws Exception {
 
         helpCheck();
