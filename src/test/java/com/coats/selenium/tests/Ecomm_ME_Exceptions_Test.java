@@ -26,7 +26,7 @@ public class Ecomm_ME_Exceptions_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY Exceptions ME_Ex1: Your Material Number not available","GE_OC_ME_Ex1");
+        Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY Exceptions ME_Ex1: Your Material Number not available","GE_OC_ME_Ex1",DataItems.validCoatsUsername2,DataItems.validCoatsPassword);
 
         System.out.println("Navigating to Manual Entry...");
 
@@ -47,7 +47,7 @@ public class Ecomm_ME_Exceptions_Test extends DriverFactory {
 
         manualEntryPage.setYourMaterialNumber("InvalidMatNum",0);
         
-        System.out.println(manualEntryPage.getBrand(0));
+        //System.out.println(manualEntryPage.getBrand(0));
         
         AssertJUnit.assertTrue("Manual Entry Page: Invalid/Non-existing material number causes auto-fill",manualEntryPage.getBrand(0).equals("Select"));
         
@@ -73,7 +73,7 @@ public class Ecomm_ME_Exceptions_Test extends DriverFactory {
         //new base test to handle set up
         Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY Exceptions ME_Ex2: SUSST Missing Material (YMN/Shade)","GE_OC_ME_Ex2");
+        Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY Exceptions ME_Ex2: SUSST Missing Material (YMN/Shade)","GE_OC_ME_Ex2",DataItems.validCoatsUsername2,DataItems.validCoatsPassword);
 
         System.out.println("Navigating to Manual Entry...");
 

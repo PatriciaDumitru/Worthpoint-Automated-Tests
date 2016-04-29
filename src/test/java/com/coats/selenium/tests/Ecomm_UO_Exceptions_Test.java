@@ -37,7 +37,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex1: Invalid material number in spreadsheet", "GE_O_OC_URT_Ex1");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex1: Invalid material number in spreadsheet", "GE_O_OC_URT_Ex1",DataItems.validCoatsUsername2,DataItems.validCoatsPassword);
 
         //Disable the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
@@ -126,7 +126,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex2: Invalid brand in spreadsheet", "GE_O_OC_URT_Ex3");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UORTex2: Invalid brand in spreadsheet", "GE_O_OC_URT_Ex3",DataItems.validCoatsUsername2,DataItems.validCoatsPassword);
         
         System.out.println("Navigating to Upload Order...");
         
@@ -679,7 +679,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UOBEex1: Invalid YMN in spreadsheet", "GE_O_OC_UBE_Ex1");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER Exceptions UOBEex1: Invalid YMN in spreadsheet", "GE_O_OC_UBE_Ex1",DataItems.validCoatsUsername2,DataItems.validCoatsPassword);
         
         System.out.println("Navigating to Upload Order...");
         

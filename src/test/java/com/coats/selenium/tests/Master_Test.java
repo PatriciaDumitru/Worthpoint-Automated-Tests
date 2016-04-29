@@ -2701,7 +2701,7 @@ public class Master_Test extends DriverFactory {
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Enterprise Structure: Page and filter checks, add/edit/delete/export features", "A_CM_ES_1 to 8");
+        CCE_MainPage mainPage = base.setUp("Enterprise Structure: Page and filter checks, add/edit/delete/export features", "A_CM_ES_1 to 8",DataItems.validCoatsUsername2,DataItems.validCoatsPassword);
         mainPage.waitForLoad();
 
         System.out.println("Navigating to Enterprise Structure Page...");
