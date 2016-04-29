@@ -232,5 +232,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         AssertJUnit.assertEquals("***Incorrect Flash Message!","Saved Report has been deleted",advRep3.getFlashMessageText());
         System.out.println("Saved Report has been deleted!");
 
+        System.out.println("Test PASSED!");
+
     }
 }
