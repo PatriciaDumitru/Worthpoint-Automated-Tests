@@ -1013,7 +1013,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT2() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1021,7 +1021,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "CO_+_UPRT_02");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "CO_+_UPRT_02",DataItems.validCoatsUsername2,DataItems.validCoatsPassword);
 
         driver.get(DataItems.cceURL);
 
@@ -1065,14 +1065,16 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded.");
 
-        //By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        //WebElement element= driver.findElement(lineRef);
-        //Assert.assertFalse(element.isDisplayed());
-
+        synchronized (driver) {
+            driver.wait(2000);
+        }
+        WebElement element= driver.findElement(DataItems.lineRef);
+        Assert.assertFalse(element.isDisplayed());
     }
 
+
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT3() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1123,36 +1125,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded. Setting mapping...");
 
-        //Mapping details
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(DataItems.mapping1);
 
        System.out.println("Mapping set. Confirming map...");
 
-        By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        WebElement element= driver.findElement(lineRef);
+        WebElement element= driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
 
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
@@ -1189,7 +1166,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT4() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1240,36 +1217,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded. Setting mapping..");
 
-        //Mapping details
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(DataItems.mapping1);
 
         System.out.println("Mapping set. Confirming map..");
 
-        By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        WebElement element= driver.findElement(lineRef);
+        WebElement element= driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
 
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
@@ -1289,7 +1241,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT5() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1340,36 +1292,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded. Setting mapping...");
 
-        //Mapping details
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(DataItems.mapping1);
 
         System.out.println("Mapping set. Confirming map...");
 
-        By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        WebElement element= driver.findElement(lineRef);
+        WebElement element= driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
 
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
@@ -1390,7 +1317,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT7() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1442,36 +1369,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded. Setting mapping...");
 
-        //Mapping details
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(DataItems.mapping1);
 
         System.out.println("Mapping set. Confirming map...");
 
-        By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        WebElement element= driver.findElement(lineRef);
+        WebElement element= driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
 
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
@@ -1574,7 +1476,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT8() throws Exception {
 
         helpCheck();
@@ -1609,33 +1511,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -1656,19 +1532,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT9() throws Exception {
 
         helpCheck();
@@ -1688,7 +1562,6 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-
         //create file
         uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic9", "", true));
 
@@ -1698,38 +1571,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -1750,19 +1594,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver2.switchTo().frame(driver2.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver2.findElement(errorLinesLocator);
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT10() throws Exception {
 
         helpCheck();
@@ -1790,38 +1632,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -1842,18 +1655,16 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver2.switchTo().frame(driver2.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver2.findElement(errorLinesLocator);
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT13() throws Exception {
 
         helpCheck();
@@ -1883,38 +1694,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -1935,19 +1717,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT14() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -1999,36 +1779,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded. Setting mapping...");
 
-        //Mapping details
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(DataItems.mapping1);
 
         System.out.println("Mapping set. Confirming map...");
 
-        By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        WebElement element= driver.findElement(lineRef);
+        WebElement element= driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
 
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
@@ -2061,7 +1816,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT15() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -2113,36 +1868,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded. Setting mapping...");
 
-        //Mapping details
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(DataItems.mapping1);
 
         System.out.println("Mapping set. Confirming map...");
 
-        By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        WebElement element= driver.findElement(lineRef);
+        WebElement element= driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
 
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
@@ -2175,7 +1905,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT16() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -2227,36 +1957,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded. Setting mapping...");
 
-        //Mapping details
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(DataItems.mapping1);
 
         System.out.println("Mapping set. Confirming map...");
 
-        By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        WebElement element= driver.findElement(lineRef);
+        WebElement element= driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
 
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
@@ -2289,7 +1994,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT17() throws Exception {
 
         helpCheck();
@@ -2319,38 +2024,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -2371,19 +2047,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT18() throws Exception {
 
         helpCheck();
@@ -2413,38 +2087,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -2465,8 +2110,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
@@ -2477,7 +2121,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT19() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -2485,7 +2129,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         //new base test to set up
         Ecomm_Base uortTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
-        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "CO_+_UPRT_19");
+        Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "CO_+_UPRT_19",DataItems.validCoatsUsername2,DataItems.validCoatsPassword);
 
         driver.get(DataItems.cceURL);
 
@@ -2529,36 +2173,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded. Setting mapping...");
 
-        //Mapping details
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(DataItems.mapping1);
 
         System.out.println("Mapping set. Confirming map...");
 
-        By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        WebElement element= driver.findElement(lineRef);
+        WebElement element= driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
 
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
@@ -2591,7 +2210,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT20() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -2643,36 +2262,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded. Setting mapping...");
 
-        //Mapping details
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(DataItems.mapping1);
 
         System.out.println("Mapping set. Confirming map...");
 
-        By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        WebElement element= driver.findElement(lineRef);
+        WebElement element= driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
 
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
@@ -2705,7 +2299,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT21() throws Exception {
 
         helpCheck();
@@ -2733,38 +2327,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -2785,18 +2350,16 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver2.switchTo().frame(driver2.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver2.findElement(errorLinesLocator);
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT22() throws Exception {
 
         helpCheck();
@@ -2824,38 +2387,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -2876,18 +2410,16 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver2.switchTo().frame(driver2.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver2.findElement(errorLinesLocator);
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"CONTRACT REFERENCE IS NOT UNIQUE");
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT23() throws Exception {
 
         //new chrome driver
@@ -2940,36 +2472,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page loaded. Setting mapping...");
 
-        //Mapping details
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(mapping);
+        Ecomm_MappingPage mappedPage = mapPage.setMappingWithoutLineRef(DataItems.mapping1);
 
         System.out.println("Mapping set. Confirming map...");
 
-        By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
-        WebElement element= driver.findElement(lineRef);
+        WebElement element= driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
 
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
@@ -3002,7 +2509,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT24() throws Exception {
 
         helpCheck();
@@ -3032,38 +2539,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -3084,19 +2562,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT25() throws Exception {
 
         helpCheck();
@@ -3124,38 +2600,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -3176,19 +2623,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT31() throws Exception {
 
         helpCheck();
@@ -3218,38 +2663,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -3270,19 +2686,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT32() throws Exception {
 
         helpCheck();
@@ -3310,38 +2724,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -3366,15 +2751,14 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT33() throws Exception {
 
         helpCheck();
@@ -3402,38 +2786,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -3454,19 +2809,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT34() throws Exception {
 
         helpCheck();
@@ -3499,33 +2852,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -3546,19 +2873,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT35() throws Exception {
 
         helpCheck();
@@ -3586,38 +2911,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -3638,19 +2934,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT36() throws Exception {
 
         helpCheck();
@@ -3672,7 +2966,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic13", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic36", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -3680,38 +2974,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -3732,19 +2997,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT37() throws Exception {
 
         helpCheck();
@@ -3772,38 +3035,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -3824,19 +3058,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT38() throws Exception {
 
         helpCheck();
@@ -3864,38 +3096,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -3916,19 +3119,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT39() throws Exception {
 
         helpCheck();
@@ -3956,38 +3157,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4008,19 +3180,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT40() throws Exception {
 
         helpCheck();
@@ -4048,38 +3218,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4100,18 +3241,16 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver2.switchTo().frame(driver2.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver2.findElement(errorLinesLocator);
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"CONTRACT REFERENCE IS NOT UNIQUE");
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT41() throws Exception {
 
         helpCheck();
@@ -4141,38 +3280,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4193,19 +3303,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT42() throws Exception {
 
         helpCheck();
@@ -4233,38 +3341,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4285,19 +3364,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT43() throws Exception {
 
         helpCheck();
@@ -4332,33 +3409,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4379,19 +3430,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),DataItems.invalidDataMsg);
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT45() throws Exception {
 
         helpCheck();
@@ -4419,38 +3468,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4475,15 +3495,14 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT46() throws Exception {
 
         helpCheck();
@@ -4511,38 +3530,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4563,19 +3553,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT47() throws Exception {
 
         helpCheck();
@@ -4603,38 +3591,10 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4655,18 +3615,16 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver2.switchTo().frame(driver2.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver2.findElement(errorLinesLocator);
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"CONTRACT REFERENCE IS NOT UNIQUE");
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"},enabled = true)
     public void UPRT48() throws Exception {
 
         helpCheck();
@@ -4694,38 +3652,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4746,18 +3675,16 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver2.switchTo().frame(driver2.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver2.findElement(errorLinesLocator);
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"CONTRACT REFERENCE IS NOT UNIQUE");
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT49() throws Exception {
 
         helpCheck();
@@ -4787,38 +3714,10 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4839,19 +3738,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT50() throws Exception {
 
         helpCheck();
@@ -4886,33 +3783,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -4933,19 +3804,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT51() throws Exception {
 
         helpCheck();
@@ -4973,38 +3842,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -5025,19 +3865,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT52() throws Exception {
 
         helpCheck();
@@ -5072,33 +3910,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -5119,19 +3931,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),DataItems.invalidDataMsg);
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT53() throws Exception {
 
         helpCheck();
@@ -5161,38 +3971,10 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -5213,19 +3995,17 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
         orderConf.waitForElement();
 
-        By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
-        WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
+        WebElement lineWithError=driver2.findElement(DataItems.lineWithErrorLocator);
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = false)
+            (groups = {"eComm","eComm_Orders","Upload_Order"},enabled = true)
     public void UPRT54() throws Exception {
 
         helpCheck();
@@ -5253,38 +4033,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
-        //mapPage.setCustomerName(DataItems.custDetails3[0]);
-
         System.out.println("Details set. Setting mapping...");
 
-        String[][] mapping = {
-                {"Article","Article"},
-                {"Ticket","N/A"},
-                {"Finish","Select"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
-                {"Customer Price","N/A"},
-                {"Sub Account","N/A"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","N/A"},
-                {"Length","N/A"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                //{"Customer Price","N/A"},
-                {"Line Reference","Line Reference"}
-        };
-
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew2(DataItems.mapping2,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -5309,11 +4060,10 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         WebElement lineWithError=driver2.findElement(lineWithErrorLocator);
         lineWithError.click();
 
- /*       driver.switchTo();
-        By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-        WebElement errorLines=driver.findElement(errorLinesLocator);
+        driver2.switchTo();
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
         AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
-*/
+
     }
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at confirmation page
@@ -5348,30 +4098,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         mapPage.setSalesOrg("ID51");
         mapPage.setCustomerName(DataItems.subCustDetails[0]);
 
-        String[][] mapping = {  {"Customer Name","Customer Name"},
-                {"Article","N/A"},
-                {"Ticket","Ticket"},
-                {"Finish","Finish"},
-                {"Shade Code","Shade Code"},
-                {"Required Date","Required Date"},
-                {"Qty","Qty"},
-                {"Style","N/A"},
-                {"Style No./Production No.","N/A"},
-                {"Sub Account","Sub Account"},
-                {"Ship to Party Name","Ship to Party Name"},
-                {"Your Material No.","N/A"},
-                {"Brand","Brand"},
-                {"Length","Length"},
-                {"Buyers","N/A"},
-                {"Customer PO No","Customer PO No"},
-                {"Requestor Name","Requestor Name"},
-                {"Warehouse Instruction","N/A"},
-                {"Buyer Sales Order Number","N/A"},
-                {"Other Information","N/A"},
-                {"Customer Price","N/A"}
-        };
-
-        mapPage.setMappingNotCustomer(mapping);
+        mapPage.setMappingNotCustomer(DataItems.mapping1);
 
         System.out.println("Mapping set. Confirming...");
 
@@ -5394,11 +4121,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         String poNumber = orderConf.getUploadPONumber();
 
         System.out.println("Order Confirmation Page reached. Checking sub-account field appears with correct value...");
-
         AssertJUnit.assertTrue("Order Confirmation Page: Sub-account field does not appear for upload order confirmation",orderConf.getSubAccountField().isDisplayed());
-
         AssertJUnit.assertTrue("Order Confirmation Page: Sub-account field does not hold correct value from spreadsheet",orderConf.getSubAccount().equals(DataItems.subAccount));
-
         System.out.println("Sub-account field present, with correct value. Submitting order...");
 
         Ecomm_PendingApprovalListPage appPage = orderConf.pressSendForApproval();

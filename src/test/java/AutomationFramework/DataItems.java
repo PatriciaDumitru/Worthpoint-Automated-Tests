@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "qa_p4i";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
@@ -369,6 +369,10 @@ public class DataItems {
     public static String deliveryToPlantAll = "Select";
     public static String deliveryToPlantID10 = "ID10";
 
+    //upload order
+    public static By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
+    public static By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
+    public static By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
 
     //QuickFix
     public static String othersWithCode = "*OTHERS*(10000000001)";
@@ -383,4 +387,53 @@ public class DataItems {
     public static String enrichWarehouse = "Warehouse";
 
 
+    //eComm mapping
+    public static String[][] mapping1 = {  {"Customer Name","Customer Name"},
+            {"Article","N/A"},
+            {"Ticket","Ticket"},
+            {"Finish","Finish"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","N/A"},
+            {"Sub Account","Sub Account"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","N/A"},
+            {"Brand","Brand"},
+            {"Length","Length"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO No"},
+            {"Requestor Name","Requestor Name"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            {"Customer Price","N/A"}
+    };
+
+    public static String[][] mapping2 = {
+            {"Article","Article"},
+            {"Ticket","N/A"},
+            {"Finish","Select"},
+            {"Shade Code","Shade Code"},
+            {"Required Date","Required Date"},
+            {"Qty","Qty"},
+            {"Style","N/A"},
+            {"Style No./Production No.","Select"},
+            {"Contract PO No.","Contract"},
+            {"Customer Price","N/A"},
+            {"Sub Account","N/A"},
+            {"Ship to Party Name","Ship to Party Name"},
+            {"Your Material No.","N/A"},
+            {"Brand","N/A"},
+            {"Length","N/A"},
+            {"Buyers","N/A"},
+            {"Customer PO No","Customer PO No"},
+            {"Requestor Name","Requestor"},
+            {"Warehouse Instruction","N/A"},
+            {"Buyer Sales Order Number","N/A"},
+            {"Other Information","N/A"},
+            //{"Customer Price","N/A"},
+            {"Line Reference","Line Reference"}
+    };
 }

@@ -72,7 +72,7 @@ public class WBA_Login_Test extends DriverFactory {
         WBA_LoginPage liPage = new WBA_LoginPage(driver);
         
         //login with valid coats details
-        WBA_ContinuePage contPage = liPage.loginAs(DataItems.validCoatsUsername,DataItems.validCoatsPassword);
+        WBA_ContinuePage contPage = liPage.loginAs(DataItems.validCoatsUsername2,DataItems.validCoatsPassword);
         
         System.out.println("Logged in. Asserting continue page elements are displayed...");
         
@@ -286,7 +286,7 @@ public class WBA_Login_Test extends DriverFactory {
         WBA_LoginPage liPage = new WBA_LoginPage(driver);
         
         //login with valid coats details
-        liPage.typeUsername(DataItems.validCoatsUsername);
+        liPage.typeUsername(DataItems.validCoatsUsername2);
         liPage.typePassword(DataItems.invalidPassword);
         liPage.pressLoginExpectingFailure();
         
