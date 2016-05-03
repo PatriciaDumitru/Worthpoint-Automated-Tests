@@ -44,11 +44,7 @@ public class Ecomm_FailedContractOrder_Test extends DriverFactory {
         AssertJUnit.assertTrue("Failed Contract Order Page: Title not as expected", fcoPage.getBreadcrumb().getText().equals("Orders | Failed Contract Orders"));
         
         System.out.println("Title checked.");
-        
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Failed Contract Order\\1Failed Contract Order Page.png"));
-        
+
         fcoPage.assertBaseElements();
         
         System.out.println("Checking fields...");
@@ -64,18 +60,10 @@ public class Ecomm_FailedContractOrder_Test extends DriverFactory {
         Ecomm_FailedContractOrderPage fcoPage2 = fcoPage.pressSearch();
         fcoPage2.waitForLoad();
         
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Failed Contract Order\\2Filter tested.png"));
-        
         System.out.println("Records listed. Resetting filter...");
         
         Ecomm_FailedContractOrderPage fcoPage3 = fcoPage2.pressReset();
         fcoPage3.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Failed Contract Order\\3Filter reset.png"));
         
         System.out.println("Filter reset. Checking for records...");
         
@@ -86,10 +74,6 @@ public class Ecomm_FailedContractOrder_Test extends DriverFactory {
             viewPage.waitForContent();
             
             System.out.println("View displayed. Error message: " + viewPage.getCOError());
-            
-            //Take a screenshot
-            File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Failed Contract Order\\4View displayed.png"));
             
             System.out.println("Closing view...");
             
@@ -111,10 +95,6 @@ public class Ecomm_FailedContractOrder_Test extends DriverFactory {
             }
             
             orderConf.waitForLoad();
-            
-            //Take a screenshot
-            File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\Failed Contract Order\\5Order confirmation page reached.png"));
             
             System.out.println("Order Confirmation Page reached.");
     
