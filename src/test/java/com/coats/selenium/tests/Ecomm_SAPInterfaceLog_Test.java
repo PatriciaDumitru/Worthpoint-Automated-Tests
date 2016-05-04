@@ -31,10 +31,6 @@ public class Ecomm_SAPInterfaceLog_Test extends DriverFactory {
         Ecomm_SAPInterfaceLogPage logPage = eCommPage.clickSAPInterfaceLog();
         logPage.waitForLoad();
 		
-	//Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\1SAP Interface Log.png"));
-		
         System.out.println("SAP Interface Log page reached.");
         
         logPage.assertBaseElements();
@@ -50,27 +46,15 @@ public class Ecomm_SAPInterfaceLog_Test extends DriverFactory {
         logPage.setFinish(DataItems.finish);
         logPage.setSAPMessage(DataItems.sapMessage);
         
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\2Filter criteria entered.png"));
-        
         System.out.println("Criteria entered. Searching...");
         
         logPage.pressSearch();
         logPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\3Records listed.png"));
-        
+
         System.out.println("Records listed. Pressing reset...");
         
         logPage.pressReset();
         logPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\4Filter reset.png"));
         
         System.out.println("Filter reset. Viewing record...");
         
@@ -78,10 +62,6 @@ public class Ecomm_SAPInterfaceLog_Test extends DriverFactory {
         viewPage.waitForContent();
         
         System.out.println("View displayed. Closing view...");
-        
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\5View displayed.png"));
         
         viewPage.closeView();
         viewPage.waitForInvisibility();
@@ -94,10 +74,6 @@ public class Ecomm_SAPInterfaceLog_Test extends DriverFactory {
         ftView.waitForFTData();
         
         System.out.println("File Transfer View displayed. Closing view...");
-        
-        //Take a screenshot
-        File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\SAP Interface Log\\6File Transfer View.png"));
         
         ftView.closeView();
         
