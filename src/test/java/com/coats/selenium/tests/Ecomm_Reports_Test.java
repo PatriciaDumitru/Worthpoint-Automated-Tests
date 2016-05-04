@@ -29,7 +29,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
     @Test //Invoices Page :: SUMST :: Page and filter checks, reset, view, print, and export
             (groups = {"eComm", "QuickTest"})
-    public void SUMST_I1() throws IOException, InterruptedException, Exception {
+    public void SUMST_I1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -39,10 +39,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         Ecomm_InvoicesPage invPage = eCommPage.clickInvoices();
         invPage.waitForLoad();
-
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Invoices\\1Invoices Page.png"));
 
         System.out.println("Invoices page reached.");
 
@@ -204,7 +200,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
     @Test //Delivery Notes Page :: SUMST :: Page and filter checks, view, print, and export
             (groups = {"eComm", "QuickTest"})
-    public void SUMST_D1() throws InterruptedException, IOException, Exception {
+    public void SUMST_D1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -301,7 +297,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
     @Test //Delivery Notes Page :: SUSST :: Page and filter checks, view, print, and export
             (groups = {"eComm", "QuickTest"})
-    public void SUSST_D1() throws InterruptedException, IOException, Exception {
+    public void SUSST_D1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -378,7 +374,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
     @Test //Summary of Purchases Page :: SUMST :: Page and filter checks,reset, view and export
             (groups = {"eComm", "QuickTest"})
-    public void SUMST_SoP1() throws IOException, InterruptedException, Exception {
+    public void SUMST_SoP1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -467,7 +463,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
     @Test //Summary of Purchases Page :: SUSST :: Page and filter checks,reset, view and export
             (groups = {"eComm", "QuickTest"})
-    public void SUSST_SoP1() throws IOException, InterruptedException, Exception {
+    public void SUSST_SoP1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -549,7 +545,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
     @Test //Outstanding Payments Page :: SUMST :: Page and filter checks, reset, view, and export
             (groups = {"eComm", "QuickTest"})
-    public void SUMST_OP1() throws IOException, Exception {
+    public void SUMST_OP1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -647,7 +643,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
     @Test //Outstanding Payments Page :: SUSST :: Page and filter checks, reset, view, and export
             (groups = {"eComm", "QuickTest"})
-    public void SUSST_OP1() throws IOException, Exception {
+    public void SUSST_OP1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -738,7 +734,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
     @Test //My Reports Page :: SUMST :: Page and filter checks, print, export, save, and reset
             (groups = {"eComm", "QuickTest"})
-    public void SUMST_MR1() throws IOException, Exception {
+    public void SUMST_MR1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -867,7 +863,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
     @Test //My Reports Page :: SUSST :: Page and filter checks, print, export, save, and reset
             (groups = {"eComm", "QuickTest"})
-    public void SUSST_MR1() throws IOException, Exception {
+    public void SUSST_MR1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
