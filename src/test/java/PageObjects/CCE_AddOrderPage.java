@@ -61,7 +61,6 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By cancelToDraftsButton = By.cssSelector("#SampleOrderEditForm > div:nth-child(4) > div.actions > ul > li:nth-child(3) > a"); //cancel button has different locator when reached from draft
     
     //Fields which appear upon click "Yes" to Direct Enrich
-    static By customerSwatchYes = By.id("SampleOrderLine0IsMeasureable1");
     static By customerSwatchNo = By.id("SampleOrderLine0IsMeasureable0");
     static By enrichCommentsField = By.id("SampleOrderLine0FceComments");
     static By enrichCompletedYesButton = By.id("SampleOrderLine0IsOrderCompleted1");
@@ -69,7 +68,6 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By enrichHubButton = By.id("SampleOrderLine0SosId30");
     static By enrichLabButton = By.id("SampleOrderLine0SosId50");
     static By enrichWHSButton = By.id("SampleOrderLine0SosId40");
-    static By browserFileButton = By.id("SampleOrderLine0Measurement");
     
     public CCE_AddOrderPage(WebDriver passedDriver) {
        super(passedDriver);
@@ -110,13 +108,6 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         return driver.findElement(dirEnNoButton);
     }
 
-    public WebElement setCustSwatchYesButton() {
-        return driver.findElement(customerSwatchYes);
-    }
-
-    public WebElement setCustSwatchNoButton() {
-        return driver.findElement(customerSwatchNo);
-    }
     
     public WebElement getPurposeField() {
         return driver.findElement(purposeField);
@@ -138,23 +129,27 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         return driver.findElement(enrichWHSButton);
     }
 
-    public CCE_AddOrderPage setDirectEnrichYes() throws InterruptedException {
+    public CCE_AddOrderPage setDirectEnrichYes(int lineNumber) throws InterruptedException {
+        By dirEnYesButton = By.id("SampleOrderLine" + lineNumber + "IsDirectEnrich1");
         CommonTask.setCheckBox(driver, dirEnYesButton);
         return this;
     }
 
-    public CCE_AddOrderPage setDirectEnrichNo() throws InterruptedException {
-        CommonTask.setCheckBox(driver, dirEnNoButton);
+    public CCE_AddOrderPage setDirectEnrichNo(int lineNumber) throws InterruptedException {
+        By dirEnYesButton = By.id("SampleOrderLine" + lineNumber + "IsDirectEnrich0");
+        CommonTask.setCheckBox(driver, dirEnYesButton);
         return this;
     }
 
-    public CCE_AddOrderPage setCustomerSwatchYes() throws InterruptedException {
+    public CCE_AddOrderPage setCustomerSwatchYes(int lineNumber) throws InterruptedException {
+        By customerSwatchYes = By.id("SampleOrderLine" + lineNumber + "IsMeasureable1");
         CommonTask.setCheckBox(driver, customerSwatchYes);
         return this;
     }
 
-    public CCE_AddOrderPage setCustomerSwatchNo() throws InterruptedException {
-        CommonTask.setCheckBox(driver, customerSwatchNo);
+    public CCE_AddOrderPage setCustomerSwatchNo(int lineNumber) throws InterruptedException {
+        By customerSwatchYes = By.id("SampleOrderLine" + lineNumber + "IsMeasureable0");
+        CommonTask.setCheckBox(driver, customerSwatchYes);
         return this;
     }
 
@@ -219,6 +214,16 @@ public class CCE_AddOrderPage extends WBA_BasePage {
             case "Vicone": driver.findElement(viconeLocator).click(); break;
         }
         return this;      
+    }
+
+    public CCE_AddOrderPage browseButton(int lineNumber){
+        By browseBtn = By.id("SampleOrderLine" + lineNumber + "Measurement");
+        return this;
+    }
+
+    public boolean  checkBrowseButtonEneabled(int lineNumber){
+        By browseBtn = By.id("SampleOrderLine" + lineNumber + "Measurement");
+        return driver.findElement(browseBtn).isEnabled();
     }
     
     public CCE_AddOrderPage setRequestType(String reqType, int lineNumber) {
@@ -354,7 +359,7 @@ public class CCE_AddOrderPage extends WBA_BasePage {
 
         Actions action = new Actions(driver);
         action.click(newLine).build().perform();
-        
+
         //Wait for new line form to load
         Wait.clickable(driver,quantityFieldLine2);
         

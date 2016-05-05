@@ -31,7 +31,7 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
     By shadeCodeField = By.id("s2id_filterSampleOrderLineShadeId");
     By currentSosField = By.id("s2id_filterSampleOrderLineSosId");
     By custRefField = By.id("filterSampleOrderFreetext");
-    By listOrdersButton = By.cssSelector("#FilterOutstandingForm > div.actions > ul > li:nth-child(1)");
+    By listOrdersButton = By.cssSelector("#FilterOutstandingForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterOutstandingForm > div.actions > ul > li:nth-child(2) > a");
     By filterForm = By.id("FilterOutstandingForm");
     By exportButton = By.cssSelector("#content > div.actions > ul > li > a");
