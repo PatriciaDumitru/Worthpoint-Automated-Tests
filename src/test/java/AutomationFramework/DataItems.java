@@ -21,6 +21,7 @@ public class DataItems {
     public static String masterApproverList = targetURL + "/ApproverLists";
     public static String hubStockURL = targetURL + "/HubStocks";
     public static String warehouseURL = targetURL + "/OurStocks";
+    public static String newArticleURL = targetURL + "/SalesOrgMaterials";
     public static String cceURL = targetURL + "/cce";
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
@@ -401,8 +402,6 @@ public class DataItems {
     public static String MixHW = "MixHW";
 
 
-
-
     public static String addToWarehouse = "Our";
     public static String addToHub = "Hub";
 
@@ -413,6 +412,10 @@ public class DataItems {
     public static String noneArticle01 = "8754075";
     public static String noneArticle02 = "8754090";
     public static String noneArticle03 = "8430045";
+    public static String[] similarArticle01 = {"similarArticle01", "ID51", "ID12", "astra", "180", "Cop", "1500"};
+    public static String[] similarArticle02 = {"similarArticle02", "ID51", "ID12", "astra", "120", "Cop", "1500"};
+    public static String[] similarArticle03 = {"similarArticle03", "ID51", "ID12", "astra", "110", "Cop", "1500"};
+
 
 
 }
