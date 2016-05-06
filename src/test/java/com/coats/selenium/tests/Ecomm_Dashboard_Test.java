@@ -114,7 +114,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
             
         bffPage.setCustName(DataItems.custDetails[0]);
         
-        System.out.println("Filter criteria entered. Lisitng files...");
+        System.out.println("Filter criteria entered. Listing files...");
         
         bffPage.pressSearch();
         bffPage.waitForLoad();
@@ -140,6 +140,8 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
         
         bffPage.pressDownload();
 
+        System.out.println("Top item downloaded");
+
     }
     
     @Test
@@ -154,10 +156,6 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
 				
         Ecomm_FTPFailedFilesPage ftpPage = eCommPage.clickFTPFailedFiles();
         ftpPage.waitForLoad();
-            
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\1FTP Failed Files Page.png"));
 		
         System.out.println("FTP Failed Files page reached.");
 		
@@ -179,27 +177,15 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
         
             ftpPage.setCustName(DataItems.custDetails[0]);
 
-            //Take a screenshot
-            File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\2Filter criteria entered.png"));
-
             System.out.println("Filter criteria entered. Lisitng files...");
 
             ftpPage.pressSearch();
             ftpPage.waitForLoad();
 
-            //Take a screenshot
-            File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\3Files listed.png"));
-
             System.out.println("Files listed. Viewing top item...");
 
             Ecomm_OrderViewPage viewPage = ftpPage.pressView();
             viewPage.waitForErrorTable();
-
-            //Take a screenshotF
-            File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Dashboard\\FTP Failed Files\\4View displayed.png"));
 
             System.out.println("View displayed. Closing view...");
 
@@ -216,7 +202,10 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
             System.out.println("Filter reset. Downloading top item...");
 
             ftpPage.pressDownload();
-            
+
+            System.out.println("Top item downloaded");
+
+
         } else {
             System.out.println("No records found.");
         }

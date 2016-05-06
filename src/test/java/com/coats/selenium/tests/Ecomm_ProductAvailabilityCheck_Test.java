@@ -41,10 +41,6 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         Ecomm_ProductAvailabilityCheckPage pacPage = eCommPage.clickProductAvailabilityCheck();
         pacPage.waitForLoad();
         
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\1Product Availability Check Page.png"));
-        
         System.out.println("Page reached.");
         
         pacPage.assertBaseElements();
@@ -61,10 +57,6 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         
         pacPage.setYourMatNum(DataItems.yourMatNum);
         pacPage.setQty("1");
-        
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\2Details entered.png"));
         
         System.out.println("Details entered. Searching for product...");
 
@@ -91,19 +83,12 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         System.out.println("Information: " + information);
         System.out.println("Available Quantity: " + viewPage.getAvailableQty());
 
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\3Search view.png"));
 
         System.out.println("View displayed. Closing view...");
 
         viewPage.closeView();
         viewPage.waitForInvisibility();
         driver.switchTo().defaultContent();
-
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\4View closed.png"));
         
         System.out.println("View closed.");
     
@@ -128,10 +113,6 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         pacPage.setShadeCode(DataItems.expShadeCode);
         pacPage.setQty("1");
         
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\5Details entered.png"));
-        
         System.out.println("Details entered. Searching for product...");
         
         Ecomm_OrderViewPage viewPage = pacPage.pressSearch();
@@ -142,10 +123,6 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         
         System.out.println("Information: " + information);
         System.out.println("Available Quantity: " + viewPage.getAvailableQty());
-        
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Product Availability Check\\6Search view.png"));
         
         System.out.println("View displayed. Closing view...");
         

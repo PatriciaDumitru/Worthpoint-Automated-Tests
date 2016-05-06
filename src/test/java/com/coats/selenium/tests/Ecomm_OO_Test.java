@@ -422,9 +422,10 @@ public class Ecomm_OO_Test extends DriverFactory {
         System.out.println("Approval workflow disabled.");
         
     }
-     /* APPROVERS DON'T HAVE MANUAL ENTRY ACCESS, THIS TEST MAY BE readded later
+
+     // APPROVERS DON'T HAVE MANUAL ENTRY ACCESS, THIS TEST MAY BE readded later
     @Test //Pending Approval List Page :: Approver User :: Page and filter checks, approver/deny function
-    (groups = {"eComm"}) //CHANGES MASTER DATA
+    (groups = {"eComm"},enabled = false) //CHANGES MASTER DATA
     public void PA2() throws Exception {
         WebDriver driver = getDriver();
         
@@ -608,8 +609,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         System.out.println("Approval workflow disabled.");
         
     }
-     */
-    
+
     @Test //Denied Order Page :: Requester User :: Page and filter checks, edit and delete
     (groups = {"eComm", "QuickTest"}) //CHANGES MASTER DATA
     public void DO1() throws Exception {
