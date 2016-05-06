@@ -27,11 +27,13 @@ public class Ecomm_InvoicesPage extends WBA_BasePage {
 	By sapOrderNoField = By.id("filterSapccInvoiceSapOrderNo");
 	By statusField = By.id("filterSapccInvoiceStatus");
 	By requesterField = By.id("filterRequesterId");
-	By searchButton = By.cssSelector("#FilterInvoiceForm > div.grid_12 > table > tbody > tr:nth-child(7) > td > div > input");
-	By resetButton = By.cssSelector("#FilterInvoiceForm > div.grid_12 > table > tbody > tr:nth-child(7) > td > a");
+	By searchButton = By.cssSelector("#FilterInvoiceForm > div.grid_12 > table > tbody > tr:nth-child(10) > td > div > input");
+	By resetButton = By.cssSelector("#FilterInvoiceForm > div.grid_12 > table > tbody > tr:nth-child(10) > td > a");
 	By printButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
 	By viewButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(2) > a");
 	By exportButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > a");
+
+	By tableHeader = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/table/tbody/tr");
 	public By noRecords = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > div");
         public String shipToPart1 = "#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(";
         public String shipToPart2 = ") > td:nth-child(10)";
@@ -158,7 +160,8 @@ public class Ecomm_InvoicesPage extends WBA_BasePage {
         WebElement button = Wait.clickable(driver,searchButton);
 
         StringBuilder header = new StringBuilder();
-        for (int i=0;i<9;i++){
+		int columnCount = driver.findElements(tableHeader).size();
+        for (int i=0;i<columnCount-1;i++){
             By tableHeader = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(1) > th:nth-child("+(i+1)+")");
             //#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(1) > th:nth-child(1)
             header = header.append(driver.findElement(tableHeader).getText());

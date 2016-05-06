@@ -27,11 +27,13 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
     By yourMatNumField = By.id("filterSapccDeliverynoteCustomerMaterialNo");
     By ticketField = By.id("filterSapccDeliverynoteTicketId");
     By custPOField = By.id("filterSapccDeliverynotePoNumber");
-    By searchButton = By.cssSelector("#FilterDeliverynoteForm > div.grid_12 > table > tbody > tr:nth-child(7) > td > div > input");
-    By resetButton = By.cssSelector("#FilterDeliverynoteForm > div.grid_12 > table > tbody > tr:nth-child(7) > td > a");
+    By searchButton = By.cssSelector("#FilterDeliverynoteForm > div.grid_12 > table > tbody > tr:nth-child(8) > td > div > input");
+    By resetButton = By.cssSelector("#FilterDeliverynoteForm > div.grid_12 > table > tbody > tr:nth-child(8) > td > a");
     By printButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
     By viewButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(2) > a");
     By exportButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > a");
+
+    By tableHeaders = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/table/tbody/tr[1]/th");//*[@id="content"]/div[2]/div/div[2]/table/tbody/tr[1]/th[1]
     public By noRecords = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > div");
     public String requesterPart1 = "#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(";
     public String requesterPart2 = ") > td:nth-child(5)";
@@ -132,8 +134,10 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
 
     public StringBuilder getTableHeader() {
         WebElement button = Wait.clickable(driver,searchButton);
+        int countColumn = driver.findElements(tableHeaders).size();
+        System.out.println("No of columns in header:"+countColumn);
         StringBuilder header = new StringBuilder();
-        for (int i=0;i<4;i++){
+        for (int i=0;i<countColumn;i++){
             By tableHeader = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(1) > th:nth-child("+(i+1)+")");
             header = header.append(driver.findElement(tableHeader).getText());
             header = header.append("|");

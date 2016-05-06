@@ -29,6 +29,8 @@ public class Ecomm_SummaryOfPurchasePage extends WBA_BasePage {
     By resetButton = By.cssSelector("#FilterPurchaseForm > div.grid_12 > table > tbody > tr:nth-child(6) > td > a");
     By viewButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
     By exportButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > a");
+
+    By tableHeaders = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/table/tbody/tr[1]/th");
     public String brandPart1 = "#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(";
     public String brandPart2 = ") > td:nth-child(5)";
     public By noRecords = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > div");
@@ -60,9 +62,9 @@ public class Ecomm_SummaryOfPurchasePage extends WBA_BasePage {
 
     public StringBuilder getTableHeader() {
         WebElement button = Wait.clickable(driver,searchButton);
-
+        int columnCount = driver.findElements(tableHeaders).size();
         StringBuilder header = new StringBuilder();
-        for (int i=0;i<5;i++){
+        for (int i=0;i<columnCount;i++){
             By tableHeader = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(1) > th:nth-child("+(i+1)+")");
             //#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(1) > th:nth-child(1)
             header = header.append(driver.findElement(tableHeader).getText());

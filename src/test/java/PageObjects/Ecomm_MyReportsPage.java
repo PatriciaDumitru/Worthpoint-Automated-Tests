@@ -42,11 +42,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     By flashMessage = By.id("flashMessage");
 
     By savedReports = By.cssSelector("#\\31");
-    By savedRepName = By.cssSelector("#content > div:nth-child(4) > table > tbody > tr:nth-child(1) > td:nth-child(1)"); //first row
+    By savedRepName = By.cssSelector("#content > div:nth-child(5) > table > tbody > tr:nth-child(1) > td:nth-child(1) > a"); //first row
     By createNewRep = By.cssSelector("#content > div:nth-child(5) > a");//#content > div > a //#content > div:nth-child(5)
     By createNewRep2 = By.cssSelector("#content > div > a");
-    By deleteSavedRep = By.cssSelector("#content > div:nth-child(4) > table > tbody > tr:nth-child(1) > td:nth-child(4) > a > span"); //first row
-    By openSavedRadio = By.cssSelector("#content > div:nth-child(4) > table > tbody > tr > td:nth-child(3)"); //first row
+    By deleteSavedRep = By.cssSelector("#content > div:nth-child(5) > table > tbody > tr:nth-child(1) > td:nth-child(3) > a > span"); //first row
+    //By openSavedRadio = By.cssSelector("#content > div:nth-child(4) > table > tbody > tr > td:nth-child(3)"); //first row
+    By tableElements = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr");
 
     public Ecomm_MyReportsPage(WebDriver driver) {
         super(driver);
@@ -155,17 +156,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         }
     }
 
-    public void deleteSavedReport(){
+    public void deleteSavedReport(String item){
         WebElement del = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(savedReports)));
         del.click();
-        driver.findElement(deleteSavedRep).click();
-        try {
-            Alert alert = driver.switchTo().alert();
-            System.out.println("Alert message:"+alert.getText());
-            alert.accept();
-            System.out.println("Alert closed!");
-        } catch (Exception e) {
-            System.out.println("No error(s) displayed");
+        int rowCount = driver.findElements(tableElements).size();
+        System.out.println("Number of saved reports:"+rowCount);
+        for (int i=1;i<rowCount+1;i++) {
+            By reportName = By.cssSelector("#content > div:nth-child(5) > table > tbody > tr:nth-child(" + i + ") > td:nth-child(1) > a");
+            By deleteButton = By.cssSelector("#content > div:nth-child(5) > table > tbody > tr:nth-child(" + i + ") > td:nth-child(3) > a");
+            if (driver.findElement(reportName).getText().contentEquals(item)) {
+                driver.findElement(deleteButton).click();
+                try {
+                    Alert alert = driver.switchTo().alert();
+                    System.out.println("Alert message:"+alert.getText());
+                    alert.accept();
+                    System.out.println("Alert closed!");
+                } catch (Exception e) {
+                    System.out.println("No error(s) displayed");
+                }
+                break;
+            } else {
+                System.out.println("No Report Name called " + item + " found on this row. Moving to next ...");
+            }
         }
     }
 
@@ -286,16 +298,53 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         return new Ecomm_MyReportsPage(driver);
     }
 
-    public Ecomm_MyReportsPage selectSavedReport(){
+    public Ecomm_CreateNewReportPage selectSavedReport(String item){
         //CommonTask.setCheckBox(driver, openSavedRadio);
-        WebElement savedRep = Wait.clickable(driver,openSavedRadio);
-        savedRep.click();
-        return new Ecomm_MyReportsPage(driver);
+        WebElement savedRep = Wait.clickable(driver,savedRepName);
+        getReportNameWebElem(item).click();
+        return new Ecomm_CreateNewReportPage(driver);
     }
 
     public String getSavedRepName (){
         WebElement savedRep = Wait.visible(driver,savedRepName);
         return savedRep.getText();
+    }
+
+    public boolean searchSavedRepName(String item){
+        WebElement savedRep = Wait.visible(driver,savedRepName);
+        int rowCount = driver.findElements(tableElements).size();
+        System.out.println("Number of saved reports:"+rowCount);
+        StringBuilder repNames = new StringBuilder();
+        for (int i=1;i<rowCount+1;i++){
+            By reportName = By.cssSelector("#content > div:nth-child(5) > table > tbody > tr:nth-child("+i+") > td:nth-child(1) > a");
+            repNames.append(driver.findElement(reportName).getText());
+            System.out.println("Report names:"+repNames);
+        }
+        if (repNames.toString().contains(item)) {
+            System.out.println("Report "+item+" found!");
+            return true;
+        } else {
+            System.out.println("Report not found!");
+            return false;
+        }
+    }
+
+    public WebElement getReportNameWebElem (String item){
+        WebElement savedRep = Wait.visible(driver,savedRepName);
+        int rowCount = driver.findElements(tableElements).size();
+        WebElement returnedElem = driver.findElement(tableElements);
+        for (int i=1;i<rowCount+1;i++){
+            By reportName = By.cssSelector("#content > div:nth-child(5) > table > tbody > tr:nth-child("+i+") > td:nth-child(1) > a");
+
+            if (driver.findElement(reportName).getText().contentEquals(item)){
+                WebElement elem = driver.findElement(reportName);
+                System.out.println(item+" report found on row "+i+"!");
+                returnedElem = elem;
+            } else {
+                System.out.println("No Report Name called "+item+" found on this row. Moving to next ...");
+            }
+        }
+        return returnedElem;
     }
 
     public String getFlashMessageText(){
