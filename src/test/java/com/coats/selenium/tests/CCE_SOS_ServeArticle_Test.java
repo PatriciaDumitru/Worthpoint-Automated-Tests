@@ -88,6 +88,10 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);
 
+        addSimilarArticle01();
+        addSimilarArticle02();
+        addSimilarArticle03();
+
         driver.get(DataItems.hubStockURL);
         sos.filterArticlesByPlantAndDeleteAll(DataItems.plantID12);
         driver.get(DataItems.warehouseURL);
@@ -100,28 +104,28 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData180[0], DataItems.articleData180[1], articleInStock,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], DataItems.articleData180[6], DataItems.articleData180[7]);
+                     DataItems.articleData180[6], DataItems.articleData180[7]);
         } else if (addArticleTo == "Warehouse") {
             //Add article to HUB
             System.out.println("Navigating to HubStock page...");
             driver.get(DataItems.warehouseURL);
             System.out.println("Adding Article to WarehouseStock...");
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData180[0], DataItems.articleData180[1], articleInStock,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], DataItems.articleData180[6], DataItems.articleData180[7]);
+                     DataItems.articleData180[6], DataItems.articleData180[7]);
         } else if (addArticleTo == "Both") {
             //Add article to HUB
             System.out.println("Navigating to HubStock page...");
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData180[0], DataItems.articleData180[1], articleInStock,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], DataItems.articleData180[6], DataItems.articleData180[7]);
+                     DataItems.articleData180[6], DataItems.articleData180[7]);
 
             //Add article to Warehouse
             System.out.println("Navigating to Warehouse page...");
             driver.get(DataItems.warehouseURL);
             System.out.println("Adding Article to WarehouseStock...");
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData180[0], DataItems.articleData180[1], articleInStock,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], DataItems.articleData180[6], DataItems.articleData180[7]);
+                     DataItems.articleData180[6], DataItems.articleData180[7]);
         } else System.out.println("WRONG INPUT FOR 'ADD ARTICLE TO' PARAM...");
 
         //Article is DataItems.articleData180[2]
@@ -147,6 +151,24 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         System.out.println(sos.getArticleFromOrder().getText());
         AssertJUnit.assertTrue("Article is not what  expected", sos.getArticleFromOrder().getText().equals(expectedArticle));
 
+    }
+
+    public void addSimilarArticle01() throws Exception{
+        WebDriver driver = getDriver();
+        CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);
+        sos.createNewArticle(DataItems.similarArticle01[0],DataItems.similarArticle01[1], DataItems.similarArticle01[2], DataItems.similarArticle01[3], DataItems.similarArticle01[4], DataItems.similarArticle01[5], DataItems.similarArticle01[6]);
+    }
+
+    public void addSimilarArticle02() throws Exception{
+        WebDriver driver = getDriver();
+        CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);
+        sos.createNewArticle(DataItems.similarArticle02[0],DataItems.similarArticle02[1], DataItems.similarArticle02[2], DataItems.similarArticle02[3], DataItems.similarArticle02[4], DataItems.similarArticle02[5], DataItems.similarArticle02[6]);
+    }
+
+    public void addSimilarArticle03() throws Exception{
+        WebDriver driver = getDriver();
+        CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);
+        sos.createNewArticle(DataItems.similarArticle03[0],DataItems.similarArticle03[1], DataItems.similarArticle03[2], DataItems.similarArticle03[3], DataItems.similarArticle03[4], DataItems.similarArticle03[5], DataItems.similarArticle03[6]);
     }
 
 
@@ -222,7 +244,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         base.setUp("SL_B_05", "Single Line - Both - Similar Article:Yes - H:Y - W:N");
 
-        GeneralSingleLine(DataItems.Both, DataItems.Hub, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
+        GeneralSingleLine(DataItems.Both, DataItems.Hub, DataItems.similarArticle01[0], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
     }
 
     @Test //SL_B_06 : Single Line - Both - Similar Article:Yes - H:N -W:Y
@@ -237,7 +259,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         base.setUp("SL_B_06", "Single Line - Both - Similar Article:No - H:N -W:Y");
 
-        GeneralSingleLine(DataItems.Both, DataItems.Warehouse, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.Warehouse);
+        GeneralSingleLine(DataItems.Both, DataItems.Warehouse, DataItems.similarArticle01[0], DataItems.articleData180[2], DataItems.articleData180[6],  DataItems.similarArticle01[0], DataItems.Warehouse);
     }
 
     @Test //SL_B_07 : Single Line - Both - Similar Article:Yes - H:N -W:N
@@ -252,8 +274,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         base.setUp("SL_B_07", "Single Line - Both - Similar Article:Yes - H:N -W:N");
 
-        GeneralSingleLine(DataItems.Both, DataItems.Both, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
-        GeneralSingleLine(DataItems.Both, DataItems.Both, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.None);
+        GeneralSingleLine(DataItems.Both, DataItems.Both, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.None);
     }
 
     @Test //SL_B_08 : Single Line - Both - Similar Article:Yes - H:Y -W:Y
@@ -268,7 +289,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         base.setUp("SL_B_08", "Single Line - Both - Similar Article:Yes - H:Y -W:Y");
 
-        GeneralSingleLine(DataItems.Both, DataItems.Both, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.Warehouse);
+        GeneralSingleLine(DataItems.Both, DataItems.Both, DataItems.similarArticle01[0], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.similarArticle01[0], DataItems.Warehouse);
     }
 
     @Test //SL_W_01 : Single Line - Warehouse - Similar Article:No - H:Y -W:N
@@ -343,28 +364,12 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         base.setUp("SL_W_05", "Single Line - Warehouse - Similar Article:Yes - H:Y - W:N");
 
-        GeneralSingleLine(DataItems.Warehouse, DataItems.Hub, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
-    }
-
-
-    @Test //SL_W_07 : Single Line - Warehouse - Similar Article:Yes - H:N -W:N
-            (groups = {"CCE"})
-    public void SL_W_06() throws Exception {
-        //New driver object to control browser
-        WebDriver driver = getDriver();
-
-        //New base object to handle log-in and set up
-        Cce_Base base = new Cce_Base(driver);
-
-        //Set up returns a CCE Page and outputs test details
-        base.setUp("SL_W_07", "Single Line - Warehouse - Similar Article:Yes - H:N -W:N");
-
-        GeneralSingleLine(DataItems.Warehouse, DataItems.Both, DataItems.articleData180[2], DataItems.articleData02[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.None);
+        GeneralSingleLine(DataItems.Warehouse, DataItems.Hub, DataItems.similarArticle01[0], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
     }
 
     @Test //SL_W_08 : SSingle Line - Warehouse - Similar Article:Yes - H:Y -W:Y
             (groups = {"CCE"})
-    public void SL_W_07() throws Exception {
+    public void SL_W_08() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
 
@@ -374,7 +379,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         base.setUp("SL_W_08", "Single Line - Warehouse - Similar Article:Yes - H:Y -W:Y");
 
-        GeneralSingleLine(DataItems.Warehouse, DataItems.Both, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData02[2], DataItems.Warehouse);
+        GeneralSingleLine(DataItems.Warehouse, DataItems.Both, DataItems.similarArticle01[0], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.similarArticle01[0], DataItems.Warehouse);
     }
 
     @Test //SL_H_01 : Single Line - Hub - Similar Article:No - H:Y -W:N
@@ -450,23 +455,9 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         base.setUp("SL_H_06", "Single Line - Hub - Similar Article:Yes - H:N -W:Y");
 
-        GeneralSingleLine(DataItems.Hub, DataItems.Warehouse, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
+        GeneralSingleLine(DataItems.Hub, DataItems.Warehouse, DataItems.similarArticle01[0], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
     }
 
-    @Test //SL_H_07 : Single Line - Hub - Similar Article:Yes - H:N -W:N
-            (groups = {"CCE"})
-    public void SL_H_07() throws Exception {
-        //New driver object to control browser
-        WebDriver driver = getDriver();
-
-        //New base object to handle log-in and set up
-        Cce_Base base = new Cce_Base(driver);
-
-        //Set up returns a CCE Page and outputs test details
-        base.setUp("SL_H_07", "Single Line - Hub - Similar Article:Yes - H:N -W:N");
-
-        GeneralSingleLine(DataItems.Hub, DataItems.Both, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
-    }
 
     @Test //SL_H_08 : SSingle Line - Hub - Similar Article:Yes - H:Y -W:Y
             (groups = {"CCE"})
@@ -480,7 +471,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         base.setUp("SL_H_08", "Single Line - Hub - Similar Article:Yes - H:Y -W:Y");
 
-        GeneralSingleLine(DataItems.Hub, DataItems.Both, DataItems.articleData02[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
+        GeneralSingleLine(DataItems.Hub, DataItems.Both, DataItems.similarArticle01[0], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.None);
     }
 
 
@@ -504,6 +495,10 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);
 
+        addSimilarArticle01();
+        addSimilarArticle02();
+        addSimilarArticle03();
+
         driver.get(DataItems.hubStockURL);
         sos.filterArticlesByPlantAndDeleteAll(DataItems.plantID12);
         driver.get(DataItems.warehouseURL);
@@ -521,59 +516,59 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData180[0], DataItems.articleData180[1], article1,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], shade1, DataItems.articleData180[7]);
+                     shade1, DataItems.articleData180[7]);
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData120[0], DataItems.articleData120[1], article2,
-                    DataItems.articleData120[3], DataItems.articleData120[4], DataItems.articleData120[5], shade2, DataItems.articleData120[7]);
+                     shade2, DataItems.articleData120[7]);
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData110[0], DataItems.articleData110[1], article3,
-                    DataItems.articleData110[3], DataItems.articleData110[4], DataItems.articleData110[5], shade3, DataItems.articleData110[7]);
+                     shade3, DataItems.articleData110[7]);
         } else if (addArticleTo == "Warehouse") {
             //Add article to HUB
             System.out.println("Navigating to Warehouse page...");
             driver.get(DataItems.warehouseURL);
             System.out.println("Adding Article to WarehouseStock...");
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData180[0], DataItems.articleData180[1], article1,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], shade1, DataItems.articleData180[7]);
+                     shade1, DataItems.articleData180[7]);
             driver.get(DataItems.warehouseURL);
             System.out.println("Adding Article to WarehouseStock...");
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData120[0], DataItems.articleData120[1], article2,
-                    DataItems.articleData120[3], DataItems.articleData120[4], DataItems.articleData120[5], shade2, DataItems.articleData120[7]);
+                     shade2, DataItems.articleData120[7]);
             driver.get(DataItems.warehouseURL);
             System.out.println("Adding Article to WarehouseStock...");
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData110[0], DataItems.articleData110[1], article3,
-                    DataItems.articleData110[3], DataItems.articleData110[4], DataItems.articleData110[5], shade3, DataItems.articleData110[7]);
+                     shade3, DataItems.articleData110[7]);
         } else if (addArticleTo == "MixHWH") {
 
             System.out.println("Navigating to HubStock page...");
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData180[0], DataItems.articleData180[1], article1,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], shade1, DataItems.articleData180[7]);
+                     shade1, DataItems.articleData180[7]);
             driver.get(DataItems.warehouseURL);
             System.out.println("Adding Article to WarehouseStock...");
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData120[0], DataItems.articleData120[1], article2,
-                    DataItems.articleData120[3], DataItems.articleData120[4], DataItems.articleData120[5], shade2, DataItems.articleData120[7]);
+                     shade2, DataItems.articleData120[7]);
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData110[0], DataItems.articleData110[1], article3,
-                    DataItems.articleData110[3], DataItems.articleData110[4], DataItems.articleData110[5], shade3, DataItems.articleData110[7]);
+                     shade3, DataItems.articleData110[7]);
         } else if (addArticleTo == "MixWHW") {
 
             System.out.println("Adding Article to WarehouseStock...");
             driver.get(DataItems.warehouseURL);
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData180[0], DataItems.articleData180[1], article1,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], shade1, DataItems.articleData180[7]);
+                     shade1, DataItems.articleData180[7]);
             System.out.println("Adding Article to HubStock...");
             driver.get(DataItems.hubStockURL);
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData120[0], DataItems.articleData120[1], article2,
-                    DataItems.articleData120[3], DataItems.articleData120[4], DataItems.articleData120[5], shade2, DataItems.articleData120[7]);
+                     shade2, DataItems.articleData120[7]);
             System.out.println("Adding Article to WarehouseStock...");
             driver.get(DataItems.warehouseURL);
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData110[0], DataItems.articleData110[1], article3,
-                    DataItems.articleData110[3], DataItems.articleData110[4], DataItems.articleData110[5], shade3, DataItems.articleData110[7]);
+                     shade3, DataItems.articleData110[7]);
         }
     }
 
@@ -727,7 +722,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Both);
 
-        addArticlesToStock3Lines(DataItems.Hub, DataItems.noneArticle01, DataItems.articleData180[6], DataItems.noneArticle02, DataItems.articleData180[6], DataItems.noneArticle03, DataItems.articleData180[6]);
+        addArticlesToStock3Lines(DataItems.Hub, DataItems.similarArticle01[0], DataItems.articleData180[6], DataItems.similarArticle02[0], DataItems.articleData180[6], DataItems.similarArticle03[0], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
@@ -751,14 +746,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Both);
 
-        addArticlesToStock3Lines(DataItems.Warehouse, DataItems.noneArticle01, DataItems.articleData180[6], DataItems.noneArticle02, DataItems.articleData180[6], DataItems.noneArticle03, DataItems.articleData180[6]);
+        addArticlesToStock3Lines(DataItems.Warehouse, DataItems.similarArticle01[0], DataItems.articleData180[6], DataItems.similarArticle02[0], DataItems.articleData180[6], DataItems.similarArticle03[0], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
         order3Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
 
-        expectedResults3Lines(DataItems.articleData180[2], DataItems.Warehouse, DataItems.articleData120[2], DataItems.Warehouse, DataItems.articleData110[2], DataItems.Warehouse);
+        expectedResults3Lines(DataItems.similarArticle01[0], DataItems.Warehouse, DataItems.similarArticle02[0], DataItems.Warehouse, DataItems.similarArticle03[3], DataItems.Warehouse);
     }
 
 
@@ -776,14 +771,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Both);
 
-        addArticlesToStock3Lines(DataItems.MixHWH, DataItems.noneArticle01, DataItems.articleData180[6], DataItems.noneArticle02, DataItems.articleData180[6], DataItems.noneArticle03, DataItems.articleData180[6]);
+        addArticlesToStock3Lines(DataItems.MixHWH, DataItems.similarArticle01[0], DataItems.articleData180[6], DataItems.similarArticle02[0], DataItems.articleData180[6], DataItems.similarArticle03[0], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
         order3Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
 
-        expectedResults3Lines(DataItems.articleData180[2], DataItems.None, DataItems.noneArticle02, DataItems.Warehouse, DataItems.articleData110[2], DataItems.None);
+        expectedResults3Lines(DataItems.articleData180[2], DataItems.None, DataItems.similarArticle02[0], DataItems.Warehouse, DataItems.articleData110[2], DataItems.None);
     }
 
     @Test //ML_B_09 : Multi Line – Both – Similar Article:Mixed – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N]
@@ -800,14 +795,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Both);
 
-        addArticlesToStock3Lines(DataItems.MixHWH, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.noneArticle02, DataItems.articleData180[6], DataItems.noneArticle03, DataItems.articleData180[6]);
+        addArticlesToStock3Lines(DataItems.MixHWH, DataItems.similarArticle01[0], DataItems.articleData180[6], DataItems.similarArticle02[0], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
         order3Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
 
-        expectedResults3Lines(DataItems.noneArticle01, DataItems.Warehouse, DataItems.articleData120[2], DataItems.Hub, DataItems.articleData110[2], DataItems.None);
+        expectedResults3Lines(DataItems.articleData180[2], DataItems.None, DataItems.similarArticle02[0], DataItems.Warehouse, DataItems.articleData110[2], DataItems.Hub);
     }
 
     @Test //ML_B_10 : Multi Line – Both – Similar Article:Mixed – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N]
@@ -824,14 +819,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Both);
 
-        addArticlesToStock3Lines(DataItems.MixHWH, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
+        addArticlesToStock3Lines(DataItems.MixHWH, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6], DataItems.similarArticle03[0], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
         order3Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
 
-        expectedResults3Lines(DataItems.articleData180[2], DataItems.Warehouse, DataItems.articleData120[2], DataItems.Warehouse, DataItems.articleData110[2], DataItems.Warehouse);
+        expectedResults3Lines(DataItems.articleData180[2], DataItems.Hub, DataItems.articleData120[2], DataItems.Warehouse, DataItems.articleData110[2], DataItems.None);
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------
@@ -842,50 +837,47 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);
 
         if (addArticleTo == "Hub") {
-            //Add article to HUB
             System.out.println("Navigating to HubStock page...");
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData180[0], DataItems.articleData180[1], article1,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], shade1, DataItems.articleData180[7]);
+                     shade1, DataItems.articleData180[7]);
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData120[0], DataItems.articleData120[1], article2,
-                    DataItems.articleData120[3], DataItems.articleData120[4], DataItems.articleData120[5], shade2, DataItems.articleData120[7]);
+                     shade2, DataItems.articleData120[7]);
         } else if (addArticleTo == "Warehouse") {
-            //Add article to HUB
             System.out.println("Navigating to Warehouse page...");
             driver.get(DataItems.warehouseURL);
             System.out.println("Adding Article to WarehouseStock...");
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData180[0], DataItems.articleData180[1], article1,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], shade1, DataItems.articleData180[7]);
+                     shade1, DataItems.articleData180[7]);
             driver.get(DataItems.warehouseURL);
             System.out.println("Adding Article to WarehouseStock...");
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData120[0], DataItems.articleData120[1], article2,
-                    DataItems.articleData120[3], DataItems.articleData120[4], DataItems.articleData120[5], shade2, DataItems.articleData120[7]);
+                     shade2, DataItems.articleData120[7]);
         } else if (addArticleTo == "MixHW") {
-
             System.out.println("Navigating to HubStock page...");
             driver.get(DataItems.hubStockURL);
             System.out.println("Adding Article to HubStock...");
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData180[0], DataItems.articleData180[1], article1,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], shade1, DataItems.articleData180[7]);
+                     shade1, DataItems.articleData180[7]);
             driver.get(DataItems.warehouseURL);
             System.out.println("Adding Article to WarehouseStock...");
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData120[0], DataItems.articleData120[1], article2,
-                    DataItems.articleData120[3], DataItems.articleData120[4], DataItems.articleData120[5], shade2, DataItems.articleData120[7]);
+                     shade2, DataItems.articleData120[7]);
         } else if (addArticleTo == "MixWH") {
-
             System.out.println("Adding Article to WarehouseStock...");
             driver.get(DataItems.warehouseURL);
             sos.setStockArticleAndSave(DataItems.addToWarehouse, DataItems.articleData180[0], DataItems.articleData180[1], article1,
-                    DataItems.articleData180[3], DataItems.articleData180[4], DataItems.articleData180[5], shade1, DataItems.articleData180[7]);
+                     shade1, DataItems.articleData180[7]);
             System.out.println("Adding Article to HubStock...");
             driver.get(DataItems.hubStockURL);
             sos.setStockArticleAndSave(DataItems.addToHub, DataItems.articleData120[0], DataItems.articleData120[1], article2,
-                    DataItems.articleData120[3], DataItems.articleData120[4], DataItems.articleData120[5], shade2, DataItems.articleData120[7]);
+                     shade2, DataItems.articleData120[7]);
             System.out.println("Adding Article to WarehouseStock...");
         }
+        else System.out.println("Wrong input...");
     }
 
     public void expectedResults2Lines(String expectedArticleLine1, String expectedSOSLine1, String expectedArticleLine2, String expectedSOSLine2) throws Exception {
@@ -956,7 +948,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        base.setUp("ML_H_02", "ulti Line – Hub – Similar Article:No – L1[H:N, W:Y] – L2[H:Y] ");
+        base.setUp("ML_H_02", "Multi Line – Hub – Similar Article:No – L1[H:N, W:Y] – L2[H:Y] ");
 
         setEnv(DataItems.Hub);
 
@@ -967,7 +959,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
-        expectedResults2Lines(DataItems.articleData180[2], DataItems.Warehouse, DataItems.articleData120[2], DataItems.Warehouse);
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.Warehouse, DataItems.articleData120[2], DataItems.Hub);
     }
 
     @Test //ML_H_03 : Multi Line – Hub – Similar Article:Yes – L1[H:Y] – L2[H:N]
@@ -984,14 +976,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Hub);
 
-        addArticlesToStock2Lines(DataItems.Hub, DataItems.noneArticle01, DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+        addArticlesToStock2Lines(DataItems.Hub, DataItems.similarArticle01[0], DataItems.articleData180[6], DataItems.similarArticle02[0], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
-        expectedResults2Lines(DataItems.noneArticle01, DataItems.Warehouse, DataItems.articleData120[2], DataItems.Warehouse);
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.similarArticle02[0], DataItems.None);
     }
 
     @Test //ML_H_04 : Multi Line – Hub – Similar Article:Yes – L1[H:N, W:Y] – L2[H:Y]
@@ -1008,14 +1000,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Hub);
 
-        addArticlesToStock2Lines(DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+        addArticlesToStock2Lines(DataItems.MixWH, DataItems.similarArticle01[0], DataItems.articleData180[6], DataItems.similarArticle02[0], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
-        expectedResults2Lines(DataItems.articleData180[2], DataItems.Warehouse, DataItems.articleData120[2], DataItems.Warehouse);
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.articleData120[2], DataItems.None);
     }
 
     @Test //ML_H_05 : Multi Line – Hub – Similar Article:Mix – L1[H:Y] – L2[H:N]
@@ -1032,14 +1024,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Hub);
 
-        addArticlesToStock2Lines(DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+        addArticlesToStock2Lines(DataItems.Hub, DataItems.similarArticle01[0], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
-        expectedResults2Lines(DataItems.articleData180[2], DataItems.Warehouse, DataItems.articleData120[2], DataItems.Warehouse);
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.articleData120[2], DataItems.Hub);
     }
 
     @Test //ML_H_06 : Multi Line – Hub – Similar Article:Mix – L1[H:N, W:Y] – L2[H:Y]
@@ -1056,14 +1048,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Hub);
 
-        addArticlesToStock2Lines(DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+        addArticlesToStock2Lines(DataItems.MixWH, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.similarArticle02[0], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
-        expectedResults2Lines(DataItems.articleData180[2], DataItems.Warehouse, DataItems.articleData120[2], DataItems.Warehouse);
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.Hub, DataItems.articleData120[2], DataItems.None);
     }
 
     @Test //ML_W_01 : Multi Line – Warehouse – Similar Article:No – L1[W:Y] – L2[W:N]
@@ -1080,12 +1072,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Warehouse);
 
-        addArticlesToStock2Lines(DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+        addArticlesToStock2Lines(DataItems.Warehouse, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.noneArticle01, DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
-        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
+        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.Warehouse, DataItems.articleData120[2], DataItems.None);
     }
 
     @Test //ML_W_02 : Multi Line – Warehouse – Similar Article:No – L1[W:N, H:Y] – L2[W:Y]
@@ -1102,12 +1096,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Warehouse);
 
-        addArticlesToStock2Lines(DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+        addArticlesToStock2Lines(DataItems.MixHW, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
+
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.articleData120[2], DataItems.None);
     }
 
     @Test //ML_W_03 : Multi Line – Warehouse – Similar Article:Yes – L1[W:Y] – L2[W:N]
@@ -1124,12 +1120,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Warehouse);
 
-        addArticlesToStock2Lines(DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+        addArticlesToStock2Lines(DataItems.Warehouse, DataItems.similarArticle01[0], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
+
+        expectedResults2Lines(DataItems.similarArticle01[0], DataItems.Warehouse, DataItems.articleData120[2], DataItems.None);
     }
 
     @Test //ML_W_04 : Multi Line – Warehouse – Similar Article:Yes – L1[W:N, H:Y] – L2[W:Y]
@@ -1146,15 +1144,17 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Warehouse);
 
-        addArticlesToStock2Lines(DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+        addArticlesToStock2Lines(DataItems.MixHW, DataItems.similarArticle01[0], DataItems.articleData180[6], DataItems.similarArticle02[0], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
-        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
+        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6],  DataItems.articleData120[2], DataItems.articleData180[6]);
+
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.similarArticle02[0], DataItems.Warehouse);
     }
 
-    @Test //ML_W_05 : Multi Line – Warehouse – Similar Article:Mix – L1[W:Y] – L2[W:N]
+    @Test //ML_W_05 : Multi Line – Warehouse – Similar Article:Mix – L1[W:Y] – L2[W:Y]
             (groups = {"CCE"})
     public void ML_W_05() throws Exception {
         //New driver object to control browser
@@ -1164,16 +1164,18 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         //Set up returns a CCE Page and outputs test details
-        base.setUp("ML_W_05", "Multi Line – Warehouse – Similar Article:Mix – L1[W:Y] – L2[W:N]");
+        base.setUp("ML_W_05", "Multi Line – Warehouse – Similar Article:Mix – L1[W:Y] – L2[W:Y]");
 
         setEnv(DataItems.Warehouse);
 
-        addArticlesToStock2Lines(DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+        addArticlesToStock2Lines(DataItems.Warehouse, DataItems.similarArticle01[0], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
-        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
+        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+
+        expectedResults2Lines(DataItems.similarArticle01[0], DataItems.Warehouse,  DataItems.articleData120[2], DataItems.Warehouse);
     }
 
     @Test //ML_W_06 : Multi Line – Warehouse – Similar Article:Mix – L1[W:N, H:Y] – L2[W:Y]
@@ -1190,12 +1192,14 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Warehouse);
 
-        addArticlesToStock2Lines(DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+        addArticlesToStock2Lines(DataItems.MixHW, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.similarArticle02[2], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
-        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
+        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
+
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.similarArticle02[2], DataItems.Warehouse);
     }
 
 }
