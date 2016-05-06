@@ -49,7 +49,7 @@ public class CCE_Fce_Comments_Mandatory_Test extends DriverFactory{
         //orderPage.setShadeCode(DataItems.expShadeCode,0);
 
         //Set Direct Enrich -> YES
-        orderPage.setDirectEnrichYes();
+        orderPage.setDirectEnrichYes(0);
 
         System.out.println("Product details entered. Submitting order...");
 

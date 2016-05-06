@@ -1,5 +1,9 @@
 package com.coats.selenium.tests;
 
+/**
+ * Created by Andrei
+ */
+
 import AutomationFramework.DataItems;
 import AutomationFramework.PreFlows;
 import PageObjects.*;
@@ -87,10 +91,6 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         else System.out.println("WRONG INPUT FOR SELECTED 'ENRICH TO' PARAM...");
 
         CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);
-
-        addSimilarArticle01();
-        addSimilarArticle02();
-        addSimilarArticle03();
 
         driver.get(DataItems.hubStockURL);
         sos.filterArticlesByPlantAndDeleteAll(DataItems.plantID12);
@@ -183,6 +183,10 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         //Set up returns a CCE Page and outputs test details
         base.setUp("SL_W_01", "Single Line - Both - Similar Article:No - H:Y - W:N");
+
+        addSimilarArticle01();
+        addSimilarArticle02();
+        addSimilarArticle03();
 
         GeneralSingleLine(DataItems.Both, DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData180[2], DataItems.Hub);
     }
@@ -495,10 +499,6 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);
 
-        addSimilarArticle01();
-        addSimilarArticle02();
-        addSimilarArticle03();
-
         driver.get(DataItems.hubStockURL);
         sos.filterArticlesByPlantAndDeleteAll(DataItems.plantID12);
         driver.get(DataItems.warehouseURL);
@@ -627,6 +627,10 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         setEnv(DataItems.Both);
 
+        addSimilarArticle01();
+        addSimilarArticle02();
+        addSimilarArticle03();
+
         addArticlesToStock3Lines(DataItems.Hub, DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
 
         System.out.println("Creating order...");
@@ -753,7 +757,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         order3Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
 
-        expectedResults3Lines(DataItems.similarArticle01[0], DataItems.Warehouse, DataItems.similarArticle02[0], DataItems.Warehouse, DataItems.similarArticle03[3], DataItems.Warehouse);
+        expectedResults3Lines(DataItems.similarArticle01[0], DataItems.Warehouse, DataItems.similarArticle02[0], DataItems.Warehouse, DataItems.similarArticle03[0], DataItems.Warehouse);
     }
 
 
@@ -959,7 +963,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
-        expectedResults2Lines(DataItems.articleData180[2], DataItems.Warehouse, DataItems.articleData120[2], DataItems.Hub);
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.articleData120[2], DataItems.Hub);
     }
 
     @Test //ML_H_03 : Multi Line – Hub – Similar Article:Yes – L1[H:Y] – L2[H:N]
@@ -983,7 +987,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
-        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.similarArticle02[0], DataItems.None);
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.similarArticle02[0], DataItems.Hub);
     }
 
     @Test //ML_H_04 : Multi Line – Hub – Similar Article:Yes – L1[H:N, W:Y] – L2[H:Y]
@@ -1055,7 +1059,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
-        expectedResults2Lines(DataItems.articleData180[2], DataItems.Hub, DataItems.articleData120[2], DataItems.None);
+        expectedResults2Lines(DataItems.None, DataItems.Hub, DataItems.articleData120[2], DataItems.None);
     }
 
     @Test //ML_W_01 : Multi Line – Warehouse – Similar Article:No – L1[W:Y] – L2[W:N]
@@ -1101,7 +1105,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
-        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
+        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
         expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.articleData120[2], DataItems.None);
     }
@@ -1125,7 +1129,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         System.out.println("Creating order...");
         completeOrderPromptPageAndAddCustDetails();
 
-        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData110[2], DataItems.articleData180[6]);
+        order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
         expectedResults2Lines(DataItems.similarArticle01[0], DataItems.Warehouse, DataItems.articleData120[2], DataItems.None);
     }

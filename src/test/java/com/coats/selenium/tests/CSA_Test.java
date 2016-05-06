@@ -1,5 +1,9 @@
 package com.coats.selenium.tests;
 
+/**
+ * Created by Andrei
+ */
+
 import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_DNPrintPage;
