@@ -7764,4 +7764,28 @@ public class Master_Test extends DriverFactory {
         System.out.println("Item removed.");
 
     }
+
+    @Test //Add Shipping Condition
+            (groups = {"Masters"})
+    public void SOSSP_01 () throws Exception {
+        WebDriver driver = getDriver();
+
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("sample order specific shipping process: Add Shipping Condition", "SOSSP_01");
+        mainPage.waitForLoad();
+
+        System.out.println("Navigating to Shipping Condition Page...");
+
+        Mst_ShippingConditionPage pPage = mainPage.selectShippingCondition();
+        pPage.waitForElement();
+
+        System.out.println("Shipping Condition page reached. Checking title...");
+
+        AssertJUnit.assertTrue("Customer Private Articles Page: Title not as expected", pPage.getBreadcrumb().getText().equals("Shipping Condition"));
+
+        /**
+         * TO BE CONTINUED ....
+         */
+        System.out.println("TEST PASSED!");
+    }
 }
