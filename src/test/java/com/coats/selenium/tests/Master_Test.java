@@ -1,6 +1,7 @@
 
 package com.coats.selenium.tests;
 
+import AutomationFramework.PreFlows;
 import PageObjects.*;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
@@ -7795,10 +7796,35 @@ public class Master_Test extends DriverFactory {
          */
         AssertJUnit.assertTrue("***Shipping condition not in table!",scPage2.searchShipCondInTable("WW"));
 
-
-        /**
-         * TO BE CONTINUED ....
-         */
         System.out.println("TEST PASSED!");
+    }
+
+    @Test //Set Shipping Condition in SalesOrg and Customer
+            (groups = {"Masters"})
+    public void SOSSP_02 () throws Exception {
+        WebDriver driver = getDriver();
+
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("sample order specific shipping process: Setting a Shipping Condition on SalesOrg and Customer", "SOSSP_02");
+        mainPage.waitForLoad();
+
+        System.out.println("Ensuring the Shipping Conditions exist...");
+
+        Mst_ShippingConditionPage scPage = mainPage.selectShippingCondition();
+        scPage.waitForElement();
+
+        //Add Shipping conditions
+        Mst_ShippingConditionAddPage addShipCond = scPage.clickNewShippingCond();
+        addShipCond.inputShippingCondition("AZ");
+        Mst_ShippingConditionPage scPage2 = addShipCond.clickSaveButton();
+
+        Mst_ShippingConditionAddPage addShipCond2 = scPage2.clickNewShippingCond();
+        addShipCond2.inputShippingCondition("YC");
+        addShipCond2.clickSaveButton();
+
+        //Selecting Shipping Condition in Masters
+        PreFlows pf = new PreFlows();
+        pf.setShipCondForSalesOrgAndCust(driver,DataItems.autoUserSalesOrg,DataItems.customerName,"AZ","YC");
+
     }
 }

@@ -4,29 +4,10 @@ package AutomationFramework;
  * Created by Andrei
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.List;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.AssertJUnit;
-
 
 
 public class PreFlows {
@@ -53,6 +34,7 @@ public class PreFlows {
     By getCallOffOrderCheckBoxSalesOrg = By.id("SalesOrgOffOrder");
     By ordersWithoutShadeCheckBoxSalesOrg = By.id("SalesOrgEnabledOrdersWithoutShade");
     By autoEnrichOptionsCheckBox = By.id("SalesOrgAutoEnrichOptions");
+    By salesOrgShippingCond = By.id("SalesOrgShippingConditionId");
 
     //Customer Masters Page
     By customerNameField = By.id("filterCustomerCustomerName");
@@ -72,6 +54,7 @@ public class PreFlows {
     By enrichToHubRadiobutton = By.id("CustomerAutoEnrichStockId1");
     By enrichToWarehouseRadiobutton = By.id("CustomerAutoEnrichStockId2");
     By enrichToBothRadiobutton = By.id("CustomerAutoEnrichStockId3");
+    By custShippingCond = By.id("CustomerShippingConditionId");
 
     //Manual Entry Page
     By buyersField = By.xpath(".//*[@id='s2id_BuyerId']/a/abbr");
@@ -229,6 +212,10 @@ public class PreFlows {
         CommonTask.unSetCheckBox(driver,autoEnrichOptionsCheckBox);
     }
 
+    public void selectShippingCondForSalesOrg (WebDriver driver, String item){
+        CommonTask.setDropDownField(driver, salesOrgShippingCond,item);
+    }
+
 
 
 
@@ -263,6 +250,9 @@ public class PreFlows {
         CommonTask.setCheckBox(driver, SAPContractValidityCheckBox);
     }
 
+    public void selectShippingCondForCust (WebDriver driver, String item){
+        CommonTask.setDropDownField(driver, custShippingCond,item);
+    }
 
 
     public void enableEOwSForCust(WebDriver driver){
@@ -390,6 +380,20 @@ public class PreFlows {
         disableEOwSForCust(driver);
         disableMOQCheckBoxForCust(driver);
         disableApprovalCheckBoxForCust(driver);
+        saveCustomer(driver);
+    }
+
+    public void setShipCondForSalesOrgAndCust(WebDriver driver, String salesOrg, String customer, String saleOrgItem, String custItem){
+        /**
+         * Created by Stefan on 9th May 2016
+         * This is used for Shipping Conditions tests - method will select a Shipping Condition under SalesOrg and Customer
+         */
+        goToSalesOrgAndEdit(driver,salesOrg);
+        selectShippingCondForSalesOrg(driver, saleOrgItem);
+        saveSalesOrg(driver);
+
+        goToCustomerAndEdit(driver, customer);
+        selectShippingCondForCust(driver, custItem);
         saveCustomer(driver);
     }
 
