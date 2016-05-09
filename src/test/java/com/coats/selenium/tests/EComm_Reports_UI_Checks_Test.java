@@ -5,6 +5,7 @@ import AutomationFramework.DataItems;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -23,7 +24,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_I", "Reporting - Invoice UI screen changes");
+        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_I", "Reporting - Invoice UI screen changes","admin@coats.com", "superadmin@coats");
 
         //Navigate to Invoice page
         System.out.println("Navigating to Invoice Page...");
@@ -35,16 +36,16 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         Verifying the label of Clear button - renamed from reset
          */
         System.out.println("Checking \"Clear\" button label...");
-        AssertJUnit.assertTrue("Incorrect button label!",invoice.getClearButtonLabel().equals("Reset")); //"Clear"
+        AssertJUnit.assertTrue("Incorrect button label!",invoice.getClearButtonLabel().equals("Clear"));
         System.out.println("Label correct!");
 
         /**
         Verifying the Table Header
          */
-        System.out.println(invoice.getTableHeader());
+        System.out.println("Table header:"+invoice.getTableHeader());
         String tableHeader = invoice.getTableHeader().toString();
         //Actions|Invoice Creation Date|Invoice No.|Status|No. of lines|Invoice Quantity|Customer PO number|Invoice Amount|
-        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Invoice No.|Invoice creation date|Payment Date|Status|Value|Currency|No. of Lines|Ship to Party|"));
+        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Invoice number|Payer name|Invoice amount|Currency|Status|Payment date|Payment due date|Ecomm order no|Business principle name|Customer PO number|"));
         System.out.println("Table Header correct!");
 
         System.out.println("Test PASSED!");
@@ -58,10 +59,10 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_DN", "Reporting - Delivery Notes UI screen changes");
+        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_DN", "Reporting - Delivery Notes UI screen changes","admin@coats.com", "superadmin@coats");
 
         //Navigate to Delivery Notes page
-        System.out.println("Navigating to Invoice Page...");
+        System.out.println("Navigating to Delivery Notes page...");
         driver.get(DataItems.deliveyNotesPage);
 
         Ecomm_DeliveryNotesPage dn = new Ecomm_DeliveryNotesPage(driver);
@@ -79,7 +80,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println(dn.getTableHeader());
         String tableHeader = dn.getTableHeader().toString();
         //Actions|Delivery Date|Delivery Note No.|Delivered Quantity|Customer PO number|Requester Name|
-        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Actions|Delivery Date|Delivery Note No.|Delivered Quantity|Requester Name|"));
+        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Delivery Note No.|Ship To Party Name|Delivery Date|Delivery QTY|Requester Name|Business Principle Name|eComm Order No.|"));
         System.out.println("Table Header correct!");
 
         System.out.println("Test PASSED!");
@@ -93,10 +94,10 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_POSR", "Reporting - Summary of Purchases UI screen changes - change name to Purchase Order Summary");
+        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_POSR", "Reporting - Summary of Purchases UI screen changes - change name to Purchase Order Summary","admin@coats.com", "superadmin@coats");
 
         //Navigate to Purchase Order Summary
-        System.out.println("Navigating to Invoice Page...");
+        System.out.println("Navigating to Purchase Order Summary page...");
         driver.get(DataItems.summaryOfPurchasePage);
 
         Ecomm_SummaryOfPurchasePage posr = new Ecomm_SummaryOfPurchasePage(driver);
@@ -114,7 +115,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println(posr.getTableHeader());
         String tableHeader = posr.getTableHeader().toString();
         //Action|Purchase Date|Customer PO number.|Requester Name|
-        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Purchase Date|Customer PO No|SAP Order No.|Requestor Name|"));
+        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Customer PO No|eComm Order No|SAP Order No.|Order Type|Payer Name|Net Value|Currency|Business Principle Name|"));
         System.out.println("Table Header correct!");
 
         System.out.println("Test PASSED!");
@@ -151,7 +152,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         /**
          Verifying the breadcrumb - Reports | Advanced Reports| New Report
          */
-        AssertJUnit.assertTrue("***Incorrect breadcrumb!",cnrp.getBreadcrumb().getText().equals("Reports | Advanced Reports| New Report"));
+        AssertJUnit.assertTrue("***Incorrect breadcrumb!",cnrp.getBreadcrumb().getText().equals("Reports | Advanced Reports | New Report"));
 
         cnrp.selectDateRange("Last 90 days");
 
@@ -193,12 +194,16 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
          * Verify the Saved Report exist
          */
         advRep2.clickSavedReports();
-        AssertJUnit.assertTrue("***Incorrect Saved Report Name!",advRep2.getSavedRepName().contentEquals("Rep1"));
+        AssertJUnit.assertTrue(advRep2.searchSavedRepName("Rep1"));
+        //AssertJUnit.assertTrue("***Incorrect Saved Report Name!",advRep2.getSavedRepName().contentEquals("Rep1"));
 
+        /**
+         * Crate new Report based on Rep1 template
+         */
         //Open this saved report and create a new one
-        advRep2.selectSavedReport();
+
+        Ecomm_CreateNewReportPage cnrp2 = advRep2.selectSavedReport("Rep1");
         System.out.println("Creating a new report...");
-        Ecomm_CreateNewReportPage cnrp2 = advRep2.createNewReport();
 
         cnrp2.selectAllFromInvoices();
         cnrp2.pressSaveReport();
@@ -223,8 +228,8 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         advRep3.clickSavedReports();
 
         //Delete first saved report
-        System.out.println("Deleting first saved report...");
-        advRep3.deleteSavedReport();
+        System.out.println("Deleting previously created report...");
+        advRep3.deleteSavedReport("Rep1");
 
         /**
          * Verify Flash Message

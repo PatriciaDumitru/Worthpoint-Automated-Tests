@@ -62,7 +62,6 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
 
         System.out.println("Set Direct Enrich Yes...");
 
-
         try {
             Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
             alert.accept();
@@ -71,13 +70,19 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
             System.out.println("No alert.");
         }
         //Set Direct Enrich Yes
-        orderPage.setDirectEnrichYes();
+        orderPage.setDirectEnrichYes(0);
 
         System.out.println("Set Customer Swatch Yes...");
         //Set Customer Swatch Yes
-        orderPage.setCustomerSwatchYes();
+        orderPage.setCustomerSwatchYes(0);
 
         orderPage.uploadExtentionFile(DataItems.xmlExtension, 0);
+
+        orderPage.pressSubmit();
+
+        AssertJUnit.assertTrue("Browse button is not enabled", orderPage.checkBrowseButtonEneabled(0));
+
+
 
     }
 
@@ -122,21 +127,26 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
         System.out.println("Entering product details second line...");
         orderPage.pressNewLine(1);
 
-        orderPage.inputAdditionalLines(DataItems.article3,
-                DataItems.shadeCode3,DataItems.copMUM,DataItems.sewing,DataItems.salesSamp,1,1);
-
+        //Setting second line info
+        orderPage.setArticle(DataItems.article, 1);
+        orderPage.setMUMType(DataItems.coneMUM, 1);
+        orderPage.setRequestType(DataItems.sewing, 1);
+        orderPage.setPurposeType(DataItems.salesSamp, 1);
+        orderPage.setQuantity(1,1);
 
         System.out.println("Set Direct Enrich Yes...");
         //Set Direct Enrich Yes
-        orderPage.setDirectEnrichYes();
+        orderPage.setDirectEnrichYes(1);
 
         System.out.println("Set Customer Swatch Yes...");
         //Set Customer Swatch Yes
-        orderPage.setCustomerSwatchYes();
+        orderPage.setCustomerSwatchYes(1);
 
+        orderPage.uploadExtentionFile(DataItems.xmlExtension, 0);
 
+        orderPage.pressSubmit();
 
-
+        AssertJUnit.assertTrue("Browse button is not enabled", orderPage.checkBrowseButtonEneabled(1));
     }
 
     @Test //	ER_MF_XML_03: Error Handling Mandatory Field XML with uploaded xml file
@@ -189,12 +199,6 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
         System.out.println("Entering product details second line...");
         orderPage.inputAdditionalLines(DataItems.article3,
                 DataItems.shadeCode3,DataItems.copMUM,DataItems.sewing,DataItems.salesSamp,1,1);
-
-
-
-
-
-
     }
 
 

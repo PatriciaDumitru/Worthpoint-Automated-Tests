@@ -1,5 +1,9 @@
 package PageObjects;
 
+/**
+ * Created by Andrei
+ */
+
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;

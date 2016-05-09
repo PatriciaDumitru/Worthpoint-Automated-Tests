@@ -1068,7 +1068,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         synchronized (driver) {
             driver.wait(2000);
         }
-        WebElement element= driver.findElement(DataItems.lineRef);
+        WebElement element = driver.findElement(DataItems.lineRef);
         Assert.assertFalse(element.isDisplayed());
     }
 
