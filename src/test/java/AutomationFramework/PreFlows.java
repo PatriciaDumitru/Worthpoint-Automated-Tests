@@ -320,6 +320,7 @@ public class PreFlows {
         else if (custEnrichoOption == "Hub")enableEnrichToHub(driver);
         else if (custEnrichoOption == "Warehouse")enableEnrichToWarehouse(driver);
         else System.out.println("Customer Enrich To Otion does not exist...");
+        disableAutoEnrichCheckBoxForCust(driver);
         saveCustomer(driver);
     }
 
