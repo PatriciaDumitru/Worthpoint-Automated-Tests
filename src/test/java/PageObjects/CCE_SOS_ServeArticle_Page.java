@@ -1,5 +1,9 @@
 package PageObjects;
 
+/**
+ * Created by Andrei
+ */
+
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
@@ -43,7 +47,21 @@ public class CCE_SOS_ServeArticle_Page extends WBA_BasePage  {
     By viewOrder = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(16) > a > span"); //In Order Status Page
     By article = By.cssSelector("#popup_content > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(2)"); //In View Order Page
 
-    By articleLine2 = By.cssSelector("#popup_content > div:nth-child(3) > table > tbody > tr:nth-child(3) > td:nth-child(2)");
+    //Add New Article Locators
+    By newArticleButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
+    By articleName = By.id("SalesOrgMaterialArticle");
+    By articleSalesOrg = By.id("SalesOrgMaterialSalesOrgId");
+    By articlePlant = By.id("SalesOrgMaterialPlantId");
+    By articleBrand = By.id("SalesOrgMaterialBrandId");
+    By articleTicket = By.id("SalesOrgMaterialTicketId");
+    By articleMumType = By.id("SalesOrgMaterialMumTypeId");
+    By articleLenght = By.id("SalesOrgMaterialLengthId");
+    By articleCCEandEcommRadioButton = By.id("SalesOrgMaterialBulkSampleId3");
+    By saveNewArticleButton = By.cssSelector("#SalesOrgMaterialAddForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
+
+
+
+
 
     // ------------------------------------- Locators in Methods to select Data for Warehouse Stocks or Hub Stocks when creating new Entry
 
@@ -102,21 +120,15 @@ public class CCE_SOS_ServeArticle_Page extends WBA_BasePage  {
     // ------------------------------------- Methods
 
     // Add new Entry to Hub/Warehouse (string location)
-    public void setStockArticleAndSave(String location, String salesOrg, String plant, String article, String brand, String ticket, String mumType, String shade, String qty){
+    public void setStockArticleAndSave(String location, String salesOrg, String plant, String article, String shade, String qty){
         newEntry();
         setSalesOrg(location, salesOrg);
         setPlant(location, plant);
         setArticle(location, article);
-        setBrand(location, brand);
-        setTicket(location, ticket);
-        setMUMType(location, mumType);
         setShade(location, shade);
         setQuantity(location, qty);
         saveNewEntry(location);
     }
-    //#content > div.flexi-grid > table > tbody > tr:nth-child(2) > td:nth-child(10)
-    //#content > div.flexi-grid > table > tbody > tr:nth-child(3) > td:nth-child(5)
-    //#content > div.flexi-grid > table > tbody > tr:nth-child(4) > td:nth-child(5)
 
     public WebElement getArticleFromOrder() {
         //find and return element
@@ -143,13 +155,10 @@ public class CCE_SOS_ServeArticle_Page extends WBA_BasePage  {
 
     }
 
-
     public void pressViewOrder() {
         driver.findElement(viewOrder).click();
         CommonTask.waitForOverlay(driver);
     }
-
-
 
     public void filterArticlesByPlantAndDeleteAll(String plant){
         filterPlant(plant);
@@ -175,6 +184,63 @@ public class CCE_SOS_ServeArticle_Page extends WBA_BasePage  {
 
     public void deleteAllArticles(){
         driver.findElement(deleteAllButton).click();
+    }
+
+
+    // ------------------------------------------ Similar Article Methods
+
+    public void newArticle(){
+        driver.findElement(newArticleButton).click();
+    }
+
+    public void setNewArticleName(String name){
+        CommonTask.setInputField(driver, articleName, name);
+    }
+
+    public void setNewArticleSalesOrg(String salesOrg){
+        CommonTask.setDropDownField(driver, articleSalesOrg, salesOrg);
+    }
+
+    public void setNewArticlePlant(String plant){
+        CommonTask.setDropDownField(driver, articlePlant, plant);
+    }
+
+    public void setNewArticleBrand(String brand){
+        CommonTask.setDropDownField(driver, articleBrand, brand);
+    }
+
+    public void setNewArticleTicket(String ticket){
+        CommonTask.setDropDownField(driver, articleTicket, ticket);
+    }
+
+    public void setNewArticleMuMType(String mum){
+        CommonTask.setDropDownField(driver, articleMumType, mum);
+    }
+
+    public void setNewArticleLenght(String lenght){
+        CommonTask.setDropDownField(driver, articleLenght, lenght);
+    }
+
+    public void setArticleToCCEandEcomm(){
+        driver.findElement(articleCCEandEcommRadioButton).click();
+    }
+
+    public void saveNewArticle(){
+        driver.findElement(saveNewArticleButton).click();
+    }
+
+    public void createNewArticle(String name, String salesOrg, String plant, String brand, String ticket,String mum, String lenght){
+        driver.get(DataItems.newArticleURL);
+        newArticle();
+        setNewArticleName(name);
+        setNewArticleSalesOrg(salesOrg);
+        setNewArticlePlant(plant);
+        setNewArticleBrand(brand);
+        setNewArticleTicket(ticket);
+        setNewArticleMuMType(mum);
+        setNewArticleLenght(lenght);
+        setArticleToCCEandEcomm();
+        saveNewArticle();
     }
 
 

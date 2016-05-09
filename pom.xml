@@ -159,7 +159,7 @@
                                 <webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>
                                 <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
                             </systemPropertyVariables>
-                            <group>Solo, Solo</group>
+                            <group>Solo</group>
                             <suiteXmlFiles>
                                 <!-- <suiteXmlFiles>
                                 <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\Solo.xml</suiteXmlFile>
@@ -258,7 +258,7 @@
                                 <webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>
                                 <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
                             </systemPropertyVariables>
-                            <groups>Solo</groups>
+                            <groups>Solo, CCE</groups>
                             <skipTests>false</skipTests>
                             <!-- <suiteXmlFiles>
                                 <suiteXmlFile>${project.basedir}\src\test\java\AutomationFramework\Solo.xml</suiteXmlFile>
