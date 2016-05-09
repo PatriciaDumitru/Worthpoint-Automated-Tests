@@ -138,17 +138,15 @@ public class Ecomm_OO_Test extends DriverFactory {
     
     @Test //Outstanding Order Drafts Page :: Page and filter checks, view, edit, and cancel
     (groups = {"eComm", "QuickTest"})
-    public void ODP1() throws IOException, Exception {
+    public void ODP1() throws Exception {
         WebDriver driver = getDriver();
         
         //new base test to handle set up
         Ecomm_Base susstTest4 = new Ecomm_Base(driver);
         //Set up returns a manual entry page to begin data entry
-        Ecomm_MainPage eCommPage = susstTest4.setUp("DOUTSTANDING ORDER DRAFTS ODP1: Page check, search, view, edit, cancel draft","G_OP_ODP_1 to 5");
+        Ecomm_MainPage eCommPage = susstTest4.setUp("OUTSTANDING ORDER DRAFTS ODP1: Page check, search, view, edit, cancel draft","G_OP_ODP_1 to 5");
 
         System.out.println("Navigating to Outstanding Order Draft Page...");
-
-        System.out.println("eComm page loaded. Navigating to Outstanding Draft Page...");
         
         Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
         draftPage.waitForElement();
@@ -161,24 +159,12 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         draftPage.setPONumber("AutoTestPO");
         
-        //Take a screenshot
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\6PO entered.png"));
-        
         draftPage.pressSearch();
         draftPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\7Search pressed.png"));
         
         System.out.println("Search complete. Viewing draft...");
         
         draftPage.pressView();
-        
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\8View pressed.png"));
         
         //Close view
         Ecomm_OutstandingOrderDraftPage draftPage2 = draftPage.closeView();
@@ -198,17 +184,13 @@ public class Ecomm_OO_Test extends DriverFactory {
         //Cancel a draft
         draftPage2.pressCancel();
         
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Orders Draft\\9Cancel pressed.png"));
-        
         System.out.println("Draft cancelled.");
 
     }
        
     @Test //Upload Order Drafts Page :: Page checks, edit, and cancel upload order draft
     (groups = {"eComm", "QuickTest"})
-    public void UODP1() throws IOException, Exception {
+    public void UODP1() throws Exception {
         WebDriver driver = getDriver();
         
         //new base test to handle set up
@@ -223,41 +205,21 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Outstanding Upload Drafts reached.");
         
-        //Take a screenshot
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\1Outstanding Upload Draft Page.png"));
-        
         upDraftPage.assertBaseElements();
         
         System.out.println("Entering Customer Name for search criteria...");
         
         upDraftPage.setCustomerName(DataItems.custDetails[0]);
         
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\2Customer Name entered.png"));
-        
         upDraftPage.pressSearch();
         upDraftPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\3Search pressed.png"));
         
         System.out.println("Search complete. Pressing edit...");
         
         Ecomm_OrderConfirmationPage upConf = upDraftPage.pressEdit();
         upConf.waitForLoad();
         
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\4Edit pressed.png"));
-        
         System.out.println("Order confirmation page reached. Asserting base elements...");
-        
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\5Confirmation page.png"));
         
         upConf.assertBaseElements();
         
@@ -268,10 +230,6 @@ public class Ecomm_OO_Test extends DriverFactory {
         System.out.println("Outstanding Upload Drafts page reached. Pressing delete draft...");
         
         upDraftPage.pressDelete();
-                
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Outstanding Orders\\Oustanding Upload Draft\\5Draft deleted.png"));
         
         System.out.println("Draft deleted.");
         
@@ -879,7 +837,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         //AssertJUnit.assertTrue("Order Approval History Page: Filtration not functioning as expected",appHist.checkFiltration(locator1, locator2, "DeniedOrderTest_", 1,3));
         //Check filtration method above does not work as each record can take up between 1 and 3 rows  
         
-        System.out.println("Filtration functioning. Eesetting filter...");
+        System.out.println("Filtration functioning. Re-setting filter...");
         
         appHist.pressReset();
         appHist.waitForElement();
