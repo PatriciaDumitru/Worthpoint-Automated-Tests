@@ -130,10 +130,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_InvoicesPage invPage = eCommPage.clickInvoices();
         invPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Invoices\\1Invoices Page.png"));
-
         System.out.println("Invoices page reached.");
 
         invPage.assertBaseElements();
@@ -211,10 +207,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_DeliveryNotesPage dnPage = eCommPage.clickDeliveryNotes();
         dnPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Delivery Notes\\1Delivery Notes Page.png"));
-
         System.out.println("Delivery Notes page reached.");
 
         dnPage.assertBaseElements();
@@ -232,18 +224,10 @@ public class Ecomm_Reports_Test extends DriverFactory {
         dnPage.setCustName(DataItems.custDetails[0]);
         dnPage.setRequester(DataItems.custDetails[2]);
 
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Delivery Notes\\2Filter criteria entered.png"));
-
         System.out.println("Filter criteria entered. Listing orders...");
 
         dnPage.pressSearch();
         dnPage.waitForLoad();
-
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Delivery Notes\\3Orders listed.png"));
 
         System.out.println("Orders listed. Checking filtration...");
 
@@ -255,18 +239,10 @@ public class Ecomm_Reports_Test extends DriverFactory {
         dnPage.pressReset();
         dnPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Delivery Notes\\4Filter reset.png"));
-
         System.out.println("Filter reset. Viewing record...");
 
         Ecomm_OrderViewPage viewPage = dnPage.pressView();
         viewPage.waitForContent();
-
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Delivery Notes\\5View displayed.png"));
 
         System.out.println("View displayed. Closing view...");
 
@@ -276,10 +252,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         Ecomm_OrderViewPage printPage = dnPage.pressPrint();
         printPage.waitForContent();
-
-        //Take a screenshot
-        File scrFile6 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Delivery Notes\\6Print view.png"));
 
         System.out.println("Print view displayed. Sending item to printer...");
 
@@ -308,10 +280,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         Ecomm_DeliveryNotesPage dnPage = eCommPage.clickDeliveryNotes();
         dnPage.waitForLoad();
-
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Delivery Notes\\1Delivery Notes Page.png"));
 
         System.out.println("Delivery Notes page reached.");
 
@@ -385,10 +353,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_SummaryOfPurchasePage spPage = eCommPage.clickSummaryOfPurchases();
         spPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Summary of Purchases\\1Summary of Purchases Page.png"));
-
         System.out.println("Summary of Purchases page reached.");
 
         spPage.assertBaseElements();
@@ -408,18 +372,10 @@ public class Ecomm_Reports_Test extends DriverFactory {
         spPage.setCustName(DataItems.custDetails[0]);
         spPage.setRequester(tempRequester);
 
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Summary of Purchases\\2Filter criteria entered.png"));
-
         System.out.println("Criteria entered. Listing records...");
 
         spPage.pressSearch();
         spPage.waitForLoad();
-
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Summary of Purchases\\3Records listed.png"));
 
         System.out.println("Records listed. Checking filtration...");
 
@@ -430,18 +386,10 @@ public class Ecomm_Reports_Test extends DriverFactory {
         spPage.pressReset();
         spPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Summary of Purchases\\4Filter reset.png"));
-
         System.out.println("Filter reset. Viewing top item...");
 
         Ecomm_OrderViewPage viewPage = spPage.pressView();
         viewPage.waitForContent();
-
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Summary of Purchases\\5View displayed.png"));
 
         System.out.println("View displayed. Closing view...");
 
@@ -475,10 +423,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_SummaryOfPurchasePage spPage = eCommPage.clickSummaryOfPurchases();
         spPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Summary of Purchases\\1Summary of Purchases Page.png"));
-
         System.out.println("Summary of Purchases page reached.");
 
         spPage.assertBaseElements();
@@ -495,18 +439,10 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         spPage.setBrand(DataItems.expBrand);
 
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Summary of Purchases\\2Filter criteria entered.png"));
-
         System.out.println("Criteria entered. Listing records...");
 
         spPage.pressSearch();
         spPage.waitForLoad();
-
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Summary of Purchases\\3Records listed.png"));
 
         System.out.println("Records listed. Checking filtration...");
 
@@ -517,18 +453,10 @@ public class Ecomm_Reports_Test extends DriverFactory {
         spPage.pressReset();
         spPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Summary of Purchases\\4Filter reset.png"));
-
         System.out.println("Filter reset. Viewing top item...");
 
         Ecomm_OrderViewPage viewPage = spPage.pressView();
         viewPage.waitForContent();
-
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Summary of Purchases\\5View displayed.png"));
 
         System.out.println("View displayed. Closing view...");
 
@@ -556,10 +484,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_OutstandingPaymentsPage opPage = eCommPage.clickOutstandingPayments();
         opPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\1Outstanding Payments Page.png"));
-
         System.out.println("Outstanding Payments page reached.");
 
         opPage.assertBaseElements();
@@ -577,36 +501,20 @@ public class Ecomm_Reports_Test extends DriverFactory {
         opPage.setCustName(DataItems.custDetails[0]);
         opPage.pressOverdue30();
 
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\2Filter criteria entered.png"));
-
         System.out.println("Filter criteria entered. Listing records...");
 
         opPage.pressSearch();
         opPage.waitForLoad();
-
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\3Records listed.png"));
 
         System.out.println("Records listed. Resetting filter...");
 
         opPage.pressReset();
         opPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\4Filter reset.png"));
-
         System.out.println("Filter reset. Viewing oustsanding payment...");
 
         Ecomm_OrderViewPage viewPage = opPage.pressView();
         viewPage.waitForContent();
-
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\5View displayed.png"));
 
         System.out.println("View displayed. Closing view...");
 
@@ -617,10 +525,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         opPage.setCustName(DataItems.custDetails[0]);
         opPage.pressOverdue90();
-
-        //Take a screenshot
-        File scrFile6 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\6Overdue by 90 selected.png"));
 
         System.out.println("Criteria entered. Listing orders...");
 
@@ -654,10 +558,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_OutstandingPaymentsPage opPage = eCommPage.clickOutstandingPayments();
         opPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\1Outstanding Payments Page.png"));
-
         System.out.println("Outstanding Payments page reached.");
 
         opPage.assertBaseElements();
@@ -674,36 +574,20 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         opPage.pressOverdue30SUSST();
 
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\2Filter criteria entered.png"));
-
         System.out.println("Filter criteria entered. Listing records...");
 
         opPage.pressSearch();
         opPage.waitForLoad();
-
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\3Records listed.png"));
 
         System.out.println("Records listed. Resetting filter...");
 
         opPage.pressReset();
         opPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\4Filter reset.png"));
-
         System.out.println("Filter reset. Viewing oustsanding payment...");
 
         Ecomm_OrderViewPage viewPage = opPage.pressView();
         viewPage.waitForContent();
-
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\5View displayed.png"));
 
         System.out.println("View displayed. Closing view...");
 
@@ -713,10 +597,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
         System.out.println("View closed. Re-entering filter criteria...");
 
         opPage.pressOverdue90SUSST();
-
-        //Take a screenshot
-        File scrFile6 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\Outstanding Payments\\6Overdue by 90 selected.png"));
 
         System.out.println("Criteria entered. Listing orders...");
 
@@ -747,10 +627,6 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_MyReportsPage mrPage = eCommPage.clickMyReports();
         mrPage.waitForLoad();
 
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\My Reports\\1My Reports Page.png"));
-
         System.out.println("My Reports page reached.");
 
         mrPage.assertBaseElements();
@@ -767,18 +643,10 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         mrPage.setSelectAll();
 
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\My Reports\\2All fields selected.png"));
-
         System.out.println("All selected. Resetting filter...");
 
         mrPage.pressReset();
         mrPage.waitForLoad();
-
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\My Reports\\3Filter reset.png"));
 
         System.out.println("Filter reset. Selecting PO Number, Article, Brand, Ticket, Invoice No, Delivery No...");
 
@@ -789,27 +657,15 @@ public class Ecomm_Reports_Test extends DriverFactory {
         mrPage.setInvoiceNo();
         mrPage.setDeliveryNo();
 
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\My Reports\\4Fields set.png"));
-
         System.out.println("Items selected. Entering filter criteria...");
 
         mrPage.setCustName(DataItems.custDetails[0]);
         mrPage.setOrderNo(DataItems.bulkOrderNo);
 
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\My Reports\\5Filter criteria entered.png"));
-
         System.out.println("Criteria entered. Printing report...");
 
         Ecomm_OrderViewPage viewPage = mrPage.pressPrint();
         viewPage.waitForContent();
-
-        //Take a screenshot
-        File scrFile6 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\My Reports\\6Print view displayed.png"));
 
         viewPage.closeView();
         viewPage.waitForInvisibility();
@@ -831,24 +687,12 @@ public class Ecomm_Reports_Test extends DriverFactory {
             Ecomm_SaveReportPage srPage = mrPage.pressSaveReport();
             srPage.waitForContent();
 
-            //Take a screenshot
-            File scrFile7 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile7, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\My Reports\\7Save report page.png"));
-
             System.out.println("Page reached. Entering title...");
 
             srPage.setTitle(DataItems.reportTitle);
 
-            //Take a screenshot
-            File scrFile8 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile8, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\My Reports\\8Title entered.png"));
-
             srPage.pressSave();
             srPage.waitForInvisibility();
-
-            //Take a screenshot
-            File scrFile9 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile8, new File(DataItems.screenshotsFilepath + "\\EComm\\Reports\\My Reports\\9Report saved.png"));
 
             String message = mrPage.getFlashMessage().getText();
             if (message.contains("has been saved")) {
