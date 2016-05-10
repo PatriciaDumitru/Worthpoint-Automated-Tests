@@ -687,7 +687,6 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         expectedResults3Lines(DataItems.articleData180[2], DataItems.None, DataItems.articleData120[2], DataItems.None, DataItems.articleData110[2], DataItems.None);
     }
 
-
     @Test //ML_B_04 : Multi Line – Both – Similar Article:No – L1[H:Y, W:N] – L2[H:N, W:Y] – L3[H:N, W:N]
             (groups = {"CCE"})
     public void ML_B_04() throws Exception {
