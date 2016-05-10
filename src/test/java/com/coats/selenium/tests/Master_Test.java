@@ -1,6 +1,7 @@
 
 package com.coats.selenium.tests;
 
+import AutomationFramework.PreFlows;
 import PageObjects.*;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
@@ -7763,6 +7764,68 @@ public class Master_Test extends DriverFactory {
         AssertJUnit.assertTrue("Marketing New Feature Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed.");
+
+    }
+
+    @Test //Add Shipping Condition
+            (groups = {"Masters"})
+    public void SOSSP_01 () throws Exception {
+        WebDriver driver = getDriver();
+
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("sample order specific shipping process: Add Shipping Condition", "SOSSP_01");
+        mainPage.waitForLoad();
+
+        System.out.println("Navigating to Shipping Condition Page...");
+
+        Mst_ShippingConditionPage scPage = mainPage.selectShippingCondition();
+        scPage.waitForElement();
+
+        System.out.println("Shipping Condition page reached. Checking title...");
+
+        AssertJUnit.assertTrue("***Customer Private Articles Page: Title not as expected", scPage.getBreadcrumb().getText().equals("Shipping Condition"));
+        System.out.println("Title checked!");
+
+        //Add Shipping condition
+        Mst_ShippingConditionAddPage addShipCond = scPage.clickNewShippingCond();
+        addShipCond.inputShippingCondition("WW");
+        Mst_ShippingConditionPage scPage2 = addShipCond.clickSaveButton();
+        //AssertJUnit.assertEquals("***Incorrect Flash Message!","The Shipping Condition has been saved",scPage2.getBreadcrumb().getText());
+
+        /**
+         * Verify the new Shipping condition in the table
+         */
+        AssertJUnit.assertTrue("***Shipping condition not in table!",scPage2.searchShipCondInTable("WW"));
+
+        System.out.println("TEST PASSED!");
+    }
+
+    @Test //Set Shipping Condition in SalesOrg and Customer
+            (groups = {"Masters"})
+    public void SOSSP_02 () throws Exception {
+        WebDriver driver = getDriver();
+
+        Cce_Base base = new Cce_Base(driver);
+        CCE_MainPage mainPage = base.setUp("sample order specific shipping process: Setting a Shipping Condition on SalesOrg and Customer", "SOSSP_02");
+        mainPage.waitForLoad();
+
+        System.out.println("Ensuring the Shipping Conditions exist...");
+
+        Mst_ShippingConditionPage scPage = mainPage.selectShippingCondition();
+        scPage.waitForElement();
+
+        //Add Shipping conditions
+        Mst_ShippingConditionAddPage addShipCond = scPage.clickNewShippingCond();
+        addShipCond.inputShippingCondition("AZ");
+        Mst_ShippingConditionPage scPage2 = addShipCond.clickSaveButton();
+
+        Mst_ShippingConditionAddPage addShipCond2 = scPage2.clickNewShippingCond();
+        addShipCond2.inputShippingCondition("YC");
+        addShipCond2.clickSaveButton();
+
+        //Selecting Shipping Condition in Masters
+        PreFlows pf = new PreFlows();
+        pf.setShipCondForSalesOrgAndCust(driver,DataItems.autoUserSalesOrg,DataItems.customerName,"AZ","YC");
 
     }
 }

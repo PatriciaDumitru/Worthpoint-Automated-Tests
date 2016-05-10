@@ -220,7 +220,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Report Rep2 created!");
 
         //Navigate again to Advanced Reports in order to delete one saved report
-        System.out.println("Navigating to Invoice Page...");
+        System.out.println("Navigating to Advanced Reports...");
         driver.get(DataItems.advancedReports);
 
         Ecomm_MyReportsPage advRep3 = new Ecomm_MyReportsPage(driver);
@@ -228,7 +228,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         advRep3.clickSavedReports();
 
         //Delete first saved report
-        System.out.println("Deleting previously created report...");
+        System.out.println("Deleting previously created reports...");
         advRep3.deleteSavedReport("Rep1");
 
         /**
@@ -236,6 +236,22 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
          */
         AssertJUnit.assertEquals("***Incorrect Flash Message!","Saved Report has been deleted",advRep3.getFlashMessageText());
         System.out.println("Saved Report has been deleted!");
+
+        //Navigate again to Advanced Reports in order to delete one saved report
+        System.out.println("Navigating to Advanced Reports...");
+        driver.get(DataItems.advancedReports);
+
+        Ecomm_MyReportsPage advRep4 = new Ecomm_MyReportsPage(driver);
+
+        advRep4.clickSavedReports();
+        advRep4.deleteSavedReport("Rep2");
+
+        /**
+         * Verify Flash Message
+         */
+        AssertJUnit.assertEquals("***Incorrect Flash Message!","Saved Report has been deleted",advRep3.getFlashMessageText());
+        System.out.println("Saved Report has been deleted!");
+
 
         System.out.println("Test PASSED!");
 
