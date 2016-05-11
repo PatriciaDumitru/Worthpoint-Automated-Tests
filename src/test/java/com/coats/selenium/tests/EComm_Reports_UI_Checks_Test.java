@@ -45,7 +45,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Table header:"+invoice.getTableHeader());
         String tableHeader = invoice.getTableHeader().toString();
         //Actions|Invoice Creation Date|Invoice No.|Status|No. of lines|Invoice Quantity|Customer PO number|Invoice Amount|
-        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Invoice number|Payer name|Invoice amount|Currency|Status|Payment date|Payment due date|Ecomm order no|Business principle name|Customer PO number|"));
+        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Invoice number|Payer name|Invoice amount|Currency|Status|Payment date|Payment due date|Business principle name|"));
         System.out.println("Table Header correct!");
 
         System.out.println("Test PASSED!");
@@ -80,7 +80,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println(dn.getTableHeader());
         String tableHeader = dn.getTableHeader().toString();
         //Actions|Delivery Date|Delivery Note No.|Delivered Quantity|Customer PO number|Requester Name|
-        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Delivery Note No.|Ship To Party Name|Delivery Date|Delivery QTY|Requester Name|Business Principle Name|eComm Order No.|"));
+        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Delivery Note No.|Ship To Party Name|Delivery Date|Delivery QTY|Requester Name|Business Principle Name|"));
         System.out.println("Table Header correct!");
 
         System.out.println("Test PASSED!");
