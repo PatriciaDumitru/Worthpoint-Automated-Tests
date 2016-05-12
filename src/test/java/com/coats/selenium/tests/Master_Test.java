@@ -7783,7 +7783,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Shipping Condition page reached. Checking title...");
 
-        AssertJUnit.assertTrue("***Customer Private Articles Page: Title not as expected", scPage.getBreadcrumb().getText().equals("Shipping Condition"));
+        AssertJUnit.assertTrue("***Customer Private Articles Page: Title not as expected", scPage.getBreadcrumb().getText().equals("CCE Shipping Condition"));
         System.out.println("Title checked!");
 
         //Add Shipping condition
@@ -7792,6 +7792,8 @@ public class Master_Test extends DriverFactory {
         Mst_ShippingConditionPage scPage2 = addShipCond.clickSaveButton();
         //AssertJUnit.assertEquals("***Incorrect Flash Message!","The Shipping Condition has been saved",scPage2.getBreadcrumb().getText());
 
+
+        scPage2.waitForElement();
         /**
          * Verify the new Shipping condition in the table
          */

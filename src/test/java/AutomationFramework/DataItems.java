@@ -25,7 +25,7 @@ public class DataItems {
     public static String cceURL = targetURL + "/cce";
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
-    public static String ecommURL = "https://qawcs.coatscolourexpress.com/test/ecom";
+    public static String ecommURL = "https://qawcs.coatscolourexpress.com/qa_p4i/ecom";
 
     public static String invoicePage = targetURL + "/reports/cc/invoices";
     public static String deliveyNotesPage = targetURL + "/reports/cc/deliverynotes";
@@ -50,6 +50,8 @@ public class DataItems {
 
     public static String approverLEUsername = "approver@lifeeasy.com";
     public static String approverLEPassword = "password";           //CUSTOMER, LIFE EASY CUSTOMER, SUSST, APPROVER
+
+    public static String coatsUserName1 = "alexander.postl@coats.com"; //COATS USER, Life Easy Customer
 
     public static String validCustUsername = "joecontract@coats.com";
     public static String validCustPassword = "password";             //CUSTOMER, STAR GARMENTS LTD, SUSST, N/A

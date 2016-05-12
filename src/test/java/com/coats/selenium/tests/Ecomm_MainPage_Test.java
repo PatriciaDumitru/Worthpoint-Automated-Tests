@@ -84,8 +84,8 @@ public class Ecomm_MainPage_Test extends DriverFactory {
             {"manual entry","upload orders","from existing sample order","from existing bulk order","shade not available","waiting for shade code"},
             {"outstanding orders list","outstanding orders draft list","outstanding upload draft","courier tracking update","pending approval list","denied order","upload draft with errors"},
             {},
-            {"invoices","delivery notes","summary of purchase","outstanding payments","my reports","coats user report","order approval history"},
-            {"real upload failed files","backend in process files","backend failed files","ftp failed files","ad-hoc order update","failed contract order"},
+            {"invoices","delivery notes","purchase order summary","outstanding payments","advanced reports","coats user report","terms & conditions","order approval history"},
+            {"real upload failed files","backend in process files","backend failed files","ftp failed files","failed contract order"},
             {}
         };
 

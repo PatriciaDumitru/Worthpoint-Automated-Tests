@@ -188,7 +188,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         editPage2.disableApprovalCheckBoxForCust();
 
         System.out.println("'Disable CCE order upload' flag checked. Saving...");
-        editPage2.pressSave();
+        Mst_CustomersPage custPage2 = editPage2.pressSave();
         //editPage2.waitForElement();
 
         driver.get(DataItems.ecommURL);

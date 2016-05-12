@@ -28,6 +28,7 @@ public class Mst_ShippingConditionAddPage extends WBA_BasePage{
         try {
             System.out.println(getFlashMessage());
             driver.findElement(cancelButton).click();
+            System.out.println("Shipping condition already exists! Canceling...");
             return new Mst_ShippingConditionPage(driver);
         } catch (Exception e) {
             System.out.println("Shipping Condition saved!");

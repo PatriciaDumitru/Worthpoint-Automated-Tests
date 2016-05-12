@@ -100,11 +100,11 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         editPage2.enableCallOffOrderCheckBox();
         System.out.println("Field checked. Un-Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
         editPage2.disableSAPContractValidityCheckBox();
-        editPage2.pressSave();
-        custPage.waitForElement();
+        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        custPage2.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");
-        AssertJUnit.assertTrue("Customers Page: Flash Message not as expected", custPage.getFlashMessage().getText().equals("The Customer has been updated"));
+        AssertJUnit.assertTrue("Customers Page: Flash Message not as expected", custPage2.getFlashMessage().getText().equals("The Customer has been updated"));
 
 
     }
