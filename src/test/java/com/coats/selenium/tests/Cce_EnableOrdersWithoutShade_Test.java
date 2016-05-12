@@ -322,8 +322,8 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
 
         //Save
         System.out.println("'Enable Orders without Shade' flag checked. Saving...");
-        editPage2.pressSave();
-        custPage.waitForElement();
+        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        custPage2.waitForElement();
 
         System.out.println("Saved.");
     }
@@ -427,8 +427,8 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
 
         //Save
         System.out.println("'Enable Orders without Shade' flag checked. Saving...");
-        editPage2.pressSave();
-        custPage.waitForElement();
+        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        custPage2.waitForElement();
 
         System.out.println("Saved.");
     }

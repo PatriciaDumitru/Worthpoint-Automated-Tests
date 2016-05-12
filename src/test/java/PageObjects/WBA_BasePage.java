@@ -163,6 +163,7 @@ public class WBA_BasePage {
             static By orderTypeOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(13)");
             static By warehouseStocksOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(14)");
             static By allowedQuantitiesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(15)");
+            static By shippingConditionOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(17)");
             static By shipToPartiesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(3)");
             static By cabinetsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(18)");
             static By marketNewFeaturesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(19)");
@@ -1521,6 +1522,18 @@ public class WBA_BasePage {
         action.click(driver.findElement(allowedQuantitiesOption)).build().perform();
         
         return new Mst_AllowedQuantitiesPage(driver);
+    }
+
+    public Mst_ShippingConditionPage selectShippingCondition(){
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(adminHeader));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(adminHeader)).build().perform();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(mastersSubtab));
+        action.moveToElement(driver.findElement(mastersSubtab)).build().perform();
+        WebElement waitForSalesOrgMaster = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shippingConditionOption));
+        action.click(driver.findElement(shippingConditionOption)).build().perform();
+
+        return new Mst_ShippingConditionPage(driver);
     }
     
     public Mst_ShipToPartiesPage selectShipToParties() {

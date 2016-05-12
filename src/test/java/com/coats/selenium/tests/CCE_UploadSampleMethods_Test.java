@@ -411,11 +411,11 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         //Check "Enable CCE order upload"  flag
         System.out.println("Fields checked. Check 'Enable CCE order upload'...");
         editPage2.enableCCEOrderUploadCheckBox();
-        editPage2.pressSave();
-        custPage.waitForElement();
+        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        custPage2.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");
-        AssertJUnit.assertTrue("Customers Page: Flash Message not as expected", custPage.getFlashMessage().getText().equals("The Customer has been updated"));
+        AssertJUnit.assertTrue("Customers Page: Flash Message not as expected", custPage2.getFlashMessage().getText().equals("The Customer has been updated"));
 
 
         //logout from master
@@ -484,8 +484,8 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
 
         //Save
         System.out.println("'Enable CCE order upload' flag un-checked. Saving...");
-        editPage.pressSave();
-        soPage.waitForElement();
+        Mst_SalesOrgPage soPage2 = editPage.pressSave();
+        soPage2.waitForElement();
 
         System.out.println("Saved. Navigating to Customer master data...");
 
@@ -511,8 +511,8 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         AssertJUnit.assertFalse(input.isDisplayed());
 
         System.out.println("'CCE order upload' flag is not displayed for customer. Saving...");
-        editPage2.pressSave();
-        custPage.waitForElement();
+        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        custPage2.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");
         AssertJUnit.assertTrue("Customers Page: Flash Message not as expected", custPage.getFlashMessage().getText().equals("The Customer has been updated"));

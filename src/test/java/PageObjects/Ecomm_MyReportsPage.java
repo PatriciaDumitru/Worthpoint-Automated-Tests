@@ -166,6 +166,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
             By deleteButton = By.cssSelector("#content > div:nth-child(5) > table > tbody > tr:nth-child(" + i + ") > td:nth-child(3) > a");
             if (driver.findElement(reportName).getText().contentEquals(item)) {
                 driver.findElement(deleteButton).click();
+                System.out.println("Report "+item+" found on row:"+i);
                 try {
                     Alert alert = driver.switchTo().alert();
                     System.out.println("Alert message:"+alert.getText());
@@ -176,7 +177,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
                 }
                 break;
             } else {
-                System.out.println("No Report Name called " + item + " found on this row. Moving to next ...");
+                System.out.println("No Report Name called " + item + " found on row:"+i+". Moving to next row...");
             }
         }
     }

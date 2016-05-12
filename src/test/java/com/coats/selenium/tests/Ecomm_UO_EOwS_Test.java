@@ -11,6 +11,8 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import test.asserttests.AssertTest;
@@ -94,7 +96,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
 
         //Verifying that Order Confirmation Page is displayed
-        orderConf.waitForElement();
+        orderConf.waitForPageElem();
 
         //Checking the Flash Message from Order Confirmation page
         System.out.println(orderConf.getFlashMessage());
@@ -202,7 +204,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         closeAlert(driver);
 
         //Verifying that Order Confirmation Page is displayed
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
 
         //Checking the Flash Message from Order Confirmation page
         System.out.println(orderConf.getFlashMessage());
@@ -311,7 +313,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         closeAlert(driver);
 
         //Verifying that Order Confirmation Page is displayed
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
 
         //Checking the Flash Message from Order Confirmation page
         System.out.println(orderConf.getFlashMessage());
@@ -449,7 +451,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         closeAlert(driver);
 
         //Verifying that Order Confirmation Page is displayed
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
 
         //Checking the Flash Message from Order Confirmation page
         System.out.println(orderConf.getFlashMessage());
@@ -577,7 +579,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         closeAlert(driver);
 
         //Verifying that Order Confirmation Page is displayed
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
 
         //Checking the Flash Message from Order Confirmation page
         System.out.println(orderConf.getFlashMessage());
@@ -710,7 +712,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         closeAlert(driver);
 
         //Verifying that Order Confirmation Page is displayed
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
 
         //Checking the Flash Message from Order Confirmation page
         System.out.println(orderConf.getFlashMessage());
@@ -842,7 +844,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         closeAlert(driver);
 
         //Verifying that Order Confirmation Page is displayed
-        orderConf.waitForElement();
+        orderConf.waitForElement2();
 
         //Checking the Flash Message from Order Confirmation page
         System.out.println(orderConf.getFlashMessage());
@@ -987,7 +989,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
     }
 
 
-    @Test //enable this only when you need to create a file to use in manual tests
+    //@Test //enable this only when you need to create a file to use in manual tests
     public void testCreateFile123() throws Exception {
         FileFactory.createFile("SUSST",4,"EOwS","",true);
     }

@@ -255,10 +255,10 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         CCE_OrderStatusPage statusPage = entryPage.pressPendOrder();
         statusPage.waitForLoad();
 
-        ccePage.pressOutstandingDraft();
+        ccePage.pressOrderStatus();
         draftPage.waitForLoad();
         
-        System.out.println("Order draft saved. Checking draft appears in table...");
+        System.out.println("Order draft saved. Checking draft does not appears in Order Status table...");
         
         for (int i = 0; i < 3; i++) {
             //Wait for 10 seconds to allow the system to udpate
@@ -268,7 +268,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
             statusPage.setOrderNo(orderNo);
             statusPage.listOrders();
             statusPage.waitForElement();
-        
+
             if (statusPage.checkForRecords()) {
                 break;
             }
@@ -278,7 +278,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
 
         String orderStage = statusPage.getOrderStage(orderNo);
         
-        AssertJUnit.assertFalse("Order Status Page: Re-saved draft does not appear in table",orderStage.equals("not found"));
+        AssertJUnit.assertTrue("Order Status Page: Re-saved draft does not appear in table",orderStage.equals("not found"));
         
         System.out.println("Draft found.");
         
