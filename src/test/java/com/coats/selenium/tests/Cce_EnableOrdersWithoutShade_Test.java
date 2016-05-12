@@ -1,10 +1,8 @@
 package com.coats.selenium.tests;
 
-import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

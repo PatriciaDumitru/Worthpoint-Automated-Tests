@@ -5,22 +5,15 @@ import PageObjects.CCE_MainPage;
 import PageObjects.CCE_RefillCabinetPage;
 import PageObjects.CCE_RefillThreadListPage;
 import com.coats.selenium.DriverFactory;
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FileUtils;
 import org.testng.AssertJUnit;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Cce_RefillCabinet_Test extends DriverFactory {
     
     @Test //Refill Cabinet Page :: Page and filter checks
     (groups = {})//Currently unused feature
-    public void RC1() throws IOException, Exception {
+    public void RC1() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
@@ -34,10 +27,6 @@ public class Cce_RefillCabinet_Test extends DriverFactory {
         
         CCE_RefillCabinetPage rcPage = ccePage.pressRefillCabinet();
         rcPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Refill Cabinet\\1Refill cabinet page.png"));
         
         System.out.println("Refill Cabinet loaded.");
         

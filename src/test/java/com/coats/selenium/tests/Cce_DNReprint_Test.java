@@ -18,7 +18,7 @@ public class Cce_DNReprint_Test extends DriverFactory {
     
     @Test //DN Reprint Page :: Page checks
     (groups = {"CCE", "QuickTest"})
-    public void DR1() throws IOException,Exception {
+    public void DR1() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
@@ -32,10 +32,6 @@ public class Cce_DNReprint_Test extends DriverFactory {
         
         CCE_DNReprintPage dnReprint = ccePage.pressDNReprint();
         dnReprint.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\1DN Reprint page.png"));
         
         System.out.println("DN Reprint loaded.");
         
@@ -57,7 +53,7 @@ public class Cce_DNReprint_Test extends DriverFactory {
     
     @Test //DN Reprint Page :: Filter checks and confirm
     (groups = {"CCE"})
-    public void DR2() throws IOException,Exception {
+    public void DR2() throws Exception {
                 
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -76,26 +72,14 @@ public class Cce_DNReprint_Test extends DriverFactory {
         
         dnReprint.setShipToPartyName(DataItems.custDetails[1]);
         
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\2Filter criteria entered.png"));
-        
         System.out.println("Criteria entered. Listing orders...");
         
         dnReprint.pressList();
         dnReprint.waitForLoad();
         
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\3Orders listed.png"));
-        
         System.out.println("Orders listed. Pressing confirm...");
         
         dnReprint.pressConfirm();
-        
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\4Confirm pressed.png"));
         
         System.out.println("Confirm pressed. Pressing print...");
         
@@ -108,16 +92,12 @@ public class Cce_DNReprint_Test extends DriverFactory {
         
         System.out.println("Delivery notes displayed.");
         
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\DN Reprint\\5DN displayed.png"));
-        
         if (DataItems.printingEnabled) {           
             dnReprint = printPage.pressPrint();
             System.out.println("Delivery notes sent to printer.");
         } else {
             dnReprint = printPage.pressClose();
-            System.out.println("Deliveyr notes view closed.");
+            System.out.println("Delivery notes view closed.");
         }
         
         System.out.println("Test complete.");

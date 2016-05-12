@@ -6,22 +6,15 @@ import PageObjects.CCE_InboxPage;
 import PageObjects.CCE_InboxSAPPage;
 import PageObjects.CCE_OrderViewPage;
 import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FileUtils;
 import org.testng.AssertJUnit;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Cce_Inbox_Test extends DriverFactory {
     
     @Test //Inbox Page :: Page and filter checks, list orders, save, and re-assign SOS
     (groups = {"CCE", "QuickTest"})
-    public void I1() throws IOException, Exception {
+    public void I1() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
@@ -92,7 +85,7 @@ public class Cce_Inbox_Test extends DriverFactory {
     
     @Test //Inbox Page : Reset, cancel, and print
     (groups = {"CCE", "QuickTest"})
-    public void I2() throws IOException, Exception {
+    public void I2() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
@@ -111,35 +104,19 @@ public class Cce_Inbox_Test extends DriverFactory {
         ibPage.setCustName(DataItems.custDetails[0]);
         ibPage.setRequester(DataItems.custDetails[2]);
         
-        //Take a screenshot
-        File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\7Filter criteria entered.png"));
-        
         System.out.println("Criteria entered. Pressing reset...");
         
         ibPage.pressReset();
         ibPage.waitForLoad();
         
-        //Take a screenshot
-        File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\8Filter reset.png"));
-        
         System.out.println("Filter reset. Pressing 'send to SAP'...");
         
         ibPage.pressSAP();
-        
-        //Take a screenshot
-        File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\9Send to SAP selected.png"));
         
         System.out.println("SAP selected. Pressing cancel...");
         
         ibPage.pressCancel();
         ibPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox\\10Order cancelled.png"));
         
         System.out.println("Cancel pressed. Pressing print...");
         
@@ -151,7 +128,7 @@ public class Cce_Inbox_Test extends DriverFactory {
     
     @Test 
     (groups = {"CCE", "QuickTest"})
-    public void IS1() throws IOException, Exception {
+    public void IS1() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
@@ -159,51 +136,31 @@ public class Cce_Inbox_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         
         //Set up returns a CCE Page and outputs test details
-        CCE_MainPage ccePage = base.setUp("Inbox SAP IS2: Page check, filter functions, list orders, reset", "C_CCE_I_5");
+        CCE_MainPage ccePage = base.setUp("Inbox SAP IS1: Page check, filter functions, list orders, reset", "C_CCE_I_5");
         
         System.out.println("Navigating to Inbox...");
         
         CCE_InboxSAPPage isPage = ccePage.pressInboxSAP();
         isPage.waitForLoad();
         
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\1Inbox SAP page.png"));
-        
         System.out.println("Inbox loaded. Entering filter criteria...");
         
         isPage.setHub("IDH001");//DataItems.hub
-        
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\2Filter criteria entered.png"));
         
         System.out.println("Criteria entered. Listing orders...");
         
         isPage.pressListOrders();
         isPage.waitForLoad();
         
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\3Orders listed.png"));
-        
         System.out.println("Orders listed. Entering search criteria...");
         
         isPage.setSalesOrg(DataItems.salesOrganisation);
         isPage.setHub("IDH001");//DataItems.hub
         
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\4Filter criteria entered.png"));
-        
         System.out.println("Criteria entered. Pressing reset...");
         
         isPage.pressReset();
         isPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Inbox\\Inbox SAP\\5Filter reset.png"));
         
         System.out.println("Reset pressed.");
         

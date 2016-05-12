@@ -5,7 +5,6 @@ import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
-import com.google.common.base.Verify;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,12 +16,6 @@ import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.List;
-
-/**
- * Created by Daniel Ion on 09.03.2016.
- */
 public class CCE_UploadSampleMethods_Test extends DriverFactory {
 
     @Test //Order status page :: page and filter checks, reset function, export data
@@ -544,16 +537,13 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         System.out.println("Order File Upload page is not available in the menu");
     }
 
-   /* public void SUF_OFU_01() throws Exception {
-     TODO
-    }*/
 
     @Test(groups = {"CCE"})
-    public void SUF_OFU_02() throws Exception {
+    public void SUF_OFU_01() throws Exception {
 
         WebDriver driver = getDriver();
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Upload Order Samples", "SUF_OFU_02", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
+        CCE_MainPage ccePage = base.setUp("Upload Order Samples", "SUF_OFU_01", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
         ccePage.waitForLoad();
 
         System.out.println("Navigating to Order File Upload...");

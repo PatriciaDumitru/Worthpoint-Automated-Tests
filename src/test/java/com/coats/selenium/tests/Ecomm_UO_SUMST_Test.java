@@ -1658,8 +1658,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         lineWithError.click();
 
         driver2.switchTo().frame(driver2.findElement(By.id("TB_iframeContent")));
-        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator);
-        AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
+        WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator2);
+        //AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
@@ -1720,7 +1720,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator2);
         //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }

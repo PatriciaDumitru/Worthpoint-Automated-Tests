@@ -1,21 +1,10 @@
 package com.coats.selenium.tests;
 
-import AutomationFramework.FileFactory;
 import com.coats.selenium.DriverFactory;
 
 import AutomationFramework.DataItems;
-import AutomationFramework.Wait;
 import PageObjects.*;
-import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
 
-import com.coats.selenium.tests.Cce_Base;
-import com.google.common.base.Verify;
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.poi.util.SystemOutLogger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,7 +15,7 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
 
     @Test //	ER_MF_XML_01: Error Handling Mandatory Field XML with empty xml file
             (groups = {"CCE", "QuickTest"})
-    public void ER_MF_XML_01() throws IOException, Exception {
+    public void ER_MF_XML_01() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
 
@@ -88,7 +77,7 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
 
     @Test //	ER_MF_XML_02: Error Handling Mandatory Field XML multiline : first line empty, second line uploaded xml
             (groups = {"CCE"})
-    public void ER_MF_XML_02() throws IOException, Exception {
+    public void ER_MF_XML_02() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
 
@@ -151,7 +140,7 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
 
     @Test //	ER_MF_XML_03: Error Handling Mandatory Field XML with uploaded xml file
             (groups = {"CCE"})
-    public void ER_MF_XML_03() throws IOException, Exception {
+    public void ER_MF_XML_03() throws Exception {
         ER_MF_XML_01();
 
 
@@ -162,7 +151,7 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
 
     @Test //	ER_MF_XML_04: Error Handling Mandatory Field XML multiline : first line uploaded xml, second line uploaded xml
             (groups = {"CCE"})
-    public void ER_MF_XML_04() throws IOException, Exception {
+    public void ER_MF_XML_04() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
 

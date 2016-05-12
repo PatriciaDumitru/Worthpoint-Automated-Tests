@@ -9,7 +9,6 @@ import PageObjects.WBA_SelectionPage;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
 import java.io.File;
-import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
@@ -17,18 +16,16 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Cce_MainPage_Test extends DriverFactory {
     
     @Test //CCE Main Page :: Navigation bar check
     (groups = {"CCE", "QuickTest"})
-    public void CCE1() throws IOException, Exception {
+    public void CCE1() throws Exception {
         
         System.out.println("TEST: CCE HOME PAGE");
         System.out.println("Scenario ID (no ID)");
@@ -57,10 +54,6 @@ public class Cce_MainPage_Test extends DriverFactory {
         
         //Wait for page to load
         Boolean waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.titleIs(DataItems.ccePageTitle));
-        
-        //Take a screenshot
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\CCE\\Main Page\\1Main page.png"));
         
         System.out.println("Asserting elements on CCE page...");
         
@@ -117,7 +110,7 @@ public class Cce_MainPage_Test extends DriverFactory {
 
     @Test //CCE Main Page: Navigation bar link checks
     (groups = {"CCE"})
-    public void CCE2() throws InterruptedException, IOException, Exception {
+    public void CCE2() throws Exception {
         System.out.println("TEST: CCE NAVIGATION TAB LINKS");
         System.out.println("Scenario ID: G_CCE_MS_02 to 23");
         
@@ -237,9 +230,6 @@ public class Cce_MainPage_Test extends DriverFactory {
                         } else {
                             fileName = expectedTitle;
                         }
-
-                        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                        FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
 
                         
                     }
