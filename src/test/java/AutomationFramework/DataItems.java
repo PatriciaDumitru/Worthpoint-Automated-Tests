@@ -303,7 +303,7 @@ public class DataItems {
     public static String wrongEntryCust = "Wrong Entry by Customer";
 
     //Sample order details
-    public static String sampOrderNo = "1129097";
+    public static String sampOrderNo = "1129084";
     public static String sampCustName = "Life Easy Customer";
     public static String sampRequester = "approver 1 test";
     public static String sampSalesOrg = "ID52";

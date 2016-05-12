@@ -311,6 +311,7 @@ public class PreFlows {
         else if (custEnrichoOption == "Warehouse")enableEnrichToWarehouse(driver);
         else System.out.println("Customer Enrich To Otion does not exist...");
         disableAutoEnrichCheckBoxForCust(driver);
+        setDeliveryPlant(driver, DataItems.plantID12);
         saveCustomer(driver);
     }
 

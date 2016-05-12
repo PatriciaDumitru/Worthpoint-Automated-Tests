@@ -430,8 +430,8 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
     mePage.setBuyers(DataItems.custDetails[3]);
     mePage.setDate(0);
-    //driver.findElement(By.id("txtContract0")).clear();
-    //driver.findElement(By.id("txtContract0")).sendKeys("40000992");
+    driver.findElement(By.id("txtContract0")).clear();
+    driver.findElement(By.id("txtContract0")).sendKeys("40000992");
     
       System.out.println("Line details entered.");
     
@@ -899,7 +899,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         System.out.println("Fields absent, as expected. Pressing next...");
         
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
         orderConf.waitForElement();
         
         System.out.println("MOQ Alert appeared as expected.");

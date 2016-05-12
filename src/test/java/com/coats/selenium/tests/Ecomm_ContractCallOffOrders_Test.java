@@ -314,8 +314,8 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         WebDriver driver = getDriver();
 
-        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        logout.click();
+        PreFlows pf = new PreFlows();
+        pf.logoutAction(driver);
 
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);

@@ -6592,7 +6592,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Our Stocks page reached. Checking title...");
 
-        AssertJUnit.assertTrue("Our Stocks Page: Title not as expected", pPage.getBreadcrumb().getText().equals("Our Stocks"));
+        AssertJUnit.assertTrue("Our Stocks Page: Title not as expected", pPage.getBreadcrumb().getText().equals("Warehouse Stocks"));
 
         System.out.println("Title checked");
 

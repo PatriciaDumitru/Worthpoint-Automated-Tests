@@ -197,18 +197,6 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
         orderConf.waitForElement();
 
-        //Input details for each line
-        for (int i = 0; i < numberOfLines; i++) {
-            manualEntryPage = manualEntryPage.setOrderDetailsYMN(details[i], i);
-        }
-
-        System.out.println("Quantity Product details re-entered. Pressing next...");
-
-        //Press next
-        Ecomm_OrderConfirmationPage orderConf2 = manualEntryPage.pressNext();
-        orderConf2.waitForElement();
-
-
         System.out.println("Order confirmation page reached. Submitting order...");
 
         //Press Submit

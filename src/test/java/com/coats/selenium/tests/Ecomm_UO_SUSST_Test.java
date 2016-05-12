@@ -215,6 +215,9 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
         System.out.println("Mapping set. Confirming map..."); 
         
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
+        Alert alert2 = Wait.alert(driver);
+        alert2.accept();
+
         orderConf.waitForElement();
         
         System.out.println("Map confirmed. Checking details (quantity) are input as expected...");
@@ -222,7 +225,6 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
         int qty = orderConf.getOrderedQty();
         
         AssertJUnit.assertTrue("Order Confirmation Page: Ordered Quantity not maintained from upload file",String.valueOf(qty).equals(FileFactory.susstBasicData[0][11]));
-        
         System.out.println("Input correct. Submitting...");
         
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();

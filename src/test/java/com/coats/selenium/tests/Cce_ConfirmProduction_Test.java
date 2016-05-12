@@ -115,6 +115,7 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         System.out.println("Closing view...");
         
         viewPage.closeView();
+
         viewPage.waitForInvisibility();
         
         try {
