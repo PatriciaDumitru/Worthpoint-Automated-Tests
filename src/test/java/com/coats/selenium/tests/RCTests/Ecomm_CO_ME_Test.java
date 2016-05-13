@@ -13,10 +13,9 @@ import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditCustomerPage;
 import PageObjects.WBA_LoginPage;
 import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
 import com.coats.selenium.tests.Cce_Base;
 import com.coats.selenium.tests.Ecomm_Base;
-import com.google.common.base.Verify;
+
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -25,7 +24,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.*;
-import org.openqa.selenium.support.ui.Select;
 
 public class Ecomm_CO_ME_Test extends DriverFactory {
 
@@ -980,7 +978,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
       
       System.out.println("Disabled. Saving...");
       
-      editPage.pressSave();
+      editPage.clickSave();
       custPage.waitForElement();
       
       System.out.println("Saved. Logging into Contract Order account...");
@@ -1064,7 +1062,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
       
       System.out.println("Enabled. Saving...");
       
-      editPage.pressSave();
+      editPage.clickSave();
       custPage.waitForElement();
       
       System.out.println("Saved");

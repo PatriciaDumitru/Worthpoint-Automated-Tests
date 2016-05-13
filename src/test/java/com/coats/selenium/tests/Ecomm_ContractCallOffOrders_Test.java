@@ -93,7 +93,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         editPage2.enableCallOffOrderCheckBox();
         System.out.println("Field checked. Un-Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
         editPage2.disableSAPContractValidityCheckBox();
-        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
         custPage2.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");
@@ -1474,7 +1474,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         editPage2.disableApprovalCheckBoxForCust();
 
         System.out.println("'Disable CCE order upload' flag checked. Saving...");
-        editPage2.pressSave();
+        editPage2.clickSave();
         //editPage2.waitForElement();
 
         PreFlows pf = new PreFlows();

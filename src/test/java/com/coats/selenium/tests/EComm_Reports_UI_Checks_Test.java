@@ -12,7 +12,10 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 /**
- * Created by Stefan on 12.04.2016.
+ * Created by: Stefan on 12.04.2016.
+ * Description: This class contains tests for eComm > Reports User Interface verifications. WBA-562,WBA-563,WBA-564 and WBA-566
+ * changed the User Interface for reports and the following test will cover the testing of reports changes.
+ * Contributors:
  */
 public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
@@ -47,6 +50,11 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         //Actions|Invoice Creation Date|Invoice No.|Status|No. of lines|Invoice Quantity|Customer PO number|Invoice Amount|
         AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Invoice number|Payer name|Invoice amount|Currency|Status|Payment date|Payment due date|Business principle name|"));
         System.out.println("Table Header correct!");
+
+        /**
+         * Verify Pagination
+         */
+        CommonTask.checkReportsPagination(driver);
 
         System.out.println("Test PASSED!");
     }
@@ -83,6 +91,11 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Delivery Note No.|Ship To Party Name|Delivery Date|Delivery QTY|Requester Name|Business Principle Name|"));
         System.out.println("Table Header correct!");
 
+        /**
+         * Verify Pagination
+         */
+        CommonTask.checkReportsPagination(driver);
+
         System.out.println("Test PASSED!");
     }
 
@@ -117,6 +130,11 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         //Action|Purchase Date|Customer PO number.|Requester Name|
         AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Customer PO No|eComm Order No|SAP Order No.|Order Type|Payer Name|Net Value|Currency|Business Principle Name|"));
         System.out.println("Table Header correct!");
+
+        /**
+         * Verify Pagination
+         */
+        CommonTask.checkReportsPagination(driver);
 
         System.out.println("Test PASSED!");
     }

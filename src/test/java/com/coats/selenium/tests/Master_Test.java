@@ -7,19 +7,11 @@ import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import com.coats.selenium.DriverFactory;
 
-import static com.coats.selenium.DriverFactory.getDriver;
-
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-import org.openqa.selenium.WebDriver.Timeouts;
-
-import java.util.concurrent.TimeUnit;
 
 public class Master_Test extends DriverFactory {
 
@@ -297,6 +289,12 @@ public class Master_Test extends DriverFactory {
     @Test //Filter Checks
             (groups = {"Masters"})
     public void A_M_FC() throws Exception {
+        /**
+         * Created by:
+         * Description:
+         * Scope:
+         * Contributors:
+         */
         WebDriver driver = getDriver();
 
         Cce_Base base = new Cce_Base(driver);
@@ -390,7 +388,7 @@ public class Master_Test extends DriverFactory {
         //AssertJUnit.assertTrue("Edit Customer Page: Contract Order field not enabled",editPage2.getContractOrderField().getAttribute("checked").equals("true"));
         //System.out.println("Field activated, as expected. Saving...");
 
-        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
         custPage2.waitForElement();
 
         System.out.println("Saved.");
@@ -7004,7 +7002,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Edited. Saving...");
 
-        editPage.pressSave();
+        editPage.clickSave();
         pPage.waitForElement();
 
         System.out.println("Saved. Checking record is updated...");

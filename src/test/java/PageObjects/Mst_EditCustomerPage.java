@@ -38,7 +38,7 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
     static By orderUploadCheckBoxLocator2 = By.id("Requester9SampleUpload");
     By userTypeField = By.id("Requester0UserTypeId");
     By saveButton = By.cssSelector("#CustomerEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
-    
+
     public Mst_EditCustomerPage(WebDriver driver) {
         super(driver);
     }
@@ -137,8 +137,13 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
         return false;
     }
     
-    public Mst_CustomersPage pressSave() {
-        WebElement btn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+    public Mst_CustomersPage clickSave() {
+        /**
+         * Edited by Stefan
+         */
+        //Wait for element to be clickable
+        WebElement btn = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.elementToBeClickable(saveButton));
+        //WebElement btn = Wait.clickable(driver,saveButton);
         btn.click();
         
         return new Mst_CustomersPage(driver);

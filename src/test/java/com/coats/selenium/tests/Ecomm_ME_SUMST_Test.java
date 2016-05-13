@@ -35,7 +35,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import static AutomationFramework.DataItems.flashMessage;
 import static AutomationFramework.DataItems.validCoatsPassword;
 import static AutomationFramework.DataItems.validCoatsUsername2;
 
@@ -2843,7 +2842,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage.getCustomerName().equals(DataItems.custDetails[0]));
 
         editPage.setApprovalWorkflow();
-        editPage.pressSave();
+        editPage.clickSave();
 
         System.out.println("Approval workflow enabled. Creating order...");
 
@@ -2963,7 +2962,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage2.getCustomerName().equals(DataItems.custDetails[0]));
 
         editPage2.unsetApprovalWorkflow();
-        editPage2.pressSave();
+        editPage2.clickSave();
         custPage2.waitForElement();
         pf.goToSalesOrgAndEdit(driver,"ID51");
         pf.disableApprovalCheckBoxForSalesOrg(driver);

@@ -8,14 +8,9 @@ import AutomationFramework.Wait;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 
-import static AutomationFramework.DataItems.validCoatsPassword;
-import static AutomationFramework.DataItems.validCoatsUsername2;
-import static com.coats.selenium.DriverFactory.getDriver;
 import com.google.common.base.Verify;
-import java.awt.AWTException;
+
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -58,7 +53,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         editPage2.disableApprovalCheckBoxForCust();
 
         System.out.println("'Disable CCE order upload' flag checked. Saving...");
-        editPage2.pressSave();
+        editPage2.clickSave();
         //editPage2.waitForElement();
 
         PreFlows pf = new PreFlows();
@@ -188,7 +183,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         editPage2.disableApprovalCheckBoxForCust();
 
         System.out.println("'Disable CCE order upload' flag checked. Saving...");
-        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
         //editPage2.waitForElement();
 
         driver.get(DataItems.ecommURL);
@@ -1467,7 +1462,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         editPage2.enableCallOffOrderCheckBox();
         System.out.println("Field checked. Un-Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
         editPage2.disableSAPContractValidityCheckBox();
-        editPage2.pressSave();
+        editPage2.clickSave();
         custPage.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");
