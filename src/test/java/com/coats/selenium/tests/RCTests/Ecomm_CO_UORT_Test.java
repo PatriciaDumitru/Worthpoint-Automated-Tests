@@ -158,7 +158,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
 
   @Test //Upload Orders Page :: Realtime contract order upload, expecting validation success
   (groups ={"eComm","eComm_Orders","Upload_Order"}) //This test can fail due to the "Combination of records already exists" error. Test manually if this occurs
-  public void CORT2() throws IOException, Exception {
+  public void CORT2() throws Exception {
     
     WebDriver driver = getDriver();
       
@@ -207,19 +207,11 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     
     
     CommonTask.setSearchField(driver, By.id("s2id_BuyerId_0"), DataItems.conOrdDetails[3]);
-    
-    //Take a screenshot
-    File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\7Validation success - Confirmation page.png"));
    
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
 
     WebElement waitForPresence = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
-    
-    //Take a screenshot
-    File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\8Validation success - Confirmation page scrolled.png"));
     
     boolean success = false;
     
@@ -243,16 +235,11 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
         driver.findElement(confirmButton).click();
         CommonTask.waitForPageLoad(driver);
         System.out.println("Order confirmed.");
-        //Take a screenshot
-        File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\9Order confirmed.png"));
+
     } else {
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
         System.out.println("Order cancelled, as Conract Call-off is disabled");
-        //Take a screenshot
-        File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\9Order cancelled.png"));
     }
     
     

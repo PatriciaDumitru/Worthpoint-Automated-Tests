@@ -6592,7 +6592,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Our Stocks page reached. Checking title...");
 
-        AssertJUnit.assertTrue("Our Stocks Page: Title not as expected", pPage.getBreadcrumb().getText().equals("Our Stocks"));
+        AssertJUnit.assertTrue("Our Stocks Page: Title not as expected", pPage.getBreadcrumb().getText().equals("Warehouse Stocks"));
 
         System.out.println("Title checked");
 
@@ -6626,7 +6626,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Add Our Stock Page reached. Checking title...");
 
-        AssertJUnit.assertTrue("Add Our Stock Page: Title not as expected", addPage.getBreadcrumb().getText().equals("Our Stocks | Add Our Stock"));
+        AssertJUnit.assertTrue("Add Our Stock Page: Title not as expected", addPage.getBreadcrumb().getText().equals("Warehouse Stocks | Add Warehouse Stock"));
 
         System.out.println("Title as expected");
 
@@ -6666,7 +6666,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Edit page reached. Checking title...");
 
-        AssertJUnit.assertTrue("Edit Our Stock Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Our Stocks | Edit Our Stock"));
+        AssertJUnit.assertTrue("Edit Our Stock Page: Title not as expected", editPage.getBreadcrumb().getText().equals("Warehouse Stocks | Edit Warehouse Stock"));
 
         System.out.println("Title checked");
 
@@ -6688,6 +6688,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Saved. Checking record is updated...");
 
         pPage.setSalesOrg("ID51");
+        pPage.setArticle("TEST01");
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -6725,7 +6726,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Page reached. Checking title...");
 
-        AssertJUnit.assertTrue("Our Stocks Import Page: Title not as expected", impPage.getBreadcrumb().getText().equals("Our Stocks | Import"));
+        AssertJUnit.assertTrue("Our Stocks Import Page: Title not as expected", impPage.getBreadcrumb().getText().equals("Warehouse Stocks | Import"));
 
         System.out.println("Title as expected");
     }

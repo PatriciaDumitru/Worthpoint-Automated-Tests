@@ -190,7 +190,7 @@ public class FileFactory {
     };
 
     public static String[][] sumstBasicData17 = {
-            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "999999999", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "999999999999", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com"}
     };
 
     public static String[][] sumstBasicData18 = {

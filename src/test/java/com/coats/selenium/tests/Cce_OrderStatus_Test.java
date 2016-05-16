@@ -37,7 +37,7 @@ public class Cce_OrderStatus_Test extends DriverFactory {
         
         orderStatus.checkFields();
         
-        System.out.println("Fields checked. Entering filter criteria...");
+       /* System.out.println("Fields checked. Entering filter criteria...");
         
         orderStatus.setCustName(DataItems.custDetails[0]);
         
@@ -56,7 +56,7 @@ public class Cce_OrderStatus_Test extends DriverFactory {
         orderStatus.pressReset();
         orderStatus.waitForLoad();
         
-        System.out.println("Filter reset.");
+        System.out.println("Filter reset.");*/
 
     }
 

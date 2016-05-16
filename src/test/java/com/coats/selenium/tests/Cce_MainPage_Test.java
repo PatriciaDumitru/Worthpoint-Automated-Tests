@@ -182,9 +182,6 @@ public class Cce_MainPage_Test extends DriverFactory {
                         fileName = expectedTitle;
                     }
                     
-                    File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                    FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
-                    
                     pageCounter++;
                 } else {
                     header.click();
@@ -195,9 +192,6 @@ public class Cce_MainPage_Test extends DriverFactory {
                     } else {
                         fileName = expectedTitle;
                     }
-                    
-                    File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-                    FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\CCE\\ALL PAGES\\"+pageCounter+fileName+".png"));
                     
                     pageCounter++;
                 }         

@@ -121,7 +121,7 @@ public class Mst_WarehouseStocksPage extends WBA_BasePage {
     }
     
     public Mst_WarehouseStocksPage pressDelete(int row) {
-        By locator = By.cssSelector("#OurStockListForm > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(9) > a:nth-child(3) > span");
+        By locator = By.cssSelector("#OurStockListForm > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td:nth-child(9) > a:nth-child(2) > span");
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
         element.click();
         

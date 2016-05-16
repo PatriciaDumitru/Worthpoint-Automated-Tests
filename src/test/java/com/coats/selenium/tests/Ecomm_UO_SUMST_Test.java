@@ -2017,7 +2017,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic17", "", true));
+        uploadPage.setFilePath(FileFactory.createFile("SUMST", 1, "Basic17", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();
@@ -2052,7 +2052,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         lineWithError.click();
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
-        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
+        WebElement errorLines=driver.findElement(DataItems.errorLinesLocator2);
         //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }

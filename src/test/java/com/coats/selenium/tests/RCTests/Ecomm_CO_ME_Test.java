@@ -3,6 +3,7 @@ package com.coats.selenium.tests.RCTests;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.PreFlows;
+import AutomationFramework.Wait;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
@@ -435,10 +436,6 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
       System.out.println("Line details entered.");
     
-    //Take a screenshot
-    File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\17Only contract PO.png"));
-    
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
 
     try {
@@ -450,19 +447,11 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
 
     CommonTask.waitForPageLoad(driver);
     
-    //Take a screenshot
-    File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile12,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\18Order confirmation.png"));
-    
       System.out.println("Viewing error...");
     
     driver.findElement(By.linkText("Line with Error")).click();
     Ecomm_OrderViewPage viewPage = new Ecomm_OrderViewPage(driver);
     viewPage.waitForContent();
-    
-    //Take a screenshot
-    File scrFile13 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile13,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\19Error view.png"));
     
       System.out.println("View displayed. Closing view...");
     
@@ -900,9 +889,13 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         
         //Press next
         Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
-        orderConf.waitForElement();
-        
+        //orderConf.waitForElement();
+
+        Alert alert = Wait.alert(driver);
+        alert.accept();
         System.out.println("MOQ Alert appeared as expected.");
+
+
 
         System.out.println("Order confirmation page reached. Checking details are maintained...");
         
