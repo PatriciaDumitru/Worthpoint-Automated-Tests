@@ -46,7 +46,7 @@ public class DriverFactory {
           System.out.println("----------------------------------------------------");
       }
 
-
+*/
 
       @AfterMethod (alwaysRun=true)
       public static void closeDriverObjects() {
@@ -56,5 +56,5 @@ public class DriverFactory {
         System.out.println("----------------------------------------------------");
 
     }
-*/
+
 }
