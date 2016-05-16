@@ -246,6 +246,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC4: Single line, above threshold", "G_CCE_SOC_6");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -299,6 +301,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC5: Multiple lines, copied data", "G_CCE_SOC_8");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -386,6 +390,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC6: Save as draft", "G_CCE_SOC_12");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -448,6 +454,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC7: Sales Org Material Master hides MUM Type", "G_CCE_SOC_3");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigaing to Sales Org Materials Master...");
         
@@ -515,7 +523,9 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC8: Direct Enrich: Available and working. Warehouse SOS test", "G_CCE_SOC_12");
-        
+
+        ccePage.waitForElement();
+
         System.out.println("Navigating to Order Samples...");
         
         CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
@@ -603,6 +613,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC9: Direct Enrich feature: Hub/Lab options test", "G_CCE_SOC_12");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -745,6 +757,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC10: New Buyer function", "OP_NBB_01");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -805,6 +819,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC11: Single line, above LAB qty but within threshold", "G_CCE_SOC_5");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -881,6 +897,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC12: Maximum copy count test", "Unknown");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         

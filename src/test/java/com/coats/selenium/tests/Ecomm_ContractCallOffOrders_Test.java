@@ -93,7 +93,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         editPage2.enableCallOffOrderCheckBox();
         System.out.println("Field checked. Un-Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
         editPage2.disableSAPContractValidityCheckBox();
-        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
         custPage2.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");
@@ -152,8 +152,8 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         //Save
         System.out.println("'Enable Contract CALL OFF Order' flag unchecked. Saving...");
-        editPage.pressSave();
-        soPage.waitForElement();
+        Mst_SalesOrgPage soPage2 = editPage.pressSave();
+        soPage2.waitForElement();
 
         System.out.println("Saved. Navigating to Customer master data...");
 
@@ -172,10 +172,12 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         editPage2.waitForElement();
 
         System.out.println("Edit page reached.");
-        System.out.println("Field checked. Un-Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
+        //System.out.println("Field checked. Un-Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
         editPage2.disableSAPContractValidityCheckBox();
         System.out.println("Customers Edit page page reached. Verify that Flag 'Enable Contract CALL OFF Order' is not present");
-        AssertJUnit.assertTrue(!driver.findElement(By.id("CustomerOffOrder")).isDisplayed());
+
+        AssertJUnit.assertFalse("***Customer Call Off Order checkbox is displayed!",editPage2.getCallOffOrderCheckBox().isDisplayed());
+
         System.out.println("Flag 'Enable Contract CALL OFF Order' is not present");
 
     }
@@ -554,6 +556,8 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         System.out.println("Navigating to Manual Entry...");
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
+
+        eCommPage.waitForElement();
 
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
         manualEntryPage.waitForElement();
@@ -1474,7 +1478,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         editPage2.disableApprovalCheckBoxForCust();
 
         System.out.println("'Disable CCE order upload' flag checked. Saving...");
-        editPage2.pressSave();
+        editPage2.clickSave();
         //editPage2.waitForElement();
 
         PreFlows pf = new PreFlows();

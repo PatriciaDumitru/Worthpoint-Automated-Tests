@@ -40,7 +40,13 @@ public class CommonTask {
     private static By lastButton = By.cssSelector("#content > div.flexi-grid > dl > dd > span.next + span");
     private static By adminHeader = By.cssSelector("#topnav > li:nth-child(8)");
     private static By mastersSubtab = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3)");
-    
+
+    //Reports locators
+    private static By lastButtonReports = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > dl > dd > span:nth-child(12)");
+    private static By prevButtonReports = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > dl > dd > span.prev");
+    private static By nextButtonReports = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > dl > dd > span.next");
+
+
     public static void setSearchField(WebDriver driver,By fieldLocator, String item) {
         //Set the value of search field (located by fieldLocator) to "item"
         
@@ -870,7 +876,145 @@ public class CommonTask {
         return true;
         
     }
-    
+
+    public static boolean checkReportsPagination(WebDriver driver) {
+        /**
+         * Created by: Stefan
+         * Description: This is used to verify the pagination in eComm > Reports (it's similar to checkPagination above, only changed a few locators)
+         */
+        //Check the pagination (page numbering) on each web page containing a filter. This does not work for all pages and so must be modified for the exceptions
+
+        //Locator for field which appears when no records appear
+        By noRecords = By.xpath("//*[contains(text(), 'No records found.')]");
+
+        boolean records;
+
+        try {
+            //Wait for the "no records found" field to be displayed. If it is NOT displayed, continue. Else - timeout exception.
+            //These waits are a source of slowness in the tests. The full 10 seconds must be waited to ensure the field is not displayed. Better method?
+            Boolean wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.invisibilityOfElementLocated(noRecords));
+
+            System.out.println("Records found");
+
+            //Set records to true to signal records were found
+            records = true;
+        } catch (TimeoutException t) {
+            //Timeout Exception only reached if noRecords field displayed
+            System.out.println("No records found.");
+
+            //Set records to false to show not records were found
+            records = false;
+        }
+
+        //Only complete if records were found
+        if (records) {
+
+            //"Showing" refers to field in bottom left of filter which says "Showing 1-x of y"
+            boolean showing;
+            int recordCount = -1;
+            try {
+                //Wait for Showing field to be available
+                WebElement waitForShowing = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(showingLocator));
+
+                //If showing field is displayed, set showing to true
+                showing = true;
+            } catch (TimeoutException t) {
+                //TimeoutException reached if showing field is not dislayed
+                showing = false;
+            }
+
+            //Get number of records displayed
+            if (showing) {
+                String[] showingText = driver.findElement(showingLocator).getText().split("of ");
+                String temp = showingText[1];
+                String[] tempArray = temp.split("\\|");
+                String numberOfRecords = tempArray[0];
+                recordCount = Integer.valueOf(numberOfRecords);
+            }
+
+            //PerPage refers to the menu which allows the number of items per page to be selected
+            boolean perPage;
+            try {
+                //Wait for menu to be available
+                WebElement waitForMenu = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(perPageMenu));
+
+                //If menu is available, set value to true to signal menu is shown
+                perPage = true;
+            } catch (TimeoutException t) {
+                //TimeoutException only reached if perPage is not available. Set to false to show menu is not shown
+                perPage = false;
+            }
+
+            //Options refers to the options located in the per page menu (e.g. 10/25/50)
+            boolean options;
+
+            //Move mouse over element to display menu
+            Actions action = new Actions(driver);
+            action.moveToElement(driver.findElement(perPageMenu)).build().perform();
+
+            try {
+                //Wait for each option to be available
+                WebElement waitFor10 = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.presenceOfElementLocated(option10));
+                WebElement waitFor25 = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.presenceOfElementLocated(option25));
+                WebElement waitFor50 = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.presenceOfElementLocated(option50));
+
+                //If all options are available, set options to true to signal all options are shown
+                options = true;
+            } catch (TimeoutException t) {
+                //TimeoutException only reached if one of the options wasnt available
+                options = false;
+            }
+
+            //Assert that all initial parts of the pagination are found as expected by combining boolean values
+            AssertJUnit.assertTrue("Pagination Check: One or more elements of 'Showing x-y of z', 'Records Per Page', '10/25/50 options' were not visible",
+                    showing&&perPage&&options);
+
+            //Jumps refers to the labels which allow jumps in the page number to be made (e.g. prev, next)
+            boolean jumps;
+
+            try {
+                //Wait for both jump options to appear
+                WebElement waitForPrev = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(prevButtonReports));
+                WebElement waitForNext = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOfElementLocated(nextButtonReports));
+                //Set jumps to true to signal both jump options appear
+                jumps = true;
+            } catch (TimeoutException t) {
+                //TimeoutException only reached if jumps are not available
+                jumps = false;
+            }
+
+            //Check if there should be multiple pages by dividing by 10 (multiple of items on page)
+            if ((recordCount/10) > 1) {
+
+                //Last refers to the label which jumps to the last page
+                boolean last;
+
+                try {
+                    //Find element
+                    WebElement element = driver.findElement(lastButtonReports);
+                    WebElement waitForLast = new WebDriverWait(driver,DataItems.shorterWait).until(ExpectedConditions.visibilityOf(element));
+                    //Set last to true to show element was found
+                    last = true;
+                } catch (TimeoutException t) {
+                    //Timeout Exception only reached if last button was not shown
+                    last = false;
+                }
+
+                //Assert both the jumps and last labels appear as expected
+                AssertJUnit.assertTrue("Pagination check: Prev/Next/Last button not displayed",jumps&&last);
+            }
+
+            AssertJUnit.assertTrue("Pagination check: Prev/Next button not displayed",jumps);
+
+        }
+
+        System.out.println("Pagination as expected");
+
+        //Return true to signal pagination was as expected
+        return true;
+
+    }
+
     public static void openMasters(WebDriver driver) {
         //Open the masters menu from CCE > Admin > Masters to allow specific master options to be chosen
         

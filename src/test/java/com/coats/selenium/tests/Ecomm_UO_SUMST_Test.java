@@ -8,14 +8,9 @@ import AutomationFramework.Wait;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 
-import static AutomationFramework.DataItems.validCoatsPassword;
-import static AutomationFramework.DataItems.validCoatsUsername2;
-import static com.coats.selenium.DriverFactory.getDriver;
 import com.google.common.base.Verify;
-import java.awt.AWTException;
+
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -39,6 +34,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUMST");
 
+        eCommPage.waitForElement();
+
         driver.get(DataItems.cceURL);
         Mst_CustomersPage custPage = eCommPage.selectCustomers();
         custPage.waitForElement();
@@ -58,7 +55,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         editPage2.disableApprovalCheckBoxForCust();
 
         System.out.println("'Disable CCE order upload' flag checked. Saving...");
-        editPage2.pressSave();
+        editPage2.clickSave();
         //editPage2.waitForElement();
 
         PreFlows pf = new PreFlows();
@@ -168,6 +165,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST UORT2: File of <100 lines, realtime upload, validation check", "G_OOC_UORT_SUSST");
 
+        eCommPage.waitForElement();
 
         driver.get(DataItems.cceURL);
         Mst_CustomersPage custPage = eCommPage.selectCustomers();
@@ -188,7 +186,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         editPage2.disableApprovalCheckBoxForCust();
 
         System.out.println("'Disable CCE order upload' flag checked. Saving...");
-        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
         //editPage2.waitForElement();
 
         driver.get(DataItems.ecommURL);
@@ -285,7 +283,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Upload draft creation and cancellation
-    (groups = {"eComm","eComm_Orders","Upload_Order",})
+    (groups = {"eComm","eComm_Orders","Upload_Order","Solo"})
     public void UORT3() throws  Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -364,6 +362,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Order cancelled. Checking no draft was created...");
         
         Ecomm_OutstandingUploadDraftPage draftPage = uoPage.clickOutstandingUploadDraft();
+
+        draftPage.waitForElement();
+
         boolean found = draftPage.findDraft(DataItems.lastUsedPO);
         
         AssertJUnit.assertFalse("Outstanding Upload Draft Page: Draft created despite cancellation",found);
@@ -1467,7 +1468,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         editPage2.enableCallOffOrderCheckBox();
         System.out.println("Field checked. Un-Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
         editPage2.disableSAPContractValidityCheckBox();
-        editPage2.pressSave();
+        editPage2.clickSave();
         custPage.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");

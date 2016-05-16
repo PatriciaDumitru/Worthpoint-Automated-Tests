@@ -114,7 +114,7 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         By lifeEasyOrderUploadCheckBox = By.id("Requester0SampleUpload");
         CommonTask.setCheckBox(driver, lifeEasyOrderUploadCheckBox);
         System.out.println("'CCE order upload' flag checked for customer Life Easy. Saving...");
-        editPage2.pressSave();
+        editPage2.clickSave();
         custPage.waitForElement();
         System.out.println("Saved. Log out...");
 
@@ -274,7 +274,7 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         //AssertJUnit.assertFalse(input.isDisplayed());
 
         System.out.println("'CCE order upload' flag is not displayed for customer. Saving...");
-        editPage2.pressSave();
+        editPage2.clickSave();
         custPage.waitForElement();
         System.out.println("Saved. Log out...");
 
@@ -411,7 +411,7 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         //Check "Enable CCE order upload"  flag
         System.out.println("Fields checked. Check 'Enable CCE order upload'...");
         editPage2.enableCCEOrderUploadCheckBox();
-        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
         custPage2.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");
@@ -511,7 +511,7 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         AssertJUnit.assertFalse(input.isDisplayed());
 
         System.out.println("'CCE order upload' flag is not displayed for customer. Saving...");
-        Mst_CustomersPage custPage2 = editPage2.pressSave();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
         custPage2.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");

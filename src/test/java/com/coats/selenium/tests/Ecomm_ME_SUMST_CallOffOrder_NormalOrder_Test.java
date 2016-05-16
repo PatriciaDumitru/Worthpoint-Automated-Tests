@@ -24,7 +24,6 @@ import com.google.common.base.Verify;
 import java.io.File;
 import java.io.IOException;
 
-import com.sun.jna.platform.unix.X11;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.testng.AssertJUnit;
@@ -3051,7 +3050,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage.getCustomerName().equals(DataItems.custDetails[0]));
 
         editPage.setApprovalWorkflow();
-        editPage.pressSave();
+        editPage.clickSave();
 
         System.out.println("Approval workflow enabled. Creating order...");
 
@@ -3173,7 +3172,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage2.getCustomerName().equals(DataItems.custDetails[0]));
 
         editPage2.unsetApprovalWorkflow();
-        editPage2.pressSave();
+        editPage2.clickSave();
         custPage2.waitForElement();
 
         System.out.println("Approval workflow disabled");

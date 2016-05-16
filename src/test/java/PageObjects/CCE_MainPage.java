@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,5 +35,8 @@ public class CCE_MainPage extends WBA_BasePage {
         //find and return element
         return driver.findElement(mainImageLocator);
     }
-    
+
+    public void waitForElement() {
+        WebElement wait = Wait.visible(driver,navBarLocator);
+    }
 }

@@ -579,6 +579,8 @@ public class CSA_Test extends DriverFactory {
         //Select delivery to plant to ID10 so that customer has access to articles and brads from ID10
         csaMeth.custSetup(DataItems.deliveryToPlantID10);
 
+        csaMeth.waitForLoad();
+
         csaMeth.ecommManualEntrySetup();
 
         /* Bugged shows all brands
@@ -599,6 +601,12 @@ public class CSA_Test extends DriverFactory {
 
         //Checking that article is available for this customer
         csaMeth.assertArticleIsPresentEcomm(DataItems.cceArticleFromBrandAstra);
+
+        //Setting plant to ID10 for Life Easy Customer
+        CSA_Methods csaMeth2 = new CSA_Methods(driver);
+
+        //Select delivery to plant to ID12 so that customer has access to articles and brands from ID12
+        csaMeth2.custSetup(DataItems.deliveryToPlantID12);
 
     }
 
