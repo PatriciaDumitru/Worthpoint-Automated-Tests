@@ -25,6 +25,8 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("ER_MF_XML_01", "Error Handling Mandatory Field XML with empty xml file");
 
+        ccePage.waitForElement();
+
         System.out.println("Navigating to Order Samples...");
 
         CCE_OrderSamplesPage osPage = ccePage.pressOrderSamples();
@@ -86,6 +88,8 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
 
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("ER_MF_XML_02", "Error Handling Mandatory Field XML multiline : first line empty, second line uploaded xml ");
+
+        ccePage.waitForElement();
 
         System.out.println("Navigating to Order Samples...");
 
@@ -160,6 +164,8 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
 
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("ER_MF_XML_04", "Error Handling Mandatory Field XML multiline : first line uploaded xml, second line uploaded xml  ");
+
+        ccePage.waitForElement();
 
         System.out.println("Navigating to Order Samples...");
 

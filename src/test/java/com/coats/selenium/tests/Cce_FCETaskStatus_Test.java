@@ -30,6 +30,8 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("FCE Task Status: Page and filter checks, print, and export", "C_CCE_FCETR_1-4");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to FCE Task Status...");
         
@@ -86,7 +88,9 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("FCE Task Status: Page and filter checks, print, and export", "C_CCE_FCETR_1-4");
-        
+
+        ccePage.waitForElement();
+
         System.out.println("Navigating to FCE Task Status...");
         
         CCE_FCETaskStatusPage fcePage = ccePage.pressFCETaskStatus();
