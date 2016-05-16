@@ -235,6 +235,8 @@ public class CSA_Methods extends WBA_BasePage {
 
     public void ecommManualEntrySetup() throws Exception {
 
+        Wait.clickable(driver,chooseTheOtherProfile);
+
         Actions action = new Actions(driver);
         action.click(driver.findElement(chooseTheOtherProfile)).build().perform();
 

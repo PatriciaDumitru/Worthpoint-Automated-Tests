@@ -1,6 +1,7 @@
 
 package PageObjects;
 
+import AutomationFramework.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,6 +42,9 @@ public class Ecomm_MainPage extends WBA_BasePage {
         Actions hoverItem = new Actions(driver);
         hoverItem.moveToElement(driver.findElement(tabLocator)).build().perform();     
     }
-    
+
+    public void waitForElement() {
+        WebElement wait = Wait.visible(driver,navBarLocator);
+    }
     
 }

@@ -29,7 +29,6 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
         //New base object to handle log-in and set up
         Cce_Base base = new Cce_Base(driver);
 
-
         CCE_MainPage mainPage = base.setUp("Enable Order without Shade on Sales Organizations page", "EOwS_GC_010");
 
         mainPage.waitForElement();

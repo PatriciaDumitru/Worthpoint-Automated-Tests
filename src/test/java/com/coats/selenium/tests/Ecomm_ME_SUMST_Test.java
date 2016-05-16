@@ -2301,6 +2301,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = base.setUp("MANUAL ENTRY SUMST23: Single line, Article and shade(MOQ ACTIVE)", "G_OOC_ME_SUMST_MOQ_5");
 
+        eCommPage.waitForElement();
+
         System.out.println("Navigating to Manual Entry...");
 
         //press manual entry

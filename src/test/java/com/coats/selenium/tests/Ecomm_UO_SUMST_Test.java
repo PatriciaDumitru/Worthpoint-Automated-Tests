@@ -34,6 +34,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST 1: File of <100 lines, realtime upload", "G_OOC_UORT_SUMST");
 
+        eCommPage.waitForElement();
+
         driver.get(DataItems.cceURL);
         Mst_CustomersPage custPage = eCommPage.selectCustomers();
         custPage.waitForElement();
@@ -163,6 +165,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uortTest1.setUp("UPLOAD ORDER TEST UORT2: File of <100 lines, realtime upload, validation check", "G_OOC_UORT_SUSST");
 
+        eCommPage.waitForElement();
 
         driver.get(DataItems.cceURL);
         Mst_CustomersPage custPage = eCommPage.selectCustomers();
@@ -280,7 +283,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
     }
 
     @Test //Upload Order Page :: SUMST :: Upload draft creation and cancellation
-    (groups = {"eComm","eComm_Orders","Upload_Order",})
+    (groups = {"eComm","eComm_Orders","Upload_Order","Solo"})
     public void UORT3() throws  Exception {
         //new chrome driver
         WebDriver driver = getDriver();
@@ -359,6 +362,9 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("Order cancelled. Checking no draft was created...");
         
         Ecomm_OutstandingUploadDraftPage draftPage = uoPage.clickOutstandingUploadDraft();
+
+        draftPage.waitForElement();
+
         boolean found = draftPage.findDraft(DataItems.lastUsedPO);
         
         AssertJUnit.assertFalse("Outstanding Upload Draft Page: Draft created despite cancellation",found);

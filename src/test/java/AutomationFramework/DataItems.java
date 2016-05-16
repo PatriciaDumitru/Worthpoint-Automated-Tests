@@ -376,6 +376,7 @@ public class DataItems {
     public static String salesOrgID = "ID51";
     public static String deliveryToPlantAll = "Select";
     public static String deliveryToPlantID10 = "ID10";
+    public static String deliveryToPlantID12 = "ID12";
 
     //upload order
     public static By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");

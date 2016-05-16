@@ -100,7 +100,12 @@ public class Mst_EditCustomerPage extends WBA_BasePage {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cceShipNoticeLabel));
         return element;
     }
-    
+
+    public WebElement getCallOffOrderCheckBox (){
+        WebElement elem = new WebDriverWait(driver,DataItems.longWait).until(ExpectedConditions.presenceOfElementLocated(callOffOrderCheckBox));
+        return elem;
+    }
+
     public Mst_EditCustomerPage setApprovalWorkflow() {
         CommonTask.setCheckBox(driver, approvalWorkflowBox);
         return new Mst_EditCustomerPage(driver);
