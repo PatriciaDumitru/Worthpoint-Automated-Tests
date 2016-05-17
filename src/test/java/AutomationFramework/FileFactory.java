@@ -190,11 +190,11 @@ public class FileFactory {
     };
 
     public static String[][] sumstBasicData17 = {
-            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "999999999999", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com"}
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "99999999999999999", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
     public static String[][] sumstBasicData18 = {
-            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "999999999", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "99999999999999", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
     public static String[][] sumstBasicData19 = {
@@ -272,13 +272,16 @@ public class FileFactory {
             {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
-
     public static String[][] sumstBasicData34 = {
-            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "astra", "120", "5000", "STANDARD", "WHITE", "1", "", "", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
     public static String[][] sumstBasicData35 = {
             {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "2", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData36 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "99999199", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
     public static String[][] sumstBasicData37 = {
@@ -1049,8 +1052,11 @@ public class FileFactory {
                 } else if (type.equals("Basic35")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicData35.clone();
-
-                } else if (type.equals("Basic37")) {
+                }
+                else if (type.equals("Basic36")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData36.clone();
+                }else if (type.equals("Basic37")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicData37.clone();
                 } else if (type.equals("Basic38")) {

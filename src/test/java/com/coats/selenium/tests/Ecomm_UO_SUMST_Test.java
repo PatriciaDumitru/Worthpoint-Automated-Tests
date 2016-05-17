@@ -77,11 +77,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         AssertJUnit.assertTrue("Upload Order page: File name field not displayed",uploadPage.getFileNameOutputField().isDisplayed());
         AssertJUnit.assertTrue("Upload Order page: Realtime upload radio button not displayed",uploadPage.getRealtimeRadio().isDisplayed());
         AssertJUnit.assertTrue("Upload Order page: Backend upload radio button not displayed",uploadPage.getBackendRadio().isDisplayed());
-        AssertJUnit.assertTrue("Upload Order page: Upload button not displayed",uploadPage.getUploadButton().isDisplayed());    
-        
-        //Take a screenshot
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\1Upload Order page.png"));
+        AssertJUnit.assertTrue("Upload Order page: Upload button not displayed",uploadPage.getUploadButton().isDisplayed());
         
         System.out.println("Assertions successful. Sending file path...");
         
@@ -89,10 +85,6 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         uploadPage.setFilePath(FileFactory.createFile("SUMST", 2, "Basic", "", true));
         //Select realtime upload
         uploadPage.pressRealtime();
-        
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\2Filepath set.png"));
         
         //Press upload
         Ecomm_MappingAlert alert = uploadPage.pressUpload();
@@ -1011,7 +1003,6 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         System.out.println("As expected, status: " + bipPage.getStatusCell().getText());
         
     }
-
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
             (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order","testBank"},enabled = true)
@@ -2018,7 +2009,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Upload Order page loaded. Setting filepath...");
 
-        uploadPage.setFilePath(FileFactory.createFile("SUMST", 1, "Basic17", "", true));
+        uploadPage.setFilePath(FileFactory.createFile2("SUMST", 1, "Basic17", "", true));
 
         Ecomm_MappingAlert mapAlert = uploadPage.pressUpload();
         Ecomm_MappingPage mapPage = mapAlert.pressYes();

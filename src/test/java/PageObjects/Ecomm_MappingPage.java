@@ -48,6 +48,8 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     By subAccountFieldLocator = By.id("BulkOrderPayerId");
     By subAccountLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.headerinfopay > td:nth-child(1) > label");
     By lineRefLocator = By.id("BulkOrderLineContract");
+    By orderTypeLocator = By.id("BulkOrderContractCustomer");
+    By orderTypeLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.buyingheaderinfo > td:nth-child(3) > label");
     By shipToPartyFieldLocator = By.id("BulkOrderShipToPartyId");
     By shipToPartyLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr:nth-child(1) > td:nth-child(3) > label");
     By yourMaterialNumberFieldLocator = By.id("BulkOrderLineCustomerMaterialNo");
@@ -840,13 +842,19 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         customerPrice.click();
         customerPriceSelect.selectByVisibleText(mapping[9][1]);
 
-        if (subaccount) {
+        /*if (subaccount) {
             WebElement subAcc = Wait.clickable(driver,subAccountFieldLocator);
             AssertJUnit.assertTrue("Mapping Page: Sub Account field not in expected position",driver.findElement(subAccountLabelLocator).getText().equals(mapping[10][0]));
             Select subAccountSelect = new Select(subAcc);
             subAcc.click();
             subAccountSelect.selectByVisibleText(mapping[10][1]);
-        }
+        }*/
+
+        WebElement orderType = Wait.clickable(driver,orderTypeLocator);
+        AssertJUnit.assertTrue("Mapping Page: Order Type field not in expected position",driver.findElement(orderTypeLabelLocator).getText().equals(mapping[10][0]));
+        Select orderTypeSelect = new Select(orderType);
+        orderType.click();
+        orderTypeSelect.selectByVisibleText(mapping[10][1]);
 
         WebElement shipTo = Wait.clickable(driver,shipToPartyFieldLocator);
         AssertJUnit.assertTrue("Mapping Page: Ship To Party field not in expected position",driver.findElement(shipToPartyLabelLocator).getText().equals(mapping[11][0]));
