@@ -4,7 +4,6 @@ package PageObjects;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
-import static PageObjects.WBA_BasePage.driver;
 
 import org.openqa.selenium.Alert;
 import org.testng.AssertJUnit;
@@ -14,7 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-    public class Ecomm_MyReportsPage extends WBA_BasePage {
+    public class Ecomm_AdvancedReportsPage extends WBA_BasePage {
     
     //Locators
     By selectAllButton = By.id("Filter#");
@@ -49,7 +48,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     //By openSavedRadio = By.cssSelector("#content > div:nth-child(4) > table > tbody > tr > td:nth-child(3)"); //first row
     By tableElements = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr");
 
-    public Ecomm_MyReportsPage(WebDriver driver) {
+    public Ecomm_AdvancedReportsPage(WebDriver driver) {
         super(driver);
     }
 
@@ -196,67 +195,67 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     }
 
     
-    public Ecomm_MyReportsPage setSelectAll() {
+    public Ecomm_AdvancedReportsPage setSelectAll() {
         CommonTask.setCheckBox(driver, selectAllButton);
         return this;
     }
     
-    public Ecomm_MyReportsPage uncheckSelectAll() {
+    public Ecomm_AdvancedReportsPage uncheckSelectAll() {
         CommonTask.uncheckBox(driver, selectAllButton);
         return this;
     }
     
-    public Ecomm_MyReportsPage setCreatedDate() {
+    public Ecomm_AdvancedReportsPage setCreatedDate() {
         CommonTask.setCheckBox(driver, createdDateButton);
         return this;
     }
     
-    public Ecomm_MyReportsPage setPONumber() {
+    public Ecomm_AdvancedReportsPage setPONumber() {
         CommonTask.setCheckBoxNoWait(driver, poNumberButton);
         return this;
     }
     
-    public Ecomm_MyReportsPage setArticle() {
+    public Ecomm_AdvancedReportsPage setArticle() {
         CommonTask.setCheckBoxNoWait(driver, articleButton);
         return this;
     }
     
-    public Ecomm_MyReportsPage setBrand() {
+    public Ecomm_AdvancedReportsPage setBrand() {
         CommonTask.setCheckBoxNoWait(driver, brandButton);
         return this;
     }
     
-    public Ecomm_MyReportsPage setTicket() {
+    public Ecomm_AdvancedReportsPage setTicket() {
         CommonTask.setCheckBoxNoWait(driver, ticketButton);
         return this;
     }
     
-    public Ecomm_MyReportsPage setShadeCode() {
+    public Ecomm_AdvancedReportsPage setShadeCode() {
         CommonTask.setCheckBoxNoWait(driver, shadeCodeButton);
         return this;
     }
     
-    public Ecomm_MyReportsPage setInvoiceNo() {
+    public Ecomm_AdvancedReportsPage setInvoiceNo() {
         CommonTask.setCheckBoxNoWait(driver, invoiceNoButton);
         return this;
     }
     
-    public Ecomm_MyReportsPage setDeliveryNo() {
+    public Ecomm_AdvancedReportsPage setDeliveryNo() {
         CommonTask.setCheckBoxNoWait(driver, deliveryNoButton);
         return this;
     }
     
-    public Ecomm_MyReportsPage setOrderNo(String item) {
+    public Ecomm_AdvancedReportsPage setOrderNo(String item) {
         CommonTask.setSearchField(driver,orderNoField,item);
         return this;
     }
     
-    public Ecomm_MyReportsPage setCustName(String item) {
+    public Ecomm_AdvancedReportsPage setCustName(String item) {
         CommonTask.setSearchField(driver,custNameField,item);
         return this;
     }
     
-    public Ecomm_MyReportsPage setCustCode(String item) {
+    public Ecomm_AdvancedReportsPage setCustCode(String item) {
         CommonTask.setTextField(driver,custCodeField,item);
         return this;
     }
@@ -285,7 +284,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         return new Ecomm_ExportDownloadPage(driver);
     }
     
-    public Ecomm_MyReportsPage pressReset() {
+    public Ecomm_AdvancedReportsPage pressReset() {
         WebElement reset = Wait.clickable(driver,resetButton_SUMST);
         reset.click();
         CommonTask.waitForPageLoad(driver);
@@ -293,10 +292,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         return this;
     }
 
-    public Ecomm_MyReportsPage clickSavedReports(){
+    public Ecomm_AdvancedReportsPage clickSavedReports(){
         WebElement savedRep = Wait.clickable(driver,savedReports);
         savedRep.click();
-        return new Ecomm_MyReportsPage(driver);
+        return new Ecomm_AdvancedReportsPage(driver);
     }
 
     public Ecomm_CreateNewReportPage selectSavedReport(String item){

@@ -5,7 +5,6 @@ import AutomationFramework.DataItems;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -156,7 +155,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Navigating to Invoice Page...");
         driver.get(DataItems.advancedReports);
 
-        Ecomm_MyReportsPage advRep = new Ecomm_MyReportsPage(driver);
+        Ecomm_AdvancedReportsPage advRep = new Ecomm_AdvancedReportsPage(driver);
         /**
          Verifying the breadcrumb - renamed from Reports | My Report to Reports | Advanced Reports
          */
@@ -172,12 +171,19 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
          */
         AssertJUnit.assertTrue("***Incorrect breadcrumb!",cnrp.getBreadcrumb().getText().equals("Reports | Advanced Reports | New Report"));
 
+        cnrp.setCreationDateFrom("2016-02-24 00:00");
+
         cnrp.selectDateRange("Last 90 days");
 
         cnrp.selectRepCriteria("Custom Fields");
 
         cnrp.selectAllFromOrders();
         cnrp.selectAllDeliveryNotes();
+
+        //Export report and verify
+        Ecomm_ExportDownloadPage exportPage = cnrp.pressExport();
+        exportPage.waitForDownloadCompletion();
+        System.out.println("Export pressed, download completed.");
 
         cnrp.pressSaveReport();
 
@@ -197,7 +203,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Navigating to Invoice Page...");
         driver.get(DataItems.advancedReports);
 
-        Ecomm_MyReportsPage advRep2 = new Ecomm_MyReportsPage(driver);
+        Ecomm_AdvancedReportsPage advRep2 = new Ecomm_AdvancedReportsPage(driver);
 
 
         //Go to Saved Reports
@@ -241,7 +247,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Navigating to Advanced Reports...");
         driver.get(DataItems.advancedReports);
 
-        Ecomm_MyReportsPage advRep3 = new Ecomm_MyReportsPage(driver);
+        Ecomm_AdvancedReportsPage advRep3 = new Ecomm_AdvancedReportsPage(driver);
 
         advRep3.clickSavedReports();
 
@@ -259,7 +265,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Navigating to Advanced Reports...");
         driver.get(DataItems.advancedReports);
 
-        Ecomm_MyReportsPage advRep4 = new Ecomm_MyReportsPage(driver);
+        Ecomm_AdvancedReportsPage advRep4 = new Ecomm_AdvancedReportsPage(driver);
 
         advRep4.clickSavedReports();
         advRep4.deleteSavedReport("Rep2");

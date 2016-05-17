@@ -1,9 +1,7 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
-import AutomationFramework.Wait;
-import static PageObjects.CCE_MainPage.ordersHeader;
-import static PageObjects.Ecomm_MainPage.ordersTab;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -536,7 +534,7 @@ public class WBA_BasePage {
         return new Ecomm_OutstandingPaymentsPage(driver);
     }
     
-    public Ecomm_MyReportsPage clickMyReports() {
+    public Ecomm_AdvancedReportsPage clickMyReports() {
         //Wait for tab
         WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
         driver.findElement(reportsTab).click();
@@ -545,7 +543,7 @@ public class WBA_BasePage {
         WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(myReportsSubTab)));
         driver.findElement(myReportsSubTab).click();
 		
-        return new Ecomm_MyReportsPage(driver);
+        return new Ecomm_AdvancedReportsPage(driver);
     }
     
     public Ecomm_OrderApprovalHistoryPage clickOrderApprovalHistory() {

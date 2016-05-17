@@ -2,27 +2,18 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import PageObjects.Ecomm_DeliveryNotesPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ExportDownloadPage;
 import PageObjects.Ecomm_InvoicesPage;
-import PageObjects.Ecomm_MyReportsPage;
+import PageObjects.Ecomm_AdvancedReportsPage;
 import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_OutstandingPaymentsPage;
 import PageObjects.Ecomm_SaveReportPage;
 import PageObjects.Ecomm_SummaryOfPurchasePage;
 import com.coats.selenium.DriverFactory;
-import org.testng.Assert;
 import org.testng.AssertJUnit;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_Reports_Test extends DriverFactory {
@@ -624,7 +615,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         System.out.println("Navigating to My Reports page...");
 
-        Ecomm_MyReportsPage mrPage = eCommPage.clickMyReports();
+        Ecomm_AdvancedReportsPage mrPage = eCommPage.clickMyReports();
         mrPage.waitForLoad();
 
         System.out.println("My Reports page reached.");
@@ -717,7 +708,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         System.out.println("Navigating to My Reports page...");
 
-        Ecomm_MyReportsPage mrPage = eCommPage.clickMyReports();
+        Ecomm_AdvancedReportsPage mrPage = eCommPage.clickMyReports();
         mrPage.waitForElement();
 
         System.out.println("My Reports page reached.");
