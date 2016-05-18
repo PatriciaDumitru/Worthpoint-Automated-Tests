@@ -202,16 +202,13 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         //Input Customer Details
         manualEntryPage.setCustomerName(DataItems.custDetails3[0]);
 
-        PreFlows pf = new PreFlows();
-        pf.selectNormalOrderRadioButton(driver);
+        CommonTask.setCheckBox(driver, PreFlows.normalOrderRadioButton);
 
         AssertJUnit.assertEquals(manualEntryPage.getFlashMessage().getText(), "NORMAL ORDER");
-        pf.selectContractOrderRadioButton(driver);
+        CommonTask.setCheckBox(driver, PreFlows.contractOrderRadioButton);
         AssertJUnit.assertEquals(manualEntryPage.getFlashMessage().getText(), "CONTRACT ORDER");
         AssertJUnit.assertTrue(manualEntryPage.findContractPOField());
         AssertJUnit.assertTrue(manualEntryPage.findLineRefField());
-        //AssertJUnit.assertTrue(manualEntryPage.findContractOrdButton());
-        //AssertJUnit.assertTrue(manualEntryPage.findNormalOrdButton());
 
     }
 
@@ -776,7 +773,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
                 {"Line Reference","Line Reference"}
         };
 
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew3(mapping,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -866,7 +863,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
                 {"Line Reference","Line Reference"}
         };
 
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew3(mapping,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -954,7 +951,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
                 //{"Customer Price","N/A"},
                 {"Line Reference","Line Reference"}
         };
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew3(mapping,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -1043,7 +1040,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
                 {"Line Reference","Line Reference"}
         };
 
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew3(mapping,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -1175,7 +1172,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
                 {"Line Reference","Line Reference"}
         };
 
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew3(mapping,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -1281,7 +1278,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
 
 
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew3(mapping,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
 
         Ecomm_OrderConfirmationPage orderConf = mapPage.pressConfirm();
@@ -1394,7 +1391,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         };
         System.out.println("13");
 
-        mapPage.setMappingNew2(mapping,false,false,false,false,false);
+        mapPage.setMappingNew3(mapping,false,false,false,false,false);
         System.out.println("Mapping set. Confirming map...");
         System.out.println("14");
 
