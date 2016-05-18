@@ -175,8 +175,10 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         //System.out.println("Field checked. Un-Check 'SAP Contract Validity (Exclude Contracts Outside Validity Period)'...");
         editPage2.disableSAPContractValidityCheckBox();
         System.out.println("Customers Edit page page reached. Verify that Flag 'Enable Contract CALL OFF Order' is not present");
-
-        AssertJUnit.assertFalse("***Customer Call Off Order checkbox is displayed!",editPage2.getCallOffOrderCheckBox().isDisplayed());
+        synchronized (driver) {
+            driver.wait(2000);
+        }
+        AssertJUnit.assertFalse("Customer Call Off Order checkbox is displayed!",editPage2.getCallOffOrderCheckBox().isDisplayed());
 
         System.out.println("Flag 'Enable Contract CALL OFF Order' is not present");
 
@@ -973,24 +975,24 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Asserting errors appear...");
-        Verify.verify(orderConf.getOrderedQty2().getText().equals(DataItems.orderedQty), "Order view: Ordered Qty does not match ");
-        Verify.verify(orderConf.getAdjustedQty2().getText().equals(DataItems.adjustedQty), "Order view: Adjusted Qty does not match expected input");
+        Verify.verify(orderConf.getOrderedQty2().getText().equals(DataItems.orderedQty2), "Order view: Ordered Qty does not match ");
+        Verify.verify(orderConf.getAdjustedQty2().getText().equals(DataItems.adjustedQty2), "Order view: Adjusted Qty does not match expected input");
         Verify.verify(orderConf.getUOM().getText().equals(DataItems.UOM), "Order view: UOM does not match expected input");
         Verify.verify(orderConf.getUnitPrice().getText().equals(DataItems.unitPrice), "Order view: Unit Price does not match expected input");
-        Verify.verify(orderConf.getValue2().getText().equals(DataItems.value2), "Order view: Value does not match expected input");
+        Verify.verify(orderConf.getValue2().getText().equals(DataItems.value3), "Order view: Value does not match expected input");
         System.out.println("Order is created with correct fields");
 
     }
 
     @Test(groups = {"eComm"})
     public void CCO_UO_04() throws Exception {
-        //CCO_GC_01();
+        CCO_GC_01();
 
         System.out.println("Navigating to Manual Entry...");
         WebDriver driver = getDriver();
 
-        //WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        //logout.click();
+        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
+        logout.click();
 
         Ecomm_Base sTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = sTest.setUp("()", "Unknown", DataItems.validCustUsername, DataItems.validCustPassword);

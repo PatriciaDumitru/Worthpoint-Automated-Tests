@@ -76,6 +76,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     new Select(driver.findElement(By.id("BulkOrderBuyerSalesOrderno"))).selectByVisibleText("N/A");
     //new Select(driver.findElement(By.id("BulkOrderLineProdStyleNo"))).selectByVisibleText("N/A");
     //new Select(driver.findElement(By.id("BulkOrderLineOtherinfo"))).selectByVisibleText("N/A");
+      new Select(driver.findElement(By.id("BulkOrderLineContract"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderPoNumber"))).selectByVisibleText("Contract PO No.");
     new Select(driver.findElement(By.id("BulkOrderLineCustomerPrice"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineLineReference"))).selectByVisibleText("Line Reference");
@@ -166,6 +167,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     new Select(driver.findElement(By.id("BulkOrderBuyerSalesOrderno"))).selectByVisibleText("N/A");
     //new Select(driver.findElement(By.id("BulkOrderLineProdStyleNo"))).selectByVisibleText("N/A");
     //new Select(driver.findElement(By.id("BulkOrderLineOtherinfo"))).selectByVisibleText("N/A");
+      new Select(driver.findElement(By.id("BulkOrderLineContract"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderPoNumber"))).selectByVisibleText("Contract PO No.");
     new Select(driver.findElement(By.id("BulkOrderLineCustomerPrice"))).selectByVisibleText("N/A");
     
