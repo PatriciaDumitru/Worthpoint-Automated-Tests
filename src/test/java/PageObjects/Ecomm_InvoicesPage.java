@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
-import static PageObjects.WBA_BasePage.driver;
 
 public class Ecomm_InvoicesPage extends WBA_BasePage {
 

@@ -205,8 +205,8 @@ public class DataItems {
     //public static int quantity3 = 1;
 
     //public static String expTicket3 = "120";
-    public static String orderedQty="60";
-    public static String adjustedQty="60";
+    public static String orderedQty="72";
+    public static String adjustedQty="72";
     public static String orderedQty2="4";
     public static String adjustedQty2="4";
     public static String orderedQtyNull="--";
@@ -215,7 +215,7 @@ public class DataItems {
     public static String unitPrice="1.00";
     public static String unitPriceNull="0.00";
     public static String valueNull="0.00";
-    public static String value2="60.00";
+    public static String value2="72.00";
     public static String value3="4.00";
     public static String notUniqMsg="CONTRACT REFERENCE IS NOT UNIQUE";
     public static String invalidDataMsg="INVALID COMBINATION OF INPUT DATA";
@@ -461,7 +461,8 @@ public class DataItems {
             {"Style No./Production No.","Select"},
             {"Contract PO No.","Contract"},
             {"Customer Price","N/A"},
-            {"Sub Account","N/A"},
+            //{"Sub Account","N/A"},
+            {"Order Type","Contract Order"},
             {"Ship to Party Name","Ship to Party Name"},
             {"Your Material No.","N/A"},
             {"Brand","N/A"},

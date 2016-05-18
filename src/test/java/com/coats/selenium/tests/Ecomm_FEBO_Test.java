@@ -6,20 +6,17 @@ import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_FromExistingPage;
 import com.coats.selenium.DriverFactory;
 import java.io.File;
-import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_FEBO_Test extends DriverFactory {
     
     @Test //From Existing Bulk Order Page :: Page checks, create order 
     (groups = {}) //Could not find a way to allow program to interact with fields. No idea why
-    public void FEBO1() throws IOException, Exception {
+    public void FEBO1() throws Exception {
     //New driver
     WebDriver driver = getDriver();
   

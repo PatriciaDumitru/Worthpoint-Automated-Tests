@@ -4,18 +4,12 @@ import AutomationFramework.CommonTask;
 import AutomationFramework.PreFlows;
 import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
-import AutomationFramework.Wait;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-import test.asserttests.AssertTest;
 
 /**
  * Created by Stefan on 23.03.2016.

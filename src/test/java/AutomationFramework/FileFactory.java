@@ -56,24 +56,24 @@ public class FileFactory {
 
     //Data used for testing SUSST upload orders
     public static String[][] susstUOData = {
-            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "", "000030", "", "contract@testing.com", "Y", "TEST ZCQ BE POSITIV 03", "*Others*"},
+            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "40000799", "000030", "", "contract@testing.com", "Y", "TEST ZCQ BE POSITIV 03", "*Others*"},
             {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "", "000030", "", "contract@testing.com", "Y", "TEST ZCQ BE POSITIV 03", "*Others*"}};
 
     //Data used for testing SUSST upload orders
     public static String[][] susstUOData2 = {
-            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
+            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "40000799", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
             {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}};
 
     //Data used for testing SUSST upload orders
     public static String[][] susstUOData3 = {
-            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "", "", "", "contract@testing.com", "Y", "TEST ZCQ SFTP POSITIV 01", "*Others*"},
-            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "", "", "", "contract@testing.com", "Y", "TEST ZCQ SFTP POSITIV 01", "*Others*"}};
+            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "40000799", "", "", "contract@testing.com", "Y", "TEST ZCQ SFTP POSITIV 01", "*Others*"},
+           };
 
 
     public static String[][] susstUOData4 = {
-            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "", "000030", "", "contract@testing.com", "Y", "TEST ZCQ BE POSITIV 03", "*Others*"},
-            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "", "", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
-            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "", "", "", "contract@testing.com", "Y", "TEST ZCQ SFTP POSITIV 01", "*Others*"},
+            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "40000799", "000030", "", "contract@testing.com", "Y", "TEST ZCQ BE POSITIV 03", "*Others*"},
+            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "", "40000799", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
+            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "40000799", "", "", "contract@testing.com", "Y", "TEST ZCQ SFTP POSITIV 01", "*Others*"},
     };
 
     //Data used for testing SUSST upload orders
@@ -86,7 +86,7 @@ public class FileFactory {
 
     //Data used for testing SUSST upload orders
     public static String[][] susstUOData7 = {{"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "BLACKD", "", "", "000010", "", "contract@testing.com", "Y", "TEST ZCQ ARUN 02", "*Others*"},
-            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "BLACKD", "", "", "000010", "", "contract@testing.com", "Y", "TEST ZCQ ARUN 02", "*Others*"}};
+            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "BLACKD", "", "abc123test", "000010", "", "contract@testing.com", "Y", "TEST ZCQ ARUN 02", "*Others*"}};
 
 
     //Data used for testing SUMST upload orders
@@ -190,11 +190,11 @@ public class FileFactory {
     };
 
     public static String[][] sumstBasicData17 = {
-            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "999999999999", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com"}
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "99999999999999999", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
     public static String[][] sumstBasicData18 = {
-            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "999999999", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "99999999999999", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
     public static String[][] sumstBasicData19 = {
@@ -272,13 +272,16 @@ public class FileFactory {
             {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
-
     public static String[][] sumstBasicData34 = {
-            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "astra", "120", "5000", "STANDARD", "WHITE", "1", "", "", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
     public static String[][] sumstBasicData35 = {
             {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "2", "TEST ZCQ BE POSITIV 03", "000040", "", "contract@testing.com", "Y", "40000799", "*Others*"}
+    };
+
+    public static String[][] sumstBasicData36 = {
+            {"Star Garments Ltd.", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "99999199", "TEST ZCQ BE POSITIV 03", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}
     };
 
     public static String[][] sumstBasicData37 = {
@@ -424,8 +427,8 @@ public class FileFactory {
 
     public static void main(String[] args) throws IOException {
         //Main method can be used to test the FileFactory class in isolation
-        createFile2("SUMST", 1, "Basic8", "", true);
-        //createFile2("SUSST",1,"UO","",true);
+
+        createFile2("SUSST",1,"UO7","",true);
     }
 
     public static String createFile(String soldTo, int lineCount, String type, String combination, boolean valid) throws IOException {
@@ -1049,8 +1052,11 @@ public class FileFactory {
                 } else if (type.equals("Basic35")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicData35.clone();
-
-                } else if (type.equals("Basic37")) {
+                }
+                else if (type.equals("Basic36")) {
+                    po = "Non Contract Upload File multiple scenario" + id;
+                    data = sumstBasicData36.clone();
+                }else if (type.equals("Basic37")) {
                     po = "Non Contract Upload File multiple scenario" + id;
                     data = sumstBasicData37.clone();
                 } else if (type.equals("Basic38")) {

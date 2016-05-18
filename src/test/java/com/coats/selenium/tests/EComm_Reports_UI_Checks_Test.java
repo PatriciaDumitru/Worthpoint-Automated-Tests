@@ -8,8 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 /**
  * Created by: Stefan on 12.04.2016.
  * Description: This class contains tests for eComm > Reports User Interface verifications. WBA-562,WBA-563,WBA-564 and WBA-566
@@ -20,7 +18,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
     @Test //Reporting - Invoice UI screen changes - WBA-562
             (groups = {"eComm"})
-    public void Rep_I() throws IOException, InterruptedException, Exception {
+    public void Rep_I() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -60,7 +58,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
     @Test //Reporting - Delivery Notes UI screen changes - WBA-563
             (groups = {"eComm"})
-    public void Rep_DN() throws IOException, InterruptedException, Exception {
+    public void Rep_DN() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -100,7 +98,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
     @Test //Reporting - Summary of Purchases UI screen changes - change name to Purchase Order Summary - WBA-564
             (groups = {"eComm"})
-    public void Rep_POSR() throws IOException, InterruptedException, Exception {
+    public void Rep_POSR() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -140,7 +138,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
     @Test //My Reports UI screen changes - WBA-566
             (groups = {"eComm"})
-    public void Rep_UI() throws IOException, InterruptedException, Exception {
+    public void Rep_UI() throws Exception {
         /**
          * Ensure there is no saved report for this user when starting test
          */

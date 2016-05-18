@@ -8,21 +8,18 @@ import PageObjects.Ecomm_FTPFailedFilesPage;
 import PageObjects.Ecomm_OrderViewPage;
 import com.coats.selenium.DriverFactory;
 import java.io.File;
-import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_Dashboard_Test extends DriverFactory {
     
     @Test
     (groups = {"eComm", "QuickTest"})
-    public void BIP1() throws IOException, Exception {
+    public void BIP1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 		
@@ -81,7 +78,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
     
     @Test
     (groups = {"eComm", "QuickTest"})
-    public void BFF1() throws IOException, Exception {
+    public void BFF1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 		
@@ -146,7 +143,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
     
     @Test
     (groups = {"eComm", "QuickTest"})
-    public void FTPF1() throws IOException, Exception {
+    public void FTPF1() throws Exception {
         //new driver instance
         WebDriver driver = getDriver();
 		

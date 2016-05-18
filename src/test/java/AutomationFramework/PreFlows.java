@@ -58,8 +58,8 @@ public class PreFlows {
 
     //Manual Entry Page
     By buyersField = By.xpath(".//*[@id='s2id_BuyerId']/a/abbr");
-    By normalOrderRadioButton = By.id("normal_check");
-    By contractOrderRadioButton = By.id("contract_check");
+    public static By normalOrderRadioButton = By.cssSelector("#normal_check");
+    public static By contractOrderRadioButton = By.cssSelector("#contract_check");
 
 
 

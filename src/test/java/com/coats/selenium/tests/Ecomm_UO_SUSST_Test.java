@@ -6,17 +6,7 @@ import AutomationFramework.FileFactory;
 import AutomationFramework.PreFlows;
 import AutomationFramework.Wait;
 import PageObjects.*;
-
-import static AutomationFramework.DataItems.validCoatsPassword;
-import static AutomationFramework.DataItems.validCoatsUsername2;
-import static com.coats.selenium.DriverFactory.getDriver;
-
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-
 import com.coats.selenium.DriverFactory;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,7 +17,7 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
     
     @Test //Upload Order Page :: SUSST :: Realtime Upload order (<100 lines) (MOQ ACTIVE)
     (groups = {"eComm","eComm_Orders","Upload_Order", "QuickTest"})
-    public void RT1() throws AWTException, IOException, Exception  {
+    public void RT1() throws Exception  {
         //new chrome driver
         WebDriver driver = getDriver();
         
@@ -215,6 +205,18 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
         System.out.println("Mapping set. Confirming map..."); 
         
         Ecomm_OrderConfirmationPage orderConf = mappedPage.pressConfirm();
+
+
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+
+            System.out.println("Error received: "+alert2.getText());
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+        }
+
+
         orderConf.waitForElement();
         
         System.out.println("Map confirmed. Checking details (quantity) are input as expected...");
