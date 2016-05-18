@@ -22,7 +22,6 @@ import PageObjects.WBA_SelectionPage;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
 import java.io.File;
-import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -38,7 +37,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Page checks, single line order using YMN and shade code from master data
             (groups = {"eComm", "QuickTest"})
-    public void SUMST1_CONO() throws IOException, InterruptedException, Exception {
+    public void SUMST1_CONO() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();
 
@@ -158,7 +157,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Multiple line order, YMN with master shade code
             (groups = {"eComm","eComm_Orders"})
-    public void SUSMT2_CONO() throws InterruptedException, Exception {
+    public void SUSMT2_CONO() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();
 
@@ -253,7 +252,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Single line order, YMN without master shade code
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST3_CONO() throws InterruptedException, Exception {
+    public void SUMST3_CONO() throws Exception {
         //New chrome driver
         WebDriver driver = getDriver();
 
@@ -351,7 +350,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Multi-line order, YMN without master shade code
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST4_CONO() throws InterruptedException, Exception {
+    public void SUMST4_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -446,7 +445,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Single line order, article and shade code
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST5_CONO() throws InterruptedException, Exception {
+    public void SUMST5_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -540,7 +539,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Multi-line order, using Article and shade code
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST6_CONO() throws InterruptedException, Exception {
+    public void SUMST6_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -636,7 +635,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Single line order, using brand/ticket/length/finish and shade code
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST7_CONO() throws InterruptedException, Exception {
+    public void SUMST7_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -726,7 +725,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Multi-line order, using brand/ticket/length/finish and shade code
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST8_CONO() throws InterruptedException, Exception {
+    public void SUMST8_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -824,7 +823,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at manual entry page
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST9_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST9_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -932,7 +931,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no ship to party name at manual entry page
             (groups = {"eComm","eComm_Orders", "QuickTest"})
-    public void SUMST10_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST10_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -1040,7 +1039,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no buyer at manual entry page
             (groups = {"eComm","eComm_Orders",})
-    public void SUMST11_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST11_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -1138,7 +1137,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at confirmation page
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST12_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST12_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -1250,7 +1249,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no Ship To Party Name at confirmation page
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST13_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST13_CONO() throws Exception {
 
         //New driver
         WebDriver driver = getDriver();
@@ -1366,7 +1365,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no Buyer at confirmation page
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST14_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST14_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -1476,7 +1475,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Create order and cancel from confirmation page
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST15_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST15_CONO() throws Exception {
 
         //New driver
         WebDriver driver = getDriver();
@@ -1588,7 +1587,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Order Draft continuation and cancellation
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST16_CONO() throws InterruptedException, IOException, Exception {
+    public void SUMST16_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 
@@ -1685,7 +1684,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
     @Test //Manual Entry Page :: SUMST :: Order Draft continuation
             (groups = {"eComm","eComm_Orders"})
-    public void SUMST17_CONO() throws InterruptedException, Exception {
+    public void SUMST17_CONO() throws Exception {
         //New driver
         WebDriver driver = getDriver();
 

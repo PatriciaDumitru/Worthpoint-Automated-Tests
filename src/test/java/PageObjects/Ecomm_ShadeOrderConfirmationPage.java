@@ -1,16 +1,12 @@
 
 package PageObjects;
 
-import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
-import static PageObjects.WBA_BasePage.driver;
 import org.openqa.selenium.Alert;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 //To reach page, go to Shade Not Available, and click edit for a record. Shade Not Available Confirmation Page should appear
 public class Ecomm_ShadeOrderConfirmationPage extends WBA_BasePage {

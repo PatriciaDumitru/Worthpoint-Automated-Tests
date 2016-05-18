@@ -15,18 +15,16 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_MainPage_Test extends DriverFactory {
 
     @Test //EComm Page :: Page checks, navigation bar check
-    (groups = {"eComm", "QuickTest"})
-    public void ECOMM1() throws IOException, Exception {
+    (groups = {"eComm", "QuickTest"},enabled = false)
+    public void ECOMM1() throws Exception {
         System.out.println("TEST: ECOMM HOME PAGE");
         System.out.println("Scenario ID: (no ID)");
 
@@ -114,7 +112,7 @@ public class Ecomm_MainPage_Test extends DriverFactory {
         System.out.println("Assertions successful.");
 
     }
-/*
+
     //Ecomm Page:: Navbar link checks
     @Test (groups = {"eComm"})
     public void ECOMM2() throws IOException, Exception {
@@ -255,6 +253,6 @@ public class Ecomm_MainPage_Test extends DriverFactory {
     }
 
     }
-    */
+
 
 }

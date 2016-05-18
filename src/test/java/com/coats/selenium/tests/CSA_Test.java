@@ -6,18 +6,8 @@ package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
-import PageObjects.CCE_DNPrintPage;
-import PageObjects.CCE_DNReprintPage;
 import PageObjects.CSA_Methods;
 import com.coats.selenium.DriverFactory;
-import com.google.common.base.Verify;
-import java.io.File;
-import java.io.IOException;
-
-import com.sun.jna.platform.unix.X11;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 

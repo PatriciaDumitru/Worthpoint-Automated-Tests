@@ -1,6 +1,5 @@
 package PageObjects;
 
-import AutomationFramework.CommonTask;
 import AutomationFramework.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

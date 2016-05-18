@@ -8,7 +8,6 @@ import PageObjects.WBA_LoginPage;
 import PageObjects.WBA_SelectionPage;
 import com.coats.selenium.DriverFactory;
 import java.io.File;
-import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Keys;
@@ -26,7 +25,7 @@ public class WBA_Login_Test extends DriverFactory {
     //Login Page :: Page checks
     @Test 
     (groups = {"General", "QuickTest"})
-    public void L1() throws IOException, Exception {
+    public void L1() throws Exception {
         System.out.println("TEST: LOGIN PAGE: Check elements are displayed");
         
         WebDriver driver = getDriver();
@@ -56,7 +55,7 @@ public class WBA_Login_Test extends DriverFactory {
   
     @Test //Login Page :: Login using valid Coats user details, navigate to and from CCE and eComm
     (groups = {"General"})
-    public void L2() throws InterruptedException, IOException, Exception {
+    public void L2() throws Exception {
         System.out.println("TEST: LOGIN PAGE/CONTINUE PAGE/SELECTION PAGE: Check elements are displayed");
         
         //new driver to perform test
@@ -147,7 +146,7 @@ public class WBA_Login_Test extends DriverFactory {
     
     @Test //Login Page :: Login using valid Customer user details, navigate to and from CCE and eComm
     (groups = {"General", "QuickTest"})
-    public void L2_1() throws InterruptedException, Exception {
+    public void L2_1() throws Exception {
         System.out.println("TEST: LOGIN PAGE/CONTINUE PAGE/SELECTION PAGE: Check elements are displayed for customer");
         System.out.println("WBA_Login_Test > L2_1");
         

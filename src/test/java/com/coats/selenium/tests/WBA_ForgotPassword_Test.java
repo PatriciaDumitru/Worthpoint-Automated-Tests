@@ -6,20 +6,17 @@ import PageObjects.WBA_ForgotPasswordPage;
 import PageObjects.WBA_LoginPage;
 import com.coats.selenium.DriverFactory;
 import java.io.File;
-import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class WBA_ForgotPassword_Test extends DriverFactory {
     
     @Test //Forgot Password Page :: Reset password
     (groups = {"General", "QuickTest"})
-    public void FP1() throws IOException, Exception {
+    public void FP1() throws Exception {
         System.out.println("TEST: FORGOT PASSWORD: Coats user forgot password process");
         System.out.println("Scenario ID: G_FP_1");
         

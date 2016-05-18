@@ -5,20 +5,9 @@ package com.coats.selenium.tests;
  */
 
 import AutomationFramework.DataItems;
-import AutomationFramework.Wait;
-import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
-import PageObjects.Ecomm_OrderConfirmationPage;
-import PageObjects.Ecomm_OrderViewPage;
-import PageObjects.Ecomm_OutstandingOrdersPage;
 import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
 import PageObjects.Ecomm_MOQ_Methods_Page;
-import com.coats.selenium.tests.Cce_Base;
-import com.google.common.base.Verify;
-import java.io.File;
-import org.apache.commons.io.FileUtils;
-import org.apache.poi.util.SystemOutLogger;
 import org.openqa.selenium.*;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;

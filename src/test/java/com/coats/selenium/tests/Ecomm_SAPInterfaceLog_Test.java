@@ -1,25 +1,18 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_OrderViewPage;
 import PageObjects.Ecomm_SAPInterfaceLogPage;
 import com.coats.selenium.DriverFactory;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_SAPInterfaceLog_Test extends DriverFactory {
     
     @Test //SAP Interface Log Page :: Page and filter checks, view and reset
     (groups = {"eComm", "QuickTest"})
-    public void SILM1() throws IOException, Exception {
+    public void SILM1() throws Exception {
 		
         //New driver instance
         WebDriver driver = getDriver();
