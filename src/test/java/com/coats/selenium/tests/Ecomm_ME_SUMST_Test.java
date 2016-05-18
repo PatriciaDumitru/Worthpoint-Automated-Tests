@@ -1544,7 +1544,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         System.out.println("Line details entered. Pressing next...");
 
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQDoubleAlert();
         orderConf.waitForElement();
 
         System.out.println("Confirmation page reached. Saving as draft...");

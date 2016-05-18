@@ -507,7 +507,7 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
 
         //Check "Enable CCE order upload"  flag
         System.out.println("Fields checked...");
-        WebElement input = (new WebDriverWait(driver, DataItems.shorterWait)).until(ExpectedConditions.presenceOfElementLocated(By.id("Requester9SampleUpload")));
+        WebElement input = (new WebDriverWait(driver, DataItems.longWait)).until(ExpectedConditions.presenceOfElementLocated(By.id("Requester9SampleUpload")));
         AssertJUnit.assertFalse(input.isDisplayed());
 
         System.out.println("'CCE order upload' flag is not displayed for customer. Saving...");
