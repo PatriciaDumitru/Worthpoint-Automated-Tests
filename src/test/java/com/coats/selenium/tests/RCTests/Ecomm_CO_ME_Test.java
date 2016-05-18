@@ -3,6 +3,7 @@ package com.coats.selenium.tests.RCTests;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.PreFlows;
+import AutomationFramework.Wait;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_ManualEntryPage;
@@ -13,10 +14,9 @@ import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditCustomerPage;
 import PageObjects.WBA_LoginPage;
 import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
 import com.coats.selenium.tests.Cce_Base;
 import com.coats.selenium.tests.Ecomm_Base;
-import com.google.common.base.Verify;
+
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -25,7 +25,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.*;
-import org.openqa.selenium.support.ui.Select;
 
 public class Ecomm_CO_ME_Test extends DriverFactory {
 
@@ -56,11 +55,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     CommonTask.waitForPageLoad(driver);
     
     System.out.println("Manual Entry Page reached. Entering customer details...");
-    
-    //Take a screenshot
-    File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\1Manual Entry Page.png"));
-    
+
     CommonTask.setDropDownField(driver, shipToPartyField, "Star Garments");
     CommonTask.setSearchField(driver, buyersField, DataItems.custDetails[3]);
     
@@ -73,11 +68,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     System.out.println("Customer PO No.: "+po);
     
     CommonTask.waitForPageLoad(driver);
-    
-    //Take a screenshot
-    File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\2Cust Details entered.png"));
-    
+
     CommonTask.setSearchField(driver, articleField, DataItems.conOrdArticle);
     CommonTask.setSearchField(driver,shadeCodeField,DataItems.conOrdShadeCode);
     driver.findElement(quantityField).clear();
@@ -89,27 +80,15 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     //driver.findElement(lineRefField).sendKeys(DataItems.conOrdLineRef);
     
       System.out.println("Line details entered. Pressing next...");
-    
-    //Take a screenshot
-    File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\3Material details entered.png"));
-    
+
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     orderConf.waitForElement();
     
       System.out.println("Order confirmation page reached. Viewing error...");
-    
-    //Take a screenshot
-    File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\4Error expected - Confirmation page.png"));
-    
+
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
-    
-    //Take a screenshot
-    File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\5Error expected - Confirmation page scrolled.png"));
-    
+
    /*
     driver.findElement(By.linkText("Line with Error")).click();
     Ecomm_OrderViewPage viewPage = new Ecomm_OrderViewPage(driver);
@@ -189,18 +168,10 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
     orderConf.waitForElement();
     CommonTask.waitForPageLoad(driver);
-    
-    //Take a screenshot
-    File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\7Validadtion success - Confirmation page.png"));
-    
+
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
-    
-    //Take a screenshot
-    File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\8Validadtion success - Confirmation page scrolled.png"));
-    
+
     if (DataItems.contractOrderCallOff) {
         driver.findElement(submitButton).click();
         CommonTask.waitForPageLoad(driver);
@@ -243,20 +214,12 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     //driver.findElement(By.id("txtContractLine0")).sendKeys("10");
     
       System.out.println("Line details entered. Pressing next...");
-    
-    //Take a screenshot
-    File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\9Quantity PO Line Ref entered.png"));
-    
+
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     orderConf.waitForElement();
     
       System.out.println("Order confirmation page reached.");
-    
-    //Take a screenshot
-    File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\10Order Confirmation page.png"));
-    
+
     Actions action = new Actions(driver);
     action.moveToElement(orderConf.getCancelButton()).build().perform();
     
@@ -264,17 +227,12 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         System.out.println("Submitting order...");
         driver.findElement(submitButton).click();
         CommonTask.waitForPageLoad(driver);
-        //Take a screenshot
-        File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\11Order confirmed.png"));
         System.out.println("Order submitted.");
     } else {
         System.out.println("Cancelling order...");
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
-        //Take a screenshot
-        File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\11Order cancelled.png"));
+
         System.out.println("Order cancelled as call-off is disabled");
     }
   }
@@ -308,11 +266,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     //driver.findElement(By.id("txtContractLine0")).sendKeys("10");
     
       System.out.println("Line details entered. Pressing next...");
-    
-    //Take a screenshot
-    File scrFile9 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile9,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\12All but quantity entered.png"));
-    
+
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
     orderConf.waitForElement();
     
@@ -326,17 +280,12 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         Ecomm_OutstandingOrdersPage outPage = orderConf.pressSubmit();
         outPage.waitForElement();
         CommonTask.waitForPageLoad(driver);
-        //Take a screenshot
-        File scrFile10 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile10,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\13Order confirmation.png"));       
         System.out.println("Order submitted.");
     } else {
         System.out.println("Cancelling order...");
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
-        //Take a screenshot
-        File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\13Order cancelled.png"));
+
         System.out.println("Order cancelled as call-off is disabled");
     }
   }
@@ -371,10 +320,6 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     //driver.findElement(By.id("txtContractLine0")).sendKeys("10");
     
       System.out.println("Line details entered. Pressing next...");
-    
-    //Take a screenshot
-    File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\14All but contractPO entered.png"));
 
     driver.findElement(By.id("next")).click();
     
@@ -401,10 +346,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     //WebElement wait2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(contractPOField));
     //Actions action = new Actions(driver);
     //action.moveToElement(driver.findElement(contractPOField)).build().perform();
-    
-    //Take a screenshot
-    File scrFile16 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile16,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\16ContractPO field yellow.png"));
+
   } 
 
   @Test //Manual Entry Page :: Contract Order using only Contract PO expecting error
@@ -430,15 +372,12 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     
     mePage.setBuyers(DataItems.custDetails[3]);
     mePage.setDate(0);
-    driver.findElement(By.id("txtContract0")).clear();
-    driver.findElement(By.id("txtContract0")).sendKeys("40000992");
+      mePage.setContractPO("test",0);
+    //driver.findElement(By.id("txtContract0")).clear();
+    //driver.findElement(By.id("txtContract0")).sendKeys("40000992");
     
       System.out.println("Line details entered.");
-    
-    //Take a screenshot
-    File scrFile11 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile11,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\17Only contract PO.png"));
-    
+
     Ecomm_OrderConfirmationPage orderConf = mePage.pressNext();
 
     try {
@@ -449,21 +388,13 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
     }
 
     CommonTask.waitForPageLoad(driver);
-    
-    //Take a screenshot
-    File scrFile12 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile12,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\18Order confirmation.png"));
-    
+
       System.out.println("Viewing error...");
     
     driver.findElement(By.linkText("Line with Error")).click();
     Ecomm_OrderViewPage viewPage = new Ecomm_OrderViewPage(driver);
     viewPage.waitForContent();
-    
-    //Take a screenshot
-    File scrFile13 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile13,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\Contract Order\\19Error view.png"));
-    
+
       System.out.println("View displayed. Closing view...");
     
     viewPage.closeView();
@@ -904,6 +835,8 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
         
         System.out.println("MOQ Alert appeared as expected.");
 
+
+
         System.out.println("Order confirmation page reached. Checking details are maintained...");
         
         AssertJUnit.assertTrue("Order Confirmation Page: Customer PO Number not maintained after manual entry page",orderConf.getUploadPONumber().equals(DataItems.lastUsedPO));
@@ -980,7 +913,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
       
       System.out.println("Disabled. Saving...");
       
-      editPage.pressSave();
+      editPage.clickSave();
       custPage.waitForElement();
       
       System.out.println("Saved. Logging into Contract Order account...");
@@ -1064,7 +997,7 @@ public class Ecomm_CO_ME_Test extends DriverFactory {
       
       System.out.println("Enabled. Saving...");
       
-      editPage.pressSave();
+      editPage.clickSave();
       custPage.waitForElement();
       
       System.out.println("Saved");

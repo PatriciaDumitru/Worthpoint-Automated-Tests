@@ -21,7 +21,7 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
     
     @Test //FCE Task Status Page :: Page and filter checks, print records and export
     (groups = {"Solo"})
-    public void TS1() throws IOException, Exception {
+    public void TS1() throws Exception {
         //New driver object
         WebDriver driver = getDriver();
         
@@ -30,15 +30,13 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("FCE Task Status: Page and filter checks, print, and export", "C_CCE_FCETR_1-4");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to FCE Task Status...");
         
         CCE_FCETaskStatusPage fcePage = ccePage.pressFCETaskStatus();
         fcePage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\1FCE Task status page.png"));
         
         System.out.println("FCE Task Status reached. Checking title...");
         
@@ -59,18 +57,10 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
         fcePage.setTaskStatus("Completed");
         fcePage.setHub("IDH004");
         
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\2Filter criteria entered.png"));
-        
         System.out.println("Criteria entered. Printing records...");
         
         CCE_OrderViewPage viewPage = fcePage.pressPrint();
         viewPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\3View records.png"));
         
         System.out.println("Records displayed. Closing view...");
 
@@ -89,7 +79,7 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
     
     @Test //FCE Task Status Page :: Filter reset
     (groups = {"CCE", "QuickTest"})
-    public void TS2() throws IOException, Exception {
+    public void TS2() throws Exception {
         //New driver object
         WebDriver driver = getDriver();
         
@@ -98,7 +88,9 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("FCE Task Status: Page and filter checks, print, and export", "C_CCE_FCETR_1-4");
-        
+
+        ccePage.waitForElement();
+
         System.out.println("Navigating to FCE Task Status...");
         
         CCE_FCETaskStatusPage fcePage = ccePage.pressFCETaskStatus();
@@ -107,20 +99,12 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
         
         fcePage.setSalesOrg("ID51");
         fcePage.setTaskStatus("Completed");
-        
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\4Filter criteria entered.png"));
-        
+
         System.out.println("Criteria entered. Pressing reset...");
         
         fcePage.pressReset();
         fcePage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\FCE Task Status\\5Filter reset.png"));
-        
+
         System.out.println("Filter reset.");             
         
     }

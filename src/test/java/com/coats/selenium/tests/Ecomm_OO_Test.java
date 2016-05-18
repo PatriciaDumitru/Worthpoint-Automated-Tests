@@ -1,6 +1,5 @@
 package com.coats.selenium.tests;
 
-import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.PreFlows;
 import PageObjects.CCE_MainPage;
@@ -19,21 +18,10 @@ import PageObjects.Mst_CustomersPage;
 import PageObjects.Mst_EditCustomerPage;
 import PageObjects.WBA_LoginPage;
 import com.coats.selenium.DriverFactory;
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.AssertJUnit;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 //This class covers the Outstanding Orders section
@@ -265,7 +253,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage.getCustomerName().equals(DataItems.custDetails[0]));
         
         editPage.setApprovalWorkflow();
-        editPage.pressSave();
+        editPage.clickSave();
         
         System.out.println("Approval Workflow enabled. Logging into requester account...");
         
@@ -374,7 +362,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage2.getCustomerName().equals(DataItems.custDetails[0]));
         
         editPage2.unsetApprovalWorkflow();
-        Mst_CustomersPage custPage3 = editPage2.pressSave();
+        Mst_CustomersPage custPage3 = editPage2.clickSave();
         custPage3.waitForElement();
         
         System.out.println("Approval workflow disabled.");
@@ -408,7 +396,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage.getCustomerName().equals(DataItems.custDetails[0]));
         
         editPage.setApprovalWorkflow();
-        editPage.pressSave();
+        editPage.clickSave();
         
         System.out.println("Approval Workflow turned on. Logging into approver account...");
         
@@ -561,7 +549,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage2.getCustomerName().equals(DataItems.custDetails[0]));
         
         editPage2.unsetApprovalWorkflow();
-        Mst_CustomersPage custPage3 = editPage2.pressSave();
+        Mst_CustomersPage custPage3 = editPage2.clickSave();
         custPage3.waitForElement();
         
         System.out.println("Approval workflow disabled.");
@@ -597,7 +585,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage.getCustomerName().equals(DataItems.custDetails[0]));
         
         editPage.setApprovalWorkflow();
-        editPage.pressSave();
+        editPage.clickSave();
         custPage.waitForElement();
         
         System.out.println("Approval Workflow enabled. Logging in to requester account...");
@@ -798,7 +786,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         AssertJUnit.assertTrue("Edit Customer Page: Customer name differs in edit page from Customers Table",editPage2.getCustomerName().equals(DataItems.custDetails[0]));
         
         editPage2.unsetApprovalWorkflow();
-        Mst_CustomersPage custPage3 = editPage2.pressSave();
+        Mst_CustomersPage custPage3 = editPage2.clickSave();
         custPage3.waitForElement();
         
         System.out.println("Approval workflow disabled.");

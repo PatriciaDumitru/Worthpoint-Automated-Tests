@@ -13,7 +13,6 @@ import PageObjects.CCE_OrderStatusPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.CCE_SAPLogPage;
 import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
@@ -29,6 +28,8 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         
         Cce_Base base = new Cce_Base(driver);
         CCE_MainPage mainPage = base.setUp("Enrich Orders EO1: Page and filter checks, Hub SOS selection", "G_CCE_EO_1");
+
+        mainPage.waitForElement();
         
         System.out.println("Navigating to Manual Enrich Page...");
         
@@ -128,6 +129,8 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         
         Cce_Base base = new Cce_Base(driver);
         CCE_MainPage mainPage = base.setUp("Enrich Orders EO2: Lab and WHS selection", "G_CCE_EO_1");
+
+        mainPage.waitForElement();
         
         System.out.println("Navigating to Order Samples Page...");
         

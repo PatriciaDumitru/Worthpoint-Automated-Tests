@@ -1,10 +1,8 @@
 package com.coats.selenium.tests;
 
-import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,8 +29,9 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
         //New base object to handle log-in and set up
         Cce_Base base = new Cce_Base(driver);
 
-
         CCE_MainPage mainPage = base.setUp("Enable Order without Shade on Sales Organizations page", "EOwS_GC_010");
+
+        mainPage.waitForElement();
 
         System.out.println("Navigating to Sales Organisations Page...");
 
@@ -124,7 +123,7 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
 
         //Save
         System.out.println("'Enable Orders without Shade' flag checked. Saving...");
-        editPage2.pressSave();
+        editPage2.clickSave();
         custPage.waitForElement();
 
         System.out.println("Saved.");
@@ -140,6 +139,8 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
 
         CCE_MainPage mainPage = base.setUp("Enable Order without Shade on Sales Organizations page", "EOwS_GC_010");
+
+        mainPage.waitForElement();
 
         System.out.println("Navigating to Sales Organisations Page...");
 
@@ -217,7 +218,7 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
 
         //Save
         System.out.println("'Enable Orders without Shade' flag checked. Saving...");
-        editPage2.pressSave();
+        editPage2.clickSave();
         custPage.waitForElement();
 
         System.out.println("Saved.");
@@ -232,8 +233,9 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
         //New base object to handle log-in and set up
         Cce_Base base = new Cce_Base(driver);
 
-
         CCE_MainPage mainPage = base.setUp("Master: Enable Order without Shade on Sales Organizations page", "M_CMD_01");
+
+        mainPage.waitForElement();
 
         System.out.println("Navigating to Sales Organisations Page...");
 
@@ -324,8 +326,8 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
 
         //Save
         System.out.println("'Enable Orders without Shade' flag checked. Saving...");
-        editPage2.pressSave();
-        custPage.waitForElement();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
+        custPage2.waitForElement();
 
         System.out.println("Saved.");
     }
@@ -339,8 +341,9 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
         //New base object to handle log-in and set up
         Cce_Base base = new Cce_Base(driver);
 
-
         CCE_MainPage mainPage = base.setUp("Enable Order without Shade on Sales Organizations page", "M_CMD_02");
+
+        mainPage.waitForElement();
 
         System.out.println("Navigating to Sales Organisations Page...");
 
@@ -429,8 +432,8 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
 
         //Save
         System.out.println("'Enable Orders without Shade' flag checked. Saving...");
-        editPage2.pressSave();
-        custPage.waitForElement();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
+        custPage2.waitForElement();
 
         System.out.println("Saved.");
     }

@@ -380,6 +380,15 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         WebElement wait = Wait.visible(driver,orderConfHeadingLocator);
     }
 
+    public void waitForPageElem(){
+        /**
+         * Added by Stefan
+         * Scope: Trying to identify a problem from Jenkins where waitForElement is not working.
+         */
+
+        WebElement waitForLoad = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
+    }
+
     public void waitForElement2() {
         try {
             Alert alert = driver.switchTo().alert();
@@ -390,6 +399,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
         }
         WebElement wait = Wait.visible(driver,orderConfHeadingLocator);
     }
+
     public Ecomm_ManualEntryPage pressCancel() {
         WebElement button = Wait.clickable(driver,cancelButtonLocator);
         button.click();

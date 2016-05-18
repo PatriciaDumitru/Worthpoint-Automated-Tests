@@ -1,15 +1,12 @@
 
 package com.coats.selenium.tests;
 
-import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
 import PageObjects.CCE_AddOrderPage;
-import PageObjects.CCE_EnrichOrderPage;
 import PageObjects.CCE_HubSosPage;
 import PageObjects.CCE_LRMLogPage;
 import PageObjects.CCE_MainPage;
-import PageObjects.CCE_ManualEnrichPage;
 import PageObjects.CCE_NewBuyerPage;
 import PageObjects.CCE_OrderSamplesPage;
 import PageObjects.CCE_OrderViewPage;
@@ -19,7 +16,6 @@ import PageObjects.Mst_SalesOrgMaterialsPage;
 import com.coats.selenium.DriverFactory;
 import com.google.common.base.Verify;
 import java.io.File;
-import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
@@ -27,18 +23,16 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Cce_SOC_Test extends DriverFactory {
     
     @Test // Order Samples Page :: Page and filter checks, cancel function 
     (groups = {"CCE","CCE_Orders","QuickTest"})
-    public void SOC1() throws InterruptedException, IOException, Exception {
+    public void SOC1() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
@@ -99,7 +93,7 @@ public class Cce_SOC_Test extends DriverFactory {
     
     @Test //Order Samples Page :: Single line order
     (groups = {"CCE","CCE_Orders"})
-    public void SOC2() throws InterruptedException, IOException, Exception {
+    public void SOC2() throws Exception {
         
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -166,7 +160,7 @@ public class Cce_SOC_Test extends DriverFactory {
     
     @Test //Order Samples Page :: Multi-line order
     (groups = {"CCE","CCE_Orders"})
-    public void SOC3() throws InterruptedException, IOException, Exception {
+    public void SOC3() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
@@ -243,7 +237,7 @@ public class Cce_SOC_Test extends DriverFactory {
 
     @Test //Order Samples Page :: Single line order, quantity above threshold
     (groups = {"CCE","CCE_Orders"})
-    public void SOC4() throws InterruptedException, IOException, Exception {
+    public void SOC4() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
@@ -252,6 +246,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC4: Single line, above threshold", "G_CCE_SOC_6");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -296,7 +292,7 @@ public class Cce_SOC_Test extends DriverFactory {
     
     @Test //Order Samples Page :: Multi-line copied data
     (groups = {"CCE","CCE_Orders"})
-    public void SOC5() throws InterruptedException, IOException, Exception {
+    public void SOC5() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
@@ -305,6 +301,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC5: Multiple lines, copied data", "G_CCE_SOC_8");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -383,7 +381,7 @@ public class Cce_SOC_Test extends DriverFactory {
     
     @Test //Order Samples Page :: Pend order 
     (groups = {"CCE","CCE_Orders"})
-    public void SOC6() throws InterruptedException, IOException, Exception {
+    public void SOC6() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
         
@@ -392,6 +390,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC6: Save as draft", "G_CCE_SOC_12");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -454,6 +454,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC7: Sales Org Material Master hides MUM Type", "G_CCE_SOC_3");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigaing to Sales Org Materials Master...");
         
@@ -521,7 +523,9 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC8: Direct Enrich: Available and working. Warehouse SOS test", "G_CCE_SOC_12");
-        
+
+        ccePage.waitForElement();
+
         System.out.println("Navigating to Order Samples...");
         
         CCE_OrderSamplesPage orderSamples = ccePage.pressOrderSamples();
@@ -609,6 +613,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC9: Direct Enrich feature: Hub/Lab options test", "G_CCE_SOC_12");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -751,6 +757,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC10: New Buyer function", "OP_NBB_01");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -811,6 +819,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC11: Single line, above LAB qty but within threshold", "G_CCE_SOC_5");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -875,9 +885,9 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Customer PO: " + DataItems.lastUsedPO);
         System.out.println("Current SOS: " + currentSOS);
     }
-   /*
+
     @Test //Order Samples Page :: SUMST :: Maximum copy count test (copy 11 times)
-    (groups = {"CCE","CCE_Orders"})
+    (groups = {"CCE","CCE_Orders"},enabled = false)
     public void SOC12() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -887,6 +897,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         //Set up returns a CCE Page and outputs test details
         CCE_MainPage ccePage = base.setUp("SAMPLE ORDER SOC12: Maximum copy count test", "Unknown");
+
+        ccePage.waitForElement();
         
         System.out.println("Navigating to Order Samples...");
         
@@ -966,6 +978,6 @@ public class Cce_SOC_Test extends DriverFactory {
         System.out.println("Submitted.");
 
     }
-    */
+
     
 }

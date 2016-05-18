@@ -18,7 +18,7 @@ public class Mst_ShippingConditionPage extends WBA_BasePage{
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
 
     //table locators
-    By table = By.xpath("//*[@id=\"content\"]/div[3]/table/tbody/tr");
+    By table = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr");//*[@id="content"]/div[3]/table/tbody/tr[1]
 
     //Bottom buttons locators
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
@@ -51,6 +51,7 @@ public class Mst_ShippingConditionPage extends WBA_BasePage{
         WebElement newShip = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newShippingCondButton));
         int cond =0;
         int lines = driver.findElements(table).size();
+        System.out.println("No of Shipping conditions:"+lines);
         for (int i=1;i<lines;i++){
             WebElement ship = driver.findElement(By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+(i+1)+") > td:nth-child(2)"));
             System.out.println("Shipping Condition on row:"+i+" is:"+ship.getText());

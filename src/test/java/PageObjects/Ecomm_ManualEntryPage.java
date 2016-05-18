@@ -509,6 +509,7 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
 
     //Set order detais using a combination of brand/ticket/length/finish/shadecode
     public Ecomm_ManualEntryPage setOrderDetailsCombination(String[] details, int lineNumber) {
+        waitForElement();
         //Enter brand, ticket, length, finish, and shadecode
         setBrand(details[0], lineNumber);
         setTicket(details[1], lineNumber);

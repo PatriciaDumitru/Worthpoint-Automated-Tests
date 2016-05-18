@@ -1,7 +1,6 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
-import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;

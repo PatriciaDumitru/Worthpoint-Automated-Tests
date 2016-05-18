@@ -5,7 +5,6 @@ import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
-import com.google.common.base.Verify;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,12 +16,6 @@ import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.List;
-
-/**
- * Created by Daniel Ion on 09.03.2016.
- */
 public class CCE_UploadSampleMethods_Test extends DriverFactory {
 
     @Test //Order status page :: page and filter checks, reset function, export data
@@ -121,7 +114,7 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         By lifeEasyOrderUploadCheckBox = By.id("Requester0SampleUpload");
         CommonTask.setCheckBox(driver, lifeEasyOrderUploadCheckBox);
         System.out.println("'CCE order upload' flag checked for customer Life Easy. Saving...");
-        editPage2.pressSave();
+        editPage2.clickSave();
         custPage.waitForElement();
         System.out.println("Saved. Log out...");
 
@@ -281,7 +274,7 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         //AssertJUnit.assertFalse(input.isDisplayed());
 
         System.out.println("'CCE order upload' flag is not displayed for customer. Saving...");
-        editPage2.pressSave();
+        editPage2.clickSave();
         custPage.waitForElement();
         System.out.println("Saved. Log out...");
 
@@ -418,11 +411,11 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         //Check "Enable CCE order upload"  flag
         System.out.println("Fields checked. Check 'Enable CCE order upload'...");
         editPage2.enableCCEOrderUploadCheckBox();
-        editPage2.pressSave();
-        custPage.waitForElement();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
+        custPage2.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");
-        AssertJUnit.assertTrue("Customers Page: Flash Message not as expected", custPage.getFlashMessage().getText().equals("The Customer has been updated"));
+        AssertJUnit.assertTrue("Customers Page: Flash Message not as expected", custPage2.getFlashMessage().getText().equals("The Customer has been updated"));
 
 
         //logout from master
@@ -491,8 +484,8 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
 
         //Save
         System.out.println("'Enable CCE order upload' flag un-checked. Saving...");
-        editPage.pressSave();
-        soPage.waitForElement();
+        Mst_SalesOrgPage soPage2 = editPage.pressSave();
+        soPage2.waitForElement();
 
         System.out.println("Saved. Navigating to Customer master data...");
 
@@ -518,8 +511,8 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         AssertJUnit.assertFalse(input.isDisplayed());
 
         System.out.println("'CCE order upload' flag is not displayed for customer. Saving...");
-        editPage2.pressSave();
-        custPage.waitForElement();
+        Mst_CustomersPage custPage2 = editPage2.clickSave();
+        custPage2.waitForElement();
 
         System.out.println("Customers page reached. The Customer has been updated");
         AssertJUnit.assertTrue("Customers Page: Flash Message not as expected", custPage.getFlashMessage().getText().equals("The Customer has been updated"));
@@ -544,16 +537,13 @@ public class CCE_UploadSampleMethods_Test extends DriverFactory {
         System.out.println("Order File Upload page is not available in the menu");
     }
 
-   /* public void SUF_OFU_01() throws Exception {
-     TODO
-    }*/
 
     @Test(groups = {"CCE"})
-    public void SUF_OFU_02() throws Exception {
+    public void SUF_OFU_01() throws Exception {
 
         WebDriver driver = getDriver();
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage ccePage = base.setUp("Upload Order Samples", "SUF_OFU_02", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
+        CCE_MainPage ccePage = base.setUp("Upload Order Samples", "SUF_OFU_01", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
         ccePage.waitForLoad();
 
         System.out.println("Navigating to Order File Upload...");

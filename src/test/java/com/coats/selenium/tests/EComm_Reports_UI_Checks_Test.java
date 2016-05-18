@@ -5,14 +5,16 @@ import AutomationFramework.DataItems;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 /**
- * Created by Stefan on 12.04.2016.
+ * Created by: Stefan on 12.04.2016.
+ * Description: This class contains tests for eComm > Reports User Interface verifications. WBA-562,WBA-563,WBA-564 and WBA-566
+ * changed the User Interface for reports and the following test will cover the testing of reports changes.
+ * Contributors:
  */
 public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
@@ -45,8 +47,13 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Table header:"+invoice.getTableHeader());
         String tableHeader = invoice.getTableHeader().toString();
         //Actions|Invoice Creation Date|Invoice No.|Status|No. of lines|Invoice Quantity|Customer PO number|Invoice Amount|
-        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Invoice number|Payer name|Invoice amount|Currency|Status|Payment date|Payment due date|Ecomm order no|Business principle name|Customer PO number|"));
+        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Invoice number|Payer name|Invoice amount|Currency|Status|Payment date|Payment due date|Business principle name|"));
         System.out.println("Table Header correct!");
+
+        /**
+         * Verify Pagination
+         */
+        CommonTask.checkReportsPagination(driver);
 
         System.out.println("Test PASSED!");
     }
@@ -80,8 +87,13 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println(dn.getTableHeader());
         String tableHeader = dn.getTableHeader().toString();
         //Actions|Delivery Date|Delivery Note No.|Delivered Quantity|Customer PO number|Requester Name|
-        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Delivery Note No.|Ship To Party Name|Delivery Date|Delivery QTY|Requester Name|Business Principle Name|eComm Order No.|"));
+        AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Delivery Note No.|Ship To Party Name|Delivery Date|Delivery QTY|Requester Name|Business Principle Name|"));
         System.out.println("Table Header correct!");
+
+        /**
+         * Verify Pagination
+         */
+        CommonTask.checkReportsPagination(driver);
 
         System.out.println("Test PASSED!");
     }
@@ -118,6 +130,11 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         AssertJUnit.assertTrue("Incorrect table columns!",tableHeader.equals("Action|Customer PO No|eComm Order No|SAP Order No.|Order Type|Payer Name|Net Value|Currency|Business Principle Name|"));
         System.out.println("Table Header correct!");
 
+        /**
+         * Verify Pagination
+         */
+        CommonTask.checkReportsPagination(driver);
+
         System.out.println("Test PASSED!");
     }
 
@@ -138,7 +155,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Navigating to Invoice Page...");
         driver.get(DataItems.advancedReports);
 
-        Ecomm_MyReportsPage advRep = new Ecomm_MyReportsPage(driver);
+        Ecomm_AdvancedReportsPage advRep = new Ecomm_AdvancedReportsPage(driver);
         /**
          Verifying the breadcrumb - renamed from Reports | My Report to Reports | Advanced Reports
          */
@@ -154,12 +171,19 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
          */
         AssertJUnit.assertTrue("***Incorrect breadcrumb!",cnrp.getBreadcrumb().getText().equals("Reports | Advanced Reports | New Report"));
 
+        cnrp.setCreationDateFrom("2016-02-24 00:00");
+
         cnrp.selectDateRange("Last 90 days");
 
         cnrp.selectRepCriteria("Custom Fields");
 
         cnrp.selectAllFromOrders();
         cnrp.selectAllDeliveryNotes();
+
+        //Export report and verify
+        Ecomm_ExportDownloadPage exportPage = cnrp.pressExport();
+        exportPage.waitForDownloadCompletion();
+        System.out.println("Export pressed, download completed.");
 
         cnrp.pressSaveReport();
 
@@ -179,7 +203,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Navigating to Invoice Page...");
         driver.get(DataItems.advancedReports);
 
-        Ecomm_MyReportsPage advRep2 = new Ecomm_MyReportsPage(driver);
+        Ecomm_AdvancedReportsPage advRep2 = new Ecomm_AdvancedReportsPage(driver);
 
 
         //Go to Saved Reports
@@ -223,7 +247,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Navigating to Advanced Reports...");
         driver.get(DataItems.advancedReports);
 
-        Ecomm_MyReportsPage advRep3 = new Ecomm_MyReportsPage(driver);
+        Ecomm_AdvancedReportsPage advRep3 = new Ecomm_AdvancedReportsPage(driver);
 
         advRep3.clickSavedReports();
 
@@ -241,7 +265,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         System.out.println("Navigating to Advanced Reports...");
         driver.get(DataItems.advancedReports);
 
-        Ecomm_MyReportsPage advRep4 = new Ecomm_MyReportsPage(driver);
+        Ecomm_AdvancedReportsPage advRep4 = new Ecomm_AdvancedReportsPage(driver);
 
         advRep4.clickSavedReports();
         advRep4.deleteSavedReport("Rep2");

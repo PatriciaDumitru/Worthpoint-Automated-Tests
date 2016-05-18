@@ -12,6 +12,9 @@ import org.openqa.selenium.WebElement;
 public class Ecomm_CreateNewReportPage extends WBA_BasePage {
     //Locators
     By breadcrumb = By.cssSelector("#content > h2");
+
+    By creationDateFrom = By.cssSelector("#filterBulkOrderCreatedFrom");
+    By creationDateTo = By.cssSelector("#filterBulkOrderCreatedTo");
     By selectDateRange = By.cssSelector("#filterBulkOrderDaterange");
     By selectReportCriteria = By.cssSelector("#filterBulkOrderReportcriteria");
     By saveReportButton = By.cssSelector("#FilterMyReportsForm > div.actions > ul > li.btn_actions.save > input[type=\"submit\"]");
@@ -77,6 +80,16 @@ public class Ecomm_CreateNewReportPage extends WBA_BasePage {
     public WebElement getSelectDateRange (){return driver.findElement(selectDateRange);}
 
     public WebElement getSelectReportCriteria(){return driver.findElement(selectReportCriteria);}
+
+    public void setCreationDateFrom (String item) {
+        WebElement elem = Wait.visible(driver,creationDateFrom);
+        elem.sendKeys(item);
+    }
+
+    public void setCreationDateTo (String item) {
+        WebElement elem = Wait.visible(driver,creationDateTo);
+        elem.sendKeys(item);
+    }
 
     public void selectDateRange (String item) {
         CommonTask.setDropDownField(driver,selectDateRange, item);
@@ -297,11 +310,11 @@ public class Ecomm_CreateNewReportPage extends WBA_BasePage {
         return new Ecomm_ExportDownloadPage(driver);
     }
 
-    public Ecomm_MyReportsPage pressCancel() {
+    public Ecomm_AdvancedReportsPage pressCancel() {
         WebElement cancel = Wait.clickable(driver,cancelButton);
         cancel.click();
         CommonTask.waitForPageLoad(driver);
-        return new Ecomm_MyReportsPage(driver);
+        return new Ecomm_AdvancedReportsPage(driver);
     }
 
     //Frequently used checkboxes

@@ -270,6 +270,8 @@ public class Ecomm_MOQ_Test extends DriverFactory{
 
         Ecomm_MOQ_Methods_Page moqMeth = new Ecomm_MOQ_Methods_Page(driver);
 
+        moqMeth.waitForLoad();
+
         moqMeth.setProfile03();
 
         moqMeth.goEccomManualEntry();
@@ -391,6 +393,8 @@ public class Ecomm_MOQ_Test extends DriverFactory{
         base.setUp("Profile 4" ,"ECOMM_MOQ_04");
 
         Ecomm_MOQ_Methods_Page moqMeth = new Ecomm_MOQ_Methods_Page(driver);
+
+        moqMeth.waitForLoad();
 
         moqMeth.setProfile04();
 

@@ -2,7 +2,6 @@
 package com.coats.selenium.tests;
 
 import AutomationFramework.DataItems;
-import AutomationFramework.Wait;
 import PageObjects.CCE_AddOrderPage;
 import PageObjects.CCE_CancelDraftPage;
 import PageObjects.CCE_MainPage;
@@ -11,12 +10,8 @@ import PageObjects.CCE_OrderStatusPage;
 import PageObjects.CCE_OrderViewPage;
 import PageObjects.CCE_OutstandingDraftPage;
 import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
 import com.google.common.base.Verify;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;

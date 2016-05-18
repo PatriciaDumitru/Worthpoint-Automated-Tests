@@ -178,13 +178,16 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public CCE_AddOrderPage setArticle(String article, int lineNumber) {
         //Line numbers start from 0
         By articleLocator = By.id("s2id_SampleOrderLine"+lineNumber+"ArticleId");
+        WebElement wait = Wait.clickable(driver,articleLocator);
+
         CommonTask.setSearchField(driver, articleLocator, article);
         return this;
     }
     
     public CCE_AddOrderPage setBrand(String brand, int lineNumber) throws InterruptedException {
         By brandFieldLocator = By.id("SampleOrderLine"+lineNumber+"BrandId");
-        
+        WebElement wait = Wait.clickable(driver,brandFieldLocator);
+
         CommonTask.setDropDownField(driver, brandFieldLocator, brand);
         
         return this;
@@ -192,7 +195,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     
     public CCE_AddOrderPage setTicket(String ticket, int lineNumber) throws InterruptedException {
         By ticketFieldLocator = By.id("SampleOrderLine"+lineNumber+"TicketId");
-        
+        WebElement wait = Wait.clickable(driver,ticketFieldLocator);
+
         CommonTask.setDropDownField(driver, ticketFieldLocator, ticket);
         return this;
     }
@@ -200,6 +204,8 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     public CCE_AddOrderPage setShadeCode(String shadeCode,int lineNumber) {
         //Line numbers start from 0
         By shadeCodeLocator = By.id("s2id_SampleOrderLine"+lineNumber+"ShadeId");
+        WebElement wait = Wait.clickable(driver,shadeCodeLocator);
+
         CommonTask.setSearchField(driver,shadeCodeLocator,shadeCode);
         return this;
     }

@@ -108,6 +108,7 @@ public class PreFlows {
     }
 
     public void setSalesOrg(WebDriver driver, String item) {
+        Wait.clickable(driver,salesOrgIdField);
         CommonTask.setInputField(driver, salesOrgIdField, item);
     }
 

@@ -54,10 +54,6 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     
     System.out.println("Method set. Submitting...");
     
-    //Take a screenshot
-    File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\1Filepath entered.png"));
-    
     driver.findElement(By.cssSelector("input.btn-submit-upload")).click();
     
     System.out.println("Submitted. Select 'no' in alert...");
@@ -86,10 +82,6 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     
     System.out.println("Mapping set. Confirming...");
     
-    //Take a screenshot
-    File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\2Mapping page.png"));
-    
     driver.findElement(By.id("trigger")).click();
     
     try {
@@ -109,18 +101,10 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
 
     CommonTask.waitForPageLoad(driver);
     
-    //Take a screenshot
-    File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\3Error expected - Confirmation Page.png"));
-    
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
           
     WebElement waitForButton = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
-    
-    //Take a screenshot
-    File scrFile8 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile8,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\4Error expected - Confirmation Page scrolled.png"));
     
       System.out.println("Viewing error...");
     
@@ -128,10 +112,6 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     CommonTask.waitForOverlay(driver,contentLocator);
     
     System.out.println("View displayed. Closing view...");
-    
-    //Take a screenshot
-    File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\5Error View.png"));
     
     Actions action = new Actions(driver);
     action.sendKeys(Keys.ESCAPE).build().perform();
@@ -150,15 +130,12 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
         System.out.println("Order cancelled, as Contract Order Call-off is disabled");
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\6Order cancelled.png"));
 
   }
 
   @Test //Upload Orders Page :: Realtime contract order upload, expecting validation success
   (groups ={"eComm","eComm_Orders","Upload_Order"}) //This test can fail due to the "Combination of records already exists" error. Test manually if this occurs
-  public void CORT2() throws IOException, Exception {
+  public void CORT2() throws Exception {
     
     WebDriver driver = getDriver();
       
@@ -187,8 +164,8 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     new Select(driver.findElement(By.id("BulkOrderWarehouseInstruction"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderStyle"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderBuyerSalesOrderno"))).selectByVisibleText("N/A");
-    new Select(driver.findElement(By.id("BulkOrderLineProdStyleNo"))).selectByVisibleText("N/A");
-    new Select(driver.findElement(By.id("BulkOrderLineOtherinfo"))).selectByVisibleText("N/A");
+    //new Select(driver.findElement(By.id("BulkOrderLineProdStyleNo"))).selectByVisibleText("N/A");
+    //new Select(driver.findElement(By.id("BulkOrderLineOtherinfo"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderPoNumber"))).selectByVisibleText("Contract PO No.");
     new Select(driver.findElement(By.id("BulkOrderLineCustomerPrice"))).selectByVisibleText("N/A");
     
@@ -207,19 +184,11 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     
     
     CommonTask.setSearchField(driver, By.id("s2id_BuyerId_0"), DataItems.conOrdDetails[3]);
-    
-    //Take a screenshot
-    File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\7Validation success - Confirmation page.png"));
    
     Actions scroller = new Actions(driver);
     scroller.moveToElement(driver.findElement(cancelButton)).build().perform();
 
     WebElement waitForPresence = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(cancelButton));
-    
-    //Take a screenshot
-    File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\8Validation success - Confirmation page scrolled.png"));
     
     boolean success = false;
     
@@ -243,16 +212,11 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
         driver.findElement(confirmButton).click();
         CommonTask.waitForPageLoad(driver);
         System.out.println("Order confirmed.");
-        //Take a screenshot
-        File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\9Order confirmed.png"));
+
     } else {
         driver.findElement(cancelButton).click();
         CommonTask.waitForPageLoad(driver);
         System.out.println("Order cancelled, as Conract Call-off is disabled");
-        //Take a screenshot
-        File scrFile7 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile7,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\Contract Order\\9Order cancelled.png"));
     }
     
     

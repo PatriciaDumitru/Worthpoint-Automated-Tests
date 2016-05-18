@@ -1,9 +1,7 @@
 package PageObjects;
 
 import AutomationFramework.DataItems;
-import AutomationFramework.Wait;
-import static PageObjects.CCE_MainPage.ordersHeader;
-import static PageObjects.Ecomm_MainPage.ordersTab;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -162,7 +160,7 @@ public class WBA_BasePage {
             static By dyeLotMultiplesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(12)");
             static By orderTypeOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(13)");
             static By warehouseStocksOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(15)");
-            static By allowedQuantitiesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(15)");
+            static By allowedQuantitiesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(16)");
             static By shippingConditionOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(17)");
             static By shipToPartiesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(3)");
             static By cabinetsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(18)");
@@ -536,7 +534,7 @@ public class WBA_BasePage {
         return new Ecomm_OutstandingPaymentsPage(driver);
     }
     
-    public Ecomm_MyReportsPage clickMyReports() {
+    public Ecomm_AdvancedReportsPage clickMyReports() {
         //Wait for tab
         WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(reportsTab)));
         driver.findElement(reportsTab).click();
@@ -545,7 +543,7 @@ public class WBA_BasePage {
         WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(myReportsSubTab)));
         driver.findElement(myReportsSubTab).click();
 		
-        return new Ecomm_MyReportsPage(driver);
+        return new Ecomm_AdvancedReportsPage(driver);
     }
     
     public Ecomm_OrderApprovalHistoryPage clickOrderApprovalHistory() {

@@ -25,7 +25,7 @@ public class DataItems {
     public static String cceURL = targetURL + "/cce";
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
-    public static String ecommURL = "https://qawcs.coatscolourexpress.com/test/ecom";
+    public static String ecommURL = "https://qawcs.coatscolourexpress.com/qa_p4i/ecom";
 
     public static String invoicePage = targetURL + "/reports/cc/invoices";
     public static String deliveyNotesPage = targetURL + "/reports/cc/deliverynotes";
@@ -50,6 +50,8 @@ public class DataItems {
 
     public static String approverLEUsername = "approver@lifeeasy.com";
     public static String approverLEPassword = "password";           //CUSTOMER, LIFE EASY CUSTOMER, SUSST, APPROVER
+
+    public static String coatsUserName1 = "alexander.postl@coats.com"; //COATS USER, Life Easy Customer
 
     public static String validCustUsername = "joecontract@coats.com";
     public static String validCustPassword = "password";             //CUSTOMER, STAR GARMENTS LTD, SUSST, N/A
@@ -374,11 +376,13 @@ public class DataItems {
     public static String salesOrgID = "ID51";
     public static String deliveryToPlantAll = "Select";
     public static String deliveryToPlantID10 = "ID10";
+    public static String deliveryToPlantID12 = "ID12";
 
     //upload order
     public static By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
     public static By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
     public static By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
+    public static By errorLinesLocator2=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(6)");
 
     //QuickFix
     public static String othersWithCode = "*OTHERS*(10000000001)";
@@ -457,7 +461,8 @@ public class DataItems {
             {"Style No./Production No.","Select"},
             {"Contract PO No.","Contract"},
             {"Customer Price","N/A"},
-            {"Sub Account","N/A"},
+            //{"Sub Account","N/A"},
+            {"Order Type","Contract Order"},
             {"Ship to Party Name","Ship to Party Name"},
             {"Your Material No.","N/A"},
             {"Brand","N/A"},

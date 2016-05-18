@@ -6,22 +6,15 @@ import PageObjects.Ecomm_ExportDownloadPage;
 import PageObjects.CCE_OrderCycleTimePage;
 import PageObjects.CCE_OrderViewPage;
 import com.coats.selenium.DriverFactory;
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FileUtils;
 import org.testng.AssertJUnit;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Cce_OrderCycleTime_Test extends DriverFactory { 
     
     @Test //Order Cycle Time Page :: Page and filter checks, print, export, and reset
     (groups = {"CCE", "QuickTest"})
-    public void OCTR1() throws IOException, Exception {
+    public void OCTR1() throws Exception {
         //New driver object
         WebDriver driver = getDriver();
         
@@ -35,10 +28,6 @@ public class Cce_OrderCycleTime_Test extends DriverFactory {
         
         CCE_OrderCycleTimePage octPage = ccePage.pressOrderCycleTime();
         octPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\1Order Cycle Time Page.png"));
         
         System.out.println("Order Cycle Time reached. Checking title...");
         
@@ -56,19 +45,11 @@ public class Cce_OrderCycleTime_Test extends DriverFactory {
         
         octPage.setShipToPartyName(DataItems.custDetails[1]);
         
-        //Take a screenshot
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\2Filter Criteria entered.png"));
-        
         System.out.println("Criteria entered. Printing records...");
         
         CCE_OrderViewPage viewPage = octPage.pressPrint();
         viewPage.waitForContentAlt2();
-        
-        //Take a screenshot
-        File scrFile3 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\3Orders displayed.png"));
-        
+
         System.out.println("Record view displayed. Closing view...");
         
         viewPage.closeView();
@@ -83,10 +64,6 @@ public class Cce_OrderCycleTime_Test extends DriverFactory {
         
         octPage.pressReset();
         octPage.waitForLoad();
-        
-        //Take a screenshot
-        File scrFile4 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4,new File(DataItems.screenshotsFilepath+"\\CCE\\Reports\\Order Cycle Time\\4Filter reset.png"));
         
         System.out.println("Filter reset.");
         
