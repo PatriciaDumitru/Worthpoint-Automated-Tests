@@ -27,6 +27,8 @@ public class Ecomm_Shade_Test extends DriverFactory {
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         PageObjects.Ecomm_MainPage eCommPage = baseTest.setUp("Shade Not Available Page SNA1: Page and filter checks, view and edit", "UNKNOWN");
 
+        eCommPage.waitForElement();
+
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
 
@@ -168,6 +170,8 @@ public class Ecomm_Shade_Test extends DriverFactory {
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         PageObjects.Ecomm_MainPage eCommPage = baseTest.setUp("Waiting for Shade Page WFS1: Page and filter checks, view and edit", "UNKNOWN");
+
+        eCommPage.waitForElement();
         
         System.out.println("Navigating to Waiting for Shade page...");
         

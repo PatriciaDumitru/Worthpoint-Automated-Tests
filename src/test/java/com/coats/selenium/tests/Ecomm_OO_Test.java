@@ -37,6 +37,8 @@ public class Ecomm_OO_Test extends DriverFactory {
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.setUp("OUTSTANDING ORDERS OP1: Complete order from draft","G_OP_F_1");
 
+        eCommPage.waitForElement();
+
         System.out.println("Navigating to Outstanding Orders Page...");
         
         Ecomm_OutstandingOrdersPage outOrders = eCommPage.clickOutstandingOrders();
@@ -134,6 +136,8 @@ public class Ecomm_OO_Test extends DriverFactory {
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.setUp("OUTSTANDING ORDER DRAFTS ODP1: Page check, search, view, edit, cancel draft","G_OP_ODP_1 to 5");
 
+        eCommPage.waitForElement();
+
         System.out.println("Navigating to Outstanding Order Draft Page...");
         
         Ecomm_OutstandingOrderDraftPage draftPage = eCommPage.clickOutstandingDraft();
@@ -200,7 +204,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         upDraftPage.setCustomerName(DataItems.custDetails[0]);
         
         upDraftPage.pressSearch();
-        upDraftPage.waitForLoad();
+        upDraftPage.waitForElement();
         
         System.out.println("Search complete. Pressing edit...");
         
