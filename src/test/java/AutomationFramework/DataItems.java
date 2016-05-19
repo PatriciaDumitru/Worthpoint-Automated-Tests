@@ -459,7 +459,7 @@ public class DataItems {
             {"Qty","Qty"},
             {"Style","N/A"},
             {"Style No./Production No.","Select"},
-            {"Contract PO No.","Contract"},
+            {"Contract PO No.","Contract PO No."},
             {"Customer Price","N/A"},
             //{"Sub Account","N/A"},
             {"Order Type","Contract Order"},

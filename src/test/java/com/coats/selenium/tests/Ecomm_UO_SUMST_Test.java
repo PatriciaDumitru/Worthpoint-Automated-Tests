@@ -1651,7 +1651,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         driver2.switchTo().frame(driver2.findElement(By.id("TB_iframeContent")));
         WebElement errorLines=driver2.findElement(DataItems.errorLinesLocator2);
-        //AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
+        AssertJUnit.assertEquals(errorLines.getText(),"NO MATCHING CONTRACT REFERENCE");
     }
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
@@ -1713,7 +1713,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
         WebElement errorLines=driver.findElement(DataItems.errorLinesLocator2);
-        //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
+        AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
@@ -2045,7 +2045,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
         WebElement errorLines=driver.findElement(DataItems.errorLinesLocator2);
-        //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
+        AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
@@ -2109,7 +2109,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
         By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
         WebElement errorLines=driver.findElement(errorLinesLocator);
-        //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
+        AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
@@ -2560,7 +2560,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
         WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
-        //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
+        AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
@@ -2684,7 +2684,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
         WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
-        //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
+        AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
@@ -2995,7 +2995,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
         WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
-        //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
+        AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
@@ -3301,7 +3301,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
         WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
-        //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
+        AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
@@ -3736,7 +3736,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
         WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
-        //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
+        AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
@@ -3802,7 +3802,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
         WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
-        //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
+        AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
@@ -3993,7 +3993,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         driver.switchTo().frame(driver.findElement(By.id("TB_iframeContent")));
         WebElement errorLines=driver.findElement(DataItems.errorLinesLocator);
-        //AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
+        AssertJUnit.assertEquals(errorLines.getText(),"REQUESTED QUANTITY GREATER THAN OPEN QUANTITY");
 
     }
 
@@ -4133,7 +4133,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         }
 
         int row = appPage.getRow(DataItems.lastUsedPO);
-        //AssertJUnit.assertFalse("Pending Approval List Page: Order does not appear after Send for Approval pressed", row == -1);
+        AssertJUnit.assertFalse("Pending Approval List Page: Order does not appear after Send for Approval pressed", row == -1);
 
         String orderNo = appPage.getOrderNoSUMST(1);
 

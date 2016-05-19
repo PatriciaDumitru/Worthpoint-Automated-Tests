@@ -110,11 +110,13 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
             System.out.println("No additional alerts upon close.");
         }
 
+        
         System.out.println("Selecting MUM Type...");
         synchronized (driver) {
             driver.wait(2000);
         }
         cpPage.setMUMType(DataItems.copMUM);
+        cpPage.waitForElement();
 
         System.out.println("MUM Type set. Setting quantity produced...");
         
