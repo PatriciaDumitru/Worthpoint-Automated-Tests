@@ -758,7 +758,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
                 {"Qty","Qty"},
                 {"Style","N/A"},
                 {"Style No./Production No.","Select"},
-                {"Contract PO No.","Contract"},
+                {"Contract PO No.","Contract PO No."},
                 {"Customer Price","N/A"},
                 {"Sub Account","N/A"},
                 {"Ship to Party Name","Ship to Party Name"},

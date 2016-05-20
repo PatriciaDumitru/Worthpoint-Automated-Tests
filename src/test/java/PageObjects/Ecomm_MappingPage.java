@@ -42,6 +42,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     By styleNoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.lineinfo > td:nth-child(1) > label");
     By contractPONoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(1) > label");
     By contractPONoLocator = By.id("BulkOrderPoNumber");
+    By contractPONoLocator3 = By.cssSelector("#BulkOrderLineContract");
     By subAccountFieldLocator = By.id("BulkOrderPayerId");
     By subAccountLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.headerinfopay > td:nth-child(1) > label");
     By lineRefLocator = By.id("BulkOrderLineContract");
@@ -980,7 +981,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         }
 
         if (contract) {
-            WebElement contractPO = Wait.clickable(driver,contractPONoLocator);
+            WebElement contractPO = Wait.clickable(driver,contractPONoLocator3);
             AssertJUnit.assertTrue("Mapping Page: Contract PO No. field not in expected position",driver.findElement(contractPONoLabelLocator).getText().equals(mapping[8][0]));
             Select contractPOSelect = new Select(contractPO);
             contractPO.click();
