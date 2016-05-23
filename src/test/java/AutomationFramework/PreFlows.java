@@ -35,6 +35,8 @@ public class PreFlows {
     By ordersWithoutShadeCheckBoxSalesOrg = By.id("SalesOrgEnabledOrdersWithoutShade");
     By autoEnrichOptionsCheckBox = By.id("SalesOrgAutoEnrichOptions");
     By salesOrgShippingCond = By.id("SalesOrgShippingConditionId");
+    By forceCustomerReAgree = By.id("SalesOrgForceReAgree");
+    By termsAndConditions = By.id("SalesOrgEnabledTnc");
 
     //Customer Masters Page
     By customerNameField = By.id("filterCustomerCustomerName");
@@ -84,6 +86,7 @@ public class PreFlows {
 
     // -------------------- Changes between CCE and ECOMM
     public void chooseTheOtherProfile(WebDriver driver){
+        WebElement elem = Wait.visible(driver,chooseTheOtherProfile);
         Actions action = new Actions(driver);
         action.click(driver.findElement(chooseTheOtherProfile)).build().perform();
     }
@@ -91,6 +94,7 @@ public class PreFlows {
 
     //  -------------------- Logout
     public void logoutAction(WebDriver driver){
+        WebElement elem = Wait.visible(driver,logoutButton);
         Actions action = new Actions(driver);
         action.click(driver.findElement(logoutButton)).build().perform();
     }
@@ -113,11 +117,13 @@ public class PreFlows {
     }
 
     public void filterSalesOrg(WebDriver driver) {
+        Wait.visible(driver,filterSalesOrgButton);
         Actions action = new Actions(driver);
         action.click(driver.findElement(filterSalesOrgButton)).build().perform();
     }
 
     public void editSalesOrg(WebDriver driver) {
+        Wait.visible(driver,editSalesOrgButton);
         Actions action = new Actions(driver);
         action.click(driver.findElement(editSalesOrgButton)).build().perform();
     }
@@ -143,11 +149,13 @@ public class PreFlows {
     }
 
     public void filterCustomerName(WebDriver driver) {
+        Wait.visible(driver,filterCustomerButton);
         Actions action = new Actions(driver);
         action.click(driver.findElement(filterCustomerButton)).build().perform();
     }
 
     public void editCustomerName(WebDriver driver) {
+        Wait.visible(driver,editCustomerButton);
         Actions action = new Actions(driver);
         action.click(driver.findElement(editCustomerButton)).build().perform();
     }
@@ -160,12 +168,14 @@ public class PreFlows {
 
     // -------------------- Save Sales Org
     public void saveSalesOrg(WebDriver driver) {
+        Wait.visible(driver,saveSalesOrgButton);
         Actions action = new Actions(driver);
         action.click(driver.findElement(saveSalesOrgButton)).build().perform();
     }
 
     // -------------------- Save Customer
     public void saveCustomer(WebDriver driver) {
+        Wait.visible(driver,saveCustomerButton);
         Actions action = new Actions(driver);
         action.click(driver.findElement(saveCustomerButton)).build().perform();
     }
@@ -176,19 +186,23 @@ public class PreFlows {
     // -------------------- Sales Org Flags Enable / Disable and Others from Edit Page
 
     public void enableApprovalCheckBoxForSalesOrg(WebDriver driver){
+        Wait.visible(driver,approvelCheckBoxSalesOrg);
         CommonTask.setCheckBox(driver, approvelCheckBoxSalesOrg);
     }
 
     public void disableApprovalCheckBoxForSalesOrg(WebDriver driver){
+        Wait.visible(driver,approvelCheckBoxSalesOrg);
         CommonTask.unSetCheckBox(driver, approvelCheckBoxSalesOrg);
     }
 
 
     public void enableCallOffOrderCheckboxForSalesOrg(WebDriver driver){
+        Wait.visible(driver,getCallOffOrderCheckBoxSalesOrg);
         CommonTask.setCheckBox(driver,getCallOffOrderCheckBoxSalesOrg);
     }
 
     public void disableCallOffOrderCheckboxForSalesOrg(WebDriver driver){
+        Wait.visible(driver,getCallOffOrderCheckBoxSalesOrg);
         CommonTask.unSetCheckBox(driver,getCallOffOrderCheckBoxSalesOrg);
     }
 
@@ -202,18 +216,22 @@ public class PreFlows {
     }
 
     public void setDeliveryPlant(WebDriver driver, String plant) {
+        Wait.visible(driver,deliveryPlant);
         CommonTask.setDropDownField(driver, deliveryPlant, plant);
     } //Set Delivery Plant From Sales Org Edit page
 
     public void enableAutoEnrichToOptions(WebDriver driver){
+        Wait.visible(driver,autoEnrichOptionsCheckBox);
         CommonTask.setCheckBox(driver,autoEnrichOptionsCheckBox);
     }
 
     public void disableAutoEnrichOptions(WebDriver driver){
+        Wait.visible(driver,autoEnrichOptionsCheckBox);
         CommonTask.unSetCheckBox(driver,autoEnrichOptionsCheckBox);
     }
 
     public void selectShippingCondForSalesOrg (WebDriver driver, String item){
+        Wait.visible(driver,salesOrgShippingCond);
         CommonTask.setDropDownField(driver, salesOrgShippingCond,item);
     }
 
@@ -232,26 +250,32 @@ public class PreFlows {
 
 
     public void enableApprovalCheckBoxForCust(WebDriver driver){
+        Wait.visible(driver,approvelCheckBoxCust);
         CommonTask.setCheckBox(driver, approvelCheckBoxCust);
     }
 
     public void disableApprovalCheckBoxForCust(WebDriver driver){
+        Wait.visible(driver,approvelCheckBoxCust);
         CommonTask.unSetCheckBox(driver, approvelCheckBoxCust);
     }
 
 
     public void enableCallOffOrderCheckboxForCust(WebDriver driver){
+        Wait.visible(driver,callOffOrderCheckBoxCust);
         CommonTask.setCheckBox(driver,callOffOrderCheckBoxCust);
     }
 
     public void disableCallOffOrderCheckboxForCust(WebDriver driver){
+        Wait.visible(driver,callOffOrderCheckBoxCust);
         CommonTask.unSetCheckBox(driver,callOffOrderCheckBoxCust);
     }
     public void enableSAPContractValidityCheckBoxForCust(WebDriver driver){
+        Wait.visible(driver,SAPContractValidityCheckBox);
         CommonTask.setCheckBox(driver, SAPContractValidityCheckBox);
     }
 
     public void selectShippingCondForCust (WebDriver driver, String item){
+        Wait.visible(driver,custShippingCond);
         CommonTask.setDropDownField(driver, custShippingCond,item);
     }
 
@@ -261,21 +285,26 @@ public class PreFlows {
     }
 
     public void disableEOwSForCust(WebDriver driver){
+        Wait.visible(driver,ordersWithoutShadeCheckBoxCust);
         CommonTask.unSetCheckBox(driver, ordersWithoutShadeCheckBoxCust);
     }
 
 
     public void disableAutoEnrichCheckBoxForCust(WebDriver driver){
+        Wait.visible(driver,autoEnrichNoneOption);
         CommonTask.setCheckBox(driver, autoEnrichNoneOption);
     }
 
     public void enableEnrichToBoth(WebDriver driver){
+        Wait.visible(driver,enrichToBothRadiobutton);
         CommonTask.setCheckBox(driver, enrichToBothRadiobutton);
     }
     public void enableEnrichToWarehouse(WebDriver driver){
+        Wait.visible(driver,enrichToWarehouseRadiobutton);
         CommonTask.setCheckBox(driver, enrichToWarehouseRadiobutton);
     }
     public void enableEnrichToHub(WebDriver driver){
+        Wait.visible(driver,enrichToHubRadiobutton);
         CommonTask.setCheckBox(driver, enrichToHubRadiobutton);
     }
 
@@ -284,15 +313,18 @@ public class PreFlows {
     // -------------------- OTHERS
 
     public void removeBuyers(WebDriver driver){         //Remove Buyers from Ecomm -> Manual Entry Page
+        Wait.clickable(driver,buyersField);
         Actions action = new Actions(driver);
         action.click(driver.findElement(buyersField)).build().perform();
     }
 
     public void selectNormalOrderRadioButton(WebDriver driver){         //Select Normal Orders for a Contract Call Customer
+        Wait.visible(driver,normalOrderRadioButton);
         CommonTask.setCheckBox(driver, normalOrderRadioButton);         //In Ecomm -> Manual Entry Page
     }
 
     public void selectContractOrderRadioButton(WebDriver driver) {      //Select Contract Orders for a Contract Call Customer
+        Wait.visible(driver,contractOrderRadioButton);
         CommonTask.setCheckBox(driver, contractOrderRadioButton);       //In Ecomm -> Manual Entry Page
     }
 

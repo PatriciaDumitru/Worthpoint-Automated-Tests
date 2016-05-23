@@ -243,7 +243,7 @@ public class Cce_EnableOrdersWithoutShade_Test extends DriverFactory {
         Mst_SalesOrgPage soPage = mainPage.selectSalesOrg();
         soPage.waitForElement();
 
-        System.out.println("Sales Organisations page reached. Checking title...");
+        System.out.println("Sales Organisations page reached.");
 
         //Input a valid Sales Organization - ID51
         soPage.setSalesOrg(DataItems.salesOrgFilterString);
