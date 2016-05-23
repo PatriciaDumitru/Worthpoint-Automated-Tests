@@ -56,24 +56,24 @@ public class FileFactory {
 
     //Data used for testing SUSST upload orders
     public static String[][] susstUOData = {
-            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "", "000030", "", "contract@testing.com", "Y", "TEST ZCQ BE POSITIV 03", "*Others*"},
+            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "40000799", "000030", "", "contract@testing.com", "Y", "TEST ZCQ BE POSITIV 03", "*Others*"},
             {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "", "000030", "", "contract@testing.com", "Y", "TEST ZCQ BE POSITIV 03", "*Others*"}};
 
     //Data used for testing SUSST upload orders
     public static String[][] susstUOData2 = {
-            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
+            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "40000799", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
             {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"}};
 
     //Data used for testing SUSST upload orders
     public static String[][] susstUOData3 = {
-            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "", "", "", "contract@testing.com", "Y", "TEST ZCQ SFTP POSITIV 01", "*Others*"},
-            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "", "", "", "contract@testing.com", "Y", "TEST ZCQ SFTP POSITIV 01", "*Others*"}};
+            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "40000799", "", "", "contract@testing.com", "Y", "TEST ZCQ SFTP POSITIV 01", "*Others*"},
+           };
 
 
     public static String[][] susstUOData4 = {
-            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "", "000030", "", "contract@testing.com", "Y", "TEST ZCQ BE POSITIV 03", "*Others*"},
-            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "", "", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
-            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "", "", "", "contract@testing.com", "Y", "TEST ZCQ SFTP POSITIV 01", "*Others*"},
+            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "black", "", "40000799", "000030", "", "contract@testing.com", "Y", "TEST ZCQ BE POSITIV 03", "*Others*"},
+            {"", "Star Garments", "", "18-01-2016", "", "", "", "", "", "", "", "", "40000799", "000030", "", "contract@testing.com", "Y", "40000799", "*Others*"},
+            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "WHITE", "", "40000799", "", "", "contract@testing.com", "Y", "TEST ZCQ SFTP POSITIV 01", "*Others*"},
     };
 
     //Data used for testing SUSST upload orders
@@ -86,7 +86,7 @@ public class FileFactory {
 
     //Data used for testing SUSST upload orders
     public static String[][] susstUOData7 = {{"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "BLACKD", "", "", "000010", "", "contract@testing.com", "Y", "TEST ZCQ ARUN 02", "*Others*"},
-            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "BLACKD", "", "", "000010", "", "contract@testing.com", "Y", "TEST ZCQ ARUN 02", "*Others*"}};
+            {"", "Star Garments", "", "18-01-2016", "", "8754120", "", "", "", "", "BLACKD", "", "abc123test", "000010", "", "contract@testing.com", "Y", "TEST ZCQ ARUN 02", "*Others*"}};
 
 
     //Data used for testing SUMST upload orders
@@ -427,8 +427,8 @@ public class FileFactory {
 
     public static void main(String[] args) throws IOException {
         //Main method can be used to test the FileFactory class in isolation
-        createFile2("SUMST", 1, "Basic8", "", true);
-        //createFile2("SUSST",1,"UO","",true);
+
+        createFile2("SUSST",1,"UO7","",true);
     }
 
     public static String createFile(String soldTo, int lineCount, String type, String combination, boolean valid) throws IOException {

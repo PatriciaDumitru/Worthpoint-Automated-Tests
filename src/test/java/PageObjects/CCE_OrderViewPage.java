@@ -2,7 +2,6 @@ package PageObjects;
 
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
-import static PageObjects.WBA_BasePage.driver;
 import com.google.common.base.Verify;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -10,8 +9,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CCE_OrderViewPage {
     

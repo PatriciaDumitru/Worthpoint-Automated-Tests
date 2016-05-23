@@ -7,24 +7,13 @@ package PageObjects;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
-import static PageObjects.WBA_BasePage.driver;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Calendar;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CSA_Methods extends WBA_BasePage {
 

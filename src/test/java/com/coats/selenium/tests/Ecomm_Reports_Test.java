@@ -28,6 +28,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.setUp("Invoice Report SUMST_I1: Page and filter checks, reset, view, print, export", "G_R_CU_SUMST_1");
 
+        eCommPage.waitForElement();
+
         Ecomm_InvoicesPage invPage = eCommPage.clickInvoices();
         invPage.waitForLoad();
 
@@ -118,6 +120,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.setUp("Invoice Report SUSST_I1: Page and filter checks, reset, view, print, export", "G_R_CU_SUSST_1", DataItems.validCustUsername, DataItems.validCustPassword);
 
+        eCommPage.waitForElement();
+
         Ecomm_InvoicesPage invPage = eCommPage.clickInvoices();
         invPage.waitForLoad();
 
@@ -195,6 +199,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.setUp("Delivery Notes Report SUMST_D1: Page and filter checks, reset, view, print, export", "G_R_CU_SUMST_2");
 
+        eCommPage.waitForElement();
+
         Ecomm_DeliveryNotesPage dnPage = eCommPage.clickDeliveryNotes();
         dnPage.waitForLoad();
 
@@ -269,6 +275,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_MainPage eCommPage = baseTest.setUp("Delivery Notes Report SUSST_D1: Page and filter checks, reset, view, print, export",
                 "G_R_CU_SUSST_2", DataItems.validCustUsername, DataItems.validCustPassword);
 
+        eCommPage.waitForElement();
+
         Ecomm_DeliveryNotesPage dnPage = eCommPage.clickDeliveryNotes();
         dnPage.waitForLoad();
 
@@ -341,6 +349,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.setUp("Summary of Purchases SUMST_SoP1: Page and filter checks, views and reset", "G_R_CU_SUMST_3");
 
+        eCommPage.waitForElement();
+
         Ecomm_SummaryOfPurchasePage spPage = eCommPage.clickSummaryOfPurchases();
         spPage.waitForLoad();
 
@@ -411,6 +421,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_MainPage eCommPage = baseTest.setUp("Summary of Purchases SUSST_SoP1: Page and filter checks, views and reset", "G_R_CU_SUSST_3",
                 DataItems.validCustUsername, DataItems.validCustPassword);
 
+        eCommPage.waitForElement();
+
         Ecomm_SummaryOfPurchasePage spPage = eCommPage.clickSummaryOfPurchases();
         spPage.waitForLoad();
 
@@ -471,6 +483,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.setUp("Outstanding Payments Page SUMST_OP1: Page and filter checks, reset, view, and export", "G_R_CU_SUMST_4");
+
+        eCommPage.waitForElement();
 
         Ecomm_OutstandingPaymentsPage opPage = eCommPage.clickOutstandingPayments();
         opPage.waitForLoad();
@@ -546,6 +560,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.setUp("Outstanding Payments Page SUSST_OP1: Page and filter checks, reset, view, and export", "G_R_CU_SUSST_4");
 
+        eCommPage.waitForElement();
+
         Ecomm_OutstandingPaymentsPage opPage = eCommPage.clickOutstandingPayments();
         opPage.waitForLoad();
 
@@ -612,6 +628,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.setUp("My Report Page SUMST_MR1: Page and filter checks, reset, print, save, and export", "G_R_CU_SUMST_5");
+
+        eCommPage.waitForElement();
 
         System.out.println("Navigating to My Reports page...");
 
@@ -705,6 +723,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = baseTest.setUp("My Report Page SUSST_MR1: Page and filter checks, reset, print, save, and export", "G_R_CU_SUSST_5");
+
+        eCommPage.waitForElement();
 
         System.out.println("Navigating to My Reports page...");
 

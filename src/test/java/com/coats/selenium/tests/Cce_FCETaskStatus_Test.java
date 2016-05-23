@@ -1,20 +1,12 @@
 package com.coats.selenium.tests;
 
-import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_ExportDownloadPage;
 import PageObjects.CCE_FCETaskStatusPage;
 import PageObjects.CCE_OrderViewPage;
 import com.coats.selenium.DriverFactory;
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FileUtils;
 import org.testng.AssertJUnit;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Cce_FCETaskStatus_Test extends DriverFactory {

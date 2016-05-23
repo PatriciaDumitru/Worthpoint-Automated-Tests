@@ -21,6 +21,8 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         
         Ecomm_Base base = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = base.setUp("Product Availability Check Page: Page and field checks, make request with YMN","G_PAC_SUSST_1",DataItems.susstUsername,DataItems.susstPassword);
+
+        eCommPage.waitForElement();
     
         System.out.println("Navigating to Product Availability Check Page...");
         
@@ -87,6 +89,8 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         
         Ecomm_Base base = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = base.setUp("Product Availability Check PAC2: Page and field checks, make request with article","G_PAC_SUSST_2",DataItems.validCustUsername,DataItems.validCustPassword);
+
+        eCommPage.waitForElement();
     
         System.out.println("Navigating to Product Availability Check Page...");
         
@@ -127,6 +131,8 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         
         Ecomm_Base base = new Ecomm_Base(driver);
         Ecomm_MainPage eCommPage = base.setUp("Product Availability Check PAC3: Page and field checks, make request with brand/ticket/etc","G_PAC_SUSST_3",DataItems.validCustUsername,DataItems.validCustPassword);
+
+        eCommPage.waitForElement();
     
         System.out.println("Navigating to Product Availability Check Page...");
         

@@ -3,7 +3,6 @@ package PageObjects;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
-import static PageObjects.WBA_BasePage.driver;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,9 +11,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 //This page appears after the mapping alert has been submitted, and allows the user to map the uploaded file
 
@@ -45,6 +42,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     By styleNoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.lineinfo > td:nth-child(1) > label");
     By contractPONoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(1) > label");
     By contractPONoLocator = By.id("BulkOrderPoNumber");
+    By contractPONoLocator3 = By.cssSelector("#BulkOrderLineContract");
     By subAccountFieldLocator = By.id("BulkOrderPayerId");
     By subAccountLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.headerinfopay > td:nth-child(1) > label");
     By lineRefLocator = By.id("BulkOrderLineContract");
@@ -855,6 +853,154 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         Select orderTypeSelect = new Select(orderType);
         orderType.click();
         orderTypeSelect.selectByVisibleText(mapping[10][1]);
+
+        WebElement shipTo = Wait.clickable(driver,shipToPartyFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Ship To Party field not in expected position",driver.findElement(shipToPartyLabelLocator).getText().equals(mapping[11][0]));
+        Select shipToSelect = new Select(shipTo);
+        shipTo.click();
+        shipToSelect.selectByVisibleText(mapping[11][1]);
+
+        WebElement yourMatNum = Wait.clickable(driver,yourMaterialNumberFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Your Material Number field not in expected position",driver.findElement(yourMaterialNumberLabelLocator).getText().equals(mapping[12][0]));
+        Select yourMatNumSelect = new Select(yourMatNum);
+        yourMatNum.click();
+        yourMatNumSelect.selectByVisibleText(mapping[12][1]);
+
+        WebElement brand = Wait.clickable(driver,brandFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Brand field not in expected position",driver.findElement(brandLabelLocator).getText().equals(mapping[13][0]));
+        Select brandSelect = new Select(brand);
+        brand.click();
+        brandSelect.selectByVisibleText(mapping[13][1]);
+
+        WebElement length = Wait.clickable(driver,lengthFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Length field not in expected position",driver.findElement(lengthLabelLocator).getText().equals(mapping[14][0]));
+        Select lengthSelect = new Select(length);
+        length.click();
+        lengthSelect.selectByVisibleText(mapping[14][1]);
+
+        WebElement buyers = Wait.clickable(driver,buyersFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Buyers field not in expected position",driver.findElement(buyersLabelLocator).getText().equals(mapping[15][0]));
+        Select buyersSelect = new Select(buyers);
+        buyers.click();
+        buyersSelect.selectByVisibleText(mapping[15][1]);
+
+        WebElement customerPO = Wait.clickable(driver,customerPOFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Customer PO No. field not in expected position",driver.findElement(customerPOLabelLocator).getText().equals(mapping[16][0]));
+        Select customerPOSelect = new Select(customerPO);
+        customerPO.click();
+        customerPOSelect.selectByVisibleText(mapping[16][1]);
+
+        if (requestor) {
+            WebElement requestorField = Wait.clickable(driver,requestorNameFieldLocator);
+            AssertJUnit.assertTrue("Mapping Page: Requestor Name field not in expected position",driver.findElement(requestorNameLabelLocator).getText().equals(mapping[17][0]));
+            Select requestorSelect = new Select(requestorField);
+            requestorField.click();
+            requestorSelect.selectByVisibleText(mapping[17][1]);
+        }
+
+        WebElement warehouseInst = Wait.clickable(driver,warehouseInstFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Warehouse Instructions field not in expected position",driver.findElement(warehouseInstLabelLocator).getText().equals(mapping[18][0]));
+        Select warehouseInstSelect = new Select(warehouseInst);
+        warehouseInst.click();
+        warehouseInstSelect.selectByVisibleText(mapping[18][1]);
+
+        WebElement buyerNo = Wait.clickable(driver,buyerNumberFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Buyer Order Sales Number field not in expected position",driver.findElement(buyerNumberLabelLocator).getText().equals(mapping[19][0]));
+        Select buyerNumberSelect = new Select(buyerNo);
+        buyerNo.click();
+        buyerNumberSelect.selectByVisibleText(mapping[19][1]);
+
+        if (otherInfo) {
+            WebElement otherInfo2 = Wait.clickable(driver, otherInformationFieldLocator);
+            AssertJUnit.assertTrue("Mapping Page: Other Information field not in expected position", driver.findElement(otherInformationLabelLocator).getText().equals(mapping[20][0]));
+            Select otherInfoSelect = new Select(otherInfo2);
+            otherInfo2.click();
+            otherInfoSelect.selectByVisibleText(mapping[20][1]);
+        }
+
+        WebElement lineRef = Wait.clickable(driver,customerLineReferenceLocator);
+        //AssertJUnit.assertTrue("Mapping Page: Line Reference field not in expected position",driver.findElement(customerLineReferenceLocator).getText().equals(mapping[21][0]));
+        Select lineRefSelect = new Select(lineRef);
+        lineRef.click();
+        lineRefSelect.selectByVisibleText(mapping[21][1]);
+
+        return new Ecomm_MappingPage(driver);
+    }
+
+    public Ecomm_MappingPage setMappingNew3(String[][] mapping, boolean contract, boolean subaccount, boolean requestor, boolean styleNo, boolean otherInfo) {
+        WebElement confirmBtn = Wait.clickable(driver,confirmButtonLocator);
+
+        WebElement article = Wait.clickable(driver,articleFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Article field not in expected position",driver.findElement(articleLabelLocator).getText().equals(mapping[0][0]));
+        Select articleSelect = new Select(article);
+        article.click();
+        articleSelect.selectByVisibleText(mapping[0][1]);
+
+        WebElement ticket = Wait.clickable(driver,ticketFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Ticket field not in expected position",driver.findElement(ticketLabelLocator).getText().equals(mapping[1][0]));
+        Select ticketSelect = new Select(ticket);
+        ticket.click();
+        ticketSelect.selectByVisibleText(mapping[1][1]);
+
+        WebElement finish = Wait.clickable(driver,finishFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Finish field not in expected position",driver.findElement(finishLabelLocator).getText().equals(mapping[2][0]));
+        Select finishSelect = new Select(finish);
+        finish.click();
+        finishSelect.selectByVisibleText(mapping[2][1]);
+
+        WebElement shade = Wait.clickable(driver,shadeCodeFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Shade Code field not in expected position",driver.findElement(shadeCodeLabelLocator).getText().equals(mapping[3][0]));
+        Select shadeSelect = new Select(shade);
+        shade.click();
+        shadeSelect.selectByVisibleText(mapping[3][1]);
+
+        WebElement reqDate = Wait.clickable(driver,requiredDateFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Required Date field not in expected position",driver.findElement(requiredDateLabelLocator).getText().equals(mapping[4][0]));
+        Select reqDateSelect = new Select(reqDate);
+        reqDate.click();
+        reqDateSelect.selectByVisibleText(mapping[4][1]);
+
+        WebElement qty = Wait.clickable(driver,quantityFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Quantity field not in expected position",driver.findElement(quantityLabelLocator).getText().equals(mapping[5][0]));
+        Select qtySelect = new Select(qty);
+        qty.click();
+        qtySelect.selectByVisibleText(mapping[5][1]);
+
+        WebElement style = Wait.clickable(driver,styleFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Style field not in expected position",driver.findElement(styleLabelLocator).getText().equals(mapping[6][0]));
+        Select styleSelect = new Select(style);
+        style.click();
+        styleSelect.selectByVisibleText(mapping[6][1]);
+
+        if(styleNo) {
+            WebElement styleNo2 = Wait.clickable(driver, styleNoFieldLocator);
+            AssertJUnit.assertTrue("Mapping Page: Style No. field not in expected position", driver.findElement(styleNoLabelLocator).getText().equals(mapping[7][0]));
+            Select styleNoSelect = new Select(styleNo2);
+            styleNo2.click();
+            styleNoSelect.selectByVisibleText(mapping[7][1]);
+        }
+
+        if (contract) {
+            WebElement contractPO = Wait.clickable(driver,contractPONoLocator3);
+            AssertJUnit.assertTrue("Mapping Page: Contract PO No. field not in expected position",driver.findElement(contractPONoLabelLocator).getText().equals(mapping[8][0]));
+            Select contractPOSelect = new Select(contractPO);
+            contractPO.click();
+            contractPOSelect.selectByVisibleText(mapping[8][1]);
+        }
+
+        WebElement customerPrice = Wait.clickable(driver,customerPriceFieldLocator);
+        AssertJUnit.assertTrue("Mapping Page: Customer Price field not in expected position",driver.findElement(customerPriceLabelLocator).getText().equals(mapping[9][0]));
+        Select customerPriceSelect = new Select(customerPrice);
+        customerPrice.click();
+        customerPriceSelect.selectByVisibleText(mapping[9][1]);
+
+        if (subaccount) {
+            WebElement subAcc = Wait.clickable(driver,subAccountFieldLocator);
+            AssertJUnit.assertTrue("Mapping Page: Sub Account field not in expected position",driver.findElement(subAccountLabelLocator).getText().equals(mapping[10][0]));
+            Select subAccountSelect = new Select(subAcc);
+            subAcc.click();
+            subAccountSelect.selectByVisibleText(mapping[10][1]);
+        }
 
         WebElement shipTo = Wait.clickable(driver,shipToPartyFieldLocator);
         AssertJUnit.assertTrue("Mapping Page: Ship To Party field not in expected position",driver.findElement(shipToPartyLabelLocator).getText().equals(mapping[11][0]));

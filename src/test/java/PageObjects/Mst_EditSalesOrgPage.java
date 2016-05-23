@@ -25,7 +25,8 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
     By orderUploadCheckBox=By.id("SalesOrgSampleUploadActive");
     By callOffOrderCheckBox=By.id("SalesOrgOffOrder");
     By CCEOrderUpload =By.id("SalesOrgSampleUploadActive");
-
+    By forceCustomerReAgree = By.id("SalesOrgForceReAgree");
+    By termsAndConditions = By.id("SalesOrgEnabledTnc");
 
 
     By enableOrdersWithoutShade = By.id("SalesOrgEnabledOrdersWithoutShade");
@@ -96,6 +97,16 @@ public class Mst_EditSalesOrgPage extends WBA_BasePage {
 
     public WebElement getEnableOrdersWithoutShade(){
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(enableOrdersWithoutShade));
+        return element;
+    }
+
+    public WebElement getForceCustomerReAgree(){
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(forceCustomerReAgree));
+        return element;
+    }
+
+    public WebElement getEnableTermsAndCond(){
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(termsAndConditions));
         return element;
     }
 

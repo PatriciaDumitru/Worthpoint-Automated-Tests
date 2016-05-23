@@ -205,8 +205,8 @@ public class DataItems {
     //public static int quantity3 = 1;
 
     //public static String expTicket3 = "120";
-    public static String orderedQty="60";
-    public static String adjustedQty="60";
+    public static String orderedQty="72";
+    public static String adjustedQty="72";
     public static String orderedQty2="4";
     public static String adjustedQty2="4";
     public static String orderedQtyNull="--";
@@ -215,7 +215,7 @@ public class DataItems {
     public static String unitPrice="1.00";
     public static String unitPriceNull="0.00";
     public static String valueNull="0.00";
-    public static String value2="60.00";
+    public static String value2="72.00";
     public static String value3="4.00";
     public static String notUniqMsg="CONTRACT REFERENCE IS NOT UNIQUE";
     public static String invalidDataMsg="INVALID COMBINATION OF INPUT DATA";
@@ -382,7 +382,7 @@ public class DataItems {
     public static By lineRef =By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(3) > label");
     public static By lineWithErrorLocator=By.cssSelector("#BulkOrderOrderConfirmForm > div:nth-child(4) > div.grid_12 > a");
     public static By errorLinesLocator=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
-    public static By errorLinesLocator2=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(6)");
+    public static By errorLinesLocator2=By.cssSelector("#BulkOrderLineViewUplodErrorListForm > div.grid_12 > div.grid_12 > div.tbl-toggle > div.scrollTableContainer.scroll-pane > table > tbody > tr > td:nth-child(9)");
 
     //QuickFix
     public static String othersWithCode = "*OTHERS*(10000000001)";
@@ -459,7 +459,7 @@ public class DataItems {
             {"Qty","Qty"},
             {"Style","N/A"},
             {"Style No./Production No.","Select"},
-            {"Contract PO No.","Contract"},
+            {"Contract PO No.","Contract PO No."},
             {"Customer Price","N/A"},
             //{"Sub Account","N/A"},
             {"Order Type","Contract Order"},

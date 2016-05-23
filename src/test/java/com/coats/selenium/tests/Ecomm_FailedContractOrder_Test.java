@@ -7,17 +7,11 @@ import PageObjects.Ecomm_MainPage;
 import PageObjects.Ecomm_OrderConfirmationPage;
 import PageObjects.Ecomm_OrderViewPage;
 import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
-import java.io.File;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 

@@ -14,15 +14,9 @@ import PageObjects.Ecomm_OrderConfirmationPage;
 import PageObjects.Ecomm_OutstandingOrdersPage;
 import PageObjects.Ecomm_UploadOrderPage;
 import com.coats.selenium.DriverFactory;
-import static com.coats.selenium.DriverFactory.getDriver;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 public class Ecomm_UO_Exceptions_Test extends DriverFactory {

@@ -5,17 +5,14 @@ import AutomationFramework.PreFlows;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import java.io.File;
-import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ecomm_Shade_Test extends DriverFactory {
@@ -29,6 +26,8 @@ public class Ecomm_Shade_Test extends DriverFactory {
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         PageObjects.Ecomm_MainPage eCommPage = baseTest.setUp("Shade Not Available Page SNA1: Page and filter checks, view and edit", "UNKNOWN");
+
+        eCommPage.waitForElement();
 
         System.out.println("Setup MasterData...");
         //Activate CallOffOrder for customer
@@ -171,6 +170,8 @@ public class Ecomm_Shade_Test extends DriverFactory {
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
         PageObjects.Ecomm_MainPage eCommPage = baseTest.setUp("Waiting for Shade Page WFS1: Page and filter checks, view and edit", "UNKNOWN");
+
+        eCommPage.waitForElement();
         
         System.out.println("Navigating to Waiting for Shade page...");
         

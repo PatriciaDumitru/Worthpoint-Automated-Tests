@@ -4,18 +4,12 @@ import AutomationFramework.CommonTask;
 import AutomationFramework.PreFlows;
 import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
-import AutomationFramework.Wait;
 import PageObjects.*;
 import com.coats.selenium.DriverFactory;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-import test.asserttests.AssertTest;
 
 /**
  * Created by Stefan on 23.03.2016.
@@ -33,6 +27,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uoRTTest1.setUp("Blank shade orders are separately ordered - Waiting for shade.", "EOwS_GC_030");
 
+        eCommPage.waitForElement();
 
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
@@ -172,6 +167,8 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uoRTTest1.setUp("Incorrect shade orders are separately ordered - Shade not available", "EOwS_GC_040");
 
+        eCommPage.waitForElement();
+
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
         pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
@@ -280,6 +277,8 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         Ecomm_Base uoRTTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uoRTTest1.setUp("Edit Waiting for Shade and reorder", "EOwS_GC_050");
+
+        eCommPage.waitForElement();
 
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
@@ -419,6 +418,8 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uoRTTest1.setUp("Edit Shade Not Available and reorder", "EOwS_GC_060");
 
+        eCommPage.waitForElement();
+
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
         pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
@@ -546,6 +547,8 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         Ecomm_Base uoRTTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uoRTTest1.setUp("Edit Waiting for shade but don't check to confirm", "EOwS_GC_070");
+
+        eCommPage.waitForElement();
 
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
@@ -680,6 +683,8 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uoRTTest1.setUp("Edit Shade Not Available but don't confirm", "EOwS_GC_080");
 
+        eCommPage.waitForElement();
+
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
         pf.enableEnableOrdersWithoutShadeForSalesOrgandCust(driver, DataItems.autoUserSalesOrg, DataItems.customerName);
@@ -811,6 +816,8 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         Ecomm_Base uoRTTest1 = new Ecomm_Base(driver);
         //Set up returns an eComm page
         Ecomm_MainPage eCommPage = uoRTTest1.setUp("WBA-684", "EOwS_GC_090");
+
+        eCommPage.waitForElement();
 
         //Enabling the flags for Sales Org and Customer
         PreFlows pf = new PreFlows();
