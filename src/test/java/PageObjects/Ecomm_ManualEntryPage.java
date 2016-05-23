@@ -201,8 +201,11 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
 
     public Ecomm_ManualEntryPage setArticle(String article, int lineNumber) {
         By articleField = By.id("s2id_BulkOrderLine" + lineNumber + "ArticleId");
+        WebElement elem = Wait.clickable(driver,articleField);
         CommonTask.setSearchField(driver, articleField, article);
         driver.findElement(articleHeadCell).click();
+
+        //boolean waitForUpdate = Wait.selectionToBe(driver, articleField, article);
 
         return this;
     }
