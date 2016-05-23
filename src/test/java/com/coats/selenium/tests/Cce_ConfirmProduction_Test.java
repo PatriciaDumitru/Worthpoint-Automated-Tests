@@ -71,6 +71,8 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         cpPage.pressConfirm();
 
         System.out.println("Confirm selected. Pressing DN Print...");
+
+        cpPage.setFinalShade("C1711");
         
         CCE_OrderViewPage viewPage = cpPage.pressDnPrint();
 

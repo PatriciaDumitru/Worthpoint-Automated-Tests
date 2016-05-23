@@ -28,6 +28,7 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
     By orderToField = By.id("filterSampleOrderCreatedTo");
     By sapStatusField = By.id("s2id_filterSampleOrderLineSapOrderStatusId");
     By finalSOSField = By.id("s2id_filterSampleOrderLineSosId");
+    By finalShade = By.xpath("//*[@id=\"SampleOrderLineConfirmProductionForm\"]/table/tbody/tr[3]/td[9]/input");//*[@id="SampleOrderLineConfirmProductionForm"]/table/tbody/tr[3]/td[9]
     By listOrdersButton = By.cssSelector("#FilterConfirmProductionForm > div.actions > ul > li:nth-child(1)");
     By resetButton = By.cssSelector("#FilterConfirmProductionForm > div.actions > ul > li:nth-child(2)");
     By confirmButton = By.xpath("//*[@id=\"SampleOrderLineConfirmProductionForm\"]/table/tbody/tr[3]/td[10]/input[2]");
@@ -129,6 +130,17 @@ public class CCE_ConfirmProductionPage extends WBA_BasePage {
         WebElement element = Wait.clickable(driver,resetButton);
         element.click();
         return this;
+    }
+
+    public void setFinalShade(String item){
+        /**
+         * Created by Stefan
+         */
+        //Wait for element
+        WebElement element = Wait.clickable(driver,finalShade);
+        if (element.getText().isEmpty()){
+            element.sendKeys(item);
+        }
     }
     
     public CCE_ConfirmProductionPage pressConfirm() {

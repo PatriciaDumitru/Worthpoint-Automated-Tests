@@ -213,29 +213,29 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setBrand(String brand, int lineNumber) {
         //Produce locator for field
         By brandLocator = By.id("Brand" + lineNumber);
-        WebElement field = Wait.clickable(driver, brandLocator);
-
-        Select select = new Select(field);
-        field.click();
-        select.selectByVisibleText(brand);
-
-        //Wait for field to update
-        boolean waitForUpdate = Wait.selectionToBe(driver, brandLocator, brand);
-
+//        WebElement field = Wait.clickable(driver, brandLocator);
+//
+//        Select select = new Select(field);
+//        field.click();
+//        select.selectByVisibleText(brand);
+//
+//        //Wait for field to update
+//        boolean waitForUpdate = Wait.selectionToBe(driver, brandLocator, brand);
+        CommonTask.setDropDownField(driver,brandLocator,brand);
         return this;
     }
 
     public Ecomm_ManualEntryPage setTicket(String ticket, int lineNumber) {
         //Produce locator for field
         By ticketLocator = By.id("Ticket" + lineNumber);
-        WebElement field = Wait.clickable(driver, ticketLocator);
-
-        Select select = new Select(field);
-        field.click();
-        select.selectByVisibleText(ticket);
-
+//        WebElement field = Wait.clickable(driver, ticketLocator);
+//
+//        Select select = new Select(field);
+//        field.click();
+//        select.selectByVisibleText(ticket);
+        CommonTask.setDropDownField(driver,ticketLocator,ticket);
         //Wait for field to update
-        boolean waitForUpdate = Wait.selectionToBe(driver, ticketLocator, ticket);
+        //boolean waitForUpdate = Wait.selectionToBe(driver, ticketLocator, ticket);
 
         return this;
     }
@@ -243,14 +243,14 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setLength(String length, int lineNumber) {
         //Produce locator for field
         By lengthLocator = By.id("Length" + lineNumber);
-        WebElement field = Wait.clickable(driver, lengthLocator);
-
-        Select select = new Select(field);
-        field.click();
-        select.selectByVisibleText(length);
-
+//        WebElement field = Wait.clickable(driver, lengthLocator);
+//
+//        Select select = new Select(field);
+//        field.click();
+//        select.selectByVisibleText(length);
+        CommonTask.setDropDownField(driver,lengthLocator,length);
         //Wait for field to update
-        boolean wait = Wait.selectionToBe(driver, lengthLocator, length);
+        //boolean wait = Wait.selectionToBe(driver, lengthLocator, length);
 
         return this;
     }
@@ -258,14 +258,15 @@ public class Ecomm_ManualEntryPage extends WBA_BasePage {
     public Ecomm_ManualEntryPage setFinish(String finish, int lineNumber) {
         //Produce locator for field
         By finishLocator = By.id("Finish" + lineNumber);
-        WebElement field = Wait.clickable(driver, finishLocator);
+        //WebElement field = Wait.clickable(driver, finishLocator);
 
-        Select select = new Select(field);
-        field.click();
-        select.selectByVisibleText(finish);
+        //Select select = new Select(field);
+        //field.click();
+        CommonTask.setDropDownField(driver,finishLocator,finish);
+        //select.selectByVisibleText(finish);
 
         //Wait for field to update
-        boolean wait = Wait.selectionToBe(driver, finishLocator, finish);
+       // boolean wait = Wait.selectionToBe(driver, finishLocator, finish);
 
         return this;
     }
