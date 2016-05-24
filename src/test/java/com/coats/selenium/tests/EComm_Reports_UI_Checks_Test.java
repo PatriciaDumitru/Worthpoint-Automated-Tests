@@ -171,7 +171,8 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
         cnrp.setCreationDateFrom("2016-02-24 00:00");
 
-        cnrp.selectDateRange("Last 90 days");
+        //This was removed on 23.05.2016// Date Range no longer shown!
+        //cnrp.selectDateRange("Last 90 days");
 
         cnrp.selectRepCriteria("Custom Fields");
 
