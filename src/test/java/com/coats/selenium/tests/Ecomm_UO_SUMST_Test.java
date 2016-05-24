@@ -522,10 +522,6 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         scroller.moveToElement(orderConf.getCancelButton()).build().perform();
         WebElement waitForScroll = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOf(orderConf.getCancelButton()));
         
-        //Take a screenshot
-        File scrFile13 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile13,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Upload Order\\12Details entered.png"));
-        
         System.out.println("Map confirmed. Saving draft...");
         
         orderConf.pressSaveDraft();
@@ -1133,7 +1129,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         } catch (Exception e) {
             System.out.println("No error displayed");
         }
-        try {
+      /*  try {
             Alert alert4 = Wait.alert(driver);
             alert4.accept();
         } catch (Exception e) {
@@ -1152,7 +1148,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
             alert6.accept();
         } catch (Exception e) {
             System.out.println("No error displayed");
-        }
+        }*/
 
     }
 
