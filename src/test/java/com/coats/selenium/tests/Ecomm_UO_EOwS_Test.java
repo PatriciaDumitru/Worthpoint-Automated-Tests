@@ -139,7 +139,7 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         //Navigating to Waiting for Shade Page
         Ecomm_WaitingForShadePage waitForShadePage = eCommPage.clickWaitingForShade();
-
+        //Ecomm_WaitingForShadePage waitingForShadePage = driver.get(DataItems.waitingForShade);
         waitForShadePage.waitForElement();
 
         //Searching for Current PO number
