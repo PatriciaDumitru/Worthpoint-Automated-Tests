@@ -6,6 +6,8 @@ import AutomationFramework.DataItems;
 import AutomationFramework.FileFactory;
 import AutomationFramework.Wait;
 import java.io.IOException;
+
+import org.apache.poi.util.SystemOutLogger;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -287,7 +289,9 @@ public class CCE_AddOrderPage extends WBA_BasePage {
         WebElement submitOrderBtn = Wait.clickable(driver, submitOrderButton);
         
         submitOrderBtn.click();
-        
+
+        System.out.println("AFTER SUBMIT");
+
         Alert alert = Wait.alert(driver);
         alert.accept();
         
