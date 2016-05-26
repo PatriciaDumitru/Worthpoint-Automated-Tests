@@ -37,92 +37,92 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
     public Ecomm_ProductAvailabilityCheckPage(WebDriver passedDriver) {
         super(passedDriver);
     }
-    
+
     public WebElement getYourMatNumField() {
         return driver.findElement(yourMatNumField);
     }
-    
+
     public WebElement getArticleField() {
         return driver.findElement(articleField);
     }
-    
+
     public WebElement getBrandField() {
         return driver.findElement(brandField);
     }
-    
+
     public WebElement getTicketField() {
         return driver.findElement(ticketField);
     }
-    
+
     public WebElement getFinishField() {
         return driver.findElement(finishField);
     }
-    
+
     public WebElement getLengthField() {
         return driver.findElement(lengthField);
     }
-    
+
     public WebElement getShadeCodeField() {
         return driver.findElement(shadeCodeField);
     }
-    
+
     public WebElement getQuantityField() {
         return driver.findElement(quantityField);
     }
-    
+
     public WebElement getSearchButton() {
         return driver.findElement(searchButton);
     }
-    
+
     public Ecomm_ProductAvailabilityCheckPage setYourMatNum(String item) {
         CommonTask.setInputField(driver,yourMatNumField,item);
-        
+
         //Click focus away from field to trigger autofill
         WebElement element = Wait.visible(driver,yourMatNumLabel);
         element.click();
-        
+
         return this;
     }
-    
+
     public Ecomm_ProductAvailabilityCheckPage setArticle(String item) {
         CommonTask.setSearchField(driver,articleField,item);
         return this;
     }
-    
+
     public Ecomm_ProductAvailabilityCheckPage setBrand(String item) throws InterruptedException {
         CommonTask.setDropDownField(driver,brandField,item);
         return this;
     }
-    
+
     public Ecomm_ProductAvailabilityCheckPage setTicket(String item) throws InterruptedException {
         CommonTask.setDropDownField(driver,ticketField,item);
         return this;
     }
-    
+
     public Ecomm_ProductAvailabilityCheckPage setFinish(String item) throws InterruptedException {
         CommonTask.setDropDownField(driver,finishField,item);
         return this;
     }
-    
+
     public Ecomm_ProductAvailabilityCheckPage setLength(String item) throws InterruptedException {
         CommonTask.setDropDownField(driver,lengthField,item);
         return this;
     }
-    
+
     public Ecomm_ProductAvailabilityCheckPage setShadeCode(String item) {
         CommonTask.setSearchField(driver,shadeCodeField,item);
         return this;
     }
-    
+
     public Ecomm_ProductAvailabilityCheckPage setQty(String item) throws InterruptedException {
         CommonTask.setInputField(driver,quantityField,item);
         return this;
     }
-    
+
     public Ecomm_OrderViewPage pressSearch() {
         WebElement search = Wait.clickable(driver,searchButton);
         search.click();
-        
+
         return new Ecomm_OrderViewPage(driver);
     }
 
@@ -140,7 +140,7 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
     }
 
 
-    
+
     public void checkFields() {
         //Wait for all elements to be clickable
         WebElement yourMatNum = Wait.clickable(driver,yourMatNumField);
@@ -152,7 +152,7 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
         WebElement shadeCode = Wait.clickable(driver,shadeCodeField);
         WebElement qty = Wait.clickable(driver,quantityField);
         WebElement search = Wait.clickable(driver,searchButton);
-    
+
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Product Availability Check Page: Your Material Number field not displayed correctly",yourMatNum.isDisplayed());
         AssertJUnit.assertTrue("Product Availability Check Page: Article field not displayed correctly",article.isDisplayed());
@@ -164,5 +164,5 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Product Availability Check Page: Quantity field not displayed correctly",qty.isDisplayed());
         AssertJUnit.assertTrue("Product Availability Check Page: Search button not displayed correctly",search.isDisplayed());
     }
-    
+
 }
