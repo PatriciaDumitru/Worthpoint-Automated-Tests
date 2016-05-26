@@ -51,8 +51,8 @@ public class WBA_BasePage {
         static By waitingForShadeSubTab2 = By.xpath("//*[@id=\"topnav\"]/li[1]/div/div/ul/li/a[contains(text(),'Waiting For Shade Code')]");//*[@id="topnav"]/li[1]/div/div/ul
 
     static By outstandingOrdersTab = By.cssSelector("#topnav > li:nth-child(2)");
-        static By outOrdersSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
-        static By outstOrderDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2) > a");
+        static By outOrdersListSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
+        static By outstOrderDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
         static By outstUploadDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
         static By courierTrackingUpdate = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
         static By pendingApprovalSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");

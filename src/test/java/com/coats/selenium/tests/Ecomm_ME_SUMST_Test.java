@@ -1476,6 +1476,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         System.out.println("Draft cancelled. Checking draft is deleted...");
 
+        driver.navigate().refresh();
+
         Ecomm_OutstandingOrderDraftPage draftPage2 = mePage3.clickOutstandingDraft();
 
         draftPage2.waitForElement();
