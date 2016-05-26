@@ -389,7 +389,7 @@ public class WBA_BasePage {
         
         //Wait for subtab
         WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstOrderDraftSubTab)));      
-        driver.findElement(outstOrderDraftSubTab).click();
+        waitForSubTab.click();
         
         return new Ecomm_OutstandingOrderDraftPage(driver);
     }
