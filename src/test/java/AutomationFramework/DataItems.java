@@ -33,6 +33,7 @@ public class DataItems {
     public static String outstandingPaymentsPage = targetURL + "/reports/cc/payment";
     public static String orderApprovalHistory = targetURL + "/ecom/approvalhistory";
     public static String advancedReports = targetURL + "/reports/cc/myreports";
+    public static String waitingForShade = targetURL + "/ecom/order/waitingforshade";
 
 
     //Filepaths

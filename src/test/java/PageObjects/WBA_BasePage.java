@@ -46,16 +46,18 @@ public class WBA_BasePage {
         static By uploadOrderSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
         static By fromExistingSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3)");
         static By shadeNotAvailSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(5)");
+        static By shadeNotAvailSubTab2 = By.xpath("//*[@id=\"topnav\"]/li[1]/div/div/ul/li/a[contains(text(),'Shade Not Available')]");
         static By waitingForShadeSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(6)");
+        static By waitingForShadeSubTab2 = By.xpath("//*[@id=\"topnav\"]/li[1]/div/div/ul/li/a[contains(text(),'Waiting For Shade Code')]");//*[@id="topnav"]/li[1]/div/div/ul
         
     static By outstandingOrdersTab = By.cssSelector("#topnav > li:nth-child(2)");
-        static By outOrdersSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
+        static By outOrdersListSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
         static By outstOrderDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");
         static By outstUploadDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
         static By courierTrackingUpdate = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(4)");
         static By pendingApprovalSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
         static By outstandingOrdersTabApprover = By.cssSelector("#topnav > li:nth-child(1)");
-    static By outstandingOrdersTabApprover2 = By.cssSelector("#topnav > li:nth-child(2)");
+        static By outstandingOrdersTabApprover2 = By.cssSelector("#topnav > li:nth-child(2)");
         static By pendingApprovalSubTabApprover = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
         static By pendingApprovalSubTabApprover2 = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
         static By deniedOrderSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
@@ -346,8 +348,8 @@ public class WBA_BasePage {
         WebElement waitForOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
         driver.findElement(ordersTab).click();
         
-        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(shadeNotAvailSubTab)));
-        driver.findElement(shadeNotAvailSubTab).click();
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(shadeNotAvailSubTab2)));
+        driver.findElement(shadeNotAvailSubTab2).click();
         
         return new Ecomm_ShadeNotAvailablePage(driver);
     }
@@ -355,30 +357,35 @@ public class WBA_BasePage {
     public Ecomm_WaitingForShadePage clickWaitingForShade() {
         //Wait for orders tab
         WebElement waitForOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
-        driver.findElement(ordersTab).click();
-        
-        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(waitingForShadeSubTab)));
-        driver.findElement(waitingForShadeSubTab).click();
+        //driver.findElement(ordersTab).click(); //clicking it doesn't do anything actually .... hover it's needed
+        Actions action = new Actions(driver);
+        action.moveToElement(waitForOrders).build().perform();
+
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(waitingForShadeSubTab2)));
+        driver.findElement(waitingForShadeSubTab2).click();
         
         return new Ecomm_WaitingForShadePage(driver);
     }
     
     public Ecomm_OutstandingOrdersPage clickOutstandingOrders() {
          //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));      
-        driver.findElement(outstandingOrdersTab).click();
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        //driver.findElement(outstandingOrdersTab).click(); //clicking it doesn't do anything actually .... hover it's needed
+        Actions action = new Actions(driver);
+        action.moveToElement(waitForTab).build().perform();
         
         //Wait for subtab
-        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outOrdersSubTab)));      
-        driver.findElement(outOrdersSubTab).click();
+        WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outOrdersListSubTab)));
+        driver.findElement(outOrdersListSubTab).click();
         
         return new Ecomm_OutstandingOrdersPage(driver);
     }
     
     public Ecomm_OutstandingOrderDraftPage clickOutstandingDraft() {
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));      
-        driver.findElement(outstandingOrdersTab).click();
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
+        Actions action = new Actions(driver);
+        action.moveToElement(waitForTab).build().perform();
         
         //Wait for subtab
         WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstOrderDraftSubTab)));      
@@ -392,7 +399,7 @@ public class WBA_BasePage {
         WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
         
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        action.moveToElement(waitForTab).build().perform();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstUploadDraftSubTab)));
         action.click(driver.findElement(outstUploadDraftSubTab)).build().perform();
@@ -448,7 +455,8 @@ public class WBA_BasePage {
         WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
         
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        action.moveToElement(waitForTab).build().perform();
+
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(deniedOrderSubtabRequester)));
         action.click(driver.findElement(deniedOrderSubtabRequester)).build().perform();
@@ -462,7 +470,7 @@ public class WBA_BasePage {
         WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTabApprover)));
         
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTabApprover)).click().build().perform();
+        action.moveToElement(waitForTab).click().build().perform();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(deniedOrderSubtabApprover)));
         action.click(driver.findElement(deniedOrderSubtabApprover)).build().perform();
