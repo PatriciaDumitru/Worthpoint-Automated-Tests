@@ -41,7 +41,7 @@ public class Ecomm_MappingPage extends WBA_BasePage {
     By styleNoFieldLocator = By.id("BulkOrderLineProdStyleNo");
     By styleNoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.lineinfo > td:nth-child(1) > label");
     By contractPONoLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.contractinfo > td:nth-child(1) > label");
-    By contractPONoLocator = By.id("BulkOrderPoNumber");
+    By contractPONoLocator = By.id("BulkOrderLineContract");
     By contractPONoLocator3 = By.cssSelector("#BulkOrderLineContract");
     By subAccountFieldLocator = By.id("BulkOrderPayerId");
     By subAccountLabelLocator = By.cssSelector("#mapping_grid > table > tbody > tr.headerinfopay > td:nth-child(1) > label");
@@ -826,19 +826,20 @@ public class Ecomm_MappingPage extends WBA_BasePage {
             styleNoSelect.selectByVisibleText(mapping[7][1]);
         }
 
-        if (contract) {
+        //if (contract) {
             WebElement contractPO = Wait.clickable(driver,contractPONoLocator);
             AssertJUnit.assertTrue("Mapping Page: Contract PO No. field not in expected position",driver.findElement(contractPONoLabelLocator).getText().equals(mapping[8][0]));
             Select contractPOSelect = new Select(contractPO);
             contractPO.click();
             contractPOSelect.selectByVisibleText(mapping[8][1]);
-        }
+       // }
 
         WebElement customerPrice = Wait.clickable(driver,customerPriceFieldLocator);
         AssertJUnit.assertTrue("Mapping Page: Customer Price field not in expected position",driver.findElement(customerPriceLabelLocator).getText().equals(mapping[9][0]));
         Select customerPriceSelect = new Select(customerPrice);
         customerPrice.click();
         customerPriceSelect.selectByVisibleText(mapping[9][1]);
+
 
         /*if (subaccount) {
             WebElement subAcc = Wait.clickable(driver,subAccountFieldLocator);

@@ -14,6 +14,27 @@ import org.testng.annotations.Test;
 
 public class CSA_Test extends DriverFactory {
 
+    @Test //Clear CSA
+            (groups = {"CCE", "CSA", "QuickTest"})
+    public void CSA00() throws Exception{
+        /**
+         * Created by: Stefan
+         * Description: This test will clear all existing CSA for Sales Org: ID51
+         */
+        //New driver object to control browser
+        WebDriver driver = getDriver();
+
+        //New base object to handle log-in and set up
+        Cce_Base base = new Cce_Base(driver);
+
+        //Set up returns a CCE Page and outputs test details
+        CCE_MainPage ccePage = base.setUp("Clear CSA", "CSA00");
+
+        CSA_Methods csaMeth = new CSA_Methods(driver);
+
+        csaMeth.csaClearAllForSalesOrg(DataItems.autoUserSalesOrg);
+    }
+
     @Test //Delivery Plant Select, CSA Brand CustomerA, check Article from Brand with another Customer
             (groups = {"CCE", "CSA", "QuickTest"})
     public void CSA01() throws Exception {
@@ -152,6 +173,8 @@ public class CSA_Test extends DriverFactory {
         CCE_MainPage ccePage = base.setUp("PlantA - check that only articles and brands from PlantA are available (bug all brands appear)", "CSA3");
 
         CSA_Methods csaMeth = new CSA_Methods(driver);
+
+        csaMeth.csaClearAllForSalesOrg(DataItems.autoUserSalesOrg);
 
         //Select delivery to plant to ID10 so that customer has access to articles and brads from ID10
         csaMeth.custSetup(DataItems.deliveryToPlantID10);
@@ -565,6 +588,9 @@ public class CSA_Test extends DriverFactory {
         CCE_MainPage ccePage = base.setUp("PlantA - check that only articles and brands from PlantA are available (bug all brands appear)", "CSA15");
 
         CSA_Methods csaMeth = new CSA_Methods(driver);
+
+        //Added to ensure no CSA will affect the test (author: Stefan)
+        csaMeth.csaClearAllForSalesOrg(DataItems.autoUserSalesOrg);
 
         //Select delivery to plant to ID10 so that customer has access to articles and brads from ID10
         csaMeth.custSetup(DataItems.deliveryToPlantID10);

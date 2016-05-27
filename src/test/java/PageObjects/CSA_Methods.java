@@ -39,8 +39,11 @@ public class CSA_Methods extends WBA_BasePage {
     By addCSA = By.linkText("Assign Specific Article");
     By filterCustomerNameFieldCSA = By.id("filterCustomerCustomerName");
     By searchButton = By.xpath(".//*[@id='FilterIndexForm']/div[3]/ul/li[1]/input");
+    By salesOrgFilter = By.xpath("//*[@id=\"FilterIndexForm\"]/table/tbody/tr[1]/td[4]");
     By deleteButton = By.xpath(".//*[@id='content']/div[2]/table/tbody/tr[2]/td[8]/a[2]/span");
+    By deleteButton2 = By.xpath("//*[@id=\"content\"]/div[3]/table/tbody/tr[2]/td[8]/a[2]/span");
     By flashMessage = By.cssSelector("div.flash-msg");
+    By tableRows = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr");
 
     //CSA Edit Page
     By csaSalesOrgField = By.id("CustomerPrivateArticleSalesOrgId");
@@ -97,6 +100,48 @@ public class CSA_Methods extends WBA_BasePage {
         System.out.println("Setting CSA details....");
         new Select(driver.findElement(csaSalesOrgField)).selectByVisibleText(salesOrg);
         CommonTask.setSearchField(driver, customerNameFieldCSA, custName);
+    }
+
+    public void csaClearAllForSalesOrg(String salesOrg){
+        /**
+         * Created by Stefan
+         * Description: This will clear all Customer Specific Articles: Delete all rows from CSA page
+         */
+        System.out.println("Going to customer page....");
+        driver.get(DataItems.mastersCSAUrl);
+
+        //Filtering by Sales Org
+        CommonTask.setSearchField(driver,salesOrgFilter,salesOrg);
+
+
+        int rowCount = driver.findElements(tableRows).size();
+        System.out.println(rowCount);
+        for (int i=0;i<rowCount-1;i++) {
+            //Click delete button of first row
+            if (i < 1) {
+                driver.findElement(deleteButton).click();
+                try {
+                    Alert alert = driver.switchTo().alert();
+                    System.out.println("Alert message:" + alert.getText());
+                    alert.accept();
+                    System.out.println("Alert closed!");
+                } catch (Exception e) {
+                    System.out.println("No error(s) displayed");
+                }
+            }
+            else {
+                driver.findElement(deleteButton2).click();
+                try {
+                    Alert alert = driver.switchTo().alert();
+                    System.out.println("Alert message:" + alert.getText());
+                    alert.accept();
+                    System.out.println("Alert closed!");
+                } catch (Exception e) {
+                    System.out.println("No error(s) displayed");
+                }
+            }
+        }
+        System.out.println("No entries in CSA for Sales Org:"+salesOrg);
     }
 
     public void csaSetupBrandAndArticle(String salesOrg, String custName, String brand, String article) throws Exception {

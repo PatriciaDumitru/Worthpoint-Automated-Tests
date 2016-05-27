@@ -95,7 +95,7 @@ public class Ecomm_OutstandingOrderDraftPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        Boolean waitForTitle = Wait.textPresent(driver,titleLocator, "Outstanding Order Draft List");
+        //Boolean waitForTitle = Wait.textPresent(driver,titleLocator, "Outstanding Order Draft List");
         WebElement waitForForm = Wait.visible(driver,formLocator);
     }
     
