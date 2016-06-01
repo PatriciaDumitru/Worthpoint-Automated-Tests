@@ -40,8 +40,9 @@ public class DriverFactory {
           System.out.println("----------------------------------------------------");
       }
 
-
 */
+
+
       @AfterMethod (alwaysRun=true)
       public static void closeDriverObjects() {
         for (WebDriverThread webDriverThread : webDriverThreadPool) {
