@@ -42,6 +42,8 @@ public class DriverFactory {
 
 
 */
+
+
       @AfterMethod (alwaysRun=true)
       public static void closeDriverObjects() {
         for (WebDriverThread webDriverThread : webDriverThreadPool) {
