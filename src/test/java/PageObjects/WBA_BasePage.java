@@ -310,10 +310,11 @@ public class WBA_BasePage {
         //Wait for visibility of navigation bar
         WebElement waitForVisible = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
         //navigate to the manual entry link
-        driver.findElement(ordersTab).click();
+        Actions action = new Actions(driver);
+        action.moveToElement(waitForVisible).build().perform();
         //wait for menu to drop down
         WebElement waitForMenuVis = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(manualEntrySubTab));
-        driver.findElement(manualEntrySubTab).click();
+        waitForMenuVis.click();
         
         //return a manual entry page
         return new Ecomm_ManualEntryPage(driver);
@@ -323,22 +324,24 @@ public class WBA_BasePage {
         //Wait for orders tab
         WebElement waitForOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
         //Navigate to the subtab link
-        driver.findElement(ordersTab).click();
+        Actions action = new Actions(driver);
+        action.moveToElement(waitForOrders).build().perform();
         //Wait for drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(uploadOrderSubTab)));
-        driver.findElement(uploadOrderSubTab).click();
+        waitForMenu.click();
         
-        //return a manual entry page
+        //return Upload Order Page
         return new Ecomm_UploadOrderPage(driver);
     }
     
     public Ecomm_FromExistingPage clickFromExisting() {
         //Wait for orders tab
         WebElement waitForOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
-        driver.findElement(ordersTab).click();
+        Actions action = new Actions(driver);
+        action.moveToElement(waitForOrders).build().perform();
         
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(fromExistingSubTab)));
-        driver.findElement(fromExistingSubTab).click();
+        waitForMenu.click();
         
         return new Ecomm_FromExistingPage(driver);
     }
@@ -346,10 +349,11 @@ public class WBA_BasePage {
     public Ecomm_ShadeNotAvailablePage clickShadeNotAvailable() {
         //Wait for orders tab
         WebElement waitForOrders = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersTab));
-        driver.findElement(ordersTab).click();
+        Actions action = new Actions(driver);
+        action.moveToElement(waitForOrders).build().perform();
         
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(shadeNotAvailSubTab2)));
-        driver.findElement(shadeNotAvailSubTab2).click();
+        waitForMenu.click();
         
         return new Ecomm_ShadeNotAvailablePage(driver);
     }
@@ -362,7 +366,7 @@ public class WBA_BasePage {
         action.moveToElement(waitForOrders).build().perform();
 
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(waitingForShadeSubTab2)));
-        driver.findElement(waitingForShadeSubTab2).click();
+        waitForMenu.click();
         
         return new Ecomm_WaitingForShadePage(driver);
     }
@@ -402,7 +406,7 @@ public class WBA_BasePage {
         action.moveToElement(waitForTab).build().perform();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstUploadDraftSubTab)));
-        action.click(driver.findElement(outstUploadDraftSubTab)).build().perform();
+        waitForMenu.click();
         
         return new Ecomm_OutstandingUploadDraftPage(driver);
     }
@@ -412,10 +416,10 @@ public class WBA_BasePage {
         WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
         
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTab)).click().build().perform();
+        action.moveToElement(waitForTab).build().perform();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(pendingApprovalSubTab)));
-        action.click(driver.findElement(pendingApprovalSubTab)).build().perform();
+        waitForMenu.click();
         
         return new Ecomm_PendingApprovalListPage(driver);
     }
@@ -423,13 +427,13 @@ public class WBA_BasePage {
     public Ecomm_PendingApprovalListPage clickPendingApprovalListPageApprover() {
         //Works specifically for approver account (mail.kamleshpatidar@gmail.com)
         //Wait for tab
-        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTabApprover)));
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTab)));
         
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTabApprover)).click().build().perform();
+        action.moveToElement(waitForTab).build().perform();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(pendingApprovalSubTabApprover)));
-        action.click(driver.findElement(pendingApprovalSubTabApprover)).build().perform();
+        waitForMenu.click();
         
         return new Ecomm_PendingApprovalListPage(driver);
     }
@@ -440,10 +444,10 @@ public class WBA_BasePage {
         WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTabApprover2)));
 
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(outstandingOrdersTabApprover2)).click().build().perform();
+        action.moveToElement(waitForTab).build().perform();
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(pendingApprovalSubTabApprover2)));
-        action.click(driver.findElement(pendingApprovalSubTabApprover2)).build().perform();
+        waitForMenu.click();
 
 
         return new Ecomm_PendingApprovalListPage(driver);
