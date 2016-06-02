@@ -49,7 +49,7 @@ public class WBA_BasePage {
         static By shadeNotAvailSubTab2 = By.xpath("//*[@id=\"topnav\"]/li[1]/div/div/ul/li/a[contains(text(),'Shade Not Available')]");
         static By waitingForShadeSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(6)");
         static By waitingForShadeSubTab2 = By.xpath("//*[@id=\"topnav\"]/li[1]/div/div/ul/li/a[contains(text(),'Waiting For Shade Code')]");//*[@id="topnav"]/li[1]/div/div/ul
-        
+
     static By outstandingOrdersTab = By.cssSelector("#topnav > li:nth-child(2)");
         static By outOrdersListSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
         static By outstOrderDraftSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(2)");

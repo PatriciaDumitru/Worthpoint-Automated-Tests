@@ -238,7 +238,8 @@ public class Ecomm_OO_Test extends DriverFactory {
 
 
         PreFlows pf = new PreFlows();
-        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
+        //pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
 
         System.out.println("Navigating to Masters...");
         
@@ -292,7 +293,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Pending Approval List Page reached. Checking title...");
         
-        AssertJUnit.assertTrue("Pending Approval Page: Title not as expected",pendPage.getBreadcrumb().getText().equals("Orders | Pending Approval List"));
+        AssertJUnit.assertTrue("Pending Approval Page: Title not as expected",pendPage.getBreadcrumb().getText().equals("Orders | Outstanding"));
         
         System.out.println("Title checked");
         
@@ -300,7 +301,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Checking fields...");
         
-        pendPage.checkFieldsRequester();
+        //pendPage.checkFieldsRequester();
         
         System.out.println("Fields checked. Entering filter criteria...");
         

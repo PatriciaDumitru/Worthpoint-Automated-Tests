@@ -167,7 +167,7 @@ public class DataItems {
 
     //Line details for manual entry tests
     public static String article = "8754180";
-    public static String brand = "epic";
+    public static String brand = "EPIC";
     public static String ticket = "025";
     public static String length = "2000";
     public static String finish = "STANDARD";
@@ -176,21 +176,21 @@ public class DataItems {
 
     public static String yourMatNum = "andy test 11";
     public static String expArticle = "8754180";
-    public static String expBrand = "astra";
+    public static String expBrand = "ASTRA";
     public static String expTicket = "180";
     public static String expLength = "5000";
     public static String expFinish = "STANDARD";
     public static String expShadeCode = "C1711";
 
-    public static String yourMatNum2 = "eComm Astra 180";
+    public static String yourMatNum2 = "eComm ASTRA 180";
     public static String expArticle2 = "8754180";
-    //public static String expBrand2 = "astra";
+    //public static String expBrand2 = "ASTRA";
     //public static String expTicket2 = "180";
     //public static String expLength2 = "5000";
     //public static String expFinish2 = "STANDARD";
     public static String expShadeCode2 = "C9700";
 
-    public static String brand2 = "gramax";
+    public static String brand2 = "GRAMAX";
     public static String ticket2 = "080";
     public static String length2 = "5000";
     public static String finish2 = "STANDARD";
@@ -198,7 +198,7 @@ public class DataItems {
     public static int quantity2 = 6;
 
     public static String article3 = "8754090";
-    public static String brand3 = "astra";
+    public static String brand3 = "ASTRA";
     public static String ticket3 = "090";
     public static String length3 = "5000";
     public static String finish3 = "STANDARD";
@@ -230,7 +230,7 @@ public class DataItems {
     public static String shadeCodeCCE5="C9760";
 
     //Details used in CCE Threshold qty tests (id=SOC_5)
-    public static String thresholdBrand = "astra";
+    public static String thresholdBrand = "ASTRA";
     public static String thresholdTicket = "120";
     public static String thresholdMUMType = "Cone";
     public static int thresholdQty = 6;
@@ -240,7 +240,7 @@ public class DataItems {
 
     //Line details for Contract Order tests    
     public static String conOrdArticle = "8754120";
-    public static String conOrdBrand = "astra";
+    public static String conOrdBrand = "ASTRA";
     public static String conOrdTicket = "120";
     public static String conOrdLength = "5000";
     public static String conOrdFinish = "STANDARD";
@@ -253,12 +253,12 @@ public class DataItems {
     //public static String expConOrdArticle = "8754120";
     //public static String expConOrdShadeCode = "WHITE";
     //public static String expConOrdTicket = "120";
-    //public static String expConOrdBrand = "astra";
+    //public static String expConOrdBrand = "ASTRA";
 
     //Line details for use with SUSST Account (joecontract@coats.com, Star Garments Ltd.)
     public static String yourMatNumSUSST = "AutoTestMaterial";
     public static String articleSUSST = "1505025";
-    public static String brandSUSST = "dual duty";
+    public static String brandSUSST = "DUAL DUTY";
     public static String ticketSUSST = "025";
     public static String lengthSUSST = "5000";
     public static String finishSUSST = "STANDARD";
@@ -266,7 +266,7 @@ public class DataItems {
 
     public static String yourMatNum2SUSST = "AutoTestMaterial2";
     public static String article2SUSST = "1505025";
-    public static String brand2SUSST = "dual duty";
+    public static String brand2SUSST = "DUAL DUTY";
     public static String ticket2SUSST = "025";
     public static String length2SUSST = "5000";
     public static String finish2SUSST = "STANDARD";
@@ -275,7 +275,7 @@ public class DataItems {
     //Line details for MOQ tests
     public static String testYourMatNum = "MOQTest";
     public static String MOQArticle = "8754180";
-    public static String MOQBrand = "astra";
+    public static String MOQBrand = "ASTRA";
     public static String MOQTicket = "180";
     public static String MOQLength = "5000";
     public static String MOQFinish = "STANDARD";
@@ -371,9 +371,9 @@ public class DataItems {
     public static String adisCustomer = "ADIS DIMENSION FOOTWEAR. PT";
     public static String lifeEasyRequester = "Life Easy";
     public static String someOtherCustomer = "ADIS DIMENSION FOOTWEAR. PT";
-    public static String brandAstraCSA = "astra";
+    public static String brandAstraCSA = "ASTRA";
     //public static String brandAdmiralCSA = "admiral";
-    public static String brandStarNylonCSA = "star nylon";
+    public static String brandStarNylonCSA = "STAR NYLON";
     public static String salesOrgID = "ID51";
     public static String deliveryToPlantAll = "Select";
     public static String deliveryToPlantID10 = "ID10";
@@ -414,16 +414,16 @@ public class DataItems {
     public static String addToWarehouse = "Our";
     public static String addToHub = "Hub";
 
-    public static String[] articleData180 = {"ID51", "ID12", "8754180", "astra", "180", "Cone", "WHITE", "100"};
-    public static String[] articleData02 = {"ID51", "ID12", "8754120", "astra", "180", "Cone", "WHITE", "100"};
-    public static String[] articleData120 = {"ID51", "ID12", "8754120", "astra", "120", "Cone", "BLACK", "100"};
-    public static String[] articleData110 = {"ID51", "ID12", "8754110", "astra", "110", "Cone", "BLACK", "100"};
+    public static String[] articleData180 = {"ID51", "ID12", "8754180", "ASTRA", "180", "Cone", "WHITE", "100"};
+    public static String[] articleData02 = {"ID51", "ID12", "8754120", "ASTRA", "180", "Cone", "WHITE", "100"};
+    public static String[] articleData120 = {"ID51", "ID12", "8754120", "ASTRA", "120", "Cone", "BLACK", "100"};
+    public static String[] articleData110 = {"ID51", "ID12", "8754110", "ASTRA", "110", "Cone", "BLACK", "100"};
     public static String noneArticle01 = "8754075";
     public static String noneArticle02 = "8754090";
     public static String noneArticle03 = "8430045";
-    public static String[] similarArticle01 = {"similarArticle01", "ID51", "ID12", "astra", "180", "Cop", "1500"};
-    public static String[] similarArticle02 = {"similarArticle02", "ID51", "ID12", "astra", "120", "Cop", "1500"};
-    public static String[] similarArticle03 = {"similarArticle03", "ID51", "ID12", "astra", "110", "Cop", "1500"};
+    public static String[] similarArticle01 = {"similarArticle01", "ID51", "ID12", "ASTRA", "180", "Cop", "1500"};
+    public static String[] similarArticle02 = {"similarArticle02", "ID51", "ID12", "ASTRA", "120", "Cop", "1500"};
+    public static String[] similarArticle03 = {"similarArticle03", "ID51", "ID12", "ASTRA", "110", "Cop", "1500"};
 
 
 

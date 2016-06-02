@@ -54,9 +54,10 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Setup MasterData...");
 
         System.out.println("Navigating to Manual Entry...");
-
+        driver.navigate().refresh();
         //press manual entry
         Ecomm_ManualEntryPage manualEntryPage = eCommPage.clickManualEntry();
+
         manualEntryPage.waitForElement();
 
         System.out.println("Manual Entry loaded.");
@@ -196,7 +197,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Submitting order...");
-
+        driver.navigate().refresh();
         //Press Submit
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
         outOrdersPage.waitForElement();
@@ -242,6 +243,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -414,6 +416,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Setup Master Data...");
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -580,6 +583,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Setup Master Data...");
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -614,7 +618,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Submitting order...");
-
+        driver.navigate().refresh();
         //Press Submit
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
         outOrdersPage.waitForElement();
@@ -659,6 +663,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Setup Master Data...");
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -1459,10 +1464,6 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_ManualEntryPage mePage2 = draftPage.pressEdit();
         mePage2.waitForElement();
 
-        //Take a screenshot
-        File scrFile11 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile11, new File(DataItems.screenshotsFilepath + "\\EComm\\Orders\\Manual Entry\\33Draft open.png"));
-
         DataItems.lastUsedPO = mePage2.getCustPONo();
 
         Ecomm_OrderConfirmationPage orderConf = mePage2.pressNext();
@@ -1473,20 +1474,13 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_ManualEntryPage mePage3 = orderConf.pressCancel();
         mePage3.waitForElement();
 
-        //Take a screenshot
-        File scrFile12 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile12, new File(DataItems.screenshotsFilepath + "\\EComm\\Orders\\Manual Entry\\34Draft cancelled.png"));
-
         System.out.println("Draft cancelled. Checking draft is deleted...");
 
         driver.navigate().refresh();
 
         Ecomm_OutstandingOrderDraftPage draftPage2 = mePage3.clickOutstandingDraft();
-        draftPage2.waitForElement();
 
-        //Take a screenshot
-        File scrFile13 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile13, new File(DataItems.screenshotsFilepath + "\\EComm\\Orders\\Manual Entry\\35Draft removed.png"));
+        draftPage2.waitForElement();
 
         String orderNo = draftPage2.findDraft(DataItems.lastUsedPO);
 
@@ -1652,6 +1646,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         System.out.println("Logged in. Navigating to Pending Approval List Page...");
 
+        driver.navigate().refresh();
         Ecomm_PendingApprovalListPage pendPage = mainPage.clickPendingApprovalListPageApprover();
         pendPage.waitForElement();
 
@@ -1746,6 +1741,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set Master Data
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
@@ -1879,6 +1875,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set Master Data
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
@@ -2013,6 +2010,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set Master Data
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
@@ -2146,6 +2144,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set Master Data
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
@@ -2280,6 +2279,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set Master Data
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
@@ -2415,6 +2415,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set Master Data
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
@@ -2549,6 +2550,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set Master Data
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
@@ -2681,6 +2683,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set Master Data
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);

@@ -174,7 +174,7 @@ public class Ecomm_Dashboard_Test extends DriverFactory {
         
             ftpPage.setCustName(DataItems.custDetails[0]);
 
-            System.out.println("Filter criteria entered. Lisitng files...");
+            System.out.println("Filter criteria entered. Listing files...");
 
             ftpPage.pressSearch();
             ftpPage.waitForLoad();

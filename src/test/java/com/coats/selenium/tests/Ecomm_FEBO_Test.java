@@ -44,7 +44,7 @@ public class Ecomm_FEBO_Test extends DriverFactory {
     System.out.println("Entering criteria...");
     
     //Enter criteria
-    fromExistingPage.setBrand("astra");
+    fromExistingPage.setBrand("ASTRA");
     
     //Take a screenshot
     File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
