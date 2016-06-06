@@ -139,10 +139,11 @@ public class CCE_EnrichOrderPage extends WBA_BasePage {
     
     public CCE_EnrichOrderPage pressLab() {
         WebElement lab = Wait.clickable(driver,labButton);
+
         lab.click();
         return new CCE_EnrichOrderPage(driver);
     }
-    
+
     public CCE_EnrichOrderPage pressWHS() {
         WebElement whs = Wait.clickable(driver,whsButton);
         whs.click();

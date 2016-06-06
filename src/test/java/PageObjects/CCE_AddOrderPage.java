@@ -69,10 +69,11 @@ public class CCE_AddOrderPage extends WBA_BasePage {
     static By enrichHubButton = By.id("SampleOrderLine0SosId30");
     static By enrichLabButton = By.id("SampleOrderLine0SosId50");
     static By enrichWHSButton = By.id("SampleOrderLine0SosId40");
-    
+
+
     public CCE_AddOrderPage(WebDriver passedDriver) {
        super(passedDriver);
-    } 
+    }
     
     public String getCustomerName() {
         WebElement field = Wait.visible(driver,customerNameField);

@@ -1,6 +1,7 @@
 
 package com.coats.selenium.tests;
 
+import PageObjects.CCE_AddOrderPage;
 import PageObjects.CCE_MainPage;
 import PageObjects.CCE_OrderStatusPage;
 import com.coats.selenium.DriverFactory;

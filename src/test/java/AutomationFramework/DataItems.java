@@ -10,7 +10,7 @@ import java.lang.reflect.Array;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test_archive";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
     public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
@@ -22,6 +22,7 @@ public class DataItems {
     public static String hubStockURL = targetURL + "/HubStocks";
     public static String warehouseURL = targetURL + "/OurStocks";
     public static String newArticleURL = targetURL + "/SalesOrgMaterials";
+    public static String cceOrdersStatus = targetURL + "/cce/outstanding";
     public static String cceURL = targetURL + "/cce";
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";

@@ -270,6 +270,7 @@ public class CommonTask {
         
         //Click the field
     	element.click();
+
         
         //Enter "item" into the field
     	element.sendKeys(item);

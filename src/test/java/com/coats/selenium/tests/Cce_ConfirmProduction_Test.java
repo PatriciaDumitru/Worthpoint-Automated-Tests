@@ -175,7 +175,7 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
     (groups = {"Solo"})
     public void CP3() throws Exception {
         WebDriver driver = getDriver();
-        
+
         Cce_Base base = new Cce_Base(driver);
         CCE_MainPage mainPage = base.setUp("Confirm Production CP3: Lab SOS status update", "G_CCE_SOC_16");
 
@@ -183,126 +183,130 @@ public class Cce_ConfirmProduction_Test extends DriverFactory {
         pf.deActivateAutoEnrichForCustomer(driver, DataItems.lifeEasyCustomer);
 
         System.out.println("Navigating to Order Samples Page...");
-        
+
         CCE_OrderSamplesPage orderPage = mainPage.pressOrderSamples();
         orderPage.waitForElement();
-        
+
         System.out.println("Order Samples page reached. Entering Customer details...");
-        
+
         orderPage.setCustName(DataItems.custDetails[0]);
         orderPage.setRequestor(DataItems.custDetails[2]);
-        
+
         System.out.println("Customer details entered. Submitting prompt...");
-        
+
         CCE_AddOrderPage aoPage = orderPage.pressSubmit();
         aoPage.waitForElement();
-        
+
         System.out.println("Prompt submitted. Setting ship to and line details...");
-        
+
         aoPage.setShipToParty(DataItems.custDetails[1]);
-        aoPage.setArticle(DataItems.article,0);
+        aoPage.setArticle(DataItems.article, 0);
         aoPage.setShadeCode(DataItems.shadeCode, 0);
-        aoPage.setMUMType(DataItems.copMUM,0);
+        aoPage.setMUMType(DataItems.copMUM, 0);
         aoPage.setCustomerRef(0);
-        aoPage.setRequestType(DataItems.sewing,0);
-        aoPage.setPurposeType(DataItems.bulkPurpose,0);
-        aoPage.setQuantity(1,0);
-        
+        aoPage.setRequestType(DataItems.sewing, 0);
+        aoPage.setPurposeType(DataItems.bulkPurpose, 0);
+        aoPage.setQuantity(1, 0);
+
         System.out.println("Line details entered. Submitting order...");
-        
+
         CCE_OrderStatusPage statusPage = aoPage.pressSubmit();
         statusPage.waitForElement();
-        
+
+
         System.out.println("Order Status Page loaded. Retrieving Order No. for order...");
-        
+
+
         String orderNo = statusPage.getOrderNo(DataItems.lastUsedPO);
 
         driver.navigate().refresh();
-        
-        System.out.println("Order No.: " + orderNo+". Navigating to Manual Enrich Page...");
-        
+
+        System.out.println("Order No.: " + orderNo + ". Navigating to Manual Enrich Page...");
+
         CCE_ManualEnrichPage mePage = statusPage.pressManualEnrich();
         mePage.waitForElement();
-        
+
         System.out.println("Manual Enrich Page reached. Checking for records...");
-        
+
         if (mePage.checkForRecords()) {
             System.out.println("Records found. Finding order with above Order No. and viewing...");
-            
+
             int row = mePage.getRow(orderNo);
-            
-            AssertJUnit.assertTrue("Manual Enrich Page: Order (OrderNo.: "+orderNo+") not displayed after submission",row!=-1);
-            
+
+            AssertJUnit.assertTrue("Manual Enrich Page: Order (OrderNo.: " + orderNo + ") not displayed after submission", row != -1);
+
             CCE_OrderViewPage viewPage = mePage.pressView(row);
             viewPage.waitForContentAlt2();
-            
-            System.out.println("View displayed. Order No.: "+orderNo+". Closing view...");
-            
+
+            System.out.println("View displayed. Order No.: " + orderNo + ". Closing view...");
+
             viewPage.closeView();
             viewPage.waitForInvisibility();
-            
+
             System.out.println("View closed. Enriching order...");
-            
+
             CCE_EnrichOrderPage enrichPage = mePage.pressEnrich(2);
             enrichPage.waitForElement();
-            
+
             System.out.println("Enrich Order page reached. Setting SOS to Lab...");
 
             enrichPage.pressLab();
-            
+
             System.out.println("SOS set. Enriching All Order lines...");
-            
+
             CCE_ManualEnrichPage mePage2 = enrichPage.pressEnrichAll();
             mePage2.waitForElement();
-            
+
             System.out.println("Order enriched. Navigating to Confirm Production Page...");
-            
+
             CCE_ConfirmProductionPage cpPage = mePage2.pressConfirmProduction();
             cpPage.waitForElement();
-            
+
             System.out.println("Confirm Production page reached. Checking order is shown...");
-            
-            AssertJUnit.assertTrue("Confirm Production Page: Order (Order No.: "+orderNo+") does not appear after Lab SOS selected in enrichment",cpPage.findOrder(orderNo));
-            
+
+            AssertJUnit.assertTrue("Confirm Production Page: Order (Order No.: " + orderNo + ") does not appear after Lab SOS selected in enrichment", cpPage.findOrder(orderNo));
+
             System.out.println("Order found in table. Pressing confirm...");
-            
+
             cpPage.pressConfirm();
-            
+
             System.out.println("Confirm selected. Selecting Deliver to Customer...");
-            
+
             cpPage.setSendTo("Deliver to Customer");
 
 
             System.out.println("Send To set. Printing DN...");
-            
+
             CCE_OrderViewPage viewPage2 = cpPage.pressDnPrint();
             viewPage2.waitForContentAlt2();
-            
+
             System.out.println("DN Printed. Closing view and saving...");
-            
+
             viewPage2.closeView();
-            
+
             CCE_ConfirmProductionPage cpPage2 = cpPage.acceptSave();
             cpPage2.waitForElement();
-            
+
             System.out.println("Saved. Checking order status...");
-            
+
             CCE_OrderStatusPage statusPage2 = cpPage2.pressOrderStatus();
             statusPage2.waitForElement();
-            
+
             String stage = statusPage2.getOrderStage(orderNo);
-            
-            AssertJUnit.assertTrue("Order Status Page: Order stage not as expected for order "+orderNo+", should be Delivered but is: " + stage+".",stage.equals("Delivered"));
-            
+
+            AssertJUnit.assertTrue("Order Status Page: Order stage not as expected for order " + orderNo + ", should be Delivered but is: " + stage + ".", stage.equals("Delivered"));
+
             System.out.println("Order status as expected.");
-            
+
             System.out.println("Order No.: " + orderNo);
             System.out.println("Customer PO: " + DataItems.lastUsedPO);
             System.out.println("Order Stage: " + stage);
-            
-            
+
+
         } else {
             System.out.println("No records found. Test was not completed");
+
         }
-    } 
+
+    }
 }

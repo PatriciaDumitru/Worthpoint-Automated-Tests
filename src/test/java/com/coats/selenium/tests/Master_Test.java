@@ -3946,7 +3946,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
-        pPage.setBrand("astra");
+        pPage.setBrand("ASTRA");
 
         System.out.println("Filter criteria entered. Listing records...");
 
@@ -3959,7 +3959,7 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Basic Materials Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "astra", recordField, 2));
+        AssertJUnit.assertTrue("Basic Materials Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ASTRA", recordField, 2));
 
         System.out.println("Filtration as expected. Creating new Basic Material...");
 
@@ -6792,7 +6792,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering details...");
 
         addPage.setCustomerName("Life Easy Customer");
-        addPage.setBrand("astra");
+        addPage.setBrand("ASTRA");
         addPage.setTicket("000");
         addPage.setMUMType("Cone");
         addPage.setShade("BLACK");
@@ -6809,7 +6809,7 @@ public class Master_Test extends DriverFactory {
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("astra", "9");
+        int row = pPage.getRow("ASTRA", "9");
 
         AssertJUnit.assertFalse("Allowed Quantities Page: Allowed Quantity not present in table after creation", row == -1);
 

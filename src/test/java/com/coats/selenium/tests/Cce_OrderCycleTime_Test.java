@@ -66,7 +66,6 @@ public class Cce_OrderCycleTime_Test extends DriverFactory {
         octPage.waitForLoad();
         
         System.out.println("Filter reset.");
-        
     }
     
 }

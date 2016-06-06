@@ -158,6 +158,18 @@ public class CCE_OrderStatusPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement wait = Wait.clickable(driver,exportButton);
     }
+
+    By flashmessage = By.cssSelector("#flashMessage");
+    public String getTextFromFlash() {
+        String a = driver.findElement(flashmessage).getText();
+        String[] str = a.split(" < ");
+        String two = str[1];
+        String[] str2 = two.split(" > ");
+        String three = str2[1];
+        System.out.println(three);
+        return three;
+
+    }
     
     public String getOrderStage(String orderNo) {
         

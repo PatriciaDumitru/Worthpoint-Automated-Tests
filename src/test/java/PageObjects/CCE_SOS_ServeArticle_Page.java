@@ -9,7 +9,6 @@ import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -43,9 +42,6 @@ public class CCE_SOS_ServeArticle_Page extends WBA_BasePage  {
     By articleLenght = By.id("SalesOrgMaterialLengthId");
     By articleCCEandEcommRadioButton = By.id("SalesOrgMaterialBulkSampleId3");
     By saveNewArticleButton = By.cssSelector("#SalesOrgMaterialAddForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
-
-
-
 
 
     // ------------------------------------- Locators in Methods to select Data for Warehouse Stocks or Hub Stocks when creating new Entry

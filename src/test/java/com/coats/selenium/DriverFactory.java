@@ -39,16 +39,15 @@ public class DriverFactory {
           getDriver().manage().deleteAllCookies();k
           System.out.println("----------------------------------------------------");
       }
-
+    }
 */
 
       @AfterMethod (alwaysRun=true)
       public static void closeDriverObjects() {
-        for (WebDriverThread webDriverThread : webDriverThreadPool) {
-            webDriverThread.quitDriver();
-        }
-        System.out.println("----------------------------------------------------");
-
-    }
+          for (WebDriverThread webDriverThread : webDriverThreadPool) {
+              webDriverThread.quitDriver();
+          }
+          System.out.println("----------------------------------------------------");
+      }
 
 }
