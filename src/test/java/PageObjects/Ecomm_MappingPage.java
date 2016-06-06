@@ -617,10 +617,10 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         inputKeys.sendKeys(mapping[19][1]).build().perform();
 
         //Customer Price
-        AssertJUnit.assertTrue("Mapping page: Customer price field not displayed",this.getCustomerPriceField().isDisplayed());
-        AssertJUnit.assertTrue("Mapping page: Customer price label incorrectly displayed",this.getCustomerPriceLabel().getText().equals(mapping[20][0]));
-        inputKeys.click(this.getCustomerPriceField()).build().perform();
-        inputKeys.sendKeys(mapping[20][1]).build().perform();
+        //AssertJUnit.assertTrue("Mapping page: Customer price field not displayed",this.getCustomerPriceField().isDisplayed());
+        //AssertJUnit.assertTrue("Mapping page: Customer price label incorrectly displayed",this.getCustomerPriceLabel().getText().equals(mapping[20][0]));
+        //inputKeys.click(this.getCustomerPriceField()).build().perform();
+        //inputKeys.sendKeys(mapping[20][1]).build().perform();
 
         //Line Reference
         //AssertJUnit.assertTrue("Mapping page: Line Reference field not displayed",this.getLineReferenceField().isDisplayed());
