@@ -24,7 +24,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_I", "Reporting - Invoice UI screen changes","admin@coats.com", "superadmin@coats");
+        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_I", "Reporting - Invoice UI screen changes");
 
         //Navigate to Invoice page
         System.out.println("Navigating to Invoice Page...");
@@ -64,7 +64,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_DN", "Reporting - Delivery Notes UI screen changes","admin@coats.com", "superadmin@coats");
+        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_DN", "Reporting - Delivery Notes UI screen changes");
 
         //Navigate to Delivery Notes page
         System.out.println("Navigating to Delivery Notes page...");
@@ -104,7 +104,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_POSR", "Reporting - Summary of Purchases UI screen changes - change name to Purchase Order Summary","admin@coats.com", "superadmin@coats");
+        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_POSR", "Reporting - Summary of Purchases UI screen changes - change name to Purchase Order Summary");
 
         //Navigate to Purchase Order Summary
         System.out.println("Navigating to Purchase Order Summary page...");
@@ -147,7 +147,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_UI", "My Reports UI screen changes","admin@coats.com", "superadmin@coats");
+        Ecomm_MainPage eCommPage = baseTest.setUp("Rep_UI", "My Reports UI screen changes");
 
         //Navigate to Advanced Reports
         System.out.println("Navigating to Invoice Page...");
@@ -169,7 +169,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
          */
         AssertJUnit.assertTrue("***Incorrect breadcrumb!",cnrp.getBreadcrumb().getText().equals("Reports | Advanced Reports | New Report"));
 
-        cnrp.setCreationDateFrom("2016-02-24 00:00");
+        cnrp.setCreationDateFrom("2016-04-24 00:00");
 
         //This was removed on 23.05.2016// Date Range no longer shown!
         //cnrp.selectDateRange("Last 90 days");
@@ -248,7 +248,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
         Ecomm_AdvancedReportsPage advRep3 = new Ecomm_AdvancedReportsPage(driver);
 
-        advRep3.clickSavedReports();
+        //advRep3.clickSavedReports();
 
         //Delete first saved report
         System.out.println("Deleting previously created reports...");
@@ -266,7 +266,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
         Ecomm_AdvancedReportsPage advRep4 = new Ecomm_AdvancedReportsPage(driver);
 
-        advRep4.clickSavedReports();
+        //advRep4.clickSavedReports();
         advRep4.deleteSavedReport("Rep2");
 
         /**
@@ -277,6 +277,5 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
 
 
         System.out.println("Test PASSED!");
-
     }
 }
