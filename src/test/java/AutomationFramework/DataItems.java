@@ -10,10 +10,10 @@ import java.lang.reflect.Array;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test_archive";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "qa_p4i";
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
-    public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/
+    public static String mastersSalesOrgURL = targetURL + "/SalesOrgs";            //qa_p4i/ //test_archive
     public static String mastersCustomerURL = targetURL + "/Customers";
     public static String mastersCSAUrl = targetURL + "/customerprivatearticles";
     public static String cceOrderSamplePrompt = targetURL + "/cce/prompt";
