@@ -495,6 +495,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Setup Master Data...");
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
         pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
