@@ -155,5 +155,22 @@ public class Mst_AllowedQuantitiesPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement newAllowedQty = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newAllowedQtyButton));
     }
+
+    //Check if any previously Allowed Quantities were created and delete them before starting the test
+    public void deleteAq(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" allowed quantities entries found");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setCustomerName(DataItems.custDetails[0]);
+            setBrand("ASTRA");
+            setShade("BLACK");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Allowed Quantity entries cleared");
+    }
     
 }

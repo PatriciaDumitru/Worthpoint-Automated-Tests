@@ -140,5 +140,17 @@ public class Mst_BrandsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement brandName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandNameField));
     }
-    
+
+    //If the item created for testing is present, this will first delete the item , then create it
+    public void deleteBrand(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Brand name is already used");
+            System.out.println("Deleting current brand");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Brand cleared");
+    }
 }

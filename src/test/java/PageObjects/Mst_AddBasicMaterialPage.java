@@ -71,5 +71,6 @@ public class Mst_AddBasicMaterialPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement brandName = Wait.clickable(driver,brandNameField);
     }
-    
+
+
 }

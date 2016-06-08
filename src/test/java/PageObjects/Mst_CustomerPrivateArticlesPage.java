@@ -22,6 +22,7 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
     By newPrivateArticleField = By.xpath("/html/body/div[1]/div[3]/div[3]/ul/li[2]/a");
 
+    By salesOrgField = By.xpath("//*[@id=\"s2id_filterCustomerPrivateArticleSalesOrgId\"]");
 
     public Mst_CustomerPrivateArticlesPage(WebDriver driver) {
         super(driver);
@@ -132,6 +133,25 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
     }
 
 
+    //Function to delete previously entered data
 
+    public Mst_AddCustomerPrivateArticlesPage setSalesOrg(String item)  {
+        CommonTask.setSearchField(driver, salesOrgField, item);
+        return new Mst_AddCustomerPrivateArticlesPage(driver);
+    }
+
+    public void deleteCustPrivateArticle() {
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Private Test Articles found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setSalesOrg("ID51");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Private Test Articles cleared");
+    }
 
 }

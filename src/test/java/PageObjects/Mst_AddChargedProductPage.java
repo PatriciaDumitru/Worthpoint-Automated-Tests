@@ -94,5 +94,6 @@ public class Mst_AddChargedProductPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement mumType = Wait.clickable(driver,mumTypeField);
     }
-    
+
+
 }

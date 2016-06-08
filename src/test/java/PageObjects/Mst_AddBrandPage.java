@@ -56,5 +56,6 @@ public class Mst_AddBrandPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Add Brand page: Save button not displayed",save.isDisplayed());
         AssertJUnit.assertTrue("Add Brand page: Cancel button not displayed",cancel.isDisplayed());   
     }
+
     
 }

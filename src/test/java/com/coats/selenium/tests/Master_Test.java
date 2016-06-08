@@ -9,9 +9,12 @@ import com.coats.selenium.DriverFactory;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class Master_Test extends DriverFactory {
 
@@ -236,7 +239,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("New user page reached. Entering user details...");
 
         addPage.setFirstName("Automated");
-        addPage.setLastName("Test");
+        addPage.setLastName("TEST");
         addPage.setUsername(DataItems.autoUsername);
         addPage.setPassword(DataItems.autoPassword);
         addPage.setUserType(DataItems.testUserType);
@@ -1932,47 +1935,16 @@ public class Master_Test extends DriverFactory {
 
         brndPage.checkFields();
 
-        System.out.println("Fields checked. Entering filter criteria...");
-
+        System.out.println("Fields checked...");
+        //Checking if the brands used for testing already exist
+        System.out.println("Checking if the brands used for testing already exist...");
         brndPage.setSalesOrg("ID51");
         brndPage.setCustomerName(DataItems.custDetails[0]);
-
-        System.out.println("Filter criteria entered. Listing records...");
-
         brndPage.pressSearch();
         brndPage.waitForElement();
+        brndPage.deleteCustBrand();
 
-        System.out.println("Records listed. Checking filtration...");
-
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(3)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Customer Brands Page: Filtration not working as expected", brndPage.checkFiltration(loc1, loc2, DataItems.custDetails[0], recordField, 2));
-
-        try {
-            int row4 = brndPage.getRow("AutoBrand");
-            if  (row4 > 0){
-                System.out.println("Deleting old unedited record...");
-                brndPage.pressDelete(row4);
-                brndPage.waitForLoad();
-            }
-        } catch (Exception e) {
-            System.out.println("Old unedited record to be deleted not found");
-        }
-
-        try {
-            int row3 = brndPage.getRow("AutoEdited");
-            if  (row3 > 0){
-                System.out.println("Deleting old edited record...");
-                brndPage.pressDelete(row3);
-                brndPage.waitForLoad();
-            }
-        } catch (Exception e) {
-            System.out.println("Old edited record to be deleted not found");
-        }
-
-        System.out.println("Filtration as expected. Creating new Customer Ticket...");
+        //Creating the test Customer Brand for testing
 
         Mst_AddCustBrandPage addPage = brndPage.pressNewCustBrand();
         addPage.waitForElement();
@@ -1993,12 +1965,23 @@ public class Master_Test extends DriverFactory {
 
         addPage.setSalesOrg("ID51");
         addPage.setCustomerName(DataItems.custDetails[0]);
-        addPage.setCoatsBrand("nymo");
+        addPage.setCoatsBrand("NYMO");
         addPage.setCustomerBrand("AutoBrand");
 
         System.out.println("Details entered. Saving...");
 
         addPage.pressSave();
+        brndPage.waitForElement();
+
+        //Search for the Customer Brand created for testing
+        System.out.println("Entering filter criteria...");
+
+        brndPage.setSalesOrg("ID51");
+        brndPage.setCustomerName(DataItems.custDetails[0]);
+
+        System.out.println("Filter criteria entered. Listing records...");
+
+        brndPage.pressSearch();
         brndPage.waitForElement();
 
         System.out.println("Saved. Checking record appears...");
@@ -2007,7 +1990,19 @@ public class Master_Test extends DriverFactory {
 
         AssertJUnit.assertFalse("Customer Ticket Page: Customer Brand not present in table after creation", row == -1);
 
-        System.out.println("Record found. Editing record...");
+        System.out.println("Record found");
+
+        System.out.println("Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(3)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Customer Brands Page: Filtration not working as expected", brndPage.checkFiltration(loc1, loc2, DataItems.custDetails[0], recordField, 2));
+
+        System.out.println("Filtration as expected.");
+
+        System.out.println("Editing record...");
 
         Mst_EditCustBrandPage editPage = brndPage.pressEdit(row);
         editPage.waitForElement();
@@ -2055,7 +2050,7 @@ public class Master_Test extends DriverFactory {
         brndPage.pressSearch();
         brndPage.waitForElement();
 
-        int row3 = brndPage.getRow("AutoEdited");
+        int row3 = brndPage.getNrOfEntry();
         AssertJUnit.assertTrue("Customer Brands Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
@@ -3342,7 +3337,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
-        pPage.setBrandName("astra matt");
+        pPage.setBrandName("ASTRA MATT");
 
         System.out.println("Filter criteria entered. Listing records...");
 
@@ -3355,9 +3350,20 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Brands Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "astra matt", recordField, 2));
+        AssertJUnit.assertTrue("Brands Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ASTRA MATT", recordField, 2));
 
-        System.out.println("Filtration as expected. Creating new Brand...");
+        System.out.println("Filtration as expected.");
+
+        //Checking if the Brand Name used for testing already exists
+        System.out.println("Checking if the brand name used for testing already exists..");
+        pPage.setBrandName("AutomatedTest");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        //If the brand is found, delete it
+        pPage.deleteBrand();
+
+        System.out.println(" Creating new Brand...");
+
 
         Mst_AddBrandPage addPage = pPage.pressNewBrand();
         addPage.waitForElement();
@@ -3394,6 +3400,19 @@ public class Master_Test extends DriverFactory {
         AssertJUnit.assertFalse("Brands Page: Brand not present in table after creation", row == -1);
 
         System.out.println("Record found. Editing record...");
+
+
+        //Checking that the brand name used for editing it is not already created
+        System.out.println("Checking if the brand name used for editing already exists..");
+        pPage.setBrandName("EditedBrand");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        //If the brand name already exists, delete it
+        pPage.deleteBrand();
+
+        pPage.setBrandName("AutomatedTest");
+        pPage.pressSearch();
+        pPage.waitForElement();
 
         Mst_EditBrandPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -3446,7 +3465,7 @@ public class Master_Test extends DriverFactory {
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setBrandName("astra");
+        pPage.setBrandName("ASTRA");
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -3795,22 +3814,14 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
-        pPage.setFinishName("STANDARD");
-
-        System.out.println("Filter criteria entered. Listing records...");
-
+        //Check if any finish matches the testing criteria and delete it
+        System.out.println("Checking if any Finish matches the test criteria...");
+        pPage.setFinishName("AutoFinish");
         pPage.pressSearch();
         pPage.waitForElement();
+        pPage.deleteFinish();
 
-        System.out.println("Records listed. Checking filtration...");
-
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(2)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Finishes Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "STANDARD", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Finish...");
+        System.out.println("Creating new Finish...");
 
         Mst_AddFinishPage addPage = pPage.pressNewFinish();
         addPage.waitForElement();
@@ -3846,7 +3857,37 @@ public class Master_Test extends DriverFactory {
 
         AssertJUnit.assertFalse("Finishes Page: Finish not present in table after creation", row == -1);
 
-        System.out.println("Record found. Editing record...");
+        System.out.println("Record found.");
+
+        pPage.setFinishName("AutoFinish");
+
+        System.out.println("Filter criteria entered. Listing records...");
+
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Finishes Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "AutoFinish", recordField, 2));
+
+        System.out.println("Filtration as expected.");
+
+        //Check if any finish matches the testing criteria and delete it
+        System.out.println("Checking if any Finish matches the test criteria...");
+        pPage.setFinishName("EditedFinish");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        pPage.deleteFinish();
+
+        pPage.setFinishName("AutoFinish");
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        System.out.println("Editing record...");
 
         Mst_EditFinishPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -3946,23 +3987,15 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
-        pPage.setBrand("ASTRA");
-
-        System.out.println("Filter criteria entered. Listing records...");
-
+        //Checking that the Basic material name used for test is not already created, if it was created, delete it
+        System.out.println("Checking if Basic Material used for test has already been created");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        System.out.println("Records listed. Checking filtration...");
+        pPage.deleteBasicMaterial();
 
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(2)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Basic Materials Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ASTRA", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Basic Material...");
-
+        //Creating the test Basic Material
         Mst_AddBasicMaterialPage addPage = pPage.pressNewBasicMaterial();
         addPage.waitForElement();
 
@@ -3980,7 +4013,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setBrandName("Test");
+        addPage.setBrandName("TEST");
         addPage.setMaterialGroup("IG");
         addPage.setProductHierarchy("Test_COE");
 
@@ -3989,19 +4022,41 @@ public class Master_Test extends DriverFactory {
         addPage.pressSave();
         pPage.waitForElement();
 
+        //Check item created by the test
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.setProductHierarchy("Test_COE");
         pPage.setMaterialGroup("IG");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("Test");
+        int row = pPage.getRow("TEST");
 
         AssertJUnit.assertFalse("Finishes Page: Finish not present in table after creation", row == -1);
 
         System.out.println("Record found. Editing record...");
+
+        //Checking filter
+        System.out.println("Filter criteria entered. Listing records...");
+
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Basic Materials Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "TEST", recordField, 2));
+
+        System.out.println("Filtration as expected. Creating new Basic Material...");
+
+        //Edit the Basic Material group
+        pPage.setBrand("TEST");
+        pPage.pressSearch();
+        pPage.waitForElement();
 
         Mst_EditBasicMaterialPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -4029,12 +4084,12 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.setMaterialGroup("IA");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("Test");
+        int row2 = pPage.getRow("TEST");
         AssertJUnit.assertFalse("Basic Materials Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -4044,19 +4099,19 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.setMaterialGroup("IA");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("Test");
+        int row3 = pPage.getRow("TEST");
         AssertJUnit.assertTrue("Basic Materials Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setBrand("astra");
+        pPage.setBrand("ASTRA");
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -4996,23 +5051,22 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
+        //Check any Quantity factor that matches the test criteria is deleted
+        System.out.println("Checking if any Quantity factor matches the test criteria");
         pPage.setSalesOrg("ID51");
+        pPage.setBrand("TEST");
+        pPage.setPlantName("ID10");
+        pPage.setMUMType("Cone");
+        pPage.setTicket("000");
 
         System.out.println("Filter criteria entered. Listing records...");
 
         pPage.pressSearch();
         pPage.waitForElement();
 
-        System.out.println("Records listed. Checking filtration...");
+        pPage.deleteQuantityFactor();
 
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(2)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Quantity Factors Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Quantity Factors...");
-
+        //Create product for test
         Mst_AddQuantityFactorPage addPage = pPage.pressNewQuantityFactor();
         addPage.waitForElement();
 
@@ -5032,7 +5086,7 @@ public class Master_Test extends DriverFactory {
 
         addPage.setSalesOrg("ID51");
         addPage.setPlantName("ID10");
-        addPage.setBrand("Test");
+        addPage.setBrand("TEST");
         addPage.setMUMType("Cone");
         addPage.setTicket("000");
         addPage.setLabQty("5");
@@ -5047,15 +5101,29 @@ public class Master_Test extends DriverFactory {
 
         pPage.setSalesOrg("ID51");
         pPage.setPlantName("ID10");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("ID51", "ID10", "Test", "000");
+        int row = pPage.getRow("ID51", "ID10", "TEST", "000");
 
         AssertJUnit.assertFalse("Rejection Reasons Page: Rejection Reason not present in table after creation", row == -1);
 
-        System.out.println("Record found. Editing record...");
+        System.out.println("Record found.");
+
+        //Checking filtration
+
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Quantity Factors Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+
+        System.out.println("Filtration as expected. Creating new Quantity Factors...");
+
+        System.out.println("Editing record...");
 
         Mst_EditQuantityFactorPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -5085,11 +5153,11 @@ public class Master_Test extends DriverFactory {
 
         pPage.setSalesOrg("ID51");
         pPage.setPlantName("ID10");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("ID51", "ID10", "Test", "000");
+        int row2 = pPage.getRow("ID51", "ID10", "TEST", "000");
         AssertJUnit.assertFalse("Quantity Factors Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -5101,11 +5169,11 @@ public class Master_Test extends DriverFactory {
 
         pPage.setSalesOrg("ID51");
         pPage.setPlantName("ID10");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("ID51", "ID10", "Test", "000");
+        int row3 = pPage.getRow("ID51", "ID10", "TEST", "000");
         AssertJUnit.assertTrue("Quantity Factors Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
@@ -5113,7 +5181,7 @@ public class Master_Test extends DriverFactory {
         pPage.pressReset();
         pPage.waitForElement();
         pPage.setSalesOrg("ID51");
-        pPage.setBrand("astra");
+        pPage.setBrand("ASTRA");
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -5158,25 +5226,16 @@ public class Master_Test extends DriverFactory {
 
         pPage.checkFields();
 
-        System.out.println("Fields checked. Entering filter criteria...");
-
+        //Checking if any Length Offer matches the test criteria and delete it
+        System.out.println("Checking if any Length offer matches the test criteria");
         pPage.setPlantName("ID10");
-
-        System.out.println("Filter criteria entered. Listing records...");
-
+        pPage.setBrand("TEST");
+        pPage.setTicket("000");
         pPage.pressSearch();
         pPage.waitForElement();
+        pPage.deleteLengthOffer();
 
-        System.out.println("Records listed. Checking filtration...");
-
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(2)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID10", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Length Offer...");
-
+        //Creating the item used for test
         Mst_AddLengthOfferPage addPage = pPage.pressNewLengthOffer();
         addPage.waitForElement();
 
@@ -5195,7 +5254,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering details...");
 
         addPage.setPlant("ID10");
-        addPage.setBrand("Test");
+        addPage.setBrand("TEST");
         addPage.setTicket("000");
         addPage.setUOM("Grams");
         addPage.setMeasurementStandard("Metric");
@@ -5211,16 +5270,35 @@ public class Master_Test extends DriverFactory {
         System.out.println("Saved. Checking record appears...");
 
         pPage.setPlantName("ID10");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.setTicket("000");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("Test", "000", "100");
+        int row = pPage.getRow("TEST", "000", "100");
 
         AssertJUnit.assertFalse("Length Offers Page: Length Offer not present in table after creation", row == -1);
 
-        System.out.println("Record found. Editing record...");
+        System.out.println("Record found.");
+
+        //checking filtration
+
+        System.out.println("Filter criteria entered. Listing records...");
+
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID10", recordField, 2));
+
+        System.out.println("Filtration as expected. Creating new Length Offer...");
+
+        System.out.println("Editing record...");
 
         Mst_EditLengthOfferPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -5249,11 +5327,11 @@ public class Master_Test extends DriverFactory {
         System.out.println("Saved. Checking record is updated...");
 
         pPage.setPlantName("ID10");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("Test", "000", "200");
+        int row2 = pPage.getRow("TEST", "000", "200");
         AssertJUnit.assertFalse("Length Offers Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -5264,11 +5342,11 @@ public class Master_Test extends DriverFactory {
         System.out.println("Delete pressed. Checking item is removed...");
 
         pPage.setPlantName("ID10");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("Test", "000", "200");
+        int row3 = pPage.getRow("TEST", "000", "200");
         AssertJUnit.assertTrue("Length Offers Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
@@ -5276,7 +5354,7 @@ public class Master_Test extends DriverFactory {
         pPage.pressReset();
         pPage.waitForElement();
         pPage.setPlantName("ID10");
-        pPage.setBrand("astra");
+        pPage.setBrand("ASTRA");
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -5628,22 +5706,17 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
+        //Checking if any Sales org. materials matches the tested criteria
         pPage.setSalesOrg("ID51");
+        pPage.setBrand("TEST");
 
         System.out.println("Filter criteria entered. Listing records...");
 
         pPage.pressSearch();
         pPage.waitForElement();
+        pPage.deleteSlsOrgMat();
 
-        System.out.println("Records listed. Checking filtration...");
-
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(2)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Sales Org. Materials Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Sales Org. Material...");
+        //Creating the test material
 
         Mst_AddSalesOrgMaterialPage addPage = pPage.pressNewSalesOrgMat();
         addPage.waitForElement();
@@ -5665,7 +5738,7 @@ public class Master_Test extends DriverFactory {
         addPage.setArticle("AutoTest");
         addPage.setSalesOrg("ID51");
         addPage.setPlant("ID10");
-        addPage.setBrand("Test");
+        addPage.setBrand("TEST");
         addPage.setTicket("000");
         addPage.setLength("5000");
         addPage.setMUMType("Vicone");
@@ -5686,7 +5759,22 @@ public class Master_Test extends DriverFactory {
 
         AssertJUnit.assertFalse("Sales Org. Materials Page: Sales Org. Material not present in table after creation", row == -1);
 
-        System.out.println("Record found. Editing record...");
+        System.out.println("Record found.");
+
+        //Checking filtration
+
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Sales Org. Materials Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+
+        System.out.println("Filtration as expected.");
+
+        System.out.println("Editing record...");
+
 
         Mst_EditSalesOrgMaterialPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -5789,21 +5877,20 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering filter criteria...");
 
         pPage.setSalesOrg("ID51");
+        pPage.setCustomerName("Life Easy Customer");
+        pPage.setBrand("TEST");
 
         System.out.println("Filter criteria entered. Listing records...");
 
         pPage.pressSearch();
         pPage.waitForElement();
 
+        //If any previously created product match the criteria, delete them
+        System.out.println("Checking if any previously created products that match the criteria exists");
+        pPage.deleteCustChargedProducts();
+
+        //Creating the Charged Product for test
         System.out.println("Records listed. Checking filtration...");
-
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(2)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Charged Products Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Charged Product...");
 
         Mst_AddChargedProductPage addPage = pPage.pressNewChargedProduct();
         addPage.waitForElement();
@@ -5824,7 +5911,7 @@ public class Master_Test extends DriverFactory {
 
         addPage.setSalesOrg("ID51");
         addPage.setCustomerName("Life Easy Customer");
-        addPage.setBrand("Test");
+        addPage.setBrand("TEST");
         addPage.setTicket("000");
         addPage.setMUMType("Vicone");
         addPage.setQuantity("3");
@@ -5838,15 +5925,27 @@ public class Master_Test extends DriverFactory {
 
         pPage.setSalesOrg("ID51");
         pPage.setCustomerName("Life Easy Customer");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("ID51", "Life Easy Customer", "Test", "3");
+        int row = pPage.getRow("ID51", "Life Easy Customer", "TEST", "3");
 
         AssertJUnit.assertFalse("Charged Products Page: Charged Product not present in table after creation", row == -1);
 
-        System.out.println("Record found. Editing record...");
+        System.out.println("Record found.");
+
+        System.out.println("Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Charged Products Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+
+        System.out.println("Filtration as expected. Creating new Charged Product...");
+
+        System.out.println("Editing record...");
 
         Mst_EditChargedProductPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -5876,11 +5975,11 @@ public class Master_Test extends DriverFactory {
 
         pPage.setSalesOrg("ID51");
         pPage.setCustomerName("Life Easy Customer");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("ID51", "Life Easy Customer", "Test", "5");
+        int row2 = pPage.getRow("ID51", "Life Easy Customer", "TEST", "5");
         AssertJUnit.assertFalse("Charged Products Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -5892,11 +5991,11 @@ public class Master_Test extends DriverFactory {
 
         pPage.setSalesOrg("ID51");
         pPage.setCustomerName("Life Easy Customer");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("ID51", "Life Easy Customer", "Test", "5");
+        int row3 = pPage.getRow("ID51", "Life Easy Customer", "TEST", "5");
         AssertJUnit.assertTrue("Charged Products Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
@@ -5950,22 +6049,17 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
+        //Check if any Force enrichment product matches the test criteria and delete it
+        System.out.println("Checking if any Force Enrichment Product matches the test criteria");
         pPage.setSalesOrg("ID51");
-
-        System.out.println("Filter criteria entered. Listing records...");
-
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
+        pPage.deleteFrceEnrichProduct();
 
-        System.out.println("Records listed. Checking filtration...");
+        //Creating product for test
 
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(2)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Forced Enrichment Products Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Forced Enrichment Product...");
+        System.out.println("reating new Forced Enrichment Product...");
 
         Mst_AddForcedEnrichmentPage addPage = pPage.pressNewProduct();
         addPage.waitForElement();
@@ -5986,7 +6080,7 @@ public class Master_Test extends DriverFactory {
 
         addPage.setSalesOrg("ID51");
         addPage.setCustomerName("Life Easy Customer");
-        addPage.setBrand("Test");
+        addPage.setBrand("TEST");
         addPage.setTicket("000");
         addPage.setMUMType("Vicone");
 
@@ -5999,15 +6093,36 @@ public class Master_Test extends DriverFactory {
 
         pPage.setSalesOrg("ID51");
         pPage.setCustomerName("Life Easy Customer");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("Life Easy Customer", "Test", "000");
+        int row = pPage.getRow("Life Easy Customer", "TEST", "000");
 
         AssertJUnit.assertFalse("Forced Enrichment Products Page: Forced Enrichment Product not present in table after creation", row == -1);
 
-        System.out.println("Record found. Editing record...");
+        System.out.println("Record found.");
+
+        //Checking filtration
+        pPage.setSalesOrg("ID51");
+        pPage.setBrand("TEST");
+
+        System.out.println("Filter criteria entered. Listing records...");
+
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Forced Enrichment Products Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+
+        System.out.println("Filtration as expected.");
+
+        System.out.println("Editing record...");
 
         Mst_EditForcedEnrichmentPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -6037,11 +6152,11 @@ public class Master_Test extends DriverFactory {
 
         pPage.setSalesOrg("ID51");
         pPage.setCustomerName("Life Easy Customer");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("Life Easy Customer", "Test", "002");
+        int row2 = pPage.getRow("Life Easy Customer", "TEST", "002");
         AssertJUnit.assertFalse("Forced Enrichment Products Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -6052,11 +6167,11 @@ public class Master_Test extends DriverFactory {
         System.out.println("Delete pressed. Checking item is removed...");
 
         pPage.setCustomerName("Life Easy Customer");
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("Life Easy Customer", "Test", "002");
+        int row3 = pPage.getRow("Life Easy Customer", "TEST", "002");
         AssertJUnit.assertTrue("Forced Enrichment Products Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
@@ -6110,52 +6225,17 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
-        pPage.setBrand("astra");
+        //Checking any Supply Plants that match the test criteria
+        System.out.println("Checking if any  Supply Plants that match the test criteria");
 
+        pPage.setBrand("TEST");
+        pPage.setSupplyPlant("TEST");
         System.out.println("Filter criteria entered. Listing records...");
-
         pPage.pressSearch();
         pPage.waitForElement();
+        pPage.deleteSupplyPlants();
 
-        System.out.println("Records listed. Checking filtration...");
-
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(4)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Supply Plants Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "astra", recordField, 2));
-
-        try {
-            pPage.setBrand("Test");
-            pPage.setTicket("000");
-            pPage.pressSearch();
-            pPage.waitForElement();
-            int row4 = pPage.getRow2("Test", "000");
-            System.out.println(row4);
-                System.out.println("Deleting old unedited record...");
-                pPage.pressDelete(row4);
-                pPage.waitForLoad();
-
-        } catch (Exception e) {
-            System.out.println("Old unedited record to be deleted not found");
-        }
-
-        try {
-            pPage.setBrand("Test");
-            pPage.setTicket("002");
-            pPage.pressSearch();
-            pPage.waitForElement();
-            int row3 = pPage.getRow2("Test", "002");
-            System.out.println(row3);
-                System.out.println("Deleting old edited record...");
-                pPage.pressDelete(row3);
-                pPage.waitForLoad();
-
-        } catch (Exception e) {
-            System.out.println("Old edited record to be deleted not found");
-        }
-
-        System.out.println("Filtration as expected. Creating new Supply Plant...");
+        //Creating the test Supply Plant
 
         Mst_AddSupplyPlantPage addPage = pPage.pressNewSupplyPlant();
         addPage.waitForElement();
@@ -6175,7 +6255,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering details...");
 
         addPage.setDeliveryPlant("ABCMut");
-        addPage.setBrand("Test");
+        addPage.setBrand("TEST");
         addPage.setTicket("000");
         addPage.setMUMType("Vicone");
         addPage.setSupplyPlant("TEST");
@@ -6187,15 +6267,60 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("ABCMut", "Test", "000", "TEST");
+        int row = pPage.getRow("ABCMut", "TEST", "000", "TEST");
 
         AssertJUnit.assertFalse("Supply Plants Page: Supply Plant not present in table after creation", row == -1);
 
-        System.out.println("Record found. Editing record...");
+        System.out.println("Record found.");
+
+        //Checking filtration
+
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(4)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Supply Plants Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "TEST", recordField, 2));
+
+
+//        try {
+//            pPage.setBrand("TEST");
+//            pPage.setTicket("000");
+//            pPage.pressSearch();
+//            pPage.waitForElement();
+//            int row4 = pPage.getRow2("TEST", "000");
+//            System.out.println(row4);
+//                System.out.println("Deleting old unedited record...");
+//                pPage.pressDelete(row4);
+//                pPage.waitForLoad();
+//
+//        } catch (Exception e) {
+//            System.out.println("Old unedited record to be deleted not found");
+//        }
+//
+//        try {
+//            pPage.setBrand("TEST");
+//            pPage.setTicket("002");
+//            pPage.pressSearch();
+//            pPage.waitForElement();
+//            int row3 = pPage.getRow2("TEST", "002");
+//            System.out.println(row3);
+//                System.out.println("Deleting old edited record...");
+//                pPage.pressDelete(row3);
+//                pPage.waitForLoad();
+//
+//        } catch (Exception e) {
+//            System.out.println("Old edited record to be deleted not found");
+//        }
+
+
+
+        System.out.println("Editing record...");
 
         Mst_EditSupplyPlantPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -6223,11 +6348,11 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("ABCMut", "Test", "002", "TEST");
+        int row2 = pPage.getRow("ABCMut", "TEST", "002", "TEST");
         AssertJUnit.assertFalse("Supply Plants Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -6237,11 +6362,11 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("ABCMut", "Test", "002", "TEST");
+        int row3 = pPage.getRow("ABCMut", "TEST", "002", "TEST");
         AssertJUnit.assertTrue("Supply Plants Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
@@ -6293,24 +6418,18 @@ public class Master_Test extends DriverFactory {
 
         pPage.checkFields();
 
-        System.out.println("Fields checked. Entering filter criteria...");
+        System.out.println("Fields checked.");
 
-        pPage.setBrand("astra");
-
-        System.out.println("Filter criteria entered. Listing records...");
-
+        //Check if any Dye matches the test criteria and delete it
+        System.out.println("Check if any Dye Lot matches the test criteria");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
+        pPage.deleteDyeLot();
 
-        System.out.println("Records listed. Checking filtration...");
+        //Creating Dye test lot
 
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(4)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Dye Lot Multiples Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "astra", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Dye Lot Multiple...");
+        System.out.println("Creating new Dye Lot Multiple...");
 
         Mst_AddDLMPage addPage = pPage.pressNewDLM();
         addPage.waitForElement();
@@ -6330,7 +6449,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering details...");
 
         addPage.setSalesOrg("ID51");
-        addPage.setBrand("Test");
+        addPage.setBrand("TEST");
         addPage.setTicket("000");
         addPage.setLength("5000");
         addPage.setFinish("STANDARD");
@@ -6346,11 +6465,29 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
+
+        System.out.println("Entering filter criteria...");
+        System.out.println("Filter criteria entered. Listing records...");
+
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("ID51", "Test", "000", "3");
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(4)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Dye Lot Multiples Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "TEST", recordField, 2));
+
+        System.out.println("Filtration as expected.");
+
+        pPage.setBrand("TEST");
+        pPage.pressSearch();
+        pPage.waitForElement();
+
+        int row = pPage.getRow("ID51", "TEST", "000", "3");
 
         AssertJUnit.assertFalse("Dye Lot Multiples Page: Dye Lot Multiple not present in table after creation", row == -1);
 
@@ -6382,11 +6519,11 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("ID51", "Test", "000", "5");
+        int row2 = pPage.getRow("ID51", "TEST", "000", "5");
         AssertJUnit.assertFalse("Dye Lot Multiples Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -6396,11 +6533,11 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setBrand("Test");
+        pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("ID51", "Test", "000", "5");
+        int row3 = pPage.getRow("ID51", "TEST", "000", "5");
         AssertJUnit.assertTrue("Dye Lot Multiples Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
@@ -6758,21 +6895,19 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering filter criteria...");
 
         pPage.setCustomerName(DataItems.custDetails[0]);
-
+        pPage.setBrand("ASTRA");
+        pPage.setShade("BLACK");
         System.out.println("Filter criteria entered. Listing records...");
 
         pPage.pressSearch();
+
         pPage.waitForElement();
 
-        System.out.println("Records listed. Checking filtration...");
+        //Deleting any previously created Allowed Quantities for the client
+        System.out.println("Checking if any Allowed Quantities matches the test criteria");
+        pPage.deleteAq();
 
-        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
-        String loc2 = ") > td:nth-child(2)";
-        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
-
-        AssertJUnit.assertTrue("Allowed Quantities Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "Life Easy Customer", recordField, 2));
-
-        System.out.println("Filtration as expected. Creating new Allowed Quantity...");
+        //Add new entry for the client after all entries are cleared
 
         Mst_AddAllowedQuantityPage addPage = pPage.pressNewAllowedQty();
         addPage.waitForElement();
@@ -6803,18 +6938,34 @@ public class Master_Test extends DriverFactory {
         addPage.pressSave();
         pPage.waitForElement();
 
-        System.out.println("Saved. Checking record appears...");
+        //checking filtration
+        System.out.println("Entering filter criteria...");
 
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setCustomerName(DataItems.custDetails[0]);
+
+        System.out.println("Filter criteria entered. Listing records...");
+
         pPage.pressSearch();
+
         pPage.waitForElement();
 
+        System.out.println("Records listed. Checking filtration...");
+
+        String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
+        String loc2 = ") > td:nth-child(2)";
+        By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
+
+        AssertJUnit.assertTrue("Allowed Quantities Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "Life Easy Customer", recordField, 2));
+
+        //checking the new entry data
         int row = pPage.getRow("ASTRA", "9");
 
         AssertJUnit.assertFalse("Allowed Quantities Page: Allowed Quantity not present in table after creation", row == -1);
 
         System.out.println("Record found. Editing record...");
 
+
+        //edit the new entry data
         Mst_EditAllowedQuantityPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
 
@@ -6839,26 +6990,25 @@ public class Master_Test extends DriverFactory {
         editPage.pressSave();
         pPage.waitForElement();
 
+        //checking record is updated
         System.out.println("Saved. Checking record is updated...");
 
         pPage.setCustomerName("Life Easy Customer");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("astra", "15");
+        int row2 = pPage.getRow("ASTRA", "15");
         AssertJUnit.assertFalse("Allowed Quantities Page: Edited changes are not applied in table", row2 == -1);
 
+        //deleting record
         System.out.println("Record updated. Deleting record...");
 
         pPage.pressDelete(row2);
 
+        //checking record is deleted
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setCustomerName("Life Easy Customer");
-        pPage.pressSearch();
-        pPage.waitForElement();
-
-        int row3 = pPage.getRow("astra", "15");
+        int row3 = pPage.getRow("ASTRA", "15");
         AssertJUnit.assertTrue("Allowed Quantities Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
@@ -7121,7 +7271,7 @@ public class Master_Test extends DriverFactory {
         addPage.setAddress("Test House");
         addPage.setStreet("Test Lane");
         addPage.setCity("TestVille");
-        addPage.setState("Test");
+        addPage.setState("TEST");
         addPage.setZipCode("555666");
         addPage.setCountryCode("ID");
         addPage.setHubName("IDH001");
@@ -7237,6 +7387,13 @@ public class Master_Test extends DriverFactory {
         System.out.println("Checking fields...");
 
         pPage.checkFields();
+        //If the any cabinet matches the test filter criteria delete it
+        System.out.println("Checking if Cabinet name is already used");
+        pPage.setCabinetCode("AutoGenerated");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        pPage.deleteCabinet();
+
 
         System.out.println("Fields checked. Entering filter criteria...");
 
@@ -7277,7 +7434,7 @@ public class Master_Test extends DriverFactory {
         addPage.setSalesOrg("ID51");
         addPage.setShipToParty("CCE HUB OFFICES");
         addPage.setCabinetCode("AutoGenerated");
-        addPage.setBrand("astra", 0);
+        addPage.setBrand("ASTRA", 0);
         addPage.setTicket("000", 0);
         addPage.setShade("C1711", 0);
         addPage.setMUMType("Cone", 0);
@@ -7297,6 +7454,19 @@ public class Master_Test extends DriverFactory {
         int row = pPage.getRow("AutoGenerated");
 
         AssertJUnit.assertFalse("Cabinets Page: Cabinet not present in table after creation", row == -1);
+
+        System.out.println("Record found. Editing record...");
+
+        //If the any cabinet matches the test filter criteria delete it
+        System.out.println("Checking if Cabinet name is already used");
+        pPage.setCabinetCode("Edited");
+        pPage.pressSearch();
+        pPage.waitForElement();
+        pPage.deleteCabinet();
+
+        pPage.setCabinetCode("AutoGenerated");
+        pPage.pressSearch();
+        pPage.waitForElement();
 
         System.out.println("Record found. Editing record...");
 
@@ -7669,6 +7839,10 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Creating new Customer Private Articles...");
 
+        //Checking if Private Customer Article that matches the test criteria was already created and if it does delete it
+        pPage.setSalesOrg("ID51");
+        pPage.deleteCustPrivateArticle();
+
         Mst_AddCustomerPrivateArticlesPage addPage = pPage.pressNewPrivateArticle();
         addPage.waitForElement();
 
@@ -7691,7 +7865,7 @@ public class Master_Test extends DriverFactory {
         addPage.setSalesOrg("ID51");
         addPage.setCustomerName("Life Easy Customer");
         addPage.setArticle("8754180");
-        addPage.setBrand("astra");
+        addPage.setBrand("ASTRA");
         addPage.pressEnable();
 
 

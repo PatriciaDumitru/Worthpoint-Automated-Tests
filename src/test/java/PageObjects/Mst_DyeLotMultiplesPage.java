@@ -195,5 +195,18 @@ public class Mst_DyeLotMultiplesPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
     }
-    
+
+    public void deleteDyeLot() {
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Test Dye Lot found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setBrand("TEST");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Test Dye Lot cleared");
+    }
 }

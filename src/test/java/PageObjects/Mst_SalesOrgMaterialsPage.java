@@ -20,6 +20,8 @@ public class Mst_SalesOrgMaterialsPage extends WBA_MasterDataPage {
     By plantField = By.id("s2id_filterPlantId");
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
     By newSalesOrgMatButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
+
+    By brandField = By.id("s2id_filterBrandId");
     
     public Mst_SalesOrgMaterialsPage(WebDriver driver) {
         super(driver);
@@ -155,5 +157,27 @@ public class Mst_SalesOrgMaterialsPage extends WBA_MasterDataPage {
     public void waitForElement() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(articleField));
     }
-    
+
+    public Mst_AddSalesOrgMaterialPage setBrand(String item) {
+        CommonTask.setSearchField(driver, brandField, item);
+        return new Mst_AddSalesOrgMaterialPage(driver);
+    }
+
+    public void deleteSlsOrgMat(){
+
+            int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+            System.out.println(nrOfEntry - 1 +" Sales org material found with the name Test ");
+
+            for(int i = nrOfEntry;i > 1; i--)
+            {
+                pressDelete(2);
+                setSalesOrg("ID51");
+                setBrand("TEST");
+                pressSearch();
+                waitForElement();
+            }
+            System.out.println("Sales org material with Test criteria cleared");
+
+    }
+
 }

@@ -78,6 +78,7 @@ public class Mst_AddCustBrandPage extends WBA_BasePage {
     public void waitForElement(){
         WebElement coatsBrand = Wait.clickable(driver,coatsBrandField);
     }
-    
+
+
 }
 

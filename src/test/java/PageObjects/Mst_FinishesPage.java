@@ -152,5 +152,15 @@ public class Mst_FinishesPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement length = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(finishNameField));
     }
-    
+    public void deleteFinish(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Finish name is already used");
+            System.out.println("Deleting current Finish...");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Finish cleared");
+    }
 }

@@ -113,4 +113,6 @@ public class Mst_AddCustomerPrivateArticlesPage extends WBA_BasePage {
         WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
     }
 
+
+
 }

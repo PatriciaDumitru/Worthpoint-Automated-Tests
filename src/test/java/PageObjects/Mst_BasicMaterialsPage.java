@@ -149,5 +149,20 @@ public class Mst_BasicMaterialsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement brand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(brandField));
     }
-    
+
+    //Checking if the Basic material used for testing already exists and deleting it
+    public void deleteBasicMaterial(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Basic materials found with the name Test ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setBrand("TEST");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Basic materials with Test name cleared");
+    }
+
 }

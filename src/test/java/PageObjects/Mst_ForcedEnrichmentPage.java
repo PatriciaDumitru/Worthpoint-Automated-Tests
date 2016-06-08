@@ -182,5 +182,19 @@ public class Mst_ForcedEnrichmentPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
     }
-    
+
+    public void deleteFrceEnrichProduct() {
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Force enrich product found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setSalesOrg("ID51");
+            setBrand("TEST");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Force enrich product cleared");
+    }
 }

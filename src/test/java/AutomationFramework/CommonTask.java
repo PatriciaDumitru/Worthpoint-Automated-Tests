@@ -267,10 +267,12 @@ public class CommonTask {
         
         //Wait for the field to be available
         WebElement element = Wait.clickable(driver,fieldLocator);
-        
+
         //Click the field
     	element.click();
 
+        //Clear field
+        element.clear();
         
         //Enter "item" into the field
     	element.sendKeys(item);

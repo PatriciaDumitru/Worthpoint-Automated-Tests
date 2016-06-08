@@ -174,5 +174,21 @@ public class Mst_LengthOffersPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement plantName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
     }
-    
+
+    public void deleteLengthOffer() {
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Length offer product found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setPlantName("ID10");
+            setBrand("TEST");
+            setTicket("000");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Length offer product cleared");
+    }
+
 }
