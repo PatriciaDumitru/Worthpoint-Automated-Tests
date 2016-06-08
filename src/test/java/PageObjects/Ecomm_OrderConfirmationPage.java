@@ -283,6 +283,8 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             System.out.print(e);
         }
 
+
+
         //Sometimes unexpected alerts appear. Catch these and accept by default
         boolean alertPresence;
         try {

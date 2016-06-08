@@ -1287,7 +1287,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         System.out.println("Checking no order was created...");
 
-        Ecomm_OutstandingOrdersPage outPage = errorPage.clickOutstandingOrders();
+        driver.get(DataItems.outstadingOrdersURL);
+        Ecomm_OutstandingOrdersPage outPage = new Ecomm_OutstandingOrdersPage(driver);
         outPage.waitForLoad();
 
         System.out.println("Outstanding orders page reached. Searching for record...");
@@ -1644,7 +1645,9 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Logged in. Navigating to Pending Approval List Page...");
 
         driver.navigate().refresh();
-        Ecomm_PendingApprovalListPage pendPage = mainPage.clickPendingApprovalListPageApprover();
+        driver.get(DataItems.pendingApprovelURL);
+        //mainPage.clickPendingApprovalListPageApprover();
+        Ecomm_PendingApprovalListPage pendPage = new Ecomm_PendingApprovalListPage(driver);
         pendPage.waitForElement();
 
         System.out.println("Pending Approval page reached. Finding order...");
@@ -2891,12 +2894,13 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         Ecomm_MainPage mainPage2 = base2.setUp("", "", DataItems.approverUsername, DataItems.approverPassword);
         mainPage2.waitForLoad();
 
-        Ecomm_PendingApprovalListPage pendPage2 = mainPage2.clickPendingApprovalListPageApprover2();
+        driver.get(DataItems.pendingApprovelURL);
+        Ecomm_PendingApprovalListPage pendPage2 = new Ecomm_PendingApprovalListPage(driver);
         pendPage2.waitForElement();
 
         System.out.println("Pending Approval List Page reached. Finding order...");
 
-        int orderRow2 = pendPage2.getRowAlt(DataItems.lastUsedPO);
+        int orderRow2 = pendPage2.getRow(DataItems.lastUsedPO);
 
         AssertJUnit.assertFalse("Pending Approval List Page: Order (PO: "+DataItems.lastUsedPO+") not found in table for Approver account",orderRow2==-1);
 

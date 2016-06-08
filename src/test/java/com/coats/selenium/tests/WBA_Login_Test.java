@@ -61,7 +61,7 @@ public class WBA_Login_Test extends DriverFactory {
         //new driver to perform test
         WebDriver driver = getDriver();
         //navigate to QA site
-        driver.get("https://qawcs.coatscolourexpress.com");
+        driver.get(DataItems.targetURL);
         //maximise the window
         driver.manage().window().maximize();
         
