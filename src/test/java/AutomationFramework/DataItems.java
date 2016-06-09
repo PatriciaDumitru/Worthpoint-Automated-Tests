@@ -10,7 +10,7 @@ import java.lang.reflect.Array;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test";
+    public static String targetURL ="http://172.18.5.40/" + "qa_p4i";
     //"http://172.18.5.40/"
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
@@ -47,8 +47,8 @@ public class DataItems {
     public static String lastUsedFilepath = ""; //Holds last used filepath when generating files using FileFactory
 
     //Login Credentials
-    public static String validCoatsUsername = "joe.sykes@coats.com"; //"admin@coats.com";     //"joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
-    public static String validCoatsUsername2 ="joe.sykes@coats.com"; //"samson.vetharaj@coats.com";
+    public static String validCoatsUsername = "admin@coats.com"; //"admin@coats.com";     //"joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
+    public static String validCoatsUsername2 ="admin@coats.com"; //"samson.vetharaj@coats.com";
     public static String validCoatsPassword = "password"; //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
 
