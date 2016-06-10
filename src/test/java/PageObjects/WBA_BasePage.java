@@ -59,7 +59,7 @@ public class WBA_BasePage {
         static By outstandingOrdersTabApprover = By.cssSelector("#topnav > li:nth-child(1)");
         static By outstandingOrdersTabApprover2 = By.cssSelector("#topnav > li:nth-child(2)");
         static By pendingApprovalSubTabApprover = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
-        static By pendingApprovalSubTabApprover2 = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
+        static By pendingApprovalSubTabApprover2 = By.xpath("//*[@id=\"topnav\"]/li[2]/div/div/ul/li/a[contains(text(),'Pending Approval List')]");//By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(3)");
         static By deniedOrderSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(6)");
         static By uploadDraftErrorSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(7)");
         

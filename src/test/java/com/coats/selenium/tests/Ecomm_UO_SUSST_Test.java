@@ -278,7 +278,7 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
         System.out.println("Upload pressed. Choosing new mapping...");
         
         //Press "no" to alert, continuing to mapping page
-        Ecomm_MappingPage mapPage = alert.pressYes();
+        Ecomm_MappingPage mappingPage = new Ecomm_MappingPage(driver);
         
         System.out.println("Mapping page loaded. Setting mapping...");
         
@@ -308,7 +308,7 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
                                 {"Customer Price","N/A"}
                                 };
         
-        Ecomm_MappingPage mappedPage = mapPage.setMappingNotCustomer(mapping);
+        Ecomm_MappingPage mappedPage = mappingPage.setMappingNotCustomer(mapping);
         
         System.out.println("Mapping set. Confirming map..."); 
         
@@ -394,7 +394,7 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
                     {"Customer Price","N/A"}
             };
 
-            mapPage.setMappingNotCustomer(mapping);
+            //mapPage.setMappingNotCustomer(mapping);
 
             System.out.println("Mapping set. Confirming...");
 
