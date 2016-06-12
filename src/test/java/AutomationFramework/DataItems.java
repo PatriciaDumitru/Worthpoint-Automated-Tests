@@ -10,7 +10,7 @@ import java.lang.reflect.Array;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="ttps://qawcs.coatscolourexpress.com/" + "qa_p4i";
+    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "qa_p4i";
     //"http://172.18.5.40/"
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
