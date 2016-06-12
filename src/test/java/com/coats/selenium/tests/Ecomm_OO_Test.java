@@ -571,6 +571,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         mainPage.waitForLoad();
 
         PreFlows pf = new PreFlows();
+        pf.activateCallOffOrderForSalesOrg(driver, "ID51");
         pf.deActivateCallOffOrderForCustomer(driver,"Angler Test Indonesia");
 
         System.out.println("Navigating to Masters...");

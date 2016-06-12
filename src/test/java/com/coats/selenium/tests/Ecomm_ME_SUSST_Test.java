@@ -2004,7 +2004,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Exit view
         orderView.exitView();
-        orderView.waitForInvisibility();
+        //orderView.waitForInvisibility();
         driver.switchTo().defaultContent();
         
         System.out.println("View closed.");

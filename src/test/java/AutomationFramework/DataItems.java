@@ -10,7 +10,7 @@ import java.lang.reflect.Array;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="http://172.18.5.40/" + "qa_p4i";
+    public static String targetURL ="ttps://qawcs.coatscolourexpress.com/" + "qa_p4i";
     //"http://172.18.5.40/"
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
@@ -200,7 +200,7 @@ public class DataItems {
     public static String shadeCode2 = "C9455";
     public static int quantity2 = 6;
 
-    public static String article3 = "8754090";
+    public static String article3 = "8754180";
     public static String brand3 = "ASTRA";
     public static String ticket3 = "090";
     public static String length3 = "5000";
@@ -248,7 +248,7 @@ public class DataItems {
     public static String conOrdLength = "5000";
     public static String conOrdFinish = "STANDARD";
     public static String conOrdShadeCode = "WHITE";
-    public static String conOrdShadeCode2 = "BLACKD";
+    public static String conOrdShadeCode2 = "BLACK";
     public static int conOrdQty = 1;
     public static String conOrdPO = "40000992";
     //public static String conOrdLineRef = "10";
@@ -312,7 +312,7 @@ public class DataItems {
     public static String sampOrderNo = "1129084";
     public static String sampCustName = "Life Easy Customer";
     public static String sampRequester = "approver 1 test";
-    public static String sampSalesOrg = "ID52";
+    public static String sampSalesOrg = "ID51";
 
     //Sample bulk order number
     public static String bulkOrderNo = "50200052";
