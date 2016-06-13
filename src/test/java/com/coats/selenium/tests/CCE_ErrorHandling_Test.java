@@ -143,7 +143,7 @@ public class CCE_ErrorHandling_Test extends DriverFactory {
     }
 
     @Test //	ER_MF_XML_03: Error Handling Mandatory Field XML with uploaded xml file
-            (groups = {"CCE"})
+            (groups = {"CCE"}, enabled = false)
     public void ER_MF_XML_03() throws Exception {
         ER_MF_XML_01();
 

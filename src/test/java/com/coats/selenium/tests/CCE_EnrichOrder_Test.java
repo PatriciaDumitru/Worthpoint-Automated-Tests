@@ -160,7 +160,7 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         WebDriver driver = getDriver();
         
         Cce_Base base = new Cce_Base(driver);
-        CCE_MainPage mainPage = base.setUp("Enrich Orders EO2: Lab and WHS selection", "G_CCE_EO_1");
+        CCE_MainPage mainPage = base.setUp("Enrich Orders EO2: Lab and WHS selection", "G_CCE_EO_2");
 
         mainPage.waitForElement();
 

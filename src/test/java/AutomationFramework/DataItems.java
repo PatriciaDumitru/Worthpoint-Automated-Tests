@@ -367,7 +367,7 @@ public class DataItems {
 
     //CSA Data
     public static String notFound = "No matches found";
-    public static String cceArticleFromBrandAstra = "8720025";
+    public static String cceArticleFromBrandAstra = "8754180";
     public static String cceArticleFromBrandStarNylon = "NKW2030";
     public static String cceArticleFromBrandAdmiral = "NKW2030";
     public static String lifeEasyCustomer = "Life Easy Customer";

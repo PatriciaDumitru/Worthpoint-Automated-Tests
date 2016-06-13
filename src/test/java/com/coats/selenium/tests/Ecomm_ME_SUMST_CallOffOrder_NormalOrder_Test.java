@@ -172,7 +172,6 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
         pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 

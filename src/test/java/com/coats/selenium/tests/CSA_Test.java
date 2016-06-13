@@ -66,7 +66,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA Article CustomerA, check Article with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA"}, enabled = false)
     public void CSA02() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -96,7 +96,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA Brand CustomerA, check Brand with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA"}, enabled = false)
     public void CSA03() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -126,7 +126,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA BrandA CustomerA and Article from another brand to the same customer , check Article from Brand the other brand, and brand with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA"}, enabled = false)
     public void CSA04() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -161,7 +161,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant ID10, CSA Brand CustomerA, check Brand with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA"}, enabled = false)
     public void CSA05() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -205,7 +205,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA Brand CustomerA, check Article from Brand with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA"}, enabled = false)
     public void CSA06() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -235,7 +235,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant ID10, CSA Article CustomerA, check Article with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA"}, enabled = false)
     public void CSA07() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -265,7 +265,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant All, CSA Brand CustomerA, check Brand with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA"}, enabled = false)
     public void CSA08() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -296,7 +296,7 @@ public class CSA_Test extends DriverFactory {
 
 
     @Test //Delivery Plant Select, CSA BrandA CustomerA and Article from another brand to the same customer , check Article from Brand the other brand, and brand with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA"}, enabled = false)
     public void CSA09() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -376,7 +376,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA CustomerA ArticleA ArticleB, check Articles with another Customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA"}, enabled = false)
     public void CSA10_2() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -412,7 +412,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery plant Select, CSA CustomerA BrandA, check article is present after CSA deletion with another customer
-            (groups = {"CCE", "CSA"})
+            (groups = {"CCE", "CSA"}, enabled = false)
     public void CSA10_3() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
