@@ -29,6 +29,38 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         Cce_Base base = new Cce_Base(driver);
         CCE_MainPage mainPage = base.setUp("Enrich Orders EO1: Page and filter checks, Hub SOS selection", "G_CCE_EO_1");
 
+        CCE_OrderSamplesPage orderPage = mainPage.pressOrderSamples();
+        orderPage.waitForElement();
+
+        System.out.println("Order Samples page reached. Entering Customer details...");
+
+        orderPage.setCustName(DataItems.custDetails[0]);
+        orderPage.setRequestor(DataItems.custDetails[2]);
+
+        System.out.println("Customer details entered. Submitting prompt...");
+
+        CCE_AddOrderPage aoPage = orderPage.pressSubmit();
+        aoPage.waitForElement();
+
+        System.out.println("Prompt submitted. Setting ship to and line details...");
+
+        aoPage.setShipToParty(DataItems.custDetails[1]);
+        aoPage.setArticle(DataItems.article, 0);
+        aoPage.setShadeCode(DataItems.shadeCode, 0);
+        aoPage.setMUMType(DataItems.copMUM, 0);
+        aoPage.setCustomerRef(0);
+        aoPage.setRequestType(DataItems.sewing, 0);
+        aoPage.setPurposeType(DataItems.bulkPurpose, 0);
+        aoPage.setQuantity(1, 0);
+
+        System.out.println("Line details entered. Submitting order...");
+
+        CCE_OrderStatusPage statusPage = aoPage.pressSubmit();
+        statusPage.waitForElement();
+
+
+        System.out.println("Order Status Page loaded. Retrieving Order No. for order...");
+
         mainPage.waitForElement();
         
         System.out.println("Navigating to Manual Enrich Page...");
@@ -131,11 +163,44 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         CCE_MainPage mainPage = base.setUp("Enrich Orders EO2: Lab and WHS selection", "G_CCE_EO_1");
 
         mainPage.waitForElement();
+
+
+        CCE_OrderSamplesPage orderPage = mainPage.pressOrderSamples();
+        orderPage.waitForElement();
+
+        System.out.println("Order Samples page reached. Entering Customer details...");
+
+        orderPage.setCustName(DataItems.custDetails[0]);
+        orderPage.setRequestor(DataItems.custDetails[2]);
+
+        System.out.println("Customer details entered. Submitting prompt...");
+
+        CCE_AddOrderPage aoPage = orderPage.pressSubmit();
+        aoPage.waitForElement();
+
+        System.out.println("Prompt submitted. Setting ship to and line details...");
+
+        aoPage.setShipToParty(DataItems.custDetails[1]);
+        aoPage.setArticle(DataItems.article, 0);
+        aoPage.setShadeCode(DataItems.shadeCode, 0);
+        aoPage.setMUMType(DataItems.copMUM, 0);
+        aoPage.setCustomerRef(0);
+        aoPage.setRequestType(DataItems.sewing, 0);
+        aoPage.setPurposeType(DataItems.bulkPurpose, 0);
+        aoPage.setQuantity(1, 0);
+
+        System.out.println("Line details entered. Submitting order...");
+
+        CCE_OrderStatusPage statusPage = aoPage.pressSubmit();
+        statusPage.waitForElement();
+
+
+        System.out.println("Order Status Page loaded. Retrieving Order No. for order...");
         
         System.out.println("Navigating to Order Samples Page...");
         
         //Create an order so that it is ensured that only a single line is present when enriching (otherwise test will fail)
-        CCE_OrderSamplesPage orderPage = mainPage.pressOrderSamples();
+        CCE_OrderSamplesPage mmainPage = mainPage.pressOrderSamples();
         orderPage.waitForElement();
         
         orderPage.setCustName(DataItems.custDetails[0]);
@@ -157,7 +222,7 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         
         System.out.println("Product details entered. Submitting order...");
         
-        CCE_OrderStatusPage statusPage = addPage.pressSubmit();
+        addPage.pressSubmit();
         statusPage.waitForElement();
         
         System.out.println("Order submitted.");
