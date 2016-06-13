@@ -2,6 +2,7 @@
 package PageObjects;
 
 import AutomationFramework.CommonTask;
+import AutomationFramework.DataItems;
 import AutomationFramework.Wait;
 import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
@@ -127,7 +128,7 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
     }
 
     public Ecomm_ProductAvailabilityCheckPage  waitForBrand() {
-        Wait.textPresentInput(driver,brandField,"astra");
+        Wait.textPresentInput(driver,brandField,DataItems.expBrand);
         return this;
     }
 
@@ -135,7 +136,7 @@ public class Ecomm_ProductAvailabilityCheckPage extends WBA_BasePage {
         WebElement element=driver.findElement(By.id("BrandName"));
         String elementval = element.getAttribute("value");
         System.out.print(elementval);
-        Wait.textPresentInput2(driver,elementval,"astra");
+        Wait.textPresentInput2(driver,elementval, DataItems.expBrand);
         return this;
     }
 

@@ -278,8 +278,8 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
         System.out.println("Upload pressed. Choosing new mapping...");
         
         //Press "no" to alert, continuing to mapping page
-        Ecomm_MappingPage mappingPage = new Ecomm_MappingPage(driver);
-        
+        Ecomm_MappingPage mappingPage = alert.pressYes();
+
         System.out.println("Mapping page loaded. Setting mapping...");
         
         //Mapping details
@@ -343,6 +343,10 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
     @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at confirmation page
             (groups = {"eComm", "eComm_Orders"})
     public void SUSST_OA_OAP_URT() throws Exception {
+        /**
+         * This test requires "Enabled Approval Workflow" for both Sales Org and Customer: This case ID51 and Angler Test Indonesia
+         */
+
             //new chrome driver
             WebDriver driver = getDriver();
 

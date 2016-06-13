@@ -19,7 +19,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     By custPOField = By.id("filterBulkOrderPoNumber");
     By createDateFromField = By.id("filterBulkOrderCreatedFrom");
     By createDateToField = By.id("filterBulkOrderCreatedTo");
-    By searchButton = By.cssSelector("#freetext > table > tbody > tr > td.searchreset_buttons > div > input");
+    By searchButton = By.cssSelector("#FilterIndexForm > div.grid_12 > table > tbody > tr:nth-child(4) > td > div > input");//("#freetext > table > tbody > tr > td.searchreset_buttons > div > input");
     By resetButton = By.cssSelector("#FilterIndexForm > div.grid_12 > table > tbody > tr:nth-child(4) > td > a");
     By viewButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(1) > a");
     By editButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2)");
@@ -30,7 +30,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     By denyButton = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > div > input[type=\"submit\"]:nth-child(2)");
     By recordCountField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > dl > dt > span.left");
     By formLocator = By.id("ApprovalOrdersTickForm");
-    
+
     public Ecomm_PendingApprovalListPage(WebDriver driver) {
         super(driver);
     }
@@ -214,7 +214,7 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     public int getRow(String PONumber) {
         WebElement head = Wait.visible(driver,custPOHead);
         AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",head.getText().contains("Customer PO No."));
-        
+
         By recordsField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > dl > dt > span.left");
         int count = getRecordCount(recordsField);
         int tableCount = (count > 10) ? 10 : count;
@@ -232,17 +232,19 @@ public class Ecomm_PendingApprovalListPage extends WBA_BasePage {
     
     public int getRowAlt(String PONumber) {
         //Alternative method. Use for approver account (mail.kamleshpatidar@gmail.com), as locators differ between accoutns
-        By headLocator = By.cssSelector("#FilterOutstandingOrderForm > div.container > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(5) > label");
+        By headLocator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > thead > tr:nth-child(1) > th:nth-child(3) > label");
+
         WebElement head = Wait.visible(driver,headLocator);
         AssertJUnit.assertTrue("Pending Approval List Page: Customer PO No column has moved",head.getText().contains("Customer PO No."));
-        
+
         By recordsField = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > div > dl > dt > span.left");
+
         int count = getRecordCount(recordsField);
         int tableCount = (count > 10) ? 10 : count;
-        
-        for (int i = 1; i <= tableCount; i++) {
-            By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(4)");     
-            
+
+        for (int i = 2; i <= tableCount; i++) {
+            By locator = By.cssSelector("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child("+i+") > tr > td:nth-child(4)");//("#ApprovalOrdersTickForm > div.tbl-toggle > div > div.scrollTableContainer.scroll-pane > table > tbody:nth-child(2) > tr:nth-child("+i+") > td:nth-child(4)");
+
             WebElement cell = Wait.visible(driver,locator);
             if (cell.getText().equals(PONumber)) {
                 return i;

@@ -998,6 +998,6 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
     //@Test //enable this only when you need to create a file to use in manual tests
     public void testCreateFile123() throws Exception {
-        FileFactory.createFile("SUSST",4,"EOwS","",true);
+        FileFactory.createFile("SUSST", 1, "CO", "", false);
     }
 }

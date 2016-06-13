@@ -141,11 +141,11 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         
         System.out.println("Page reached. Entering details...");
         
-        pacPage.setBrand("astra");
+        pacPage.setBrand(DataItems.expBrand);
         pacPage.setShadeCode(DataItems.expShadeCode);
         pacPage.setTicket("120");       
         pacPage.setQty("1");
-        pacPage.setFinish("STANDARD");
+        pacPage.setFinish(DataItems.expFinish);
        // pacPage.setLength("5000");
         
         System.out.println("Details entered. Searching for product...");

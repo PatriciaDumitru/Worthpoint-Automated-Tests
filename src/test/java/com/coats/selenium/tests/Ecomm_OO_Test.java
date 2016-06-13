@@ -293,7 +293,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Pending Approval List Page reached. Checking title...");
         
-        AssertJUnit.assertTrue("Pending Approval Page: Title not as expected",pendPage.getBreadcrumb().getText().equals("Orders | Outstanding"));
+        AssertJUnit.assertTrue("Pending Approval Page: Title not as expected",pendPage.getBreadcrumb().getText().equals("Orders | Pending Approval List"));
         
         System.out.println("Title checked");
         
@@ -304,7 +304,8 @@ public class Ecomm_OO_Test extends DriverFactory {
         //pendPage.checkFieldsRequester();
         
         System.out.println("Fields checked. Entering filter criteria...");
-        
+        System.out.println("Last used Po Number:"+DataItems.lastUsedPO);
+        System.out.println("Last used Po Number:"+DataItems.lastUsedPO);
         pendPage.setCustPOInput(DataItems.lastUsedPO);
         
         System.out.println("Filter criteria entered. Listing records...");
@@ -652,7 +653,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Logged in. Navigating to Pending Approval Page...");
         
-        Ecomm_PendingApprovalListPage pendPage3 = mainPage3.clickPendingApprovalListPageApprover();
+        Ecomm_PendingApprovalListPage pendPage3 = mainPage3.clickPendingApprovalListPageApprover2();
         pendPage3.waitForLoad();
         
         System.out.println("Pending page reached. Checking for records...");
@@ -667,7 +668,7 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Navigating to Denied Order Page...");
         
-        Ecomm_DeniedOrderPage doPage = mainPage2.clickDeniedOrderApprover();
+        Ecomm_DeniedOrderPage doPage = mainPage2.clickDeniedOrderApprover2();
         doPage.waitForElement();
         
         System.out.println("Denied Order Page reached. Checking title...");

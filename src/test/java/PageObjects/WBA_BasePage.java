@@ -178,7 +178,7 @@ public class WBA_BasePage {
 
     //Navigation headers specifically for requester/approver/alternative user types
         static By deniedOrderSubtabRequester = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(5)");
-        static By deniedOrderSubtabApprover = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3)");
+        static By deniedOrderSubtabApprover = By.xpath("//*[@id=\"topnav\"]/li[2]/div/div/ul/li/a[contains(text(),'Denied Order')]");//("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3)");
     
     
     public WBA_BasePage(WebDriver passedDriver) {
@@ -478,7 +478,21 @@ public class WBA_BasePage {
         //wait for menu to drop down
         WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(deniedOrderSubtabApprover)));
         action.click(driver.findElement(deniedOrderSubtabApprover)).build().perform();
-        
+
+        return new Ecomm_DeniedOrderPage(driver);
+    }
+
+    public Ecomm_DeniedOrderPage clickDeniedOrderApprover2() {
+        //Works specifically for requester account (autolifeeasy@coats.com)
+        //Wait for tab
+        WebElement waitForTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(outstandingOrdersTabApprover2)));
+
+        Actions action = new Actions(driver);
+        action.moveToElement(waitForTab).click().build().perform();
+        //wait for menu to drop down
+        WebElement waitForMenu = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(deniedOrderSubtabApprover)));
+        action.click(driver.findElement(deniedOrderSubtabApprover)).build().perform();
+
         return new Ecomm_DeniedOrderPage(driver);
     }
 

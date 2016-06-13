@@ -665,7 +665,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         
         System.out.println("Logged in. Navigating to Pending Approval List Page...");
 
-        Ecomm_PendingApprovalListPage pendPage2 = mainPage.clickPendingApprovalListPageApprover();
+        Ecomm_PendingApprovalListPage pendPage2 = mainPage.clickPendingApprovalListPageApprover2();
         pendPage2.waitForElement();
         
         System.out.println("Pending Approval page reached. Finding order...");
@@ -4128,7 +4128,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
             System.out.println("No error displayed");
         }
 
-        int row = appPage.getRow(DataItems.lastUsedPO);
+        int row = appPage.getRow(poNumber);
         AssertJUnit.assertFalse("Pending Approval List Page: Order does not appear after Send for Approval pressed", row == -1);
 
         String orderNo = appPage.getOrderNoSUMST(1);
