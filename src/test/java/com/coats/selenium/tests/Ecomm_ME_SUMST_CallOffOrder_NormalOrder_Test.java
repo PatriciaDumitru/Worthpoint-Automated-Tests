@@ -1856,7 +1856,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Logged in. Navigating to Pending Approval List Page...");
 
-        Ecomm_PendingApprovalListPage pendPage = mainPage.clickPendingApprovalListPageApprover();
+        Ecomm_PendingApprovalListPage pendPage = mainPage.clickPendingApprovalListPageApprover2();
         pendPage.waitForElement();
 
         System.out.println("Pending Approval page reached. Finding order...");
@@ -3111,7 +3111,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         Ecomm_MainPage mainPage2 = base2.setUp("", "",DataItems.approverUsername,DataItems.approverPassword);
         mainPage2.waitForLoad();
 
-        Ecomm_PendingApprovalListPage pendPage2 = mainPage2.clickPendingApprovalListPageApprover();
+        Ecomm_PendingApprovalListPage pendPage2 = mainPage2.clickPendingApprovalListPageApprover2();
         pendPage2.waitForElement();
 
         System.out.println("Pending Approval List Page reached. Finding order...");

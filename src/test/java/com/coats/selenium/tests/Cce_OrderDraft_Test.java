@@ -262,7 +262,7 @@ public class Cce_OrderDraft_Test extends DriverFactory {
         
         for (int i = 0; i < 3; i++) {
             //Wait for 10 seconds to allow the system to udpate
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         
             //Set filter to order no. as draft may not appear on first page when re-saved
             statusPage.setOrderNo(orderNo);

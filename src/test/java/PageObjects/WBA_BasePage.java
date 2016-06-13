@@ -658,9 +658,9 @@ public class WBA_BasePage {
 
     public CCE_UploadOrderSamplesPage pressUploadOrderSamplesRequester() {
 
-        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeader));
+        WebElement waitForHeader = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ordersHeaderRequester));
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(ordersHeader)).build().perform();
+        action.moveToElement(driver.findElement(ordersHeaderRequester)).build().perform();
         WebElement waitForSubTab = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(uploadOrderSamplesSubtab));
         action.click(driver.findElement(uploadOrderSamplesSubtab)).build().perform();
 

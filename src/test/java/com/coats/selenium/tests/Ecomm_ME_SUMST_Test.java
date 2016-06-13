@@ -47,6 +47,12 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set up returns a manual entry page to begin data entry
         Ecomm_MainPage eCommPage = susstTest4.setUp("MANUAL ENTRY SUMST1: Single line, Your Material Number with master data shade code", "G_OOC_ME_SUMST_1");
 
+        PreFlows pf = new PreFlows();
+        pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
+        pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
+
         System.out.println("Setup MasterData...");
 
         System.out.println("Navigating to Manual Entry...");
@@ -611,7 +617,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Product details entered. Pressing next...");
 
         //Press next
-        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNext();
+        Ecomm_OrderConfirmationPage orderConf = manualEntryPage.pressNextMOQ();
         orderConf.waitForElement();
 
         System.out.println("Order confirmation page reached. Submitting order...");
@@ -1287,8 +1293,8 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         System.out.println("Checking no order was created...");
 
-        driver.get(DataItems.outstadingOrdersURL);
         Ecomm_OutstandingOrdersPage outPage = new Ecomm_OutstandingOrdersPage(driver);
+        outPage.clickOutstandingOrders();
         outPage.waitForLoad();
 
         System.out.println("Outstanding orders page reached. Searching for record...");
