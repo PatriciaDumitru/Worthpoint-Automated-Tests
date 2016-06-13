@@ -56,6 +56,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
          By customerPONrMEField = By.id("BulkOrderPoNumber");
         //Line detail
         //Buttons
+        By alertDuplicatePOLocator = By.name("Ok");
         By nextButton = By.id("next");
         By ajustMOQField = By.xpath(".//*[@id='remove_0']/td[7]");
 
@@ -74,6 +75,19 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
 
     public Ecomm_MOQ_Methods_Page setSalesOrg(String item) {
         CommonTask.setInputField(driver, salesOrgIdField, item);
+        return this;
+    }
+
+    public Ecomm_MOQ_Methods_Page acceptDuplicatePO() {
+
+        //Wait for button to be clickable
+        WebElement btn = Wait.clickable(driver,alertDuplicatePOLocator);
+        //New action to click yes
+        Actions clickOk = new Actions(driver);
+        clickOk.click(btn).build().perform();
+
+        Alert alert = Wait.alert(driver);
+        alert.accept();
         return this;
     }
 
@@ -454,9 +468,15 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         //Click next
         Actions clickNext = new Actions(driver);
         clickNext.click(next).build().perform();
+
+
+        acceptDuplicatePO();
+        /*
         //Submit the alert
         Alert alert = Wait.alert(driver);
         alert.accept();
+
+        */
 
         //Sometimes additional alerts appear. Catch these, output their text, and accept by default
         boolean alertPresence;
@@ -473,9 +493,6 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         if (alertPresence) {
             driver.switchTo().alert().accept();
         }
-        if (alertPresence) {
-            driver.switchTo().alert().accept();
-        }
 
         return this;
     }
@@ -488,8 +505,7 @@ public class Ecomm_MOQ_Methods_Page extends WBA_BasePage {
         Actions clickNext = new Actions(driver);
         clickNext.click(next).build().perform();
         //Submit the alert
-        Alert alert = Wait.alert(driver);
-        alert.accept();
+        acceptDuplicatePO();
 
         //Sometimes additional alerts appear. Catch these, output their text, and accept by default
         boolean alertPresence;

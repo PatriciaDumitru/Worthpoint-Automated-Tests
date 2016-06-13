@@ -1562,7 +1562,10 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Order cancelled. Checking no draft was saved...");
 
+        driver.navigate().refresh();
+
         Ecomm_OutstandingOrderDraftPage draftPage = mePage.clickOutstandingDraft();
+
         draftPage.waitForElement();
 
         System.out.println("Draft page reached.");
@@ -1660,6 +1663,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         FileUtils.copyFile(scrFile12,new File(DataItems.screenshotsFilepath+"\\EComm\\Orders\\Manual Entry\\34Draft cancelled.png"));
 
         System.out.println("Draft cancelled. Checking draft is deleted...");
+
+        driver.navigate().refresh();
 
         Ecomm_OutstandingOrderDraftPage draftPage2 = mePage3.clickOutstandingDraft();
         draftPage2.waitForElement();
@@ -3115,7 +3120,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         System.out.println("Pending Approval List Page reached. Finding order...");
 
-        int orderRow2 = pendPage2.getRowAlt(DataItems.lastUsedPO);
+        int orderRow2 = pendPage2.getRow(DataItems.lastUsedPO);
 
         AssertJUnit.assertFalse("Pending Approval List Page: Order (PO: "+DataItems.lastUsedPO+") not found in table for Approver account",orderRow2==-1);
 

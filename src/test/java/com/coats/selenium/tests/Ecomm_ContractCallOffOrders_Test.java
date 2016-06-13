@@ -549,8 +549,8 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         WebDriver driver = getDriver();
 
-        WebElement logout = driver.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
-        logout.click();
+        PreFlows pf = new PreFlows();
+        pf.logoutAction(driver);
 
         System.out.println("Navigating to Manual Entry...");
         Ecomm_Base sTest = new Ecomm_Base(driver);
