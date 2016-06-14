@@ -920,6 +920,8 @@ public class FileFactory {
 
                 } else if (type.equals("CO")) {
 
+                    po = "UO_SUSS" + id;
+                    data = susstCOValidData.clone();
                 } else if (type.equals("UO")) {
                     po = "UO_SUSS" + id;
                     data = susstUOData.clone();

@@ -1625,6 +1625,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         //Exit view
         orderView.exitView();
         orderView.waitForInvisibility();
+        driver.navigate().refresh();
         driver.switchTo().defaultContent();
         
         System.out.println("View closed.");
@@ -1756,6 +1757,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Exit view
         orderView.exitView();
+        driver.navigate().refresh();
         orderView.waitForInvisibility();
         driver.switchTo().defaultContent();
         
@@ -1887,6 +1889,8 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         
         //Exit view
         orderView.exitView();
+
+        driver.navigate().refresh();
         orderView.waitForInvisibility();
         driver.switchTo().defaultContent();
         
@@ -2021,7 +2025,7 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         orderView.exitView();
         //orderView.waitForInvisibility();
         driver.switchTo().defaultContent();
-        
+        driver.navigate().refresh();
         System.out.println("View closed.");
         
         //Output order number for test reference

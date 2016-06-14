@@ -36,7 +36,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA Brand CustomerA, check Article from Brand with another Customer
-            (groups = {"CCE", "CSA", "QuickTest"})
+            (groups = {"CCE", "CSA", "QuickTest"}, enabled = false)
     public void CSA01() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -331,7 +331,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA CustomerA BrandA and BrandB , check Articles from those Brands and the Brands themselves with another Customer
-            (groups = {"CCE", "CSA", "QuickTest"})
+            (groups = {"CCE", "CSA", "QuickTest"}, enabled = false)
     public void CSA10_1() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -448,7 +448,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA Brand CustomerA, check Article from Brand with another Customer
-            (groups = {"eComm", "CSA", "QuickTest"})
+            (groups = {"eComm", "CSA", "QuickTest"}, enabled = false)
     public void CSA11() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -478,7 +478,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA Article CustomerA, check Article with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA"}, enabled = false)
     public void CSA12() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -509,7 +509,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA Brand CustomerA, check Brand with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA"}, enabled = false)
     public void CSA13() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -540,7 +540,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA BrandA CustomerA and Article from another brand to the same customer , check Article from Brand the other brand, and brand with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA"}, enabled = false)
     public void CSA14() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -576,7 +576,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant ID10, CSA Brand CustomerA, check Brand with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA"}, enabled = false)
     public void CSA15() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -627,7 +627,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA Brand CustomerA, check Article from Brand with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA"}, enabled = false)
     public void CSA16() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -658,7 +658,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant ID10, CSA Article CustomerA, check Article with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA"}, enabled = false)
     public void CSA17() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -689,7 +689,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant All, CSA Brand CustomerA, check Brand with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA"}, enabled = false)
     public void CSA18() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -721,7 +721,7 @@ public class CSA_Test extends DriverFactory {
 
 
     @Test //Delivery Plant Select, CSA BrandA CustomerA and Article from another brand to the same customer , check Article from Brand the other brand, and brand with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA"}, enabled = false)
     public void CSA19() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -757,7 +757,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA CustomerA BrandA and BrandB , check Articles from those Brands with another Customer
-            (groups = {"eComm", "CSA", "QuickTest"})
+            (groups = {"eComm", "CSA", "QuickTest"}, enabled = false)
     public void CSA20_1() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -804,7 +804,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery Plant Select, CSA CustomerA ArticleA ArticleB, check Articles with another Customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA"}, enabled = false)
     public void CSA20_2() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();
@@ -840,7 +840,7 @@ public class CSA_Test extends DriverFactory {
     }
 
     @Test //Delivery plant Select, CSA CustomerA BrandA, check article is present after CSA deletion with another customer
-            (groups = {"eComm", "CSA"})
+            (groups = {"eComm", "CSA"}, enabled = false)
     public void CSA20_3() throws Exception {
         //New driver object to control browser
         WebDriver driver = getDriver();

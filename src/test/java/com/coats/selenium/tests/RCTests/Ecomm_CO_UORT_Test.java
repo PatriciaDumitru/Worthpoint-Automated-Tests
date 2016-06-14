@@ -48,7 +48,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     System.out.println("Upload Order reached. Setting filepath and upload method...");
     
     WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.presenceOfElementLocated(By.id("filename")));
-    driver.findElement(By.id("filename")).sendKeys(FileFactory.createFile("SUSST", 1, "CO", "", false));
+    driver.findElement(By.id("filename")).sendKeys(FileFactory.createFile2("SUSST", 1, "CO", "", false));
     
     driver.findElement(By.id("bulkuploadprocess1")).click();
     
@@ -80,6 +80,7 @@ public class Ecomm_CO_UORT_Test extends DriverFactory {
     new Select(driver.findElement(By.id("BulkOrderPoNumber"))).selectByVisibleText("Contract PO No.");
     new Select(driver.findElement(By.id("BulkOrderLineCustomerPrice"))).selectByVisibleText("N/A");
     new Select(driver.findElement(By.id("BulkOrderLineLineReference"))).selectByVisibleText("Line Reference");
+      new Select(driver.findElement(By.id("BulkOrderContractCustomer"))).selectByVisibleText("Contract Order");
     
     System.out.println("Mapping set. Confirming...");
     
