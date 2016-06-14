@@ -4,6 +4,8 @@ package PageObjects;
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
 import static PageObjects.WBA_BasePage.driver;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +25,12 @@ public class Mst_ShadesPage extends WBA_BasePage {
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
     By exportButton = By.cssSelector("#content > div.actions > ul > li:nth-child(2) > a");
     By newShadeButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
+
+    By redValueField = By.id("filterColorRatioR");
+    By greenValueField = By.id("filterColorRatioG");
+    By blueValueField = By.id("filterColorRatioB");
+    By standardTypeField = By.id("filterStandardType");
+    By typeCodeField = By.id("filterTypeCode");
     
     public Mst_ShadesPage(WebDriver driver) {
         super(driver);
@@ -69,7 +77,7 @@ public class Mst_ShadesPage extends WBA_BasePage {
         Actions action = new Actions(driver);
         action.moveToElement(export).build().perform();
         
-        By xlsxLocator = By.linkText(".XLSX");
+        By xlsxLocator = By.linkText("XLSX");
         WebElement xlsx = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(xlsxLocator));
         xlsx.click();
         
@@ -135,7 +143,10 @@ public class Mst_ShadesPage extends WBA_BasePage {
         By selector = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(3) > span");
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(selector));
         element.click();
-        
+
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+
         return new Mst_ShadesPage(driver);
     }
      
@@ -164,5 +175,50 @@ public class Mst_ShadesPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCardField));
     }
-    
+
+    public Mst_AddShadePage setRedValue(String item) {
+        CommonTask.setInputField(driver,redValueField,item);
+        return new Mst_AddShadePage(driver);
+    }
+
+    public Mst_AddShadePage setGreenValue(String item){
+        CommonTask.setInputField(driver,greenValueField,item);
+        return new Mst_AddShadePage(driver);
+    }
+
+    public Mst_AddShadePage setBlueValue(String item) {
+        CommonTask.setInputField(driver,blueValueField,item);
+        return new Mst_AddShadePage(driver);
+    }
+
+    public Mst_AddShadePage setStandardType(String item) {
+        CommonTask.setInputField(driver,standardTypeField,item);
+        return new Mst_AddShadePage(driver);
+    }
+
+    public Mst_AddShadePage setTypeCode(String item) {
+        CommonTask.setInputField(driver,typeCodeField,item);
+        return new Mst_AddShadePage(driver);
+    }
+
+    public void deleteShade(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Shades matching the test criteria found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setShadeCard("GCR");
+            setShadeName("AutoShade");
+            setRedValue("135");
+            setGreenValue("135");
+            setBlueValue("135");
+            setStandardType("Auto");
+            setTypeCode("AUTO");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Shades cleared");
+    }
+
 }

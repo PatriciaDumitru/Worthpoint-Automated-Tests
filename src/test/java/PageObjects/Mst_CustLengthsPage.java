@@ -42,7 +42,12 @@ public class Mst_CustLengthsPage extends WBA_BasePage {
         CommonTask.setSearchField(driver, custNameField, item);
         return new Mst_CustLengthsPage(driver);
     }
-    
+
+    public Mst_CustLengthsPage setCoatsLength(String item) {
+        CommonTask.setSearchField(driver, coatsLengthField, item);
+        return new Mst_CustLengthsPage(driver);
+    }
+
     public Mst_CustLengthsPage pressSearch() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         element.click();
@@ -122,7 +127,21 @@ public class Mst_CustLengthsPage extends WBA_BasePage {
         
         return -1;
     }
-    
+
+    public int getNrOfEntry() {
+        By brandHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(4) > a");
+        WebElement header = new WebDriverWait(driver, DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(brandHeader));
+
+        AssertJUnit.assertTrue("Customer Brands Page: Customer Brand column has moved, update locators", header.getText().equals("Customer Length"));
+
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if (nrOfEntry > 1){
+            return 1;
+        }
+        return -1;
+    }
+
     public void checkFields() {
         //Wait for element to be clickable
         WebElement salesOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgField));
@@ -150,5 +169,20 @@ public class Mst_CustLengthsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement custLength = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsLengthField));
     }
-    
+
+    public void deleteCustLength(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Customer Length matching the test criteria found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setSalesOrg("ID51");
+            setCustomerName(DataItems.custDetails[0]);
+            setCoatsLength("625");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Customer Length cleared");
+    }
 }

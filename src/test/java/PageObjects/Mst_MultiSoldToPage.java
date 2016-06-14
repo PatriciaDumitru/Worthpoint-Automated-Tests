@@ -21,6 +21,8 @@ public class Mst_MultiSoldToPage extends WBA_BasePage {
     By searchButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
     By newUserButton = By.cssSelector("#content > div.actions > ul > li > a");
+
+    By countryField = By.id("s2id_filterCountry");
     
     public Mst_MultiSoldToPage(WebDriver driver) {
         super(driver);
@@ -120,5 +122,22 @@ public class Mst_MultiSoldToPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(userNameField));
     }
-    
+
+    public Mst_AddMultiUserPage setCountry(String item) throws InterruptedException {
+        CommonTask.setDropDownFieldAlt(driver, countryField, item);
+        return new Mst_AddMultiUserPage(driver);
+    }
+
+    public void deletedMultiSoUs(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Multi Sold to User already used");
+            System.out.println("Deleting current braMulti Sold to Usernd");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Multi Sold to User cleared");
+    }
+
 }

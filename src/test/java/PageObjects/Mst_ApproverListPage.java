@@ -15,6 +15,7 @@ import org.testng.AssertJUnit;
 public class Mst_ApproverListPage extends WBA_BasePage {
     
     //Locators
+    By salesOrgSrcField = By.id ("s2id_filterMultisoldtoUserSalesOrgId");
     By salesOrgField = By.id("s2id_filterSalesOrgId");
     By custNameField = By.id("s2id_filterCustomerId");
     By searchButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(1)");

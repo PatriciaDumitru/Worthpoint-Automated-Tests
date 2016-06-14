@@ -22,6 +22,8 @@ public class Mst_SalesOrgMaterialsPage extends WBA_MasterDataPage {
     By newSalesOrgMatButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
 
     By brandField = By.id("s2id_filterBrandId");
+    By ticketField = By.id("s2id_filterTicketId");
+    By mumTypeField = By.id("s2id_filterMumTypeId");
     
     public Mst_SalesOrgMaterialsPage(WebDriver driver) {
         super(driver);
@@ -163,6 +165,22 @@ public class Mst_SalesOrgMaterialsPage extends WBA_MasterDataPage {
         return new Mst_AddSalesOrgMaterialPage(driver);
     }
 
+    public Mst_AddSalesOrgMaterialPage setPlant(String item) {
+        CommonTask.setSearchField(driver, plantField, item);
+        return new Mst_AddSalesOrgMaterialPage(driver);
+    }
+
+    public Mst_AddSalesOrgMaterialPage setTicket(String item) {
+        CommonTask.setSearchField(driver, ticketField, item);
+        return new Mst_AddSalesOrgMaterialPage(driver);
+    }
+
+    public Mst_AddSalesOrgMaterialPage setMUMType(String item) {
+        CommonTask.setSearchField(driver, mumTypeField, item);
+        return new Mst_AddSalesOrgMaterialPage(driver);
+    }
+
+
     public void deleteSlsOrgMat(){
 
             int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
@@ -172,7 +190,10 @@ public class Mst_SalesOrgMaterialsPage extends WBA_MasterDataPage {
             {
                 pressDelete(2);
                 setSalesOrg("ID51");
+                setPlant("ID10");
                 setBrand("TEST");
+                setTicket("000");
+                setMUMType("Vicone");
                 pressSearch();
                 waitForElement();
             }

@@ -35,7 +35,12 @@ public class Mst_AddCustFinishPage extends WBA_BasePage {
         CommonTask.setDropDownField(driver, salesOrgField, item);
         return new Mst_EditCustFinishPage(driver);
     }
-    
+
+    public Mst_EditCustFinishPage setCoatsFinish(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver, coatsFinishField, item);
+        return new Mst_EditCustFinishPage(driver);
+    }
+
     public Mst_EditCustFinishPage setCustomerName(String item) throws InterruptedException {
         CommonTask.setSearchField(driver, custNameField, item);
         return new Mst_EditCustFinishPage(driver);

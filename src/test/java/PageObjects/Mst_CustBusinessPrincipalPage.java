@@ -24,6 +24,8 @@ public class Mst_CustBusinessPrincipalPage extends WBA_BasePage {
     By exportButton = By.cssSelector("#export-menu > a");
     By newCustBPButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
 
+    By coatsPrincipalNameField = By.id("s2id_filterBusinessPrincipalId");
+
     public Mst_CustBusinessPrincipalPage(WebDriver driver) {
         super(driver);
     }
@@ -68,17 +70,31 @@ public class Mst_CustBusinessPrincipalPage extends WBA_BasePage {
         
         By recordsField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
         int count = this.getRecordCount(recordsField);
-        
+
         for (int i = 2; i < (count+2); i++) {
             By cellLocator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+i+") > td:nth-child(4)");
             WebElement cell = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(cellLocator));
             System.out.println(cell.getText().trim());
             if (cell.getText().trim().equals(name)) {
-                System.out.println("equaliy found");
+                System.out.println("equality found");
                 return i;
             }
         }
         return -1;        
+    }
+
+    public int getNrOfEntry() {
+        By brandHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(4) > a");
+        WebElement header = new WebDriverWait(driver, DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(brandHeader));
+
+        AssertJUnit.assertTrue("Customer Brands Page: Customer Brand column has moved, update locators", header.getText().equals("Customer Business Principal"));
+
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if (nrOfEntry > 1){
+            return 1;
+        }
+        return -1;
     }
     
     public Mst_EditCustBusPrincPage pressEdit(int row) {  
@@ -142,5 +158,25 @@ public class Mst_CustBusinessPrincipalPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newCustBPButton));
     }
-    
+
+    public Mst_AddCustBusPrincPage setCoatsBusPrinc(String item){
+        CommonTask.setSearchField(driver, coatsPrincipalNameField, item);
+        return new Mst_AddCustBusPrincPage(driver);
+    }
+
+    public void deleteCustBusPrincipal(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Customer business principal matching the test criteria found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setSalesOrg("ID51");
+            setCustomerName(DataItems.custDetails[0]);
+            setCoatsBusPrinc(DataItems.custDetails[3]);
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Customer business principal cleared");
+    }
 }

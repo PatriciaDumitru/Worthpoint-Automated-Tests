@@ -423,14 +423,14 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
             CommonTask.clearDropDownField(driver, requestorField);
         } else {
             CommonTask.setDropDownField(driver,requestorField,requester);
-        }     
+        }
         
         return new Ecomm_OrderConfirmationPage(driver);
     }
     
     public Ecomm_OrderConfirmationPage setShipToParty(String shipToParty) throws InterruptedException {
         WebElement wait = Wait.clickable(driver,shipToPartyField);
-        
+        System.out.println("THIS IS WHAT YOU ARE LOOKING FOR "+driver.findElement(shipToPartyField).getText());
         if (shipToParty.equals("Select")) {
             CommonTask.clearDropDownField(driver, shipToPartyField);
         } else {

@@ -203,7 +203,11 @@ public class Mst_DyeLotMultiplesPage extends WBA_BasePage {
         for(int i = nrOfEntry;i > 1; i--)
         {
             pressDelete(2);
+            setSalesOrg("ID51");
             setBrand("TEST");
+            setTicket("000");
+            setLength("5000");
+            setFinish("STANDARD");
             pressSearch();
             waitForElement();
         }

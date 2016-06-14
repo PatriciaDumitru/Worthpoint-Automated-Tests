@@ -107,7 +107,19 @@ public class Mst_CustomerShadesPage extends WBA_BasePage {
         
         return new CCE_ExportDownloadPage(driver);
     }
-    
+
+    //delete if not used
+    public boolean itemPresent(){
+        By shadeHeader = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr/th[4]/a");
+        WebElement header = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeHeader));
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfEntry>1){
+            return true;
+        }
+        return false;
+    }
+
     public int getRow(String shadeName) {
         
         By shadeHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(4) > a");
@@ -129,6 +141,20 @@ public class Mst_CustomerShadesPage extends WBA_BasePage {
             } 
         }
         
+        return -1;
+    }
+
+    public int getNrOfEntry() {
+        By brandHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(4) > a");
+        WebElement header = new WebDriverWait(driver, DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(brandHeader));
+
+        AssertJUnit.assertTrue("Customer Brands Page: Customer Brand column has moved, update locators", header.getText().equals("Customer Shade"));
+
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if (nrOfEntry > 1){
+            return 1;
+        }
         return -1;
     }
     
@@ -159,5 +185,24 @@ public class Mst_CustomerShadesPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement custShade = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custShadeField));
     }
-    
+
+    public Mst_CustomerShadesPage setSalesOrg(String item) {
+        CommonTask.setSearchField(driver, salesOrgField, item);
+        return new Mst_CustomerShadesPage(driver);
+    }
+
+    public void deleteCustShade(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Customer Shade matching the test criteria found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setSalesOrg(DataItems.salesOrganisation);
+            setCustomerName(DataItems.custDetails[0]);
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Customer Shade cleared");
+    }
 }

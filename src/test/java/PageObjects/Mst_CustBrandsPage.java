@@ -104,8 +104,6 @@ public class Mst_CustBrandsPage extends WBA_BasePage {
         return -1;
     }
 
-
-
     //checking if any entry is still present
     public int getNrOfEntry() {
         By brandHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(4) > a");
@@ -168,6 +166,11 @@ public class Mst_CustBrandsPage extends WBA_BasePage {
         WebElement custBrand = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custBrandField));
     }
 
+    public Mst_AddCustBrandPage setCoatsBrand(String item){
+        CommonTask.setSearchField(driver, coatsBrandField, item);
+        return new Mst_AddCustBrandPage(driver);
+    }
+
     //Deleting old entries
     public void deleteCustBrand(){
         int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
@@ -178,6 +181,7 @@ public class Mst_CustBrandsPage extends WBA_BasePage {
             pressDelete(2);
             setSalesOrg("ID51");
             setCustomerName(DataItems.custDetails[0]);
+            setCoatsBrand("NYMO");
             pressSearch();
             waitForElement();
         }

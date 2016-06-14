@@ -25,6 +25,8 @@ public class Mst_SupplyPlantsPage extends WBA_BasePage {
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
     By exportButton = By.cssSelector("#export-menu > a");
     By newSupplyPlantButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
+
+    By mumTypeField = By.id("s2id_filterMumTypeId");
     
     public Mst_SupplyPlantsPage(WebDriver driver) {
         super(driver);
@@ -241,6 +243,11 @@ public class Mst_SupplyPlantsPage extends WBA_BasePage {
         WebElement newSupplyPlant = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(newSupplyPlantButton));
     }
 
+    public Mst_AddSupplyPlantPage setMUMType(String item) {
+        CommonTask.setSearchField(driver, mumTypeField, item);
+        return new Mst_AddSupplyPlantPage(driver);
+    }
+
     public void deleteSupplyPlants(){
 
         int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
@@ -249,7 +256,9 @@ public class Mst_SupplyPlantsPage extends WBA_BasePage {
         for(int i = nrOfEntry;i > 1; i--)
         {
             pressDelete(2);
+            setDeliveryPlant("ABCMut");
             setBrand("TEST");
+            setMUMType("Vicone");
             setSupplyPlant("TEST");
             pressSearch();
             waitForElement();

@@ -113,6 +113,20 @@ public class Mst_CustMaterialsPage extends WBA_BasePage {
         }     
         return -1;
     }
+
+    public int getNrOfEntry() {
+        By brandHeader = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr/th[3]/a");
+        WebElement header = new WebDriverWait(driver, DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(brandHeader));
+
+        AssertJUnit.assertTrue("Customer Material No. Page: Customer Material No. column has moved, update locators", header.getText().equals("Customer Material No."));
+
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if (nrOfEntry > 1){
+            return 1;
+        }
+        return -1;
+    }
     
     public Mst_EditCustMaterialPage pressEdit(int row) {
         By editButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(1) > span");
@@ -158,5 +172,17 @@ public class Mst_CustMaterialsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement materialNo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custMaterialNoField));
     }
-    
+
+    public void deleteCustMaterial(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Customer Material is already used");
+            System.out.println("Deleting current Customer Material");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Customer Material cleared");
+    }
+
 }

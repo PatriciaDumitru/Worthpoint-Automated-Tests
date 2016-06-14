@@ -22,7 +22,7 @@ public class Mst_EditShadePage extends WBA_BasePage {
     By blueValueField = By.id("ShadeColorRatioB");
     By standardTypeField = By.id("ShadeStandardType");
     By typeCodeField = By.id("ShadeTypeCode");
-    By saveButton = By.cssSelector("##ShadeEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
+    By saveButton = By.cssSelector("#ShadeEditForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By cancelButton = By.cssSelector("#ShadeEditForm > div.actions > ul > li:nth-child(2) > a");
     
     public Mst_EditShadePage(WebDriver driver) {

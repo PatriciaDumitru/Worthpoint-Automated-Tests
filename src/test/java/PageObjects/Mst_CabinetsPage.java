@@ -18,7 +18,7 @@ public class Mst_CabinetsPage extends WBA_BasePage {
     By countryNameField = By.id("s2id_filterCountrySalesOrgCountryId");
     By salesOrgField = By.id("s2id_filterSalesOrgId");
     By shipToPartyField = By.id("s2id_filterShipToPartyId");
-    By cabinetCodeField = By.id("filterCabinetCode");
+    By cabinetCodeField = By.xpath("//*[@id=\"filterCabinetCode\"]");/*id("filterCabinetCode");*/
     By searchButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");

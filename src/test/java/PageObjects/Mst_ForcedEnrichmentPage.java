@@ -191,7 +191,9 @@ public class Mst_ForcedEnrichmentPage extends WBA_BasePage {
         {
             pressDelete(2);
             setSalesOrg("ID51");
+            setCustomerName("Life Easy Customer");
             setBrand("TEST");
+            setMUMType("Vicone");
             pressSearch();
             waitForElement();
         }

@@ -103,6 +103,20 @@ public class Mst_CustTicketsPage extends WBA_BasePage {
         }     
         return -1;
     }
+
+    public int getNrOfEntry() {
+        By brandHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(4) > a");
+        WebElement header = new WebDriverWait(driver, DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(brandHeader));
+
+        AssertJUnit.assertTrue("Customer Brands Page: Customer Brand column has moved, update locators", header.getText().equals("Customer Ticket"));
+
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if (nrOfEntry > 1){
+            return 1;
+        }
+        return -1;
+    }
     
     public Mst_EditCustTicketPage pressEdit(int row) {
         By editButton = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(1) > span");
@@ -149,6 +163,21 @@ public class Mst_CustTicketsPage extends WBA_BasePage {
     
     public void waitForElement() {
         WebElement custTicket = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custTicketField));
+    }
+
+    public void deleteCustTicket(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Customer Ticket matching the test criteria found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setSalesOrg(DataItems.autoUserSalesOrg);
+            setCustomerName(DataItems.custDetails[0]);
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Customer Ticket deleted");
     }
     
 }

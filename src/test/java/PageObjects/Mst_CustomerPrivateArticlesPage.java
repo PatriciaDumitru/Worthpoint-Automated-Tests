@@ -14,7 +14,7 @@ import org.testng.AssertJUnit;
 public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
 
     //Locators
-    By customerNameField = By.id("filterCustomerCustomerName");
+    By customerNameField = By.xpath("//*[@id=\"FilterIndexForm\"]/table/tbody/tr[1]/td[2]");/*id("filterCustomerCustomerName");*/
     By salesOraganizationField = By.id("s2id_filterCustomerPrivateArticleSalesOrgId");
     By articleField = By.id("s2id_autogen2");
     By customerCodeField = By.id("filterCustomerCustomerCode");
@@ -23,6 +23,7 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
     By newPrivateArticleField = By.xpath("/html/body/div[1]/div[3]/div[3]/ul/li[2]/a");
 
     By salesOrgField = By.xpath("//*[@id=\"s2id_filterCustomerPrivateArticleSalesOrgId\"]");
+    By coatsBrandField = By.xpath("//*[@id=\"s2id_filterBrandId\"]");
 
     public Mst_CustomerPrivateArticlesPage(WebDriver driver) {
         super(driver);
@@ -33,7 +34,7 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
     }
 
     public Mst_CustomerPrivateArticlesPage setCustomerName(String item) {
-        CommonTask.setTextField(driver, customerNameField, item);
+        CommonTask.setInputField/*setTextField*/(driver, customerNameField, item);
         return new Mst_CustomerPrivateArticlesPage(driver);
     }
 
@@ -140,6 +141,11 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
         return new Mst_AddCustomerPrivateArticlesPage(driver);
     }
 
+    public Mst_AddCustomerPrivateArticlesPage setBrand(String item) {
+        CommonTask.setSearchField(driver, coatsBrandField, item);
+        return new Mst_AddCustomerPrivateArticlesPage(driver);
+    }
+
     public void deleteCustPrivateArticle() {
         int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
         System.out.println(nrOfEntry - 1 +" Private Test Articles found ");
@@ -148,6 +154,9 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
         {
             pressDelete(2);
             setSalesOrg("ID51");
+            setSalesOrg("ID51");
+            setCustomerName("Life Easy Customer");
+            setBrand("ASTRA");
             pressSearch();
             waitForElement();
         }

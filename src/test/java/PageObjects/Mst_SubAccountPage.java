@@ -171,6 +171,19 @@ public class Mst_SubAccountPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(subAccountNameField));
     }
-    
-    
+
+    public void deleteSubAccount(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" SubAccounts matching the test criteria found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2, "AutoTest SubAccount");
+            setSalesOrg("ID51");
+            setSubAccountName("AutoTest SubAccount");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("SubAccount cleared");
+    }
 }

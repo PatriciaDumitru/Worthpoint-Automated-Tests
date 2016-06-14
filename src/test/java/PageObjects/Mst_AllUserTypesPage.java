@@ -151,5 +151,19 @@ public class Mst_AllUserTypesPage extends WBA_BasePage {
             return true;
         }
     }
+
+    public void deleteUser(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Users matching the test criteria found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(DataItems.autoUserType);
+            setUserType(DataItems.autoUserType);
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Users cleared");
+    }
     
 }
