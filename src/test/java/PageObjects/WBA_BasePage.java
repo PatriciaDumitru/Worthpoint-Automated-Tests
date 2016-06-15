@@ -936,6 +936,7 @@ public class WBA_BasePage {
                 return true;
             }
             if (!(text.equals(item))) {
+                System.out.println("Text"+item+" not found!");
                 return false;
             }
         }

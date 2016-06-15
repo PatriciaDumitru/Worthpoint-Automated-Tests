@@ -43,6 +43,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         System.out.println("Title checked. Checking fields...");
 
+        invPage.waitForElement();
+
         invPage.checkFields_SUMST();
 
         System.out.println("Fields checked. Entering filter criteria...");
@@ -347,7 +349,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         //New eComm base test to handle log-in and navigation
         Ecomm_Base baseTest = new Ecomm_Base(driver);
-        Ecomm_MainPage eCommPage = baseTest.setUp("Summary of Purchases SUMST_SoP1: Page and filter checks, views and reset", "G_R_CU_SUMST_3");
+        Ecomm_MainPage eCommPage = baseTest.setUp("Purchase Order Summary SUMST_SoP1: Page and filter checks, views and reset", "G_R_CU_SUMST_3");
 
         eCommPage.waitForElement();
 
@@ -360,7 +362,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         System.out.println("Checking title...");
 
-        AssertJUnit.assertTrue("Summary of Purchase Page: Title not displayed as expected", spPage.getBreadcrumbText3().equals("Reports | Summary of Purchase"));
+        AssertJUnit.assertTrue("Purchase Order Summary Page: Title not displayed as expected", spPage.getBreadcrumbText3().equals("Reports | Purchase Order Summary"));
 
         System.out.println("Title checked. Checking fields...");
 
@@ -368,10 +370,11 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
-        String tempRequester = "andy wisaksana";
+        String tempCustPoNo = "498723";
 
-        spPage.setCustName(DataItems.custDetails[0]);
-        spPage.setRequester(tempRequester);
+        spPage.setCustName(DataItems.custDetails3[0]);
+        //spPage.setRequester(tempRequester); //Requester was removed from this page filtration (15.06.2016)
+        spPage.setPayerName(DataItems.custDetails3[0]);
 
         System.out.println("Criteria entered. Listing records...");
 
@@ -380,11 +383,11 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         System.out.println("Records listed. Checking filtration...");
 
-        spPage.checkFiltrationAndRecords(spPage.brandPart1, spPage.brandPart2, spPage.noRecords, tempRequester, 3);
+        spPage.checkFiltrationAndRecords(spPage.custPoTable1, spPage.custPoTable2, spPage.noRecords, tempCustPoNo, 3);
 
         System.out.println("Filtration checked. Resetting filter...");
 
-        spPage.pressReset();
+        spPage.pressClearButton();
         spPage.waitForLoad();
 
         System.out.println("Filter reset. Viewing top item...");
@@ -398,8 +401,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         System.out.println("View closed. Exporting records...");
 
-        spPage.setCustName(DataItems.custDetails[0]);
-        spPage.setRequester(tempRequester);
+        spPage.setCustName(DataItems.custDetails3[0]);
+        //spPage.setRequester(tempRequester);
         spPage.pressSearch();
         spPage.waitForLoad();
 
@@ -432,7 +435,7 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         System.out.println("Checking title...");
 
-        AssertJUnit.assertTrue("Summary of Purchase Page: Title not displayed as expected", spPage.getBreadcrumbText3().equals("Reports | Summary of Purchase"));
+        AssertJUnit.assertTrue("Summary of Purchase Page: Title not displayed as expected", spPage.getBreadcrumbText3().equals("Reports | Purchase Order Summary"));
 
         System.out.println("Title checked. Checking fields...");
 
@@ -440,7 +443,8 @@ public class Ecomm_Reports_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
-        spPage.setBrand(DataItems.expBrand);
+        //spPage.setBrand(DataItems.expBrand);
+        spPage.setPayerName(DataItems.custDetails3[0]);
 
         System.out.println("Criteria entered. Listing records...");
 
@@ -448,12 +452,14 @@ public class Ecomm_Reports_Test extends DriverFactory {
         spPage.waitForLoad();
 
         System.out.println("Records listed. Checking filtration...");
+        String tempCustPoNo = "498723";
 
-        spPage.checkFiltrationAndRecords(spPage.brandPart1, spPage.brandPart2, spPage.noRecords, DataItems.expBrand, 3);
+        //spPage.checkFiltrationAndRecords(spPage.brandPart1, spPage.brandPart2, spPage.noRecords, DataItems.expBrand, 3);
+        spPage.checkFiltrationAndRecords(spPage.custPoTable1, spPage.custPoTable2, spPage.noRecords, tempCustPoNo, 3);
 
         System.out.println("Filtration checked. Resetting filter...");
 
-        spPage.pressReset();
+        spPage.pressClearButton();
         spPage.waitForLoad();
 
         System.out.println("Filter reset. Viewing top item...");
