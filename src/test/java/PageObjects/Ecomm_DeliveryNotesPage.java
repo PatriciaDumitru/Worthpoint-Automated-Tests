@@ -12,22 +12,22 @@ import org.openqa.selenium.WebElement;
 public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
     
     //Locators
-    By custNameField = By.id("s2id_filterSapccDeliverynoteCustomerId");
-    By delDateFromField = By.id("filterSapccDeliverynoteDeliveryDateFrom");
-    By delDateToField = By.id("filterSapccDeliverynoteDeliveryDateTo");
-    By matNumField = By.id("filterSapccDeliverynoteMaterial");
+    By custNameField = By.xpath("//*[@id=\"s2id_filterSapCcdeliverynoteCustomerId\"]/a");//By.id("s2id_filterSapccDeliverynoteCustomerId");
+    By delDateFromField =By.xpath("//*[@id=\"filterSapCcdeliverynoteDeliveryDateFrom\"]");// By.id("filterSapccDeliverynoteDeliveryDateFrom");
+    By delDateToField = By.xpath("//*[@id=\"filterSapCcdeliverynoteDeliveryDateTo\"]");//By.id("filterSapccDeliverynoteDeliveryDateTo");
+    By matNumField = By.xpath("//*[@id=\"filterSapCcdeliverynoteMaterial\"]"); //By.id("filterSapccDeliverynoteMaterial");
     By brandField = By.id("filterSapccDeliverynoteBrandId");
     By lengthField = By.id("filterSapccDeliverynoteLengthId");
-    By requesterField = By.id("filterRequesterId");
-    By delNotesField = By.id("filterSapccDeliverynoteDeliveryNo");
-    By yourMatNumField = By.id("filterSapccDeliverynoteCustomerMaterialNo");
+    By requesterField = By.xpath("//*[@id=\"filterSapCcdeliverynoteRequesterId\"]");//By.id("filterRequesterId");
+    By delNotesField = By.xpath("//*[@id=\"filterSapCcdeliverynoteDeliveryNo\"]");//By.id("filterSapccDeliverynoteDeliveryNo");
+    By yourMatNumField = By.xpath("//*[@id=\"filterSapCcdeliverynoteCustomerMaterialNo\"]");//By.id("filterSapccDeliverynoteCustomerMaterialNo");
     By ticketField = By.id("filterSapccDeliverynoteTicketId");
-    By custPOField = By.id("filterSapccDeliverynotePoNumber");
-    By searchButton = By.cssSelector("#FilterDeliverynoteForm > div.grid_12 > table > tbody > tr:nth-child(8) > td > div > input");
-    By resetButton = By.cssSelector("#FilterDeliverynoteForm > div.grid_12 > table > tbody > tr:nth-child(8) > td > a");
-    By printButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
-    By viewButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(2) > a");
-    By exportButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > a");
+    By custPOField = By.xpath("//*[@id=\"filterSapCcdeliverynotePoNumber\"]");//By.id("filterSapccDeliverynotePoNumber");
+    By searchButton = By.xpath("//*[@id=\"FilterDeliverynoteForm\"]/div[2]/table/tbody/tr[8]/td/div/input");//By.cssSelector("#FilterDeliverynoteForm > div.grid_12 > table > tbody > tr:nth-child(8) > td > div > input");
+    By clearButton = By.xpath("//*[@id=\"FilterDeliverynoteForm\"]/div[2]/table/tbody/tr[8]/td/a");//By.cssSelector("#FilterDeliverynoteForm > div.grid_12 > table > tbody > tr:nth-child(8) > td > a");
+    By printButton = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/table/tbody/tr[3]/td[1]/a/img");//By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
+    By viewButton = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/table/tbody/tr[3]/td[2]/a/span");//By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(2) > a");
+    By exportButton = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/div/a");//By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > a");
 
     By tableHeaders = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/table/tbody/tr[1]/th");//*[@id="content"]/div[2]/div/div[2]/table/tbody/tr[1]/th[1]
     public By noRecords = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > div");
@@ -86,8 +86,8 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
         return driver.findElement(searchButton);
     }
     
-    public WebElement getResetButton() {
-        return driver.findElement(resetButton);
+    public WebElement getClearButton() {
+        return driver.findElement(clearButton);
     }
     
     public WebElement getViewButton() {
@@ -123,8 +123,8 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
     }
 
     public String getClearButtonLabel() {
-        WebElement button = Wait.clickable(driver,resetButton);
-        String label = driver.findElement(resetButton).getText();
+        WebElement button = Wait.clickable(driver, clearButton);
+        String label = driver.findElement(clearButton).getText();
         return label;
     }
 
@@ -148,7 +148,7 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
     }
     
     public Ecomm_DeliveryNotesPage pressReset() {
-        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement reset = Wait.clickable(driver, clearButton);
         reset.click();
         return this;
     }
@@ -177,15 +177,15 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
         WebElement delFrom = Wait.clickable(driver,delDateFromField);
         WebElement delTo = Wait.clickable(driver,delDateToField);
         WebElement matNum = Wait.clickable(driver,matNumField);
-        WebElement brand = Wait.clickable(driver,brandField);
-        WebElement length = Wait.clickable(driver,lengthField);
+        //WebElement brand = Wait.clickable(driver,brandField);
+        //WebElement length = Wait.clickable(driver,lengthField);
         WebElement requester = Wait.clickable(driver,requesterField);
         WebElement delNotes = Wait.clickable(driver,delNotesField);
         WebElement yourMatNum = Wait.clickable(driver,yourMatNumField);
-        WebElement ticket = Wait.clickable(driver,ticketField);
+        //WebElement ticket = Wait.clickable(driver,ticketField);
         WebElement custPO = Wait.clickable(driver,custPOField);
         WebElement search = Wait.clickable(driver,searchButton);
-        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement reset = Wait.clickable(driver, clearButton);
         WebElement view = Wait.clickable(driver,viewButton);
         WebElement print = Wait.clickable(driver,printButton);
         WebElement export = Wait.clickable(driver,exportButton);
@@ -195,12 +195,12 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date From Field not displayed correctly",delFrom.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date To Field not displayed correctly",delTo.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Material Number Field not displayed correctly",matNum.isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Brand Field not displayed correctly",brand.isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Length Field not displayed correctly",length.isDisplayed());
+        //AssertJUnit.assertTrue("Delivery Notes Page: Brand Field not displayed correctly",brand.isDisplayed());
+        //AssertJUnit.assertTrue("Delivery Notes Page: Length Field not displayed correctly",length.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Requester Field not displayed correctly",requester.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Delivery Notes Field not displayed correctly",delNotes.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Your Material Number Field not displayed correctly",yourMatNum.isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Ticket Field not displayed correctly",ticket.isDisplayed());
+        //AssertJUnit.assertTrue("Delivery Notes Page: Ticket Field not displayed correctly",ticket.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Customer PO Field not displayed correctly",custPO.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Search Button not displayed correctly",search.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Reset Button not displayed correctly",reset.isDisplayed());
@@ -215,14 +215,14 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
         WebElement delFrom = Wait.clickable(driver,delDateFromField);
         WebElement delTo = Wait.clickable(driver,delDateToField);
         WebElement matNum = Wait.clickable(driver,matNumField);
-        WebElement brand = Wait.clickable(driver,brandField);
-        WebElement length = Wait.clickable(driver,lengthField);
+        //WebElement brand = Wait.clickable(driver,brandField);
+        //WebElement length = Wait.clickable(driver,lengthField);
         WebElement delNotes = Wait.clickable(driver,delNotesField);
         WebElement yourMat = Wait.clickable(driver,yourMatNumField);
-        WebElement ticket = Wait.clickable(driver,ticketField);
+        //WebElement ticket = Wait.clickable(driver,ticketField);
         WebElement custPO = Wait.clickable(driver,custPOField);
         WebElement search = Wait.clickable(driver,searchButton);
-        WebElement reset = Wait.clickable(driver,resetButton);
+        WebElement reset = Wait.clickable(driver, clearButton);
         WebElement view = Wait.clickable(driver,viewButton);
         WebElement print = Wait.clickable(driver,printButton);
         WebElement export = Wait.clickable(driver,exportButton);
@@ -231,11 +231,11 @@ public class Ecomm_DeliveryNotesPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date From Field not displayed correctly",delFrom.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Delivery Date To Field not displayed correctly",delTo.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Material Number Field not displayed correctly",matNum.isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Brand Field not displayed correctly",brand.isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Length Field not displayed correctly",length.isDisplayed());
+        //AssertJUnit.assertTrue("Delivery Notes Page: Brand Field not displayed correctly",brand.isDisplayed());
+        //AssertJUnit.assertTrue("Delivery Notes Page: Length Field not displayed correctly",length.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Delivery Notes Field not displayed correctly",delNotes.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Your Material Number Field not displayed correctly",yourMat.isDisplayed());
-        AssertJUnit.assertTrue("Delivery Notes Page: Ticket Field not displayed correctly",ticket.isDisplayed());
+        //AssertJUnit.assertTrue("Delivery Notes Page: Ticket Field not displayed correctly",ticket.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Customer PO Field not displayed correctly",custPO.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Search Button not displayed correctly",search.isDisplayed());
         AssertJUnit.assertTrue("Delivery Notes Page: Reset Button not displayed correctly",reset.isDisplayed());

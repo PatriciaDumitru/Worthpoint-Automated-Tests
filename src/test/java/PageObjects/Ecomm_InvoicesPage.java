@@ -14,23 +14,28 @@ import AutomationFramework.Wait;
 public class Ecomm_InvoicesPage extends WBA_BasePage {
 
 	//Locators
-	By custNameField = By.id("s2id_filterSapccInvoiceCustomerId");
-	By custPOField = By.id("filterSapccInvoicePoNumber");
-	By orderDateFromField = By.id("filterSapccInvoiceCreatedDateFrom");
-	By orderDateToField = By.id("filterSapccInvoiceCreatedDateTo");
-	By yourMatNumField = By.id("filterSapccInvoiceMaterial");
-	By paymentDateFromField = By.id("filterSapccInvoicePaymentDateFrom");
-	By paymentDateToField = By.id("filterSapccInvoicePaymentDateTo");
-	By shipToPartyNameField = By.id("ship_to_party_id");
-	By invoiceNoField = By.id("filterSapccInvoiceInvoiceNo");
-	By sapOrderNoField = By.id("filterSapccInvoiceSapOrderNo");
-	By statusField = By.id("filterSapccInvoiceStatus");
-	By requesterField = By.id("filterRequesterId");
-	By searchButton = By.cssSelector("#FilterInvoiceForm > div.grid_12 > table > tbody > tr:nth-child(7) > td > div > input");
-	By resetButton = By.cssSelector("#FilterInvoiceForm > div.grid_12 > table > tbody > tr:nth-child(10) > td > a");
-	By printButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
-	By viewButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(2) > a");
-	By exportButton = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > a");
+	By custNameField = By.xpath("//*[@id=\"s2id_filterSapCcinvoiceCustomerId\"]/a");//By.id("s2id_filterSapccInvoiceCustomerId");
+	By custPOField = By.xpath("//*[@id=\"filterSapCcinvoicePoNumber\"]");//By.id("filterSapCcInvoicePoNumber");//#filterSapCcinvoicePoNumber
+	By salesOrgNameField = By.xpath("//*[@id=\"s2id_filterSapCcinvoiceSalesOrgId\"]/ul");
+	By orderDateFromField = By.xpath("//*[@id=\"filterSapCcinvoiceCreatedDateFrom\"]");//By.id("filterSapccInvoiceCreatedDateFrom");
+	By orderDateToField = By.xpath("//*[@id=\"filterSapCcinvoiceCreatedDateTo\"]");//By.id("filterSapccInvoiceCreatedDateTo");
+	By custCodeField = By.xpath("//*[@id=\"filterSapCcinvoiceCustomerCode\"]");
+	By yourMatNumField = By.xpath("//*[@id=\"filterSapCcinvoiceMaterial\"]");//By.id("filterSapccInvoiceMaterial");
+	By paymentDateFromField = By.xpath("//*[@id=\"filterSapCcinvoicePaymentDateFrom\"]");//By.id("filterSapccInvoicePaymentDateFrom");
+	By paymentDateToField = By.xpath("//*[@id=\"filterSapCcinvoicePaymentDateTo\"]");//By.id("filterSapccInvoicePaymentDateTo");
+	By shipToPartyNameField = By.xpath("//*[@id=\"ship_to_party_id\"]");//By.id("ship_to_party_id");
+	By invoiceNoField = By.xpath("//*[@id=\"filterSapCcinvoiceInvoiceNo\"]");//By.id("filterSapccInvoiceInvoiceNo");
+	By sapOrderNoField = By.xpath("//*[@id=\"filterSapCcinvoiceSapOrderNo\"]");//By.id("filterSapccInvoiceSapOrderNo");
+	By statusField = By.xpath("//*[@id=\"filterSapCcinvoiceStatus\"]");//By.id("filterSapccInvoiceStatus");
+	By requesterField = By.xpath("//*[@id=\"filterSapCcinvoiceRequesterId\"]");//By.id("filterRequesterId");
+	By payerNameField = By.xpath("//*[@id=\"filterSapCcinvoicePayerName\"]");
+	By busPrinNameField = By.xpath("//*[@id=\"filterSapCcinvoiceBusinessPrincipleName\"]");
+	By freeTextField = By.xpath("//*[@id=\"filterSapCcinvoiceFreetext\"]");
+	By searchButton = By.xpath("//*[@id=\"FilterInvoiceForm\"]/div[2]/table/tbody/tr[10]/td/div/input");//By.cssSelector("#FilterInvoiceForm > div.grid_12 > table > tbody > tr:nth-child(7) > td > div > input");
+	By resetButton = By.xpath("//*[@id=\"FilterInvoiceForm\"]/div[2]/table/tbody/tr[10]/td/a");//By.cssSelector("#FilterInvoiceForm > div.grid_12 > table > tbody > tr:nth-child(10) > td > a");
+	By printButton = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/table/tbody/tr[3]/td[1]/a/img");//By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(1) > a");
+	By viewButton = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/table/tbody/tr[3]/td[2]/a/span");//By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > table > tbody > tr:nth-child(3) > td:nth-child(2) > a");
+	By exportButton = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/div/a");//By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > a");
 
 	By tableHeader = By.xpath("//*[@id=\"content\"]/div[2]/div/div[2]/table/tbody/tr[1]/th");//*[@id="content"]/div[2]/div/div[2]/table/tbody/tr[1]/th[1]
 	public By noRecords = By.cssSelector("#content > div.tbl-toggle.cc_grid_outer > div > div.scrollTableContainer > div > div");
@@ -202,7 +207,7 @@ public class Ecomm_InvoicesPage extends WBA_BasePage {
 	
 	public void checkFields_SUMST() {
             //Wait for all elements to be clickable
-            WebElement custName = Wait.clickable(driver,custNameField);
+            //WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
             WebElement custPO = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custPOField));
             WebElement dateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
             WebElement dateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateToField));
@@ -221,7 +226,7 @@ public class Ecomm_InvoicesPage extends WBA_BasePage {
             WebElement export = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(exportButton));
 
             //Assert all elements are displayed
-            AssertJUnit.assertTrue("Invoices Page: Customer Name field not displayed correctly",custName.isDisplayed());
+            //AssertJUnit.assertTrue("Invoices Page: Customer Name field not displayed correctly",custName.isDisplayed());
             AssertJUnit.assertTrue("Invoices Page: Customer PO field not displayed correctly",custPO.isDisplayed());
             AssertJUnit.assertTrue("Invoices Page: Order Date From field not displayed correctly",dateFrom.isDisplayed());
             AssertJUnit.assertTrue("Invoices Page: Order Date To field not displayed correctly",dateTo.isDisplayed());
@@ -246,6 +251,11 @@ public class Ecomm_InvoicesPage extends WBA_BasePage {
             WebElement dateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateFromField));
             WebElement dateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderDateToField));
             WebElement ymn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(yourMatNumField));
+			WebElement cCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custCodeField));
+			WebElement payer = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(payerNameField));
+			WebElement bpn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(busPrinNameField));
+			WebElement sOrg = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgNameField));
+			WebElement free = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(freeTextField));
             WebElement paymentFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(paymentDateFromField));
             WebElement paymentTo= new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(paymentDateToField));
             WebElement shipToName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyNameField));
@@ -267,6 +277,11 @@ public class Ecomm_InvoicesPage extends WBA_BasePage {
             AssertJUnit.assertTrue("Invoices Page: Payment Date To field not displayed correctly",paymentTo.isDisplayed());
             AssertJUnit.assertTrue("Invoices Page: Ship To Name field not displayed correctly",shipToName.isDisplayed());
             AssertJUnit.assertTrue("Invoices Page: Invoice No Field not displayed correctly",invoice.isDisplayed());
+			AssertJUnit.assertTrue("Invoices Page: Customer Code field not displayed correctly",cCode.isDisplayed());
+			AssertJUnit.assertTrue("Invoices Page: Payer Name field not displayed correctly",payer.isDisplayed());
+			AssertJUnit.assertTrue("Invoices Page: Business Principle Name field not displayed correctly",bpn.isDisplayed());
+			AssertJUnit.assertTrue("Invoices Page: Sales Org Name field not displayed correctly",sOrg.isDisplayed());
+			AssertJUnit.assertTrue("Invoices Page: StyleNo./Production No. Field not displayed correctly",free.isDisplayed());
             AssertJUnit.assertTrue("Invoices Page: SAP Order No Field not displayed correctly",sapOrderNo.isDisplayed());
             AssertJUnit.assertTrue("Invoices Page: Status Field not displayed correctly",status.isDisplayed());
             AssertJUnit.assertTrue("Invoices Page: Search button not displayed correctly",search.isDisplayed());

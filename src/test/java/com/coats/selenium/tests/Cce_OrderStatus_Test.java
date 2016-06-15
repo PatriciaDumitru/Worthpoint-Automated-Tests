@@ -52,7 +52,7 @@ public class Cce_OrderStatus_Test extends DriverFactory {
         
         System.out.println("Exported. Resetting filter...");
         
-        orderStatus.pressReset();
+        orderStatus.pressClearButton();
         orderStatus.waitForLoad();
         
         System.out.println("Filter reset.");*/
