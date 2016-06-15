@@ -131,20 +131,10 @@ public class Cce_SOC_Test extends DriverFactory {
         
         CCE_OrderStatusPage outstOrders = addOrder.pressSubmit();
         
-        //Take a screenshot
-        File scrFile5 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\6Order submitted.png"));
-        
-        System.out.println("Order submitted. Verifying order details...");
-        
         //Line numbers start from 2
         CCE_OrderViewPage viewPage = outstOrders.pressView(2);
         viewPage.switchTo();
         viewPage.waitForContent();
-        
-        //Take a screenshot
-        File scrFile6 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile6,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\7View Order.png"));
         
         Verify.verify(viewPage.getCustName().equals(DataItems.custDetails[0]),"Sample Order View: Customer name incorrect in view");
         Verify.verify(viewPage.getRequestorName().equals(DataItems.custDetails[2]),"Sample Order View: Requestor name incorrect in view");
@@ -205,8 +195,8 @@ public class Cce_SOC_Test extends DriverFactory {
         
         System.out.println("Details added. Submitting order...");
         
-        File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2,new File(DataItems.screenshotsFilepath+"\\CCE\\Orders\\Order Samples\\9Line filled.png"));
+        
+        
         
         CCE_OrderStatusPage outstOrders = addOrder.pressSubmit();
         

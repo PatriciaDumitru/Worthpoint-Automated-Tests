@@ -295,6 +295,14 @@ public class CCE_AddOrderPage extends WBA_BasePage {
 
         Alert alert = Wait.alert(driver);
         alert.accept();
+
+        try {
+            Alert alert2 = Wait.alert(driver);
+            alert2.accept();
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+
+        }
         
         return new CCE_OrderStatusPage(driver);
     }

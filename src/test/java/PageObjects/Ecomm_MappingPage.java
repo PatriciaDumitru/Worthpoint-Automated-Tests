@@ -266,6 +266,13 @@ public class Ecomm_MappingPage extends WBA_BasePage {
         Alert alert = Wait.alert(driver);
         alert.accept();
 
+        try {
+            alert.getText();
+            alert.accept();
+        } catch (Exception e) {
+            System.out.println("No error displayed");
+        }
+
         return new Ecomm_OrderConfirmationPage(driver);
     }
     

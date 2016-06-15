@@ -75,6 +75,7 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         System.out.println("View displayed. Closing view...");
 
         viewPage.closeView();
+        driver.navigate().refresh();
         viewPage.waitForInvisibility();
         driver.switchTo().defaultContent();
         
@@ -117,6 +118,7 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         System.out.println("View displayed. Closing view...");
         
         viewPage.closeView();
+        driver.navigate().refresh();
         viewPage.waitForInvisibility();
         driver.switchTo().defaultContent();
         
@@ -165,6 +167,7 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         System.out.println("View displayed. Closing view...");
         
         viewPage.closeView();
+        driver.navigate().refresh();
         viewPage.waitForInvisibility();
         driver.switchTo().defaultContent();
         

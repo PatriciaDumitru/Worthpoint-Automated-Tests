@@ -473,6 +473,8 @@ public class Ecomm_ME_SUSST_Test extends DriverFactory {
         outOrders.waitForElement();
 
         System.out.println("Order submitted. Viewing order...");
+
+        driver.navigate().refresh();
         
         //Verify values in outstanding orders tab
         //Get the row number of the order in the table and press view

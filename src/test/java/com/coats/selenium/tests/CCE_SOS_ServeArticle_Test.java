@@ -1097,7 +1097,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
-        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.articleData120[2], DataItems.None);
+        expectedResults2Lines(DataItems.articleData180[2], DataItems.None, DataItems.articleData120[2], DataItems.Warehouse);
     }
 
     @Test //ML_W_03 : Multi Line – Warehouse – Similar Article:Yes – L1[W:Y] – L2[W:N]
@@ -1121,7 +1121,7 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
 
         order2Lines(DataItems.articleData180[2], DataItems.articleData180[6], DataItems.articleData120[2], DataItems.articleData180[6]);
 
-        expectedResults2Lines(DataItems.similarArticle01[0], DataItems.Warehouse, DataItems.articleData120[2], DataItems.None);
+        expectedResults2Lines(DataItems.similarArticle01[0], DataItems.Warehouse, DataItems.articleData120[2], DataItems.Warehouse);
     }
 
     @Test //ML_W_04 : Multi Line – Warehouse – Similar Article:Yes – L1[W:N, H:Y] – L2[W:Y]
