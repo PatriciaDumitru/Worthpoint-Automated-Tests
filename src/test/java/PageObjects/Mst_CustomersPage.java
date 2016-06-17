@@ -23,6 +23,8 @@ public class Mst_CustomersPage extends WBA_BasePage {
     By newCustomerButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
     By flashMsg=By.id("flashMessage");
 
+    By custCodeField = By.id("filterCustomerCustomerCode");
+
     
     public Mst_CustomersPage(WebDriver driver) {
         super(driver);
@@ -75,6 +77,11 @@ public class Mst_CustomersPage extends WBA_BasePage {
     
     public Mst_CustomersPage setSalesOrg(String item) {
         CommonTask.setSearchField(driver, salesOrgField, item);
+        return new Mst_CustomersPage(driver);
+    }
+
+    public Mst_CustomersPage setCustomerCode(String item) {
+        CommonTask.setInputField(driver, custCodeField, item);
         return new Mst_CustomersPage(driver);
     }
     
@@ -201,5 +208,19 @@ public class Mst_CustomersPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Customers Master Page: New Customer field not displayed correctly", newCust.isDisplayed());
     }
 
+    public void deleteCustomer(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Customer matching the test criteria found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setSalesOrg("ID51");
+            setCustomerCode("AUT0");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Customer deleted");
+    }
 
 }

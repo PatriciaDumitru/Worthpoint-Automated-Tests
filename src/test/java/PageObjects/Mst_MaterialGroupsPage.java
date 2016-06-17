@@ -142,5 +142,17 @@ public class Mst_MaterialGroupsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement materialGroup = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(materialGroupField));
     }
-    
+
+    public void deleteMatGrp(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Material Group name is already used");
+            System.out.println("Deleting current Material Group");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Brand cleared");
+    }
+
 }

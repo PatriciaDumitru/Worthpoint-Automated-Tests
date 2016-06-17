@@ -142,5 +142,17 @@ public class Mst_LightSourcesPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
     }
-    
+
+    public void deleteLightSrc(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Light Source name is already used");
+            System.out.println("Deleting current Light Source");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Light Source cleared");
+    }
+
 }

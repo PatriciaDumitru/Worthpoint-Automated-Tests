@@ -145,5 +145,17 @@ public class Mst_LengthsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement length = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lengthNameField));
     }
-    
+
+    public void deleteLength(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Length name is already used");
+            System.out.println("Deleting current Length");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Length cleared");
+    }
+
 }

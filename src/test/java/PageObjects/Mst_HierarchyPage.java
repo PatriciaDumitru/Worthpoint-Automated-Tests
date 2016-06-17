@@ -142,5 +142,17 @@ public class Mst_HierarchyPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
     }
-    
+
+    public void deleteHierarchy(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Hierarchy name is already used");
+            System.out.println("Deleting current Hierarchy");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Hierarchy cleared");
+    }
+
 }

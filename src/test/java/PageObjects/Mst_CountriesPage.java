@@ -219,5 +219,16 @@ public class Mst_CountriesPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Countries Page: Export button not displayed as expected",getExportButton().isDisplayed());
         AssertJUnit.assertTrue("Countries Page: New Country button not displayed as expected",getNewCountryButton().isDisplayed());
     }
-    
+
+    public void deleteCountry(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Country is already used");
+            System.out.println("Deleting current Country");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Country cleared");
+    }
 }

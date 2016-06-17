@@ -3,6 +3,8 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -87,7 +89,8 @@ public class Mst_PlantsPage extends WBA_BasePage {
         By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(3) > span");
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
         element.click();
-        
+        Alert alert = Wait.alert(driver);
+        alert.accept();
         return new Mst_PlantsPage(driver);
     }
     
@@ -136,5 +139,17 @@ public class Mst_PlantsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement plantName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
     }
-    
+
+    public void deletePlant(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Plant name is already used");
+            System.out.println("Deleting current Plant");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Plant cleared");
+    }
+
 }

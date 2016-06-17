@@ -138,5 +138,17 @@ public class Mst_HubsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement hubName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(hubNameField));
     }
-    
+
+    public void deleteHub(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Hub name is already used");
+            System.out.println("Deleting current Hub");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Hub cleared");
+    }
+
 }

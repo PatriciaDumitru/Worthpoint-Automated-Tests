@@ -126,5 +126,17 @@ public class Mst_MarketNewFeaturesPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(featureTitleField));
     }
-    
+
+    public void deleteMrkNewFt(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Marketing New Features is already used");
+            System.out.println("Deleting current Marketing New Features");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Marketing New Features cleared");
+    }
+
 }

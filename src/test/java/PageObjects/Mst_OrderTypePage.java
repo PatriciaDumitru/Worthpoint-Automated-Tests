@@ -138,5 +138,18 @@ public class Mst_OrderTypePage extends WBA_BasePage {
     public void waitForElement() {
         WebElement orderType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(orderTypeField));
     }
-    
+
+    public void deleteOrdType(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Order Type name is already used");
+            System.out.println("Deleting current Order Type");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Order Type cleared");
+    }
+
+
 }

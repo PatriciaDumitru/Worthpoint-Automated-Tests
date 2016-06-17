@@ -147,8 +147,9 @@ public class Ecomm_ProductAvailabilityCheck_Test extends DriverFactory {
         pacPage.setShadeCode(DataItems.expShadeCode);
         pacPage.setTicket("120");       
         pacPage.setQty("1");
+        pacPage.setLength("5000");
         pacPage.setFinish(DataItems.expFinish);
-       // pacPage.setLength("5000");
+
         
         System.out.println("Details entered. Searching for product...");
 

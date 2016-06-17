@@ -23,7 +23,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         WebDriver driver = getDriver();
         Cce_Base base = new Cce_Base(driver);
 
-        CCE_MainPage ccePage = base.setUp("Contract Call Off Orders: Page and filter checks", "CCO_GC_01", DataItems.validCoatsUsername2, DataItems.validCoatsPassword);
+        CCE_MainPage ccePage = base.setUp("Contract Call Off Orders: Page and filter checks", "CCO_GC_01", DataItems.validCoatsUsername, DataItems.validCoatsPassword);
         ccePage.waitForLoad();
 
         //Go Masters -> Sales Org and edit Sales Org (LK53)

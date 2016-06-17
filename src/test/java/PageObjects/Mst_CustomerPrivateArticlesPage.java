@@ -14,7 +14,7 @@ import org.testng.AssertJUnit;
 public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
 
     //Locators
-    By customerNameField = By.xpath("//*[@id=\"FilterIndexForm\"]/table/tbody/tr[1]/td[2]");/*id("filterCustomerCustomerName");*/
+    By customerNameField = By.id("filterCustomerCustomerName");/*xpath("/[@id=\"FilterIndexForm\"]/table/tbody/tr[1]/td[2]");*/
     By salesOraganizationField = By.id("s2id_filterCustomerPrivateArticleSalesOrgId");
     By articleField = By.id("s2id_autogen2");
     By customerCodeField = By.id("filterCustomerCustomerCode");

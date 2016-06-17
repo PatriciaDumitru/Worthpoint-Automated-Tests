@@ -251,7 +251,7 @@ public class Mst_SupplyPlantsPage extends WBA_BasePage {
     public void deleteSupplyPlants(){
 
         int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
-        System.out.println(nrOfEntry - 1 +" Sales org material found with the name Test ");
+        System.out.println(nrOfEntry - 1 +"Supply Plants found matching the test criteria");
 
         for(int i = nrOfEntry;i > 1; i--)
         {
@@ -263,7 +263,7 @@ public class Mst_SupplyPlantsPage extends WBA_BasePage {
             pressSearch();
             waitForElement();
         }
-        System.out.println("Sales org material with Test criteria cleared");
+        System.out.println("Supply Plants cleared");
 
     }
 }

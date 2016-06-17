@@ -18,7 +18,7 @@ public class Mst_AddMarketRunningTextPage extends WBA_BasePage {
     By salesOrgField = By.id("s2id_autogen1");
     By runningTextField = By.id("MarketingRunningtextRunningtext");
     By availFromField = By.id("MarketingRunningtextAvailableFrom");
-    By availToField = By.id("MarketingRunningtextAvailableTo");
+    By availToField = By.xpath("//*[@id=\"MarketingRunningtextAvailableTo\"]");/*id("MarketingRunningtextAvailableTo");*/
     By accessTypeField = By.id("MarketingRunningtextAccessTypeId");
     By setToAllButton = By.cssSelector("#MarketingRunningtextAddForm > div.frm > table > tbody > tr:nth-child(3) > td:nth-child(2) > div.allbutton > ul > li:nth-child(1) > a");
     By saveButton = By.cssSelector("#MarketingRunningtextAddForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");

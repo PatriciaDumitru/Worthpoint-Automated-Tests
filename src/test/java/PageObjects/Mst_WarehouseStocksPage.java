@@ -200,5 +200,31 @@ public class Mst_WarehouseStocksPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement plantName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
     }
-    
+
+    public void deleteWrhsStock(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"OurStockListForm\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +"Warehouse Stock matching the test criteria found");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            //Locator is different from the pressDelete function on this page
+
+            By locator = By.xpath("//*[@id=\"OurStockListForm\"]/div[2]/table/tbody/tr[2]/td[9]/a[2]");
+            WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
+            element.click();
+
+            Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+            alert.accept();
+
+            setSalesOrg("ID51");
+            setPlantName("ID12");
+            setArticle("TEST01");
+            setTicket("000");
+            setMUMType("Cop");
+            setBrand("ASTRA");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Warehouse Stock deleted");
+    }
 }

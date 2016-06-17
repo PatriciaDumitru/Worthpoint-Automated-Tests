@@ -48,7 +48,7 @@ public class WBA_BasePage {
         static By shadeNotAvailSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(5)");
         static By shadeNotAvailSubTab2 = By.xpath("//*[@id=\"topnav\"]/li[1]/div/div/ul/li/a[contains(text(),'Shade Not Available')]");
         static By waitingForShadeSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(6)");
-        static By waitingForShadeSubTab2 = By.xpath("//*[@id=\"topnav\"]/li[1]/div/div/ul/li/a[contains(text(),'Waiting For Shade Code')]");//*[@id="topnav"]/li[1]/div/div/ul
+        static By waitingForShadeSubTab2 = By.xpath("//*[@id=\"topnav\"]/li[1]/div/div/ul/li/a[contains(text(),'Waiting For Shade')]");//*[@id="topnav"]/li[1]/div/div/ul /// PUNE-L LA LOC Code
 
     static By outstandingOrdersTab = By.cssSelector("#topnav > li:nth-child(2)");
         static By outOrdersListSubTab = By.cssSelector("#topnav > li:nth-child(2) > div > div > ul > li:nth-child(1)");
@@ -125,11 +125,11 @@ public class WBA_BasePage {
             static By shadesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(4)");
             static By customerShadesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(13)");
             static By countriesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(1) > ul > li:nth-child(2)");
-            static By multiSoldToOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(14)");/*default was 15*/
+            static By multiSoldToOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(15)");
             static By subAccountOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(4)");
             static By salesOrgMatOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(6)");
             static By customersOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(2)");
-            static By approverListOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(15)");/*default value 14*/
+            static By approverListOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(14)");
             static By custBusPrincOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(16)");
             static By custFinishesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(12)");
             static By custLengthsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(11)");
@@ -163,7 +163,7 @@ public class WBA_BasePage {
             static By orderTypeOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(13)");
             static By warehouseStocksOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(15)");
             static By allowedQuantitiesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(16)");
-            static By shippingConditionOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(17)");
+            static By shippingConditionOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(2) > ul > li:nth-child(16)");
             static By shipToPartiesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(3)");
             static By cabinetsOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(18)");
             static By marketNewFeaturesOption = By.cssSelector("#topnav > li:nth-child(8) > div > div > ul > li:nth-child(3) > div > div:nth-child(3) > ul > li:nth-child(19)");

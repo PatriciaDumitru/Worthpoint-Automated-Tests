@@ -24,6 +24,8 @@ public class Mst_ShipToPartiesPage extends WBA_BasePage {
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
     By exportButton = By.cssSelector("#export-menu > a");
     By newShipToPartyButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
+
+    By partyNumberField = By.id("filterShipToPartyNo");
     
     public Mst_ShipToPartiesPage(WebDriver driver) {
         super(driver);
@@ -44,6 +46,11 @@ public class Mst_ShipToPartiesPage extends WBA_BasePage {
         
         CommonTask.setInputField(driver, custNameField, item);
         return new Mst_ShipToPartiesPage(driver);
+    }
+
+    public Mst_AddShipToPartyPage setPartyNumber(String item) {
+        CommonTask.setInputField(driver,partyNumberField,item);
+        return new Mst_AddShipToPartyPage(driver);
     }
     
     public Mst_ShipToPartiesPage setShipToPartyName(String item) {
@@ -164,5 +171,21 @@ public class Mst_ShipToPartiesPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement shipToPartyName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shipToPartyNameField));
     }
-    
+
+    public void deleteShipToParty(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Ship to Parties matching the test criteria found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setCustomerName(DataItems.custDetails[0]);
+            setPartyNumber("AUT01");
+            setSalesOrg("ID51");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Ship to Parties deleted");
+    }
+
 }

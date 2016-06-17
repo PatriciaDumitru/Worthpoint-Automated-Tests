@@ -3,7 +3,9 @@ package PageObjects;
 
 import AutomationFramework.CommonTask;
 import AutomationFramework.DataItems;
+import AutomationFramework.Wait;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -99,5 +101,11 @@ public class Mst_EditPlantPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement plantDesc = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantDescField));
     }
-    
+
+    //For workaround
+    /*public void clickOnX(){
+        By ex = By.xpath("/*//*[@id=\"s2id_PlantWeekend\"]/ul/li[1]/a");
+        WebElement ex2 = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ex));
+        driver.findElement(ex).click();
+    }*/
 }

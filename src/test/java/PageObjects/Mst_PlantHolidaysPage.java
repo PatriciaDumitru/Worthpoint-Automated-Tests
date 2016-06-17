@@ -145,5 +145,17 @@ public class Mst_PlantHolidaysPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement plantName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantNameField));
     }
-    
+
+    public void deleteHolyDay(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("HolyDay is already used");
+            System.out.println("Deleting current HolyDay");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("HolyDay cleared");
+    }
+
 }

@@ -236,7 +236,6 @@ public class Ecomm_OO_Test extends DriverFactory {
         CCE_MainPage mainPage = base.setUp("Pending Approval Page: Page and filter checks/print function for Requester","OA_WP_OO_PAL_RU_1 to 4"); 
         mainPage.waitForLoad();
 
-
         PreFlows pf = new PreFlows();
         pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
         //pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
@@ -268,7 +267,6 @@ public class Ecomm_OO_Test extends DriverFactory {
         Ecomm_Base base2 = new Ecomm_Base(driver);
         Ecomm_MainPage mainPage2 = base2.setUp("", "", DataItems.requesterUsername, DataItems.requesterPassword);
         mainPage2.waitForLoad();
-
 
         System.out.println("Logged in. Navigating to Manual Entry Page...");
 

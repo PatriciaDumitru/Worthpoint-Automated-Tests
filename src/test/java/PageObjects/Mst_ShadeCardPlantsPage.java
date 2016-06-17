@@ -154,5 +154,16 @@ public class Mst_ShadeCardPlantsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement plant = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(plantField));
     }
-    
+
+    public void deleteShCrdPlant(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Shade Card Plant is already used");
+            System.out.println("Deleting current Shade Card Plant");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Shade Card Plant cleared");
+    }
 }

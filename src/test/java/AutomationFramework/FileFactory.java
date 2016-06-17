@@ -405,10 +405,10 @@ public class FileFactory {
 
     //Data for Enable Orders without Shade
     public static String[][] susstEOwSData = {
-            {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "8754180", "astra", "120", "5000", "STANDARD", "fdafadsfasd", "3", "", "", "", "prafull.patil@igate.com"},
-            {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "8754180", "astra", "180", "3000", "STANDARD", "C1711", "3", "", "", "", "prafull.patil@igate.com"},
-            {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "8754180", "astra", "030", "1000", "STANDARD", "", "3", "", "", "", "prafull.patil@igate.com"},
-            {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "8754180", "astra", "030", "1000", "STANDARD", "", "3", "", "", "", "prafull.patil@igate.com"}};
+            {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "8754180", "astra", "120", "5000", "STANDARD", "fdafadsfasd", "3", "", "", "", "sbadalache@tremend.ro"},
+            {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "8754180", "astra", "180", "3000", "STANDARD", "C1711", "3", "", "", "", "sbadalache@tremend.ro"},
+            {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "8754180", "astra", "030", "1000", "STANDARD", "", "3", "", "", "", "sbadalache@tremend.ro"},
+            {"Life Easy Customer", "CCE HUB OFFICES", "", "", "", "8754180", "astra", "030", "1000", "STANDARD", "", "3", "", "", "", "sbadalache@tremend.ro"}};
 
     public static String[][] sumstOFUData = {
             {"CCE HUB offices", "CCE HUB OFFICES", "approver@ccehub.com", "ADIDAS", "D", "A", "A", "8754180", "ASTRA", "110", "BLACK", "Cop", "1", "Color Matching", "Bulk (Samples for Bulk Fabric)", "test requirememt1", "test customrere1", "test fabric1", "Yes", "black", "test fce comment1", "Lab"},

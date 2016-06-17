@@ -147,5 +147,19 @@ public class Mst_ShadeCardsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCardCodeField));
     }
-    
+
+    public void deleteShadeCard(){
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+        System.out.println(nrOfEntry - 1 +" Shade Card matching the test criteria found ");
+
+        for(int i = nrOfEntry;i > 1; i--)
+        {
+            pressDelete(2);
+            setShadeCardCode("AUT0");
+            pressSearch();
+            waitForElement();
+        }
+        System.out.println("Shade Card deleted");
+    }
+
 }

@@ -140,5 +140,17 @@ public class Mst_RejectionReasonsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement field = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(rejectionCodeField));
     }
-    
+
+    public void deleteRejReason(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Rejection Reason code is already used");
+            System.out.println("Deleting current Rejection Reason");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Rejection Reason cleared");
+    }
+
 }

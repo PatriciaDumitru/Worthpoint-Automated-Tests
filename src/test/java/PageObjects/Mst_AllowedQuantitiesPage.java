@@ -44,6 +44,16 @@ public class Mst_AllowedQuantitiesPage extends WBA_BasePage {
         CommonTask.setSearchField(driver, brandField, item);
         return new Mst_AllowedQuantitiesPage(driver);
     }
+
+    public Mst_AllowedQuantitiesPage setTicket(String item) {
+        CommonTask.setSearchField(driver, ticketField, item);
+        return new Mst_AllowedQuantitiesPage(driver);
+    }
+
+    public Mst_AllowedQuantitiesPage setMUMType(String item) {
+        CommonTask.setSearchField(driver, mumTypeField, item);
+        return new Mst_AllowedQuantitiesPage(driver);
+    }
     
     public Mst_AllowedQuantitiesPage setShade(String item) {
         CommonTask.setSearchField(driver, shadeField, item);
@@ -159,13 +169,15 @@ public class Mst_AllowedQuantitiesPage extends WBA_BasePage {
     //Check if any previously Allowed Quantities were created and delete them before starting the test
     public void deleteAq(){
         int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
-        System.out.println(nrOfEntry - 1 +" allowed quantities entries found");
+        System.out.println(nrOfEntry - 1 +" Allowed quantities entries found");
 
         for(int i = nrOfEntry;i > 1; i--)
         {
             pressDelete(2);
             setCustomerName(DataItems.custDetails[0]);
             setBrand("ASTRA");
+            setTicket("000");
+            setMUMType("Cone");
             setShade("BLACK");
             pressSearch();
             waitForElement();

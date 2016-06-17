@@ -21,6 +21,9 @@ public class Mst_BusinessPrincipalsPage extends WBA_BasePage {
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
     By exportButton = By.cssSelector("#export-menu > a");
     By newBusinessPrincipalButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
+
+    By principalNoField = By.id("filterBusinessPrincipalNo");
+    By lightSource1Field = By.id("s2id_filterLightSource1stId");
     
     public Mst_BusinessPrincipalsPage(WebDriver driver) {
         super(driver);
@@ -35,6 +38,16 @@ public class Mst_BusinessPrincipalsPage extends WBA_BasePage {
         element.clear();
         
         CommonTask.setInputField(driver, principalName, item);
+        return new Mst_BusinessPrincipalsPage(driver);
+    }
+
+    public Mst_BusinessPrincipalsPage setPrincipalNo(String item) {
+        CommonTask.setInputField(driver,principalNoField,item);
+        return new Mst_BusinessPrincipalsPage(driver);
+    }
+
+    public Mst_BusinessPrincipalsPage setLightSource1(String item) {
+        CommonTask.setSearchField(driver,lightSource1Field,item);
         return new Mst_BusinessPrincipalsPage(driver);
     }
     
@@ -138,5 +151,5 @@ public class Mst_BusinessPrincipalsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement principalNameField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(principalName));
     }
-    
+
 }

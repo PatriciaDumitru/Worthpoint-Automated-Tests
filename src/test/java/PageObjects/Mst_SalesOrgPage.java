@@ -145,10 +145,30 @@ public class Mst_SalesOrgPage extends WBA_BasePage {
         
     }
 
+    public int getNrOfEntry() {
+        By salesOrgHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(2) > a");
+        WebElement header = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(salesOrgHeader));
 
+        AssertJUnit.assertTrue("Sales Organisation Page: Sales Organisation column has moved, update locators",header.getText().equals("Sales Organisation"));
 
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
 
+        if (nrOfEntry > 1){
+            return 1;
+        }
+        return -1;
+    }
 
+    public void deleteSlsOrg(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
 
+        if(nrOfResults > 1){
+            System.out.println("Sales Organization name is already used");
+            System.out.println("Deleting current Sales Organization");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Sales Organization");
+    }
 
 }

@@ -138,5 +138,17 @@ public class Mst_TicketsPage extends WBA_BasePage {
     public void waitForElement() {
         WebElement ticketName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(ticketNameField));
     }
-    
+
+    public void deleteTicket(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Ticket name is already used");
+            System.out.println("Deleting current Ticket");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Ticket cleared");
+    }
+
 }

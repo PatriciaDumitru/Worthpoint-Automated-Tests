@@ -89,7 +89,6 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
 
         closeAlert(driver);
 
-
         //Verifying that Order Confirmation Page is displayed
         orderConf.waitForPageElem();
 
@@ -104,6 +103,9 @@ public class Ecomm_UO_EOwS_Test extends DriverFactory {
         System.out.println("PO number in Order Confirmation page:"+currentPO);
         //Press submit
         Ecomm_OutstandingOrdersPage outOrdersPage = orderConf.pressSubmit();
+
+
+
         outOrdersPage.waitForElement();
 
         System.out.println("Order submitted.Navigating to Outstanding Upload Order...");
