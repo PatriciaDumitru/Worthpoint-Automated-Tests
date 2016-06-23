@@ -179,4 +179,35 @@ public class Mst_CustBusinessPrincipalPage extends WBA_BasePage {
         }
         System.out.println("Customer business principal cleared");
     }
+
+    public boolean checkRecordDetails(String... detail){
+
+        //Getting the number of table columns
+        int nrOfCol = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td")).size();
+        System.out.println(nrOfCol+" found");
+
+        boolean check = false;
+
+        for(int i=2; i < nrOfCol - 1;i++){
+            By fieldLocator = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td["+i+"]");
+
+            //Getting the text from columns
+            String text = driver.findElement(fieldLocator).getText().trim();
+            System.out.println(text);
+            System.out.println(detail[i-2]);
+
+            //Checking if the columns matches the data
+            if(text.equals( detail[i-2] )){
+                System.out.println("Column number "+(i-1)+" checked");
+                check = true;
+            } else {
+                System.out.println("Column number "+(i-1)+" does not match the data");
+                check = false;
+                break;
+            }
+        }
+
+        return check;
+    }
+
 }

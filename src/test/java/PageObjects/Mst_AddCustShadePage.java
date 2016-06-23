@@ -19,8 +19,11 @@ public class Mst_AddCustShadePage extends WBA_BasePage {
     By custNameField = By.id("s2id_CustomerShadeCustomerId");
     By custShadeField = By.id("CustomerShadeCustomerShadeName");
     By coatsShadeField = By.id("s2id_CustomerShadeShadeId");
+    By statusActiveBtn = By.id("CustomerShadeStatusId1");
+    By statusInactiveBtn = By.id("CustomerShadeStatusId2");
     By saveButton = By.cssSelector("#CustomerShadeAddForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By cancelButton = By.cssSelector("#CustomerShadeAddForm > div.actions > ul > li:nth-child(2) > a");
+
     
     public Mst_AddCustShadePage(WebDriver driver) {
         super(driver);
@@ -70,6 +73,8 @@ public class Mst_AddCustShadePage extends WBA_BasePage {
         WebElement custName = Wait.clickable(driver,custNameField);
         WebElement custShade = Wait.clickable(driver,custShadeField);
         WebElement coatsShade = Wait.clickable(driver,coatsShadeField);
+        WebElement statusActive = Wait.clickable(driver,statusActiveBtn);
+        WebElement statusInactive = Wait.clickable(driver,statusInactiveBtn);
         WebElement save = Wait.clickable(driver,saveButton);
         WebElement cancel = Wait.clickable(driver,cancelButton);
         
@@ -78,6 +83,8 @@ public class Mst_AddCustShadePage extends WBA_BasePage {
         AssertJUnit.assertTrue("Add Customer Shade: Customer Name field not displayed",custName.isDisplayed());
         AssertJUnit.assertTrue("Add Customer Shade: Customer Shade field not displayed",custShade.isDisplayed());
         AssertJUnit.assertTrue("Add Customer Shade: Coats shade field not displayed",coatsShade.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Status Active button not displayed as expected",statusActive.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Status Inactive button not displayed as expected",statusInactive.isDisplayed());
         AssertJUnit.assertTrue("Add Customer Shade: Save button not displayed",save.isDisplayed());
         AssertJUnit.assertTrue("Add Customer Shade: Cancel button not displayed",cancel.isDisplayed());
     }

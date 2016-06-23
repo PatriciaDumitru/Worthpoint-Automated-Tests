@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 public class Ecomm_OutstandingPaymentsPage extends WBA_BasePage {
     
     //Locators
-    By custNameField = By.id("s2id_filterSapccInvoiceCustomerId");
+    By custNameField = By.id("s2id_filterSapCcinvoiceCustomerId");
     By by30Button = By.cssSelector("#FilterPaymentForm > div.grid_12 > table > tbody > tr:nth-child(1) > td:nth-child(4) > label:nth-child(2)");
     By by60Button = By.cssSelector("#FilterPaymentForm > div.grid_12 > table > tbody > tr:nth-child(1) > td:nth-child(4) > label:nth-child(5)");
     By by90Button = By.cssSelector("#FilterPaymentForm > div.grid_12 > table > tbody > tr:nth-child(1) > td:nth-child(4) > label:nth-child(8)");

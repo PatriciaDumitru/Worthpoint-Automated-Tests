@@ -18,6 +18,9 @@ public class Mst_CustomerShadesPage extends WBA_BasePage {
     By salesOrgField = By.id("s2id_filterSalesOrgId");
     By custNameField = By.id("s2id_filterCustomerId");
     By coatsShadeField = By.id("s2id_filterShadeId");
+    By statusField = By.id("s2id_filterStatusId");
+    By lastUpFromField = By.id("filterUpdatedFrom");
+    By lastUpToField = By.id("filterUpdatedTo");
     By custShadeField = By.id("filterCustomerShadeName");
     By searchButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
@@ -164,6 +167,9 @@ public class Mst_CustomerShadesPage extends WBA_BasePage {
         WebElement custName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custNameField));
         WebElement coatsShade = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(coatsShadeField));
         WebElement custShade = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(custShadeField));
+        WebElement statusFld = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(statusField));
+        WebElement lastUpdFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lastUpFromField));
+        WebElement lastUpdTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(lastUpToField));
         WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(resetButton));
         WebElement importB = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(importButton));
@@ -175,6 +181,9 @@ public class Mst_CustomerShadesPage extends WBA_BasePage {
         AssertJUnit.assertTrue("Customer Shades Page: Customer Name field not displayed",custName.isDisplayed());
         AssertJUnit.assertTrue("Customer Shades Page: Coats Shade field not displayed",coatsShade.isDisplayed());
         AssertJUnit.assertTrue("Customer Shades Page: Customer Shade field not displayed",custShade.isDisplayed());
+        AssertJUnit.assertTrue("Customer Shades Page: Status field not displayed",statusFld.isDisplayed());
+        AssertJUnit.assertTrue("Customer Shades Page: Last Updated from field not displayed",lastUpdFrom.isDisplayed());
+        AssertJUnit.assertTrue("Customer Shades Page: last Update Tofield not displayed",lastUpdTo.isDisplayed());
         AssertJUnit.assertTrue("Customer Shades Page: Search button not displayed",search.isDisplayed());
         AssertJUnit.assertTrue("Customer Shades Page: Reset button not displayed",reset.isDisplayed());
         AssertJUnit.assertTrue("Customer Shades Page: Import button not displayed",importB.isDisplayed());

@@ -1036,5 +1036,45 @@ public class CommonTask {
         //Wait for menu to appear
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(menuHead));
     }
-    
+
+    //This method verifies the values from each column of a table(applicable to Master Test Checks mostly)
+    //Detail is the string you want to check is present in the table column
+    public static boolean checkRecordDetails(WebDriver driver,String... detail){
+
+        //Getting the number of table columns
+        int nrOfCol = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td")).size();
+        System.out.println(nrOfCol+" found");
+
+        //Variable used to return the result of the method
+        boolean check = false;
+
+        //The i starts from the column you want to check
+        //Extract from the nrOfCol the number of the final columns you don't need to check (usually Status and Action columns)
+        //The columns you don't check must be in a successive order
+
+        for(int i=2; i <= nrOfCol - 2;i++){
+
+            //fieldLocator is the location of each table column
+            By fieldLocator = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td["+i+"]");
+
+            //Getting the text from columns
+            String text = driver.findElement(fieldLocator).getText().trim();
+            System.out.println(text);
+            System.out.println(detail[i-2]);
+
+            //Checking if the column matches the detail data, detail starts from detail[0]
+            if(text.equals( detail[i-2] )){
+                System.out.println("Column number "+ i +" checked");
+                check = true;
+            } else {
+                System.out.println("Column number "+ i +" does not match the data");
+                check = false;
+                break;
+            }
+        }
+
+        return check;
+    }
+
+
 }

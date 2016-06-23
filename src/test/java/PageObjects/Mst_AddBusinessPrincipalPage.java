@@ -14,7 +14,9 @@ public class Mst_AddBusinessPrincipalPage extends WBA_BasePage {
     
     By principalNoField = By.id("BusinessPrincipalBusinessPrincipalNo");
     By principalNameField = By.id("BusinessPrincipalBusinessPrincipalName");
-    By lightSource1Field = By.id("BusinessPrincipalLightSource1stId");
+    By lightSource1Field1 = By.id("BusinessPrincipalLightSource1stId");
+    By lightSource1Field2 = By.id("BusinessPrincipalLightSource2ndId");
+    By lightSource1Field3 = By.id("BusinessPrincipalLightSource3rdId");
     By saveButton = By.cssSelector("#BusinessPrincipalAddForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By cancelButton = By.cssSelector("#BusinessPrincipalAddForm > div.actions > ul > li:nth-child(2) > a");
     
@@ -37,7 +39,17 @@ public class Mst_AddBusinessPrincipalPage extends WBA_BasePage {
     }
     
     public Mst_AddBusinessPrincipalPage setLightSource1(String item) throws InterruptedException {
-        CommonTask.setDropDownField(driver,lightSource1Field,item);
+        CommonTask.setDropDownField(driver,lightSource1Field1,item);
+        return new Mst_AddBusinessPrincipalPage(driver);
+    }
+
+    public Mst_AddBusinessPrincipalPage setLightSource2(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,lightSource1Field2,item);
+        return new Mst_AddBusinessPrincipalPage(driver);
+    }
+
+    public Mst_AddBusinessPrincipalPage setLightSource3(String item) throws InterruptedException {
+        CommonTask.setDropDownField(driver,lightSource1Field3,item);
         return new Mst_AddBusinessPrincipalPage(driver);
     }
     
@@ -59,7 +71,7 @@ public class Mst_AddBusinessPrincipalPage extends WBA_BasePage {
         //Wait for all elements to be clickable
         WebElement princNo = Wait.clickable(driver,principalNoField);
         WebElement princName = Wait.clickable(driver,principalNameField);
-        WebElement lightSource1 = Wait.clickable(driver,lightSource1Field);
+        WebElement lightSource1 = Wait.clickable(driver,lightSource1Field1);
         WebElement save = Wait.clickable(driver,saveButton);
         WebElement cancel = Wait.clickable(driver,cancelButton);
         
@@ -72,7 +84,7 @@ public class Mst_AddBusinessPrincipalPage extends WBA_BasePage {
     }
     
     public void waitForElement() {
-        WebElement lightSource1 = Wait.clickable(driver,lightSource1Field);
+        WebElement lightSource1 = Wait.clickable(driver,lightSource1Field1);
     }
     
 }

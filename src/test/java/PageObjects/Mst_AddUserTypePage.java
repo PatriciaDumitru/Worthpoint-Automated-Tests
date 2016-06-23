@@ -94,8 +94,10 @@ public class Mst_AddUserTypePage extends WBA_BasePage {
         AssertJUnit.assertTrue("Add User Type Page: Requester Type field not displayed as expected",requesterType.isDisplayed());
         AssertJUnit.assertTrue("Add User Type Page: Level field not displayed as expected",level.isDisplayed());
         AssertJUnit.assertTrue("Add User Type Page: Description field not displayed as expected",description.isDisplayed());
-        AssertJUnit.assertTrue("Add User Type Page: Status:Active button not displayed as expected",statusActive.isDisplayed());
-        AssertJUnit.assertTrue("Add User Type Page: Status:Inactive button not displayed as expected",statusInactive.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Status Active button not displayed as expected",statusActive.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Status Inactive button not displayed as expected",statusInactive.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Save button not displayed as expected",save.isDisplayed());
+        AssertJUnit.assertTrue("Add User Type Page: Cancel button not displayed as expected",cancel.isDisplayed());
     }
     
 }

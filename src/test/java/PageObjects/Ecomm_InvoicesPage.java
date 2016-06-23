@@ -16,10 +16,10 @@ public class Ecomm_InvoicesPage extends WBA_BasePage {
 	//Locators
 	By custNameField = By.xpath("//*[@id=\"s2id_filterSapCcinvoiceCustomerId\"]/a");//By.id("s2id_filterSapccInvoiceCustomerId");
 	By custPOField = By.xpath("//*[@id=\"filterSapCcinvoicePoNumber\"]");//By.id("filterSapCcInvoicePoNumber");//#filterSapCcinvoicePoNumber
-	By salesOrgNameField = By.xpath("//*[@id=\"s2id_filterSapCcinvoiceSalesOrgId\"]/ul");
+	By salesOrgNameField = By.xpath("//*[@id=\"FilterInvoiceForm\"]/div[2]/table/tbody/tr[2]/td[1]");//("//*[@id=\"s2id_filterSapCcinvoiceSalesOrgId\"]/ul");
 	By orderDateFromField = By.xpath("//*[@id=\"filterSapCcinvoiceCreatedDateFrom\"]");//By.id("filterSapccInvoiceCreatedDateFrom");
 	By orderDateToField = By.xpath("//*[@id=\"filterSapCcinvoiceCreatedDateTo\"]");//By.id("filterSapccInvoiceCreatedDateTo");
-	By custCodeField = By.xpath("//*[@id=\"filterSapCcinvoiceCustomerCode\"]");
+	By custCodeField = By.xpath("//*[@id=\"FilterInvoiceForm\"]/div[2]/table/tbody/tr[1]/td[2]");//("//*[@id=\"filterSapCcinvoiceCustomerCode\"]");
 	By yourMatNumField = By.xpath("//*[@id=\"filterSapCcinvoiceMaterial\"]");//By.id("filterSapccInvoiceMaterial");
 	By paymentDateFromField = By.xpath("//*[@id=\"filterSapCcinvoicePaymentDateFrom\"]");//By.id("filterSapccInvoicePaymentDateFrom");
 	By paymentDateToField = By.xpath("//*[@id=\"filterSapCcinvoicePaymentDateTo\"]");//By.id("filterSapccInvoicePaymentDateTo");

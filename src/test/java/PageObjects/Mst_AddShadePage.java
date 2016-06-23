@@ -25,6 +25,9 @@ public class Mst_AddShadePage extends WBA_BasePage {
     By typeCodeField = By.id("ShadeTypeCode");
     By saveButton = By.cssSelector("#ShadeAddForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By cancelButton = By.cssSelector("#ShadeAddForm > div.actions > ul > li:nth-child(2) > a");
+    By useShadeButton = By.id("ShadeIsShadeInUse");
+    By statusActiveBox = By.id("ShadeStatusId1");
+    By statusInactiveBox = By.id("ShadeStatusId2");
     
     public Mst_AddShadePage(WebDriver driver) {
         super(driver);
@@ -101,6 +104,9 @@ public class Mst_AddShadePage extends WBA_BasePage {
         WebElement typeCode = Wait.clickable(driver,typeCodeField);
         WebElement save = Wait.clickable(driver,saveButton);
         WebElement cancel = Wait.clickable(driver,cancelButton);
+        WebElement useShade = Wait.clickable(driver,useShadeButton);
+        WebElement statusActive = Wait.clickable(driver,statusActiveBox);
+        WebElement statusInactive = Wait.clickable(driver,statusInactiveBox);
         
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Add Shade Page: Shade Card field not displayed",shadeCard.isDisplayed());
@@ -111,8 +117,12 @@ public class Mst_AddShadePage extends WBA_BasePage {
         AssertJUnit.assertTrue("Add Shade Page: Blue Value field not displayed",blueValue.isDisplayed());
         AssertJUnit.assertTrue("Add Shade Page: Standard Type field not displayed",standardType.isDisplayed());
         AssertJUnit.assertTrue("Add Shade Page: Type Code field not displayed",typeCode.isDisplayed());
+        AssertJUnit.assertTrue("Add Shade Page: Use Shade field not displayed",useShade.isDisplayed());
+        AssertJUnit.assertTrue("Add Shade Page: Status Active checkbox not displayed",statusActive.isDisplayed());
+        AssertJUnit.assertTrue("Add Shade Page: Status Inactive checkbox not displayed",statusInactive.isDisplayed());
         AssertJUnit.assertTrue("Add Shade Page: Save field not displayed",save.isDisplayed());
         AssertJUnit.assertTrue("Add Shade Page: Cancel field not displayed",cancel.isDisplayed());
+
         
     }
     

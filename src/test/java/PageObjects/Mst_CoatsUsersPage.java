@@ -30,7 +30,8 @@ public class Mst_CoatsUsersPage extends WBA_BasePage {
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
     By exportButton = By.cssSelector("#export-menu > a");
     By newCoatsUserButton = By.cssSelector("#content > div.actions > ul > li:nth-child(3) > a");
-    public By noRecords = By.className("norec");
+
+    By noRecords = By.xpath("//*[@id=\"content\"]/div[2]/div");
 
     public Mst_CoatsUsersPage(WebDriver driver) {
         super(driver);
@@ -210,5 +211,76 @@ public class Mst_CoatsUsersPage extends WBA_BasePage {
     
     public void waitForElement() {
         WebElement wait = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(importButton));
+    }
+
+    public boolean noEntry(){
+        String noRecordsText = driver.findElement(noRecords).getText().trim();
+
+        if(noRecordsText.equals("No records found.")){
+            return true;
+        }
+
+        return false;
+    };
+
+    public Mst_CoatsUsersPage pressDelete2(int row) {
+        By locator = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child("+row+") > td.actions > a:nth-child(3) > span");
+        WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(locator));
+
+        element.click();
+
+        Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+
+        return new Mst_CoatsUsersPage(driver);
+    }
+
+    public void deleteCoatsUser(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Coats User name is already used");
+            System.out.println("Deleting current Coats User");
+            pressDelete2(2);
+            waitForElement();
+        }
+        System.out.println("Coats User cleared");
+    }
+
+    public static boolean checkRecordDetails(WebDriver driver,String... detail){
+
+        //Getting the number of table columns
+        int nrOfCol = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td")).size();
+        System.out.println(nrOfCol+" found");
+
+        //Variable used to return the result of the method
+        boolean check = false;
+
+        //The i starts from the column you want to check
+        //Extract from the nrOfCol the number of the final columns you don't need to check (usually Status and Action columns)
+        //The columns you don't check must be in a successive order
+
+        for(int i=2; i <= nrOfCol - 5;i++){
+
+            //fieldLocator is the location of each table column
+            By fieldLocator = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td["+i+"]");
+
+            //Getting the text from columns
+            String text = driver.findElement(fieldLocator).getText().trim();
+            System.out.println(text);
+            System.out.println(detail[i-2]);
+
+            //Checking if the column matches the detail data, detail starts from detail[0]
+            if(text.equals( detail[i-2] )){
+                System.out.println("Column number "+ i +" checked");
+                check = true;
+            } else {
+                System.out.println("Column number "+ i +" does not match the data");
+                check = false;
+                break;
+            }
+        }
+
+        return check;
     }
 }

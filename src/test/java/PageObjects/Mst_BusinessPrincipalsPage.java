@@ -126,6 +126,20 @@ public class Mst_BusinessPrincipalsPage extends WBA_BasePage {
         }
         return -1;
     }
+
+    public int getNrOfEntry() {
+        By brandHeader = By.cssSelector("#content > div.flexi-grid > table > tbody > tr:nth-child(1) > th:nth-child(3) > a");
+        WebElement header = new WebDriverWait(driver, DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(brandHeader));
+
+        AssertJUnit.assertTrue("Customer Brands Page: Customer Brand column has moved, update locators", header.getText().equals("Principal Name"));
+
+        int nrOfEntry = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if (nrOfEntry > 1){
+            return 1;
+        }
+        return -1;
+    }
     
     public void checkFields() {
         //Wait for all elements to be clickable
@@ -152,4 +166,52 @@ public class Mst_BusinessPrincipalsPage extends WBA_BasePage {
         WebElement principalNameField = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(principalName));
     }
 
+    public void deleteBusinessPrincipal(){
+        int nrOfResults = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr")).size();
+
+        if(nrOfResults > 1){
+            System.out.println("Business Principal name is already used");
+            System.out.println("Deleting current Business Principal");
+            pressDelete(2);
+            waitForElement();
+        }
+        System.out.println("Business Principal cleared");
+    }
+
+    public static boolean checkRecordDetails(WebDriver driver,String... detail){
+
+        //Getting the number of table columns
+        int nrOfCol = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td")).size();
+        System.out.println(nrOfCol+" found");
+
+        //Variable used to return the result of the method
+        boolean check = false;
+
+        //The i starts from the column you want to check
+        //Extract from the nrOfCol the number of the final columns you don't need to check (usually Status and Action columns)
+        //The columns you don't check must be in a successive order
+
+        for(int i=2; i <= nrOfCol - 1;i++){
+
+            //fieldLocator is the location of each table column
+            By fieldLocator = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td["+i+"]");
+
+            //Getting the text from columns
+            String text = driver.findElement(fieldLocator).getText().trim();
+            System.out.println(text);
+            System.out.println(detail[i-2]);
+
+            //Checking if the column matches the detail data, detail starts from detail[0]
+            if(text.equals( detail[i-2] )){
+                System.out.println("Column number "+ i +" checked");
+                check = true;
+            } else {
+                System.out.println("Column number "+ i +" does not match the data");
+                check = false;
+                break;
+            }
+        }
+
+        return check;
+    }
 }

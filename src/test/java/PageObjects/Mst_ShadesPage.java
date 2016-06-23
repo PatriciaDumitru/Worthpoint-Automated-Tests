@@ -20,6 +20,7 @@ public class Mst_ShadesPage extends WBA_BasePage {
     By shadeCardField = By.id("s2id_filterShadeCardId");
     By shadeNameField = By.id("filterShadeName");
     By shadeCodeField = By.id("filterShadeCode");
+
     By searchButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(1) > input[type=\"submit\"]");
     By resetButton = By.cssSelector("#FilterIndexForm > div.actions > ul > li:nth-child(2) > a");
     By importButton = By.cssSelector("#content > div.actions > ul > li:nth-child(1) > a");
@@ -31,6 +32,9 @@ public class Mst_ShadesPage extends WBA_BasePage {
     By blueValueField = By.id("filterColorRatioB");
     By standardTypeField = By.id("filterStandardType");
     By typeCodeField = By.id("filterTypeCode");
+
+    By dateFromField = By.id("filterUpdatedFrom");
+    By dateToField = By.id("filterUpdatedTo");
     
     public Mst_ShadesPage(WebDriver driver) {
         super(driver);
@@ -155,6 +159,13 @@ public class Mst_ShadesPage extends WBA_BasePage {
         WebElement shadeCard = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCardField));
         WebElement shadeName = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeNameField));
         WebElement shadeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(shadeCodeField));
+        WebElement rgbValueR = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(redValueField));
+        WebElement rgbValueG = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(greenValueField));
+        WebElement rgbValueB = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(blueValueField));
+        WebElement stdType = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(standardTypeField));
+        WebElement typeCode = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(typeCodeField));
+        WebElement dateFrom = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dateFromField));
+        WebElement dateTo = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(dateToField));
         WebElement search = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         WebElement reset = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(searchButton));
         WebElement importbtn = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(importButton));
@@ -164,12 +175,19 @@ public class Mst_ShadesPage extends WBA_BasePage {
         //Assert all elements are displayed
         AssertJUnit.assertTrue("Shades Page: Shade Card field not displayed",shadeCard.isDisplayed());
         AssertJUnit.assertTrue("Shades Page: Shade Name field not displayed",shadeName.isDisplayed());
-        AssertJUnit.assertTrue("Shades Page: Shade Name field not displayed",shadeCode.isDisplayed());
+        AssertJUnit.assertTrue("Shades Page: Shade Code field not displayed",shadeCode.isDisplayed());
         AssertJUnit.assertTrue("Shades Page: Search button not displayed",search.isDisplayed());
         AssertJUnit.assertTrue("Shades Page: Reset button not displayed",reset.isDisplayed());
         AssertJUnit.assertTrue("Shades Page: Import button not displayed",importbtn.isDisplayed());
         AssertJUnit.assertTrue("Shades Page: Export button not displayed",exportbtn.isDisplayed());
         AssertJUnit.assertTrue("Shades Page: New Shade button not displayed",newShadeBtn.isDisplayed());
+        AssertJUnit.assertTrue("Shades Page: RGB value Red field not displayed",rgbValueR.isDisplayed());
+        AssertJUnit.assertTrue("Shades Page: RGB value Green field not displayed",rgbValueG.isDisplayed());
+        AssertJUnit.assertTrue("Shades Page: RGB value Blue field not displayed",rgbValueB.isDisplayed());
+        AssertJUnit.assertTrue("Shades Page: Standard Type field not displayed",stdType.isDisplayed());
+        AssertJUnit.assertTrue("Shades Page: Type Code field not displayed",typeCode.isDisplayed());
+        AssertJUnit.assertTrue("Shades Page: Date From field not displayed",dateFrom.isDisplayed());
+        AssertJUnit.assertTrue("Shades Page: Date To field not displayed",dateTo.isDisplayed());
     }
     
     public void waitForElement() {
@@ -219,6 +237,43 @@ public class Mst_ShadesPage extends WBA_BasePage {
             waitForElement();
         }
         System.out.println("Shades cleared");
+    }
+
+    public static boolean checkRecordDetails(WebDriver driver,String... detail){
+
+        //Getting the number of table columns
+        int nrOfCol = driver.findElements(By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td")).size();
+        System.out.println(nrOfCol+" found");
+
+        //Variable used to return the result of the method
+        boolean check = false;
+
+        //The i starts from the column you want to check
+        //Extract from the nrOfCol the number of the final columns you don't need to check (usually Status and Action columns)
+        //The columns you don't check must be in a successive order
+
+        for(int i=2; i <= nrOfCol - 2;i++){
+
+            //fieldLocator is the location of each table column
+            By fieldLocator = By.xpath("//*[@id=\"content\"]/div[2]/table/tbody/tr[2]/td["+i+"]");
+
+            //Getting the text from columns
+            String text = driver.findElement(fieldLocator).getText().trim();
+            System.out.println(text);
+            System.out.println(detail[i-2]);
+
+            //Checking if the column matches the detail data, detail starts from detail[0]
+            if(text.equals( detail[i-2] )){
+                System.out.println("Column number "+ i +" checked");
+                check = true;
+            } else {
+                System.out.println("Column number "+ i +" does not match the data");
+                check = false;
+                break;
+            }
+        }
+
+        return check;
     }
 
 }
