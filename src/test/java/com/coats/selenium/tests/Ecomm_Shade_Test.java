@@ -58,7 +58,7 @@ public class Ecomm_Shade_Test extends DriverFactory {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        snaPage.setSalesOrg("ID50");
+        snaPage.setSalesOrg("ID51");
         snaPage.setCustName(DataItems.custDetails[0]);
 
         //Take a screenshot
@@ -192,7 +192,7 @@ public class Ecomm_Shade_Test extends DriverFactory {
         
         System.out.println("Fields checked. Entering filter criteria...");
         
-        wfsPage.setSalesOrg("ID50");
+        wfsPage.setSalesOrg("ID51");
         wfsPage.setCustName(DataItems.custDetails[0]);
         
         System.out.println("Criteria entered. Listing records...");

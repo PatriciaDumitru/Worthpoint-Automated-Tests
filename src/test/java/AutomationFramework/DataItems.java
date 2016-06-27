@@ -10,7 +10,7 @@ import java.lang.reflect.Array;
 public class DataItems {
 
     //Target URL
-    public static String targetURL ="https://qawcs.coatscolourexpress.com/" + "test";
+    public static String targetURL ="http://172.18.5.40/" + "qa_p4i";
     //"http://172.18.5.40/"
     //https://qawcs.coatscolourexpress.com/";  //"http://10.14.18.4";/
     //public static String targetURL ="http://10.14.18.4";
@@ -24,7 +24,7 @@ public class DataItems {
     public static String warehouseURL = targetURL + "/OurStocks";
     public static String newArticleURL = targetURL + "/SalesOrgMaterials";
     public static String pendingApprovelURL = targetURL + "/ecom/approveorder";
-    public static String outstadingOrdersURL = targetURL + "/cce/outstanding";
+    public static String outstadingOrdersURL = targetURL + "/ecom/outstanding";
     public static String cceURL = targetURL + "/cce";
     public static String qaEnvAdd = "qa_p4i";
     public static String qaTestEnv  = "test";
@@ -47,8 +47,8 @@ public class DataItems {
     public static String lastUsedFilepath = ""; //Holds last used filepath when generating files using FileFactory
 
     //Login Credentials
-    public static String validCoatsUsername = "joe.sykes@coats.com"; //"admin@coats.com"; //"joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
-    public static String validCoatsUsername2 ="admin@coats.com"; //"samson.vetharaj@coats.com";
+    public static String validCoatsUsername = "wbaadmin@coats.com"; //"admin@coats.com";     //"joe.sykes@coats.com"; //"samson.vetharaj@coats.com"; //"kamlesh.patidar@igate.com";
+    public static String validCoatsUsername2 ="wbaadmin@coats.com"; //"samson.vetharaj@coats.com";
     public static String validCoatsPassword = "password"; //"superadmin@coats";      //GLOBAL ADMIN, LIFE EASY CUSTOMER, SUMST, REQUESTER
     public static String expectedCoatsUserName = "Joe Sykes";
 
@@ -209,8 +209,8 @@ public class DataItems {
     //public static int quantity3 = 1;
 
     //public static String expTicket3 = "120";
-    public static String orderedQty="72";
-    public static String adjustedQty="72";
+    public static String orderedQty="71";
+    public static String adjustedQty="71";
     public static String orderedQty2="4";
     public static String adjustedQty2="4";
     public static String orderedQtyNull="--";
@@ -219,7 +219,7 @@ public class DataItems {
     public static String unitPrice="1.00";
     public static String unitPriceNull="0.00";
     public static String valueNull="0.00";
-    public static String value2="72.00";
+    public static String value2="71.00";
     public static String value3="4.00";
     public static String notUniqMsg="CONTRACT REFERENCE IS NOT UNIQUE";
     public static String invalidDataMsg="INVALID COMBINATION OF INPUT DATA";
@@ -309,7 +309,7 @@ public class DataItems {
     public static String wrongEntryCust = "Wrong Entry by Customer";
 
     //Sample order details
-    public static String sampOrderNo = "1129084";
+    public static String sampOrderNo = "10713299";
     public static String sampCustName = "Life Easy Customer";
     public static String sampRequester = "approver 1 test";
     public static String sampSalesOrg = "ID51";

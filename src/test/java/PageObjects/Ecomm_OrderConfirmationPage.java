@@ -285,6 +285,7 @@ public class Ecomm_OrderConfirmationPage extends WBA_BasePage {
 
 
 
+
         //Sometimes unexpected alerts appear. Catch these and accept by default
         boolean alertPresence;
         try {

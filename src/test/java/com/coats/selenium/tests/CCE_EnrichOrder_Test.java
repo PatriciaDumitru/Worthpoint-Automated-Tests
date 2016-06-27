@@ -37,6 +37,7 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         orderPage.setCustName(DataItems.custDetails[0]);
         orderPage.setRequestor(DataItems.custDetails[2]);
 
+
         System.out.println("Customer details entered. Submitting prompt...");
 
         CCE_AddOrderPage aoPage = orderPage.pressSubmit();
@@ -45,6 +46,7 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         System.out.println("Prompt submitted. Setting ship to and line details...");
 
         aoPage.setShipToParty(DataItems.custDetails[1]);
+        orderPage.setBusinessPrincipal(DataItems.othersWithCode);
         aoPage.setArticle(DataItems.article, 0);
         aoPage.setShadeCode(DataItems.shadeCode, 0);
         aoPage.setMUMType(DataItems.copMUM, 0);
@@ -181,6 +183,7 @@ public class CCE_EnrichOrder_Test extends DriverFactory {
         System.out.println("Prompt submitted. Setting ship to and line details...");
 
         aoPage.setShipToParty(DataItems.custDetails[1]);
+        aoPage.setBusinessPrincipal(DataItems.othersWithCode);
         aoPage.setArticle(DataItems.article, 0);
         aoPage.setShadeCode(DataItems.shadeCode, 0);
         aoPage.setMUMType(DataItems.copMUM, 0);

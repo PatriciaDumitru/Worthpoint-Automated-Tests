@@ -1910,8 +1910,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //change to CCE page
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver,DataItems.salesOrgID,"Angler Test Indonesia", "Select");
-        pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver, DataItems.salesOrgID ,"Angler Test Indonesia", "Select");
+        pf.activateCallOffOrderForCustomer(driver, "Angler Test Indonesia");
         pf.chooseTheOtherProfile(driver); //change to ecomm page
 
         System.out.println("Navigating to Manual Entry...");

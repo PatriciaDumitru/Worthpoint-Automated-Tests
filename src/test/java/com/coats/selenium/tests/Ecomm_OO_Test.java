@@ -237,8 +237,8 @@ public class Ecomm_OO_Test extends DriverFactory {
         mainPage.waitForLoad();
 
         PreFlows pf = new PreFlows();
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
-        //pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
+        pf.deactivateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+//        pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
 
         System.out.println("Navigating to Masters...");
         
@@ -313,9 +313,9 @@ public class Ecomm_OO_Test extends DriverFactory {
         
         System.out.println("Records listed. Finding order...");
         
-        int row2 = pendPage.getRowAlt(DataItems.lastUsedPO);
+        int row2 = pendPage.getRow(DataItems.lastUsedPO);
         
-        AssertJUnit.assertFalse("Pending Approval List Page: Order (Customer PO: "+DataItems.lastUsedPO+") not displayed in list",row2==-1);
+        AssertJUnit.assertTrue("Pending Approval List Page: Order (Customer PO: "+DataItems.lastUsedPO+") not displayed in list",row2==-1);
         
         String orderNo = pendPage.getOrderNo(row2);
         
@@ -375,7 +375,7 @@ public class Ecomm_OO_Test extends DriverFactory {
 
      // APPROVERS DON'T HAVE MANUAL ENTRY ACCESS, THIS TEST MAY BE readded later
     @Test //Pending Approval List Page :: Approver User :: Page and filter checks, approver/deny function
-    (groups = {"eComm"},enabled = false) //CHANGES MASTER DATA
+    (groups = {"eComm"},enabled = true) //CHANGES MASTER DATA
     public void PA2() throws Exception {
         WebDriver driver = getDriver();
         

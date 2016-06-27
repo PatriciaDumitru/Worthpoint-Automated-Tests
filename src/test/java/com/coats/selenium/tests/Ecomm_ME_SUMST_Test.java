@@ -2974,7 +2974,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at confirmation page
-            (groups = {"eComm", "eComm_Orders"},enabled = false)
+            (groups = {"eComm", "eComm_Orders"},enabled = true)
     public void SUSST_OA_OAP() throws Exception {
         //New driver
         WebDriver driver = getDriver();
@@ -2991,7 +2991,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
         pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
-        pf.enableApprovelCheckBoxForSalesOrgAndCust(driver, "ID51", DataItems.lifeEasyCustomer);
+        pf.enableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -3096,7 +3096,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
     }
 
     @Test //Manual Entry Page :: SUMST :: Validation tests, no requester at confirmation page
-            (groups = {"eComm", "eComm_Orders"},enabled = false)
+            (groups = {"eComm", "eComm_Orders"},enabled = true)
     public void SUMST_OA_OAP() throws Exception {
         //New driver
         WebDriver driver = getDriver();

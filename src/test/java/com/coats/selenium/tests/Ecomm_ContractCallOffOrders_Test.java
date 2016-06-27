@@ -1448,7 +1448,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
 
     @Test //Upload Order Page :: SUMST :: Page checks and realtime upload order of <100 lines
-            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"}, enabled = false)
+            (groups = {"eComm","eComm_Orders","QuickTest","Upload_Order"}, enabled = true)
     public void OE_RTU() throws Exception {
         //new chrome driver
         WebDriver driver = getDriver();

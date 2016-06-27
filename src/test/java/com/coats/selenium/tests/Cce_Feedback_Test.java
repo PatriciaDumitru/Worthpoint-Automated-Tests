@@ -232,7 +232,7 @@ public class Cce_Feedback_Test extends DriverFactory {
         
         System.out.println("Feedback Awaiting page reached. Entering filter criteria...");
         
-        fbaPage.setCustName(DataItems.custDetails[0]);
+        //fbaPage.setCustName(DataItems.custDetails[0]);
         
         System.out.println("Criteria entered. Listing orders...");
         

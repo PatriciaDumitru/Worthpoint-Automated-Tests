@@ -1,5 +1,6 @@
 package com.coats.selenium.tests;
 
+import AutomationFramework.DataItems;
 import PageObjects.CCE_MainPage;
 import PageObjects.Ecomm_ExportDownloadPage;
 import PageObjects.CCE_FCETaskStatusPage;
@@ -89,7 +90,7 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
         
         System.out.println("FCE Task Status reached. Entering filter criteria...");
         
-        fcePage.setSalesOrg("ID51");
+        fcePage.setSalesOrg(DataItems.salesOrgID);
         fcePage.setTaskStatus("Completed");
 
         System.out.println("Criteria entered. Pressing reset...");
