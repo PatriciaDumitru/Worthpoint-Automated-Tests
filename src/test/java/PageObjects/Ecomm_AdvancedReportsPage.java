@@ -181,6 +181,34 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         }
     }
 
+
+    public void deleteAllSavedReports(){
+        if (checkSavedReports()) {
+            WebElement saved = new WebDriverWait(driver, DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(savedReports)));
+            saved.click();
+            int rowCount = driver.findElements(tableElements).size();
+            System.out.println("Number of saved reports:" + rowCount);
+            for (int i = 1; i < rowCount + 1; i++) {
+                By deleteButton = By.cssSelector("#content > div:nth-child(5) > table > tbody > tr:nth-child(1) > td:nth-child(3) > a");
+                driver.findElement(deleteButton).click();
+                try {
+                    Alert alert = driver.switchTo().alert();
+                    System.out.println("Alert message:" + alert.getText());
+                    alert.accept();
+                    System.out.println("Alert closed!");
+                } catch (Exception e) {
+                    System.out.println("No error(s) displayed");
+                }
+                driver.navigate().refresh();
+                try {
+                    driver.findElement(savedReports).click();
+                } catch (Exception e) {
+                    System.out.println("No more Saved Reports!");
+                }
+            }
+        }
+    }
+
     public Ecomm_CreateNewReportPage createNewReport(){
         try {
             WebElement elem = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.elementToBeClickable(driver.findElement(createNewRep)));

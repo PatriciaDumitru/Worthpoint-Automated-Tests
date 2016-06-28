@@ -139,9 +139,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
     @Test //My Reports UI screen changes - WBA-566
             (groups = {"eComm"})
     public void Rep_UI() throws Exception {
-        /**
-         * Ensure there is no saved report for this user when starting test
-         */
+
         //new driver instance
         WebDriver driver = getDriver();
 
@@ -150,15 +148,19 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         Ecomm_MainPage eCommPage = baseTest.setUp("Rep_UI", "My Reports UI screen changes");
 
         //Navigate to Advanced Reports
-        System.out.println("Navigating to Invoice Page...");
+        System.out.println("Navigating to Advance Reports...");
         driver.get(DataItems.advancedReports);
 
         Ecomm_AdvancedReportsPage advRep = new Ecomm_AdvancedReportsPage(driver);
         /**
-         Verifying the breadcrumb - renamed from Reports | My Report to Reports | Advanced Reports
+         Verifying the breadcrumb - renamed from "Reports | My Reports" to "Reports | Advanced Reports"
          */
         System.out.println("Checking breadcrumb...");
         AssertJUnit.assertTrue("Incorrect breadcrumb!",advRep.getBreadcrumb().getText().equals("Reports | Advanced Reports"));
+
+        //Deleting all existing saved reports
+
+        advRep.deleteAllSavedReports();
 
         //Create New Report
         System.out.println("Creating a new report...");
@@ -170,6 +172,7 @@ public class EComm_Reports_UI_Checks_Test extends DriverFactory {
         AssertJUnit.assertTrue("***Incorrect breadcrumb!",cnrp.getBreadcrumb().getText().equals("Reports | Advanced Reports | New Report"));
 
         cnrp.setCreationDateFrom("2016-04-24 00:00");
+        cnrp.setCreationDateTo("2016-04-24 02:00");
 
         //This was removed on 23.05.2016// Date Range no longer shown!
         //cnrp.selectDateRange("Last 90 days");
