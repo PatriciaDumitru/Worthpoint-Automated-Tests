@@ -6037,6 +6037,7 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
+
         AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "AutoTest", recordField, 2));
 
         Mst_EditShadeCardPage editPage = pPage.pressEdit(row);
@@ -6200,12 +6201,15 @@ public class Master_Test extends DriverFactory {
         pPage.waitForElement();
         pPage.deleteShCrdPlant();
 
+        pPage.pressReset();
+
         pPage.setPlant("TEST");
         pPage.setShadeCard("AutomatedTest");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        Mst_EditShadeCardPlantPage editPage = pPage.pressEdit(row);
+
+        Mst_EditShadeCardPlantPage editPage = pPage.pressEdit(2);
         editPage.waitForElement();
 
         System.out.println("Edit page reached. Checking title...");

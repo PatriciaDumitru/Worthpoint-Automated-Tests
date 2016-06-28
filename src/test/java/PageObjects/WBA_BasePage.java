@@ -44,7 +44,7 @@ public class WBA_BasePage {
     static By ordersTab = By.cssSelector("#topnav > li:nth-child(1)");
         static By manualEntrySubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(1)");
         static By uploadOrderSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(2)");
-        static By fromExistingSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3)");
+        static By fromExistingSubTab = By.xpath("//*[@id=\"topnav\"]/li[1]/div/div/ul/li/a[contains(text(),'From Existing Bulk Order')]");//By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(3)");
         static By shadeNotAvailSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(5)");
         static By shadeNotAvailSubTab2 = By.xpath("//*[@id=\"topnav\"]/li[1]/div/div/ul/li/a[contains(text(),'Shade Not Available')]");
         static By waitingForShadeSubTab = By.cssSelector("#topnav > li:nth-child(1) > div > div > ul > li:nth-child(6)");
@@ -972,17 +972,23 @@ public class WBA_BasePage {
         //firstRow is the table's starting row value. Usually 2
         
         int count = this.getRecordCount(countField);
-        
+
         int tableCount = (count >= 10) ? 10 : count;
-        
+
+
+        boolean a = false;
         for (int i = firstRow; i < (tableCount + firstRow); i++) {
             By locator = By.cssSelector(locator1 + "" +  i + "" + locator2);
+
             WebElement element = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.visibilityOfElementLocated(locator));
             if (!element.getText().trim().contains(item)) {
-                return false;
+                a = false;
+            } else {
+                a = true;
+                break;
             }
         }
-        return true;
+        return a;
     }
     
     public boolean checkFiltration(String locator1, String locator2, String item, int firstRow,int multiplier) {
