@@ -53,7 +53,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
@@ -83,7 +83,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyArticle(DataItems.salesOrgID, DataItems.someOtherCustomer,DataItems.cceArticleFromBrandAstra);
+        csaMeth.csaSetupOnlyArticle(DataItems.salesOrgID51, DataItems.someOtherCustomer,DataItems.cceArticleFromBrandAstra);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
@@ -113,13 +113,13 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
 
         //Checking that brand is not available for this customer
-        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandASTRA);
 
         //Deleting CSA
         csaMeth.deleteCSA(DataItems.someOtherCustomer);
@@ -143,7 +143,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupBrandAndArticle(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA, DataItems.cceArticleFromBrandStarNylon);
+        csaMeth.csaSetupBrandAndArticle(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA, DataItems.cceArticleFromBrandStarNylon);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
@@ -154,7 +154,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
 
         //Checking that brand not available for this customer
-        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandASTRA);
 
         //Deleting CSA
         csaMeth.deleteCSA(DataItems.someOtherCustomer);
@@ -187,7 +187,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.assertBrandIsNotPresentCCE(DataItems.brandStarNylonCSA);
 
         //Checking that brand is available for this customer
-        csaMeth.assertBrandIsPresenet(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsPresenet(DataItems.brandASTRA);
 
         //Checking that brand is available for this customer
         csaMeth.assertBrandIsPresenet(DataItems.brandAdmiralCSA);
@@ -222,7 +222,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantID10);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
@@ -252,7 +252,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantID10);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyArticle(DataItems.salesOrgID, DataItems.someOtherCustomer,DataItems.cceArticleFromBrandAstra);
+        csaMeth.csaSetupOnlyArticle(DataItems.salesOrgID51, DataItems.someOtherCustomer,DataItems.cceArticleFromBrandAstra);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
@@ -282,13 +282,13 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantID10);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
 
         //Checking that brand is not available for this customer
-        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandASTRA);
 
         //Deleting CSA
         csaMeth.deleteCSA(DataItems.someOtherCustomer);
@@ -313,7 +313,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantID10);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupBrandAndArticle(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA, DataItems.cceArticleFromBrandStarNylon);
+        csaMeth.csaSetupBrandAndArticle(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA, DataItems.cceArticleFromBrandStarNylon);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
@@ -324,7 +324,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
 
         //Checking that brand not available for this customer
-        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandASTRA);
 
         //Deleting CSA
         csaMeth.deleteCSA(DataItems.someOtherCustomer);
@@ -348,7 +348,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetup2Brands(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA, DataItems.brandStarNylonCSA);
+        csaMeth.csaSetup2Brands(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA, DataItems.brandStarNylonCSA);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
@@ -364,7 +364,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
 
         //Checking that brand not available for this customer
-        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsNotPresentCCE(DataItems.brandASTRA);
 
         //Checking that brand not available for this customer
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
@@ -393,7 +393,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with 2 articles
-        csaMeth.csaSetup2Articles(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.cceArticleFromBrandAdmiral, DataItems.cceArticleFromBrandAstra);
+        csaMeth.csaSetup2Articles(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.cceArticleFromBrandAdmiral, DataItems.cceArticleFromBrandAstra);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
@@ -429,7 +429,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA);
 
         //Setting up Order Sample Prompt
         csaMeth.cceOrderSampleSetup(DataItems.lifeEasyCustomer, DataItems.lifeEasyRequester);
@@ -465,7 +465,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA);
 
         csaMeth.ecommManualEntrySetup();
 
@@ -495,7 +495,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyArticle(DataItems.salesOrgID, DataItems.someOtherCustomer,DataItems.cceArticleFromBrandAstra);
+        csaMeth.csaSetupOnlyArticle(DataItems.salesOrgID51, DataItems.someOtherCustomer,DataItems.cceArticleFromBrandAstra);
 
         csaMeth.ecommManualEntrySetup();
 
@@ -526,12 +526,12 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA);
 
         csaMeth.ecommManualEntrySetup();
 
         //Checking that brand is not available for this customer
-        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandASTRA);
 
         csaMeth.chooseCEEPlatform();
 
@@ -557,7 +557,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupBrandAndArticle(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA, DataItems.cceArticleFromBrandStarNylon);
+        csaMeth.csaSetupBrandAndArticle(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA, DataItems.cceArticleFromBrandStarNylon);
 
         csaMeth.ecommManualEntrySetup();
 
@@ -567,7 +567,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.ecommManualEntrySetup();
 
         //Checking that brand not available for this customer
-        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandASTRA);
 
         csaMeth.chooseCEEPlatform();
 
@@ -604,7 +604,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandStarNylonCSA);
 
         //Checking that brand is available for this customer
-        csaMeth.assertBrandIsPresentCEE(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsPresentCEE(DataItems.brandASTRA);
 
         //Checking that brand is available for this customer
         csaMeth.assertBrandIsPresentCEE(DataItems.brandAdmiralCSA);
@@ -644,7 +644,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantID10);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA);
 
         csaMeth.ecommManualEntrySetup();
 
@@ -675,7 +675,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantID10);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyArticle(DataItems.salesOrgID, DataItems.someOtherCustomer,DataItems.cceArticleFromBrandAstra);
+        csaMeth.csaSetupOnlyArticle(DataItems.salesOrgID51, DataItems.someOtherCustomer,DataItems.cceArticleFromBrandAstra);
 
         csaMeth.ecommManualEntrySetup();
 
@@ -706,12 +706,12 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantID10);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA);
 
         csaMeth.ecommManualEntrySetup();
 
         //Checking that brand is not available for this customer
-        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandASTRA);
 
         csaMeth.chooseCEEPlatform();
 
@@ -738,7 +738,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantID10);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupBrandAndArticle(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA, DataItems.cceArticleFromBrandStarNylon);
+        csaMeth.csaSetupBrandAndArticle(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA, DataItems.cceArticleFromBrandStarNylon);
 
         csaMeth.ecommManualEntrySetup();
 
@@ -748,7 +748,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.ecommManualEntrySetup();
 
         //Checking that brand not available for this customer
-        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandASTRA);
 
         csaMeth.chooseCEEPlatform();
 
@@ -774,7 +774,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetup2Brands(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA, DataItems.brandStarNylonCSA);
+        csaMeth.csaSetup2Brands(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA, DataItems.brandStarNylonCSA);
 
         csaMeth.ecommManualEntrySetup();
 
@@ -789,7 +789,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.ecommManualEntrySetup();
 
         //Checking that brand not available for this customer
-        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandAstraCSA);
+        csaMeth.assertBrandIsNotPresentEcomm(DataItems.brandASTRA);
 
 
         csaMeth.ecommManualEntrySetup();
@@ -821,7 +821,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with 2 articles
-        csaMeth.csaSetup2Articles(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.cceArticleFromBrandAdmiral, DataItems.cceArticleFromBrandAstra);
+        csaMeth.csaSetup2Articles(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.cceArticleFromBrandAdmiral, DataItems.cceArticleFromBrandAstra);
 
         //Going to ecomm manual entry page and setting customer
         csaMeth.ecommManualEntrySetup();
@@ -857,7 +857,7 @@ public class CSA_Test extends DriverFactory {
         csaMeth.custSetup(DataItems.deliveryToPlantAll);
 
         //Setting up CSA with brand
-        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID, DataItems.someOtherCustomer, DataItems.brandAstraCSA);
+        csaMeth.csaSetupOnlyBrand(DataItems.salesOrgID51, DataItems.someOtherCustomer, DataItems.brandASTRA);
 
         //Setting up Order Sample Prompt
         csaMeth.ecommManualEntrySetup();

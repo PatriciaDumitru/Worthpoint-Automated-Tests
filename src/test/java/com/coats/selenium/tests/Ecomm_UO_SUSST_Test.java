@@ -34,9 +34,9 @@ public class Ecomm_UO_SUSST_Test extends DriverFactory {
         //Seting masster data
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver);
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.enableSAPContractValidityForCust(driver, DataItems.lifeEasyCustomer);
-        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID51, DataItems.lifeEasyCustomer);
         pf.enableSAPContractValidityForCust(driver, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);

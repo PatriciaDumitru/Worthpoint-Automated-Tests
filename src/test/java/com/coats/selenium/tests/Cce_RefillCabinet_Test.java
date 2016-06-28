@@ -58,7 +58,7 @@ public class Cce_RefillCabinet_Test extends DriverFactory {
         
         System.out.println("Refill Thread List Page reached. Entering refill thread details...");
         
-        rtPage.setBrand("ASTRA");
+        rtPage.setBrand(DataItems.brandASTRA);
         rtPage.setTicket("120");
         rtPage.setShade("C9700");
         rtPage.setMUMType("Cop");

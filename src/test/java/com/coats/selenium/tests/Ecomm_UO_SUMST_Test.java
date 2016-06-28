@@ -40,11 +40,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         Mst_CustomersPage custPage = eCommPage.selectCustomers();
         custPage.waitForElement();
 
-        custPage.setCustomerName("Life Easy Customer");
+        custPage.setCustomerName(DataItems.lifeEasyCustomer);
         custPage.pressSearch();
         custPage.waitForElement();
 
-        int row2 = custPage.getRow("Life Easy Customer");
+        int row2 = custPage.getRow(DataItems.lifeEasyCustomer);
         System.out.println("Record found. Editing record...");
 
         Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
@@ -163,11 +163,11 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         Mst_CustomersPage custPage = eCommPage.selectCustomers();
         custPage.waitForElement();
 
-        custPage.setCustomerName("Life Easy Customer");
+        custPage.setCustomerName(DataItems.lifeEasyCustomer);
         custPage.pressSearch();
         custPage.waitForElement();
 
-        int row2 = custPage.getRow("Life Easy Customer");
+        int row2 = custPage.getRow(DataItems.lifeEasyCustomer);
         System.out.println("Record found. Editing record...");
 
         Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
@@ -582,7 +582,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
         
         System.out.println("Uploaded. Setting mapping...");
         
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.subCustDetails[0]);
         
         String[][] mapping = {  {"Customer Name","Customer Name"},
@@ -808,8 +808,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
-        //pf.activateCallOffOrderForCustomer(driver,"Life Easy Customer");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
+        //pf.activateCallOffOrderForCustomer(driver,DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -868,7 +868,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -960,7 +960,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -1035,7 +1035,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -1111,8 +1111,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
-        pf.enableMOQForCustomer(driver,"Life Easy Customer");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
+        pf.enableMOQForCustomer(driver,DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -1521,8 +1521,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
-        //pf.deactivateCallOffOrderForCustomer(driver,"Life Easy Customer");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
+        //pf.deactivateCallOffOrderForCustomer(driver,DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -1610,8 +1610,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
-        //pf.deactivateCallOffOrderForCustomer(driver,"Life Easy Customer");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
+        //pf.deactivateCallOffOrderForCustomer(driver,DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -1700,8 +1700,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
-        //pf.deactivateCallOffOrderForCustomer(driver,"Life Easy Customer");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
+        //pf.deactivateCallOffOrderForCustomer(driver,DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -1917,8 +1917,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
-        //pf.deactivateCallOffOrderForCustomer(driver,"Life Easy Customer");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
+        //pf.deactivateCallOffOrderForCustomer(driver,DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -2006,8 +2006,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
-        //pf.deactivateCallOffOrderForCustomer(driver,"Life Easy Customer");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
+        //pf.deactivateCallOffOrderForCustomer(driver,DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -2216,8 +2216,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
 
-        pf.deactivateCallOffOrderForSalesOrg(driver,"ID51");
-        //pf.deactivateCallOffOrderForCustomer(driver,"Life Easy Customer");
+        pf.deactivateCallOffOrderForSalesOrg(driver,DataItems.salesOrgID51);
+        //pf.deactivateCallOffOrderForCustomer(driver,DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
 
         System.out.println("Navigating to Upload Order...");
@@ -2547,6 +2547,8 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Navigating to Manual Entry...");
         WebDriver driver2 = getDriver();
+        
+        
 
         WebElement logout = driver2.findElement(By.cssSelector("html body div#container div#header div.top span.right span.logout a"));
         logout.click();
@@ -3877,7 +3879,7 @@ public class Ecomm_UO_SUMST_Test extends DriverFactory {
 
         System.out.println("Uploaded. Setting mapping...");
 
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.subCustDetails[0]);
 
         mapPage.setMappingNotCustomer(DataItems.mapping1);

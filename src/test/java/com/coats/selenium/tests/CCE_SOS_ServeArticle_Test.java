@@ -74,11 +74,11 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         System.out.println("Setting Master Data for Sales Org and Customer...");
         PreFlows pf = new PreFlows();
         if (salesOrgEnrichOption == "Both")
-            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer, DataItems.enrichBoth);
+            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID51, DataItems.lifeEasyCustomer, DataItems.enrichBoth);
         else if (salesOrgEnrichOption == "Hub")
-            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer, DataItems.enrichHub);
+            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID51, DataItems.lifeEasyCustomer, DataItems.enrichHub);
         else if (salesOrgEnrichOption == "Warehouse")
-            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer, DataItems.enrichWarehouse);
+            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID51, DataItems.lifeEasyCustomer, DataItems.enrichWarehouse);
         else System.out.println("WRONG INPUT FOR SELECTED 'ENRICH TO' PARAM...");
 
         CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);
@@ -481,11 +481,11 @@ public class CCE_SOS_ServeArticle_Test extends DriverFactory {
         System.out.println("Setting Master Data for Sales Org and Customer...");
         PreFlows pf = new PreFlows();
         if (salesOrgEnrichOption == "Both")
-            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer, DataItems.enrichBoth);
+            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID51, DataItems.lifeEasyCustomer, DataItems.enrichBoth);
         else if (salesOrgEnrichOption == "Hub")
-            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer, DataItems.enrichHub);
+            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID51, DataItems.lifeEasyCustomer, DataItems.enrichHub);
         else if (salesOrgEnrichOption == "Warehouse")
-            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer, DataItems.enrichWarehouse);
+            pf.activateEnrichToForSalesOrgAndCustomer(driver, DataItems.salesOrgID51, DataItems.lifeEasyCustomer, DataItems.enrichWarehouse);
         else System.out.println("WRONG INPUT FOR SELECTED 'ENRICH TO' PARAM...");
 
         CCE_SOS_ServeArticle_Page sos = new CCE_SOS_ServeArticle_Page(driver);

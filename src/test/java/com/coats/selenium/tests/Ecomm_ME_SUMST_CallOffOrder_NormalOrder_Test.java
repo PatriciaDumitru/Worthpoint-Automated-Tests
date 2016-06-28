@@ -52,7 +52,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -171,7 +171,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -266,7 +266,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -363,7 +363,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -458,7 +458,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -552,7 +552,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -648,7 +648,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -738,7 +738,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderAndDeactivateApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -836,7 +836,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -944,7 +944,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -1052,7 +1052,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -1152,7 +1152,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.disableApprovelCheckBoxForSalesOrgAndCust(driver, "ID51", DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
@@ -1265,7 +1265,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -1380,7 +1380,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -1492,7 +1492,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         //Activate MOQ for customer and CallOffOrder
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver);           //choose CCE page
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);           //choose ecomm page
@@ -1602,7 +1602,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -1701,7 +1701,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
@@ -1784,8 +1784,8 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Set Delivery Plant to select and activate approver checkbox...");
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //change to CCE page
-        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver,DataItems.salesOrgID, "Angler Test Indonesia", "Select");
-        pf.activateCallOffOrderForCustomer(driver, "Angler Test Indonesia");
+        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver,DataItems.salesOrgID51, DataItems.anglerTestIndonesiaCustomer, "Select");
+        pf.activateCallOffOrderForCustomer(driver,DataItems.anglerTestIndonesiaCustomer);
         pf.chooseTheOtherProfile(driver); //change to ecomm page
 
 
@@ -1909,9 +1909,9 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
         System.out.println("Set Delivery Plant to select and activate approver checkbox...");
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //change to CCE page
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
-        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver, DataItems.salesOrgID ,"Angler Test Indonesia", "Select");
-        pf.activateCallOffOrderForCustomer(driver, "Angler Test Indonesia");
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
+        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver, DataItems.salesOrgID51 , DataItems.anglerTestIndonesiaCustomer, "Select");
+        pf.activateCallOffOrderForCustomer(driver, DataItems.anglerTestIndonesiaCustomer);
         pf.chooseTheOtherProfile(driver); //change to ecomm page
 
         System.out.println("Navigating to Manual Entry...");
@@ -1962,7 +1962,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
@@ -2098,7 +2098,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
@@ -2229,7 +2229,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
@@ -2360,7 +2360,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
@@ -2497,7 +2497,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
@@ -2633,7 +2633,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
@@ -2770,7 +2770,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
@@ -2899,7 +2899,7 @@ public class Ecomm_ME_SUMST_CallOffOrder_NormalOrder_Test extends DriverFactory 
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests

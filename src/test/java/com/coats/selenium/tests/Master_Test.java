@@ -435,7 +435,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
-        soPage.setSalesOrg("LK53");
+        soPage.setSalesOrg(DataItems.salesOrgLK53);
 
         System.out.println("Criteria set. Listing orders...");
 
@@ -447,7 +447,7 @@ public class Master_Test extends DriverFactory {
         String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
         String loc2 = ") > td:nth-child(2)";
 
-        AssertJUnit.assertTrue("Sales Organisations Page: Filtration not working as expected", soPage.checkFiltrationAndRecords(loc1, loc2, WBA_BasePage.noRecords, "LK53", 2));
+        AssertJUnit.assertTrue("Sales Organisations Page: Filtration not working as expected", soPage.checkFiltrationAndRecords(loc1, loc2, WBA_BasePage.noRecords, DataItems.salesOrgLK53, 2));
 
         System.out.println("Filtration checked. Editing...");
 
@@ -464,7 +464,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Checking name is as expected...");
 
-        AssertJUnit.assertTrue("Edit Sales Organisation Page: Name in edit page does not match input to filter", editPage.getNameField().getAttribute("value").equals("LK53"));
+        AssertJUnit.assertTrue("Edit Sales Organisation Page: Name in edit page does not match input to filter", editPage.getNameField().getAttribute("value").equals(DataItems.salesOrgLK53));
 
         System.out.println("Name as expected. Checking contract order field is selected...");
 
@@ -555,7 +555,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering filter criteria...");
 
-        appList.setSalesOrg("ID51");
+        appList.setSalesOrg(DataItems.salesOrgID51);
         appList.setCustomerName(DataItems.custDetails[0]);
         appList.pressSearch();
         appList.waitForElement();
@@ -588,7 +588,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setCustomerName(DataItems.custDetails[0]);
         addPage.setRequester("Auto Approver");
         addPage.setValueStart("0.01");
@@ -602,7 +602,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is created...");
 
-        appList.setSalesOrg("ID51");
+        appList.setSalesOrg(DataItems.salesOrgID51);
         appList.setCustomerName(DataItems.custDetails[0]);
         appList.pressSearch();
         appList.waitForElement();
@@ -641,7 +641,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking changes were applied...");
 
-        appList.setSalesOrg("ID51");
+        appList.setSalesOrg(DataItems.salesOrgID51);
         appList.setCustomerName(DataItems.custDetails[0]);
         appList.pressSearch();
         appList.waitForElement();
@@ -657,7 +657,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking record is removed...");
 
-        appList.setSalesOrg("ID51");
+        appList.setSalesOrg(DataItems.salesOrgID51);
         appList.setCustomerName(DataItems.custDetails[0]);
         appList.pressSearch();
         appList.waitForElement();
@@ -763,7 +763,7 @@ public class Master_Test extends DriverFactory {
         //Checking if the Sub-account was created properly
         System.out.println("Saved. Checking Sub-account was created...");
 
-        subPage2.setSalesOrg("ID51");
+        subPage2.setSalesOrg(DataItems.salesOrgID51);
         subPage2.setSubAccountName("AutoTest SubAccount");
         subPage2.pressSearch();
         subPage2.waitForElement();
@@ -792,7 +792,7 @@ public class Master_Test extends DriverFactory {
         String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
         String loc2 = ") > td:nth-child(2)";
 
-        AssertJUnit.assertTrue("Sub Account Page: Filter produced unexpected results", saPage.checkFiltration(loc1, loc2, "ID51", 2));
+        AssertJUnit.assertTrue("Sub Account Page: Filter produced unexpected results", saPage.checkFiltration(loc1, loc2, DataItems.salesOrgID51, 2));
 
         try {
             int row4 = saPage.getRow("AutoTest SubAccount");
@@ -916,7 +916,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Page reached. Entering filter criteria...");
 
-        soPage.setSalesOrg("ID51");
+        soPage.setSalesOrg(DataItems.salesOrgID51);
 
         System.out.println("Criteria entered. Listing orders...");
 
@@ -981,7 +981,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Page reached. Entering filter criteria...");
 
-        soPage.setSalesOrg("ID51");
+        soPage.setSalesOrg(DataItems.salesOrgID51);
 
         System.out.println("Criteria entered. Listing orders...");
 
@@ -1091,7 +1091,7 @@ public class Master_Test extends DriverFactory {
         //Checking if the Customer Business Principal item was created properly
         System.out.println("Checking if the Customer Business Principal is created...");
         System.out.println("Entering filter criteria...");
-        custPage.setSalesOrg("ID51");
+        custPage.setSalesOrg(DataItems.salesOrgID51);
         custPage.setCustomerName(DataItems.custDetails[0]);
         custPage.setCoatsBusPrinc(DataItems.custDetails[3]);
         custPage.pressSearch();
@@ -1141,7 +1141,7 @@ public class Master_Test extends DriverFactory {
         //Checking if the Customer Business Principal is updated properly
         System.out.println("Saved. Checking record was updated...");
 
-        custPage.setSalesOrg("ID51");
+        custPage.setSalesOrg(DataItems.salesOrgID51);
         custPage.setCustomerName(DataItems.custDetails[0]);
         custPage.setCoatsBusPrinc(DataItems.custDetails[3]);
         custPage.pressSearch();
@@ -1165,7 +1165,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking delete occurred...");
 
-        custPage.setSalesOrg("ID51");
+        custPage.setSalesOrg(DataItems.salesOrgID51);
         custPage.setCustomerName(DataItems.custDetails[0]);
         custPage.setCoatsBusPrinc(DataItems.custDetails[3]);
         custPage.pressSearch();
@@ -1229,7 +1229,7 @@ public class Master_Test extends DriverFactory {
         //Check if any items match the test criteria and delete them
         System.out.println("Checking if any items match the test criteria");
 
-        multiPage.setSalesOrg("ID51");
+        multiPage.setSalesOrg(DataItems.salesOrgID51);
         multiPage.setCustomerName(DataItems.custDetails[0]);
         multiPage.setUserName("automated@multisold.com");
         multiPage.setCountry("Indonesia");
@@ -1264,7 +1264,7 @@ public class Master_Test extends DriverFactory {
         addPage.setEmail("joe.sykes@coats.com");
         addPage.setUserType("Multi Sold To");
         addPage.setCountry("Indonesia");
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setCustomerName(DataItems.custDetails[0], "(106499)");
         addPage.setShipToParty(DataItems.custDetails[1], "(106553)");
 
@@ -1276,7 +1276,7 @@ public class Master_Test extends DriverFactory {
         //Checking that the item was created properly
         System.out.println("Multi Sold To Users Page reached. Checking user was created...");
 
-        multiPage.setSalesOrg("ID51");
+        multiPage.setSalesOrg(DataItems.salesOrgID51);
         multiPage.setCustomerName(DataItems.custDetails[0]);
         multiPage.setUserName("Automated");
 
@@ -1305,7 +1305,7 @@ public class Master_Test extends DriverFactory {
         String loc1 = "#content > div.flexi-grid > table > tbody > tr:nth-child(";
         String loc2 = ") > td:nth-child(5)";
 
-        AssertJUnit.assertTrue("Mutli Sold To Page: Filtration does not work as expected", multiPage.checkFiltration(loc1, loc2, "ID51", 2));
+        AssertJUnit.assertTrue("Mutli Sold To Page: Filtration does not work as expected", multiPage.checkFiltration(loc1, loc2, DataItems.salesOrgID51, 2));
 
         System.out.println("Filtration working as expected.");*/
 
@@ -1314,7 +1314,7 @@ public class Master_Test extends DriverFactory {
         //Check if any items match the test criteria and delete them
         System.out.println("Checking if any items match the test criteria");
 
-        multiPage.setSalesOrg("ID51");
+        multiPage.setSalesOrg(DataItems.salesOrgID51);
         multiPage.setCustomerName(DataItems.custDetails[0]);
         multiPage.setUserName("autoedited@multisold.com");
         multiPage.setCountry("Indonesia");
@@ -1323,7 +1323,7 @@ public class Master_Test extends DriverFactory {
         multiPage.deletedMultiSoUs();
 
         //Editing the test entry
-        multiPage.setSalesOrg("ID51");
+        multiPage.setSalesOrg(DataItems.salesOrgID51);
         multiPage.setCustomerName(DataItems.custDetails[0]);
         multiPage.setUserName("automated@multisold.com");
         multiPage.setCountry("Indonesia");
@@ -1356,7 +1356,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record was updated...");
 
-        multiPage.setSalesOrg("ID51");
+        multiPage.setSalesOrg(DataItems.salesOrgID51);
         multiPage.setCustomerName(DataItems.custDetails[0]);
         multiPage.setUserName("autoedited@multisold.com");
         multiPage.pressSearch();
@@ -1379,7 +1379,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Record deleted. Checking record is removed...");
 
-        multiPage.setSalesOrg("ID51");
+        multiPage.setSalesOrg(DataItems.salesOrgID51);
         multiPage.setCustomerName(DataItems.custDetails[0]);
 
         multiPage.pressSearch();
@@ -1802,7 +1802,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering filter criteria...");
 
         //Checking if any item matches the test criteria and delete it
-        finPage.setSalesOrg("ID51");
+        finPage.setSalesOrg(DataItems.salesOrgID51);
         finPage.setCustomerName(DataItems.custDetails[0]);
         finPage.setCoatsFinish("Flame Retardant");
         finPage.pressSearch();
@@ -1828,7 +1828,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setCustomerName(DataItems.custDetails[0]);
         addPage.setCoatsFinish("Flame Retardant");
         addPage.setCustomerFinish("AutoFinish");
@@ -1840,7 +1840,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        finPage.setSalesOrg("ID51");
+        finPage.setSalesOrg(DataItems.salesOrgID51);
         finPage.setCustomerName(DataItems.custDetails[0]);
         finPage.setCoatsFinish("Flame Retardant");
         finPage.pressSearch();
@@ -1890,7 +1890,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        finPage.setSalesOrg("ID51");
+        finPage.setSalesOrg(DataItems.salesOrgID51);
         finPage.setCustomerName(DataItems.custDetails[0]);
         finPage.setCoatsFinish("Flame Retardant");
         finPage.pressSearch();
@@ -1906,7 +1906,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        finPage.setSalesOrg("ID51");
+        finPage.setSalesOrg(DataItems.salesOrgID51);
         finPage.setCustomerName(DataItems.custDetails[0]);
         finPage.setCoatsFinish("Flame Retardant");
         finPage.pressSearch();
@@ -1963,7 +1963,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering filter criteria...");
 
         //Checking if any item matches the test criteria and delete it
-        lenPage.setSalesOrg("ID51");
+        lenPage.setSalesOrg(DataItems.salesOrgID51);
         lenPage.setCustomerName(DataItems.custDetails[0]);
         lenPage.setCoatsLength("625");
         lenPage.pressSearch();
@@ -1990,7 +1990,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setCustomerName(DataItems.custDetails[0]);
         addPage.setCoatsLength("625");
         addPage.setCustomerLength("AutoLength");
@@ -2000,7 +2000,7 @@ public class Master_Test extends DriverFactory {
         addPage.pressSave();
         lenPage.waitForElement();
 
-        lenPage.setSalesOrg("ID51");
+        lenPage.setSalesOrg(DataItems.salesOrgID51);
         lenPage.setCustomerName(DataItems.custDetails[0]);
         lenPage.setCoatsLength("625");
         lenPage.pressSearch();
@@ -2051,7 +2051,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        lenPage.setSalesOrg("ID51");
+        lenPage.setSalesOrg(DataItems.salesOrgID51);
         lenPage.setCustomerName(DataItems.custDetails[0]);
         lenPage.setCoatsLength("625");
         lenPage.pressSearch();
@@ -2067,7 +2067,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        lenPage.setSalesOrg("ID51");
+        lenPage.setSalesOrg(DataItems.salesOrgID51);
         lenPage.setCustomerName(DataItems.custDetails[0]);
         lenPage.setCoatsLength("625");
         lenPage.pressSearch();
@@ -2235,7 +2235,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        tktPage.setSalesOrg("ID51");
+        tktPage.setSalesOrg(DataItems.salesOrgID51);
         tktPage.setCustomerName(DataItems.custDetails[0]);
         tktPage.pressSearch();
         tktPage.waitForElement();
@@ -2250,7 +2250,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        tktPage.setSalesOrg("ID51");
+        tktPage.setSalesOrg(DataItems.salesOrgID51);
         tktPage.setCustomerName(DataItems.custDetails[0]);
         tktPage.pressSearch();
         tktPage.waitForElement();
@@ -2308,7 +2308,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked...");
         //Checking if the brands used for testing already exists and delete it
         System.out.println("Checking if the brands used for testing already exist...");
-        brndPage.setSalesOrg("ID51");
+        brndPage.setSalesOrg(DataItems.salesOrgID51);
         brndPage.setCustomerName(DataItems.custDetails[0]);
         brndPage.setCoatsBrand("NYMO");
         brndPage.pressSearch();
@@ -2334,7 +2334,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setCustomerName(DataItems.custDetails[0]);
         addPage.setCoatsBrand("NYMO");
         addPage.setCustomerBrand("AutoBrand");
@@ -2347,7 +2347,7 @@ public class Master_Test extends DriverFactory {
         //Search for the Customer Brand created for testing
         System.out.println("Entering filter criteria...");
 
-        brndPage.setSalesOrg("ID51");
+        brndPage.setSalesOrg(DataItems.salesOrgID51);
         brndPage.setCustomerName(DataItems.custDetails[0]);
         brndPage.setCoatsBrand("NYMO");
 
@@ -2402,7 +2402,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        brndPage.setSalesOrg("ID51");
+        brndPage.setSalesOrg(DataItems.salesOrgID51);
         brndPage.setCustomerName(DataItems.custDetails[0]);
         brndPage.setCoatsBrand("NYMO");
         brndPage.pressSearch();
@@ -2418,7 +2418,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        brndPage.setSalesOrg("ID51");
+        brndPage.setSalesOrg(DataItems.salesOrgID51);
         brndPage.setCustomerName(DataItems.custDetails[0]);
         brndPage.setCoatsBrand("NYMO");
         brndPage.pressSearch();
@@ -2477,7 +2477,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering filter criteria...");
         //Checking if any Customer Material matches the test criteria and delete it
         System.out.print("Checking if any Customer Material matches the test criteria");
-        matPage.setSalesOrg("ID51");
+        matPage.setSalesOrg(DataItems.salesOrgID51);
         matPage.setCustomerName(DataItems.custDetails[0]);
         matPage.setCustomerMaterialNo("AutoMaterial");
         matPage.pressSearch();
@@ -2505,7 +2505,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setCustomerName(DataItems.custDetails[0]);
         addPage.setCustomerMaterialNo("AutoMaterial");
         addPage.setArticle("8754090");
@@ -2540,7 +2540,7 @@ public class Master_Test extends DriverFactory {
 
         //Checking if any Customer Material matches the test criteria and delete it
         System.out.print("Checking if any Customer Material matches the test criteria");
-        matPage.setSalesOrg("ID51");
+        matPage.setSalesOrg(DataItems.salesOrgID51);
         matPage.setCustomerName(DataItems.custDetails[0]);
         matPage.setCustomerMaterialNo("AutoEdited");
         matPage.pressSearch();
@@ -2548,7 +2548,7 @@ public class Master_Test extends DriverFactory {
         matPage.deleteCustMaterial();
 
         //Searching for the test Customer Material
-        matPage.setSalesOrg("ID51");
+        matPage.setSalesOrg(DataItems.salesOrgID51);
         matPage.setCustomerName(DataItems.custDetails[0]);
         matPage.setCustomerMaterialNo("AutoMaterial");
         matPage.pressSearch();
@@ -3955,7 +3955,7 @@ public class Master_Test extends DriverFactory {
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setBrandName("ASTRA");
+        pPage.setBrandName(DataItems.brandASTRA);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -4623,7 +4623,7 @@ public class Master_Test extends DriverFactory {
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setBrand("ASTRA");
+        pPage.setBrand(DataItems.brandASTRA);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -5466,7 +5466,7 @@ public class Master_Test extends DriverFactory {
 
         //Checking if any Warehouse Instructions matches the test criteria and delete it
         System.out.println("Checking if any Warehouse Instructions matches the test criteria...");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setWarehouseInstruction("AutoTest");
         pPage.pressSearch();
         pPage.waitForElement();
@@ -5492,7 +5492,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setWarehouseInstruction("AutoTest");
 
         System.out.println("Details entered. Saving...");
@@ -5502,7 +5502,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setWarehouseInstruction("AutoTest");
         pPage.pressSearch();
         pPage.waitForElement();
@@ -5520,17 +5520,17 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+        AssertJUnit.assertTrue("Rejection Reasons Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, DataItems.salesOrgID51, recordField, 2));
 
         //Checking if any Warehouse Instructions matches the Edit test criteria and delete it
         System.out.println("Checking if any Warehouse Instructions matches the test criteria...");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setWarehouseInstruction("Edited");
         pPage.pressSearch();
         pPage.waitForElement();
         pPage.deleteWrhsInstructions();
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setWarehouseInstruction("AutoTest");
         pPage.pressSearch();
         pPage.waitForElement();
@@ -5561,7 +5561,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setWarehouseInstruction("Edited");
         pPage.pressSearch();
         pPage.waitForElement();
@@ -5576,7 +5576,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setWarehouseInstruction("Edited");
         pPage.pressSearch();
         pPage.waitForElement();
@@ -5637,7 +5637,7 @@ public class Master_Test extends DriverFactory {
 
         //Check any Quantity factor that matches the test criteria is deleted
         System.out.println("Checking if any Quantity factor matches the test criteria");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setBrand("TEST");
         pPage.setPlantName("ID10");
         pPage.setMUMType("Cone");
@@ -5668,7 +5668,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setPlantName("ID10");
         addPage.setBrand("TEST");
         addPage.setMUMType("Cone");
@@ -5683,13 +5683,13 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setPlantName("ID10");
         pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("ID51", "ID10", "TEST", "000");
+        int row = pPage.getRow(DataItems.salesOrgID51, "ID10", "TEST", "000");
 
         AssertJUnit.assertFalse("Rejection Reasons Page: Rejection Reason not present in table after creation", row == -1);
 
@@ -5703,7 +5703,7 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Quantity Factors Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+        AssertJUnit.assertTrue("Quantity Factors Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, DataItems.salesOrgID51, recordField, 2));
 
         System.out.println("Filtration as expected. Creating new Quantity Factors...");
 
@@ -5735,13 +5735,13 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setPlantName("ID10");
         pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("ID51", "ID10", "TEST", "000");
+        int row2 = pPage.getRow(DataItems.salesOrgID51, "ID10", "TEST", "000");
         AssertJUnit.assertFalse("Quantity Factors Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -5751,21 +5751,21 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setPlantName("ID10");
         pPage.setBrand("TEST");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("ID51", "ID10", "TEST", "000");
+        int row3 = pPage.getRow(DataItems.salesOrgID51, "ID10", "TEST", "000");
         AssertJUnit.assertTrue("Quantity Factors Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setSalesOrg("ID51");
-        pPage.setBrand("ASTRA");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
+        pPage.setBrand(DataItems.brandASTRA);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -5938,7 +5938,7 @@ public class Master_Test extends DriverFactory {
         pPage.pressReset();
         pPage.waitForElement();
         pPage.setPlantName("ID10");
-        pPage.setBrand("ASTRA");
+        pPage.setBrand(DataItems.brandASTRA);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -6311,7 +6311,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering filter criteria...");
 
         //Checking if any Sales org. materials matches the test criteria and delete it
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setPlant("ID10");
         pPage.setBrand("TEST");
         pPage.setTicket("000");
@@ -6342,7 +6342,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering details...");
 
         addPage.setArticle("AutoTest");
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setPlant("ID10");
         addPage.setBrand("TEST");
         addPage.setTicket("000");
@@ -6356,12 +6356,12 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setArticle("AutoTest");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("ID51", "AutoTest");
+        int row = pPage.getRow(DataItems.salesOrgID51, "AutoTest");
 
         AssertJUnit.assertFalse("Sales Org. Materials Page: Sales Org. Material not present in table after creation", row == -1);
 
@@ -6374,7 +6374,7 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Sales Org. Materials Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+        AssertJUnit.assertTrue("Sales Org. Materials Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, DataItems.salesOrgID51, recordField, 2));
 
         System.out.println("Filtration as expected.");
 
@@ -6406,12 +6406,12 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setArticle("Edited");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("ID51", "Edited");
+        int row2 = pPage.getRow(DataItems.salesOrgID51, "Edited");
         AssertJUnit.assertFalse("Sales Org. Materials Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -6421,19 +6421,19 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setArticle("Edited");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("ID51", "Edited");
+        int row3 = pPage.getRow(DataItems.salesOrgID51, "Edited");
         AssertJUnit.assertTrue("Sales Org. Materials Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -6480,8 +6480,8 @@ public class Master_Test extends DriverFactory {
 
         //Checking if any Charged Product matches the test criteria and delete it
         System.out.println("Checking if any Charged Product matches the test criteria..");
-        pPage.setSalesOrg("ID51");
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.setBrand("TEST");
         pPage.setTicket("000");
         pPage.setMUMType("Vicone");
@@ -6509,8 +6509,8 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
-        addPage.setCustomerName("Life Easy Customer");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
+        addPage.setCustomerName(DataItems.lifeEasyCustomer);
         addPage.setBrand("TEST");
         addPage.setTicket("000");
         addPage.setMUMType("Vicone");
@@ -6523,15 +6523,15 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setSalesOrg("ID51");
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.setBrand("TEST");
         pPage.setTicket("000");
         pPage.setMUMType("Vicone");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("ID51", "Life Easy Customer", "TEST", "3");
+        int row = pPage.getRow(DataItems.salesOrgID51, DataItems.lifeEasyCustomer, "TEST", "3");
 
         AssertJUnit.assertFalse("Charged Products Page: Charged Product not present in table after creation", row == -1);
 
@@ -6544,7 +6544,7 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Charged Products Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+        AssertJUnit.assertTrue("Charged Products Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, DataItems.salesOrgID51, recordField, 2));
 
         System.out.println("Filtration as expected. Creating new Charged Product...");
 
@@ -6576,15 +6576,15 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setSalesOrg("ID51");
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.setBrand("TEST");
         pPage.setTicket("000");
         pPage.setMUMType("Vicone");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("ID51", "Life Easy Customer", "TEST", "5");
+        int row2 = pPage.getRow(DataItems.salesOrgID51, DataItems.lifeEasyCustomer, "TEST", "5");
         AssertJUnit.assertFalse("Charged Products Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -6594,22 +6594,22 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setSalesOrg("ID51");
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.setBrand("TEST");
         pPage.setTicket("000");
         pPage.setMUMType("Vicone");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("ID51", "Life Easy Customer", "TEST", "5");
+        int row3 = pPage.getRow(DataItems.salesOrgID51, DataItems.lifeEasyCustomer, "TEST", "5");
         AssertJUnit.assertTrue("Charged Products Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -6658,8 +6658,8 @@ public class Master_Test extends DriverFactory {
 
         //Check if any Force Enrichment product matches the test criteria and delete it
         System.out.println("Checking if any Force Enrichment Product matches the test criteria");
-        pPage.setSalesOrg("ID51");
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.setBrand("TEST");
         pPage.setMUMType("Vicone");
         pPage.pressSearch();
@@ -6686,8 +6686,8 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
-        addPage.setCustomerName("Life Easy Customer");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
+        addPage.setCustomerName(DataItems.lifeEasyCustomer);
         addPage.setBrand("TEST");
         addPage.setTicket("000");
         addPage.setMUMType("Vicone");
@@ -6699,14 +6699,14 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setSalesOrg("ID51");
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.setBrand("TEST");
         pPage.setMUMType("Vicone");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("Life Easy Customer", "TEST", "000");
+        int row = pPage.getRow(DataItems.lifeEasyCustomer, "TEST", "000");
 
         AssertJUnit.assertFalse("Forced Enrichment Products Page: Forced Enrichment Product not present in table after creation", row == -1);
 
@@ -6719,7 +6719,7 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Forced Enrichment Products Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+        AssertJUnit.assertTrue("Forced Enrichment Products Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, DataItems.salesOrgID51, recordField, 2));
 
         System.out.println("Filtration as expected.");
 
@@ -6751,14 +6751,14 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setSalesOrg("ID51");
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.setBrand("TEST");
         pPage.setMUMType("Vicone");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("Life Easy Customer", "TEST", "002");
+        int row2 = pPage.getRow(DataItems.lifeEasyCustomer, "TEST", "002");
         AssertJUnit.assertFalse("Forced Enrichment Products Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -6768,21 +6768,21 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setSalesOrg("ID51");
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.setBrand("TEST");
         pPage.setMUMType("Vicone");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("Life Easy Customer", "TEST", "002");
+        int row3 = pPage.getRow(DataItems.lifeEasyCustomer, "TEST", "002");
         AssertJUnit.assertTrue("Forced Enrichment Products Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -7030,7 +7030,7 @@ public class Master_Test extends DriverFactory {
 
         //Check if any Dye matches the test criteria and delete it
         System.out.println("Check if any Dye Lot matches the test criteria");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setBrand("TEST");
         pPage.setTicket("000");
         pPage.setFinish("STANDARD");
@@ -7058,7 +7058,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setBrand("TEST");
         addPage.setTicket("000");
         addPage.setLength("5000");
@@ -7075,7 +7075,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setBrand("TEST");
         pPage.setTicket("000");
         pPage.setFinish("STANDARD");
@@ -7096,7 +7096,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Filtration as expected.");
 
-        int row = pPage.getRow("ID51", "TEST", "000", "3");
+        int row = pPage.getRow(DataItems.salesOrgID51, "TEST", "000", "3");
 
         AssertJUnit.assertFalse("Dye Lot Multiples Page: Dye Lot Multiple not present in table after creation", row == -1);
 
@@ -7128,14 +7128,14 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setBrand("TEST");
         pPage.setTicket("000");
         pPage.setFinish("STANDARD");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("ID51", "TEST", "000", "5");
+        int row2 = pPage.getRow(DataItems.salesOrgID51, "TEST", "000", "5");
         AssertJUnit.assertFalse("Dye Lot Multiples Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -7145,21 +7145,21 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setBrand("TEST");
         pPage.setTicket("000");
         pPage.setFinish("STANDARD");
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("ID51", "TEST", "000", "5");
+        int row3 = pPage.getRow(DataItems.salesOrgID51, "TEST", "000", "5");
         AssertJUnit.assertTrue("Dye Lot Multiples Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -7365,12 +7365,12 @@ public class Master_Test extends DriverFactory {
 
         //Checking if any Warehouse Stock matches the test criteria and delete it
         System.out.println("Checking if any Warehouse Stock matches the test criteria...");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setPlantName("ID12");
         pPage.setArticle("TEST01");
         pPage.setTicket("000");
         pPage.setMUMType("Cop");
-        pPage.setBrand("ASTRA");
+        pPage.setBrand(DataItems.brandASTRA);
         pPage.pressSearch();
         pPage.waitForElement();
         pPage.deleteWrhsStock();
@@ -7395,7 +7395,7 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setPlant("ID12");
         addPage.setArticle("TEST01");
         addPage.setShade("blacktest");
@@ -7408,16 +7408,16 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setPlantName("ID12");
         pPage.setArticle("TEST01");
         pPage.setTicket("000");
         pPage.setMUMType("Cop");
-        pPage.setBrand("ASTRA");
+        pPage.setBrand(DataItems.brandASTRA);
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("ID51", "TEST01", "blacktest");
+        int row = pPage.getRow(DataItems.salesOrgID51, "TEST01", "blacktest");
 
         AssertJUnit.assertFalse("Our Stocks Page: Our Stock not present in table after creation", row == -1);
 
@@ -7431,7 +7431,7 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#OurStockListForm > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Order Types Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+        AssertJUnit.assertTrue("Order Types Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, DataItems.salesOrgID51, recordField, 2));
 
         Mst_EditOurStockPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -7459,16 +7459,16 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setPlantName("ID12");
         pPage.setArticle("TEST01");
         pPage.setTicket("000");
         pPage.setMUMType("Cop");
-        pPage.setBrand("ASTRA");
+        pPage.setBrand(DataItems.brandASTRA);
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("ID51", "TEST01", "WHITE");
+        int row2 = pPage.getRow(DataItems.salesOrgID51, "TEST01", "WHITE");
         AssertJUnit.assertFalse("Our Stocks Page: Edited changes are not applied in table", row2 == -1);
 
         System.out.println("Record updated. Deleting record...");
@@ -7477,23 +7477,23 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setPlantName("ID12");
         pPage.setArticle("TEST01");
         pPage.setTicket("000");
         pPage.setMUMType("Cop");
-        pPage.setBrand("ASTRA");
+        pPage.setBrand(DataItems.brandASTRA);
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row3 = pPage.getRow("ID51", "TEST01", "WHITE");
+        int row3 = pPage.getRow(DataItems.salesOrgID51, "TEST01", "WHITE");
         AssertJUnit.assertTrue("Our Stocks Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -7541,7 +7541,7 @@ public class Master_Test extends DriverFactory {
         //Checking if any Allowed Quantity matches the test criteria and delete it
         System.out.println("Checking if any Allowed Quantity matches the test criteria...");
         pPage.setCustomerName(DataItems.custDetails[0]);
-        pPage.setBrand("ASTRA");
+        pPage.setBrand(DataItems.brandASTRA);
         pPage.setTicket("000");
         pPage.setMUMType("Cone");
         pPage.setShade("BLACK");
@@ -7569,8 +7569,8 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setCustomerName("Life Easy Customer");
-        addPage.setBrand("ASTRA");
+        addPage.setCustomerName(DataItems.lifeEasyCustomer);
+        addPage.setBrand(DataItems.brandASTRA);
         addPage.setTicket("000");
         addPage.setMUMType("Cone");
         addPage.setShade("BLACK");
@@ -7598,10 +7598,10 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(2)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Allowed Quantities Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "Life Easy Customer", recordField, 2));
+        AssertJUnit.assertTrue("Allowed Quantities Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, DataItems.lifeEasyCustomer, recordField, 2));
 
         //checking the new entry data
-        int row = pPage.getRow("ASTRA", "9");
+        int row = pPage.getRow(DataItems.brandASTRA, "9");
 
         AssertJUnit.assertFalse("Allowed Quantities Page: Allowed Quantity not present in table after creation", row == -1);
 
@@ -7635,11 +7635,11 @@ public class Master_Test extends DriverFactory {
         //checking record is updated
         System.out.println("Saved. Checking record is updated...");
 
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row2 = pPage.getRow("ASTRA", "15");
+        int row2 = pPage.getRow(DataItems.brandASTRA, "15");
         AssertJUnit.assertFalse("Allowed Quantities Page: Edited changes are not applied in table", row2 == -1);
 
         //deleting record
@@ -7650,14 +7650,14 @@ public class Master_Test extends DriverFactory {
         //checking record is deleted
         System.out.println("Delete pressed. Checking item is removed...");
 
-        int row3 = pPage.getRow("ASTRA", "15");
+        int row3 = pPage.getRow(DataItems.brandASTRA, "15");
         AssertJUnit.assertTrue("Allowed Quantities Page: Item not removed after deletion", row3 == -1);
 
         System.out.println("Item removed. Checking export function...");
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -7704,7 +7704,7 @@ public class Master_Test extends DriverFactory {
 
         //Checking if any Customer matches the test criteria and delete it
         System.out.println("Checking if any Customer matches the test criteria...");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setCustomerCode("AUT0");
         pPage.pressSearch();
         pPage.waitForElement();
@@ -7731,7 +7731,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering details...");
 
         addPage.setCustomerName("AutomatedTest");
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setCustomerCode("AUT0");
         addPage.setPrincipalName("*OTHERS*");
         addPage.setCCESolution("Capsure Plus");
@@ -7825,7 +7825,7 @@ public class Master_Test extends DriverFactory {
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -7874,7 +7874,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Checking if any Ship to Parties matches the test criteria...");
         pPage.setCustomerName(DataItems.custDetails[0]);
         pPage.setPartyNumber("AUT01");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
         pPage.deleteShipToParty();
@@ -7900,8 +7900,8 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering details...");
 
         addPage.setFCE("Automated TEST");
-        addPage.setSalesOrg("ID51");
-        addPage.setCustomerName("Life Easy Customer");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
+        addPage.setCustomerName(DataItems.lifeEasyCustomer);
         addPage.setPartyNumber("AUT01");
         addPage.setPartyName("AutoShipTo");
         addPage.setAddress("Test House");
@@ -7921,7 +7921,7 @@ public class Master_Test extends DriverFactory {
 
         pPage.setCustomerName(DataItems.custDetails[0]);
         pPage.setPartyNumber("AUT01");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -7938,7 +7938,7 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(3)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Ship To Parties Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "Life Easy Customer", recordField, 2));
+        AssertJUnit.assertTrue("Ship To Parties Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, DataItems.lifeEasyCustomer, recordField, 2));
 
         Mst_EditShipToPartyPage editPage = pPage.pressEdit(row);
         editPage.waitForElement();
@@ -7990,7 +7990,7 @@ public class Master_Test extends DriverFactory {
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setCustomerName("Life Easy Customer");
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -8059,10 +8059,10 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setShipToParty("CCE HUB OFFICES");
         addPage.setCabinetCode("AutoGenerated");
-        addPage.setBrand("ASTRA", 0);
+        addPage.setBrand(DataItems.brandASTRA, 0);
         addPage.setTicket("000", 0);
         addPage.setShade("C1711", 0);
         addPage.setMUMType("Cone", 0);
@@ -8093,7 +8093,7 @@ public class Master_Test extends DriverFactory {
         String loc2 = ") > td:nth-child(3)";
         By recordField = By.cssSelector("#content > div.flexi-grid > dl > dt > span.left");
 
-        AssertJUnit.assertTrue("Cabinets Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, "ID51", recordField, 2));
+        AssertJUnit.assertTrue("Cabinets Page: Filtration not working as expected", pPage.checkFiltration(loc1, loc2, DataItems.salesOrgID51, recordField, 2));
 
         System.out.println("Filtration as expected. Creating new Cabinet...");
 
@@ -8160,7 +8160,7 @@ public class Master_Test extends DriverFactory {
 
         pPage.pressReset();
         pPage.waitForElement();
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -8208,7 +8208,7 @@ public class Master_Test extends DriverFactory {
         //Checking if any item matches the test criteria and delete it
         System.out.println("Checking if any item matches the test criteria...");
         pPage.setFeatureTitle("AutomatedTest");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setAccessType("eComm");
         pPage.pressSearch();
         pPage.waitForElement();
@@ -8235,7 +8235,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering details...");
 
         addPage.setFeatureTitle("AutomatedTest");
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setFeatureDescription("Generated by automated test suite");
         addPage.setAccessType("eComm");
         addPage.setDate();
@@ -8269,14 +8269,14 @@ public class Master_Test extends DriverFactory {
         //Checking if any item matches the Edit test criteria and delete it
         System.out.println("Checking if any item matches the test criteria...");
         pPage.setFeatureTitle("EditedTitle");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setAccessType("eComm");
         pPage.pressSearch();
         pPage.waitForElement();
         pPage.deleteMrkNewFt();
 
         pPage.setFeatureTitle("AutomatedTest");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.setAccessType("eComm");
         pPage.pressSearch();
         pPage.waitForElement();
@@ -8361,7 +8361,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Checking if any item matches the test criteria...");
         pPage.setAccessType("eComm");
         pPage.setRunningText("Generated by Automated Test");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
         pPage.deleteMrkRunningTxt();
@@ -8387,7 +8387,7 @@ public class Master_Test extends DriverFactory {
         System.out.println("Fields checked. Entering details...");
 
         addPage.setTitle("AutomatedTest");
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.setRunningText("Generated by Automated Test");
         addPage.setAvailableFromDate();
         addPage.waitForElement();
@@ -8406,7 +8406,7 @@ public class Master_Test extends DriverFactory {
 
         pPage.setAccessType("eComm");
         pPage.setRunningText("Generated by Automated Test");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -8453,7 +8453,7 @@ public class Master_Test extends DriverFactory {
 
         pPage.setAccessType("eComm");
         pPage.setRunningText("Generated by Automated Test");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -8468,7 +8468,7 @@ public class Master_Test extends DriverFactory {
 
         pPage.setAccessType("eComm");
         pPage.setRunningText("Generated by Automated Test");
-        pPage.setSalesOrg("ID51");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
@@ -8508,9 +8508,9 @@ public class Master_Test extends DriverFactory {
 
         //Checking if Private Customer Article that matches the test criteria was already created and if it does delete it
         System.out.println("Checking if any items matches the test criteria");
-        pPage.setSalesOrg("ID51");
-        pPage.setCustomerName("Life Easy Customer");
-        pPage.setBrand("ASTRA");
+        pPage.setSalesOrg(DataItems.salesOrgID51);
+        pPage.setCustomerName(DataItems.lifeEasyCustomer);
+        pPage.setBrand(DataItems.brandASTRA);
         pPage.deleteCustPrivateArticle();
 
         //Creating the item used for test
@@ -8528,15 +8528,15 @@ public class Master_Test extends DriverFactory {
         System.out.println("Checking fields...");
 
 
-        addPage.setSalesOrg("ID51");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
         addPage.checkFields();
 
         System.out.println("Fields checked. Entering details...");
 
-        addPage.setSalesOrg("ID51");
-        addPage.setCustomerName("Life Easy Customer");
+        addPage.setSalesOrg(DataItems.salesOrgID51);
+        addPage.setCustomerName(DataItems.lifeEasyCustomer);
         addPage.setArticle("8754180");
-        addPage.setBrand("ASTRA");
+        addPage.setBrand(DataItems.brandASTRA);
         addPage.pressEnable();
 
         System.out.println("Details entered. Saving...");
@@ -8546,11 +8546,11 @@ public class Master_Test extends DriverFactory {
 
         System.out.println("Saved. Checking record appears...");
 
-        pPage.setSalesOrganization("ID51");
+        pPage.setSalesOrganization(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 
-        int row = pPage.getRow("Life Easy Customer");
+        int row = pPage.getRow(DataItems.lifeEasyCustomer);
 
         AssertJUnit.assertFalse("Customer Private Article Page: Customer Private Aricle not present in table after creation", row == -1);
 
@@ -8584,22 +8584,22 @@ public class Master_Test extends DriverFactory {
 
          System.out.println("Saved. Checking record is updated...");
 
-         pPage.setSalesOrganization("ID51");
+         pPage.setSalesOrganization(DataItems.salesOrgID51);
          pPage.pressSearch();
          pPage.waitForElement();
 
-         int row2 = pPage.getRow("Life Easy Customer");
+         int row2 = pPage.getRow(DataItems.lifeEasyCustomer);
          AssertJUnit.assertFalse("Marketing Running Text Page: Edited changes are not applied in table", row2 == -1);
 
          System.out.println("Record updated. Deleting record...");
 
-        int row4 = pPage.getRow("Life Easy Customer");
+        int row4 = pPage.getRow(DataItems.lifeEasyCustomer);
         System.out.println("Deleting record...");
         pPage.pressDelete(row4);
 
         System.out.println("Delete pressed. Checking item is removed...");
 
-        pPage.setSalesOrganization("ID51");
+        pPage.setSalesOrganization(DataItems.salesOrgID51);
         pPage.pressSearch();
         pPage.waitForElement();
 

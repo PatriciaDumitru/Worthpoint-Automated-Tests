@@ -181,7 +181,7 @@ public class Mst_ShipToPartiesPage extends WBA_BasePage {
             pressDelete(2);
             setCustomerName(DataItems.custDetails[0]);
             setPartyNumber("AUT01");
-            setSalesOrg("ID51");
+            setSalesOrg(DataItems.salesOrgID51);
             pressSearch();
             waitForElement();
         }

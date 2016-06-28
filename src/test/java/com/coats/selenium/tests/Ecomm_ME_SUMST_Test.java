@@ -501,7 +501,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Setup Master Data...");
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.deActivateCallOffOrderAndApprovalForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
         System.out.println("Navigating to Manual Entry...");
@@ -1579,7 +1579,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Set Delivery Plant to select and activate approver checkbox...");
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //change to CCE page
-        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver, DataItems.salesOrgID, "Angler Test Indonesia", "Select");
+        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver, DataItems.salesOrgID51, DataItems.anglerTestIndonesiaCustomer, "Select");
         pf.chooseTheOtherProfile(driver); //change to ecomm page
 
         System.out.println("Navigating to Manual Entry...");
@@ -1698,7 +1698,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         System.out.println("Set Delivery Plant to select and activate approver checkbox...");
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //change to CCE page
-        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver, DataItems.salesOrgID, "Angler Test Indonesia", "Select");
+        pf.setDeliveryPlantAndEnableApprovelCheckboxForSalesOrgAndCust(driver, DataItems.salesOrgID51, DataItems.anglerTestIndonesiaCustomer, "Select");
         pf.chooseTheOtherProfile(driver); //change to ecomm page
 
         System.out.println("Navigating to Manual Entry...");
@@ -1747,7 +1747,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         //Set Master Data
         System.out.println("Set Master Data...");
         PreFlows pf = new PreFlows();
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrganisation);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.deActivateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.enableMOQForCustomer(driver, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver);
@@ -2821,7 +2821,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         //Enabled Approval Workflow
         PreFlows pf=new PreFlows();
-        pf.goToSalesOrgAndEdit(driver,"ID51");
+        pf.goToSalesOrgAndEdit(driver,DataItems.salesOrgID51);
         pf.enableApprovalCheckBoxForSalesOrg(driver);
         pf.saveSalesOrg(driver);
 
@@ -2965,7 +2965,7 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
         editPage2.unsetApprovalWorkflow();
         editPage2.clickSave();
         custPage2.waitForElement();
-        pf.goToSalesOrgAndEdit(driver,"ID51");
+        pf.goToSalesOrgAndEdit(driver,DataItems.salesOrgID51);
         pf.disableApprovalCheckBoxForSalesOrg(driver);
         pf.saveSalesOrg(driver);
 
@@ -2989,9 +2989,9 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
-        pf.enableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.enableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID51, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");
@@ -3111,9 +3111,9 @@ public class Ecomm_ME_SUMST_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID);
+        pf.activateCallOffOrderForSalesOrg(driver, DataItems.salesOrgID51);
         pf.activateCallOffOrderForCustomer(driver, DataItems.lifeEasyCustomer);
-        pf.enableApprovelCheckBoxForSalesOrgAndCust(driver, "ID51", DataItems.lifeEasyCustomer);
+        pf.enableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID51, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Manual Entry...");

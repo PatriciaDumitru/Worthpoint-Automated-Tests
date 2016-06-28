@@ -40,11 +40,11 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         soPage.checkFields();
         System.out.println("Fields checked. Checking record appears...");
 
-        soPage.setSalesOrg("LK53");
+        soPage.setSalesOrg(DataItems.salesOrgLK53);
         soPage.pressSearch();
         soPage.waitForElement();
 
-        int row = soPage.getRow("LK53");
+        int row = soPage.getRow(DataItems.salesOrgLK53);
         AssertJUnit.assertFalse("Sales Organisations Page: Sales Organisation not present in table after creation", row == -1);
 
         System.out.println("Record found. Editing record...");
@@ -76,11 +76,11 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         Mst_CustomersPage custPage = ccePage.selectCustomers();
         custPage.waitForElement();
 
-        custPage.setCustomerName("Star Garments Ltd.");
+        custPage.setCustomerName(DataItems.starGarmentsCustomer);
         custPage.pressSearch();
         custPage.waitForElement();
 
-        int row2 = custPage.getRow("Star Garments Ltd.");
+        int row2 = custPage.getRow(DataItems.starGarmentsCustomer);
         System.out.println("Record found. Editing record...");
 
         Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
@@ -126,11 +126,11 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         soPage.checkFields();
         System.out.println("Fields checked. Checking record appears...");
 
-        soPage.setSalesOrg("LK53");
+        soPage.setSalesOrg(DataItems.salesOrgLK53);
         soPage.pressSearch();
         soPage.waitForElement();
 
-        int row = soPage.getRow("LK53");
+        int row = soPage.getRow(DataItems.salesOrgLK53);
         AssertJUnit.assertFalse("Sales Organisations Page: Sales Organisation not present in table after creation", row == -1);
 
         System.out.println("Record found. Editing record...");
@@ -161,11 +161,11 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
         Mst_CustomersPage custPage = ccePage.selectCustomers();
         custPage.waitForElement();
 
-        custPage.setCustomerName("Star Garments Ltd.");
+        custPage.setCustomerName(DataItems.starGarmentsCustomer);
         custPage.pressSearch();
         custPage.waitForElement();
 
-        int row2 = custPage.getRow("Star Garments Ltd.");
+        int row2 = custPage.getRow(DataItems.starGarmentsCustomer);
         System.out.println("Record found. Editing record...");
 
         Mst_EditCustomerPage editPage2 = custPage.pressEdit(row2);
@@ -744,7 +744,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
+        //mapPage.setSalesOrg(DataItems.salesOrgLK53);
         //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
@@ -834,7 +834,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
+        //mapPage.setSalesOrg(DataItems.salesOrgLK53);
         //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
@@ -923,7 +923,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
+        //mapPage.setSalesOrg(DataItems.salesOrgLK53);
        //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
@@ -1011,7 +1011,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
+        //mapPage.setSalesOrg(DataItems.salesOrgLK53);
         //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
@@ -1143,7 +1143,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
+        //mapPage.setSalesOrg(DataItems.salesOrgLK53);
         //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
@@ -1247,7 +1247,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
+        //mapPage.setSalesOrg(DataItems.salesOrgLK53);
         //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");
@@ -1361,7 +1361,7 @@ public class Ecomm_ContractCallOffOrders_Test extends DriverFactory {
 
         System.out.println("Mapping page reached. Setting sales org and customer name...");
 
-        //mapPage.setSalesOrg("LK53");
+        //mapPage.setSalesOrg(DataItems.salesOrgLK53);
         //mapPage.setCustomerName(DataItems.custDetails3[0]);
 
         System.out.println("Details set. Setting mapping...");

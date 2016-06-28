@@ -58,7 +58,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
         //Set sales organisation and customer name. This is only required because a SUMST account is used
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
@@ -140,7 +140,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
@@ -213,7 +213,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
@@ -286,7 +286,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
@@ -359,7 +359,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
@@ -433,7 +433,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
@@ -507,7 +507,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
@@ -579,7 +579,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Setting sales org and customer name...");
         
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");
@@ -700,7 +700,7 @@ public class Ecomm_UO_Exceptions_Test extends DriverFactory {
         
         System.out.println("Mapping page reached. Entering details...");
         
-        mapPage.setSalesOrg("ID51");
+        mapPage.setSalesOrg(DataItems.salesOrgID51);
         mapPage.setCustomerName(DataItems.custDetails[0]);
         
         System.out.println("Details set. Setting mapping...");

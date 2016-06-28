@@ -90,7 +90,7 @@ public class Cce_FCETaskStatus_Test extends DriverFactory {
         
         System.out.println("FCE Task Status reached. Entering filter criteria...");
         
-        fcePage.setSalesOrg(DataItems.salesOrgID);
+        fcePage.setSalesOrg(DataItems.salesOrgID51);
         fcePage.setTaskStatus("Completed");
 
         System.out.println("Criteria entered. Pressing reset...");

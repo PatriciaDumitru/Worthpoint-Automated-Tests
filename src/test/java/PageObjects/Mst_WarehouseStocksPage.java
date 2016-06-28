@@ -216,12 +216,12 @@ public class Mst_WarehouseStocksPage extends WBA_BasePage {
             Alert alert = new WebDriverWait(driver,DataItems.shortWait).until(ExpectedConditions.alertIsPresent());
             alert.accept();
 
-            setSalesOrg("ID51");
-            setPlantName("ID12");
+            setSalesOrg(DataItems.salesOrgID51);
+            setPlantName(DataItems.plantID12);
             setArticle("TEST01");
             setTicket("000");
             setMUMType("Cop");
-            setBrand("ASTRA");
+            setBrand(DataItems.brandASTRA);
             pressSearch();
             waitForElement();
         }

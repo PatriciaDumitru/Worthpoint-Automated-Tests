@@ -201,7 +201,7 @@ public class Mst_ChargedProductsPage extends WBA_BasePage {
         for(int i = nrOfEntry;i > 1; i--)
         {
             pressDelete(2);
-            setSalesOrg("ID51");
+            setSalesOrg(DataItems.salesOrgID51);
             setCustomerName(DataItems.custDetails[0]);
             setBrand("TEST");
             pressSearch();

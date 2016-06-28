@@ -175,7 +175,7 @@ public class Mst_AllowedQuantitiesPage extends WBA_BasePage {
         {
             pressDelete(2);
             setCustomerName(DataItems.custDetails[0]);
-            setBrand("ASTRA");
+            setBrand(DataItems.brandASTRA);
             setTicket("000");
             setMUMType("Cone");
             setShade("BLACK");

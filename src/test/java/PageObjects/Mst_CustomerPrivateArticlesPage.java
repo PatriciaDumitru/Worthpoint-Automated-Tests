@@ -153,9 +153,8 @@ public class Mst_CustomerPrivateArticlesPage extends WBA_BasePage {
         for(int i = nrOfEntry;i > 1; i--)
         {
             pressDelete(2);
-            setSalesOrg("ID51");
-            setSalesOrg("ID51");
-            setCustomerName("Life Easy Customer");
+            setSalesOrg(DataItems.salesOrgID51);
+            setCustomerName(DataItems.lifeEasyCustomer);
             setBrand("ASTRA");
             pressSearch();
             waitForElement();

@@ -34,7 +34,7 @@ public class Ecomm_Shade_Test extends DriverFactory {
 
         PreFlows pf = new PreFlows();
         pf.chooseTheOtherProfile(driver); //choose CCE for Master Data setup
-        pf.enableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID, DataItems.lifeEasyCustomer);
+        pf.enableApprovelCheckBoxForSalesOrgAndCust(driver, DataItems.salesOrgID51, DataItems.lifeEasyCustomer);
         pf.chooseTheOtherProfile(driver); //choose Ecomm for tests
 
         System.out.println("Navigating to Shade Not Available page...");
